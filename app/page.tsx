@@ -9,7 +9,7 @@ export default function Home() {
           Family Meal Planner
         </h1>
 
-        <p className="text-lg text-slate-600 mb-12">
+        <p className="text-lg text-slate-900 mb-12">
           Plan your meals, browse recipes and generate shopping lists.
         </p>
 
@@ -26,7 +26,7 @@ export default function Home() {
               📖 Recipes
             </h2>
 
-            <p className="mb-6 text-slate-600">
+            <p className="mb-6 text-slate-900">
               Browse all family recipes.
             </p>
 
@@ -46,7 +46,7 @@ export default function Home() {
               🗓️ Meal Planner
             </h2>
 
-            <p className="mb-6 text-slate-600">
+            <p className="mb-6 text-slate-900">
               Plan this week's meals.
             </p>
 
@@ -66,7 +66,7 @@ export default function Home() {
               🛒 Shopping List
             </h2>
 
-            <p className="mb-6 text-slate-600">
+            <p className="mb-6 text-slate-900">
               Generate your shopping list automatically.
             </p>
 

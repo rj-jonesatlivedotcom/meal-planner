@@ -6,7 +6,6 @@ export default function Navbar() {
       <div className="max-w-5xl mx-auto flex gap-8 p-4">
         <Link href="/">Home</Link>
         <Link href="/recipes">Recipes</Link>
-        <Link href="/planner">Meal Planner</Link>
         <Link href="/shopping">Shopping List</Link>
       </div>
     </nav>

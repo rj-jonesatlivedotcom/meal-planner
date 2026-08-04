@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { recipes } from "@/data/recipes";
 
@@ -63,13 +64,16 @@ function getCategory(item: string) {
 export default function ShoppingPage() {
 
   const [selectedRecipes, setSelectedRecipes] =
-    useState<string[]>([]);
+  useState<string[]>([]);
 
-  const [shoppingList, setShoppingList] =
-    useState<ShoppingItem[]>([]);
+const [shoppingList, setShoppingList] =
+  useState<ShoppingItem[]>([]);
 
-  const [people, setPeople] =
-    useState<number>(1);
+const [checkedItems, setCheckedItems] =
+  useState<string[]>([]);
+
+const [people, setPeople] =
+  useState<number>(1);
 
 
 
@@ -295,31 +299,33 @@ export default function ShoppingPage() {
 
   function generateShoppingList() {
 
-    const ingredients = recipes
-      .filter((recipe) =>
-        selectedRecipes.includes(recipe.id)
-      )
-      .flatMap((recipe) =>
-        recipe.ingredients.map((ingredient) => ({
-          item: ingredient.item,
-          quantity: scaleQuantity(ingredient.quantity),
-        }))
-      );
-
-
-    setShoppingList(
-      combineIngredients(ingredients)
+  const ingredients = recipes
+    .filter((recipe) =>
+      selectedRecipes.includes(recipe.id)
+    )
+    .flatMap((recipe) =>
+      recipe.ingredients.map((ingredient) => ({
+        item: ingredient.item,
+        quantity: scaleQuantity(ingredient.quantity),
+      }))
     );
 
-  }
+  setShoppingList(
+    combineIngredients(ingredients)
+  );
+
+  setCheckedItems([]);
+
+}
 
 
 
   function clearShoppingList() {
 
-    setShoppingList([]);
+  setShoppingList([]);
+  setCheckedItems([]);
 
-  }
+}
 
 
 
@@ -409,7 +415,7 @@ export default function ShoppingPage() {
 
             <label
               key={recipe.id}
-              className="flex items-center gap-3 cursor-pointer"
+              className="flex items-start gap-3 cursor-pointer py-3"
             >
 
               <input
@@ -423,9 +429,23 @@ export default function ShoppingPage() {
               />
 
 
-              <span>
-                {recipe.emoji} {recipe.name}
-              </span>
+<div className="flex flex-col">
+  <span className="font-semibold text-slate-900">
+    {recipe.emoji} {recipe.name}
+  </span>
+
+  <span className="text-sm text-slate-500">
+  ⏱️ {recipe.cookingTime.replace(" minutes", " min")} • 🔥{" "}
+  {recipe.nutrition.calories} •{" "}
+  <Link
+    href={`/recipes/${recipe.id}`}
+    className="text-blue-600 hover:text-blue-800 hover:underline"
+    onClick={(e) => e.stopPropagation()}
+  >
+    📖 Recipe
+  </Link>
+</span>
+</div>
 
 
             </label>
@@ -494,23 +514,47 @@ export default function ShoppingPage() {
 
                   {group.items.map((item, index) => (
 
-                    <li
-                      key={index}
-                      className="flex justify-between border-b pb-2"
-                    >
+<li
+  key={index}
+  className="flex items-center justify-between border-b pb-2"
+>
+  <label className="flex items-center gap-3 cursor-pointer flex-1">
 
-                      <span>
-                        □ {item.item}
-                      </span>
+    <input
+      type="checkbox"
+      checked={checkedItems.includes(item.item)}
+      onChange={() => {
+        setCheckedItems((current) =>
+          current.includes(item.item)
+            ? current.filter((name) => name !== item.item)
+            : [...current, item.item]
+        );
+      }}
+    />
 
+    <span
+      className={
+        checkedItems.includes(item.item)
+          ? "line-through text-slate-400"
+          : ""
+      }
+    >
+      {item.item}
+    </span>
 
-                      <span className="font-medium">
-                        {item.quantity}
-                      </span>
+  </label>
 
+  <span
+    className={
+      checkedItems.includes(item.item)
+        ? "font-medium line-through text-slate-400"
+        : "font-medium"
+    }
+  >
+    {item.quantity}
+  </span>
 
-                    </li>
-
+</li>
                   ))}
 
 

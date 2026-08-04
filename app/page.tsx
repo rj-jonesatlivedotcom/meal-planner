@@ -13,9 +13,7 @@ export default function Home() {
           Plan your meals, browse recipes and generate shopping lists.
         </p>
 
-
-        <div className="grid md:grid-cols-3 gap-6">
-
+        <div className="grid md:grid-cols-2 gap-6">
 
           {/* Recipes */}
           <Link
@@ -35,28 +33,6 @@ export default function Home() {
             </div>
           </Link>
 
-
-
-          {/* Meal Planner */}
-          <Link
-            href="/planner"
-            className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition"
-          >
-            <h2 className="text-2xl font-bold mb-4">
-              🗓️ Meal Planner
-            </h2>
-
-            <p className="mb-6 text-slate-900">
-              Plan this week's meals.
-            </p>
-
-            <div className="bg-green-600 text-white rounded-lg py-3">
-              Open Planner
-            </div>
-          </Link>
-
-
-
           {/* Shopping List */}
           <Link
             href="/shopping"
@@ -74,7 +50,6 @@ export default function Home() {
               View List
             </div>
           </Link>
-
 
         </div>
 

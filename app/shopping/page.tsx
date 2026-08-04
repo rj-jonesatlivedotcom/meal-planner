@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { recipes } from "@/data/recipes";
 
 type ShoppingItem = {
@@ -75,6 +75,9 @@ const [checkedItems, setCheckedItems] =
 const [people, setPeople] =
   useState<number>(1);
 
+const [loaded, setLoaded] =
+  useState(false);
+
 
 
   function toggleRecipe(id: string) {
@@ -131,7 +134,7 @@ const [people, setPeople] =
 
 
     if (whole > 0 && result) {
-      return `${whole}${result}`;
+      return `${whole} ${result}`;
     }
 
 
@@ -246,8 +249,22 @@ const [people, setPeople] =
             secondValue !== null
           ) {
 
-            existing.quantity =
-              `${decimalToFraction(firstValue + secondValue)}${unit1}`;
+            const quantity =
+  decimalToFraction(firstValue + secondValue);
+
+const noSpaceUnits = [
+  "g",
+  "kg",
+  "ml",
+  "l",
+];
+
+existing.quantity =
+  noSpaceUnits.includes(unit1)
+    ? `${quantity}${unit1}`
+    : `${quantity} ${unit1}`;
+
+return;
 
             return;
 
@@ -278,8 +295,20 @@ const [people, setPeople] =
         unit1 === unit2
       ) {
 
-        existing.quantity =
-          `${number1 + number2}${unit1}`;
+        const quantity =
+  number1 + number2;
+
+const noSpaceUnits = [
+  "g",
+  "kg",
+  "ml",
+  "l",
+];
+
+existing.quantity =
+  noSpaceUnits.includes(unit1.trim())
+    ? `${quantity}${unit1.trim()}`
+    : `${quantity} ${unit1.trim()}`;
 
       } else {
 
@@ -320,10 +349,13 @@ const [people, setPeople] =
 
 
 
-  function clearShoppingList() {
+  function resetShopping() {
 
+  setSelectedRecipes([]);
   setShoppingList([]);
   setCheckedItems([]);
+
+  localStorage.removeItem("shopping-data");
 
 }
 
@@ -340,7 +372,40 @@ const [people, setPeople] =
   ];
 
 
+useEffect(() => {
+  const saved = localStorage.getItem("shopping-data");
 
+  if (saved) {
+    const data = JSON.parse(saved);
+
+    setSelectedRecipes(data.selectedRecipes ?? []);
+    setShoppingList(data.shoppingList ?? []);
+    setCheckedItems(data.checkedItems ?? []);
+    setPeople(data.people ?? 1);
+  }
+
+  setLoaded(true);
+}, []);
+
+useEffect(() => {
+  if (!loaded) return;
+
+  localStorage.setItem(
+    "shopping-data",
+    JSON.stringify({
+      selectedRecipes,
+      shoppingList,
+      checkedItems,
+      people,
+    })
+  );
+}, [
+  loaded,
+  selectedRecipes,
+  shoppingList,
+  checkedItems,
+  people,
+]);
   const groupedShoppingList =
     categoryOrder
       .map((category) => ({
@@ -469,11 +534,11 @@ const [people, setPeople] =
         {shoppingList.length > 0 && (
 
           <button
-            onClick={clearShoppingList}
-            className="ml-4 mt-6 bg-gray-300 hover:bg-gray-400 px-6 py-3 rounded-lg"
-          >
-            Clear List
-          </button>
+  onClick={resetShopping}
+  className="ml-4 mt-6 bg-gray-300 hover:bg-gray-400 px-6 py-3 rounded-lg"
+>
+  🔄 Reset
+</button>
 
         )}
 

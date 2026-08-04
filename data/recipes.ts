@@ -1,5 +1,6 @@
 export type Ingredient = {
   item: string;
+  shoppingItem?: string;
   quantity: string;
 };
 
@@ -48,18 +49,22 @@ export const recipes: Recipe[] = [
     ingredients: [
       {
         item: "Chicken breast, diced",
+        shoppingItem: "Chicken breast",
         quantity: "150g",
       },
       {
         item: "Large onion, diced",
+        shoppingItem: "Onion",
         quantity: "¼",
       },
       {
         item: "Garlic, crushed",
+        shoppingItem: "Garlic",
         quantity: "1 clove",
       },
       {
         item: "Red pepper, diced",
+        shoppingItem: "Red pepper",
         quantity: "½",
       },
       {
@@ -68,7 +73,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Tomato purée",
-        quantity: "½ tbsp",
+        quantity: "1½ tsp",
       },
       {
         item: "Passata",
@@ -80,6 +85,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Green beans, trimmed and cut into bite-sized pieces",
+        shoppingItem: "Green beans",
         quantity: "37.5g",
       },
       {
@@ -88,7 +94,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Olive oil",
-        quantity: "½ tbsp",
+        quantity: "1½ tsp",
       },
       {
         item: "Freshly ground black pepper",
@@ -143,6 +149,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       {
         item: "Floury potatoes, peeled and chopped",
+        shoppingItem: "Potato",
         quantity: "200g"
       },
       {
@@ -151,15 +158,17 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Large onion, diced",
+        shoppingItem: "Onion",
         quantity: "¼"
       },
       {
         item: "Medium carrot, diced",
+        shoppingItem: "Carrot",
         quantity: "½"
       },
       {
         item: "Tomato purée",
-        quantity: "½ tbsp"
+        quantity: "1½ tsp"
       },
       {
         item: "Worcestershire sauce",
@@ -235,6 +244,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       {
         item: "Chicken breast, diced",
+        shoppingItem: "Chicken breast",
         quantity: "150g",
       },
       {
@@ -243,19 +253,22 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Large onion, diced",
+        shoppingItem: "Onion",
         quantity: "¼",
       },
       {
         item: "Garlic, crushed",
+        shoppingItem: "Garlic",
         quantity: "1 clove",
       },
       {
         item: "Red pepper, diced",
+        shoppingItem: "Red pepper",
         quantity: "½",
       },
       {
         item: "Tomato purée",
-        quantity: "½ tbsp",
+        quantity: "1½ tsp",
       },
       {
         item: "Passata",
@@ -271,7 +284,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Olive oil",
-        quantity: "½ tbsp",
+        quantity: "1½ tsp",
       },
       {
         item: "Freshly ground black pepper",
@@ -330,19 +343,22 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large onion, finely diced",
+      shoppingItem: "Onion",
       quantity: "¼",
     },
     {
       item: "Medium carrot, finely diced",
+      shoppingItem: "Carrot",
       quantity: "½",
     },
     {
       item: "Garlic, crushed",
+      shoppingItem: "Garlic",
       quantity: "1 clove",
     },
     {
       item: "Tomato purée",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Passata",
@@ -399,31 +415,37 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Chicken breast, cut into large chunks",
+      shoppingItem: "Chicken breast",
       quantity: "150g",
     },
     {
       item: "Floury potatoes, cut into bite-sized chunks",
+      shoppingItem: "Potatoes",
       quantity: "200g",
     },
     {
       item: "Red pepper, cut into chunks",
+      shoppingItem: "Red pepper",
       quantity: "½",
     },
     {
       item: "Red onion, cut into wedges",
+      shoppingItem: "Red onion",
       quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Lemon juice",
-      quantity: "Juice of ¼ lemon",
+      shoppingItem: "Lemon",
+      quantity: "¼",
     },
     {
       item: "Lemon zest",
-      quantity: "Zest of ¼ lemon",
+      shoppingItem: "Lemon",
+      quantity: "¼",
     },
     {
       item: "Dried mixed herbs",
@@ -473,6 +495,7 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Chicken breast, cut into thin strips",
+      shoppingItem: "Chicken breast",
       quantity: "150g",
     },
     {
@@ -481,19 +504,22 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large onion, sliced",
+      shoppingItem: "Onion",
       quantity: "¼",
     },
     {
       item: "Red pepper, sliced",
+      shoppingItem: "Red pepper",
       quantity: "½",
     },
     {
       item: "Green pepper, sliced",
+      shoppingItem: "Green pepper",
       quantity: "½",
     },
     {
       item: "Olive oil",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Ready-made mild fajita seasoning",
@@ -501,7 +527,8 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Lime juice",
-      quantity: "Juice of ¼ lime",
+      shoppingItem: "Lime",
+      quantity: "¼",
     },
     {
       item: "Freshly ground black pepper",
@@ -549,14 +576,17 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Chicken breast",
+      shoppingItem: "Chicken breast",
       quantity: "150g",
     },
     {
       item: "Floury potatoes, peeled and cut into roast-sized chunks",
+      shoppingItem: "Potatoes",
       quantity: "200g",
     },
     {
       item: "Carrot, cut into batons",
+      shoppingItem: "Carrot",
       quantity: "½",
     },
     {
@@ -565,11 +595,12 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Red onion, cut into wedges",
+      shoppingItem: "Onion",
       quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Dried mixed herbs",
@@ -624,23 +655,27 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Chicken breast",
+      shoppingItem: "Chicken breast",
       quantity: "150g",
     },
     {
       item: "Floury potatoes, cut into bite-sized chunks",
+      shoppingItem: "Potatoes",
       quantity: "200g",
     },
     {
       item: "Red pepper, cut into chunks",
+      shoppingItem: "Red pepper",
       quantity: "½",
     },
     {
       item: "Red onion, cut into wedges",
+      shoppingItem: "Red onion",
       quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Clear honey",
@@ -707,15 +742,17 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Floury potatoes, cut into wedges",
+      shoppingItem: "Potatoes",
       quantity: "200g",
     },
     {
       item: "Small onion, finely diced",
+      shoppingItem: "Onion",
       quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Tomato purée",
@@ -731,6 +768,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Tomato slices",
+      shoppingItem: "Tomato",
       quantity: "2",
     },
     {
@@ -788,15 +826,17 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large onion, finely diced",
+      shoppingItem: "Onion",
       quantity: "¼",
     },
     {
       item: "Garlic, crushed",
+      shoppingItem: "Garlic",
       quantity: "1 clove",
     },
     {
       item: "Tomato purée",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Passata",
@@ -867,19 +907,22 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large onion, diced",
+      shoppingItem: "Onion",
       quantity: "¼",
     },
     {
       item: "Red pepper, diced",
+      shoppingItem: "Red pepper",
       quantity: "½",
     },
     {
       item: "Garlic, crushed",
+      shoppingItem: "Garlic",
       quantity: "1 clove",
     },
     {
       item: "Tomato purée",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Passata",
@@ -941,6 +984,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Floury potatoes, peeled and chopped",
+      shoppingItem: "Potatoes",
       quantity: "200g",
     },
     {
@@ -1013,10 +1057,12 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Floury potatoes, cut into bite-sized chunks",
+      shoppingItem: "Potatoes",
       quantity: "200g",
     },
     {
       item: "Red pepper, cut into chunks",
+      shoppingItem: "Red pepper",
       quantity: "½",
     },
     {
@@ -1025,15 +1071,17 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Olive oil",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Lemon juice",
-      quantity: "Juice of ¼ lemon",
+      shoppingItem: "Lemon",
+      quantity: "¼",
     },
     {
       item: "Lemon zest",
-      quantity: "Zest of ¼ lemon",
+      shoppingItem: "Lemon",
+      quantity: "¼",
     },
     {
       item: "Dried mixed herbs",
@@ -1095,15 +1143,17 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Red pepper, diced",
+      shoppingItem: "Red pepper",
       quantity: "½",
     },
     {
       item: "Garlic, crushed",
+      shoppingItem: "Garlic",
       quantity: "1 clove",
     },
     {
       item: "Tomato purée",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Passata",
@@ -1166,6 +1216,7 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Chicken breast, diced",
+      shoppingItem: "Chicken breast",
       quantity: "150g",
     },
     {
@@ -1174,14 +1225,17 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large red onion, diced",
+      shoppingItem: "Red Onion",
       quantity: "¼",
     },
     {
       item: "Red pepper, diced",
+      shoppingItem: "Red Pepper",
       quantity: "½",
     },
     {
       item: "Garlic, crushed",
+      shoppingItem: "Garlic",
       quantity: "1 clove",
     },
     {
@@ -1190,7 +1244,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Tomato purée",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Dried mixed herbs",
@@ -1198,7 +1252,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Olive oil",
-      quantity: "½ tbsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Freshly ground black pepper",

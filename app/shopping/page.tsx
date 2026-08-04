@@ -6,45 +6,110 @@ import { recipes } from "@/data/recipes";
 
 type ShoppingItem = {
   item: string;
+  shoppingItem?: string;
   quantity: string;
 };
 
 const ingredientCategories: Record<string, string> = {
+  // 🥩 Meat & Fish
+  gravy: "🥫 Cupboard",
   stock: "🥫 Cupboard",
-  "curry powder": "🥫 Cupboard",
-  passata: "🥫 Cupboard",
-  pasta: "🥫 Cupboard",
-  spaghetti: "🥫 Cupboard",
-  rice: "🥫 Cupboard",
-  "tomato purée": "🥫 Cupboard",
-  olive: "🥫 Cupboard",
-  worcestershire: "🥫 Cupboard",
-
   chicken: "🥩 Meat & Fish",
+  beef: "🥩 Meat & Fish",
+  mince: "🥩 Meat & Fish",
+  sausage: "🥩 Meat & Fish",
+  bacon: "🥩 Meat & Fish",
   salmon: "🥩 Meat & Fish",
   tuna: "🥩 Meat & Fish",
-  beef: "🥩 Meat & Fish",
-  sausage: "🥩 Meat & Fish",
-
+  fish: "🥩 Meat & Fish",
+"tomato purée": "🥫 Cupboard",
+  // 🥕 Fruit & Vegetables
   onion: "🥕 Fruit & Vegetables",
-  garlic: "🥕 Fruit & Vegetables",
-  pepper: "🥕 Fruit & Vegetables",
-  tomato: "🥕 Fruit & Vegetables",
-  potato: "🥕 Fruit & Vegetables",
-  lemon: "🥕 Fruit & Vegetables",
-  beans: "🥕 Fruit & Vegetables",
-  carrot: "🥕 Fruit & Vegetables",
+  "red onion": "🥕 Fruit & Vegetables",
+  "white onion": "🥕 Fruit & Vegetables",
+  "spring onion": "🥕 Fruit & Vegetables",
 
+  garlic: "🥕 Fruit & Vegetables",
+
+  pepper: "🥕 Fruit & Vegetables",
+  "red pepper": "🥕 Fruit & Vegetables",
+  "green pepper": "🥕 Fruit & Vegetables",
+  "yellow pepper": "🥕 Fruit & Vegetables",
+
+  tomato: "🥕 Fruit & Vegetables",
+
+  potato: "🥕 Fruit & Vegetables",
+  potatoes: "🥕 Fruit & Vegetables",
+  "floury potato": "🥕 Fruit & Vegetables",
+  "floury potatoes": "🥕 Fruit & Vegetables",
+
+  carrot: "🥕 Fruit & Vegetables",
+  broccoli: "🥕 Fruit & Vegetables",
+  mushroom: "🥕 Fruit & Vegetables",
+  courgette: "🥕 Fruit & Vegetables",
+  spinach: "🥕 Fruit & Vegetables",
+  lettuce: "🥕 Fruit & Vegetables",
+  beans: "🥕 Fruit & Vegetables",
+
+  lemon: "🥕 Fruit & Vegetables",
+  lime: "🥕 Fruit & Vegetables",
+
+  // 🧊 Chilled
   cheese: "🧊 Chilled",
+  cheddar: "🧊 Chilled",
+  parmesan: "🧊 Chilled",
+  mozzarella: "🧊 Chilled",
+  yoghurt: "🧊 Chilled",
   cream: "🧊 Chilled",
   milk: "🧊 Chilled",
   butter: "🧊 Chilled",
 
+  // ❄️ Frozen
   peas: "❄️ Frozen",
 
+  // 🍞 Bakery
+  bread: "🍞 Bakery",
+  bun: "🍞 Bakery",
+  roll: "🍞 Bakery",
+  wrap: "🍞 Bakery",
+  tortilla: "🍞 Bakery",
+  pitta: "🍞 Bakery",
+  naan: "🍞 Bakery",
+  bagel: "🍞 Bakery",
+
+  // 🥫 Cupboard
+  
+  passata: "🥫 Cupboard",
+  
+  pasta: "🥫 Cupboard",
+  penne: "🥫 Cupboard",
+  spaghetti: "🥫 Cupboard",
+  rice: "🥫 Cupboard",
+
+  flour: "🥫 Cupboard",
+  breadcrumbs: "🥫 Cupboard",
+
+  olive: "🥫 Cupboard",
+  worcestershire: "🥫 Cupboard",
+  honey: "🥫 Cupboard",
+  mustard: "🥫 Cupboard",
+  seasoning: "🥫 Cupboard",
+
+  // 🧂 Herbs & Spices
   thyme: "🧂 Herbs & Spices",
+  rosemary: "🧂 Herbs & Spices",
+  oregano: "🧂 Herbs & Spices",
+  basil: "🧂 Herbs & Spices",
+  parsley: "🧂 Herbs & Spices",
+  paprika: "🧂 Herbs & Spices",
+  cumin: "🧂 Herbs & Spices",
+  turmeric: "🧂 Herbs & Spices",
+  coriander: "🧂 Herbs & Spices",
   "mixed herbs": "🧂 Herbs & Spices",
+  "curry powder": "🧂 Herbs & Spices",
   "chilli flakes": "🧂 Herbs & Spices",
+  "black pepper": "🧂 Herbs & Spices",
+  salt: "🧂 Herbs & Spices",
 };
 
 
@@ -94,94 +159,203 @@ const [loaded, setLoaded] =
 
   function fractionToDecimal(value: string): number | null {
 
-    const fractions: Record<string, number> = {
-      "¼": 0.25,
-      "½": 0.5,
-      "¾": 0.75,
-    };
+  value = value.trim();
 
+  const fractionValues: Record<string, number> = {
+    "¼": 0.25,
+    "½": 0.5,
+    "¾": 0.75,
+  };
 
-    if (fractions[value]) {
-      return fractions[value];
-    }
+  if (fractionValues[value] !== undefined) {
+    return fractionValues[value];
+  }
 
+  const mixed = value.match(/^(\d+)([¼½¾])$/);
 
-    const number = Number(value);
+  if (mixed) {
 
+    const whole = Number(mixed[1]);
+    const fraction = fractionValues[mixed[2]];
 
-    if (!isNaN(number)) {
-      return number;
-    }
-
-
-    return null;
+    return whole + fraction;
 
   }
+
+  const number = Number(value);
+
+  if (!isNaN(number)) {
+    return number;
+  }
+
+  return null;
+
+}
 
 
 
   function decimalToFraction(value: number): string {
 
-    const whole = Math.floor(value);
-    const fraction = value - whole;
+  const whole = Math.floor(value);
 
-    let result = "";
+  const fraction =
+    Math.round((value - whole) * 100) / 100;
 
+  if (fraction === 0) {
+    return `${whole}`;
+  }
 
-    if (fraction === 0.25) result = "¼";
-    if (fraction === 0.5) result = "½";
-    if (fraction === 0.75) result = "¾";
+  const fractionMap: Record<number, string> = {
+    0.25: "¼",
+    0.5: "½",
+    0.75: "¾",
+  };
 
+  const fractionText =
+    fractionMap[fraction];
 
-    if (whole > 0 && result) {
-      return `${whole} ${result}`;
-    }
+  if (!fractionText) {
+    return value.toString();
+  }
 
+  if (whole === 0) {
+    return fractionText;
+  }
 
-    if (whole > 0) {
-      return `${whole}`;
-    }
+  return `${whole}${fractionText}`;
 
+}
 
-    return result;
+const unitConversions = {
+  tsp: {
+    base: "tsp",
+    factor: 1,
+  },
+
+  tbsp: {
+    base: "tsp",
+    factor: 3,
+  },
+
+  ml: {
+    base: "ml",
+    factor: 1,
+  },
+
+  l: {
+    base: "ml",
+    factor: 1000,
+  },
+
+  g: {
+    base: "g",
+    factor: 1,
+  },
+
+  kg: {
+    base: "g",
+    factor: 1000,
+  },
+} as const;
+
+function convertToBaseUnit(
+  amount: number,
+  unit: string
+) {
+
+  const conversion =
+    unitConversions[
+      unit as keyof typeof unitConversions
+    ];
+
+  if (!conversion) {
+
+    return {
+      amount,
+      unit,
+    };
 
   }
 
+  return {
 
+    amount: amount * conversion.factor,
+
+    unit: conversion.base,
+
+  };
+
+}
 
   function scaleQuantity(quantity: string): string {
 
-    const match =
-      quantity.match(/([0-9]+|¼|½|¾)/);
+  const match = quantity.match(
+    /^(\d+[¼½¾]?|[¼½¾])\s*(.*)$/
+  );
 
-
-    if (!match) {
-      return quantity;
-    }
-
-
-    const value =
-      fractionToDecimal(match[0]);
-
-
-    if (value === null) {
-      return quantity;
-    }
-
-
-    const scaled =
-      value * people;
-
-
-    return quantity.replace(
-      match[0],
-      decimalToFraction(scaled)
-    );
-
+  if (!match) {
+    return quantity;
   }
 
+  const value =
+    fractionToDecimal(match[1]);
+
+  if (value === null) {
+    return quantity;
+  }
+
+  const scaled =
+    value * people;
+
+  const unit =
+    match[2];
+
+  const noSpaceUnits = [
+    "g",
+    "kg",
+    "ml",
+    "l",
+  ];
+
+  const amount =
+    decimalToFraction(scaled);
+
+  return noSpaceUnits.includes(unit)
+    ? `${amount}${unit}`
+    : `${amount} ${unit}`;
+
+}
 
 
+function normaliseIngredient(item: string): string {
+
+  const removePreparation = [
+    ", diced",
+    ", sliced",
+    ", chopped",
+    ", finely chopped",
+    ", roughly chopped",
+    ", crushed",
+    ", minced",
+    ", grated",
+    ", cubed",
+    ", trimmed",
+    ", peeled",
+    ", halved",
+    ", quartered",
+    ", cut into bite-sized pieces",
+    ", cut into strips",
+  ];
+
+  let result = item;
+
+  removePreparation.forEach((text) => {
+    result = result.replace(text, "");
+  });
+
+  return result.trim();
+
+}
   function combineIngredients(
     ingredients: ShoppingItem[]
   ): ShoppingItem[] {
@@ -191,19 +365,23 @@ const [loaded, setLoaded] =
 
     ingredients.forEach((ingredient) => {
 
-      const existing = combined.find(
-        (item) =>
-          item.item.toLowerCase() ===
-          ingredient.item.toLowerCase()
-      );
+      const shoppingName =
+  normaliseIngredient(
+    ingredient.shoppingItem ?? ingredient.item
+  );
+const existing = combined.find(
+  (item) =>
+    normaliseIngredient(item.item).toLowerCase() ===
+    shoppingName.toLowerCase()
+);
 
 
       if (!existing) {
 
         combined.push({
-          item: ingredient.item,
-          quantity: ingredient.quantity,
-        });
+  item: shoppingName,
+  quantity: ingredient.quantity,
+});
 
         return;
 
@@ -218,104 +396,77 @@ const [loaded, setLoaded] =
       }
 
 
-      const firstNumber =
-        existing.quantity.match(/[0-9]+|¼|½|¾/);
+      const existingMatch =
+  existing.quantity.match(/^(\d+[¼½¾]?|[¼½¾])\s*(.*)$/);
 
-      const secondNumber =
-        ingredient.quantity.match(/[0-9]+|¼|½|¾/);    if (firstNumber && secondNumber) {
+const newMatch =
+  ingredient.quantity.match(/^(\d+[¼½¾]?|[¼½¾])\s*(.*)$/);
 
-        const unit1 =
-          existing.quantity
-            .replace(/[0-9¼½¾]/g, "")
-            .trim();
+if (existingMatch && newMatch) {
 
-        const unit2 =
-          ingredient.quantity
-            .replace(/[0-9¼½¾]/g, "")
-            .trim();
+  const firstValue =
+  fractionToDecimal(existingMatch[1]);
 
+const secondValue =
+  fractionToDecimal(newMatch[1]);
 
-        if (unit1 === unit2) {
+if (
+  firstValue === null ||
+  secondValue === null
+) {
+  existing.quantity =
+    `${existing.quantity}, ${ingredient.quantity}`;
+  return;
+}
 
-          const firstValue =
-            fractionToDecimal(firstNumber[0]);
+const converted1 =
+  convertToBaseUnit(
+    firstValue,
+    existingMatch[2].trim()
+  );
 
-          const secondValue =
-            fractionToDecimal(secondNumber[0]);
+const converted2 =
+  convertToBaseUnit(
+    secondValue,
+    newMatch[2].trim()
+  );
 
+  if (
+  converted1 &&
+  converted2 &&
+  converted1.unit === converted2.unit
+) {
 
-          if (
-            firstValue !== null &&
-            secondValue !== null
-          ) {
+    const total =
+  converted1.amount +
+  converted2.amount;
 
-            const quantity =
-  decimalToFraction(firstValue + secondValue);
+    const amount =
+      decimalToFraction(total);
 
-const noSpaceUnits = [
-  "g",
-  "kg",
-  "ml",
-  "l",
-];
+    const noSpaceUnits = [
+      "g",
+      "kg",
+      "ml",
+      "l",
+    ];
 
-existing.quantity =
-  noSpaceUnits.includes(unit1)
-    ? `${quantity}${unit1}`
-    : `${quantity} ${unit1}`;
+    existing.quantity =
+      noSpaceUnits.includes(converted1.unit)
+        ? `${amount}${converted1.unit}`
+        : `${amount} ${converted1.unit}`;
 
-return;
+    return;
 
-            return;
+  }
 
-          }
-
-        }
-
-      }
-
-
-      const number1 =
-        parseFloat(existing.quantity);
-
-      const number2 =
-        parseFloat(ingredient.quantity);
-
-
-      const unit1 =
-        existing.quantity.replace(/[0-9.]/g, "");
-
-      const unit2 =
-        ingredient.quantity.replace(/[0-9.]/g, "");
+}
 
 
-      if (
-        !isNaN(number1) &&
-        !isNaN(number2) &&
-        unit1 === unit2
-      ) {
+      existing.quantity =
+  `${existing.quantity}, ${ingredient.quantity}`;
 
-        const quantity =
-  number1 + number2;
 
-const noSpaceUnits = [
-  "g",
-  "kg",
-  "ml",
-  "l",
-];
-
-existing.quantity =
-  noSpaceUnits.includes(unit1.trim())
-    ? `${quantity}${unit1.trim()}`
-    : `${quantity} ${unit1.trim()}`;
-
-      } else {
-
-        existing.quantity =
-          `${existing.quantity}, ${ingredient.quantity}`;
-
-      }
 
     });
 
@@ -334,9 +485,9 @@ existing.quantity =
     )
     .flatMap((recipe) =>
       recipe.ingredients.map((ingredient) => ({
-        item: ingredient.item,
-        quantity: scaleQuantity(ingredient.quantity),
-      }))
+  item: ingredient.shoppingItem ?? ingredient.item,
+  quantity: scaleQuantity(ingredient.quantity),
+}))
     );
 
   setShoppingList(
@@ -361,15 +512,16 @@ existing.quantity =
 
 
 
-  const categoryOrder = [
-    "🥩 Meat & Fish",
-    "🥕 Fruit & Vegetables",
-    "🧊 Chilled",
-    "❄️ Frozen",
-    "🥫 Cupboard",
-    "🧂 Herbs & Spices",
-    "Other",
-  ];
+const categoryOrder = [
+  "🥩 Meat & Fish",
+  "🥕 Fruit & Vegetables",
+  "🧊 Chilled",
+  "❄️ Frozen",
+  "🍞 Bakery",
+  "🥫 Cupboard",
+  "🧂 Herbs & Spices",
+  "Other",
+];
 
 
 useEffect(() => {

@@ -12,6 +12,7 @@ type ShoppingItem = {
 
 const ingredientCategories: Record<string, string> = {
   // 🥩 Meat & Fish
+  "freshly ground black pepper": "🧂 Herbs & Spices",
   gravy: "🥫 Cupboard",
   stock: "🥫 Cupboard",
   chicken: "🥩 Meat & Fish",

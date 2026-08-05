@@ -1,5 +1,6 @@
+import Image from "next/image";
 import { recipes } from "@/data/recipes";
-
+import RecipeActions from "@/components/RecipeActions";
 export default async function RecipeDetailPage({
   params,
 }: {
@@ -22,13 +23,21 @@ export default async function RecipeDetailPage({
   }
 
   return (
-    <main className="p-6 max-w-3xl mx-auto">
+    <main className="p-6 pb-28 max-w-3xl mx-auto">
 
       {/* Title */}
-      <h1 className="text-3xl font-bold mb-4 flex items-center gap-3">
-        <span>{recipe.emoji}</span>
-        <span>{recipe.name}</span>
-      </h1>
+      <Image
+  src={recipe.image}
+  alt={recipe.name}
+  width={1200}
+  height={700}
+  className="w-full h-80 object-cover rounded-xl mb-6"
+/>
+
+<h1 className="text-3xl font-bold mb-4 flex items-center gap-3">
+  <span>{recipe.emoji}</span>
+  <span>{recipe.name}</span>
+</h1>
 
       {/* Description */}
       <p className="text-lg mb-6">
@@ -110,7 +119,7 @@ export default async function RecipeDetailPage({
         <p>Fat: {recipe.nutrition.fat}</p>
         <p>Fibre: {recipe.nutrition.fibre}</p>
       </div>
-
+<RecipeActions recipeId={recipe.id} />
     </main>
   );
 }

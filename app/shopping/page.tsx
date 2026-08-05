@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { recipes } from "@/data/recipes";
@@ -647,24 +647,35 @@ useEffect(() => {
               />
 
 
-<div className="flex flex-col">
-  <span className="font-semibold text-slate-900">
-    {recipe.emoji} {recipe.name}
-  </span>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-4">
+                  <Image
+                    src={recipe.image}
+                    alt={recipe.name}
+                    width={72}
+                    height={72}
+                    className="w-[72px] h-[72px] rounded-lg object-cover border border-gray-200"
+                  />
 
-  <span className="text-sm text-slate-500">
-  ⏱️ {recipe.cookingTime.replace(" minutes", " min")} • 🔥{" "}
-  {recipe.nutrition.calories} •{" "}
-  <Link
-    href={`/recipes/${recipe.id}`}
-    className="text-blue-600 hover:text-blue-800 hover:underline"
-    onClick={(e) => e.stopPropagation()}
-  >
-    📖 Recipe
-  </Link>
-</span>
-</div>
+                  <div>
+                    <span className="font-semibold text-slate-900">
+                      {recipe.name}
+                    </span>
 
+                    <span className="text-sm text-slate-500">
+                      ⏱️ {recipe.cookingTime.replace(" minutes", " min")} • 🔥{" "}
+                      {recipe.nutrition.calories} •{" "}
+                      <Link
+                        href={`/recipes/${recipe.id}`}
+                        className="text-blue-600 hover:text-blue-800 hover:underline"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        📖 Recipe
+                      </Link>
+                    </span>
+                  </div>
+                </div>
+              </div>
 
             </label>
 

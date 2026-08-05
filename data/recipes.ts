@@ -253,6 +253,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Penne pasta",
+        shoppingItem: "Pasta",
         quantity: "75g dried",
       },
       {
@@ -1146,10 +1147,12 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Dried penne pasta",
+      shoppingItem: "Pasta",
       quantity: "75g",
     },
     {
       item: "Tuna in spring water, drained",
+      shoppingItem: "Tuna",
       quantity: "100g",
     },
     {

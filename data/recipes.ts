@@ -254,7 +254,7 @@ export const recipes: Recipe[] = [
       {
         item: "Penne pasta",
         shoppingItem: "Pasta",
-        quantity: "75g dried",
+        quantity: "75g",
       },
       {
         item: "Large onion, diced",

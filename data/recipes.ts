@@ -15,6 +15,7 @@ export type Nutrition = {
 export type Recipe = {
   id: string;
   code: string;
+  category: string;
   emoji: string;
   image: string;
   name: string;
@@ -32,6 +33,7 @@ export const recipes: Recipe[] = [
   {
     id: "chicken-curry",
     code: "D001",
+    category: "Chicken",
     emoji: "🍛",
     image: "/images/recipes/chicken-curry.png",
     name: "Chicken Curry",
@@ -130,6 +132,7 @@ export const recipes: Recipe[] = [
   {
     id: "cottage-pie",
     code: "D002",
+    category: "Beef",
     emoji: "🥧",
     image: "/images/recipes/cottage-pie.png",
     name: "Cottage Pie",
@@ -229,6 +232,7 @@ export const recipes: Recipe[] = [
 {
     id: "chicken-arrabbiata",
     code: "D003",
+    category: "Chicken",
     emoji: "🍝",
     image: "/images/recipes/chicken-arrabbiata.png",
     name: "Chicken Arrabbiata Pasta",
@@ -322,6 +326,7 @@ export const recipes: Recipe[] = [
 {
   id: "spaghetti-bolognese",
   code: "D004",
+  category: "Beef",
   emoji: "🍝",
   image: "/images/recipes/spaghetti-bolognese.png",
   name: "Spaghetti Bolognese",
@@ -403,6 +408,7 @@ export const recipes: Recipe[] = [
 {
   id: "lemon-herb-chicken-tray-bake",
   code: "D005",
+  category: "Chicken",
   emoji: "🍗",
   image: "/images/recipes/lemon-herb-chicken.png",
   name: "Lemon & Herb Chicken Tray Bake",
@@ -484,6 +490,7 @@ export const recipes: Recipe[] = [
 {
   id: "chicken-fajitas",
   code: "D006",
+  category: "Chicken",
   emoji: "🌯",
   image: "/images/recipes/chicken-fajitas.png",
   name: "Chicken Fajitas",
@@ -566,6 +573,7 @@ export const recipes: Recipe[] = [
 {
   id: "roast-chicken-dinner",
   code: "D007",
+  category: "Chicken",
   emoji: "🍗",
   image: "/images/recipes/roast-chicken-dinner.png",
   name: "Roast Chicken Dinner",
@@ -646,6 +654,7 @@ export const recipes: Recipe[] = [
 {
   id: "honey-mustard-chicken",
   code: "D008",
+  category: "Chicken",
   emoji: "🍯",
   image: "/images/recipes/honey-mustard-chicken.png",
   name: "Honey & Mustard Chicken",
@@ -726,6 +735,7 @@ export const recipes: Recipe[] = [
 {
   id: "homemade-beef-burgers",
   code: "D009",
+  category: "Beef",
   emoji: "🍔",
   image: "/images/recipes/homemade-beef-burgers.png",
   name: "Homemade Beef Burgers",
@@ -811,6 +821,7 @@ export const recipes: Recipe[] = [
 {
   id: "beef-meatballs-tomato-herb-sauce",
   code: "D010",
+  category: "Beef",
   emoji: "🍝",
   image: "/images/recipes/beef-meatballs.png",
   name: "Beef Meatballs in Tomato & Herb Sauce",
@@ -893,6 +904,7 @@ export const recipes: Recipe[] = [
 {
   id: "chilli-con-carne",
   code: "D011",
+  category: "Beef",
   emoji: "🌶️",
   image: "/images/recipes/chilli-con-carne.png",
   name: "Chilli Con Carne",
@@ -975,6 +987,7 @@ export const recipes: Recipe[] = [
 },{
   id: "sausage-mash-onion-gravy",
   code: "D012",
+  category: "Pork",
   emoji: "🌭",
   image: "/images/recipes/sausage-mash-onion-gravy.png",
   name: "Sausage & Mash with Onion Gravy",
@@ -1049,6 +1062,7 @@ export const recipes: Recipe[] = [
 {
   id: "salmon-lemon-herbs",
   code: "D013",
+  category: "Fish",
   emoji: "🐟",
   image: "/images/recipes/salmon-lemon-herbs.png",
   name: "Salmon with Lemon & Herbs",
@@ -1128,6 +1142,7 @@ export const recipes: Recipe[] = [
 {
   id: "tuna-pasta-bake",
   code: "D014",
+  category: "Fish",
   emoji: "🐟",
   image: "/images/recipes/tuna-pasta-bake.png",
   name: "Tuna Pasta Bake",
@@ -1216,6 +1231,7 @@ export const recipes: Recipe[] = [
 {
   id: "mediterranean-chicken",
   code: "D015",
+  category: "Chicken",
   emoji: "🍅",
   image: "/images/recipes/mediterranean-chicken.png",
   name: "Mediterranean Chicken",

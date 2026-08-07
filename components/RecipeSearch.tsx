@@ -46,7 +46,7 @@ export default function RecipeSearch({
           pl-10
           pr-10
           py-2
-          w-48
+          w-full
           focus:outline-none
           focus:ring-2
           focus:ring-blue-500

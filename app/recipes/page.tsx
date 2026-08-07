@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import CategoryFilter from "@/components/CategoryFilter";
@@ -38,17 +39,28 @@ export default function RecipesPage() {
     return matchesCategory && matchesSearch;
   });
 
+  let helperText = "";
+
+  if (selectedCategory === "All" && search === "") {
+    helperText = `${recipes.length} recipes`;
+  } else if (selectedCategory !== "All" && search === "") {
+    helperText = `${filteredRecipes.length} ${selectedCategory.toLowerCase()} recipe${filteredRecipes.length === 1 ? "" : "s"}`;
+  } else if (selectedCategory === "All" && search !== "") {
+    helperText = `${filteredRecipes.length} recipe${filteredRecipes.length === 1 ? "" : "s"} matching "${searchText}"`;
+  } else {
+    helperText = `${filteredRecipes.length} ${selectedCategory.toLowerCase()} recipe${filteredRecipes.length === 1 ? "" : "s"} matching "${searchText}"`;
+  }
+
   return (
     <main className="max-w-6xl mx-auto px-6 py-8">
-
       <h1 className="text-3xl font-bold mb-6">
         Family Recipes
       </h1>
 
-      <div className="mb-6">
+      <div className="mb-8">
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center justify-between">
+        <div className="hidden md:block">
 
           <CategoryFilter
             categories={categories}
@@ -56,27 +68,27 @@ export default function RecipesPage() {
             onCategoryChange={setSelectedCategory}
           />
 
-          {!showSearch && (
-            <button
-              onClick={() => setShowSearch(true)}
-              className="text-2xl hover:scale-110 transition"
-              title="Search recipes"
-            >
-              🔍
-            </button>
-          )}
+          <div className="mt-4">
+            {showSearch ? (
+              <div className="max-w-[500px] w-full">
+                <RecipeSearch
+                  searchText={searchText}
+                  onSearchChange={setSearchText}
+                  onClose={() => setShowSearch(false)}
+                />
+              </div>
+            ) : (
+              <button
+                onClick={() => setShowSearch(true)}
+                className="text-2xl hover:scale-110 transition"
+                title="Search meals or ingredients"
+              >
+                🔍
+              </button>
+            )}
+          </div>
 
         </div>
-
-        {showSearch && (
-          <div className="hidden md:flex justify-end mt-3">
-            <RecipeSearch
-              searchText={searchText}
-              onSearchChange={setSearchText}
-              onClose={() => setShowSearch(false)}
-            />
-          </div>
-        )}
 
         {/* Mobile */}
         <div className="md:hidden space-y-3">
@@ -87,15 +99,21 @@ export default function RecipesPage() {
             onCategoryChange={setSelectedCategory}
           />
 
-          <RecipeSearch
-            searchText={searchText}
-            onSearchChange={setSearchText}
-            onClose={() => {}}
-          />
+          <div className="w-full">
+            <RecipeSearch
+              searchText={searchText}
+              onSearchChange={setSearchText}
+              onClose={() => {}}
+            />
+          </div>
 
         </div>
 
       </div>
+
+      <p className="mb-4 text-sm text-gray-500">
+        {helperText}
+      </p>
 
       <div className="grid gap-4 md:grid-cols-2">
         {filteredRecipes.map((recipe) => (

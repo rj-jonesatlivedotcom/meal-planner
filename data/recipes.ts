@@ -43,9 +43,9 @@ export const recipes: Recipe[] = [
 
     cookingTime: "40 minutes",
 
-    calories: "Approx. 520 kcal per adult serving",
+    calories: "520 kcal",
 
-    protein: "Approx. 42g per adult serving",
+    protein: "42g",
 
     equipment:
       "Large frying pan or sauté pan, saucepan",
@@ -144,10 +144,10 @@ export const recipes: Recipe[] = [
       "55 minutes",
 
     calories:
-      "Approx. 540 kcal per adult serving",
+      "540 kcal",
 
     protein:
-      "Approx. 38g per adult serving",
+      "38g",
 
     equipment:
       "Large frying pan, saucepan, ovenproof dish, potato masher",
@@ -242,9 +242,9 @@ export const recipes: Recipe[] = [
 
     cookingTime: "35 minutes",
 
-    calories: "Approx. 500 kcal per adult serving",
+    calories: "500 kcal",
 
-    protein: "Approx. 40g per adult serving",
+    protein: "40g",
 
     equipment:
       "Large frying pan or sauté pan, saucepan",
@@ -336,9 +336,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "40 minutes",
 
-  calories: "Approx. 510 kcal per adult serving",
+  calories: "510 kcal",
 
-  protein: "Approx. 38g per adult serving",
+  protein: "38g",
 
   equipment:
     "Large frying pan, saucepan",
@@ -418,9 +418,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "45 minutes",
 
-  calories: "Approx. 510 kcal per adult serving",
+  calories: "510 kcal",
 
-  protein: "Approx. 42g per adult serving",
+  protein: "42g",
 
   equipment:
     "Fan oven, large roasting tray",
@@ -500,9 +500,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "30 minutes",
 
-  calories: "Approx. 510 kcal per adult serving",
+  calories: "510 kcal",
 
-  protein: "Approx. 40g per adult serving",
+  protein: "40g",
 
   equipment:
     "Large frying pan",
@@ -583,9 +583,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "60 minutes",
 
-  calories: "Approx. 550 kcal per adult serving",
+  calories: "550 kcal",
 
-  protein: "Approx. 43g per adult serving",
+  protein: "43g",
 
   equipment:
     "Fan oven, roasting tray, saucepan",
@@ -664,9 +664,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "40 minutes",
 
-  calories: "Approx. 520 kcal per adult serving",
+  calories: "520 kcal",
 
-  protein: "Approx. 42g per adult serving",
+  protein: "42g",
 
   equipment:
     "Fan oven, large roasting tray, mixing bowl",
@@ -745,9 +745,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "40 minutes",
 
-  calories: "Approx. 560 kcal per adult serving",
+  calories: "560 kcal",
 
-  protein: "Approx. 39g per adult serving",
+  protein: "39g",
 
   equipment:
     "Fan oven, baking tray, frying pan or grill pan",
@@ -831,9 +831,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "40 minutes",
 
-  calories: "Approx. 530 kcal per adult serving",
+  calories: "530 kcal",
 
-  protein: "Approx. 39g per adult serving",
+  protein: "39g",
 
   equipment:
     "Large frying pan, saucepan, mixing bowl",
@@ -914,9 +914,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "40 minutes",
 
-  calories: "Approx. 530 kcal per adult serving",
+  calories: "530 kcal",
 
-  protein: "Approx. 39g per adult serving",
+  protein: "39g",
 
   equipment:
     "Large frying pan, saucepan",
@@ -997,9 +997,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "45 minutes",
 
-  calories: "Approx. 560 kcal per adult serving",
+  calories: "560 kcal",
 
-  protein: "Approx. 28g per adult serving",
+  protein: "28g",
 
   equipment:
     "Fan oven, saucepan, small saucepan",
@@ -1072,9 +1072,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "40 minutes",
 
-  calories: "Approx. 540 kcal per adult serving",
+  calories: "540 kcal",
 
-  protein: "Approx. 35g per adult serving",
+  protein: "35g",
 
   equipment:
     "Fan oven, large roasting tray",
@@ -1152,9 +1152,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "40 minutes",
 
-  calories: "Approx. 520 kcal per adult serving",
+  calories: "520 kcal",
 
-  protein: "Approx. 36g per adult serving",
+  protein: "36g",
 
   equipment:
     "Saucepan, large frying pan, ovenproof dish",
@@ -1241,9 +1241,9 @@ export const recipes: Recipe[] = [
 
   cookingTime: "35 minutes",
 
-  calories: "Approx. 515 kcal per adult serving",
+  calories: "515 kcal",
 
-  protein: "Approx. 41g per adult serving",
+  protein: "41g",
 
   equipment:
     "Large frying pan, saucepan",
@@ -1260,12 +1260,12 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large red onion, diced",
-      shoppingItem: "Red Onion",
+      shoppingItem: "Red onion",
       quantity: "¼",
     },
     {
       item: "Red pepper, diced",
-      shoppingItem: "Red Pepper",
+      shoppingItem: "Red pepper",
       quantity: "½",
     },
     {

@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import CategoryFilter from "@/components/CategoryFilter";
@@ -20,15 +19,21 @@ export default function RecipesPage() {
     "Vegetarian",
   ];
 
+  const search = searchText.toLowerCase().trim();
+
   const filteredRecipes = recipes.filter((recipe) => {
     const matchesCategory =
       selectedCategory === "All" ||
       recipe.category === selectedCategory;
 
     const matchesSearch =
-      recipe.name
-        .toLowerCase()
-        .includes(searchText.toLowerCase());
+      search === "" ||
+      recipe.name.toLowerCase().includes(search) ||
+      recipe.description.toLowerCase().includes(search) ||
+      recipe.equipment.toLowerCase().includes(search) ||
+      recipe.ingredients.some((ingredient) =>
+        ingredient.item.toLowerCase().includes(search)
+      );
 
     return matchesCategory && matchesSearch;
   });

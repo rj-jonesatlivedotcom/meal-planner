@@ -27,6 +27,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
           width={600}
           height={400}
           className="w-full h-52 object-cover"
+          priority={recipe.id === "chicken-curry"}
         />
 
         <div className="p-5">
@@ -43,7 +44,6 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
           <div className="mt-5 flex justify-between text-sm text-gray-600">
             <span>⏱️ {recipe.cookingTime}</span>
             <span>🔥 {recipe.calories}</span>
-            <span>💪 {recipe.protein}</span>
           </div>
 
           <div className="mt-5 text-right font-semibold text-orange-600">

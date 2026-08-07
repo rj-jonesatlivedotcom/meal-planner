@@ -27,7 +27,7 @@ export default function RecipeSearch({
 
       <input
         type="text"
-        placeholder="Search recipes..."
+        placeholder="Search meals or ingredients..."
         value={searchText}
         autoFocus
         onChange={(e) => onSearchChange(e.target.value)}

@@ -391,7 +391,7 @@ export default function RecipesPage() {
             <button
               type="button"
               onClick={clearAllMeals}
-              className="rounded-lg border border-red-200 bg-white px-4 py-3 font-semibold text-red-600 shadow-sm hover:bg-red-50 transition whitespace-nowrap"
+              className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm"
             >
               🗑️ Clear All
             </button>

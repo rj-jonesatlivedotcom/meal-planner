@@ -11,13 +11,38 @@ export default function RecipeActions({ recipeId }: Props) {
   const [added, setAdded] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("shopping-data");
+    function loadShoppingStatus() {
+      const saved = localStorage.getItem("shopping-data");
 
-    if (!saved) return;
+      if (!saved) {
+        setAdded(false);
+        return;
+      }
 
-    const data = JSON.parse(saved);
+      try {
+        const data = JSON.parse(saved);
 
-    setAdded(data.selectedRecipes?.includes(recipeId));
+        setAdded(
+          (data.selectedRecipes ?? []).includes(recipeId)
+        );
+      } catch {
+        setAdded(false);
+      }
+    }
+
+    loadShoppingStatus();
+
+    window.addEventListener(
+      "shopping-list-updated",
+      loadShoppingStatus
+    );
+
+    return () => {
+      window.removeEventListener(
+        "shopping-list-updated",
+        loadShoppingStatus
+      );
+    };
   }, [recipeId]);
 
   function toggleRecipe() {
@@ -32,19 +57,32 @@ export default function RecipeActions({ recipeId }: Props) {
           people: 1,
         };
 
-    if (data.selectedRecipes.includes(recipeId)) {
-      data.selectedRecipes = data.selectedRecipes.filter(
-        (id: string) => id !== recipeId
-      );
+    const selectedRecipes =
+      data.selectedRecipes ?? [];
+
+    if (selectedRecipes.includes(recipeId)) {
+      data.selectedRecipes =
+        selectedRecipes.filter(
+          (id: string) => id !== recipeId
+        );
+
       setAdded(false);
     } else {
-      data.selectedRecipes.push(recipeId);
+      data.selectedRecipes = [
+        ...selectedRecipes,
+        recipeId,
+      ];
+
       setAdded(true);
     }
 
     localStorage.setItem(
       "shopping-data",
       JSON.stringify(data)
+    );
+
+    window.dispatchEvent(
+      new Event("shopping-list-updated")
     );
   }
 
@@ -76,7 +114,7 @@ export default function RecipeActions({ recipeId }: Props) {
         ←
       </Link>
 
-      {/* Add Button */}
+      {/* Add / Added Button */}
       <button
         onClick={toggleRecipe}
         className={`
@@ -85,10 +123,11 @@ export default function RecipeActions({ recipeId }: Props) {
           right-4
           z-50
           px-4
-          h-12
+          h-10
           rounded-lg
           text-white
-          font-medium
+          text-sm
+          font-semibold
           shadow
           transition
           ${
@@ -98,7 +137,7 @@ export default function RecipeActions({ recipeId }: Props) {
           }
         `}
       >
-        {added ? "✅ Added" : "🛒 Add"}
+        {added ? "😊 Added" : "🛒 Add to list"}
       </button>
     </>
   );

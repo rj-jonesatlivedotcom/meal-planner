@@ -49,9 +49,19 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
       loadShoppingStatus
     );
 
+    window.addEventListener(
+      "storage",
+      loadShoppingStatus
+    );
+
     return () => {
       window.removeEventListener(
         "shopping-list-updated",
+        loadShoppingStatus
+      );
+
+      window.removeEventListener(
+        "storage",
         loadShoppingStatus
       );
     };
@@ -74,7 +84,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
           ...JSON.parse(saved),
         };
       } catch {
-        // Use default data if saved data is invalid
+        // Use default data if saved data is invalid.
       }
     }
 
@@ -156,7 +166,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
             }`}
           >
             {onShoppingList
-              ? "✓ On list · Remove"
+              ? "😊 Added"
               : "🛒 Add to list"}
           </button>
 

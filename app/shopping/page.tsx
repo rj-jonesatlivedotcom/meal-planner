@@ -603,9 +603,9 @@ export default function ShoppingPage() {
 
               <button
                 onClick={resetShopping}
-                className="mt-2 bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm"
+                className="mt-2 bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
               >
-                🔄 Reset
+                🗑️ Clear All
               </button>
             </div>
           )}

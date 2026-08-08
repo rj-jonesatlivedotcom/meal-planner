@@ -35,10 +35,9 @@ export default async function RecipeDetailPage({
         className="w-full h-80 object-cover rounded-xl mb-6"
       />
 
-      <h1 className="text-3xl font-bold mb-4 flex items-center gap-3">
-        <span>{recipe.emoji}</span>
-        <span>{recipe.name}</span>
-      </h1>
+      <h1 className="text-3xl font-bold mb-4">
+  {recipe.name}
+</h1>
 
       {/* Description */}
       <p className="text-lg mb-6">

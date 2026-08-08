@@ -271,12 +271,13 @@ export default function RecipesPage() {
             </button>
 
             {showFilters && (
-              <div className="absolute left-0 top-full z-20 mt-4 w-[min(900px,calc(100vw-3rem))] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
+              <div className="relative mt-4 md:absolute md:left-0 md:top-full md:z-20 md:mt-4 md:w-[min(900px,calc(100vw-3rem))] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
 
-                <div className="grid gap-5 md:grid-cols-3">
+                <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
 
                   {/* Search */}
-                  <div>
+                  <div className="col-span-2 md:col-span-1">
+
                     <label className="block mb-2 font-semibold text-gray-800">
                       Search
                     </label>
@@ -290,10 +291,12 @@ export default function RecipesPage() {
                       }
                       className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
+
                   </div>
 
                   {/* Meal type */}
                   <div>
+
                     <label className="block mb-2 font-semibold text-gray-800">
                       Meal type
                     </label>
@@ -314,10 +317,12 @@ export default function RecipesPage() {
                         </option>
                       ))}
                     </select>
+
                   </div>
 
                   {/* Sort */}
                   <div>
+
                     <label className="block mb-2 font-semibold text-gray-800">
                       Sort by
                     </label>
@@ -361,6 +366,7 @@ export default function RecipesPage() {
                         🍖 Purines — lowest first
                       </option>
                     </select>
+
                   </div>
 
                 </div>
@@ -375,7 +381,7 @@ export default function RecipesPage() {
                       setSelectedCategory("All");
                       setSortBy("default");
                     }}
-                    className="mt-5 text-sm font-semibold text-blue-600 hover:text-blue-800"
+                    className="mt-4 text-sm font-semibold text-blue-600 hover:text-blue-800"
                   >
                     Clear filters
                   </button>
@@ -391,7 +397,7 @@ export default function RecipesPage() {
             <button
               type="button"
               onClick={clearAllMeals}
-              className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm"
+              className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black whitespace-nowrap"
             >
               🗑️ Clear All
             </button>

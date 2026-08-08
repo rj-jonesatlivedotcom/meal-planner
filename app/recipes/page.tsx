@@ -20,7 +20,11 @@ export default function RecipesPage() {
     "Vegetarian",
   ];
 
-  const search = searchText.toLowerCase().trim();
+  const searchWords = searchText
+    .toLowerCase()
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
 
   const filteredRecipes = recipes.filter((recipe) => {
     const matchesCategory =
@@ -28,31 +32,44 @@ export default function RecipesPage() {
       recipe.category === selectedCategory;
 
     const matchesSearch =
-      search === "" ||
-      recipe.name.toLowerCase().includes(search) ||
-      recipe.description.toLowerCase().includes(search) ||
-      recipe.equipment.toLowerCase().includes(search) ||
-      recipe.ingredients.some((ingredient) =>
-        ingredient.item.toLowerCase().includes(search)
-      );
+      searchWords.length === 0 ||
+      searchWords.every((word) => {
+        return (
+          recipe.name.toLowerCase().includes(word) ||
+          recipe.description.toLowerCase().includes(word) ||
+          recipe.equipment.toLowerCase().includes(word) ||
+          recipe.ingredients.some((ingredient) =>
+            ingredient.item.toLowerCase().includes(word)
+          )
+        );
+      });
 
     return matchesCategory && matchesSearch;
   });
 
   let helperText = "";
 
-  if (selectedCategory === "All" && search === "") {
+  const searchDisplay = searchText.trim();
+
+  if (selectedCategory === "All" && searchDisplay === "") {
     helperText = `${recipes.length} recipes`;
-  } else if (selectedCategory !== "All" && search === "") {
-    helperText = `${filteredRecipes.length} ${selectedCategory.toLowerCase()} recipe${filteredRecipes.length === 1 ? "" : "s"}`;
-  } else if (selectedCategory === "All" && search !== "") {
-    helperText = `${filteredRecipes.length} recipe${filteredRecipes.length === 1 ? "" : "s"} matching "${searchText}"`;
+  } else if (selectedCategory !== "All" && searchDisplay === "") {
+    helperText = `${filteredRecipes.length} ${selectedCategory.toLowerCase()} recipe${
+      filteredRecipes.length === 1 ? "" : "s"
+    }`;
+  } else if (selectedCategory === "All" && searchDisplay !== "") {
+    helperText = `${filteredRecipes.length} recipe${
+      filteredRecipes.length === 1 ? "" : "s"
+    } matching "${searchDisplay}"`;
   } else {
-    helperText = `${filteredRecipes.length} ${selectedCategory.toLowerCase()} recipe${filteredRecipes.length === 1 ? "" : "s"} matching "${searchText}"`;
+    helperText = `${filteredRecipes.length} ${selectedCategory.toLowerCase()} recipe${
+      filteredRecipes.length === 1 ? "" : "s"
+    } matching "${searchDisplay}"`;
   }
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-8">
+
       <h1 className="text-3xl font-bold mb-6">
         Family Recipes
       </h1>
@@ -81,7 +98,7 @@ export default function RecipesPage() {
               <button
                 onClick={() => setShowSearch(true)}
                 className="text-2xl hover:scale-110 transition"
-                title="Search meals or ingredients"
+                title="Search recipes"
               >
                 🔍
               </button>
@@ -100,36 +117,33 @@ export default function RecipesPage() {
           />
 
           <div className="w-full">
-            <RecipeSearch
-              searchText={searchText}
-              onSearchChange={setSearchText}
-              onClose={() => {}}
-            />
+            {showSearch ? (
+              <RecipeSearch
+                searchText={searchText}
+                onSearchChange={setSearchText}
+                onClose={() => setShowSearch(false)}
+              />
+            ) : (
+              <button
+                onClick={() => setShowSearch(true)}
+                className="text-2xl hover:scale-110 transition"
+                title="Search recipes"
+              >
+                🔍
+              </button>
+            )}
           </div>
 
         </div>
+
+        {/* Helper text */}
+        <p className="mt-4 text-sm text-slate-500">
+          {helperText}
+        </p>
 
       </div>
 
-      <p className="mb-4 text-sm text-gray-500">
-        {helperText}
-      </p>
-
-      {filteredRecipes.length === 0 ? (
-        <div className="py-12 text-center">
-          <div className="text-5xl mb-4">
-            😕
-          </div>
-
-          <h2 className="text-xl font-bold mb-2">
-            No recipes found
-          </h2>
-
-          <p className="text-gray-500">
-            Try searching for another meal or ingredient.
-          </p>
-        </div>
-      ) : (
+      {filteredRecipes.length > 0 ? (
         <div className="grid gap-4 md:grid-cols-2">
           {filteredRecipes.map((recipe) => (
             <RecipeCard
@@ -137,6 +151,22 @@ export default function RecipesPage() {
               recipe={recipe}
             />
           ))}
+        </div>
+      ) : (
+        <div className="py-16 text-center">
+
+          <div className="text-5xl mb-4">
+            😕
+          </div>
+
+          <h2 className="text-2xl font-bold text-slate-900">
+            No recipes found
+          </h2>
+
+          <p className="mt-3 text-slate-500">
+            Try searching for another meal or ingredient.
+          </p>
+
         </div>
       )}
 

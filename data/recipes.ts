@@ -27,6 +27,10 @@ export type Recipe = {
   ingredients: Ingredient[];
   method: string[];
   nutrition: Nutrition;
+  potassium: "Low" | "Moderate" | "High";
+  phosphate: "Low" | "Moderate" | "High";
+  purines: "Low" | "Moderate" | "High";
+  dietaryNote?: string;
 };
 
 export const recipes: Recipe[] = [
@@ -128,6 +132,10 @@ export const recipes: Recipe[] = [
       fat: "13 g",
       fibre: "6 g",
     },
+  potassium: "Moderate",
+  phosphate: "Low",
+  purines: "Low",
+  dietaryNote: "Tomato-based ingredients make this moderate in potassium.",
   },
   {
     id: "cottage-pie",
@@ -227,6 +235,10 @@ export const recipes: Recipe[] = [
       fat: "18 g",
       fibre: "7 g"
     },
+  potassium: "Moderate",
+  phosphate: "Moderate",
+  purines: "Moderate",
+  dietaryNote: "Potato, beef and peas make this a more moderate renal-diet choice.",
   },
 
 {
@@ -322,6 +334,10 @@ export const recipes: Recipe[] = [
       fat: "9 g",
       fibre: "6 g",
     },
+  potassium: "Moderate",
+  phosphate: "Low",
+  purines: "Low",
+  dietaryNote: "Tomato-based ingredients make this moderate in potassium.",
   },
 {
   id: "spaghetti-bolognese",
@@ -404,6 +420,10 @@ export const recipes: Recipe[] = [
     fat: "11 g",
     fibre: "6 g",
   },
+  potassium: "Moderate",
+  phosphate: "Low",
+  purines: "Moderate",
+  dietaryNote: "Beef makes this moderate in purines; the tomato base also raises potassium.",
 },
 {
   id: "lemon-herb-chicken-tray-bake",
@@ -486,6 +506,10 @@ export const recipes: Recipe[] = [
     fat: "12 g",
     fibre: "5 g",
   },
+  potassium: "Moderate",
+  phosphate: "Low",
+  purines: "Low",
+  dietaryNote: "The potato portion makes this moderate in potassium.",
 },
 {
   id: "chicken-fajitas",
@@ -569,6 +593,9 @@ export const recipes: Recipe[] = [
     fat: "13 g",
     fibre: "5 g",
   },
+  potassium: "Low",
+  phosphate: "Low",
+  purines: "Low",
 },
 {
   id: "roast-chicken-dinner",
@@ -650,6 +677,10 @@ export const recipes: Recipe[] = [
     fat: "14 g",
     fibre: "6 g",
   },
+  potassium: "Moderate",
+  phosphate: "Moderate",
+  purines: "Low",
+  dietaryNote: "Potatoes, peas and gravy make this a more moderate renal-diet choice.",
 },
 {
   id: "honey-mustard-chicken",
@@ -731,6 +762,10 @@ export const recipes: Recipe[] = [
     fat: "12 g",
     fibre: "5 g",
   },
+  potassium: "Moderate",
+  phosphate: "Low",
+  purines: "Low",
+  dietaryNote: "The potato portion makes this moderate in potassium.",
 },
 {
   id: "homemade-beef-burgers",
@@ -817,6 +852,10 @@ export const recipes: Recipe[] = [
     fat: "16 g",
     fibre: "5 g",
   },
+  potassium: "High",
+  phosphate: "Moderate",
+  purines: "Moderate",
+  dietaryNote: "Potato and tomato contribute potassium, while beef makes this moderate in purines.",
 },
 {
   id: "beef-meatballs-tomato-herb-sauce",
@@ -900,6 +939,10 @@ export const recipes: Recipe[] = [
     fat: "12 g",
     fibre: "6 g",
   },
+  potassium: "Moderate",
+  phosphate: "Low",
+  purines: "Moderate",
+  dietaryNote: "Beef makes this moderate in purines; the tomato base also raises potassium.",
 },
 {
   id: "chilli-con-carne",
@@ -984,6 +1027,10 @@ export const recipes: Recipe[] = [
     fat: "11 g",
     fibre: "6 g",
   },
+  potassium: "Moderate",
+  phosphate: "Moderate",
+  purines: "Moderate",
+  dietaryNote: "Beef and tomato make this a more moderate renal-diet choice.",
 },{
   id: "sausage-mash-onion-gravy",
   code: "D012",
@@ -1058,6 +1105,10 @@ export const recipes: Recipe[] = [
     fat: "24 g",
     fibre: "5 g",
   },
+  potassium: "High",
+  phosphate: "High",
+  purines: "Moderate",
+  dietaryNote: "⚠️ Higher in potassium and phosphate because of the potato and processed sausages; best treated as an occasional meal.",
 },
 {
   id: "salmon-lemon-herbs",
@@ -1138,6 +1189,10 @@ export const recipes: Recipe[] = [
     fat: "20 g",
     fibre: "5 g",
   },
+  potassium: "Moderate",
+  phosphate: "Low",
+  purines: "Moderate",
+  dietaryNote: "⚠️ Salmon is relatively higher in purines than chicken, so enjoy as part of a balanced rotation.",
 },
 {
   id: "tuna-pasta-bake",
@@ -1227,6 +1282,10 @@ export const recipes: Recipe[] = [
     fat: "11 g",
     fibre: "5 g",
   },
+  potassium: "Low",
+  phosphate: "Moderate",
+  purines: "Moderate",
+  dietaryNote: "⚠️ Tuna and cheese contribute more phosphate; fish is also relatively higher in purines.",
 },
 {
   id: "mediterranean-chicken",
@@ -1316,5 +1375,9 @@ export const recipes: Recipe[] = [
     fat: "10 g",
     fibre: "5 g",
   },
+  potassium: "Moderate",
+  phosphate: "Low",
+  purines: "Low",
+  dietaryNote: "The tomato-based sauce makes this moderate in potassium.",
 },
 ]

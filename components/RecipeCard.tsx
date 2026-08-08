@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 type RecipeCardProps = {
   recipe: {
@@ -17,10 +20,93 @@ type RecipeCardProps = {
 };
 
 export default function RecipeCard({ recipe }: RecipeCardProps) {
-  return (
-    <Link href={`/recipes/${recipe.id}`}>
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer">
+  const [onShoppingList, setOnShoppingList] = useState(false);
 
+  useEffect(() => {
+    function loadShoppingStatus() {
+      const saved = localStorage.getItem("shopping-data");
+
+      if (!saved) {
+        setOnShoppingList(false);
+        return;
+      }
+
+      try {
+        const data = JSON.parse(saved);
+
+        setOnShoppingList(
+          (data.selectedRecipes ?? []).includes(recipe.id)
+        );
+      } catch {
+        setOnShoppingList(false);
+      }
+    }
+
+    loadShoppingStatus();
+
+    window.addEventListener(
+      "shopping-list-updated",
+      loadShoppingStatus
+    );
+
+    return () => {
+      window.removeEventListener(
+        "shopping-list-updated",
+        loadShoppingStatus
+      );
+    };
+  }, [recipe.id]);
+
+  function toggleShoppingList() {
+    const saved = localStorage.getItem("shopping-data");
+
+    let data = {
+      selectedRecipes: [] as string[],
+      shoppingList: [],
+      checkedItems: [],
+      people: 1,
+    };
+
+    if (saved) {
+      try {
+        data = {
+          ...data,
+          ...JSON.parse(saved),
+        };
+      } catch {
+        // Use default data if saved data is invalid
+      }
+    }
+
+    const selectedRecipes = data.selectedRecipes ?? [];
+
+    const updatedSelectedRecipes = selectedRecipes.includes(recipe.id)
+      ? selectedRecipes.filter(
+          (recipeId: string) => recipeId !== recipe.id
+        )
+      : [...selectedRecipes, recipe.id];
+
+    localStorage.setItem(
+      "shopping-data",
+      JSON.stringify({
+        ...data,
+        selectedRecipes: updatedSelectedRecipes,
+      })
+    );
+
+    setOnShoppingList(
+      updatedSelectedRecipes.includes(recipe.id)
+    );
+
+    window.dispatchEvent(
+      new Event("shopping-list-updated")
+    );
+  }
+
+  return (
+    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-200">
+
+      <Link href={`/recipes/${recipe.id}`}>
         <Image
           src={recipe.image}
           alt={recipe.name}
@@ -30,7 +116,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
           priority={recipe.id === "chicken-curry"}
         />
 
-        <div className="p-5">
+        <div className="p-5 flex-1">
 
           <h2 className="text-xl font-bold flex items-center gap-2">
             <span>{recipe.emoji}</span>
@@ -46,12 +132,34 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
             <span>🔥 {recipe.calories}</span>
           </div>
 
-          <div className="mt-5 text-right font-semibold text-orange-600">
-            View Recipe →
-          </div>
-
         </div>
+      </Link>
+
+      <div className="mt-auto px-5 pb-4 flex items-center justify-between gap-2">
+
+        <button
+          type="button"
+          onClick={toggleShoppingList}
+          className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+            onShoppingList
+              ? "bg-green-100 text-green-700 hover:bg-red-100 hover:text-red-700"
+              : "bg-orange-500 text-white hover:bg-orange-600"
+          }`}
+        >
+          {onShoppingList
+            ? "✓ On list · Remove"
+            : "🛒 Add to list"}
+        </button>
+
+        <Link
+          href={`/recipes/${recipe.id}`}
+          className="font-semibold text-orange-600 whitespace-nowrap"
+        >
+          View Recipe →
+        </Link>
+
       </div>
-    </Link>
+
+    </div>
   );
 }

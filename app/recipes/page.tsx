@@ -371,21 +371,35 @@ export default function RecipesPage() {
 
                 </div>
 
-                {(searchText ||
-                  selectedCategory !== "All" ||
-                  sortBy !== "default") && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSearchText("");
-                      setSelectedCategory("All");
-                      setSortBy("default");
-                    }}
-                    className="mt-4 text-sm font-semibold text-blue-600 hover:text-blue-800"
-                  >
-                    Clear filters
-                  </button>
-                )}
+                <div className="mt-4 flex items-center justify-between">
+
+  {(searchText ||
+    selectedCategory !== "All" ||
+    sortBy !== "default") ? (
+    <button
+      type="button"
+      onClick={() => {
+        setSearchText("");
+        setSelectedCategory("All");
+        setSortBy("default");
+      }}
+      className="text-sm font-semibold text-blue-600 hover:text-blue-800"
+    >
+      Clear filters
+    </button>
+  ) : (
+    <div />
+  )}
+
+  <button
+    type="button"
+    onClick={() => setShowFilters(false)}
+    className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
+  >
+    Done
+  </button>
+
+</div>
 
               </div>
             )}

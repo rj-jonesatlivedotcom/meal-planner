@@ -115,14 +115,30 @@ export default function RecipesPage() {
         {helperText}
       </p>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {filteredRecipes.map((recipe) => (
-          <RecipeCard
-            key={recipe.id}
-            recipe={recipe}
-          />
-        ))}
-      </div>
+      {filteredRecipes.length === 0 ? (
+        <div className="py-12 text-center">
+          <div className="text-5xl mb-4">
+            😕
+          </div>
+
+          <h2 className="text-xl font-bold mb-2">
+            No recipes found
+          </h2>
+
+          <p className="text-gray-500">
+            Try searching for another meal or ingredient.
+          </p>
+        </div>
+      ) : (
+        <div className="grid gap-4 md:grid-cols-2">
+          {filteredRecipes.map((recipe) => (
+            <RecipeCard
+              key={recipe.id}
+              recipe={recipe}
+            />
+          ))}
+        </div>
+      )}
 
     </main>
   );

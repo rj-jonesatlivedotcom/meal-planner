@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { recipes } from "@/data/recipes";
 
@@ -31,21 +29,16 @@ const ingredientCategories: Record<string, string> = {
   "red onion": "🥕 Fruit & Vegetables",
   "white onion": "🥕 Fruit & Vegetables",
   "spring onion": "🥕 Fruit & Vegetables",
-
   garlic: "🥕 Fruit & Vegetables",
-
   pepper: "🥕 Fruit & Vegetables",
   "red pepper": "🥕 Fruit & Vegetables",
   "green pepper": "🥕 Fruit & Vegetables",
   "yellow pepper": "🥕 Fruit & Vegetables",
-
   tomato: "🥕 Fruit & Vegetables",
-
   potato: "🥕 Fruit & Vegetables",
   potatoes: "🥕 Fruit & Vegetables",
   "floury potato": "🥕 Fruit & Vegetables",
   "floury potatoes": "🥕 Fruit & Vegetables",
-
   carrot: "🥕 Fruit & Vegetables",
   broccoli: "🥕 Fruit & Vegetables",
   mushroom: "🥕 Fruit & Vegetables",
@@ -53,7 +46,6 @@ const ingredientCategories: Record<string, string> = {
   spinach: "🥕 Fruit & Vegetables",
   lettuce: "🥕 Fruit & Vegetables",
   beans: "🥕 Fruit & Vegetables",
-
   lemon: "🥕 Fruit & Vegetables",
   lime: "🥕 Fruit & Vegetables",
 
@@ -86,10 +78,8 @@ const ingredientCategories: Record<string, string> = {
   penne: "🥫 Cupboard",
   spaghetti: "🥫 Cupboard",
   rice: "🥫 Cupboard",
-
   flour: "🥫 Cupboard",
   breadcrumbs: "🥫 Cupboard",
-
   olive: "🥫 Cupboard",
   worcestershire: "🥫 Cupboard",
   honey: "🥫 Cupboard",
@@ -140,14 +130,6 @@ export default function ShoppingPage() {
 
   const [loaded, setLoaded] =
     useState(false);
-
-  function toggleRecipe(id: string) {
-    setSelectedRecipes((current) =>
-      current.includes(id)
-        ? current.filter((recipeId) => recipeId !== id)
-        : [...current, id]
-    );
-  }
 
   function fractionToDecimal(value: string): number | null {
     value = value.trim();
@@ -485,8 +467,8 @@ export default function ShoppingPage() {
     setLoaded(true);
   }, []);
 
-  // Automatically regenerate the shopping list whenever
-  // selected meals or number of people changes.
+  // Automatically regenerate the shopping list
+  // whenever the selected meals or number of people changes.
   useEffect(() => {
     if (!loaded) return;
 
@@ -562,169 +544,94 @@ export default function ShoppingPage() {
     <main className="p-6 max-w-5xl mx-auto">
 
       <h1 className="text-3xl font-bold mb-6">
-        Shopping List
+        🛒 Shopping List
       </h1>
 
-      <div className="bg-white rounded-xl shadow p-6 mb-6">
+      <div className="bg-white rounded-xl shadow p-6">
 
-        <h2 className="text-xl font-semibold mb-4">
-          Cooking for:
-        </h2>
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
 
-        <select
-          value={people}
-          onChange={(e) =>
-            setPeople(
-              Number(e.target.value)
-            )
-          }
-          className="border rounded-lg px-4 py-2 mb-6"
-        >
-          <option value={1}>
-            1 person
-          </option>
+          <div>
+            <h2 className="text-xl font-semibold">
+              Cooking for:
+            </h2>
 
-          <option value={2}>
-            2 people
-          </option>
-
-          <option value={3}>
-            3 people
-          </option>
-
-          <option value={4}>
-            4 people
-          </option>
-        </select>
-
-        <h2 className="text-xl font-semibold mb-4">
-          Select meals
-        </h2>
-
-        <div className="space-y-3">
-
-          {recipes.map((recipe) => (
-
-            <label
-              key={recipe.id}
-              className="flex items-start gap-3 cursor-pointer py-3"
+            <select
+              value={people}
+              onChange={(e) =>
+                setPeople(
+                  Number(e.target.value)
+                )
+              }
+              className="border rounded-lg px-4 py-2 mt-2"
             >
+              <option value={1}>
+                1 person
+              </option>
 
-              <input
-                type="checkbox"
-                checked={
-                  selectedRecipes.includes(
-                    recipe.id
-                  )
-                }
-                onChange={() =>
-                  toggleRecipe(recipe.id)
-                }
-              />
+              <option value={2}>
+                2 people
+              </option>
 
-              <div className="flex flex-col">
+              <option value={3}>
+                3 people
+              </option>
 
-                <div className="flex items-center gap-4">
+              <option value={4}>
+                4 people
+              </option>
+            </select>
+          </div>
 
-                  <Image
-                    src={recipe.image}
-                    alt={recipe.name}
-                    width={72}
-                    height={72}
-                    className="w-[72px] h-[72px] rounded-lg object-cover border border-gray-200"
-                  />
-
-                  <div>
-
-                    <span className="font-semibold text-slate-900">
-                      {recipe.name}
-                    </span>
-
-                    <span className="text-sm text-slate-500">
-                      ⏱️{" "}
-                      {recipe.cookingTime.replace(
-                        " minutes",
-                        " min"
-                      )}{" "}
-                      • 🔥{" "}
-                      {recipe.nutrition.calories}{" "}
-                      •{" "}
-                      <Link
-                        href={`/recipes/${recipe.id}`}
-                        className="text-blue-600 hover:text-blue-800 hover:underline"
-                        onClick={(e) =>
-                          e.stopPropagation()
-                        }
-                      >
-                        📖 Recipe
-                      </Link>
-                    </span>
-
-                  </div>
-
-                </div>
-
+          {selectedRecipes.length > 0 && (
+            <div className="text-sm text-slate-500 text-right">
+              <div>
+                {selectedRecipes.length} meal
+                {selectedRecipes.length === 1
+                  ? ""
+                  : "s"} •{" "}
+                {people}{" "}
+                {people === 1
+                  ? "person"
+                  : "people"}{" "}
+                •{" "}
+                {shoppingList.length} item
+                {shoppingList.length === 1
+                  ? ""
+                  : "s"}
               </div>
 
-            </label>
-
-          ))}
+              <button
+                onClick={resetShopping}
+                className="mt-2 bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm"
+              >
+                🔄 Reset
+              </button>
+            </div>
+          )}
 
         </div>
 
-        {selectedRecipes.length === 0 ? (
-          <p className="mt-6 text-sm text-slate-500">
-            🛒 Select one or more meals above and
-            your shopping list will appear
-            automatically.
-          </p>
-        ) : (
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+        {shoppingList.length === 0 ? (
 
-            <p className="text-sm text-slate-500">
-              ✓ {selectedRecipes.length} meal
-              {selectedRecipes.length === 1
-                ? ""
-                : "s"} selected — shopping list
-              updated automatically.
-            </p>
+          <div className="py-12 text-center">
 
-            <button
-              onClick={resetShopping}
-              className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm"
-            >
-              🔄 Reset
-            </button>
+            <div className="text-5xl mb-4">
+              🛒
+            </div>
 
-          </div>
-        )}
-
-      </div>
-
-      {shoppingList.length > 0 && (
-
-        <div className="bg-white rounded-xl shadow p-6">
-
-          <div className="flex items-center justify-between gap-3 mb-4">
-
-            <h2 className="text-xl font-semibold">
-              🛒 Your Shopping List
+            <h2 className="text-xl font-semibold text-slate-900">
+              Your shopping list is empty
             </h2>
 
-            <span className="text-sm text-slate-500">
-  {selectedRecipes.length} meal
-  {selectedRecipes.length === 1
-    ? ""
-    : "s"} •{" "}
-  {people}{" "}
-  {people === 1 ? "person" : "people"} •{" "}
-  {shoppingList.length} item
-  {shoppingList.length === 1
-    ? ""
-    : "s"}
-</span>
+            <p className="mt-3 text-slate-500">
+              Choose meals from the Recipes page
+              and add them to your shopping list.
+            </p>
 
           </div>
+
+        ) : (
 
           <div className="space-y-6">
 
@@ -811,9 +718,9 @@ export default function ShoppingPage() {
 
           </div>
 
-        </div>
+        )}
 
-      )}
+      </div>
 
     </main>
   );

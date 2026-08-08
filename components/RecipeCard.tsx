@@ -104,59 +104,70 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
   }
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-200">
+    <div className="flex h-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-200">
 
-      <Link href={`/recipes/${recipe.id}`}>
+      {/* Small recipe image */}
+      <Link
+        href={`/recipes/${recipe.id}`}
+        className="shrink-0"
+      >
         <Image
           src={recipe.image}
           alt={recipe.name}
-          width={600}
-          height={400}
-          className="w-full h-52 object-cover"
-          priority={recipe.id === "chicken-curry"}
+          width={120}
+          height={120}
+          className="w-28 h-full min-h-[150px] object-cover"
         />
+      </Link>
 
-        <div className="p-5 flex-1">
+      {/* Recipe information */}
+      <div className="flex flex-1 flex-col p-4 min-w-0">
 
-          <h2 className="text-xl font-bold flex items-center gap-2">
-            <span>{recipe.emoji}</span>
-            <span>{recipe.name}</span>
+        <Link href={`/recipes/${recipe.id}`}>
+          <h2 className="text-lg font-bold text-slate-900 hover:text-orange-600 transition">
+            {recipe.name}
           </h2>
 
-          <p className="mt-3 text-gray-700">
+          <p className="mt-1 text-sm text-slate-600 line-clamp-2">
             {recipe.description}
           </p>
 
-          <div className="mt-5 flex justify-between text-sm text-gray-600">
-            <span>⏱️ {recipe.cookingTime}</span>
-            <span>🔥 {recipe.calories}</span>
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
+            <span>
+              ⏱️ {recipe.cookingTime}
+            </span>
+
+            <span>
+              🔥 {recipe.calories}
+            </span>
           </div>
+        </Link>
+
+        {/* Bottom controls */}
+        <div className="mt-auto pt-4 flex items-center justify-between gap-2">
+
+          <button
+            type="button"
+            onClick={toggleShoppingList}
+            className={`rounded-full px-3 py-1.5 text-sm font-semibold transition ${
+              onShoppingList
+                ? "bg-green-100 text-green-700 hover:bg-red-100 hover:text-red-700"
+                : "bg-orange-500 text-white hover:bg-orange-600"
+            }`}
+          >
+            {onShoppingList
+              ? "✓ On list · Remove"
+              : "🛒 Add to list"}
+          </button>
+
+          <Link
+            href={`/recipes/${recipe.id}`}
+            className="font-semibold text-orange-600 text-sm whitespace-nowrap hover:text-orange-700"
+          >
+            View Recipe →
+          </Link>
 
         </div>
-      </Link>
-
-      <div className="mt-auto px-5 pb-4 flex items-center justify-between gap-2">
-
-        <button
-          type="button"
-          onClick={toggleShoppingList}
-          className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-            onShoppingList
-              ? "bg-green-100 text-green-700 hover:bg-red-100 hover:text-red-700"
-              : "bg-orange-500 text-white hover:bg-orange-600"
-          }`}
-        >
-          {onShoppingList
-            ? "✓ On list · Remove"
-            : "🛒 Add to list"}
-        </button>
-
-        <Link
-          href={`/recipes/${recipe.id}`}
-          className="font-semibold text-orange-600 whitespace-nowrap"
-        >
-          View Recipe →
-        </Link>
 
       </div>
 

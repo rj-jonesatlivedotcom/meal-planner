@@ -9,6 +9,7 @@ export default function RecipesPage() {
   const [searchText, setSearchText] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [showFilters, setShowFilters] = useState(false);
+  const [hasSelectedMeals, setHasSelectedMeals] = useState(false);
 
   const filterRef = useRef<HTMLDivElement>(null);
 
@@ -20,6 +21,51 @@ export default function RecipesPage() {
     "Fish",
     "Vegetarian",
   ];
+
+  useEffect(() => {
+    function updateShoppingStatus() {
+      const saved = localStorage.getItem("shopping-data");
+
+      if (!saved) {
+        setHasSelectedMeals(false);
+        return;
+      }
+
+      try {
+        const data = JSON.parse(saved);
+
+        setHasSelectedMeals(
+          (data.selectedRecipes ?? []).length > 0
+        );
+      } catch {
+        setHasSelectedMeals(false);
+      }
+    }
+
+    updateShoppingStatus();
+
+    window.addEventListener(
+      "shopping-list-updated",
+      updateShoppingStatus
+    );
+
+    window.addEventListener(
+      "storage",
+      updateShoppingStatus
+    );
+
+    return () => {
+      window.removeEventListener(
+        "shopping-list-updated",
+        updateShoppingStatus
+      );
+
+      window.removeEventListener(
+        "storage",
+        updateShoppingStatus
+      );
+    };
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -45,6 +91,44 @@ export default function RecipesPage() {
       );
     };
   }, [showFilters]);
+
+  function clearAllMeals() {
+    const saved = localStorage.getItem("shopping-data");
+
+    let data = {
+      selectedRecipes: [] as string[],
+      shoppingList: [],
+      checkedItems: [],
+      people: 1,
+    };
+
+    if (saved) {
+      try {
+        data = {
+          ...data,
+          ...JSON.parse(saved),
+        };
+      } catch {
+        // Use default data if saved data is invalid.
+      }
+    }
+
+    localStorage.setItem(
+      "shopping-data",
+      JSON.stringify({
+        ...data,
+        selectedRecipes: [],
+        shoppingList: [],
+        checkedItems: [],
+      })
+    );
+
+    setHasSelectedMeals(false);
+
+    window.dispatchEvent(
+      new Event("shopping-list-updated")
+    );
+  }
 
   const searchWords = searchText
     .toLowerCase()
@@ -161,138 +245,159 @@ export default function RecipesPage() {
         Family Recipes
       </h1>
 
-      {/* Search & Sort */}
-      <div
-        ref={filterRef}
-        className="mb-8"
-      >
+      {/* Search and Clear All */}
+      <div className="mb-8">
 
-        <button
-          type="button"
-          onClick={() =>
-            setShowFilters((current) => !current)
-          }
-          className="w-full md:w-auto rounded-lg border border-gray-300 bg-white px-5 py-3 font-semibold shadow-sm hover:bg-gray-50 transition flex items-center justify-center gap-2"
-        >
-          🔎 Search & Sort
-          <span className="text-sm">
-            {showFilters ? "▲" : "▼"}
-          </span>
-        </button>
+        <div className="flex items-center justify-between gap-4">
 
-        {showFilters && (
-          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+          {/* Search & Sort */}
+          <div
+            ref={filterRef}
+            className="relative"
+          >
 
-            <div className="grid gap-5 md:grid-cols-3">
+            <button
+              type="button"
+              onClick={() =>
+                setShowFilters((current) => !current)
+              }
+              className="rounded-lg border border-gray-300 bg-white px-5 py-3 font-semibold shadow-sm hover:bg-gray-50 transition flex items-center justify-center gap-2"
+            >
+              🔎 Search & Sort
 
-              {/* Search */}
-              <div>
-                <label className="block mb-2 font-semibold text-gray-800">
-                  Search
-                </label>
+              <span className="text-sm">
+                {showFilters ? "▲" : "▼"}
+              </span>
+            </button>
 
-                <input
-                  type="text"
-                  placeholder="Meals or ingredients..."
-                  value={searchText}
-                  onChange={(e) =>
-                    setSearchText(e.target.value)
-                  }
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
+            {showFilters && (
+              <div className="absolute left-0 top-full z-20 mt-4 w-[min(900px,calc(100vw-3rem))] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
 
-              {/* Meal type */}
-              <div>
-                <label className="block mb-2 font-semibold text-gray-800">
-                  Meal type
-                </label>
+                <div className="grid gap-5 md:grid-cols-3">
 
-                <select
-                  value={selectedCategory}
-                  onChange={(e) =>
-                    setSelectedCategory(e.target.value)
-                  }
-                  className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  {categories.map((category) => (
-                    <option
-                      key={category}
-                      value={category}
+                  {/* Search */}
+                  <div>
+                    <label className="block mb-2 font-semibold text-gray-800">
+                      Search
+                    </label>
+
+                    <input
+                      type="text"
+                      placeholder="Meals or ingredients..."
+                      value={searchText}
+                      onChange={(e) =>
+                        setSearchText(e.target.value)
+                      }
+                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+
+                  {/* Meal type */}
+                  <div>
+                    <label className="block mb-2 font-semibold text-gray-800">
+                      Meal type
+                    </label>
+
+                    <select
+                      value={selectedCategory}
+                      onChange={(e) =>
+                        setSelectedCategory(e.target.value)
+                      }
+                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                      {category}
-                    </option>
-                  ))}
-                </select>
+                      {categories.map((category) => (
+                        <option
+                          key={category}
+                          value={category}
+                        >
+                          {category}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Sort */}
+                  <div>
+                    <label className="block mb-2 font-semibold text-gray-800">
+                      Sort by
+                    </label>
+
+                    <select
+                      value={sortBy}
+                      onChange={(e) =>
+                        setSortBy(e.target.value)
+                      }
+                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="default">
+                        Default order
+                      </option>
+
+                      <option value="time-asc">
+                        ⏱️ Cooking time — shortest first
+                      </option>
+
+                      <option value="time-desc">
+                        ⏱️ Cooking time — longest first
+                      </option>
+
+                      <option value="calories-asc">
+                        🔥 Calories — lowest first
+                      </option>
+
+                      <option value="calories-desc">
+                        🔥 Calories — highest first
+                      </option>
+
+                      <option value="potassium-asc">
+                        🥔 Potassium — lowest first
+                      </option>
+
+                      <option value="phosphate-asc">
+                        🧀 Phosphate — lowest first
+                      </option>
+
+                      <option value="purines-asc">
+                        🍖 Purines — lowest first
+                      </option>
+                    </select>
+                  </div>
+
+                </div>
+
+                {(searchText ||
+                  selectedCategory !== "All" ||
+                  sortBy !== "default") && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchText("");
+                      setSelectedCategory("All");
+                      setSortBy("default");
+                    }}
+                    className="mt-5 text-sm font-semibold text-blue-600 hover:text-blue-800"
+                  >
+                    Clear filters
+                  </button>
+                )}
+
               </div>
-
-              {/* Sort */}
-              <div>
-                <label className="block mb-2 font-semibold text-gray-800">
-                  Sort by
-                </label>
-
-                <select
-                  value={sortBy}
-                  onChange={(e) =>
-                    setSortBy(e.target.value)
-                  }
-                  className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="default">
-                    Default order
-                  </option>
-
-                  <option value="time-asc">
-                    ⏱️ Cooking time — shortest first
-                  </option>
-
-                  <option value="time-desc">
-                    ⏱️ Cooking time — longest first
-                  </option>
-
-                  <option value="calories-asc">
-                    🔥 Calories — lowest first
-                  </option>
-
-                  <option value="calories-desc">
-                    🔥 Calories — highest first
-                  </option>
-
-                  <option value="potassium-asc">
-                    🥔 Potassium — lowest first
-                  </option>
-
-                  <option value="phosphate-asc">
-                    🧀 Phosphate — lowest first
-                  </option>
-
-                  <option value="purines-asc">
-                    🍖 Purines — lowest first
-                  </option>
-                </select>
-              </div>
-
-            </div>
-
-            {(searchText ||
-              selectedCategory !== "All" ||
-              sortBy !== "default") && (
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchText("");
-                  setSelectedCategory("All");
-                  setSortBy("default");
-                }}
-                className="mt-5 text-sm font-semibold text-blue-600 hover:text-blue-800"
-              >
-                Clear filters
-              </button>
             )}
 
           </div>
-        )}
+
+          {/* Clear All */}
+          {hasSelectedMeals && (
+            <button
+              type="button"
+              onClick={clearAllMeals}
+              className="rounded-lg border border-red-200 bg-white px-4 py-3 font-semibold text-red-600 shadow-sm hover:bg-red-50 transition whitespace-nowrap"
+            >
+              🗑️ Clear All
+            </button>
+          )}
+
+        </div>
 
         <p className="mt-4 text-sm text-slate-500">
           {helperText}
@@ -303,12 +408,14 @@ export default function RecipesPage() {
       {/* Recipes */}
       {filteredRecipes.length > 0 ? (
         <div className="grid gap-4 md:grid-cols-2">
+
           {filteredRecipes.map((recipe) => (
             <RecipeCard
               key={recipe.id}
               recipe={recipe}
             />
           ))}
+
         </div>
       ) : (
         <div className="py-16 text-center">

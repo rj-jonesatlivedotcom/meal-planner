@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
-import CategoryFilter from "@/components/CategoryFilter";
-import RecipeSearch from "@/components/RecipeSearch";
 import { recipes } from "../../data/recipes";
 
 export default function RecipesPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchText, setSearchText] = useState("");
-  const [showSearch, setShowSearch] = useState(false);
+  const [sortBy, setSortBy] = useState("default");
+  const [showFilters, setShowFilters] = useState(false);
+
+  const filterRef = useRef<HTMLDivElement>(null);
 
   const categories = [
     "All",
@@ -20,51 +21,137 @@ export default function RecipesPage() {
     "Vegetarian",
   ];
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
+      ) {
+        setShowFilters(false);
+      }
+    }
+
+    if (showFilters) {
+      document.addEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+    }
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+    };
+  }, [showFilters]);
+
   const searchWords = searchText
     .toLowerCase()
     .trim()
     .split(/\s+/)
     .filter(Boolean);
 
-  const filteredRecipes = recipes.filter((recipe) => {
-    const matchesCategory =
-      selectedCategory === "All" ||
-      recipe.category === selectedCategory;
+  const dietaryRank: Record<string, number> = {
+    Low: 1,
+    Moderate: 2,
+    Higher: 3,
+  };
 
-    const matchesSearch =
-      searchWords.length === 0 ||
-      searchWords.every((word) => {
-        return (
-          recipe.name.toLowerCase().includes(word) ||
-          recipe.description.toLowerCase().includes(word) ||
-          recipe.equipment.toLowerCase().includes(word) ||
-          recipe.ingredients.some((ingredient) =>
-            ingredient.item.toLowerCase().includes(word)
-          )
-        );
-      });
+  const getMinutes = (value: string) => {
+    const match = value.match(/\d+/);
+    return match ? Number(match[0]) : 0;
+  };
 
-    return matchesCategory && matchesSearch;
-  });
+  const getCalories = (value: string) => {
+    const match = value.replace(/,/g, "").match(/\d+/);
+    return match ? Number(match[0]) : 0;
+  };
 
-  let helperText = "";
+  const filteredRecipes = recipes
+    .filter((recipe) => {
+      const matchesCategory =
+        selectedCategory === "All" ||
+        recipe.category === selectedCategory;
+
+      const matchesSearch =
+        searchWords.length === 0 ||
+        searchWords.every((word) => {
+          return (
+            recipe.name.toLowerCase().includes(word) ||
+            recipe.description.toLowerCase().includes(word) ||
+            recipe.equipment.toLowerCase().includes(word) ||
+            recipe.ingredients.some((ingredient) =>
+              ingredient.item.toLowerCase().includes(word)
+            )
+          );
+        });
+
+      return matchesCategory && matchesSearch;
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case "time-asc":
+          return (
+            getMinutes(a.cookingTime) -
+            getMinutes(b.cookingTime)
+          );
+
+        case "time-desc":
+          return (
+            getMinutes(b.cookingTime) -
+            getMinutes(a.cookingTime)
+          );
+
+        case "calories-asc":
+          return (
+            getCalories(a.calories) -
+            getCalories(b.calories)
+          );
+
+        case "calories-desc":
+          return (
+            getCalories(b.calories) -
+            getCalories(a.calories)
+          );
+
+        case "potassium-asc":
+          return (
+            dietaryRank[a.potassium] -
+            dietaryRank[b.potassium]
+          );
+
+        case "phosphate-asc":
+          return (
+            dietaryRank[a.phosphate] -
+            dietaryRank[b.phosphate]
+          );
+
+        case "purines-asc":
+          return (
+            dietaryRank[a.purines] -
+            dietaryRank[b.purines]
+          );
+
+        default:
+          return 0;
+      }
+    });
 
   const searchDisplay = searchText.trim();
 
-  if (selectedCategory === "All" && searchDisplay === "") {
-    helperText = `${recipes.length} recipes`;
-  } else if (selectedCategory !== "All" && searchDisplay === "") {
-    helperText = `${filteredRecipes.length} ${selectedCategory.toLowerCase()} recipe${
-      filteredRecipes.length === 1 ? "" : "s"
-    }`;
-  } else if (selectedCategory === "All" && searchDisplay !== "") {
+  let helperText = "";
+
+  if (searchDisplay) {
     helperText = `${filteredRecipes.length} recipe${
       filteredRecipes.length === 1 ? "" : "s"
     } matching "${searchDisplay}"`;
-  } else {
+  } else if (selectedCategory !== "All") {
     helperText = `${filteredRecipes.length} ${selectedCategory.toLowerCase()} recipe${
       filteredRecipes.length === 1 ? "" : "s"
-    } matching "${searchDisplay}"`;
+    }`;
+  } else {
+    helperText = `${filteredRecipes.length} recipes`;
   }
 
   return (
@@ -74,75 +161,146 @@ export default function RecipesPage() {
         Family Recipes
       </h1>
 
-      <div className="mb-8">
+      {/* Search & Sort */}
+      <div
+        ref={filterRef}
+        className="mb-8"
+      >
 
-        {/* Desktop */}
-        <div className="hidden md:block">
+        <button
+          type="button"
+          onClick={() =>
+            setShowFilters((current) => !current)
+          }
+          className="w-full md:w-auto rounded-lg border border-gray-300 bg-white px-5 py-3 font-semibold shadow-sm hover:bg-gray-50 transition flex items-center justify-center gap-2"
+        >
+          🔎 Search & Sort
+          <span className="text-sm">
+            {showFilters ? "▲" : "▼"}
+          </span>
+        </button>
 
-          <CategoryFilter
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
+        {showFilters && (
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
 
-          <div className="mt-4">
-            {showSearch ? (
-              <div className="max-w-[500px] w-full">
-                <RecipeSearch
-                  searchText={searchText}
-                  onSearchChange={setSearchText}
-                  onClose={() => setShowSearch(false)}
+            <div className="grid gap-5 md:grid-cols-3">
+
+              {/* Search */}
+              <div>
+                <label className="block mb-2 font-semibold text-gray-800">
+                  Search
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Meals or ingredients..."
+                  value={searchText}
+                  onChange={(e) =>
+                    setSearchText(e.target.value)
+                  }
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
-            ) : (
+
+              {/* Meal type */}
+              <div>
+                <label className="block mb-2 font-semibold text-gray-800">
+                  Meal type
+                </label>
+
+                <select
+                  value={selectedCategory}
+                  onChange={(e) =>
+                    setSelectedCategory(e.target.value)
+                  }
+                  className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {categories.map((category) => (
+                    <option
+                      key={category}
+                      value={category}
+                    >
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Sort */}
+              <div>
+                <label className="block mb-2 font-semibold text-gray-800">
+                  Sort by
+                </label>
+
+                <select
+                  value={sortBy}
+                  onChange={(e) =>
+                    setSortBy(e.target.value)
+                  }
+                  className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="default">
+                    Default order
+                  </option>
+
+                  <option value="time-asc">
+                    ⏱️ Cooking time — shortest first
+                  </option>
+
+                  <option value="time-desc">
+                    ⏱️ Cooking time — longest first
+                  </option>
+
+                  <option value="calories-asc">
+                    🔥 Calories — lowest first
+                  </option>
+
+                  <option value="calories-desc">
+                    🔥 Calories — highest first
+                  </option>
+
+                  <option value="potassium-asc">
+                    🥔 Potassium — lowest first
+                  </option>
+
+                  <option value="phosphate-asc">
+                    🧀 Phosphate — lowest first
+                  </option>
+
+                  <option value="purines-asc">
+                    🍖 Purines — lowest first
+                  </option>
+                </select>
+              </div>
+
+            </div>
+
+            {(searchText ||
+              selectedCategory !== "All" ||
+              sortBy !== "default") && (
               <button
-                onClick={() => setShowSearch(true)}
-                className="text-2xl hover:scale-110 transition"
-                title="Search recipes"
+                type="button"
+                onClick={() => {
+                  setSearchText("");
+                  setSelectedCategory("All");
+                  setSortBy("default");
+                }}
+                className="mt-5 text-sm font-semibold text-blue-600 hover:text-blue-800"
               >
-                🔍
+                Clear filters
               </button>
             )}
+
           </div>
+        )}
 
-        </div>
-
-        {/* Mobile */}
-        <div className="md:hidden space-y-3">
-
-          <CategoryFilter
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
-
-          <div className="w-full">
-            {showSearch ? (
-              <RecipeSearch
-                searchText={searchText}
-                onSearchChange={setSearchText}
-                onClose={() => setShowSearch(false)}
-              />
-            ) : (
-              <button
-                onClick={() => setShowSearch(true)}
-                className="text-2xl hover:scale-110 transition"
-                title="Search recipes"
-              >
-                🔍
-              </button>
-            )}
-          </div>
-
-        </div>
-
-        {/* Helper text */}
         <p className="mt-4 text-sm text-slate-500">
           {helperText}
         </p>
 
       </div>
 
+      {/* Recipes */}
       {filteredRecipes.length > 0 ? (
         <div className="grid gap-4 md:grid-cols-2">
           {filteredRecipes.map((recipe) => (
@@ -164,7 +322,7 @@ export default function RecipesPage() {
           </h2>
 
           <p className="mt-3 text-slate-500">
-            Try searching for another meal or ingredient.
+            Try changing your search or filters.
           </p>
 
         </div>

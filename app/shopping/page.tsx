@@ -423,6 +423,9 @@ export default function ShoppingPage() {
     setShoppingList([]);
     setCheckedItems([]);
   }
+function uncheckAll() {
+  setCheckedItems([]);
+}
 
   const categoryOrder = [
     "🥩 Meat & Fish",
@@ -616,12 +619,23 @@ export default function ShoppingPage() {
                   : "s"}
               </div>
 
-              <button
-                onClick={resetShopping}
-                className="mt-2 bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
-              >
-                🗑️ Clear All
-              </button>
+              <div className="flex gap-2">
+
+  <button
+    onClick={uncheckAll}
+    className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
+  >
+    ☐ Uncheck All
+  </button>
+
+  <button
+    onClick={resetShopping}
+    className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
+  >
+    🗑️ Clear All
+  </button>
+
+</div>
             </div>
           )}
 

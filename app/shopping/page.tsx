@@ -22,7 +22,13 @@ const ingredientCategories: Record<string, string> = {
   salmon: "🥩 Meat & Fish",
   tuna: "🥩 Meat & Fish",
   fish: "🥩 Meat & Fish",
+  sirloin: "🥩 Meat & Fish",
+  "pork loin": "🥩 Meat & Fish",
+  cod: "🥩 Meat & Fish",
   "tomato purée": "🥫 Cupboard",
+  couscous: "🥫 Cupboard",
+  cornflour: "🥫 Cupboard",
+  sweetcorn: "🥫 Cupboard",
 
   // 🥕 Fruit & Vegetables
   onion: "🥕 Fruit & Vegetables",
@@ -48,6 +54,8 @@ const ingredientCategories: Record<string, string> = {
   beans: "🥕 Fruit & Vegetables",
   lemon: "🥕 Fruit & Vegetables",
   lime: "🥕 Fruit & Vegetables",
+  apple: "🥕 Fruit & Vegetables",
+  apples: "🥕 Fruit & Vegetables",
 
   // 🧊 Chilled
   cheese: "🧊 Chilled",
@@ -58,6 +66,7 @@ const ingredientCategories: Record<string, string> = {
   cream: "🧊 Chilled",
   milk: "🧊 Chilled",
   butter: "🧊 Chilled",
+  "crème fraîche": "🧊 Chilled",
 
   // ❄️ Frozen
   peas: "❄️ Frozen",
@@ -99,6 +108,9 @@ const ingredientCategories: Record<string, string> = {
   "mixed herbs": "🧂 Herbs & Spices",
   "curry powder": "🧂 Herbs & Spices",
   "chilli flakes": "🧂 Herbs & Spices",
+  ginger: "🧂 Herbs & Spices",
+  sage: "🧂 Herbs & Spices",
+  dill: "🧂 Herbs & Spices",
   "black pepper": "🧂 Herbs & Spices",
   salt: "🧂 Herbs & Spices",
 };
@@ -246,27 +258,41 @@ export default function ShoppingPage() {
     };
   }
 
-  function scaleQuantity(quantity: string): string {
-    const match = quantity.match(
-      /^(\d+[¼½¾]?|[¼½¾])\s*(.*)$/
-    );
+  function normaliseUnit(unit: string): string {
+    const cleaned = unit.trim().toLowerCase();
 
-    if (!match) {
-      return quantity;
-    }
+    const aliases: Record<string, string> = {
+      "clove": "clove",
+      "cloves": "clove",
+      "tsp": "tsp",
+      "tsps": "tsp",
+      "teaspoon": "tsp",
+      "teaspoons": "tsp",
+      "tbsp": "tbsp",
+      "tbsps": "tbsp",
+      "tablespoon": "tbsp",
+      "tablespoons": "tbsp",
+      "ml": "ml",
+      "l": "l",
+      "g": "g",
+      "kg": "kg",
+      "small": "small",
+      "medium": "medium",
+      "large": "large",
+      "small handful": "small handful",
+      "small handfuls": "small handful",
+    };
 
-    const value =
-      fractionToDecimal(match[1]);
+    return aliases[cleaned] ?? unit.trim();
+  }
 
-    if (value === null) {
-      return quantity;
-    }
+  function formatQuantity(amount: number, unit: string): string {
+    const normalisedUnit = normaliseUnit(unit);
+    const rounded =
+      Math.round(amount * 100) / 100;
 
-    const scaled =
-      value * people;
-
-    const unit =
-      match[2];
+    const amountText =
+      decimalToFraction(rounded);
 
     const noSpaceUnits = [
       "g",
@@ -275,12 +301,112 @@ export default function ShoppingPage() {
       "l",
     ];
 
-    const amount =
-      decimalToFraction(scaled);
+    if (normalisedUnit === "clove") {
+      return rounded === 1
+        ? `${amountText} clove`
+        : `${amountText} cloves`;
+    }
 
-    return noSpaceUnits.includes(unit)
-      ? `${amount}${unit}`
-      : `${amount} ${unit}`;
+    if (normalisedUnit === "small handful") {
+      return rounded === 1
+        ? `${amountText} small handful`
+        : `${amountText} small handfuls`;
+    }
+
+    return noSpaceUnits.includes(normalisedUnit)
+      ? `${amountText}${normalisedUnit}`
+      : `${amountText} ${normalisedUnit}`;
+  }
+
+  function scaleQuantity(
+    quantity: string,
+    recipeServings: number = 1
+  ): string {
+    const parsed = parseQuantity(quantity);
+
+    if (!parsed) {
+      return quantity;
+    }
+
+    const scaled =
+      (parsed.amount * people) / recipeServings;
+
+    return formatQuantity(
+      scaled,
+      parsed.unit
+    );
+  }
+
+  function parseQuantity(quantity: string) {
+    const multipliedMatch = quantity.match(
+      /^(\d+(?:\.\d+)?)\s*[×x]\s*(\d+(?:\.\d+)?(?:[¼½¾])?)\s*(.*)$/i
+    );
+
+    if (multipliedMatch) {
+      const count = Number(multipliedMatch[1]);
+      const each = fractionToDecimal(
+        multipliedMatch[2]
+      );
+
+      if (each === null) {
+        return null;
+      }
+
+      return {
+        amount: count * each,
+        unit: normaliseUnit(
+          multipliedMatch[3]
+        ),
+      };
+    }
+
+    const trimmedQuantity = quantity.trim();
+
+    if (
+      normaliseUnit(trimmedQuantity) ===
+      "small handful"
+    ) {
+      return {
+        amount: 1,
+        unit: "small handful",
+      };
+    }
+
+    const match = trimmedQuantity.match(
+      /^(\d+(?:\.\d+)?(?:[¼½¾])?|[¼½¾])\s*(.*)$/
+    );
+
+    if (!match) {
+      return null;
+    }
+
+    let amount = fractionToDecimal(match[1]);
+
+    if (amount === null) {
+      return null;
+    }
+
+    // Support values such as 1.5½, although normal recipe
+    // quantities will normally use either decimals or fractions.
+    const decimalFraction = match[1].match(
+      /^(\d+(?:\.\d+)?)([¼½¾])$/
+    );
+
+    if (decimalFraction) {
+      const whole = Number(decimalFraction[1]);
+      const fraction = fractionToDecimal(
+        decimalFraction[2]
+      );
+
+      if (fraction !== null) {
+        amount = whole + fraction;
+      }
+    }
+
+    return {
+      amount,
+      unit: normaliseUnit(match[2]),
+    };
   }
 
   function normaliseIngredient(item: string): string {
@@ -308,7 +434,127 @@ export default function ShoppingPage() {
       result = result.replace(text, "");
     });
 
+    const lower = result.trim().toLowerCase();
+
+    // Keep lemon juice/zest separate from whole lemons.
+    if (lower.includes("lemon juice")) {
+      return "Lemon juice";
+    }
+
+    if (lower.includes("lemon zest")) {
+      return "Lemon zest";
+    }
+
+    // Standardise common shopping names.
+    if (lower === "potato" || lower === "potatoes") {
+      return "Potatoes";
+    }
+
+    if (lower === "onion" || lower === "onions") {
+      return "Onion";
+    }
+
+    if (lower === "red pepper" || lower === "red peppers") {
+      return "Red pepper";
+    }
+
+    if (
+      lower === "green pepper" ||
+      lower === "green peppers"
+    ) {
+      return "Green pepper";
+    }
+
+    if (
+      lower === "yellow pepper" ||
+      lower === "yellow peppers"
+    ) {
+      return "Yellow pepper";
+    }
+
+    if (lower === "lemon" || lower === "lemons") {
+      return "Lemon";
+    }
+
     return result.trim();
+  }
+
+  function normaliseSizedProduce(
+    item: string,
+    quantity: string
+  ): string {
+    const name = normaliseIngredient(item).toLowerCase();
+
+    const sizedItems = [
+      "onion",
+      "red pepper",
+      "green pepper",
+      "yellow pepper",
+    ];
+
+    if (!sizedItems.includes(name)) {
+      return quantity;
+    }
+
+    const parsed = parseQuantity(quantity);
+
+    if (!parsed) {
+      return quantity;
+    }
+
+    let multiplier = 1;
+
+    switch (parsed.unit) {
+      case "small":
+        multiplier = 0.5;
+        break;
+      case "medium":
+        multiplier = 1;
+        break;
+      case "large":
+        multiplier = 1.5;
+        break;
+      default:
+        // A bare number is already a medium-sized item.
+        if (parsed.unit !== "") {
+          return quantity;
+        }
+    }
+
+    return formatQuantity(
+      parsed.amount * multiplier,
+      ""
+    );
+  }
+
+  function normaliseLemonQuantity(
+    item: string,
+    quantity: string
+  ): string {
+    if (
+      normaliseIngredient(item).toLowerCase() !==
+      "lemon"
+    ) {
+      return quantity;
+    }
+
+    const parsed = parseQuantity(quantity);
+
+    if (!parsed) {
+      return quantity;
+    }
+
+    // Fresh lemon quantities such as "½ lemon" or a bare "¼"
+    // are shopping quantities for whole lemons. Store them as
+    // a plain count so they combine cleanly with whole lemons.
+    if (
+      parsed.unit === "lemon" ||
+      parsed.unit === ""
+    ) {
+      return decimalToFraction(parsed.amount);
+    }
+
+    return quantity;
   }
 
   function combineIngredients(
@@ -316,11 +562,136 @@ export default function ShoppingPage() {
   ): ShoppingItem[] {
     const combined: ShoppingItem[] = [];
 
+    function addQuantity(
+      current: string,
+      incoming: string
+    ): string {
+      const currentLower = current.toLowerCase().trim();
+      const incomingLower = incoming.toLowerCase().trim();
+
+      if (
+        incomingLower === "to taste" ||
+        incomingLower === "as required"
+      ) {
+        return current;
+      }
+
+      if (
+        currentLower === "to taste" ||
+        currentLower === "as required"
+      ) {
+        return incoming;
+      }
+
+      // A combined item can contain several incompatible quantities,
+      // e.g. "18, 2 small". Work on each part separately so later
+      // quantities can still combine with a compatible part.
+      const parts = current
+        .split(",")
+        .map((part) => part.trim())
+        .filter(Boolean);
+
+      const incomingParsed = parseQuantity(incoming);
+
+      if (!incomingParsed) {
+        return `${current}, ${incoming}`;
+      }
+
+      for (let i = 0; i < parts.length; i++) {
+        const existingParsed =
+          parseQuantity(parts[i]);
+
+        if (!existingParsed) {
+          continue;
+        }
+
+        const converted1 =
+          convertToBaseUnit(
+            existingParsed.amount,
+            existingParsed.unit
+          );
+
+        const converted2 =
+          convertToBaseUnit(
+            incomingParsed.amount,
+            incomingParsed.unit
+          );
+
+        if (converted1.unit === converted2.unit) {
+          const total =
+            converted1.amount +
+            converted2.amount;
+
+          parts[i] =
+            formatQuantity(
+              total,
+              converted1.unit
+            );
+
+          return parts.join(", ");
+        }
+      }
+
+      return `${current}, ${incoming}`;
+    }
+
     ingredients.forEach((ingredient) => {
-      const shoppingName =
-        normaliseIngredient(
-          ingredient.shoppingItem ?? ingredient.item
+      const rawItem =
+        ingredient.item?.trim() ?? "";
+
+      // "No added salt" is a dietary instruction, not something
+      // the shopper needs to buy.
+      if (
+        rawItem.toLowerCase() === "no added salt"
+      ) {
+        return;
+      }
+
+      // Keep whole lemon, lemon juice and lemon zest separate.
+      // Some older recipes use shoppingItem: "Lemon" for juice/zest,
+      // so the recipe's actual item name takes priority here.
+      const lowerItem = rawItem.toLowerCase();
+
+      const parsedQuantity =
+        parseQuantity(ingredient.quantity);
+
+      const isFreshLemonQuantity =
+        lowerItem.includes("lemon juice") &&
+        parsedQuantity !== null &&
+        (
+          parsedQuantity.unit === "lemon" ||
+          parsedQuantity.unit === ""
         );
+
+      const sourceName =
+        lowerItem.includes("lemon juice")
+          ? isFreshLemonQuantity
+            ? "Lemon"
+            : "Lemon juice"
+          : lowerItem.includes("lemon zest")
+            ? "Lemon zest"
+            : lowerItem === "fresh parsley" ||
+                lowerItem === "fresh basil or parsley" ||
+                lowerItem === "basil or parsley"
+              ? "Parsley"
+              : ingredient.shoppingItem ?? rawItem;
+
+      const shoppingName =
+        normaliseIngredient(sourceName);
+
+      const shoppingQuantity =
+        normaliseLemonQuantity(
+          shoppingName,
+          normaliseSizedProduce(
+            shoppingName,
+            ingredient.quantity
+          )
+        );
+
+      const normalisedIngredient = {
+        ...ingredient,
+        quantity: shoppingQuantity,
+      };
 
       const existing = combined.find(
         (item) =>
@@ -331,92 +702,22 @@ export default function ShoppingPage() {
       if (!existing) {
         combined.push({
           item: shoppingName,
-          quantity: ingredient.quantity,
+          quantity: normalisedIngredient.quantity,
         });
 
         return;
       }
 
-      if (
-        existing.quantity.toLowerCase() === "to taste" &&
-        ingredient.quantity.toLowerCase() === "to taste"
-      ) {
-        return;
-      }
-
-      const existingMatch =
-        existing.quantity.match(
-          /^(\d+[¼½¾]?|[¼½¾])\s*(.*)$/
-        );
-
-      const newMatch =
-        ingredient.quantity.match(
-          /^(\d+[¼½¾]?|[¼½¾])\s*(.*)$/
-        );
-
-      if (existingMatch && newMatch) {
-        const firstValue =
-          fractionToDecimal(existingMatch[1]);
-
-        const secondValue =
-          fractionToDecimal(newMatch[1]);
-
-        if (
-          firstValue === null ||
-          secondValue === null
-        ) {
-          existing.quantity =
-            `${existing.quantity}, ${ingredient.quantity}`;
-
-          return;
-        }
-
-        const converted1 =
-          convertToBaseUnit(
-            firstValue,
-            existingMatch[2].trim()
-          );
-
-        const converted2 =
-          convertToBaseUnit(
-            secondValue,
-            newMatch[2].trim()
-          );
-
-        if (
-          converted1 &&
-          converted2 &&
-          converted1.unit === converted2.unit
-        ) {
-          const total =
-            converted1.amount +
-            converted2.amount;
-
-          const amount =
-            decimalToFraction(total);
-
-          const noSpaceUnits = [
-            "g",
-            "kg",
-            "ml",
-            "l",
-          ];
-
-          existing.quantity =
-            noSpaceUnits.includes(converted1.unit)
-              ? `${amount}${converted1.unit}`
-              : `${amount} ${converted1.unit}`;
-
-          return;
-        }
-      }
-
       existing.quantity =
-        `${existing.quantity}, ${ingredient.quantity}`;
+        addQuantity(
+          existing.quantity,
+          normalisedIngredient.quantity
+        );
     });
 
     return combined;
   }
+
 
   function resetShopping() {
     setSelectedRecipes([]);
@@ -480,13 +781,20 @@ function uncheckAll() {
         selectedRecipes.includes(recipe.id)
       )
       .flatMap((recipe) =>
-        recipe.ingredients.map((ingredient) => ({
-          item:
-            ingredient.shoppingItem ??
-            ingredient.item,
-          quantity:
-            scaleQuantity(ingredient.quantity),
-        }))
+        recipe.ingredients
+          .filter(
+            (ingredient) =>
+              ingredient.item.trim().toLowerCase() !== "water"
+          )
+          .map((ingredient) => ({
+            item: ingredient.item,
+            shoppingItem: ingredient.shoppingItem,
+            quantity:
+              scaleQuantity(
+                ingredient.quantity,
+                recipe.code >= "D016" ? 4 : 1
+              ),
+          }))
       );
 
     const newShoppingList =

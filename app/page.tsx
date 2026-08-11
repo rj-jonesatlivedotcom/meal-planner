@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HomeMenu from "@/components/HomeMenu";
 
 export default function Home() {
   return (
@@ -18,10 +19,10 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-6xl px-5 pb-10 pt-14 sm:px-8 sm:pt-16">
 
           {/* HERO CONTENT */}
-          <div className="flex flex-col items-center gap-8 md:flex-row md:items-start">
+          <div className="flex flex-row items-start gap-2 sm:gap-6">
 
             {/* LEFT SIDE */}
-            <div className="w-full md:w-1/2">
+            <div className="w-[58%] shrink-0 md:w-1/2">
 
               <p className="text-2xl font-bold text-green-700 sm:text-3xl">
                 Welcome to
@@ -43,18 +44,24 @@ export default function Home() {
 
             </div>
 
-            {/* SIDNEY — positioned slightly left so he doesn't stand on the food */}
-<div className="flex w-full justify-center md:justify-start md:-translate-x-8">
-  <img
-    src="/images/sidney/sidney.png"
-    alt="Sidney the Kidney"
-    className="h-auto w-[78%] max-w-[460px] object-contain drop-shadow-xl"
-  />
-</div>
+            {/* SIDNEY */}
+            <div className="flex w-[42%] shrink-0 justify-center md:w-1/2 md:justify-start md:-translate-x-8">
+
+              <img
+                src="/images/sidney/sidney.png"
+                alt="Sidney the Kidney"
+                className="relative mt-6 w-full max-w-[460px] object-contain drop-shadow-xl md:mt-0"
+              />
+
+            </div>
 
           </div>
 
         </div>
+
+        {/* HAMBURGER MENU */}
+        <HomeMenu />
+
       </section>
 
       {/* MAIN NAVIGATION */}
@@ -72,7 +79,7 @@ export default function Home() {
             </div>
 
             <div className="min-w-0 flex-1">
-              <h2 className="text-3xl font-bold">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Recipes
               </h2>
 
@@ -97,7 +104,7 @@ export default function Home() {
             </div>
 
             <div className="min-w-0 flex-1">
-              <h2 className="text-3xl font-bold">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Weekly Planner
               </h2>
 
@@ -121,7 +128,7 @@ export default function Home() {
             </div>
 
             <div className="min-w-0 flex-1">
-              <h2 className="text-3xl font-bold">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Shopping List
               </h2>
 
@@ -149,7 +156,7 @@ export default function Home() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold sm:text-2xl">
+            <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">
               Plan smart. Eat well. Feel your best.
             </h2>
 

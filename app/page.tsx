@@ -50,7 +50,7 @@ export default function Home() {
               <img
                 src="/images/sidney/sidney.png"
                 alt="Sidney the Kidney"
-                className="relative mt-6 w-full max-w-[460px] object-contain drop-shadow-xl md:mt-0"
+                className="h-auto w-[105%] max-w-[520px] object-contain drop-shadow-xl md:w-[78%] md:max-w-[460px]"
               />
 
             </div>

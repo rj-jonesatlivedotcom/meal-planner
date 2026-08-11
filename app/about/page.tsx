@@ -1,104 +1,87 @@
 import Link from "next/link";
 
-export default function AboutPage() {
+export default function About() {
   return (
-    <main className="min-h-screen bg-[#fffdf8] px-5 py-8 text-[#2f3a32]">
-      <div className="mx-auto max-w-3xl">
-        <Link
-          href="/"
-          className="mb-6 inline-block text-sm font-semibold text-[#58735d] hover:underline"
-        >
-          ← Back to Family Meal Planner
-        </Link>
+    <main className="min-h-screen bg-white text-slate-900">
 
-        <section className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
-          <h1 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
-            Why Family Meal Planner exists
-          </h1>
+      <section className="bg-gradient-to-b from-white to-green-50 px-5 py-12 sm:px-8">
+        <div className="mx-auto max-w-4xl">
 
-          <p className="mb-6 leading-7">
-            Planning meals can be difficult for anyone, but for someone on
-            dialysis it can be particularly challenging. There can be a lot of{" "}
-            <strong>dietary restrictions</strong> to think about when deciding
-            what to cook. 🤔
-          </p>
+          <Link
+            href="/"
+            className="text-lg font-semibold text-green-700"
+          >
+            ← Back to Meal Planner
+          </Link>
 
-          <p className="mb-6 leading-7">
-            Trying to work out whether a meal is suitable — while also making
-            sure it&apos;s something the whole family will actually enjoy —
-            can make the weekly shop something you dread. 😩
-          </p>
+          <div className="mt-8 text-center">
+            <img
+              src="/images/sidney/sidney.png"
+              alt="Sidney the Kidney"
+              className="mx-auto w-48 object-contain"
+            />
 
-          <p className="mb-6 leading-7">
-            <strong>That&apos;s why I created Family Meal Planner.</strong>
-          </p>
+            <h1 className="mt-4 text-5xl font-extrabold tracking-tight">
+              About Meal Planner
+            </h1>
 
-          <p className="mb-6 leading-7">
-            <strong>
-              The aim is to make planning family meals and doing the weekly shop
-              easier. 😊
-            </strong>
-          </p>
-
-          <p className="mb-6 leading-7">
-            Each recipe provides information about its{" "}
-            <strong>potassium, phosphate</strong> and{" "}
-            <strong>purine</strong> levels, allowing you to consider the
-            nutritional suitability of a meal{" "}
-            <strong>before deciding what to cook</strong>.
-          </p>
-
-          <p className="mb-8 leading-7">
-            The meals are designed to be generally{" "}
-            <strong>kidney-conscious family meals</strong>, rather than
-            separate &quot;dialysis food&quot; that the rest of the family has
-            to eat.
-          </p>
-
-          <hr className="my-8 border-[#e4e9e2]" />
-
-          <h2 className="mb-4 text-2xl font-bold">The idea</h2>
-
-          <div className="mb-6 rounded-2xl bg-[#f4f7f2] p-5">
-            <p className="text-lg font-semibold leading-8">
-              Browse the meals → check the nutritional information → choose your
-              meals → generate your shopping list.
+            <p className="mx-auto mt-5 max-w-2xl text-xl leading-relaxed text-slate-700">
+              Meal Planner is designed to make planning and preparing
+              kidney-friendly meals simpler.
             </p>
           </div>
 
-          <p className="mb-6 leading-7">
-            Once you&apos;ve chosen your meals, the planner automatically
-            creates a shopping list containing the ingredients you need.
-          </p>
+          <div className="mt-10 space-y-6">
 
-          <p className="mb-8 leading-7">
-            It&apos;s simply a tool to make the everyday job of{" "}
-            <strong>
-              thinking about meals, checking their nutritional information,
-              planning them and doing the shopping
-            </strong>{" "}
-            a little easier.
-          </p>
+            <section className="rounded-3xl bg-green-50 p-6 shadow-sm">
+              <h2 className="text-2xl font-bold">
+                What is Meal Planner?
+              </h2>
 
-          <p className="mb-8 leading-7">
-            It started as something I needed for{" "}
-            <strong>my own family</strong>. Now I&apos;m building it into
-            something that might help other families in the same situation too.
-          </p>
+              <p className="mt-3 text-lg leading-relaxed text-slate-800">
+                Meal Planner brings recipes, meal planning and shopping
+                together in one simple place, helping you decide what to
+                eat and what you need to buy.
+              </p>
+            </section>
 
-          <hr className="my-8 border-[#e4e9e2]" />
+            <section className="rounded-3xl bg-blue-50 p-6 shadow-sm">
+              <h2 className="text-2xl font-bold">
+                Meet Sidney
+              </h2>
 
-          <h2 className="mb-4 text-2xl font-bold">Dietary information</h2>
+              <p className="mt-3 text-lg leading-relaxed text-slate-800">
+                Sidney the Kidney is here to make the experience a little
+                friendlier and help guide you around Meal Planner.
+              </p>
+            </section>
 
-          <p className="text-sm leading-6 text-[#5d665f]">
-            The nutritional information on this website is provided for
-            planning purposes and is not medical or dietary advice. Renal
-            dietary requirements can vary from person to person. If you are on
-            dialysis or have other specific dietary requirements, please follow
-            the advice given by your healthcare team or renal dietitian.
-          </p>
-        </section>
-      </div>
+            <section className="rounded-3xl bg-orange-50 p-6 shadow-sm">
+              <h2 className="text-2xl font-bold">
+                Our aim
+              </h2>
+
+              <p className="mt-3 text-lg leading-relaxed text-slate-800">
+                Keep meal planning straightforward, practical and easy to
+                use — so you can spend less time worrying about what to cook
+                and more time enjoying your food.
+              </p>
+            </section>
+
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/"
+              className="inline-block rounded-2xl bg-green-700 px-8 py-4 text-lg font-bold text-white shadow-sm"
+            >
+              Back to Meal Planner
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
     </main>
   );
 }

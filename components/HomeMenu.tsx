@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export default function Navbar() {
+export default function HomeMenu() {
   const [open, setOpen] = useState(false);
 
   return (

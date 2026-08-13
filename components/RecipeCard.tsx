@@ -630,7 +630,7 @@ export default function RecipeCard({
         </Link>
 
         {/* Bottom controls */}
-        <div className="mt-auto flex items-center justify-between gap-2 pt-4">
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-4">
 
           <div className="relative">
 
@@ -674,7 +674,7 @@ export default function RecipeCard({
           {/* View Recipe */}
           <Link
             href={`/recipes/${recipe.id}`}
-            className="inline-flex h-9 items-center justify-center whitespace-nowrap px-2 text-sm font-semibold text-orange-600 hover:text-orange-700"
+            className="inline-flex h-9 min-w-0 shrink items-center justify-center whitespace-nowrap px-2 text-sm font-semibold text-orange-600 hover:text-orange-700"
           >
             View Recipe →
           </Link>

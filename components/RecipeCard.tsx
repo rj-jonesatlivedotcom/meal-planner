@@ -304,6 +304,10 @@ export default function RecipeCard({
       )
     );
 
+    // Return to the Weekly Planner
+    // after selecting the recipe.
+    window.location.href = "/planner";
+
     return true;
   }
 
@@ -508,6 +512,7 @@ export default function RecipeCard({
     <div className="relative flex h-full overflow-visible rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md">
 
       {/* Recipe image */}
+
       <Link
         href={`/recipes/${recipe.id}`}
         className="shrink-0"
@@ -522,11 +527,13 @@ export default function RecipeCard({
       </Link>
 
       {/* Recipe information */}
+
       <div className="flex min-w-0 flex-1 flex-col p-4">
 
         <Link
           href={`/recipes/${recipe.id}`}
         >
+
           <h2 className="text-lg font-bold text-slate-900 transition hover:text-orange-600">
             {recipe.name}
           </h2>
@@ -546,9 +553,11 @@ export default function RecipeCard({
             </span>
 
           </div>
+
         </Link>
 
         {/* Bottom controls */}
+
         <div className="mt-auto flex items-center justify-between gap-2 pt-4">
 
           <div className="relative min-w-0 flex-1">
@@ -566,11 +575,11 @@ export default function RecipeCard({
                   : "bg-orange-500 text-white hover:bg-orange-600"
               }`}
             >
+
               <span className="mr-1">
                 📅
               </span>
 
-              {/* Short label on mobile */}
               <span className="sm:hidden">
                 {pendingSlot
                   ? `${getShortDay(
@@ -584,14 +593,16 @@ export default function RecipeCard({
                   : getPlannerButtonText()}
               </span>
 
-              {/* Full label on desktop */}
               <span className="hidden sm:inline">
                 {getPlannerButtonText()}
               </span>
+
             </button>
 
             {/* Sidney */}
+
             {showSidney && (
+
               <div className="pointer-events-none absolute left-0 top-full z-50 mt-1 flex items-start gap-1">
 
                 <img
@@ -609,6 +620,7 @@ export default function RecipeCard({
                 </div>
 
               </div>
+
             )}
 
           </div>
@@ -625,7 +637,9 @@ export default function RecipeCard({
       </div>
 
       {/* Planner popup */}
+
       {showPlanner && (
+
         <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 p-4 sm:items-center">
 
           <div className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white shadow-xl">
@@ -660,6 +674,7 @@ export default function RecipeCard({
             <div className="space-y-5 p-4">
 
               {placements.length > 0 && (
+
                 <div>
 
                   <h3 className="mb-2 text-sm font-bold text-slate-700">
@@ -670,23 +685,28 @@ export default function RecipeCard({
 
                     {placements.map(
                       (placement) => (
+
                         <div
                           key={`${placement.day}-${placement.meal}`}
                           className="rounded-xl bg-green-50 px-3 py-3"
                         >
+
                           <span className="font-semibold text-green-800">
                             📅{" "}
                             {placement.day}{" "}
                             •{" "}
                             {placement.meal}
                           </span>
+
                         </div>
+
                       )
                     )}
 
                   </div>
 
                 </div>
+
               )}
 
               <div className="border-t border-gray-200 pt-4">
@@ -714,16 +734,20 @@ export default function RecipeCard({
                     }
                     className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-slate-900"
                   >
+
                     {days.map(
                       (day) => (
+
                         <option
                           key={day}
                           value={day}
                         >
                           {day}
                         </option>
+
                       )
                     )}
+
                   </select>
 
                 </div>
@@ -747,16 +771,20 @@ export default function RecipeCard({
                     }
                     className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-slate-900"
                   >
+
                     {mealTypes.map(
                       (meal) => (
+
                         <option
                           key={meal}
                           value={meal}
                         >
                           {meal}
                         </option>
+
                       )
                     )}
+
                   </select>
 
                 </div>
@@ -774,6 +802,7 @@ export default function RecipeCard({
               </div>
 
               {placements.length > 0 && (
+
                 <div className="border-t border-gray-200 pt-4">
 
                   <button
@@ -787,6 +816,7 @@ export default function RecipeCard({
                   </button>
 
                 </div>
+
               )}
 
             </div>
@@ -794,6 +824,7 @@ export default function RecipeCard({
           </div>
 
         </div>
+
       )}
 
     </div>

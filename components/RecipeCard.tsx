@@ -25,10 +25,17 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
   const [sidneyMessage, setSidneyMessage] = useState("");
 
   const sidneyMessages = [
-    "Great choice!",
-    "My favourite!",
-    "That looks delicious!",
-  ];
+  "Excellent!",
+  "Enjoy!",
+  "Tasty!",
+  "Lovely!",
+  "Great Choice!",
+  "Yum!",
+  "Delicious!",
+  "Wow!",
+  "Brilliant!",
+  "Nice!",
+];
 
   useEffect(() => {
     function loadShoppingStatus() {
@@ -134,7 +141,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
 
       window.setTimeout(() => {
         setShowSidney(false);
-      }, 2500);
+      }, 1500);
     }
   }
 
@@ -199,20 +206,25 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
             </button>
 
             {showSidney && (
-              <div className="absolute left-0 top-full z-50 mt-1 flex items-center gap-1 pointer-events-none">
+  <div className="absolute left-0 top-full z-50 mt-1 flex items-start gap-1 pointer-events-none">
 
-                <img
-                  src="/images/sidney/sidney-recipes.png"
-                  alt="Sidney"
-                  className="w-20 h-20 object-contain"
-                />
+    <img
+      src="/images/sidney/sidney-recipes.png"
+      alt="Sidney"
+      className="w-20 h-20 object-contain"
+    />
 
-                <div className="whitespace-nowrap rounded-xl bg-white px-3 py-2 text-xs font-bold text-slate-800 shadow-lg border border-gray-200">
-                  {sidneyMessage}
-                </div>
+    <div className="relative mt-1 whitespace-nowrap rounded-xl bg-white px-3 py-2 text-xs font-bold text-slate-800 shadow-lg border border-gray-200">
 
-              </div>
-            )}
+      {/* Speech bubble pointer */}
+      <div className="absolute left-[-6px] top-3 h-0 w-0 border-y-[6px] border-y-transparent border-r-[6px] border-r-white" />
+
+      {sidneyMessage}
+
+    </div>
+
+  </div>
+)}
 
           </div>
 

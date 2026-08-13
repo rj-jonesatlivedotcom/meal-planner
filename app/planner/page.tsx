@@ -1019,7 +1019,7 @@ export default function WeeklyPlannerPage() {
                 </p>
 
                 <Link
-                  href="/shopping-list"
+                  href="/shopping"
                   className="mt-4 inline-flex items-center justify-center rounded-2xl bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-green-700"
                 >
                   🛒 Go to Shopping List

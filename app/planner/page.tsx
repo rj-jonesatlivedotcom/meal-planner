@@ -13,11 +13,7 @@ const days = [
   "Sunday",
 ];
 
-const mealTypes = [
-  "Breakfast",
-  "Lunch",
-  "Dinner",
-];
+const mealTypes = ["Breakfast", "Lunch", "Dinner"];
 
 type PlannerMeals = {
   [day: string]: {
@@ -56,12 +52,9 @@ function getPlannerCounts(
 
   days.forEach((day) => {
     mealTypes.forEach((meal) => {
-      const recipeId =
-        planner[day]?.[meal];
+      const recipeId = planner[day]?.[meal];
 
-      if (!recipeId) {
-        return;
-      }
+      if (!recipeId) return;
 
       counts[recipeId] =
         (counts[recipeId] ?? 0) + 1;
@@ -196,9 +189,7 @@ export default function WeeklyPlannerPage() {
   }, []);
 
   useEffect(() => {
-    if (plannerMeals === null) {
-      return;
-    }
+    if (plannerMeals === null) return;
 
     localStorage.setItem(
       "weekly-planner",
@@ -225,16 +216,12 @@ export default function WeeklyPlannerPage() {
     }
 
     setPlannerMeals((current) => {
-      if (!current) {
-        return current;
-      }
+      if (!current) return current;
 
       return {
         ...current,
-
         [picker.day]: {
           ...current[picker.day],
-
           [picker.meal]: recipeId,
         },
       };
@@ -244,9 +231,7 @@ export default function WeeklyPlannerPage() {
   }
 
   function browseRecipes() {
-    if (!picker) {
-      return;
-    }
+    if (!picker) return;
 
     localStorage.setItem(
       "planner-pending-slot",
@@ -266,16 +251,12 @@ export default function WeeklyPlannerPage() {
     meal: string
   ) {
     setPlannerMeals((current) => {
-      if (!current) {
-        return current;
-      }
+      if (!current) return current;
 
       return {
         ...current,
-
         [day]: {
           ...current[day],
-
           [meal]: null,
         },
       };
@@ -293,9 +274,7 @@ export default function WeeklyPlannerPage() {
   function getRecipe(
     recipeId: string | null
   ) {
-    if (!recipeId) {
-      return null;
-    }
+    if (!recipeId) return null;
 
     return (
       recipes.find(
@@ -307,198 +286,265 @@ export default function WeeklyPlannerPage() {
 
   if (plannerMeals === null) {
     return (
-      <main className="mx-auto max-w-6xl px-4 py-6">
+      <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 px-4 py-8">
+        <div className="mx-auto max-w-6xl">
+          <h1 className="text-3xl font-bold text-slate-900">
+            Weekly Planner
+          </h1>
 
-        <h1 className="text-3xl font-bold text-slate-900">
-          Weekly Planner
-        </h1>
-
-        <p className="mt-2 text-slate-600">
-          Loading your planner...
-        </p>
-
+          <p className="mt-2 text-slate-600">
+            Loading your planner...
+          </p>
+        </div>
       </main>
     );
   }
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-6">
+    <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 px-4 py-6 md:px-6 md:py-8">
 
-      {/* HEADING */}
-      <div className="mb-6">
+      <div className="mx-auto max-w-7xl">
 
-        <h1 className="text-3xl font-bold text-slate-900">
-          Weekly Planner
-        </h1>
+        {/* HEADER */}
 
-        <p className="mt-1 text-slate-600">
-          Plan your meals for the week.
-        </p>
+        <section className="relative mb-7 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
 
-      </div>
+          <div className="absolute -right-16 -top-20 h-48 w-48 rounded-full bg-orange-100/70" />
 
-      {/* MOBILE DAY SELECTOR */}
-      <div className="mb-5 md:hidden">
+          <div className="absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-amber-100/60" />
 
-        <label
-          htmlFor="planner-day"
-          className="mb-2 block text-sm font-semibold text-slate-700"
-        >
-          Day
-        </label>
+          <div className="relative px-6 py-7 md:px-8 md:py-8">
 
-        <select
-          id="planner-day"
-          value={selectedDay}
-          onChange={(e) =>
-            setSelectedDay(
-              e.target.value
-            )
-          }
-          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base font-semibold text-slate-900 shadow-sm"
-        >
+            <div className="flex items-start gap-4">
 
-          {days.map((day) => (
-            <option
-              key={day}
-              value={day}
-            >
-              {day}
-            </option>
-          ))}
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-orange-100 text-2xl shadow-sm">
+                🍽️
+              </div>
 
-        </select>
+              <div>
 
-      </div>
+                <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-orange-600">
+                  Dinner planning
+                </p>
 
-      {/* MOBILE PLANNER */}
-      <div className="md:hidden">
+                <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+                  Weekly Planner
+                </h1>
 
-        <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+                <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600 md:text-base">
+                  Plan your dinners for the week and let your Shopping List do the rest.
+                </p>
 
-          <h2 className="mb-4 text-xl font-bold text-slate-900">
-            {selectedDay}
-          </h2>
+              </div>
 
-          <div className="space-y-4">
+            </div>
 
-            {mealTypes.map((meal) => {
+          </div>
 
-              const recipe =
-                getRecipe(
-                  plannerMeals[
-                    selectedDay
-                  ][meal]
-                );
+        </section>
 
-              return (
-                <div
-                  key={meal}
-                  className="rounded-xl border border-gray-200 bg-slate-50 p-4"
-                >
+        {/* MOBILE DAY SELECTOR */}
 
-                  <h3 className="mb-3 font-bold text-slate-900">
-                    {meal}
-                  </h3>
+        <div className="mb-5 md:hidden">
 
-                  {recipe ? (
-                    <div className="rounded-xl border border-gray-200 bg-white p-3">
+          <label
+            htmlFor="planner-day"
+            className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500"
+          >
+            View day
+          </label>
 
-                      <div className="flex items-center justify-between gap-3">
+          <select
+            id="planner-day"
+            value={selectedDay}
+            onChange={(e) =>
+              setSelectedDay(e.target.value)
+            }
+            className="w-full rounded-2xl border-0 bg-white px-5 py-4 text-base font-bold text-slate-900 shadow-sm ring-1 ring-black/5 outline-none focus:ring-2 focus:ring-orange-300"
+          >
+            {days.map((day) => (
+              <option
+                key={day}
+                value={day}
+              >
+                {day}
+              </option>
+            ))}
+          </select>
 
-                        <div className="min-w-0">
+        </div>
 
-                          <p className="truncate font-semibold text-slate-900">
-                            {recipe.name}
-                          </p>
+        {/* MOBILE PLANNER */}
 
-                        </div>
+        <div className="md:hidden">
 
-                        <button
-                          type="button"
-                          onClick={() =>
-                            removeRecipe(
-                              selectedDay,
-                              meal
-                            )
-                          }
-                          className="shrink-0 text-sm font-semibold text-red-500"
-                        >
-                          Remove
-                        </button>
+          <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+
+            <div className="flex items-center justify-between border-b border-slate-100 px-5 py-5">
+
+              <div>
+                <h2 className="text-xl font-bold text-slate-900">
+                  {selectedDay}
+                </h2>
+
+                <p className="mt-1 text-sm text-slate-500">
+                  Your planned dinner
+                </p>
+              </div>
+
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 text-lg">
+                🍽️
+              </div>
+
+            </div>
+
+            <div className="p-4">
+
+              {(() => {
+                const recipe =
+                  getRecipe(
+                    plannerMeals[
+                      selectedDay
+                    ].Dinner
+                  );
+
+                return recipe ? (
+
+                  <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 ring-1 ring-orange-100">
+
+                    <div className="px-5 pb-5 pt-5">
+
+                      <div className="mb-4 flex justify-center">
+
+                        <span className="rounded-full bg-orange-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-sm">
+                          Planned
+                        </span>
 
                       </div>
+
+                      <h3 className="text-center text-xl font-bold leading-7 text-slate-900">
+                        {recipe.name}
+                      </h3>
+
+                    </div>
+
+                    <div className="flex justify-center border-t border-orange-100 bg-white/70 px-4 py-3.5">
 
                       <button
                         type="button"
                         onClick={() =>
-                          setPicker({
-                            day: selectedDay,
-                            meal,
-                          })
+                          removeRecipe(
+                            selectedDay,
+                            "Dinner"
+                          )
                         }
-                        className="mt-3 w-full rounded-lg bg-orange-50 px-3 py-2 text-sm font-semibold text-orange-600"
+                        className="whitespace-nowrap rounded-xl px-5 py-2 text-sm font-semibold text-red-500 transition hover:bg-red-50 hover:text-red-600"
                       >
-                        Change meal
+                        🗑️ Remove
                       </button>
 
                     </div>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setPicker({
-                          day: selectedDay,
-                          meal,
-                        })
-                      }
-                      className="w-full rounded-xl border-2 border-dashed border-gray-300 bg-white px-4 py-4 text-sm font-semibold text-slate-500 transition hover:border-orange-400 hover:text-orange-600"
-                    >
-                      + Choose meal
-                    </button>
-                  )}
+
+                  </div>
+
+                ) : (
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setPicker({
+                        day: selectedDay,
+                        meal: "Dinner",
+                      })
+                    }
+                    className="group flex min-h-[190px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  >
+
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
+                      +
+                    </span>
+
+                    <span className="mt-4 text-base font-bold text-slate-700">
+                      Choose dinner
+                    </span>
+
+                    <span className="mt-1 text-sm text-slate-400">
+                      Add a recipe to {selectedDay}
+                    </span>
+
+                  </button>
+
+                );
+              })()}
+
+              {/* COMING SOON */}
+
+              <div className="mt-4 grid grid-cols-2 gap-3">
+
+                <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-100">
+
+                  <div className="flex items-center justify-between">
+
+                    <span className="text-sm font-bold text-slate-500">
+                      Breakfast
+                    </span>
+
+                    <span className="rounded-full bg-slate-200 px-2 py-1 text-[10px] font-bold text-slate-500">
+                      Soon
+                    </span>
+
+                  </div>
+
+                  <p className="mt-3 text-xs leading-5 text-slate-400">
+                    Coming in a future update.
+                  </p>
 
                 </div>
-              );
 
-            })}
+                <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-100">
 
-          </div>
+                  <div className="flex items-center justify-between">
+
+                    <span className="text-sm font-bold text-slate-500">
+                      Lunch
+                    </span>
+
+                    <span className="rounded-full bg-slate-200 px-2 py-1 text-[10px] font-bold text-slate-500">
+                      Soon
+                    </span>
+
+                  </div>
+
+                  <p className="mt-3 text-xs leading-5 text-slate-400">
+                    Coming in a future update.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
 
         </div>
 
-      </div>
+        {/* DESKTOP PLANNER */}
 
-      {/* DESKTOP PLANNER */}
-      <div className="hidden overflow-x-auto md:block">
+        <div className="hidden md:block">
 
-        <div className="min-w-[850px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
 
-          <div className="grid grid-cols-8 border-b border-gray-200 bg-slate-50">
+            {/* WEEK HEADER */}
 
-            <div className="p-4 font-bold text-slate-700">
-              Meal
-            </div>
+            <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))] border-b border-slate-100 bg-slate-50/80">
 
-            {days.map((day) => (
-              <div
-                key={day}
-                className="border-l border-gray-200 p-4 text-center font-bold text-slate-900"
-              >
-                {day.slice(0, 3)}
-              </div>
-            ))}
+              <div className="flex items-center px-4 py-5">
 
-          </div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  Dinner
+                </span>
 
-          {mealTypes.map((meal) => (
-            <div
-              key={meal}
-              className="grid grid-cols-8 border-b border-gray-200 last:border-b-0"
-            >
-
-              <div className="flex items-center bg-slate-50 p-4 font-bold text-slate-700">
-                {meal}
               </div>
 
               {days.map((day) => {
@@ -507,89 +553,210 @@ export default function WeeklyPlannerPage() {
                   getRecipe(
                     plannerMeals[
                       day
-                    ][meal]
+                    ].Dinner
                   );
 
                 return (
                   <div
-                    key={`${day}-${meal}`}
-                    className="border-l border-gray-200 p-3"
+                    key={day}
+                    className={`border-l border-slate-100 px-2 py-5 text-center ${
+                      recipe
+                        ? "bg-orange-50/60"
+                        : ""
+                    }`}
+                  >
+
+                    <span
+                      className={`text-sm font-bold ${
+                        recipe
+                          ? "text-orange-700"
+                          : "text-slate-700"
+                      }`}
+                    >
+                      {day.slice(0, 3)}
+                    </span>
+
+                  </div>
+                );
+              })}
+
+            </div>
+
+            {/* DINNER ROW */}
+
+            <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))]">
+
+              {/* DINNER LABEL */}
+
+              <div className="flex min-h-[285px] items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-8">
+
+                <div>
+
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-lg shadow-sm">
+                    🍽️
+                  </div>
+
+                  <h2 className="mt-4 text-base font-bold text-slate-900">
+                    Dinner
+                  </h2>
+
+                  <p className="mt-1 max-w-[65px] text-xs leading-5 text-slate-500">
+                    Evening meal
+                  </p>
+
+                </div>
+
+              </div>
+
+              {/* DAYS */}
+
+              {days.map((day) => {
+
+                const recipe =
+                  getRecipe(
+                    plannerMeals[
+                      day
+                    ].Dinner
+                  );
+
+                return (
+                  <div
+                    key={`${day}-Dinner`}
+                    className={`border-l border-slate-100 p-3 ${
+                      recipe
+                        ? "bg-orange-50/35"
+                        : "bg-white"
+                    }`}
                   >
 
                     {recipe ? (
-                      <div className="rounded-xl border border-gray-200 bg-white p-3">
 
-                        <p className="text-sm font-semibold text-slate-900">
-                          {recipe.name}
-                        </p>
+                      <div className="flex min-h-[257px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100">
 
-                        <p className="mt-1 text-xs text-slate-500">
-                          {recipe.cookingTime}
-                        </p>
+                        {/* PLANNED PILL */}
 
-                        <button
-                          type="button"
-                          onClick={() =>
-                            removeRecipe(
-                              day,
-                              meal
-                            )
-                          }
-                          className="mt-2 text-xs font-semibold text-red-500"
-                        >
-                          Remove
-                        </button>
+                        <div className="flex justify-center px-2 pt-4">
+
+                          <span className="whitespace-nowrap rounded-full bg-orange-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
+                            Planned
+                          </span>
+
+                        </div>
+
+                        {/* RECIPE NAME */}
+
+                        <div className="flex flex-1 items-start justify-center px-3 pt-6 text-center">
+
+                          <h3 className="text-sm font-bold leading-5 text-slate-900">
+                            {recipe.name}
+                          </h3>
+
+                        </div>
+
+                        {/* REMOVE AREA */}
+
+                        <div className="flex justify-center border-t border-orange-100 bg-white/60 px-2 py-3">
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              removeRecipe(
+                                day,
+                                "Dinner"
+                              )
+                            }
+                            aria-label={`Remove ${recipe.name}`}
+                            className="whitespace-nowrap rounded-xl px-3 py-2 text-xs font-semibold text-red-500 transition hover:bg-white hover:text-red-600"
+                          >
+                            🗑️ Remove
+                          </button>
+
+                        </div>
 
                       </div>
+
                     ) : (
+
                       <button
                         type="button"
                         onClick={() =>
                           setPicker({
                             day,
-                            meal,
+                            meal: "Dinner",
                           })
                         }
-                        className="flex min-h-[90px] w-full items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-white px-2 text-sm font-semibold text-slate-500 transition hover:border-orange-400 hover:bg-orange-50 hover:text-orange-600"
+                        className="group flex min-h-[257px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-white px-3 text-center transition hover:border-orange-300 hover:bg-orange-50/50"
                       >
-                        + Choose meal
+
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-2xl font-light text-slate-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
+                          +
+                        </span>
+
+                        <span className="mt-4 text-sm font-bold text-slate-500 group-hover:text-orange-700">
+                          Choose dinner
+                        </span>
+
+                        <span className="mt-1 text-xs text-slate-400">
+                          Add a recipe
+                        </span>
+
                       </button>
+
                     )}
 
                   </div>
                 );
-
               })}
 
             </div>
-          ))}
+
+          </section>
+
+        </div>
+
+        {/* SHOPPING LIST / CLEAR */}
+
+        <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+          <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-sm ring-1 ring-black/5">
+
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100">
+              🛒
+            </span>
+
+            <p className="text-sm text-slate-600">
+              Planned dinners automatically appear in your Shopping List.
+            </p>
+
+          </div>
+
+          <button
+            type="button"
+            onClick={() =>
+              setShowClearConfirm(true)
+            }
+            className="rounded-2xl bg-white px-5 py-3 text-sm font-bold text-slate-600 shadow-sm ring-1 ring-black/5 transition hover:bg-red-50 hover:text-red-600"
+          >
+            🗑️ Clear Week
+          </button>
 
         </div>
 
       </div>
 
-      {/* CLEAR WEEK */}
-      <div className="mt-6 flex justify-end">
-
-        <button
-          type="button"
-          onClick={() =>
-            setShowClearConfirm(true)
-          }
-          className="rounded-lg bg-gray-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-red-100 hover:text-red-700"
-        >
-          🗑️ Clear Week
-        </button>
-
-      </div>
-
       {/* CLEAR CONFIRMATION */}
+
       {showClearConfirm && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4">
 
-          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
 
-            <h2 className="text-lg font-bold text-slate-900">
+          <div className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-2xl">
+
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-red-50 text-xl">
+              🗑️
+            </div>
+
+            <h2 className="mt-4 text-xl font-bold text-slate-900">
               Clear this week?
             </h2>
 
@@ -597,14 +764,14 @@ export default function WeeklyPlannerPage() {
               This will remove all meals from your Weekly Planner and update your Shopping List.
             </p>
 
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 grid grid-cols-2 gap-3">
 
               <button
                 type="button"
                 onClick={() =>
                   setShowClearConfirm(false)
                 }
-                className="flex-1 rounded-xl bg-gray-100 px-4 py-3 font-semibold text-slate-700 hover:bg-gray-200"
+                className="rounded-2xl bg-slate-100 px-4 py-3 font-bold text-slate-700 transition hover:bg-slate-200"
               >
                 Cancel
               </button>
@@ -612,7 +779,7 @@ export default function WeeklyPlannerPage() {
               <button
                 type="button"
                 onClick={clearWeek}
-                className="flex-1 rounded-xl bg-red-500 px-4 py-3 font-semibold text-white hover:bg-red-600"
+                className="rounded-2xl bg-red-500 px-4 py-3 font-bold text-white transition hover:bg-red-600"
               >
                 Clear Week
               </button>
@@ -625,24 +792,24 @@ export default function WeeklyPlannerPage() {
       )}
 
       {/* RECIPE PICKER */}
+
       {picker && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
 
-          <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
 
-            {/* POPUP HEADER */}
-            <div className="flex shrink-0 items-center justify-between border-b border-gray-200 p-5">
+          <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
+
+            <div className="flex shrink-0 items-center justify-between border-b border-slate-100 px-5 py-5">
 
               <div>
 
-                <h2 className="text-xl font-bold text-slate-900">
-                  Choose a meal
-                </h2>
-
-                <p className="mt-1 text-sm text-slate-500">
-                  {picker.day} •{" "}
-                  {picker.meal}
+                <p className="text-xs font-bold uppercase tracking-wider text-orange-600">
+                  Choose dinner
                 </p>
+
+                <h2 className="mt-1 text-xl font-bold text-slate-900">
+                  {picker.day}
+                </h2>
 
               </div>
 
@@ -651,7 +818,7 @@ export default function WeeklyPlannerPage() {
                 onClick={() =>
                   setPicker(null)
                 }
-                className="rounded-full px-3 py-2 text-xl text-slate-500 hover:bg-slate-100"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-xl text-slate-500 transition hover:bg-slate-200"
                 aria-label="Close"
               >
                 ×
@@ -659,41 +826,59 @@ export default function WeeklyPlannerPage() {
 
             </div>
 
-            {/* BROWSE / QUICK SELECT */}
-            <div className="shrink-0 space-y-3 border-b border-gray-200 p-5">
+            <div className="shrink-0 border-b border-slate-100 p-5">
 
               <button
                 type="button"
                 onClick={browseRecipes}
-                className="w-full rounded-xl bg-orange-500 px-5 py-4 text-left text-white transition hover:bg-orange-600"
+                className="group w-full rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-5 text-left text-white shadow-sm transition hover:shadow-md"
               >
 
-                <div className="text-base font-bold">
-                  🔎 Browse Recipes
-                </div>
+                <div className="flex items-center gap-3">
 
-                <div className="mt-1 text-sm text-orange-50">
-                  See photos, cooking times, calories and nutrition information.
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-xl">
+                    🔎
+                  </span>
+
+                  <div>
+
+                    <div className="text-base font-bold">
+                      Browse Recipes
+                    </div>
+
+                    <div className="mt-1 text-sm text-orange-50">
+                      See photos, cooking times and nutrition information.
+                    </div>
+
+                  </div>
+
                 </div>
 
               </button>
 
-              <div className="rounded-xl bg-slate-50 px-5 py-3">
+              <div className="mt-3 flex items-center gap-2 px-1">
 
-                <p className="text-sm font-semibold text-slate-700">
-                  📋 Quick Select
-                </p>
+                <span className="text-sm">
+                  📋
+                </span>
 
-                <p className="mt-1 text-xs text-slate-500">
-                  Choose directly from the available recipes below.
-                </p>
+                <div>
+
+                  <p className="text-sm font-bold text-slate-700">
+                    Quick Select
+                  </p>
+
+                  <p className="text-xs text-slate-500">
+                    Or choose directly from the dinner recipes below.
+                  </p>
+
+                </div>
 
               </div>
 
             </div>
 
-            {/* QUICK SELECT LIST */}
-            <div className="min-h-0 flex-1 overflow-y-auto p-5">
+            <div className="min-h-0 flex-1 overflow-y-auto bg-slate-50/50 p-5">
 
               <div className="space-y-3">
 
@@ -744,14 +929,14 @@ export default function WeeklyPlannerPage() {
                           recipe.id
                         )
                       }
-                      className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-left transition hover:border-orange-400 hover:bg-orange-50 active:bg-orange-100"
+                      className="w-full rounded-2xl bg-white px-5 py-4 text-left shadow-sm ring-1 ring-slate-100 transition hover:-translate-y-0.5 hover:ring-orange-200 hover:shadow-md active:translate-y-0"
                     >
 
-                      <div className="flex items-center justify-between gap-5">
+                      <div className="flex items-center justify-between gap-4">
 
-                        <div className="min-w-0 flex-1">
+                        <div className="min-w-0">
 
-                          <p className="text-base font-bold leading-snug text-slate-900 sm:text-lg">
+                          <p className="text-base font-bold leading-snug text-slate-900">
                             {recipe.name}
                           </p>
 
@@ -761,17 +946,9 @@ export default function WeeklyPlannerPage() {
 
                         </div>
 
-                        <div className="shrink-0 text-right">
-
-                          <p className="text-sm font-semibold text-slate-600">
-                            ⏱️
-                          </p>
-
-                          <p className="mt-1 text-xs text-slate-500">
-                            {recipe.cookingTime}
-                          </p>
-
-                        </div>
+                        <span className="shrink-0 text-lg text-orange-500">
+                          →
+                        </span>
 
                       </div>
 

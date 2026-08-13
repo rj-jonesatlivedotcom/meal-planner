@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { recipes } from "@/data/recipes";
 
@@ -321,6 +322,7 @@ export default function WeeklyPlannerPage() {
     return (
       <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 px-4 py-8">
         <div className="mx-auto max-w-6xl">
+
           <h1 className="text-3xl font-bold text-slate-900">
             Weekly Planner
           </h1>
@@ -328,6 +330,7 @@ export default function WeeklyPlannerPage() {
           <p className="mt-2 text-slate-600">
             Loading your planner...
           </p>
+
         </div>
       </main>
     );
@@ -993,29 +996,55 @@ export default function WeeklyPlannerPage() {
 
         {/* SHOPPING LIST / CLEAR */}
 
-        <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-6 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 md:p-6">
 
-          <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-sm ring-1 ring-black/5">
+          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
 
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100">
-              🛒
-            </span>
+            {/* Shopping List message */}
 
-            <p className="text-sm text-slate-600">
-              Planned meals automatically appear in your Shopping List.
-            </p>
+            <div className="flex items-start gap-4">
+
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-100 text-2xl">
+                🛒
+              </span>
+
+              <div>
+
+                <h2 className="text-lg font-bold text-slate-900">
+                  Your shopping list is ready
+                </h2>
+
+                <p className="mt-1 max-w-xl text-sm leading-6 text-slate-600">
+                  Your planned meals have automatically been added to your Shopping List.
+                </p>
+
+                <Link
+                  href="/shopping-list"
+                  className="mt-4 inline-flex items-center justify-center rounded-2xl bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-green-700"
+                >
+                  🛒 Go to Shopping List
+                  <span className="ml-2">
+                    →
+                  </span>
+                </Link>
+
+              </div>
+
+            </div>
+
+            {/* Clear Week */}
+
+            <button
+              type="button"
+              onClick={() =>
+                setShowClearConfirm(true)
+              }
+              className="rounded-2xl bg-white px-5 py-3 text-sm font-bold text-slate-600 shadow-sm ring-1 ring-black/10 transition hover:bg-red-50 hover:text-red-600 md:shrink-0"
+            >
+              🗑️ Clear Week
+            </button>
 
           </div>
-
-          <button
-            type="button"
-            onClick={() =>
-              setShowClearConfirm(true)
-            }
-            className="rounded-2xl bg-white px-5 py-3 text-sm font-bold text-slate-600 shadow-sm ring-1 ring-black/5 transition hover:bg-red-50 hover:text-red-600"
-          >
-            🗑️ Clear Week
-          </button>
 
         </div>
 
@@ -1066,6 +1095,7 @@ export default function WeeklyPlannerPage() {
           </div>
 
         </div>
+
       )}
 
       {/* RECIPE PICKER */}
@@ -1205,6 +1235,7 @@ export default function WeeklyPlannerPage() {
           </div>
 
         </div>
+
       )}
 
     </main>

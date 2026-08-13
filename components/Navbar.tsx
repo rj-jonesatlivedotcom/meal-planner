@@ -40,6 +40,7 @@ export default function Navbar() {
       {open && (
         <div className="absolute right-0 top-14 w-64 overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-200">
 
+          {/* HOME */}
           <Link
             href="/"
             onClick={() => setOpen(false)}
@@ -48,14 +49,7 @@ export default function Navbar() {
             🏠 Home
           </Link>
 
-          <Link
-            href="/recipes"
-            onClick={() => setOpen(false)}
-            className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-green-50"
-          >
-            📖 Recipes
-          </Link>
-
+          {/* WEEKLY PLANNER */}
           <Link
             href="/planner"
             onClick={() => setOpen(false)}
@@ -64,6 +58,16 @@ export default function Navbar() {
             📅 Weekly Planner
           </Link>
 
+          {/* RECIPES */}
+          <Link
+            href="/recipes"
+            onClick={() => setOpen(false)}
+            className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-green-50"
+          >
+            📖 Recipes
+          </Link>
+
+          {/* SHOPPING LIST */}
           <Link
             href="/shopping"
             onClick={() => setOpen(false)}
@@ -72,6 +76,7 @@ export default function Navbar() {
             🛒 Shopping List
           </Link>
 
+          {/* ABOUT */}
           <Link
             href="/about"
             onClick={() => setOpen(false)}

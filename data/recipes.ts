@@ -2196,4 +2196,682 @@ export const recipes: Recipe[] = [
     dietaryNote:
       "This vegetarian recipe is relatively low in purines because it contains no meat, fish or pulses. Mushrooms contribute potassium and the crème fraîche contributes some phosphate.",
   },
+      {
+    id: "apple-cinnamon-french-toast",
+    code: "B001",
+    category: "Breakfast",
+    emoji: "🍎",
+    image: "/images/recipes/apple-cinnamon-french-toast.png",
+    name: "Apple & Cinnamon French Toast",
+    description:
+      "Golden French toast made with egg whites, warm apple and cinnamon, finished with a light drizzle of maple syrup.",
+    cookingTime: "15 minutes",
+    calories: "330 kcal",
+    protein: "14 g",
+    equipment:
+      "Non-stick frying pan, shallow bowl, toaster, knife",
+    ingredients: [
+      {
+        item: "White bread, phosphate-additive-free",
+        shoppingItem: "White bread",
+        quantity: "2 slices",
+      },
+      {
+        item: "Egg whites",
+        quantity: "3 large",
+      },
+      {
+        item: "Apple, thinly sliced",
+        shoppingItem: "Apple",
+        quantity: "½ medium",
+      },
+      {
+        item: "Ground cinnamon",
+        quantity: "½ tsp",
+      },
+      {
+        item: "Olive oil",
+        quantity: "1 tsp",
+      },
+      {
+        item: "Maple syrup",
+        quantity: "1 tsp",
+      },
+    ],
+    method: [
+      "Whisk the egg whites with half of the cinnamon in a shallow bowl.",
+      "Dip the bread into the egg-white mixture, turning once so both sides are coated.",
+      "Heat the olive oil in a non-stick frying pan over a medium heat.",
+      "Cook the bread for 2–3 minutes on each side until lightly golden and cooked through.",
+      "Add the sliced apple to the pan and cook for 2–3 minutes until just softened.",
+      "Serve the French toast topped with the warm apple, remaining cinnamon and maple syrup.",
+    ],
+    nutrition: {
+      calories: "330 kcal",
+      protein: "14 g",
+      carbohydrates: "54 g",
+      fat: "7 g",
+      fibre: "4 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "Uses egg whites rather than whole eggs to keep phosphate lower. Choose bread without phosphate additives.",
+  },
+
+  {
+    id: "blueberry-lemon-pancakes",
+    code: "B002",
+    category: "Breakfast",
+    emoji: "🥞",
+    image: "/images/recipes/blueberry-lemon-pancakes.png",
+    name: "Blueberry & Lemon Pancakes",
+    description:
+      "Fluffy homemade pancakes with a modest portion of blueberries, fresh lemon and a light maple drizzle.",
+    cookingTime: "20 minutes",
+    calories: "390 kcal",
+    protein: "9 g",
+    equipment:
+      "Non-stick frying pan, mixing bowl, whisk, spatula",
+    ingredients: [
+      {
+        item: "Plain flour",
+        quantity: "70 g",
+      },
+      {
+        item: "Egg white",
+        quantity: "1 large",
+      },
+      {
+        item: "Water",
+        quantity: "100 ml",
+      },
+      {
+        item: "Baking powder",
+        quantity: "1 tsp",
+      },
+      {
+        item: "Caster sugar",
+        quantity: "1 tbsp",
+      },
+      {
+        item: "Blueberries",
+        shoppingItem: "Blueberries",
+        quantity: "50 g",
+      },
+      {
+        item: "Lemon zest",
+        shoppingItem: "Lemon",
+        quantity: "½ lemon",
+      },
+      {
+        item: "Olive oil",
+        quantity: "1 tsp",
+      },
+      {
+        item: "Maple syrup",
+        quantity: "1 tsp",
+      },
+    ],
+    method: [
+      "Mix the flour, baking powder and sugar in a bowl.",
+      "Whisk the egg white with the water and lemon zest, then gradually whisk into the dry ingredients to make a smooth batter.",
+      "Fold in half of the blueberries.",
+      "Heat the olive oil in a non-stick frying pan over a medium heat.",
+      "Cook the pancakes in batches, turning when bubbles appear on the surface, until lightly golden and cooked through.",
+      "Serve with the remaining blueberries and maple syrup.",
+    ],
+    nutrition: {
+      calories: "390 kcal",
+      protein: "9 g",
+      carbohydrates: "72 g",
+      fat: "7 g",
+      fibre: "3 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "The blueberry portion is deliberately modest. Choose baking powder without phosphate additives where available.",
+  },
+
+  {
+    id: "scrambled-egg-pepper-toast",
+    code: "B003",
+    category: "Breakfast",
+    emoji: "🍳",
+    image: "/images/recipes/scrambled-egg-red-pepper-toast.png",
+    name: "Scrambled Egg & Red Pepper Toast",
+    description:
+      "Soft scrambled egg whites with sweet red pepper and spring onion served over crisp toast.",
+    cookingTime: "15 minutes",
+    calories: "300 kcal",
+    protein: "18 g",
+    equipment:
+      "Non-stick frying pan, bowl, toaster, spatula",
+    ingredients: [
+      {
+        item: "Egg whites",
+        quantity: "4 large",
+      },
+      {
+        item: "White bread, phosphate-additive-free",
+        shoppingItem: "White bread",
+        quantity: "2 slices",
+      },
+      {
+        item: "Red pepper, finely diced",
+        shoppingItem: "Red pepper",
+        quantity: "½ medium",
+      },
+      {
+        item: "Spring onion, finely sliced",
+        shoppingItem: "Spring onion",
+        quantity: "1",
+      },
+      {
+        item: "Olive oil",
+        quantity: "1 tsp",
+      },
+      {
+        item: "Freshly ground black pepper",
+        quantity: "To taste",
+      },
+    ],
+    method: [
+      "Toast the bread.",
+      "Heat the olive oil in a non-stick frying pan over a medium heat.",
+      "Add the red pepper and spring onion and cook for 3–4 minutes until softened.",
+      "Whisk the egg whites with black pepper and pour into the pan.",
+      "Stir gently until softly scrambled and cooked through.",
+      "Serve immediately on the toast.",
+    ],
+    nutrition: {
+      calories: "300 kcal",
+      protein: "18 g",
+      carbohydrates: "39 g",
+      fat: "8 g",
+      fibre: "3 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "Egg whites provide protein with less phosphate than whole eggs. Choose bread without phosphate additives.",
+  },
+
+  {
+    id: "strawberry-crumpets",
+    code: "B004",
+    category: "Breakfast",
+    emoji: "🍓",
+    image: "/images/recipes/strawberry-crumpets.png",
+    name: "Strawberry Breakfast Crumpets",
+    description:
+      "Warm toasted crumpets topped with fresh strawberries, a little butter and maple syrup.",
+    cookingTime: "10 minutes",
+    calories: "310 kcal",
+    protein: "7 g",
+    equipment:
+      "Toaster, knife",
+    ingredients: [
+      {
+        item: "Plain crumpets",
+        shoppingItem: "Crumpets",
+        quantity: "2",
+      },
+      {
+        item: "Strawberries, sliced",
+        shoppingItem: "Strawberries",
+        quantity: "80 g",
+      },
+      {
+        item: "Butter",
+        quantity: "10 g",
+      },
+      {
+        item: "Maple syrup",
+        quantity: "1 tsp",
+      },
+      {
+        item: "Fresh mint",
+        quantity: "Small handful",
+      },
+    ],
+    method: [
+      "Toast the crumpets until golden and hot.",
+      "Spread the butter over the warm crumpets.",
+      "Top with the sliced strawberries.",
+      "Drizzle with the maple syrup and finish with a few mint leaves.",
+      "Serve immediately.",
+    ],
+    nutrition: {
+      calories: "310 kcal",
+      protein: "7 g",
+      carbohydrates: "51 g",
+      fat: "9 g",
+      fibre: "4 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "Uses a modest portion of strawberries. Check the crumpet label for phosphate additives.",
+  },
+
+  {
+    id: "apple-cinnamon-rice-breakfast",
+    code: "B005",
+    category: "Breakfast",
+    emoji: "🍚",
+    image: "/images/recipes/apple-cinnamon-rice-pudding.png",
+    name: "Apple & Cinnamon Breakfast Rice",
+    description:
+      "Warm creamy rice with gently cooked apple, cinnamon and vanilla for a comforting breakfast.",
+    cookingTime: "15 minutes",
+    calories: "360 kcal",
+    protein: "5 g",
+    equipment:
+      "Saucepan, wooden spoon, knife",
+    ingredients: [
+      {
+        item: "Cooked white rice",
+        shoppingItem: "Rice",
+        quantity: "180 g",
+      },
+      {
+        item: "Water",
+        quantity: "120 ml",
+      },
+      {
+        item: "Apple, peeled and diced",
+        shoppingItem: "Apple",
+        quantity: "½ medium",
+      },
+      {
+        item: "Caster sugar",
+        quantity: "1 tbsp",
+      },
+      {
+        item: "Ground cinnamon",
+        quantity: "½ tsp",
+      },
+      {
+        item: "Vanilla extract",
+        quantity: "½ tsp",
+      },
+    ],
+    method: [
+      "Place the cooked rice, water, diced apple, sugar and cinnamon into a saucepan.",
+      "Bring gently to a simmer and cook for 7–8 minutes, stirring regularly, until creamy and the apple is tender.",
+      "Stir in the vanilla extract.",
+      "Serve warm with a light dusting of cinnamon.",
+    ],
+    nutrition: {
+      calories: "360 kcal",
+      protein: "5 g",
+      carbohydrates: "77 g",
+      fat: "1 g",
+      fibre: "3 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "White rice provides a relatively low-potassium carbohydrate base. The recipe avoids milk and cream to keep phosphate lower.",
+  },
+
+  {
+    id: "egg-herb-breakfast-sandwich",
+    code: "B006",
+    category: "Breakfast",
+    emoji: "🥪",
+    image: "/images/recipes/egg-herb-sandwich.png",
+    name: "Egg & Herb Breakfast Sandwich",
+    description:
+      "A fresh breakfast sandwich filled with softly cooked egg whites, lettuce, red pepper and chives.",
+    cookingTime: "15 minutes",
+    calories: "350 kcal",
+    protein: "19 g",
+    equipment:
+      "Non-stick frying pan, toaster, bowl",
+    ingredients: [
+      {
+        item: "White bread roll, phosphate-additive-free",
+        shoppingItem: "White bread roll",
+        quantity: "1",
+      },
+      {
+        item: "Egg whites",
+        quantity: "4 large",
+      },
+      {
+        item: "Red pepper, thinly sliced",
+        shoppingItem: "Red pepper",
+        quantity: "¼ medium",
+      },
+      {
+        item: "Lettuce leaves",
+        shoppingItem: "Lettuce",
+        quantity: "2",
+      },
+      {
+        item: "Mayonnaise",
+        quantity: "1 tbsp",
+      },
+      {
+        item: "Fresh chives, chopped",
+        shoppingItem: "Chives",
+        quantity: "1 tbsp",
+      },
+      {
+        item: "Olive oil",
+        quantity: "½ tsp",
+      },
+      {
+        item: "Freshly ground black pepper",
+        quantity: "To taste",
+      },
+    ],
+    method: [
+      "Slice the bread roll and lightly toast the cut sides.",
+      "Heat the olive oil in a non-stick frying pan and cook the red pepper for 2–3 minutes.",
+      "Whisk the egg whites with the chives and black pepper.",
+      "Pour into the pan and gently scramble until cooked through.",
+      "Spread the mayonnaise over the toasted bread roll.",
+      "Add the lettuce, egg mixture and red pepper.",
+      "Serve immediately.",
+    ],
+    nutrition: {
+      calories: "350 kcal",
+      protein: "19 g",
+      carbohydrates: "43 g",
+      fat: "12 g",
+      fibre: "3 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "Uses egg whites rather than whole eggs. Choose bread and mayonnaise without phosphate additives where possible.",
+  },
+
+  {
+    id: "lemon-blueberry-pancake-stack",
+    code: "B007",
+    category: "Breakfast",
+    emoji: "🫐",
+    image: "/images/recipes/lemon-blueberry-pancake-stack.png",
+    name: "Lemon & Blueberry Pancake Stack",
+    description:
+      "Small golden pancakes layered with blueberries and lemon zest, finished with a little maple syrup.",
+    cookingTime: "20 minutes",
+    calories: "410 kcal",
+    protein: "9 g",
+    equipment:
+      "Non-stick frying pan, mixing bowl, whisk, spatula",
+    ingredients: [
+      {
+        item: "Plain flour",
+        quantity: "75 g",
+      },
+      {
+        item: "Egg white",
+        quantity: "1 large",
+      },
+      {
+        item: "Water",
+        quantity: "110 ml",
+      },
+      {
+        item: "Baking powder",
+        quantity: "1 tsp",
+      },
+      {
+        item: "Caster sugar",
+        quantity: "1 tbsp",
+      },
+      {
+        item: "Blueberries",
+        shoppingItem: "Blueberries",
+        quantity: "60 g",
+      },
+      {
+        item: "Lemon zest",
+        shoppingItem: "Lemon",
+        quantity: "½ lemon",
+      },
+      {
+        item: "Vegetable oil",
+        quantity: "1 tsp",
+      },
+      {
+        item: "Maple syrup",
+        quantity: "2 tsp",
+      },
+    ],
+    method: [
+      "Mix the flour, baking powder and sugar in a bowl.",
+      "Whisk the egg white, water and lemon zest together.",
+      "Gradually whisk the wet mixture into the dry ingredients until smooth.",
+      "Heat the oil in a non-stick frying pan over a medium heat.",
+      "Cook small pancakes in batches, turning when bubbles appear and cooking until golden on both sides.",
+      "Stack the pancakes and spoon the blueberries between the layers.",
+      "Finish with the maple syrup and serve.",
+    ],
+    nutrition: {
+      calories: "410 kcal",
+      protein: "9 g",
+      carbohydrates: "76 g",
+      fat: "8 g",
+      fibre: "3 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "The fruit portion is controlled to keep potassium modest. Choose baking powder without phosphate additives where available.",
+  },
+
+  {
+    id: "peach-vanilla-rice-bowl",
+    code: "B008",
+    category: "Breakfast",
+    emoji: "🍑",
+    image: "/images/recipes/peach-vanilla-rice.png",
+    name: "Peach & Vanilla Breakfast Rice Bowl",
+    description:
+      "Warm white rice with drained peaches, vanilla and cinnamon for a simple sweet breakfast.",
+    cookingTime: "10 minutes",
+    calories: "320 kcal",
+    protein: "4 g",
+    equipment:
+      "Saucepan, bowl, spoon",
+    ingredients: [
+      {
+        item: "Cooked white rice",
+        shoppingItem: "Rice",
+        quantity: "180 g",
+      },
+      {
+        item: "Tinned peach slices in juice, drained",
+        shoppingItem: "Tinned peaches",
+        quantity: "80 g",
+      },
+      {
+        item: "Caster sugar",
+        quantity: "1 tbsp",
+      },
+      {
+        item: "Vanilla extract",
+        quantity: "½ tsp",
+      },
+      {
+        item: "Ground cinnamon",
+        quantity: "¼ tsp",
+      },
+      {
+        item: "Water",
+        quantity: "50 ml",
+      },
+    ],
+    method: [
+      "Place the cooked rice and water into a saucepan and warm gently for 3–4 minutes.",
+      "Stir in the sugar and vanilla extract.",
+      "Spoon into a breakfast bowl.",
+      "Top with the drained peach slices and sprinkle with cinnamon.",
+      "Serve warm.",
+    ],
+    nutrition: {
+      calories: "320 kcal",
+      protein: "4 g",
+      carbohydrates: "72 g",
+      fat: "1 g",
+      fibre: "2 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "Uses drained tinned peaches in a modest portion. White rice provides a lower-potassium carbohydrate base.",
+  },
+
+  {
+    id: "savoury-egg-pepper-wrap",
+    code: "B009",
+    category: "Breakfast",
+    emoji: "🌯",
+    image: "/images/recipes/egg-pepper-wrap.png",
+    name: "Savoury Egg & Pepper Breakfast Wrap",
+    description:
+      "A warm white tortilla filled with softly scrambled egg whites, red pepper, onion and crisp lettuce.",
+    cookingTime: "15 minutes",
+    calories: "370 kcal",
+    protein: "17 g",
+    equipment:
+      "Non-stick frying pan, bowl, spatula",
+    ingredients: [
+      {
+        item: "White tortilla wrap, phosphate-additive-free",
+        shoppingItem: "White tortilla wraps",
+        quantity: "1 large",
+      },
+      {
+        item: "Egg whites",
+        quantity: "3 large",
+      },
+      {
+        item: "Red pepper, diced",
+        shoppingItem: "Red pepper",
+        quantity: "½ medium",
+      },
+      {
+        item: "Onion, finely sliced",
+        shoppingItem: "Onion",
+        quantity: "2 tbsp",
+      },
+      {
+        item: "Lettuce leaves",
+        shoppingItem: "Lettuce",
+        quantity: "2",
+      },
+      {
+        item: "Olive oil",
+        quantity: "1 tsp",
+      },
+      {
+        item: "Freshly ground black pepper",
+        quantity: "To taste",
+      },
+    ],
+    method: [
+      "Warm the tortilla briefly in a dry frying pan and set aside.",
+      "Heat the olive oil in the pan over a medium heat.",
+      "Add the onion and red pepper and cook for 3–4 minutes until softened.",
+      "Whisk the egg whites with black pepper and pour into the pan.",
+      "Stir gently until the egg whites are cooked through.",
+      "Place the lettuce in the centre of the tortilla and spoon the egg mixture over it.",
+      "Fold in the sides and roll tightly.",
+      "Serve immediately.",
+    ],
+    nutrition: {
+      calories: "370 kcal",
+      protein: "17 g",
+      carbohydrates: "48 g",
+      fat: "12 g",
+      fibre: "4 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "Uses egg whites for protein and avoids cheese. Choose a tortilla without phosphate additives.",
+  },
+
+  {
+    id: "apple-blueberry-breakfast-toast",
+    code: "B010",
+    category: "Breakfast",
+    emoji: "🍏",
+    image: "/images/recipes/apple-blueberry-toast.png",
+    name: "Apple & Blueberry Breakfast Toast",
+    description:
+      "Golden toast topped with gently softened apple, blueberries, cinnamon and a little maple syrup.",
+    cookingTime: "12 minutes",
+    calories: "300 kcal",
+    protein: "6 g",
+    equipment:
+      "Toaster, non-stick frying pan, knife",
+    ingredients: [
+      {
+        item: "White bread, phosphate-additive-free",
+        shoppingItem: "White bread",
+        quantity: "2 slices",
+      },
+      {
+        item: "Apple, thinly sliced",
+        shoppingItem: "Apple",
+        quantity: "½ medium",
+      },
+      {
+        item: "Blueberries",
+        shoppingItem: "Blueberries",
+        quantity: "40 g",
+      },
+      {
+        item: "Butter",
+        quantity: "8 g",
+      },
+      {
+        item: "Maple syrup",
+        quantity: "1 tsp",
+      },
+      {
+        item: "Ground cinnamon",
+        quantity: "½ tsp",
+      },
+    ],
+    method: [
+      "Toast the bread until golden.",
+      "Melt the butter in a non-stick frying pan over a medium heat.",
+      "Add the apple and cinnamon and cook for 3–4 minutes until just softened.",
+      "Add the blueberries and warm for 1 minute without breaking them up too much.",
+      "Place the warm fruit over the toast.",
+      "Drizzle with maple syrup and serve immediately.",
+    ],
+    nutrition: {
+      calories: "300 kcal",
+      protein: "6 g",
+      carbohydrates: "50 g",
+      fat: "9 g",
+      fibre: "4 g",
+    },
+    potassium: "Low",
+    phosphate: "Low",
+    purines: "Low",
+    dietaryNote:
+      "Uses modest portions of lower-potassium fruit and avoids dairy-heavy toppings. Choose bread without phosphate additives.",
+  },
+
 ]

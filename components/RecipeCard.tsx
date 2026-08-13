@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type RecipeCardProps = {
@@ -67,6 +68,8 @@ type PendingSlot = {
 export default function RecipeCard({
   recipe,
 }: RecipeCardProps) {
+  const router = useRouter();
+
   const [showSidney, setShowSidney] =
     useState(false);
 
@@ -88,7 +91,9 @@ export default function RecipeCard({
     );
 
   const [pendingSlot, setPendingSlot] =
-    useState<PendingSlot | null>(null);
+    useState<PendingSlot | null>(
+      null
+    );
 
   const sidneyMessages = [
     "Excellent!",
@@ -103,6 +108,10 @@ export default function RecipeCard({
     "Nice!",
   ];
 
+  /*
+   * Find every place where this recipe
+   * currently appears in the Weekly Planner.
+   */
   function getRecipePlacements(): Placement[] {
     const saved =
       localStorage.getItem(
@@ -139,12 +148,10 @@ export default function RecipeCard({
     }
   }
 
-  function loadPlannerStatus() {
-    setPlacements(
-      getRecipePlacements()
-    );
-  }
-
+  /*
+   * Check whether the Planner sent us
+   * here with a specific slot to fill.
+   */
   function loadPendingSlot() {
     const saved =
       localStorage.getItem(
@@ -162,29 +169,43 @@ export default function RecipeCard({
 
       if (
         slot?.day &&
-        slot?.meal
+        slot?.meal &&
+        days.includes(slot.day) &&
+        mealTypes.includes(slot.meal)
       ) {
         setPendingSlot({
           day: slot.day,
           meal: slot.meal,
         });
+      } else {
+        setPendingSlot(null);
 
-        setPlannerDay(
-          slot.day
-        );
-
-        setPlannerMeal(
-          slot.meal
+        localStorage.removeItem(
+          "planner-pending-slot"
         );
       }
     } catch {
       setPendingSlot(null);
+
+      localStorage.removeItem(
+        "planner-pending-slot"
+      );
     }
+  }
+
+  /*
+   * Refresh Planner information.
+   */
+  function loadPlannerStatus() {
+    setPlacements(
+      getRecipePlacements()
+    );
+
+    loadPendingSlot();
   }
 
   useEffect(() => {
     loadPlannerStatus();
-    loadPendingSlot();
 
     window.addEventListener(
       "weekly-planner-updated",
@@ -209,9 +230,13 @@ export default function RecipeCard({
     };
   }, [recipe.id]);
 
+  /*
+   * Add directly to the Planner slot
+   * selected before coming to Recipes.
+   */
   function addToPendingSlot() {
     if (!pendingSlot) {
-      return false;
+      return;
     }
 
     const saved =
@@ -236,6 +261,9 @@ export default function RecipeCard({
       }
     }
 
+    /*
+     * Make sure all days and meal slots exist.
+     */
     days.forEach((day) => {
       if (!planner[day]) {
         planner[day] = {};
@@ -253,10 +281,17 @@ export default function RecipeCard({
       );
     });
 
+    /*
+     * Put this recipe directly into
+     * the selected Planner slot.
+     */
     planner[pendingSlot.day][
       pendingSlot.meal
     ] = recipe.id;
 
+    /*
+     * Save Planner.
+     */
     localStorage.setItem(
       "weekly-planner",
       JSON.stringify(
@@ -264,6 +299,10 @@ export default function RecipeCard({
       )
     );
 
+    /*
+     * Clear the temporary slot so it
+     * cannot affect normal browsing.
+     */
     localStorage.removeItem(
       "planner-pending-slot"
     );
@@ -274,6 +313,9 @@ export default function RecipeCard({
       getRecipePlacements()
     );
 
+    /*
+     * Sidney celebrates.
+     */
     const randomMessage =
       sidneyMessages[
         Math.floor(
@@ -292,6 +334,10 @@ export default function RecipeCard({
       setShowSidney(false);
     }, 1500);
 
+    /*
+     * Tell the rest of the site that
+     * the Planner has changed.
+     */
     window.dispatchEvent(
       new Event(
         "weekly-planner-updated"
@@ -304,19 +350,29 @@ export default function RecipeCard({
       )
     );
 
-    // Return to the Weekly Planner
-    // after selecting the recipe.
-    window.location.href = "/planner";
-
-    return true;
+    /*
+     * Return to the Weekly Planner.
+     */
+    router.push("/planner");
   }
 
+  /*
+   * Open Planner.
+   *
+   * If we came from a specific Planner
+   * slot, add directly to that slot.
+   *
+   * Otherwise show the normal selector.
+   */
   function openPlanner() {
     if (pendingSlot) {
       addToPendingSlot();
       return;
     }
 
+    /*
+     * Normal Recipes browsing.
+     */
     if (placements.length > 0) {
       setPlannerDay(
         placements[0].day
@@ -336,6 +392,9 @@ export default function RecipeCard({
     setShowPlanner(true);
   }
 
+  /*
+   * Normal Add to Planner workflow.
+   */
   function addToPlanner() {
     const saved =
       localStorage.getItem(
@@ -359,6 +418,9 @@ export default function RecipeCard({
       }
     }
 
+    /*
+     * Make sure all days and meal slots exist.
+     */
     days.forEach((day) => {
       if (!planner[day]) {
         planner[day] = {};
@@ -376,10 +438,16 @@ export default function RecipeCard({
       );
     });
 
+    /*
+     * Put the recipe into the selected slot.
+     */
     planner[plannerDay][
       plannerMeal
     ] = recipe.id;
 
+    /*
+     * Save Planner.
+     */
     localStorage.setItem(
       "weekly-planner",
       JSON.stringify(
@@ -387,13 +455,16 @@ export default function RecipeCard({
       )
     );
 
-    const updatedPlacements =
-      getRecipePlacements();
-
+    /*
+     * Refresh displayed locations.
+     */
     setPlacements(
-      updatedPlacements
+      getRecipePlacements()
     );
 
+    /*
+     * Sidney celebrates.
+     */
     const randomMessage =
       sidneyMessages[
         Math.floor(
@@ -412,6 +483,10 @@ export default function RecipeCard({
       setShowSidney(false);
     }, 1500);
 
+    /*
+     * Tell the rest of the site that
+     * the Planner has changed.
+     */
     window.dispatchEvent(
       new Event(
         "weekly-planner-updated"
@@ -424,9 +499,21 @@ export default function RecipeCard({
       )
     );
 
+    /*
+     * Close popup.
+     */
     setShowPlanner(false);
+
+    /*
+     * Return to Weekly Planner.
+     */
+    router.push("/planner");
   }
 
+  /*
+   * Remove ALL occurrences of this recipe
+   * from the Weekly Planner.
+   */
   function removeFromPlanner() {
     const saved =
       localStorage.getItem(
@@ -483,36 +570,25 @@ export default function RecipeCard({
           "shopping-list-updated"
         )
       );
+
     } catch {
       // Ignore invalid planner data.
     }
   }
 
+  /*
+   * The button ALWAYS says Add to Planner.
+   * We deliberately don't show the selected
+   * day or meal on the button.
+   */
   function getPlannerButtonText() {
-    if (pendingSlot) {
-      return `${getShortDay(
-        pendingSlot.day
-      )} • ${pendingSlot.meal}`;
-    }
-
-    if (placements.length === 0) {
-      return "Add to Planner";
-    }
-
-    if (placements.length === 1) {
-      return `${getShortDay(
-        placements[0].day
-      )} • ${placements[0].meal}`;
-    }
-
-    return `${placements.length} places`;
+    return "📅 Add to Planner";
   }
 
   return (
     <div className="relative flex h-full overflow-visible rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md">
 
       {/* Recipe image */}
-
       <Link
         href={`/recipes/${recipe.id}`}
         className="shrink-0"
@@ -527,13 +603,11 @@ export default function RecipeCard({
       </Link>
 
       {/* Recipe information */}
-
       <div className="flex min-w-0 flex-1 flex-col p-4">
 
         <Link
           href={`/recipes/${recipe.id}`}
         >
-
           <h2 className="text-lg font-bold text-slate-900 transition hover:text-orange-600">
             {recipe.name}
           </h2>
@@ -553,56 +627,29 @@ export default function RecipeCard({
             </span>
 
           </div>
-
         </Link>
 
         {/* Bottom controls */}
-
         <div className="mt-auto flex items-center justify-between gap-2 pt-4">
 
-          <div className="relative min-w-0 flex-1">
+          <div className="relative">
 
             <button
               type="button"
               onClick={
                 openPlanner
               }
-              className={`inline-flex h-9 max-w-full items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-xs font-semibold transition sm:px-3 sm:text-sm ${
-                pendingSlot
-                  ? "bg-orange-500 text-white hover:bg-orange-600"
-                  : placements.length > 0
+              className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-lg px-3 text-sm font-semibold transition ${
+                placements.length > 0
                   ? "bg-green-100 text-green-700 hover:bg-green-200"
                   : "bg-orange-500 text-white hover:bg-orange-600"
               }`}
             >
-
-              <span className="mr-1">
-                📅
-              </span>
-
-              <span className="sm:hidden">
-                {pendingSlot
-                  ? `${getShortDay(
-                      pendingSlot.day
-                    )} • ${
-                      pendingSlot.meal
-                    }`
-                  : placements.length ===
-                    0
-                  ? "Plan"
-                  : getPlannerButtonText()}
-              </span>
-
-              <span className="hidden sm:inline">
-                {getPlannerButtonText()}
-              </span>
-
+              {getPlannerButtonText()}
             </button>
 
             {/* Sidney */}
-
             {showSidney && (
-
               <div className="pointer-events-none absolute left-0 top-full z-50 mt-1 flex items-start gap-1">
 
                 <img
@@ -620,14 +667,14 @@ export default function RecipeCard({
                 </div>
 
               </div>
-
             )}
 
           </div>
 
+          {/* View Recipe */}
           <Link
             href={`/recipes/${recipe.id}`}
-            className="inline-flex h-9 shrink-0 items-center justify-center whitespace-nowrap px-1 text-xs font-semibold text-orange-600 hover:text-orange-700 sm:px-2 sm:text-sm"
+            className="inline-flex h-9 items-center justify-center whitespace-nowrap px-2 text-sm font-semibold text-orange-600 hover:text-orange-700"
           >
             View Recipe →
           </Link>
@@ -636,14 +683,13 @@ export default function RecipeCard({
 
       </div>
 
-      {/* Planner popup */}
-
+      {/* Normal Planner popup */}
       {showPlanner && (
-
         <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 p-4 sm:items-center">
 
           <div className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white shadow-xl">
 
+            {/* Popup heading */}
             <div className="flex items-center justify-between border-b border-gray-200 p-4">
 
               <div>
@@ -673,8 +719,8 @@ export default function RecipeCard({
 
             <div className="space-y-5 p-4">
 
+              {/* Existing placements */}
               {placements.length > 0 && (
-
                 <div>
 
                   <h3 className="mb-2 text-sm font-bold text-slate-700">
@@ -685,36 +731,35 @@ export default function RecipeCard({
 
                     {placements.map(
                       (placement) => (
-
                         <div
                           key={`${placement.day}-${placement.meal}`}
                           className="rounded-xl bg-green-50 px-3 py-3"
                         >
-
                           <span className="font-semibold text-green-800">
                             📅{" "}
                             {placement.day}{" "}
                             •{" "}
                             {placement.meal}
                           </span>
-
                         </div>
-
                       )
                     )}
 
                   </div>
 
                 </div>
-
               )}
 
+              {/* Choose new placement */}
               <div className="border-t border-gray-200 pt-4">
 
                 <h3 className="mb-3 text-sm font-bold text-slate-700">
-                  Add another placement
+                  {placements.length > 0
+                    ? "Add another placement"
+                    : "Choose when to eat it"}
                 </h3>
 
+                {/* Day */}
                 <div className="mb-4">
 
                   <label
@@ -734,24 +779,21 @@ export default function RecipeCard({
                     }
                     className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-slate-900"
                   >
-
                     {days.map(
                       (day) => (
-
                         <option
                           key={day}
                           value={day}
                         >
                           {day}
                         </option>
-
                       )
                     )}
-
                   </select>
 
                 </div>
 
+                {/* Meal */}
                 <div className="mb-4">
 
                   <label
@@ -771,20 +813,16 @@ export default function RecipeCard({
                     }
                     className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-slate-900"
                   >
-
                     {mealTypes.map(
                       (meal) => (
-
                         <option
                           key={meal}
                           value={meal}
                         >
                           {meal}
                         </option>
-
                       )
                     )}
-
                   </select>
 
                 </div>
@@ -801,8 +839,8 @@ export default function RecipeCard({
 
               </div>
 
+              {/* Remove */}
               {placements.length > 0 && (
-
                 <div className="border-t border-gray-200 pt-4">
 
                   <button
@@ -816,7 +854,6 @@ export default function RecipeCard({
                   </button>
 
                 </div>
-
               )}
 
             </div>
@@ -824,7 +861,6 @@ export default function RecipeCard({
           </div>
 
         </div>
-
       )}
 
     </div>

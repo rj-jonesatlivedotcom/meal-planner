@@ -5,7 +5,8 @@ import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/recipes";
 
 export default function RecipesPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedMealType, setSelectedMealType] = useState("All");
+  const [selectedProtein, setSelectedProtein] = useState("All");
   const [searchText, setSearchText] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [showFilters, setShowFilters] = useState(false);
@@ -13,7 +14,14 @@ export default function RecipesPage() {
 
   const filterRef = useRef<HTMLDivElement>(null);
 
-  const categories = [
+  const mealTypes = [
+    "All",
+    "Breakfast",
+    "Lunch",
+    "Dinner",
+  ];
+
+  const proteins = [
     "All",
     "Chicken",
     "Beef",
@@ -21,6 +29,22 @@ export default function RecipesPage() {
     "Fish",
     "Vegetarian",
   ];
+
+  const mealTypeIcons: Record<string, string> = {
+    All: "🍽️",
+    Breakfast: "🥣",
+    Lunch: "🥪",
+    Dinner: "🍽️",
+  };
+
+  const proteinIcons: Record<string, string> = {
+    All: "🍽️",
+    Chicken: "🍗",
+    Beef: "🥩",
+    Pork: "🐷",
+    Fish: "🐟",
+    Vegetarian: "🥕",
+  };
 
   useEffect(() => {
     function updateShoppingStatus() {
@@ -130,6 +154,24 @@ export default function RecipesPage() {
     );
   }
 
+  function getMealType(recipe: (typeof recipes)[number]) {
+    const code = recipe.code?.toUpperCase() ?? "";
+
+    if (code.startsWith("B")) {
+      return "Breakfast";
+    }
+
+    if (code.startsWith("L")) {
+      return "Lunch";
+    }
+
+    if (code.startsWith("D")) {
+      return "Dinner";
+    }
+
+    return "Other";
+  }
+
   const searchWords = searchText
     .toLowerCase()
     .trim()
@@ -154,9 +196,15 @@ export default function RecipesPage() {
 
   const filteredRecipes = recipes
     .filter((recipe) => {
-      const matchesCategory =
-        selectedCategory === "All" ||
-        recipe.category === selectedCategory;
+      const recipeMealType = getMealType(recipe);
+
+      const matchesMealType =
+        selectedMealType === "All" ||
+        recipeMealType === selectedMealType;
+
+      const matchesProtein =
+        selectedProtein === "All" ||
+        recipe.category === selectedProtein;
 
       const matchesSearch =
         searchWords.length === 0 ||
@@ -171,7 +219,11 @@ export default function RecipesPage() {
           );
         });
 
-      return matchesCategory && matchesSearch;
+      return (
+        matchesMealType &&
+        matchesProtein &&
+        matchesSearch
+      );
     })
     .sort((a, b) => {
       switch (sortBy) {
@@ -230,8 +282,19 @@ export default function RecipesPage() {
     helperText = `${filteredRecipes.length} recipe${
       filteredRecipes.length === 1 ? "" : "s"
     } matching "${searchDisplay}"`;
-  } else if (selectedCategory !== "All") {
-    helperText = `${filteredRecipes.length} ${selectedCategory.toLowerCase()} recipe${
+  } else if (
+    selectedMealType !== "All" &&
+    selectedProtein !== "All"
+  ) {
+    helperText = `${filteredRecipes.length} ${selectedMealType.toLowerCase()} ${
+      selectedProtein.toLowerCase()
+    } recipe${filteredRecipes.length === 1 ? "" : "s"}`;
+  } else if (selectedMealType !== "All") {
+    helperText = `${filteredRecipes.length} ${selectedMealType.toLowerCase()} recipe${
+      filteredRecipes.length === 1 ? "" : "s"
+    }`;
+  } else if (selectedProtein !== "All") {
+    helperText = `${filteredRecipes.length} ${selectedProtein.toLowerCase()} recipe${
       filteredRecipes.length === 1 ? "" : "s"
     }`;
   } else {
@@ -241,19 +304,15 @@ export default function RecipesPage() {
   return (
     <main className="max-w-6xl mx-auto px-6 py-8">
 
-  {/* Page heading and Sidney */}
-<div className="relative mb-3">
-  <h1 className="text-2xl sm:text-3xl font-bold whitespace-nowrap">
-    Family Recipes
-  </h1>
+      {/* Page heading */}
+      <div className="relative mb-3">
+        <h1 className="text-2xl sm:text-3xl font-bold whitespace-nowrap">
+          Family Recipes
+        </h1>
+      </div>
 
-  
-</div>
-
-{/* Search and Clear All */}
-
-  {/* Search and Clear All */}
-  <div className="mb-4">
+      {/* Search and filters */}
+      <div className="mb-4">
 
         <div className="flex items-center justify-between gap-4">
 
@@ -280,10 +339,10 @@ export default function RecipesPage() {
             {showFilters && (
               <div className="relative mt-4 md:absolute md:left-0 md:top-full md:z-20 md:mt-4 md:w-[min(900px,calc(100vw-3rem))] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
 
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 
                   {/* Search */}
-                  <div className="col-span-2 md:col-span-1">
+                  <div>
 
                     <label className="block mb-2 font-semibold text-gray-800">
                       Search
@@ -309,18 +368,44 @@ export default function RecipesPage() {
                     </label>
 
                     <select
-                      value={selectedCategory}
+                      value={selectedMealType}
                       onChange={(e) =>
-                        setSelectedCategory(e.target.value)
+                        setSelectedMealType(e.target.value)
                       }
                       className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                      {categories.map((category) => (
+                      {mealTypes.map((mealType) => (
                         <option
-                          key={category}
-                          value={category}
+                          key={mealType}
+                          value={mealType}
                         >
-                          {category}
+                          {mealTypeIcons[mealType]} {mealType}
+                        </option>
+                      ))}
+                    </select>
+
+                  </div>
+
+                  {/* Protein */}
+                  <div>
+
+                    <label className="block mb-2 font-semibold text-gray-800">
+                      Protein
+                    </label>
+
+                    <select
+                      value={selectedProtein}
+                      onChange={(e) =>
+                        setSelectedProtein(e.target.value)
+                      }
+                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      {proteins.map((protein) => (
+                        <option
+                          key={protein}
+                          value={protein}
+                        >
+                          {proteinIcons[protein]} {protein}
                         </option>
                       ))}
                     </select>
@@ -328,7 +413,7 @@ export default function RecipesPage() {
                   </div>
 
                   {/* Sort */}
-                  <div>
+                  <div className="md:col-span-3">
 
                     <label className="block mb-2 font-semibold text-gray-800">
                       Sort by
@@ -380,33 +465,35 @@ export default function RecipesPage() {
 
                 <div className="mt-4 flex items-center justify-between">
 
-  {(searchText ||
-    selectedCategory !== "All" ||
-    sortBy !== "default") ? (
-    <button
-      type="button"
-      onClick={() => {
-        setSearchText("");
-        setSelectedCategory("All");
-        setSortBy("default");
-      }}
-      className="text-sm font-semibold text-blue-600 hover:text-blue-800"
-    >
-      Clear filters
-    </button>
-  ) : (
-    <div />
-  )}
+                  {(searchText ||
+                    selectedMealType !== "All" ||
+                    selectedProtein !== "All" ||
+                    sortBy !== "default") ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSearchText("");
+                        setSelectedMealType("All");
+                        setSelectedProtein("All");
+                        setSortBy("default");
+                      }}
+                      className="text-sm font-semibold text-blue-600 hover:text-blue-800"
+                    >
+                      Clear filters
+                    </button>
+                  ) : (
+                    <div />
+                  )}
 
-  <button
-    type="button"
-    onClick={() => setShowFilters(false)}
-    className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
-  >
-    Done
-  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowFilters(false)}
+                    className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
+                  >
+                    Done
+                  </button>
 
-</div>
+                </div>
 
               </div>
             )}
@@ -414,15 +501,21 @@ export default function RecipesPage() {
           </div>
 
           {/* Clear All */}
-{hasSelectedMeals && (
-  <button
-    type="button"
-    onClick={clearAllMeals}
-    className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black whitespace-nowrap"
-  >
-    🗑️ <span className="sm:hidden">Clear</span><span className="hidden sm:inline">Clear All</span>
-  </button>
-)}
+          {hasSelectedMeals && (
+            <button
+              type="button"
+              onClick={clearAllMeals}
+              className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black whitespace-nowrap"
+            >
+              🗑️
+              <span className="sm:hidden">
+                Clear
+              </span>
+              <span className="hidden sm:inline">
+                Clear All
+              </span>
+            </button>
+          )}
 
         </div>
 

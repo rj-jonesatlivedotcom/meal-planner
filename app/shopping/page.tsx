@@ -27,9 +27,6 @@ type ShoppingData = {
 
 const ingredientCategories: Record<string, string> = {
   // 🥩 Meat & Fish
-  "freshly ground black pepper": "🧂 Herbs & Spices",
-  gravy: "🥫 Cupboard",
-  stock: "🥫 Cupboard",
   chicken: "🥩 Meat & Fish",
   beef: "🥩 Meat & Fish",
   mince: "🥩 Meat & Fish",
@@ -41,10 +38,6 @@ const ingredientCategories: Record<string, string> = {
   sirloin: "🥩 Meat & Fish",
   "pork loin": "🥩 Meat & Fish",
   cod: "🥩 Meat & Fish",
-  "tomato purée": "🥫 Cupboard",
-  couscous: "🥫 Cupboard",
-  cornflour: "🥫 Cupboard",
-  sweetcorn: "🥫 Cupboard",
 
   // 🥕 Fruit & Vegetables
   onion: "🥕 Fruit & Vegetables",
@@ -72,8 +65,18 @@ const ingredientCategories: Record<string, string> = {
   lime: "🥕 Fruit & Vegetables",
   apple: "🥕 Fruit & Vegetables",
   apples: "🥕 Fruit & Vegetables",
+  blueberry: "🥕 Fruit & Vegetables",
+  blueberries: "🥕 Fruit & Vegetables",
+  strawberry: "🥕 Fruit & Vegetables",
+  strawberries: "🥕 Fruit & Vegetables",
+  peach: "🥕 Fruit & Vegetables",
+  peaches: "🥕 Fruit & Vegetables",
 
   // 🧊 Chilled
+  egg: "🧊 Chilled",
+  eggs: "🧊 Chilled",
+  "egg white": "🧊 Chilled",
+  "egg whites": "🧊 Chilled",
   cheese: "🧊 Chilled",
   cheddar: "🧊 Chilled",
   parmesan: "🧊 Chilled",
@@ -86,6 +89,7 @@ const ingredientCategories: Record<string, string> = {
 
   // ❄️ Frozen
   peas: "❄️ Frozen",
+  "frozen berries": "❄️ Frozen",
 
   // 🍞 Bakery
   bread: "🍞 Bakery",
@@ -96,6 +100,8 @@ const ingredientCategories: Record<string, string> = {
   pitta: "🍞 Bakery",
   naan: "🍞 Bakery",
   bagel: "🍞 Bakery",
+  toast: "🍞 Bakery",
+  crumpets: "🍞 Bakery",
 
   // 🥫 Cupboard
   passata: "🥫 Cupboard",
@@ -105,11 +111,34 @@ const ingredientCategories: Record<string, string> = {
   rice: "🥫 Cupboard",
   flour: "🥫 Cupboard",
   breadcrumbs: "🥫 Cupboard",
+  couscous: "🥫 Cupboard",
+  cornflour: "🥫 Cupboard",
+  sweetcorn: "🥫 Cupboard",
+  gravy: "🥫 Cupboard",
+  stock: "🥫 Cupboard",
+  "tomato purée": "🥫 Cupboard",
   olive: "🥫 Cupboard",
   worcestershire: "🥫 Cupboard",
   honey: "🥫 Cupboard",
   mustard: "🥫 Cupboard",
   seasoning: "🥫 Cupboard",
+  "maple syrup": "🥫 Cupboard",
+  "golden syrup": "🥫 Cupboard",
+  jam: "🥫 Cupboard",
+  mayonnaise: "🥫 Cupboard",
+  "vegetable oil": "🥫 Cupboard",
+  oats: "🥫 Cupboard",
+  oatmeal: "🥫 Cupboard",
+  porridge: "🥫 Cupboard",
+  "rolled oats": "🥫 Cupboard",
+  sugar: "🥫 Cupboard",
+  "caster sugar": "🥫 Cupboard",
+  "brown sugar": "🥫 Cupboard",
+  "baking powder": "🥫 Cupboard",
+  "baking soda": "🥫 Cupboard",
+  bicarbonate: "🥫 Cupboard",
+  "vanilla extract": "🥫 Cupboard",
+  "vanilla": "🥫 Cupboard",
 
   // 🧂 Herbs & Spices
   thyme: "🧂 Herbs & Spices",
@@ -127,18 +156,30 @@ const ingredientCategories: Record<string, string> = {
   ginger: "🧂 Herbs & Spices",
   sage: "🧂 Herbs & Spices",
   dill: "🧂 Herbs & Spices",
+  cinnamon: "🧂 Herbs & Spices",
+  "ground cinnamon": "🧂 Herbs & Spices",
   "black pepper": "🧂 Herbs & Spices",
+  "freshly ground black pepper": "🧂 Herbs & Spices",
+  "fresh mint": "🧂 Herbs & Spices",
+  chives: "🧂 Herbs & Spices",
   salt: "🧂 Herbs & Spices",
 };
 
 function getCategory(item: string) {
-  const lowerItem = item.toLowerCase();
+  const lowerItem = item
+    .trim()
+    .toLowerCase();
 
   const match = Object.keys(
     ingredientCategories
-  ).find((key) =>
-    lowerItem.includes(key)
-  );
+  )
+    .sort(
+      (a, b) =>
+        b.length - a.length
+    )
+    .find((key) =>
+      lowerItem.includes(key)
+    );
 
   return match
     ? ingredientCategories[match]
@@ -561,6 +602,17 @@ export default function ShoppingPage() {
       )
     ) {
       return "Lemon zest";
+    }
+
+    // Treat all egg-white wording as one shopping item.
+    // This also handles wording such as "egg white, separated".
+    if (
+      lower === "egg white" ||
+      lower === "egg whites" ||
+      lower.startsWith("egg white,") ||
+      lower.startsWith("egg whites,")
+    ) {
+      return "Egg whites";
     }
 
     if (

@@ -26,6 +26,11 @@ type Placement = {
   meal: string;
 };
 
+type PendingSlot = {
+  day: string;
+  meal: string;
+};
+
 function getDefaultMealType(code: string) {
   const firstLetter =
     code?.charAt(0).toUpperCase();
@@ -39,10 +44,6 @@ function getDefaultMealType(code: string) {
   }
 
   return "Dinner";
-}
-
-function getShortDay(day: string) {
-  return day.slice(0, 3);
 }
 
 export default function RecipeDetailPage() {
@@ -65,6 +66,11 @@ export default function RecipeDetailPage() {
 
   const [plannerMeal, setPlannerMeal] =
     useState("Dinner");
+
+  const [pendingSlot, setPendingSlot] =
+    useState<PendingSlot | null>(
+      null
+    );
 
   const [showSidney, setShowSidney] =
     useState(false);
@@ -126,7 +132,53 @@ export default function RecipeDetailPage() {
   }
 
   /*
-   * Load planner locations.
+   * Check whether the Planner sent us
+   * here with a specific slot to fill.
+   */
+  function loadPendingSlot() {
+    const saved =
+      localStorage.getItem(
+        "planner-pending-slot"
+      );
+
+    if (!saved) {
+      setPendingSlot(null);
+      return;
+    }
+
+    try {
+      const slot =
+        JSON.parse(saved);
+
+      if (
+        slot?.day &&
+        slot?.meal &&
+        days.includes(slot.day) &&
+        mealTypes.includes(slot.meal)
+      ) {
+        setPendingSlot({
+          day: slot.day,
+          meal: slot.meal,
+        });
+      } else {
+        setPendingSlot(null);
+
+        localStorage.removeItem(
+          "planner-pending-slot"
+        );
+      }
+    } catch {
+      setPendingSlot(null);
+
+      localStorage.removeItem(
+        "planner-pending-slot"
+      );
+    }
+  }
+
+  /*
+   * Load planner locations and any
+   * pending Planner slot.
    */
   function loadPlannerStatus() {
     if (!recipe) {
@@ -136,6 +188,8 @@ export default function RecipeDetailPage() {
     setPlacements(
       getRecipePlacements()
     );
+
+    loadPendingSlot();
   }
 
   /*
@@ -173,9 +227,147 @@ export default function RecipeDetailPage() {
   }, [recipe?.id]);
 
   /*
-   * Open the Planner popup.
+   * Add this recipe directly to the
+   * Planner slot selected before coming
+   * to Recipes.
+   */
+  function addToPendingSlot() {
+    if (!recipe || !pendingSlot) {
+      return;
+    }
+
+    const saved =
+      localStorage.getItem(
+        "weekly-planner"
+      );
+
+    let planner: {
+      [day: string]: {
+        [meal: string]:
+          | string
+          | null;
+      };
+    } = {};
+
+    if (saved) {
+      try {
+        planner =
+          JSON.parse(saved);
+      } catch {
+        planner = {};
+      }
+    }
+
+    /*
+     * Make sure every day and meal
+     * slot exists.
+     */
+    days.forEach((day) => {
+      if (!planner[day]) {
+        planner[day] = {};
+      }
+
+      mealTypes.forEach(
+        (meal) => {
+          if (
+            !(meal in planner[day])
+          ) {
+            planner[day][meal] =
+              null;
+          }
+        }
+      );
+    });
+
+    /*
+     * Add directly to the selected slot.
+     */
+    planner[pendingSlot.day][
+      pendingSlot.meal
+    ] = recipe.id;
+
+    /*
+     * Save the Planner.
+     */
+    localStorage.setItem(
+      "weekly-planner",
+      JSON.stringify(
+        planner
+      )
+    );
+
+    /*
+     * Clear the temporary slot.
+     */
+    localStorage.removeItem(
+      "planner-pending-slot"
+    );
+
+    setPendingSlot(null);
+
+    setPlacements(
+      getRecipePlacements()
+    );
+
+    /*
+     * Sidney celebrates.
+     */
+    const randomMessage =
+      sidneyMessages[
+        Math.floor(
+          Math.random() *
+            sidneyMessages.length
+        )
+      ];
+
+    setSidneyMessage(
+      randomMessage
+    );
+
+    setShowSidney(true);
+
+    window.setTimeout(() => {
+      setShowSidney(false);
+    }, 1500);
+
+    /*
+     * Tell the rest of the website.
+     */
+    window.dispatchEvent(
+      new Event(
+        "weekly-planner-updated"
+      )
+    );
+
+    window.dispatchEvent(
+      new Event(
+        "shopping-list-updated"
+      )
+    );
+
+    /*
+     * Return to Weekly Planner.
+     */
+    window.location.href = "/planner";
+  }
+
+  /*
+   * Open the Planner.
+   *
+   * If we arrived from a specific
+   * Planner slot, add directly to it.
+   *
+   * Otherwise show the normal selector.
    */
   function openPlanner() {
+    if (pendingSlot) {
+      addToPendingSlot();
+      return;
+    }
+
+    /*
+     * Normal recipe browsing.
+     */
     if (placements.length > 0) {
       setPlannerDay(
         placements[0].day
@@ -196,8 +388,7 @@ export default function RecipeDetailPage() {
   }
 
   /*
-   * Add the recipe to the selected
-   * Planner day and meal.
+   * Normal Add to Planner workflow.
    */
   function addToPlanner() {
     if (!recipe) {
@@ -308,9 +499,14 @@ export default function RecipeDetailPage() {
     );
 
     /*
-     * Close the popup automatically.
+     * Close the popup.
      */
     setShowPlanner(false);
+
+    /*
+     * Return to Weekly Planner.
+     */
+    window.location.href = "/planner";
   }
 
   /*
@@ -381,23 +577,6 @@ export default function RecipeDetailPage() {
     } catch {
       // Ignore invalid planner data.
     }
-  }
-
-  /*
-   * Button text.
-   */
-  function getPlannerButtonText() {
-    if (placements.length === 0) {
-      return "📅 Add to Planner";
-    }
-
-    if (placements.length === 1) {
-      return `📅 ${getShortDay(
-        placements[0].day
-      )} • ${placements[0].meal}`;
-    }
-
-    return `📅 ${placements.length} places`;
   }
 
   /*
@@ -615,13 +794,9 @@ export default function RecipeDetailPage() {
           onClick={
             openPlanner
           }
-          className={`rounded-xl px-5 py-3 text-sm font-bold shadow-lg transition ${
-            placements.length > 0
-              ? "bg-green-100 text-green-700 hover:bg-green-200"
-              : "bg-orange-500 text-white hover:bg-orange-600"
-          }`}
+          className="rounded-xl bg-orange-500 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-orange-600"
         >
-          {getPlannerButtonText()}
+          📅 Add to Planner
         </button>
 
       </div>

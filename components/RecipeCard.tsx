@@ -59,6 +59,11 @@ type Placement = {
   meal: string;
 };
 
+type PendingSlot = {
+  day: string;
+  meal: string;
+};
+
 export default function RecipeCard({
   recipe,
 }: RecipeCardProps) {
@@ -82,6 +87,9 @@ export default function RecipeCard({
       getDefaultMealType(recipe.code)
     );
 
+  const [pendingSlot, setPendingSlot] =
+    useState<PendingSlot | null>(null);
+
   const sidneyMessages = [
     "Excellent!",
     "Enjoy!",
@@ -95,10 +103,6 @@ export default function RecipeCard({
     "Nice!",
   ];
 
-  /*
-   * Find every place where this recipe
-   * currently appears in the Weekly Planner.
-   */
   function getRecipePlacements(): Placement[] {
     const saved =
       localStorage.getItem(
@@ -135,18 +139,52 @@ export default function RecipeCard({
     }
   }
 
-  /*
-   * Refresh the locations shown on the
-   * Recipe Card.
-   */
   function loadPlannerStatus() {
     setPlacements(
       getRecipePlacements()
     );
   }
 
+  function loadPendingSlot() {
+    const saved =
+      localStorage.getItem(
+        "planner-pending-slot"
+      );
+
+    if (!saved) {
+      setPendingSlot(null);
+      return;
+    }
+
+    try {
+      const slot =
+        JSON.parse(saved);
+
+      if (
+        slot?.day &&
+        slot?.meal
+      ) {
+        setPendingSlot({
+          day: slot.day,
+          meal: slot.meal,
+        });
+
+        setPlannerDay(
+          slot.day
+        );
+
+        setPlannerMeal(
+          slot.meal
+        );
+      }
+    } catch {
+      setPendingSlot(null);
+    }
+  }
+
   useEffect(() => {
     loadPlannerStatus();
+    loadPendingSlot();
 
     window.addEventListener(
       "weekly-planner-updated",
@@ -171,14 +209,110 @@ export default function RecipeCard({
     };
   }, [recipe.id]);
 
-  /*
-   * Open the Planner popup.
-   */
+  function addToPendingSlot() {
+    if (!pendingSlot) {
+      return false;
+    }
+
+    const saved =
+      localStorage.getItem(
+        "weekly-planner"
+      );
+
+    let planner: {
+      [day: string]: {
+        [meal: string]:
+          | string
+          | null;
+      };
+    } = {};
+
+    if (saved) {
+      try {
+        planner =
+          JSON.parse(saved);
+      } catch {
+        planner = {};
+      }
+    }
+
+    days.forEach((day) => {
+      if (!planner[day]) {
+        planner[day] = {};
+      }
+
+      mealTypes.forEach(
+        (meal) => {
+          if (
+            !(meal in planner[day])
+          ) {
+            planner[day][meal] =
+              null;
+          }
+        }
+      );
+    });
+
+    planner[pendingSlot.day][
+      pendingSlot.meal
+    ] = recipe.id;
+
+    localStorage.setItem(
+      "weekly-planner",
+      JSON.stringify(
+        planner
+      )
+    );
+
+    localStorage.removeItem(
+      "planner-pending-slot"
+    );
+
+    setPendingSlot(null);
+
+    setPlacements(
+      getRecipePlacements()
+    );
+
+    const randomMessage =
+      sidneyMessages[
+        Math.floor(
+          Math.random() *
+            sidneyMessages.length
+        )
+      ];
+
+    setSidneyMessage(
+      randomMessage
+    );
+
+    setShowSidney(true);
+
+    window.setTimeout(() => {
+      setShowSidney(false);
+    }, 1500);
+
+    window.dispatchEvent(
+      new Event(
+        "weekly-planner-updated"
+      )
+    );
+
+    window.dispatchEvent(
+      new Event(
+        "shopping-list-updated"
+      )
+    );
+
+    return true;
+  }
+
   function openPlanner() {
-    /*
-     * If there is already a placement,
-     * use its location as the starting point.
-     */
+    if (pendingSlot) {
+      addToPendingSlot();
+      return;
+    }
+
     if (placements.length > 0) {
       setPlannerDay(
         placements[0].day
@@ -198,9 +332,6 @@ export default function RecipeCard({
     setShowPlanner(true);
   }
 
-  /*
-   * Add this recipe to a selected day/meal.
-   */
   function addToPlanner() {
     const saved =
       localStorage.getItem(
@@ -224,9 +355,6 @@ export default function RecipeCard({
       }
     }
 
-    /*
-     * Make sure all days and meal slots exist.
-     */
     days.forEach((day) => {
       if (!planner[day]) {
         planner[day] = {};
@@ -244,16 +372,10 @@ export default function RecipeCard({
       );
     });
 
-    /*
-     * Put the recipe into the selected slot.
-     */
     planner[plannerDay][
       plannerMeal
     ] = recipe.id;
 
-    /*
-     * Save the Planner.
-     */
     localStorage.setItem(
       "weekly-planner",
       JSON.stringify(
@@ -261,9 +383,6 @@ export default function RecipeCard({
       )
     );
 
-    /*
-     * Refresh the displayed locations.
-     */
     const updatedPlacements =
       getRecipePlacements();
 
@@ -271,9 +390,6 @@ export default function RecipeCard({
       updatedPlacements
     );
 
-    /*
-     * Sidney celebrates the choice.
-     */
     const randomMessage =
       sidneyMessages[
         Math.floor(
@@ -292,10 +408,6 @@ export default function RecipeCard({
       setShowSidney(false);
     }, 1500);
 
-    /*
-     * Tell the rest of the site that the
-     * Planner has changed.
-     */
     window.dispatchEvent(
       new Event(
         "weekly-planner-updated"
@@ -308,17 +420,9 @@ export default function RecipeCard({
       )
     );
 
-    /*
-     * Close the popup automatically
-     * after successfully adding the meal.
-     */
     setShowPlanner(false);
   }
 
-  /*
-   * Remove ALL occurrences of this recipe
-   * from the Weekly Planner.
-   */
   function removeFromPlanner() {
     const saved =
       localStorage.getItem(
@@ -364,10 +468,6 @@ export default function RecipeCard({
 
       setShowPlanner(false);
 
-      /*
-       * Tell the rest of the site that the
-       * Planner has changed.
-       */
       window.dispatchEvent(
         new Event(
           "weekly-planner-updated"
@@ -379,27 +479,29 @@ export default function RecipeCard({
           "shopping-list-updated"
         )
       );
-
     } catch {
       // Ignore invalid planner data.
     }
   }
 
-  /*
-   * Button text.
-   */
   function getPlannerButtonText() {
+    if (pendingSlot) {
+      return `${getShortDay(
+        pendingSlot.day
+      )} • ${pendingSlot.meal}`;
+    }
+
     if (placements.length === 0) {
-      return "📅 Add to Planner";
+      return "Add to Planner";
     }
 
     if (placements.length === 1) {
-      return `📅 ${getShortDay(
+      return `${getShortDay(
         placements[0].day
       )} • ${placements[0].meal}`;
     }
 
-    return `📅 ${placements.length} places`;
+    return `${placements.length} places`;
   }
 
   return (
@@ -449,21 +551,43 @@ export default function RecipeCard({
         {/* Bottom controls */}
         <div className="mt-auto flex items-center justify-between gap-2 pt-4">
 
-          {/* Planner button + Sidney */}
-          <div className="relative">
+          <div className="relative min-w-0 flex-1">
 
             <button
               type="button"
               onClick={
                 openPlanner
               }
-              className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-lg px-3 text-sm font-semibold transition ${
-                placements.length > 0
+              className={`inline-flex h-9 max-w-full items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-xs font-semibold transition sm:px-3 sm:text-sm ${
+                pendingSlot
+                  ? "bg-orange-500 text-white hover:bg-orange-600"
+                  : placements.length > 0
                   ? "bg-green-100 text-green-700 hover:bg-green-200"
                   : "bg-orange-500 text-white hover:bg-orange-600"
               }`}
             >
-              {getPlannerButtonText()}
+              <span className="mr-1">
+                📅
+              </span>
+
+              {/* Short label on mobile */}
+              <span className="sm:hidden">
+                {pendingSlot
+                  ? `${getShortDay(
+                      pendingSlot.day
+                    )} • ${
+                      pendingSlot.meal
+                    }`
+                  : placements.length ===
+                    0
+                  ? "Plan"
+                  : getPlannerButtonText()}
+              </span>
+
+              {/* Full label on desktop */}
+              <span className="hidden sm:inline">
+                {getPlannerButtonText()}
+              </span>
             </button>
 
             {/* Sidney */}
@@ -478,7 +602,6 @@ export default function RecipeCard({
 
                 <div className="relative mt-1 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-3 py-2 text-xs font-bold text-slate-800 shadow-lg">
 
-                  {/* Speech bubble pointer */}
                   <div className="absolute left-[-6px] top-3 h-0 w-0 border-y-[6px] border-y-transparent border-r-[6px] border-r-white" />
 
                   {sidneyMessage}
@@ -490,10 +613,9 @@ export default function RecipeCard({
 
           </div>
 
-          {/* View Recipe */}
           <Link
             href={`/recipes/${recipe.id}`}
-            className="inline-flex h-9 items-center justify-center whitespace-nowrap px-2 text-sm font-semibold text-orange-600 hover:text-orange-700"
+            className="inline-flex h-9 shrink-0 items-center justify-center whitespace-nowrap px-1 text-xs font-semibold text-orange-600 hover:text-orange-700 sm:px-2 sm:text-sm"
           >
             View Recipe →
           </Link>
@@ -508,7 +630,6 @@ export default function RecipeCard({
 
           <div className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white shadow-xl">
 
-            {/* Popup heading */}
             <div className="flex items-center justify-between border-b border-gray-200 p-4">
 
               <div>
@@ -538,7 +659,6 @@ export default function RecipeCard({
 
             <div className="space-y-5 p-4">
 
-              {/* Existing placements */}
               {placements.length > 0 && (
                 <div>
 
@@ -552,16 +672,14 @@ export default function RecipeCard({
                       (placement) => (
                         <div
                           key={`${placement.day}-${placement.meal}`}
-                          className="flex items-center justify-between rounded-xl bg-green-50 px-3 py-3"
+                          className="rounded-xl bg-green-50 px-3 py-3"
                         >
-
                           <span className="font-semibold text-green-800">
                             📅{" "}
                             {placement.day}{" "}
                             •{" "}
                             {placement.meal}
                           </span>
-
                         </div>
                       )
                     )}
@@ -571,16 +689,12 @@ export default function RecipeCard({
                 </div>
               )}
 
-              {/* Add/change placement */}
               <div className="border-t border-gray-200 pt-4">
 
                 <h3 className="mb-3 text-sm font-bold text-slate-700">
-                  {placements.length > 0
-                    ? "Add another placement"
-                    : "Choose when to eat it"}
+                  Add another placement
                 </h3>
 
-                {/* Day */}
                 <div className="mb-4">
 
                   <label
@@ -614,7 +728,6 @@ export default function RecipeCard({
 
                 </div>
 
-                {/* Meal */}
                 <div className="mb-4">
 
                   <label
@@ -660,7 +773,6 @@ export default function RecipeCard({
 
               </div>
 
-              {/* Remove */}
               {placements.length > 0 && (
                 <div className="border-t border-gray-200 pt-4">
 

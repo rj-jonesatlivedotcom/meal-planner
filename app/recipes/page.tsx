@@ -241,19 +241,16 @@ export default function RecipesPage() {
   return (
     <main className="max-w-6xl mx-auto px-6 py-8">
 
-  <div className="relative mb-3">
+  {/* Page heading and Sidney */}
+<div className="relative mb-3">
+  <h1 className="text-2xl sm:text-3xl font-bold whitespace-nowrap">
+    Family Recipes
+  </h1>
 
-    <h1 className="text-2xl sm:text-3xl font-bold whitespace-nowrap">
-      Family Recipes
-    </h1>
+  
+</div>
 
-    <img
-  src="/images/sidney/sidney-recipes.png"
-  alt="Sidney cooking"
-  className="absolute top-0 right-16 w-24 sm:right-auto sm:left-[43%] sm:w-32 md:left-[43%] md:w-36 h-auto object-contain"
-/>
-
-  </div>
+{/* Search and Clear All */}
 
   {/* Search and Clear All */}
   <div className="mb-4">
@@ -417,15 +414,15 @@ export default function RecipesPage() {
           </div>
 
           {/* Clear All */}
-          {hasSelectedMeals && (
-            <button
-              type="button"
-              onClick={clearAllMeals}
-              className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black whitespace-nowrap"
-            >
-              🗑️ Clear All
-            </button>
-          )}
+{hasSelectedMeals && (
+  <button
+    type="button"
+    onClick={clearAllMeals}
+    className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black whitespace-nowrap"
+  >
+    🗑️ <span className="sm:hidden">Clear</span><span className="hidden sm:inline">Clear All</span>
+  </button>
+)}
 
         </div>
 

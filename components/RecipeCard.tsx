@@ -21,6 +21,14 @@ type RecipeCardProps = {
 
 export default function RecipeCard({ recipe }: RecipeCardProps) {
   const [onShoppingList, setOnShoppingList] = useState(false);
+  const [showSidney, setShowSidney] = useState(false);
+  const [sidneyMessage, setSidneyMessage] = useState("");
+
+  const sidneyMessages = [
+    "Great choice!",
+    "My favourite!",
+    "That looks delicious!",
+  ];
 
   useEffect(() => {
     function loadShoppingStatus() {
@@ -90,11 +98,13 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
 
     const selectedRecipes = data.selectedRecipes ?? [];
 
-    const updatedSelectedRecipes = selectedRecipes.includes(recipe.id)
-      ? selectedRecipes.filter(
+    const isAdding = !selectedRecipes.includes(recipe.id);
+
+    const updatedSelectedRecipes = isAdding
+      ? [...selectedRecipes, recipe.id]
+      : selectedRecipes.filter(
           (recipeId: string) => recipeId !== recipe.id
-        )
-      : [...selectedRecipes, recipe.id];
+        );
 
     localStorage.setItem(
       "shopping-data",
@@ -111,10 +121,25 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
     window.dispatchEvent(
       new Event("shopping-list-updated")
     );
+
+    // Show Sidney only when adding a recipe.
+    if (isAdding) {
+      const randomMessage =
+        sidneyMessages[
+          Math.floor(Math.random() * sidneyMessages.length)
+        ];
+
+      setSidneyMessage(randomMessage);
+      setShowSidney(true);
+
+      window.setTimeout(() => {
+        setShowSidney(false);
+      }, 2500);
+    }
   }
 
   return (
-    <div className="flex h-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-200">
+    <div className="relative flex h-full overflow-visible rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-200">
 
       {/* Small recipe image */}
       <Link
@@ -126,7 +151,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
           alt={recipe.name}
           width={120}
           height={120}
-          className="w-28 h-full min-h-[150px] object-cover"
+          className="w-28 h-full min-h-[150px] object-cover rounded-l-xl"
         />
       </Link>
 
@@ -156,19 +181,40 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
         {/* Bottom controls */}
         <div className="mt-auto pt-4 flex items-center justify-between gap-2">
 
-          <button
-            type="button"
-            onClick={toggleShoppingList}
-            className={`rounded-full px-3 py-1.5 text-sm font-semibold transition ${
-              onShoppingList
-                ? "bg-green-100 text-green-700 hover:bg-red-100 hover:text-red-700"
-                : "bg-orange-500 text-white hover:bg-orange-600"
-            }`}
-          >
-            {onShoppingList
-              ? "😊 Added"
-              : "🛒 Add to list"}
-          </button>
+          {/* Add button + Sidney popup */}
+          <div className="relative">
+
+            <button
+              type="button"
+              onClick={toggleShoppingList}
+              className={`rounded-full px-3 py-1.5 text-sm font-semibold transition ${
+                onShoppingList
+                  ? "bg-green-100 text-green-700 hover:bg-red-100 hover:text-red-700"
+                  : "bg-orange-500 text-white hover:bg-orange-600"
+              }`}
+            >
+              {onShoppingList
+                ? "😊 Added"
+                : "🛒 Add to list"}
+            </button>
+
+            {showSidney && (
+              <div className="absolute left-0 top-full z-50 mt-1 flex items-center gap-1 pointer-events-none">
+
+                <img
+                  src="/images/sidney/sidney-recipes.png"
+                  alt="Sidney"
+                  className="w-20 h-20 object-contain"
+                />
+
+                <div className="whitespace-nowrap rounded-xl bg-white px-3 py-2 text-xs font-bold text-slate-800 shadow-lg border border-gray-200">
+                  {sidneyMessage}
+                </div>
+
+              </div>
+            )}
+
+          </div>
 
           <Link
             href={`/recipes/${recipe.id}`}

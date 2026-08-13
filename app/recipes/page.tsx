@@ -241,12 +241,22 @@ export default function RecipesPage() {
   return (
     <main className="max-w-6xl mx-auto px-6 py-8">
 
-      <h1 className="text-3xl font-bold mb-6">
-        Family Recipes
-      </h1>
+  <div className="relative mb-3">
 
-      {/* Search and Clear All */}
-      <div className="mb-8">
+    <h1 className="text-3xl font-bold">
+      Family Recipes
+    </h1>
+
+    <img
+      src="/images/sidney/sidney-recipes.png"
+      alt="Sidney cooking"
+      className="absolute top-0 left-[40%] w-28 sm:w-32 md:w-36 h-auto object-contain"
+    />
+
+  </div>
+
+  {/* Search and Clear All */}
+  <div className="mb-4">
 
         <div className="flex items-center justify-between gap-4">
 

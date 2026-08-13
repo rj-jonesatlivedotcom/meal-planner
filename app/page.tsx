@@ -69,6 +69,30 @@ export default function Home() {
 
         <div className="mx-auto max-w-5xl space-y-4">
 
+          {/* WEEKLY PLANNER */}
+          <Link
+            href="/planner"
+            className="group flex min-h-[150px] items-center gap-5 rounded-3xl bg-blue-50 px-5 py-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:px-8"
+          >
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-blue-200 text-5xl">
+              📅
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <h2 className="text-3xl font-bold text-slate-900">
+                Weekly Planner
+              </h2>
+
+              <p className="mt-1 text-lg leading-snug text-slate-800">
+                Plan your breakfasts, lunches and dinners for the week ahead.
+              </p>
+            </div>
+
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-600 text-4xl text-white transition group-hover:translate-x-1">
+              ›
+            </div>
+          </Link>
+
           {/* RECIPES */}
           <Link
             href="/recipes"
@@ -90,30 +114,6 @@ export default function Home() {
             </div>
 
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-green-700 text-4xl text-white transition group-hover:translate-x-1">
-              ›
-            </div>
-          </Link>
-
-          {/* WEEKLY PLANNER */}
-          <Link
-            href="/planner"
-            className="group flex min-h-[150px] items-center gap-5 rounded-3xl bg-blue-50 px-5 py-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:px-8"
-          >
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-blue-200 text-5xl">
-              📅
-            </div>
-
-            <div className="min-w-0 flex-1">
-              <h2 className="text-3xl font-bold text-slate-900">
-                Weekly Planner
-              </h2>
-
-              <p className="mt-1 text-lg leading-snug text-slate-800">
-                Plan your breakfasts, lunches and dinners for the week ahead.
-              </p>
-            </div>
-
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-600 text-4xl text-white transition group-hover:translate-x-1">
               ›
             </div>
           </Link>

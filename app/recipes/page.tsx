@@ -248,10 +248,10 @@ export default function RecipesPage() {
     </h1>
 
     <img
-      src="/images/sidney/sidney-recipes.png"
-      alt="Sidney cooking"
-      className="absolute top-0 right-0 w-24 sm:w-32 md:w-36 h-auto object-contain"
-    />
+  src="/images/sidney/sidney-recipes.png"
+  alt="Sidney cooking"
+  className="absolute top-0 right-16 w-24 sm:right-auto sm:left-[43%] sm:w-32 md:left-[43%] md:w-36 h-auto object-contain"
+/>
 
   </div>
 

@@ -243,14 +243,14 @@ export default function RecipesPage() {
 
   <div className="relative mb-3">
 
-    <h1 className="text-3xl font-bold">
+    <h1 className="text-2xl sm:text-3xl font-bold whitespace-nowrap">
       Family Recipes
     </h1>
 
     <img
       src="/images/sidney/sidney-recipes.png"
       alt="Sidney cooking"
-      className="absolute top-0 left-[40%] w-28 sm:w-32 md:w-36 h-auto object-contain"
+      className="absolute top-0 right-0 w-24 sm:w-32 md:w-36 h-auto object-contain"
     />
 
   </div>

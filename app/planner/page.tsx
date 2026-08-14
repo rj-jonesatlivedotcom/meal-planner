@@ -1037,12 +1037,12 @@ export default function WeeklyPlannerPage() {
                 </h2>
 
                 <p className="mt-1 max-w-xl text-sm leading-6 text-slate-600">
-                  Your planned meals have automatically been added to your Shopping List.
+                  Your planned meals have been added to your Shopping List.
                 </p>
 
                 <Link
                   href="/shopping"
-                  className="mt-4 inline-flex items-center justify-center rounded-2xl bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-green-700"
+                  className="mt-2 inline-flex items-center justify-center rounded-2xl bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-green-700"
                 >
                   🛒 Go to Shopping List
                   <span className="ml-2">

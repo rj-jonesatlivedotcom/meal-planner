@@ -702,12 +702,16 @@ export default function WeeklyPlannerPage() {
 
                 const breakfast =
                   getRecipe(
-                    plannerMeals[day].Breakfast
+                    plannerMeals[
+                      day
+                    ].Breakfast
                   );
 
                 const dinner =
                   getRecipe(
-                    plannerMeals[day].Dinner
+                    plannerMeals[
+                      day
+                    ].Dinner
                   );
 
                 return (
@@ -767,7 +771,9 @@ export default function WeeklyPlannerPage() {
 
                 const recipe =
                   getRecipe(
-                    plannerMeals[day].Breakfast
+                    plannerMeals[
+                      day
+                    ].Breakfast
                   );
 
                 return (
@@ -927,7 +933,9 @@ export default function WeeklyPlannerPage() {
 
                 const recipe =
                   getRecipe(
-                    plannerMeals[day].Dinner
+                    plannerMeals[
+                      day
+                    ].Dinner
                   );
 
                 return (
@@ -1020,46 +1028,43 @@ export default function WeeklyPlannerPage() {
 
         {/* SHOPPING LIST / CLEAR */}
 
-        <div className="mt-6 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 md:p-6">
+        <div className="mt-4 md:mt-6">
 
-          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-5">
 
-            <div className="flex items-start gap-4">
+            <Link
+              href="/shopping"
+              className="group flex flex-1 items-center gap-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-black/5 transition hover:bg-green-50 hover:ring-green-200 md:gap-4 md:rounded-3xl md:p-6"
+            >
 
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-100 text-2xl">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-100 text-xl md:h-12 md:w-12 md:rounded-2xl md:text-2xl">
                 🛒
               </span>
 
-              <div>
+              <div className="min-w-0 flex-1">
 
-                <h2 className="text-lg font-bold text-slate-900">
+                <h2 className="text-base font-bold leading-5 text-slate-900 md:text-lg md:leading-normal">
                   Your shopping list is ready
                 </h2>
 
-                <p className="mt-1 max-w-xl text-sm leading-6 text-slate-600">
+                <p className="mt-0.5 text-xs leading-4 text-slate-500 md:mt-1 md:text-sm md:leading-6 md:text-slate-600">
                   Your planned meals have been added to your Shopping List.
                 </p>
 
-                <Link
-                  href="/shopping"
-                  className="mt-2 inline-flex items-center justify-center rounded-2xl bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-green-700"
-                >
-                  🛒 Go to Shopping List
-                  <span className="ml-2">
-                    →
-                  </span>
-                </Link>
-
               </div>
 
-            </div>
+              <span className="shrink-0 text-xl font-bold text-green-600 transition-transform group-hover:translate-x-1">
+                →
+              </span>
+
+            </Link>
 
             <button
               type="button"
               onClick={() =>
                 setShowClearConfirm(true)
               }
-              className="rounded-2xl bg-white px-5 py-3 text-sm font-bold text-slate-600 shadow-sm ring-1 ring-black/10 transition hover:bg-red-50 hover:text-red-600 md:shrink-0"
+              className="self-start rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-600 shadow-sm ring-1 ring-black/10 transition hover:bg-red-50 hover:text-red-600 md:self-auto md:rounded-2xl md:px-5 md:py-3 md:text-sm md:shrink-0"
             >
               🗑️ Clear Week
             </button>

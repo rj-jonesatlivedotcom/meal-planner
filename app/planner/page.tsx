@@ -574,25 +574,26 @@ export default function WeeklyPlannerPage() {
 
               ) : (
 
-                <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-100">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setPicker({
+                      day: selectedDay,
+                      meal: "Lunch",
+                    })
+                  }
+                  className="group flex min-h-[150px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                >
 
-                  <div className="flex items-center justify-between">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
+                    +
+                  </span>
 
-                    <span className="text-lg font-bold text-slate-700">
-                      🥪 Lunch
-                    </span>
+                  <span className="mt-3 text-base font-bold text-slate-700">
+                    Add lunch
+                  </span>
 
-                    <span className="rounded-full bg-slate-200 px-2 py-1 text-[10px] font-bold text-slate-500">
-                      Soon
-                    </span>
-
-                  </div>
-
-                  <p className="mt-2 text-xs leading-5 text-slate-400">
-                    Lunch recipes are coming soon.
-                  </p>
-
-                </div>
+                </button>
 
               )}
 
@@ -864,7 +865,7 @@ export default function WeeklyPlannerPage() {
 
             <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
 
-              <div className="flex min-h-[145px] items-start bg-slate-50 px-4 py-7">
+              <div className="flex min-h-[235px] items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-7">
 
                 <div>
 
@@ -872,36 +873,108 @@ export default function WeeklyPlannerPage() {
                     🥪
                   </div>
 
-                  <h2 className="mt-4 text-base font-bold text-slate-500">
+                  <h2 className="mt-4 text-base font-bold text-slate-900">
                     Lunch
                   </h2>
 
-                  <span className="mt-2 inline-block rounded-full bg-slate-200 px-2 py-1 text-[10px] font-bold text-slate-500">
-                    Soon
-                  </span>
+                  <p className="mt-1 max-w-[65px] text-xs leading-5 text-slate-500">
+                    Midday meal
+                  </p>
 
                 </div>
 
               </div>
 
-              {days.map((day) => (
+              {days.map((day) => {
 
-                <div
-                  key={`${day}-Lunch`}
-                  className="border-l border-slate-100 bg-slate-50/50 p-3"
-                >
+                const recipe =
+                  getRecipe(
+                    plannerMeals[
+                      day
+                    ].Lunch
+                  );
 
-                  <div className="flex min-h-[117px] items-center justify-center rounded-2xl bg-white/70 px-3 text-center ring-1 ring-slate-100">
+                return (
 
-                    <p className="text-xs font-semibold text-slate-400">
-                      Coming soon
-                    </p>
+                  <div
+                    key={`${day}-Lunch`}
+                    className={`border-l border-slate-100 p-3 ${
+                      recipe
+                        ? "bg-orange-50/35"
+                        : "bg-white"
+                    }`}
+                  >
+
+                    {recipe ? (
+
+                      <div className="flex min-h-[207px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100">
+
+                        <div className="flex justify-center px-2 pt-4">
+
+                          <span className="whitespace-nowrap rounded-full bg-orange-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
+                            Planned
+                          </span>
+
+                        </div>
+
+                        <div className="flex flex-1 items-start justify-center px-3 pt-6 text-center">
+
+                          <h3 className="text-sm font-bold leading-5 text-slate-900">
+                            {recipe.name}
+                          </h3>
+
+                        </div>
+
+                        <div className="flex justify-center border-t border-orange-100 bg-white/60 px-2 py-3">
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              removeRecipe(
+                                day,
+                                "Lunch"
+                              )
+                            }
+                            aria-label={`Remove ${recipe.name}`}
+                            className="whitespace-nowrap rounded-xl px-3 py-2 text-xs font-semibold text-red-500 transition hover:bg-white hover:text-red-600"
+                          >
+                            🗑️ Remove
+                          </button>
+
+                        </div>
+
+                      </div>
+
+                    ) : (
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPicker({
+                            day,
+                            meal: "Lunch",
+                          })
+                        }
+                        className="group flex min-h-[207px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-white px-3 text-center transition hover:border-orange-300 hover:bg-orange-50/50"
+                      >
+
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
+                          +
+                        </span>
+
+                        <span className="mt-4 text-sm font-bold text-slate-500 group-hover:text-orange-700">
+                          Add lunch
+                        </span>
+
+                      </button>
+
+                    )}
 
                   </div>
 
-                </div>
+                );
 
-              ))}
+              })}
 
             </div>
 

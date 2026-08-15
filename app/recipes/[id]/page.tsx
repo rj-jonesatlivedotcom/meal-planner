@@ -310,27 +310,6 @@ export default function RecipeDetailPage() {
     );
 
     /*
-     * Sidney celebrates.
-     */
-    const randomMessage =
-      sidneyMessages[
-        Math.floor(
-          Math.random() *
-            sidneyMessages.length
-        )
-      ];
-
-    setSidneyMessage(
-      randomMessage
-    );
-
-    setShowSidney(true);
-
-    window.setTimeout(() => {
-      setShowSidney(false);
-    }, 1500);
-
-    /*
      * Tell the rest of the website.
      */
     window.dispatchEvent(
@@ -603,65 +582,65 @@ export default function RecipeDetailPage() {
         alt={recipe.name}
         width={1200}
         height={700}
-        className="mb-6 h-80 w-full rounded-xl object-cover"
+        className="mb-4 h-44 w-full rounded-xl object-cover sm:mb-6 sm:h-80"
       />
 
       {/* Title */}
-      <h1 className="mb-4 text-3xl font-bold">
+      <h1 className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl">
         {recipe.name}
       </h1>
 
       {/* Description */}
-      <p className="mb-6 text-lg">
+      <p className="mb-4 text-base leading-snug sm:mb-6 sm:text-lg sm:leading-normal">
         {recipe.description}
       </p>
 
       {/* Recipe summary */}
-      <div className="mb-8 grid gap-4 md:grid-cols-3">
+      <div className="mb-6 grid grid-cols-3 gap-2 sm:mb-8 sm:gap-4">
 
-        <div className="rounded-lg border p-4 text-center">
+        <div className="rounded-lg border p-2 text-center sm:p-4">
 
-          <div className="text-2xl">
+          <div className="text-lg sm:text-2xl">
             ⏱️
           </div>
 
-          <strong>
+          <strong className="block text-[11px] leading-tight sm:text-base">
             Cooking Time
           </strong>
 
-          <p>
+          <p className="mt-1 text-xs sm:text-base">
             {recipe.cookingTime}
           </p>
 
         </div>
 
-        <div className="rounded-lg border p-4 text-center">
+        <div className="rounded-lg border p-2 text-center sm:p-4">
 
-          <div className="text-2xl">
+          <div className="text-lg sm:text-2xl">
             🔥
           </div>
 
-          <strong>
+          <strong className="block text-[11px] leading-tight sm:text-base">
             Calories
           </strong>
 
-          <p>
+          <p className="mt-1 text-xs sm:text-base">
             {recipe.calories}
           </p>
 
         </div>
 
-        <div className="rounded-lg border p-4 text-center">
+        <div className="rounded-lg border p-2 text-center sm:p-4">
 
-          <div className="text-2xl">
+          <div className="text-lg sm:text-2xl">
             💪
           </div>
 
-          <strong>
+          <strong className="block text-[11px] leading-tight sm:text-base">
             Protein
           </strong>
 
-          <p>
+          <p className="mt-1 text-xs sm:text-base">
             {recipe.protein}
           </p>
 
@@ -670,7 +649,7 @@ export default function RecipeDetailPage() {
       </div>
 
       {/* Equipment */}
-      <h2 className="mb-2 mt-6 text-xl font-bold">
+      <h2 className="mb-2 mt-5 text-xl font-bold sm:mt-6">
         🔎 Equipment
       </h2>
 

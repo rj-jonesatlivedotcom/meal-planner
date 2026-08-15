@@ -11,6 +11,7 @@ export default function RecipesPage() {
   const [sortBy, setSortBy] = useState("default");
   const [showFilters, setShowFilters] = useState(false);
   const [hasSelectedMeals, setHasSelectedMeals] = useState(false);
+  const [filtersLoaded, setFiltersLoaded] = useState(false);
 
   const filterRef = useRef<HTMLDivElement>(null);
 
@@ -45,6 +46,68 @@ export default function RecipesPage() {
     Fish: "🐟",
     Vegetarian: "🥕",
   };
+
+  // Restore the user's previous recipe filters when returning
+  // to the Recipes page.
+  useEffect(() => {
+    try {
+      const savedFilters = sessionStorage.getItem(
+        "recipes-filters"
+      );
+
+      if (savedFilters) {
+        const data = JSON.parse(savedFilters);
+
+        if (typeof data.selectedMealType === "string") {
+          setSelectedMealType(data.selectedMealType);
+        }
+
+        if (typeof data.selectedProtein === "string") {
+          setSelectedProtein(data.selectedProtein);
+        }
+
+        if (typeof data.searchText === "string") {
+          setSearchText(data.searchText);
+        }
+
+        if (typeof data.sortBy === "string") {
+          setSortBy(data.sortBy);
+        }
+      }
+    } catch {
+      // Ignore invalid saved filter data.
+    }
+
+    setFiltersLoaded(true);
+  }, []);
+
+  // Save the current recipe filters so they survive
+  // opening a recipe and pressing the Android Back button.
+  useEffect(() => {
+    if (!filtersLoaded) {
+      return;
+    }
+
+    try {
+      sessionStorage.setItem(
+        "recipes-filters",
+        JSON.stringify({
+          selectedMealType,
+          selectedProtein,
+          searchText,
+          sortBy,
+        })
+      );
+    } catch {
+      // Ignore storage errors.
+    }
+  }, [
+    filtersLoaded,
+    selectedMealType,
+    selectedProtein,
+    searchText,
+    sortBy,
+  ]);
 
   useEffect(() => {
     function updateShoppingStatus() {
@@ -476,6 +539,14 @@ export default function RecipesPage() {
                         setSelectedMealType("All");
                         setSelectedProtein("All");
                         setSortBy("default");
+
+                        try {
+                          sessionStorage.removeItem(
+                            "recipes-filters"
+                          );
+                        } catch {
+                          // Ignore storage errors.
+                        }
                       }}
                       className="text-sm font-semibold text-blue-600 hover:text-blue-800"
                     >

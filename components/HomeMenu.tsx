@@ -38,7 +38,7 @@ export default function HomeMenu() {
 
       {/* MENU */}
       {open && (
-        <div className="absolute right-0 top-14 w-64 overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-200">
+        <div className="fixed right-5 top-20 z-[100] w-64 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-2xl bg-white shadow-xl ring-1 ring-slate-200">
 
           {/* HOME */}
           <Link

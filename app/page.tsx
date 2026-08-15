@@ -40,30 +40,6 @@ export default function Home() {
 
           </div>
 
-          {/* SIDNEY */}
-          <img
-            src="/images/sidney/sidney.png"
-            alt="Sidney the Kidney"
-            className="
-              absolute
-              bottom-[38px]
-              right-1
-              z-10
-              h-[150px]
-              w-auto
-              object-contain
-              drop-shadow-xl
-
-              sm:bottom-[10px]
-              sm:right-3
-              sm:h-[190px]
-
-              md:bottom-[22px]
-              md:right-8
-              md:h-[380px]
-            "
-          />
-
         </div>
 
         {/* HAMBURGER MENU */}

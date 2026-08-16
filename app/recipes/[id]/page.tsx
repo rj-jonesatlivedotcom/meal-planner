@@ -258,10 +258,6 @@ export default function RecipeDetailPage() {
       }
     }
 
-    /*
-     * Make sure every day and meal
-     * slot exists.
-     */
     days.forEach((day) => {
       if (!planner[day]) {
         planner[day] = {};
@@ -279,16 +275,10 @@ export default function RecipeDetailPage() {
       );
     });
 
-    /*
-     * Add directly to the selected slot.
-     */
     planner[pendingSlot.day][
       pendingSlot.meal
     ] = recipe.id;
 
-    /*
-     * Save the Planner.
-     */
     localStorage.setItem(
       "weekly-planner",
       JSON.stringify(
@@ -296,9 +286,6 @@ export default function RecipeDetailPage() {
       )
     );
 
-    /*
-     * Clear the temporary slot.
-     */
     localStorage.removeItem(
       "planner-pending-slot"
     );
@@ -309,9 +296,6 @@ export default function RecipeDetailPage() {
       getRecipePlacements()
     );
 
-    /*
-     * Tell the rest of the website.
-     */
     window.dispatchEvent(
       new Event(
         "weekly-planner-updated"
@@ -324,19 +308,11 @@ export default function RecipeDetailPage() {
       )
     );
 
-    /*
-     * Return to Weekly Planner.
-     */
     window.location.href = "/planner";
   }
 
   /*
    * Open the Planner.
-   *
-   * If we arrived from a specific
-   * Planner slot, add directly to it.
-   *
-   * Otherwise show the normal selector.
    */
   function openPlanner() {
     if (pendingSlot) {
@@ -344,9 +320,6 @@ export default function RecipeDetailPage() {
       return;
     }
 
-    /*
-     * Normal recipe browsing.
-     */
     if (placements.length > 0) {
       setPlannerDay(
         placements[0].day
@@ -396,10 +369,6 @@ export default function RecipeDetailPage() {
       }
     }
 
-    /*
-     * Make sure every day and meal
-     * slot exists.
-     */
     days.forEach((day) => {
       if (!planner[day]) {
         planner[day] = {};
@@ -417,16 +386,10 @@ export default function RecipeDetailPage() {
       );
     });
 
-    /*
-     * Add the recipe.
-     */
     planner[plannerDay][
       plannerMeal
     ] = recipe.id;
 
-    /*
-     * Save the Planner.
-     */
     localStorage.setItem(
       "weekly-planner",
       JSON.stringify(
@@ -434,16 +397,10 @@ export default function RecipeDetailPage() {
       )
     );
 
-    /*
-     * Update the displayed locations.
-     */
     setPlacements(
       getRecipePlacements()
     );
 
-    /*
-     * Sidney celebrates.
-     */
     const randomMessage =
       sidneyMessages[
         Math.floor(
@@ -462,9 +419,6 @@ export default function RecipeDetailPage() {
       setShowSidney(false);
     }, 1500);
 
-    /*
-     * Tell the rest of the website.
-     */
     window.dispatchEvent(
       new Event(
         "weekly-planner-updated"
@@ -477,14 +431,8 @@ export default function RecipeDetailPage() {
       )
     );
 
-    /*
-     * Close the popup.
-     */
     setShowPlanner(false);
 
-    /*
-     * Return to Weekly Planner.
-     */
     window.location.href = "/planner";
   }
 
@@ -574,7 +522,21 @@ export default function RecipeDetailPage() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-6 pb-32 pt-6">
+    <main className="mx-auto max-w-3xl px-6 pb-20 pt-4 sm:pb-24 sm:pt-6">
+
+      {/* Back to Recipes */}
+      <div className="mb-4 sm:mb-5">
+        <button
+          type="button"
+          onClick={() =>
+            (window.location.href =
+              "/recipes")
+          }
+          className="inline-flex items-center rounded-lg px-1 py-1 text-sm font-semibold text-slate-600 transition hover:text-orange-600"
+        >
+          ← Back to Recipes
+        </button>
+      </div>
 
       {/* Recipe image */}
       <Image
@@ -765,14 +727,28 @@ export default function RecipeDetailPage() {
 
       </div>
 
-      {/* Fixed Planner button */}
+      {/* Back to Recipes */}
+      <div className="mt-8">
+
+        <button
+          type="button"
+          onClick={() =>
+            (window.location.href =
+              "/recipes")
+          }
+          className="w-full rounded-xl border border-slate-300 bg-white px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50"
+        >
+          ← Back to Recipes
+        </button>
+
+      </div>
+
+      {/* Floating Add to Planner button */}
       <div className="fixed bottom-4 right-4 z-40">
 
         <button
           type="button"
-          onClick={
-            openPlanner
-          }
+          onClick={openPlanner}
           className="rounded-xl bg-orange-500 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-orange-600"
         >
           📅 Add to Planner

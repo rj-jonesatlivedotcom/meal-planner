@@ -37,8 +37,7 @@ const mealTypes = [
 ];
 
 function getDefaultMealType(code: string) {
-  const firstLetter =
-    code?.charAt(0).toUpperCase();
+  const firstLetter = code?.charAt(0).toUpperCase();
 
   if (firstLetter === "B") {
     return "Breakfast";
@@ -49,10 +48,6 @@ function getDefaultMealType(code: string) {
   }
 
   return "Dinner";
-}
-
-function getShortDay(day: string) {
-  return day.slice(0, 3);
 }
 
 type Placement = {
@@ -70,30 +65,18 @@ export default function RecipeCard({
 }: RecipeCardProps) {
   const router = useRouter();
 
-  const [showSidney, setShowSidney] =
-    useState(false);
+  const [showSidney, setShowSidney] = useState(false);
+  const [sidneyMessage, setSidneyMessage] = useState("");
+  const [showPlanner, setShowPlanner] = useState(false);
+  const [placements, setPlacements] = useState<Placement[]>([]);
+  const [plannerDay, setPlannerDay] = useState("Monday");
 
-  const [sidneyMessage, setSidneyMessage] =
-    useState("");
-
-  const [showPlanner, setShowPlanner] =
-    useState(false);
-
-  const [placements, setPlacements] =
-    useState<Placement[]>([]);
-
-  const [plannerDay, setPlannerDay] =
-    useState("Monday");
-
-  const [plannerMeal, setPlannerMeal] =
-    useState(
-      getDefaultMealType(recipe.code)
-    );
+  const [plannerMeal, setPlannerMeal] = useState(
+    getDefaultMealType(recipe.code)
+  );
 
   const [pendingSlot, setPendingSlot] =
-    useState<PendingSlot | null>(
-      null
-    );
+    useState<PendingSlot | null>(null);
 
   const sidneyMessages = [
     "Excellent!",
@@ -113,27 +96,19 @@ export default function RecipeCard({
    * currently appears in the Weekly Planner.
    */
   function getRecipePlacements(): Placement[] {
-    const saved =
-      localStorage.getItem(
-        "weekly-planner"
-      );
+    const saved = localStorage.getItem("weekly-planner");
 
     if (!saved) {
       return [];
     }
 
     try {
-      const planner =
-        JSON.parse(saved);
-
+      const planner = JSON.parse(saved);
       const found: Placement[] = [];
 
       days.forEach((day) => {
         mealTypes.forEach((meal) => {
-          if (
-            planner?.[day]?.[meal] ===
-            recipe.id
-          ) {
+          if (planner?.[day]?.[meal] === recipe.id) {
             found.push({
               day,
               meal,
@@ -153,10 +128,9 @@ export default function RecipeCard({
    * here with a specific slot to fill.
    */
   function loadPendingSlot() {
-    const saved =
-      localStorage.getItem(
-        "planner-pending-slot"
-      );
+    const saved = localStorage.getItem(
+      "planner-pending-slot"
+    );
 
     if (!saved) {
       setPendingSlot(null);
@@ -164,8 +138,7 @@ export default function RecipeCard({
     }
 
     try {
-      const slot =
-        JSON.parse(saved);
+      const slot = JSON.parse(saved);
 
       if (
         slot?.day &&
@@ -197,10 +170,7 @@ export default function RecipeCard({
    * Refresh Planner information.
    */
   function loadPlannerStatus() {
-    setPlacements(
-      getRecipePlacements()
-    );
-
+    setPlacements(getRecipePlacements());
     loadPendingSlot();
   }
 
@@ -239,23 +209,19 @@ export default function RecipeCard({
       return;
     }
 
-    const saved =
-      localStorage.getItem(
-        "weekly-planner"
-      );
+    const saved = localStorage.getItem(
+      "weekly-planner"
+    );
 
     let planner: {
       [day: string]: {
-        [meal: string]:
-          | string
-          | null;
+        [meal: string]: string | null;
       };
     } = {};
 
     if (saved) {
       try {
-        planner =
-          JSON.parse(saved);
+        planner = JSON.parse(saved);
       } catch {
         planner = {};
       }
@@ -269,39 +235,30 @@ export default function RecipeCard({
         planner[day] = {};
       }
 
-      mealTypes.forEach(
-        (meal) => {
-          if (
-            !(meal in planner[day])
-          ) {
-            planner[day][meal] =
-              null;
-          }
+      mealTypes.forEach((meal) => {
+        if (!(meal in planner[day])) {
+          planner[day][meal] = null;
         }
-      );
+      });
     });
 
     /*
      * Put this recipe directly into
      * the selected Planner slot.
      */
-    planner[pendingSlot.day][
-      pendingSlot.meal
-    ] = recipe.id;
+    planner[pendingSlot.day][pendingSlot.meal] =
+      recipe.id;
 
     /*
      * Save Planner.
      */
     localStorage.setItem(
       "weekly-planner",
-      JSON.stringify(
-        planner
-      )
+      JSON.stringify(planner)
     );
 
     /*
-     * Clear the temporary slot so it
-     * cannot affect normal browsing.
+     * Clear the temporary slot.
      */
     localStorage.removeItem(
       "planner-pending-slot"
@@ -309,9 +266,7 @@ export default function RecipeCard({
 
     setPendingSlot(null);
 
-    setPlacements(
-      getRecipePlacements()
-    );
+    setPlacements(getRecipePlacements());
 
     /*
      * Sidney celebrates.
@@ -319,15 +274,11 @@ export default function RecipeCard({
     const randomMessage =
       sidneyMessages[
         Math.floor(
-          Math.random() *
-            sidneyMessages.length
+          Math.random() * sidneyMessages.length
         )
       ];
 
-    setSidneyMessage(
-      randomMessage
-    );
-
+    setSidneyMessage(randomMessage);
     setShowSidney(true);
 
     window.setTimeout(() => {
@@ -339,15 +290,11 @@ export default function RecipeCard({
      * the Planner has changed.
      */
     window.dispatchEvent(
-      new Event(
-        "weekly-planner-updated"
-      )
+      new Event("weekly-planner-updated")
     );
 
     window.dispatchEvent(
-      new Event(
-        "shopping-list-updated"
-      )
+      new Event("shopping-list-updated")
     );
 
     /*
@@ -358,11 +305,6 @@ export default function RecipeCard({
 
   /*
    * Open Planner.
-   *
-   * If we came from a specific Planner
-   * slot, add directly to that slot.
-   *
-   * Otherwise show the normal selector.
    */
   function openPlanner() {
     if (pendingSlot) {
@@ -370,22 +312,12 @@ export default function RecipeCard({
       return;
     }
 
-    /*
-     * Normal Recipes browsing.
-     */
     if (placements.length > 0) {
-      setPlannerDay(
-        placements[0].day
-      );
-
-      setPlannerMeal(
-        placements[0].meal
-      );
+      setPlannerDay(placements[0].day);
+      setPlannerMeal(placements[0].meal);
     } else {
       setPlannerMeal(
-        getDefaultMealType(
-          recipe.code
-        )
+        getDefaultMealType(recipe.code)
       );
     }
 
@@ -396,23 +328,19 @@ export default function RecipeCard({
    * Normal Add to Planner workflow.
    */
   function addToPlanner() {
-    const saved =
-      localStorage.getItem(
-        "weekly-planner"
-      );
+    const saved = localStorage.getItem(
+      "weekly-planner"
+    );
 
     let planner: {
       [day: string]: {
-        [meal: string]:
-          | string
-          | null;
+        [meal: string]: string | null;
       };
     } = {};
 
     if (saved) {
       try {
-        planner =
-          JSON.parse(saved);
+        planner = JSON.parse(saved);
       } catch {
         planner = {};
       }
@@ -426,41 +354,31 @@ export default function RecipeCard({
         planner[day] = {};
       }
 
-      mealTypes.forEach(
-        (meal) => {
-          if (
-            !(meal in planner[day])
-          ) {
-            planner[day][meal] =
-              null;
-          }
+      mealTypes.forEach((meal) => {
+        if (!(meal in planner[day])) {
+          planner[day][meal] = null;
         }
-      );
+      });
     });
 
     /*
-     * Put the recipe into the selected slot.
+     * Put recipe into selected slot.
      */
-    planner[plannerDay][
-      plannerMeal
-    ] = recipe.id;
+    planner[plannerDay][plannerMeal] =
+      recipe.id;
 
     /*
      * Save Planner.
      */
     localStorage.setItem(
       "weekly-planner",
-      JSON.stringify(
-        planner
-      )
+      JSON.stringify(planner)
     );
 
     /*
      * Refresh displayed locations.
      */
-    setPlacements(
-      getRecipePlacements()
-    );
+    setPlacements(getRecipePlacements());
 
     /*
      * Sidney celebrates.
@@ -468,15 +386,11 @@ export default function RecipeCard({
     const randomMessage =
       sidneyMessages[
         Math.floor(
-          Math.random() *
-            sidneyMessages.length
+          Math.random() * sidneyMessages.length
         )
       ];
 
-    setSidneyMessage(
-      randomMessage
-    );
-
+    setSidneyMessage(randomMessage);
     setShowSidney(true);
 
     window.setTimeout(() => {
@@ -488,15 +402,11 @@ export default function RecipeCard({
      * the Planner has changed.
      */
     window.dispatchEvent(
-      new Event(
-        "weekly-planner-updated"
-      )
+      new Event("weekly-planner-updated")
     );
 
     window.dispatchEvent(
-      new Event(
-        "shopping-list-updated"
-      )
+      new Event("shopping-list-updated")
     );
 
     /*
@@ -515,10 +425,9 @@ export default function RecipeCard({
    * from the Weekly Planner.
    */
   function removeFromPlanner() {
-    const saved =
-      localStorage.getItem(
-        "weekly-planner"
-      );
+    const saved = localStorage.getItem(
+      "weekly-planner"
+    );
 
     if (!saved) {
       setPlacements([]);
@@ -527,342 +436,617 @@ export default function RecipeCard({
     }
 
     try {
-      const planner =
-        JSON.parse(saved);
+      const planner = JSON.parse(saved);
 
       days.forEach((day) => {
         if (!planner[day]) {
           return;
         }
 
-        mealTypes.forEach(
-          (meal) => {
-            if (
-              planner[day][meal] ===
-              recipe.id
-            ) {
-              planner[day][meal] =
-                null;
-            }
+        mealTypes.forEach((meal) => {
+          if (
+            planner[day][meal] === recipe.id
+          ) {
+            planner[day][meal] = null;
           }
-        );
+        });
       });
 
       localStorage.setItem(
         "weekly-planner",
-        JSON.stringify(
-          planner
-        )
+        JSON.stringify(planner)
       );
 
       setPlacements([]);
-
       setShowPlanner(false);
 
       window.dispatchEvent(
-        new Event(
-          "weekly-planner-updated"
-        )
+        new Event("weekly-planner-updated")
       );
 
       window.dispatchEvent(
-        new Event(
-          "shopping-list-updated"
-        )
+        new Event("shopping-list-updated")
       );
-
     } catch {
       // Ignore invalid planner data.
     }
   }
 
   /*
-   * The button ALWAYS says Add to Planner.
-   * We deliberately don't show the selected
-   * day or meal on the button.
+   * Button text stays consistent.
    */
   function getPlannerButtonText() {
     return "📅 Add to Planner";
   }
 
   return (
-    <div className="relative flex h-full overflow-visible rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md">
+    <>
+      {/* =====================================================
+          RECIPE CARD
+          ===================================================== */}
 
-      {/* Recipe image */}
-      <Link
-        href={`/recipes/${recipe.id}`}
-        className="shrink-0"
+      <article
+        className="
+          relative
+          flex
+          h-full
+          flex-col
+          overflow-visible
+          rounded-xl
+          border
+          border-gray-200
+          bg-white
+          shadow-sm
+          transition-all
+          duration-200
+          hover:shadow-md
+
+          sm:flex-row
+        "
       >
-        <Image
-          src={recipe.image}
-          alt={recipe.name}
-          width={120}
-          height={120}
-          className="h-full min-h-[150px] w-28 rounded-l-xl object-cover"
-        />
-      </Link>
+        {/* ===================================================
+            MOBILE IMAGE
 
-      {/* Recipe information */}
-      <div className="flex min-w-0 flex-1 flex-col p-4">
+            Larger and more prominent on phones.
+            Desktop returns to the original left-hand image.
+            =================================================== */}
 
         <Link
           href={`/recipes/${recipe.id}`}
+          className="
+            block
+            w-full
+            shrink-0
+
+            sm:w-28
+          "
         >
-          <h2 className="text-lg font-bold text-slate-900 transition hover:text-orange-600">
-            {recipe.name}
-          </h2>
+          <Image
+            src={recipe.image}
+            alt={recipe.name}
+            width={600}
+            height={420}
+            sizes="
+              (max-width: 639px) 100vw,
+              112px
+            "
+            className="
+              h-52
+              w-full
+              rounded-t-xl
+              object-cover
 
-          <p className="mt-1 line-clamp-2 text-sm text-slate-600">
-            {recipe.description}
-          </p>
-
-          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
-
-            <span>
-              ⏱️ {recipe.cookingTime}
-            </span>
-
-            <span>
-              🔥 {recipe.calories}
-            </span>
-
-          </div>
+              sm:h-full
+              sm:min-h-[150px]
+              sm:w-28
+              sm:rounded-l-xl
+              sm:rounded-t-none
+            "
+          />
         </Link>
 
-        {/* Bottom controls */}
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-4">
+        {/* ===================================================
+            RECIPE INFORMATION
+            =================================================== */}
 
-          <div className="relative">
+        <div
+          className="
+            flex
+            min-w-0
+            flex-1
+            flex-col
+            p-4
 
-            <button
-              type="button"
-              onClick={
-                openPlanner
-              }
-              className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-lg px-3 text-sm font-semibold transition ${
-                placements.length > 0
-                  ? "bg-green-100 text-green-700 hover:bg-green-200"
-                  : "bg-orange-500 text-white hover:bg-orange-600"
-              }`}
-            >
-              {getPlannerButtonText()}
-            </button>
-
-            {/* Sidney */}
-            {showSidney && (
-              <div className="pointer-events-none absolute left-0 top-full z-50 mt-1 flex items-start gap-1">
-
-                <img
-                  src="/images/sidney/sidney-recipes.png"
-                  alt="Sidney"
-                  className="h-20 w-20 object-contain"
-                />
-
-                <div className="relative mt-1 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-3 py-2 text-xs font-bold text-slate-800 shadow-lg">
-
-                  <div className="absolute left-[-6px] top-3 h-0 w-0 border-y-[6px] border-y-transparent border-r-[6px] border-r-white" />
-
-                  {sidneyMessage}
-
-                </div>
-
-              </div>
-            )}
-
-          </div>
-
-          {/* View Recipe */}
+            sm:p-4
+          "
+        >
+          {/* Recipe content */}
           <Link
             href={`/recipes/${recipe.id}`}
-            className="inline-flex h-9 min-w-0 shrink items-center justify-center whitespace-nowrap px-2 text-sm font-semibold text-orange-600 hover:text-orange-700"
+            className="block"
           >
-            View Recipe →
+            <h2
+              className="
+                text-lg
+                font-bold
+                leading-tight
+                text-slate-900
+                transition
+                hover:text-orange-600
+
+                sm:text-lg
+              "
+            >
+              {recipe.name}
+            </h2>
+
+            <p
+              className="
+                mt-2
+                line-clamp-3
+                text-sm
+                leading-relaxed
+                text-slate-600
+
+                sm:mt-1
+                sm:line-clamp-2
+              "
+            >
+              {recipe.description}
+            </p>
+
+            <div
+              className="
+                mt-3
+                flex
+                flex-wrap
+                gap-x-4
+                gap-y-1
+                text-sm
+                text-slate-500
+              "
+            >
+              <span>
+                ⏱️ {recipe.cookingTime}
+              </span>
+
+              <span>
+                🔥 {recipe.calories}
+              </span>
+            </div>
           </Link>
 
-        </div>
+          {/* =================================================
+              BOTTOM CONTROLS
+              ================================================= */}
 
-      </div>
+          <div
+            className="
+              mt-4
+              flex
+              flex-wrap
+              items-center
+              justify-between
+              gap-2
 
-      {/* Normal Planner popup */}
-      {showPlanner && (
-        <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 p-4 sm:items-center">
-
-          <div className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white shadow-xl">
-
-            {/* Popup heading */}
-            <div className="flex items-center justify-between border-b border-gray-200 p-4">
-
-              <div>
-
-                <h2 className="text-lg font-bold text-slate-900">
-                  Weekly Planner
-                </h2>
-
-                <p className="mt-1 text-sm text-slate-500">
-                  {recipe.name}
-                </p>
-
-              </div>
-
+              sm:mt-auto
+              sm:pt-4
+            "
+          >
+            <div className="relative">
               <button
                 type="button"
-                onClick={() =>
-                  setShowPlanner(false)
-                }
-                className="rounded-full px-3 py-2 text-lg text-slate-500 hover:bg-slate-100"
-                aria-label="Close"
+                onClick={openPlanner}
+                className={`
+                  inline-flex
+                  h-10
+                  items-center
+                  justify-center
+                  whitespace-nowrap
+                  rounded-lg
+                  px-4
+                  text-sm
+                  font-semibold
+                  transition
+
+                  ${
+                    placements.length > 0
+                      ? "bg-green-100 text-green-700 hover:bg-green-200"
+                      : "bg-orange-500 text-white hover:bg-orange-600"
+                  }
+                `}
               >
-                ×
+                {getPlannerButtonText()}
               </button>
 
-            </div>
+              {/* Sidney */}
+              {showSidney && (
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    left-0
+                    top-full
+                    z-50
+                    mt-1
+                    flex
+                    items-start
+                    gap-1
+                  "
+                >
+                  <img
+                    src="/images/sidney/sidney-recipes.png"
+                    alt="Sidney"
+                    className="
+                      h-20
+                      w-20
+                      object-contain
+                    "
+                  />
 
-            <div className="space-y-5 p-4">
+                  <div
+                    className="
+                      relative
+                      mt-1
+                      whitespace-nowrap
+                      rounded-xl
+                      border
+                      border-gray-200
+                      bg-white
+                      px-3
+                      py-2
+                      text-xs
+                      font-bold
+                      text-slate-800
+                      shadow-lg
+                    "
+                  >
+                    <div
+                      className="
+                        absolute
+                        left-[-6px]
+                        top-3
+                        h-0
+                        w-0
+                        border-y-[6px]
+                        border-y-transparent
+                        border-r-[6px]
+                        border-r-white
+                      "
+                    />
 
-              {/* Existing placements */}
-              {placements.length > 0 && (
-                <div>
-
-                  <h3 className="mb-2 text-sm font-bold text-slate-700">
-                    Currently planned
-                  </h3>
-
-                  <div className="space-y-2">
-
-                    {placements.map(
-                      (placement) => (
-                        <div
-                          key={`${placement.day}-${placement.meal}`}
-                          className="rounded-xl bg-green-50 px-3 py-3"
-                        >
-                          <span className="font-semibold text-green-800">
-                            📅{" "}
-                            {placement.day}{" "}
-                            •{" "}
-                            {placement.meal}
-                          </span>
-                        </div>
-                      )
-                    )}
-
+                    {sidneyMessage}
                   </div>
-
                 </div>
               )}
+            </div>
 
-              {/* Choose new placement */}
-              <div className="border-t border-gray-200 pt-4">
+            {/* View Recipe — desktop only */}
+            <Link
+              href={`/recipes/${recipe.id}`}
+              className="
+                hidden
+                h-9
+                min-w-0
+                shrink
+                items-center
+                justify-center
+                whitespace-nowrap
+                px-2
+                text-sm
+                font-semibold
+                text-orange-600
+                hover:text-orange-700
 
-                <h3 className="mb-3 text-sm font-bold text-slate-700">
-                  {placements.length > 0
-                    ? "Add another placement"
-                    : "Choose when to eat it"}
-                </h3>
+                sm:inline-flex
+              "
+            >
+              View Recipe →
+            </Link>
+          </div>
+        </div>
 
-                {/* Day */}
-                <div className="mb-4">
+        {/* ===================================================
+            NORMAL PLANNER POPUP
+            =================================================== */}
 
-                  <label
-                    htmlFor={`planner-day-${recipe.id}`}
-                    className="mb-2 block text-sm font-semibold text-slate-700"
+        {showPlanner && (
+          <div
+            className="
+              fixed
+              inset-0
+              z-[60]
+              flex
+              items-end
+              justify-center
+              bg-black/40
+              p-4
+
+              sm:items-center
+            "
+          >
+            <div
+              className="
+                max-h-[85vh]
+                w-full
+                max-w-md
+                overflow-y-auto
+                rounded-2xl
+                bg-white
+                shadow-xl
+              "
+            >
+              {/* Popup heading */}
+              <div
+                className="
+                  flex
+                  items-center
+                  justify-between
+                  border-b
+                  border-gray-200
+                  p-4
+                "
+              >
+                <div>
+                  <h2
+                    className="
+                      text-lg
+                      font-bold
+                      text-slate-900
+                    "
                   >
-                    Day
-                  </label>
+                    Weekly Planner
+                  </h2>
 
-                  <select
-                    id={`planner-day-${recipe.id}`}
-                    value={plannerDay}
-                    onChange={(e) =>
-                      setPlannerDay(
-                        e.target.value
-                      )
-                    }
-                    className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-slate-900"
+                  <p
+                    className="
+                      mt-1
+                      text-sm
+                      text-slate-500
+                    "
                   >
-                    {days.map(
-                      (day) => (
+                    {recipe.name}
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setShowPlanner(false)
+                  }
+                  className="
+                    rounded-full
+                    px-3
+                    py-2
+                    text-lg
+                    text-slate-500
+                    hover:bg-slate-100
+                  "
+                  aria-label="Close"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div
+                className="
+                  space-y-5
+                  p-4
+                "
+              >
+                {/* Existing placements */}
+                {placements.length > 0 && (
+                  <div>
+                    <h3
+                      className="
+                        mb-2
+                        text-sm
+                        font-bold
+                        text-slate-700
+                      "
+                    >
+                      Currently planned
+                    </h3>
+
+                    <div className="space-y-2">
+                      {placements.map(
+                        (placement) => (
+                          <div
+                            key={`${placement.day}-${placement.meal}`}
+                            className="
+                              rounded-xl
+                              bg-green-50
+                              px-3
+                              py-3
+                            "
+                          >
+                            <span
+                              className="
+                                font-semibold
+                                text-green-800
+                              "
+                            >
+                              📅{" "}
+                              {placement.day}{" "}
+                              •{" "}
+                              {placement.meal}
+                            </span>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Choose new placement */}
+                <div
+                  className="
+                    border-t
+                    border-gray-200
+                    pt-4
+                  "
+                >
+                  <h3
+                    className="
+                      mb-3
+                      text-sm
+                      font-bold
+                      text-slate-700
+                    "
+                  >
+                    {placements.length > 0
+                      ? "Add another placement"
+                      : "Choose when to eat it"}
+                  </h3>
+
+                  {/* Day */}
+                  <div className="mb-4">
+                    <label
+                      htmlFor={`planner-day-${recipe.id}`}
+                      className="
+                        mb-2
+                        block
+                        text-sm
+                        font-semibold
+                        text-slate-700
+                      "
+                    >
+                      Day
+                    </label>
+
+                    <select
+                      id={`planner-day-${recipe.id}`}
+                      value={plannerDay}
+                      onChange={(e) =>
+                        setPlannerDay(
+                          e.target.value
+                        )
+                      }
+                      className="
+                        w-full
+                        rounded-xl
+                        border
+                        border-gray-300
+                        bg-white
+                        px-4
+                        py-3
+                        text-base
+                        text-slate-900
+                      "
+                    >
+                      {days.map((day) => (
                         <option
                           key={day}
                           value={day}
                         >
                           {day}
                         </option>
-                      )
-                    )}
-                  </select>
+                      ))}
+                    </select>
+                  </div>
 
-                </div>
+                  {/* Meal */}
+                  <div className="mb-4">
+                    <label
+                      htmlFor={`planner-meal-${recipe.id}`}
+                      className="
+                        mb-2
+                        block
+                        text-sm
+                        font-semibold
+                        text-slate-700
+                      "
+                    >
+                      Meal
+                    </label>
 
-                {/* Meal */}
-                <div className="mb-4">
-
-                  <label
-                    htmlFor={`planner-meal-${recipe.id}`}
-                    className="mb-2 block text-sm font-semibold text-slate-700"
-                  >
-                    Meal
-                  </label>
-
-                  <select
-                    id={`planner-meal-${recipe.id}`}
-                    value={plannerMeal}
-                    onChange={(e) =>
-                      setPlannerMeal(
-                        e.target.value
-                      )
-                    }
-                    className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-slate-900"
-                  >
-                    {mealTypes.map(
-                      (meal) => (
-                        <option
-                          key={meal}
-                          value={meal}
-                        >
-                          {meal}
-                        </option>
-                      )
-                    )}
-                  </select>
-
-                </div>
-
-                <button
-                  type="button"
-                  onClick={
-                    addToPlanner
-                  }
-                  className="w-full rounded-xl bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600"
-                >
-                  Add to Planner
-                </button>
-
-              </div>
-
-              {/* Remove */}
-              {placements.length > 0 && (
-                <div className="border-t border-gray-200 pt-4">
+                    <select
+                      id={`planner-meal-${recipe.id}`}
+                      value={plannerMeal}
+                      onChange={(e) =>
+                        setPlannerMeal(
+                          e.target.value
+                        )
+                      }
+                      className="
+                        w-full
+                        rounded-xl
+                        border
+                        border-gray-300
+                        bg-white
+                        px-4
+                        py-3
+                        text-base
+                        text-slate-900
+                      "
+                    >
+                      {mealTypes.map(
+                        (meal) => (
+                          <option
+                            key={meal}
+                            value={meal}
+                          >
+                            {meal}
+                          </option>
+                        )
+                      )}
+                    </select>
+                  </div>
 
                   <button
                     type="button"
-                    onClick={
-                      removeFromPlanner
-                    }
-                    className="w-full rounded-xl bg-red-50 px-4 py-3 font-semibold text-red-600 transition hover:bg-red-100"
+                    onClick={addToPlanner}
+                    className="
+                      w-full
+                      rounded-xl
+                      bg-orange-500
+                      px-4
+                      py-3
+                      font-bold
+                      text-white
+                      transition
+                      hover:bg-orange-600
+                    "
                   >
-                    Remove from Planner
+                    Add to Planner
                   </button>
-
                 </div>
-              )}
 
+                {/* Remove */}
+                {placements.length > 0 && (
+                  <div
+                    className="
+                      border-t
+                      border-gray-200
+                      pt-4
+                    "
+                  >
+                    <button
+                      type="button"
+                      onClick={
+                        removeFromPlanner
+                      }
+                      className="
+                        w-full
+                        rounded-xl
+                        bg-red-50
+                        px-4
+                        py-3
+                        font-semibold
+                        text-red-600
+                        transition
+                        hover:bg-red-100
+                      "
+                    >
+                      Remove from Planner
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-
           </div>
-
-        </div>
-      )}
-
-    </div>
+        )}
+      </article>
+    </>
   );
 }

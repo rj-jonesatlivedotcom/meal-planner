@@ -7,7 +7,7 @@ export default function Home() {
 
       {/* HERO */}
       <section
-        className="relative min-h-[340px] overflow-hidden bg-cover bg-center md:min-h-[430px]"
+        className="relative min-h-[305px] overflow-hidden bg-cover bg-center pb-0 md:min-h-[430px]"
         style={{
           backgroundImage: "url('/images/background.png')",
         }}
@@ -17,7 +17,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/35" />
 
         {/* HERO CONTENT */}
-        <div className="relative z-10 mx-auto min-h-[340px] max-w-6xl px-5 pb-8 pt-12 sm:px-8 sm:pt-14 md:min-h-[430px] md:pb-10 md:pt-16">
+        <div className="relative z-10 mx-auto min-h-[305px] max-w-6xl px-5 pb-2 pt-10 sm:px-8 sm:pt-12 md:min-h-[430px] md:pb-10 md:pt-16">
 
           {/* HERO TEXT */}
           <div className="relative z-20 w-[68%] md:w-1/2">
@@ -47,15 +47,16 @@ export default function Home() {
 
       </section>
 
-      {/* MAIN NAVIGATION */}
-      <section className="px-5 py-6 sm:px-8">
 
-        <div className="mx-auto max-w-5xl space-y-4">
+      {/* MAIN NAVIGATION */}
+      <section className="px-5 py-4 sm:px-8 sm:py-6">
+
+        <div className="mx-auto max-w-5xl space-y-3 sm:space-y-4">
 
           {/* WEEKLY PLANNER */}
           <Link
             href="/planner"
-            className="group flex min-h-[150px] items-center gap-5 rounded-3xl bg-blue-50 px-5 py-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:px-8"
+            className="group flex min-h-[130px] items-center gap-5 rounded-3xl bg-blue-50 px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:px-8 sm:py-6"
           >
 
             <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-blue-200 text-5xl">
@@ -74,16 +75,13 @@ export default function Home() {
 
             </div>
 
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-600 text-4xl text-white transition group-hover:translate-x-1">
-              ›
-            </div>
-
           </Link>
+
 
           {/* RECIPES */}
           <Link
             href="/recipes"
-            className="group flex min-h-[150px] items-center gap-5 rounded-3xl bg-green-50 px-5 py-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:px-8"
+            className="group flex min-h-[130px] items-center gap-5 rounded-3xl bg-green-50 px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:px-8 sm:py-6"
           >
 
             <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-green-200 text-5xl">
@@ -103,16 +101,13 @@ export default function Home() {
 
             </div>
 
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-green-700 text-4xl text-white transition group-hover:translate-x-1">
-              ›
-            </div>
-
           </Link>
+
 
           {/* SHOPPING LIST */}
           <Link
             href="/shopping"
-            className="group flex min-h-[150px] items-center gap-5 rounded-3xl bg-orange-50 px-5 py-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:px-8"
+            className="group flex min-h-[130px] items-center gap-5 rounded-3xl bg-orange-50 px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:px-8 sm:py-6"
           >
 
             <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-orange-200 text-5xl">
@@ -131,15 +126,12 @@ export default function Home() {
 
             </div>
 
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-orange-500 text-4xl text-white transition group-hover:translate-x-1">
-              ›
-            </div>
-
           </Link>
 
         </div>
 
       </section>
+
 
       {/* BOTTOM INFORMATION */}
       <section className="px-5 pb-8 sm:px-8">
@@ -170,6 +162,7 @@ export default function Home() {
         </div>
 
       </section>
+
 
       {/* ABOUT LINK */}
       <div className="pb-10 text-center">

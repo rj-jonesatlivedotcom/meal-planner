@@ -160,6 +160,9 @@ export default function WeeklyPlannerPage() {
   const [showClearConfirm, setShowClearConfirm] =
     useState(false);
 
+  const [showPickConfirm, setShowPickConfirm] =
+    useState(false);
+
   useEffect(() => {
     const emptyPlanner =
       createEmptyPlanner();
@@ -250,6 +253,149 @@ export default function WeeklyPlannerPage() {
         },
       };
     });
+  }
+
+  function getRandomRecipeId(
+    meal: string,
+    usedIds: Set<string>
+  ) {
+    const mealRecipes =
+      getMealRecipes(meal);
+
+    const unusedRecipes =
+      mealRecipes.filter(
+        (recipe) => !usedIds.has(recipe.id)
+      );
+
+    const pool =
+      unusedRecipes.length > 0
+        ? unusedRecipes
+        : mealRecipes;
+
+    if (pool.length === 0) {
+      return null;
+    }
+
+    const randomIndex =
+      Math.floor(
+        Math.random() * pool.length
+      );
+
+    return pool[randomIndex].id;
+  }
+
+  function pickForMe(
+    replaceAll = false
+  ) {
+    setPlannerMeals((current) => {
+      if (!current) return current;
+
+      const nextPlanner: PlannerMeals =
+        replaceAll
+          ? createEmptyPlanner()
+          : JSON.parse(
+              JSON.stringify(current)
+            );
+
+      const usedByMeal: Record<
+        string,
+        Set<string>
+      > = {
+        Breakfast: new Set<string>(),
+        Lunch: new Set<string>(),
+        Dinner: new Set<string>(),
+      };
+
+      /*
+       * Keep existing choices in the
+       * used pool so Pick for Me does
+       * not create unnecessary repeats.
+       */
+      if (!replaceAll) {
+        days.forEach((day) => {
+          mealTypes.forEach((meal) => {
+            const recipeId =
+              current[day]?.[meal];
+
+            if (
+              recipeId &&
+              usedByMeal[meal]
+            ) {
+              usedByMeal[meal].add(
+                recipeId
+              );
+            }
+          });
+        });
+      }
+
+      /*
+       * Fill empty slots.
+       *
+       * If replaceAll is true, every slot
+       * is filled with a new random choice.
+       */
+      days.forEach((day) => {
+        mealTypes.forEach((meal) => {
+          if (
+            !replaceAll &&
+            nextPlanner[day][meal]
+          ) {
+            return;
+          }
+
+          const recipeId =
+            getRandomRecipeId(
+              meal,
+              usedByMeal[meal]
+            );
+
+          if (!recipeId) {
+            return;
+          }
+
+          nextPlanner[day][meal] =
+            recipeId;
+
+          usedByMeal[meal].add(
+            recipeId
+          );
+        });
+      });
+
+      return nextPlanner;
+    });
+
+    setShowPickConfirm(false);
+  }
+
+  function startPickForMe() {
+    if (plannerMeals === null) {
+      return;
+    }
+
+    const hasEmptySlots =
+      days.some((day) =>
+        mealTypes.some(
+          (meal) =>
+            !plannerMeals[day]?.[meal]
+        )
+      );
+
+    /*
+     * If the week is already full,
+     * ask before replacing everything.
+     */
+    if (!hasEmptySlots) {
+      setShowPickConfirm(true);
+      return;
+    }
+
+    /*
+     * If there are empty slots,
+     * fill only those slots.
+     */
+    pickForMe();
   }
 
   function clearWeek() {
@@ -427,9 +573,7 @@ export default function WeeklyPlannerPage() {
 
         </div>
 
-        {/* ===================================================== */}
         {/* MOBILE PLANNER */}
-        {/* ===================================================== */}
 
         <div className="md:hidden">
 
@@ -665,9 +809,7 @@ export default function WeeklyPlannerPage() {
 
         </div>
 
-        {/* ===================================================== */}
         {/* DESKTOP PLANNER */}
-        {/* ===================================================== */}
 
         <div className="hidden md:block">
 
@@ -738,7 +880,7 @@ export default function WeeklyPlannerPage() {
                 return (
 
                   <div
-                    key={`${day}-Breakfast`}
+                    key={`${day}-Breakfast-${plannerMeals[day].Breakfast ?? "empty"}`}
                     className={`border-l border-slate-100 p-2 ${
                       recipe
                         ? "bg-orange-50/35"
@@ -854,7 +996,7 @@ export default function WeeklyPlannerPage() {
                 return (
 
                   <div
-                    key={`${day}-Lunch`}
+                    key={`${day}-Lunch-${plannerMeals[day].Lunch ?? "empty"}`}
                     className={`border-l border-slate-100 p-2 ${
                       recipe
                         ? "bg-orange-50/35"
@@ -970,7 +1112,7 @@ export default function WeeklyPlannerPage() {
                 return (
 
                   <div
-                    key={`${day}-Dinner`}
+                    key={`${day}-Dinner-${plannerMeals[day].Dinner ?? "empty"}`}
                     className={`border-l border-slate-100 p-2 ${
                       recipe
                         ? "bg-orange-50/35"
@@ -1098,15 +1240,27 @@ export default function WeeklyPlannerPage() {
               </span>
             </Link>
 
-            <button
-              type="button"
-              onClick={() =>
-                setShowClearConfirm(true)
-              }
-              className="self-start rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-600 shadow-sm ring-1 ring-black/10 transition hover:bg-red-50 hover:text-red-600 md:self-auto md:px-5 md:py-3 md:text-sm"
-            >
-              🗑️ Clear Week
-            </button>
+            <div className="flex items-center gap-2 self-start md:self-auto">
+
+              <button
+                type="button"
+                onClick={startPickForMe}
+                className="rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-orange-600 md:px-5 md:py-3 md:text-sm"
+              >
+                🎲 Pick for Me
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setShowClearConfirm(true)
+                }
+                className="rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-600 shadow-sm ring-1 ring-black/10 transition hover:bg-red-50 hover:text-red-600 md:px-5 md:py-3 md:text-sm"
+              >
+                🗑️ Clear Week
+              </button>
+
+            </div>
 
           </div>
 
@@ -1152,6 +1306,56 @@ export default function WeeklyPlannerPage() {
                 className="rounded-2xl bg-red-500 px-4 py-3 font-bold text-white transition hover:bg-red-600"
               >
                 Clear Week
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
+      {/* PICK FOR ME CONFIRMATION */}
+
+      {showPickConfirm && (
+
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+
+          <div className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-2xl">
+
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-xl">
+              🎲
+            </div>
+
+            <h2 className="mt-4 text-xl font-bold text-slate-900">
+              Pick a new week?
+            </h2>
+
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Your week is already full. This will replace all of your current meals with random choices.
+            </p>
+
+            <div className="mt-6 grid grid-cols-2 gap-3">
+
+              <button
+                type="button"
+                onClick={() =>
+                  setShowPickConfirm(false)
+                }
+                className="rounded-2xl bg-slate-100 px-4 py-3 font-bold text-slate-700 transition hover:bg-slate-200"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  pickForMe(true)
+                }
+                className="rounded-2xl bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600"
+              >
+                Pick for Me
               </button>
 
             </div>

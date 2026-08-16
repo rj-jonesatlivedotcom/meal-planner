@@ -10,7 +10,6 @@ export default function RecipesPage() {
   const [searchText, setSearchText] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [showFilters, setShowFilters] = useState(false);
-  const [hasSelectedMeals, setHasSelectedMeals] = useState(false);
   const [filtersLoaded, setFiltersLoaded] = useState(false);
 
   const filterRef = useRef<HTMLDivElement>(null);
@@ -110,51 +109,6 @@ export default function RecipesPage() {
   ]);
 
   useEffect(() => {
-    function updateShoppingStatus() {
-      const saved = localStorage.getItem("shopping-data");
-
-      if (!saved) {
-        setHasSelectedMeals(false);
-        return;
-      }
-
-      try {
-        const data = JSON.parse(saved);
-
-        setHasSelectedMeals(
-          (data.selectedRecipes ?? []).length > 0
-        );
-      } catch {
-        setHasSelectedMeals(false);
-      }
-    }
-
-    updateShoppingStatus();
-
-    window.addEventListener(
-      "shopping-list-updated",
-      updateShoppingStatus
-    );
-
-    window.addEventListener(
-      "storage",
-      updateShoppingStatus
-    );
-
-    return () => {
-      window.removeEventListener(
-        "shopping-list-updated",
-        updateShoppingStatus
-      );
-
-      window.removeEventListener(
-        "storage",
-        updateShoppingStatus
-      );
-    };
-  }, []);
-
-  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
         filterRef.current &&
@@ -178,44 +132,6 @@ export default function RecipesPage() {
       );
     };
   }, [showFilters]);
-
-  function clearAllMeals() {
-    const saved = localStorage.getItem("shopping-data");
-
-    let data = {
-      selectedRecipes: [] as string[],
-      shoppingList: [],
-      checkedItems: [],
-      people: 1,
-    };
-
-    if (saved) {
-      try {
-        data = {
-          ...data,
-          ...JSON.parse(saved),
-        };
-      } catch {
-        // Use default data if saved data is invalid.
-      }
-    }
-
-    localStorage.setItem(
-      "shopping-data",
-      JSON.stringify({
-        ...data,
-        selectedRecipes: [],
-        shoppingList: [],
-        checkedItems: [],
-      })
-    );
-
-    setHasSelectedMeals(false);
-
-    window.dispatchEvent(
-      new Event("shopping-list-updated")
-    );
-  }
 
   function getMealType(recipe: (typeof recipes)[number]) {
     const code = recipe.code?.toUpperCase() ?? "";
@@ -570,23 +486,6 @@ export default function RecipesPage() {
             )}
 
           </div>
-
-          {/* Clear All */}
-          {hasSelectedMeals && (
-            <button
-              type="button"
-              onClick={clearAllMeals}
-              className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black whitespace-nowrap"
-            >
-              🗑️
-              <span className="sm:hidden">
-                Clear
-              </span>
-              <span className="hidden sm:inline">
-                Clear All
-              </span>
-            </button>
-          )}
 
         </div>
 

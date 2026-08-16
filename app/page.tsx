@@ -97,7 +97,7 @@ export default function Home() {
               </h2>
 
               <p className="mt-1 text-lg leading-snug text-slate-800">
-                Browse 30+ kidney-friendly recipes with nutrition info,
+                Browse delicious kidney-friendly recipes with nutrition info,
                 cooking times and more.
               </p>
 

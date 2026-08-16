@@ -72,25 +72,6 @@ export default function RecipeDetailPage() {
       null
     );
 
-  const [showSidney, setShowSidney] =
-    useState(false);
-
-  const [sidneyMessage, setSidneyMessage] =
-    useState("");
-
-  const sidneyMessages = [
-    "Excellent!",
-    "Enjoy!",
-    "Tasty!",
-    "Lovely!",
-    "Great Choice!",
-    "Yum!",
-    "Delicious!",
-    "Wow!",
-    "Brilliant!",
-    "Nice!",
-  ];
-
   /*
    * Find every place where this recipe
    * currently appears in the Weekly Planner.
@@ -400,24 +381,6 @@ export default function RecipeDetailPage() {
     setPlacements(
       getRecipePlacements()
     );
-
-    const randomMessage =
-      sidneyMessages[
-        Math.floor(
-          Math.random() *
-            sidneyMessages.length
-        )
-      ];
-
-    setSidneyMessage(
-      randomMessage
-    );
-
-    setShowSidney(true);
-
-    window.setTimeout(() => {
-      setShowSidney(false);
-    }, 1500);
 
     window.dispatchEvent(
       new Event(
@@ -755,27 +718,6 @@ export default function RecipeDetailPage() {
         </button>
 
       </div>
-
-      {/* Sidney */}
-      {showSidney && (
-        <div className="pointer-events-none fixed bottom-20 right-4 z-50 flex items-start gap-1">
-
-          <img
-            src="/images/sidney/sidney-recipes.png"
-            alt="Sidney"
-            className="h-20 w-20 object-contain"
-          />
-
-          <div className="relative mt-1 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-3 py-2 text-xs font-bold text-slate-800 shadow-lg">
-
-            <div className="absolute left-[-6px] top-3 h-0 w-0 border-y-[6px] border-y-transparent border-r-[6px] border-r-white" />
-
-            {sidneyMessage}
-
-          </div>
-
-        </div>
-      )}
 
       {/* Planner popup */}
       {showPlanner && (

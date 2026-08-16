@@ -3212,7 +3212,7 @@ export const recipes: Recipe[] = [
       {
         item: "Onion, finely sliced",
         shoppingItem: "Onion",
-        quantity: "2 tbsp",
+        quantity: "0.25 onion",
       },
       {
         item: "Lettuce leaves",

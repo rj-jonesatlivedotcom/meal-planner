@@ -165,10 +165,38 @@ const ingredientCategories: Record<string, string> = {
   salt: "🧂 Herbs & Spices",
 };
 
+/*
+   * Clean up text that has been saved/read with the wrong
+   * character encoding. This is why values such as Â¼, Â½,
+   * Â¾, Ã© and Ã— were appearing in the shopping list.
+   *
+   * The replacement is deliberately kept here so we can fix
+   * old recipe data without having to rename or recreate
+   * any recipe files/images.
+   */
+  function cleanText(value: string): string {
+    return value
+      .replace(/Â¼/g, "¼")
+      .replace(/Â½/g, "½")
+      .replace(/Â¾/g, "¾")
+      .replace(/Ã—/g, "×")
+      .replace(/Ã©/g, "é")
+      .replace(/Ã¨/g, "è")
+      .replace(/Ãª/g, "ê")
+      .replace(/Ã´/g, "ô")
+      .replace(/Ã¹/g, "ù")
+      .replace(/Ã¢/g, "â")
+      .replace(/Ã®/g, "î")
+      .replace(/â€™/g, "’")
+      .replace(/â€“/g, "–")
+      .replace(/â€”/g, "—")
+      .replace(/â€¦/g, "…")
+      .replace(/Â/g, "")
+      .trim();
+  }
+
 function getCategory(item: string) {
-  const lowerItem = item
-    .trim()
-    .toLowerCase();
+  const lowerItem = cleanText(item).toLowerCase();
 
   const match = Object.keys(
     ingredientCategories
@@ -214,7 +242,7 @@ export default function ShoppingPage() {
   function fractionToDecimal(
     value: string
   ): number | null {
-    value = value.trim();
+    value = cleanText(value);
 
     const fractionValues: Record<
       string,
@@ -348,7 +376,7 @@ export default function ShoppingPage() {
     unit: string
   ): string {
     const cleaned =
-      unit.trim().toLowerCase();
+      cleanText(unit).toLowerCase();
 
     const aliases: Record<
       string,
@@ -458,6 +486,8 @@ export default function ShoppingPage() {
   function parseQuantity(
     quantity: string
   ) {
+    quantity = cleanText(quantity);
+
     const multipliedMatch =
       quantity.match(
         /^(\d+(?:\.\d+)?)\s*[×x]\s*(\d+(?:\.\d+)?(?:[¼½¾])?)\s*(.*)$/i
@@ -555,6 +585,8 @@ export default function ShoppingPage() {
   function normaliseIngredient(
     item: string
   ): string {
+    item = cleanText(item);
+
     const removePreparation = [
       ", diced",
       ", sliced",
@@ -660,6 +692,16 @@ export default function ShoppingPage() {
     return result.trim();
   }
 
+  function formatSizedProduceAmount(amount: number): string {
+    // Whole produce should be shown in practical shopping quantities.
+    // Onions and peppers are bought as whole items, so use quarter-onion
+    // increments rather than displaying awkward decimals such as 0.88.
+    const nearestQuarter =
+      Math.max(0.25, Math.round(amount * 4) / 4);
+
+    return decimalToFraction(nearestQuarter);
+  }
+
   function normaliseSizedProduce(
     item: string,
     quantity: string
@@ -705,17 +747,20 @@ export default function ShoppingPage() {
         break;
 
       default:
+        // parseQuantity("¼ onion") returns unit "onion".
+        // Treat the item name itself as the whole-produce unit so that
+        // fractional quantities can be combined with other onions.
         if (
-          parsed.unit !== ""
+          parsed.unit !== "" &&
+          parsed.unit !== name
         ) {
           return quantity;
         }
+        break;
     }
 
-    return formatQuantity(
-      parsed.amount *
-        multiplier,
-      ""
+    return formatSizedProduceAmount(
+      parsed.amount * multiplier
     );
   }
 
@@ -760,17 +805,17 @@ export default function ShoppingPage() {
 
     function addQuantity(
       current: string,
-      incoming: string
+      incoming: string,
+      itemName: string
     ): string {
+      current = cleanText(current);
+      incoming = cleanText(incoming);
+
       const currentLower =
-        current
-          .toLowerCase()
-          .trim();
+        current.toLowerCase().trim();
 
       const incomingLower =
-        incoming
-          .toLowerCase()
-          .trim();
+        incoming.toLowerCase().trim();
 
       if (
         incomingLower ===
@@ -842,11 +887,30 @@ export default function ShoppingPage() {
             converted1.amount +
             converted2.amount;
 
+          const normalisedItemName =
+            normaliseIngredient(
+              itemName
+            ).toLowerCase();
+
+          const sizedProduce = [
+            "onion",
+            "red pepper",
+            "green pepper",
+            "yellow pepper",
+          ];
+
           parts[i] =
-            formatQuantity(
-              total,
-              converted1.unit
-            );
+            converted1.unit === "" &&
+            sizedProduce.includes(
+              normalisedItemName
+            )
+              ? formatSizedProduceAmount(
+                  total
+                )
+              : formatQuantity(
+                  total,
+                  converted1.unit
+                );
 
           return parts.join(
             ", "
@@ -860,8 +924,10 @@ export default function ShoppingPage() {
     ingredients.forEach(
       (ingredient) => {
         const rawItem =
-          ingredient.item?.trim() ??
-          "";
+          cleanText(
+            ingredient.item?.trim() ??
+              ""
+          );
 
         if (
           rawItem
@@ -874,9 +940,14 @@ export default function ShoppingPage() {
         const lowerItem =
           rawItem.toLowerCase();
 
+        const cleanedQuantity =
+          cleanText(
+            ingredient.quantity
+          );
+
         const parsedQuantity =
           parseQuantity(
-            ingredient.quantity
+            cleanedQuantity
           );
 
         const isFreshLemonQuantity =
@@ -914,7 +985,7 @@ export default function ShoppingPage() {
 
         const shoppingName =
           normaliseIngredient(
-            sourceName
+            cleanText(sourceName)
           );
 
         const shoppingQuantity =
@@ -955,7 +1026,8 @@ export default function ShoppingPage() {
         existing.quantity =
           addQuantity(
             existing.quantity,
-            normalisedIngredient.quantity
+            normalisedIngredient.quantity,
+            shoppingName
           );
       }
     );

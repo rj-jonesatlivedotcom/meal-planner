@@ -26,6 +26,12 @@ type PlannerMeals = {
   };
 };
 
+type MealPeople = {
+  [day: string]: {
+    [meal: string]: number | undefined;
+  };
+};
+
 type ShoppingData = {
   selectedRecipes: string[];
   shoppingList: unknown[];
@@ -50,10 +56,44 @@ function createEmptyPlanner(): PlannerMeals {
   return initial;
 }
 
+function createEmptyMealPeople(): MealPeople {
+  const initial: MealPeople = {};
+
+  days.forEach((day) => {
+    initial[day] = {};
+  });
+
+  return initial;
+}
+
+function getHouseholdPeople(): number {
+  try {
+    const shoppingData =
+      localStorage.getItem("shopping-data");
+
+    if (shoppingData) {
+      const parsed = JSON.parse(shoppingData);
+
+      if (
+        typeof parsed.people === "number" &&
+        parsed.people > 0
+      ) {
+        return parsed.people;
+      }
+    }
+  } catch {
+    // Use the default below.
+  }
+
+  return 1;
+}
+
 function getPlannerCounts(
-  planner: PlannerMeals
+  planner: PlannerMeals,
+  mealPeople: MealPeople
 ): Record<string, number> {
   const counts: Record<string, number> = {};
+  const householdPeople = getHouseholdPeople();
 
   days.forEach((day) => {
     mealTypes.forEach((meal) => {
@@ -61,8 +101,12 @@ function getPlannerCounts(
 
       if (!recipeId) return;
 
+      const people =
+        mealPeople[day]?.[meal] ??
+        householdPeople;
+
       counts[recipeId] =
-        (counts[recipeId] ?? 0) + 1;
+        (counts[recipeId] ?? 0) + people;
     });
   });
 
@@ -70,7 +114,8 @@ function getPlannerCounts(
 }
 
 function syncPlannerWithShoppingList(
-  planner: PlannerMeals
+  planner: PlannerMeals,
+  mealPeople: MealPeople
 ) {
   const saved =
     localStorage.getItem("shopping-data");
@@ -112,7 +157,10 @@ function syncPlannerWithShoppingList(
     );
 
   const counts =
-    getPlannerCounts(planner);
+    getPlannerCounts(
+      planner,
+      mealPeople
+    );
 
   const uniquePlannedRecipeIds =
     Object.keys(counts);
@@ -150,6 +198,15 @@ export default function WeeklyPlannerPage() {
 
   const [plannerMeals, setPlannerMeals] =
     useState<PlannerMeals | null>(null);
+
+  const [mealPeople, setMealPeople] =
+    useState<MealPeople | null>(null);
+
+  const [peoplePicker, setPeoplePicker] =
+    useState<{
+      day: string;
+      meal: string;
+    } | null>(null);
 
   const [picker, setPicker] =
     useState<{
@@ -227,6 +284,9 @@ export default function WeeklyPlannerPage() {
     const emptyPlanner =
       createEmptyPlanner();
 
+    const defaultMealPeople =
+      createEmptyMealPeople();
+
     const saved =
       localStorage.getItem(
         "weekly-planner"
@@ -234,6 +294,7 @@ export default function WeeklyPlannerPage() {
 
     if (!saved) {
       setPlannerMeals(emptyPlanner);
+      setMealPeople(createEmptyMealPeople());
       return;
     }
 
@@ -246,32 +307,130 @@ export default function WeeklyPlannerPage() {
         ...savedPlanner,
       };
 
+      const loadedMealPeople: MealPeople = {
+        ...createEmptyMealPeople(),
+      };
+
+      const savedMealPeople =
+        savedPlanner.mealPeople ?? null;
+
+      days.forEach((day) => {
+        loadedMealPeople[day] = {
+          ...defaultMealPeople[day],
+          ...(savedMealPeople?.[day] ?? {}),
+        };
+      });
+
+      /*
+       * Migration: older versions of this feature could save every meal
+       * as 1 person. If the Shopping List household size is larger and
+       * the saved meal settings are all still 1, treat those as defaults
+       * rather than genuine per-meal overrides.
+       */
+      const householdPeople = getHouseholdPeople();
+
+      if (
+        householdPeople > 1 &&
+        savedMealPeople
+      ) {
+        const savedValues = days.flatMap((day) =>
+          mealTypes.map(
+            (meal) =>
+              savedMealPeople?.[day]?.[meal]
+          )
+        );
+
+        const definedSavedValues =
+          savedValues.filter(
+            (value): value is number =>
+              typeof value === "number"
+          );
+
+        const allDefinedSavedValuesAreOne =
+          definedSavedValues.length > 0 &&
+          definedSavedValues.every(
+            (value) => value === 1
+          );
+
+        if (allDefinedSavedValuesAreOne) {
+          days.forEach((day) => {
+            mealTypes.forEach((meal) => {
+              loadedMealPeople[day][meal] =
+                householdPeople;
+            });
+          });
+        }
+      }
+
       setPlannerMeals(loadedPlanner);
+      setMealPeople(loadedMealPeople);
 
       syncPlannerWithShoppingList(
-        loadedPlanner
+        loadedPlanner,
+        loadedMealPeople
       );
     } catch {
       setPlannerMeals(emptyPlanner);
+      setMealPeople(createEmptyMealPeople());
     }
   }, []);
 
   useEffect(() => {
-    if (plannerMeals === null) return;
+    if (
+      plannerMeals === null ||
+      mealPeople === null
+    ) {
+      return;
+    }
 
     localStorage.setItem(
       "weekly-planner",
-      JSON.stringify(plannerMeals)
+      JSON.stringify({
+        ...plannerMeals,
+        mealPeople,
+      })
     );
 
     syncPlannerWithShoppingList(
-      plannerMeals
+      plannerMeals,
+      mealPeople
     );
 
     window.dispatchEvent(
       new Event("weekly-planner-updated")
     );
-  }, [plannerMeals]);
+  }, [plannerMeals, mealPeople]);
+
+  function getPeopleForMeal(
+    day: string,
+    meal: string
+  ) {
+    return (
+      mealPeople?.[day]?.[meal] ??
+      getHouseholdPeople()
+    );
+  }
+
+  function setPeopleForMeal(
+    day: string,
+    meal: string,
+    people: number
+  ) {
+    setMealPeople((current) => {
+      if (!current) return current;
+
+      return {
+        ...current,
+        [day]: {
+          ...current[day],
+          [meal]: Math.max(
+            1,
+            Math.min(8, people)
+          ),
+        },
+      };
+    });
+  }
 
   function chooseRecipe(
     recipeId: string
@@ -430,7 +589,10 @@ export default function WeeklyPlannerPage() {
   }
 
   function startPickForMe() {
-    if (plannerMeals === null) {
+    if (
+    plannerMeals === null ||
+    mealPeople === null
+  ) {
       return;
     }
 
@@ -461,6 +623,10 @@ export default function WeeklyPlannerPage() {
   function clearWeek() {
     setPlannerMeals(
       createEmptyPlanner()
+    );
+
+    setMealPeople(
+      createEmptyMealPeople()
     );
 
     localStorage.removeItem(
@@ -659,9 +825,24 @@ export default function WeeklyPlannerPage() {
                       🥣 Breakfast
                     </span>
 
-                    <span className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold uppercase leading-none tracking-wide text-white shadow-sm">
-                      Planned
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPeoplePicker({
+                          day: selectedDay,
+                          meal: "Breakfast",
+                        })
+                      }
+                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                    >
+                      {getPeopleForMeal(
+                        selectedDay,
+                        "Breakfast"
+                      )} {getPeopleForMeal(
+                        selectedDay,
+                        "Breakfast"
+                      ) === 1 ? "person" : "people"}
+                    </button>
 
                     <button
                       type="button"
@@ -733,9 +914,24 @@ export default function WeeklyPlannerPage() {
                       🥪 Lunch
                     </span>
 
-                    <span className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold uppercase leading-none tracking-wide text-white shadow-sm">
-                      Planned
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPeoplePicker({
+                          day: selectedDay,
+                          meal: "Lunch",
+                        })
+                      }
+                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                    >
+                      {getPeopleForMeal(
+                        selectedDay,
+                        "Lunch"
+                      )} {getPeopleForMeal(
+                        selectedDay,
+                        "Lunch"
+                      ) === 1 ? "person" : "people"}
+                    </button>
 
                     <button
                       type="button"
@@ -807,9 +1003,24 @@ export default function WeeklyPlannerPage() {
                       🍽️ Dinner
                     </span>
 
-                    <span className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold uppercase leading-none tracking-wide text-white shadow-sm">
-                      Planned
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPeoplePicker({
+                          day: selectedDay,
+                          meal: "Dinner",
+                        })
+                      }
+                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                    >
+                      {getPeopleForMeal(
+                        selectedDay,
+                        "Dinner"
+                      )} {getPeopleForMeal(
+                        selectedDay,
+                        "Dinner"
+                      ) === 1 ? "person" : "people"}
+                    </button>
 
                     <button
                       type="button"
@@ -983,6 +1194,26 @@ export default function WeeklyPlannerPage() {
 
                         </div>
 
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setPeoplePicker({
+                              day,
+                              meal: "Breakfast",
+                            })
+                          }
+                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                        >
+                          {getPeopleForMeal(
+                            day,
+                            "Breakfast"
+                          )} {getPeopleForMeal(
+                            day,
+                            "Breakfast"
+                          ) === 1 ? "person" : "people"}
+                        </button>
+
+
                         <div className="flex flex-1 items-center justify-center px-2 pb-2 pt-1 text-center">
 
                           <h3 className="text-sm font-bold leading-5 text-slate-900">
@@ -1099,6 +1330,25 @@ export default function WeeklyPlannerPage() {
 
                         </div>
 
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setPeoplePicker({
+                              day,
+                              meal: "Lunch",
+                            })
+                          }
+                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                        >
+                          {getPeopleForMeal(
+                            day,
+                            "Lunch"
+                          )} {getPeopleForMeal(
+                            day,
+                            "Lunch"
+                          ) === 1 ? "person" : "people"}
+                        </button>
+
                         <div className="flex flex-1 items-center justify-center px-2 pb-2 pt-1 text-center">
 
                           <h3 className="text-sm font-bold leading-5 text-slate-900">
@@ -1214,6 +1464,25 @@ export default function WeeklyPlannerPage() {
                           </button>
 
                         </div>
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setPeoplePicker({
+                              day,
+                              meal: "Dinner",
+                            })
+                          }
+                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                        >
+                          {getPeopleForMeal(
+                            day,
+                            "Dinner"
+                          )} {getPeopleForMeal(
+                            day,
+                            "Dinner"
+                          ) === 1 ? "person" : "people"}
+                        </button>
 
                         <div className="flex flex-1 items-center justify-center px-2 pb-2 pt-1 text-center">
 
@@ -1419,6 +1688,96 @@ export default function WeeklyPlannerPage() {
               </button>
 
             </div>
+
+          </div>
+
+        </div>
+
+      )}
+
+      {/* PEOPLE PICKER */}
+
+      {peoplePicker && (
+
+        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+
+          <div className="w-full max-w-xs rounded-3xl bg-white p-6 shadow-2xl">
+
+            <p className="text-xs font-bold uppercase tracking-wider text-orange-600">
+              {peoplePicker.meal}
+            </p>
+
+            <h2 className="mt-1 text-xl font-bold text-slate-900">
+              How many people?
+            </h2>
+
+            <div className="mt-5 flex items-center justify-center gap-5">
+
+              <button
+                type="button"
+                onClick={() =>
+                  setPeopleForMeal(
+                    peoplePicker.day,
+                    peoplePicker.meal,
+                    getPeopleForMeal(
+                      peoplePicker.day,
+                      peoplePicker.meal
+                    ) - 1
+                  )
+                }
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-2xl font-bold text-slate-700 hover:bg-slate-200"
+                aria-label="Decrease people"
+              >
+                −
+              </button>
+
+              <div className="min-w-[90px] text-center">
+
+                <div className="text-3xl font-extrabold text-slate-900">
+                  {getPeopleForMeal(
+                    peoplePicker.day,
+                    peoplePicker.meal
+                  )}
+                </div>
+
+                <div className="text-sm text-slate-500">
+                  {getPeopleForMeal(
+                    peoplePicker.day,
+                    peoplePicker.meal
+                  ) === 1
+                    ? "person"
+                    : "people"}
+                </div>
+
+              </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setPeopleForMeal(
+                    peoplePicker.day,
+                    peoplePicker.meal,
+                    getPeopleForMeal(
+                      peoplePicker.day,
+                      peoplePicker.meal
+                    ) + 1
+                  )
+                }
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 text-2xl font-bold text-orange-700 hover:bg-orange-200"
+                aria-label="Increase people"
+              >
+                +
+              </button>
+
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setPeoplePicker(null)}
+              className="mt-6 w-full rounded-2xl bg-orange-500 px-4 py-3 font-bold text-white hover:bg-orange-600"
+            >
+              Done
+            </button>
 
           </div>
 

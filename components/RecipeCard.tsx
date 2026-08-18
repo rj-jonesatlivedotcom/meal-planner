@@ -208,6 +208,24 @@ export default function RecipeCard({
   }, [recipe.id]);
 
   /*
+   * Remove any people override for a slot when
+   * a new meal is placed there. A newly selected
+   * meal should use the current Shopping List
+   * household size as its default.
+   */
+  function clearMealPeopleOverride(
+    planner: any,
+    day: string,
+    meal: string
+  ) {
+    if (
+      planner?.mealPeople?.[day]
+    ) {
+      delete planner.mealPeople[day][meal];
+    }
+  }
+
+  /*
    * Add directly to the Planner slot
    * selected before coming to Recipes.
    */
@@ -266,6 +284,12 @@ export default function RecipeCard({
     planner[pendingSlot.day][
       pendingSlot.meal
     ] = recipe.id;
+
+    clearMealPeopleOverride(
+      planner,
+      pendingSlot.day,
+      pendingSlot.meal
+    );
 
     /*
      * Save Planner.
@@ -409,6 +433,12 @@ export default function RecipeCard({
       plannerMeal
     ] = recipe.id;
 
+    clearMealPeopleOverride(
+      planner,
+      plannerDay,
+      plannerMeal
+    );
+
     /*
      * Save Planner.
      */
@@ -486,6 +516,12 @@ export default function RecipeCard({
             ) {
               planner[day][meal] =
                 null;
+
+              if (
+                planner.mealPeople?.[day]
+              ) {
+                delete planner.mealPeople[day][meal];
+              }
             }
           }
         );

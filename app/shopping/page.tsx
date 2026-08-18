@@ -499,7 +499,8 @@ function normaliseIngredient(raw: string): string {
 
 /*
  * Dinner recipes in the current library are written as family-sized
- * recipes (4 people). Breakfast and lunch recipes are written per person.
+ * recipes. plannerCounts contains the total number of people eating each
+ * planned recipe across the week, so each meal can have its own people count.
  *
  * This replaces the old lexicographical recipe.code >= "D016" test,
  * which was the source of the inconsistent scaling seen in the last test.
@@ -1021,7 +1022,7 @@ export default function ShoppingPage() {
              * scaled some lunch recipes differently from others.
              */
             const scaledAmount =
-              (parsed.amount * people * recipeCount) / servings;
+              (parsed.amount * recipeCount) / servings;
 
             const scaledQuantity = formatQuantity(
               scaledAmount,

@@ -47,9 +47,33 @@ export default function RecipesPage() {
   };
 
   // Restore the user's previous recipe filters when returning
-  // to the Recipes page.
+  // to the Recipes page, unless the page was opened from a
+  // specific Weekly Planner meal slot. In that case the planner
+  // meal type takes priority.
   useEffect(() => {
+    const validMealTypes = [
+      "Breakfast",
+      "Lunch",
+      "Dinner",
+    ];
+
     try {
+      const plannerMeal = new URLSearchParams(
+        window.location.search
+      ).get("meal");
+
+      if (
+        plannerMeal &&
+        validMealTypes.includes(plannerMeal)
+      ) {
+        setSelectedMealType(plannerMeal);
+        setSelectedProtein("All");
+        setSearchText("");
+        setSortBy("default");
+        setFiltersLoaded(true);
+        return;
+      }
+
       const savedFilters = sessionStorage.getItem(
         "recipes-filters"
       );
@@ -74,7 +98,7 @@ export default function RecipesPage() {
         }
       }
     } catch {
-      // Ignore invalid saved filter data.
+      // Ignore invalid filter data.
     }
 
     setFiltersLoaded(true);

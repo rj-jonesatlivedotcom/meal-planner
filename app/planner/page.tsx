@@ -483,7 +483,9 @@ export default function WeeklyPlannerPage() {
 
     setPicker(null);
 
-    window.location.href = "/recipes";
+    window.location.href = `/recipes?meal=${encodeURIComponent(
+      picker.meal
+    )}`;
   }
 
   function getRecipe(

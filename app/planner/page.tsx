@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { recipes } from "@/data/recipes";
 
 const days = [
@@ -162,6 +162,66 @@ export default function WeeklyPlannerPage() {
 
   const [showPickConfirm, setShowPickConfirm] =
     useState(false);
+
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
+  function handlePlannerTouchStart(
+    event: React.TouchEvent<HTMLDivElement>
+  ) {
+    const touch = event.touches[0];
+
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+  }
+
+  function handlePlannerTouchEnd(
+    event: React.TouchEvent<HTMLDivElement>
+  ) {
+    if (
+      touchStartX.current === null ||
+      touchStartY.current === null
+    ) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+    const deltaX =
+      touch.clientX - touchStartX.current;
+    const deltaY =
+      touch.clientY - touchStartY.current;
+
+    touchStartX.current = null;
+    touchStartY.current = null;
+
+    /*
+     * Only treat the gesture as a day swipe when
+     * the horizontal movement is clearly greater
+     * than the vertical movement. This keeps normal
+     * vertical page scrolling working as expected.
+     */
+    if (
+      Math.abs(deltaX) < 50 ||
+      Math.abs(deltaX) <= Math.abs(deltaY)
+    ) {
+      return;
+    }
+
+    const currentIndex =
+      days.indexOf(selectedDay);
+
+    if (deltaX < 0) {
+      // Swipe left -> next day.
+      if (currentIndex < days.length - 1) {
+        setSelectedDay(days[currentIndex + 1]);
+      }
+    } else {
+      // Swipe right -> previous day.
+      if (currentIndex > 0) {
+        setSelectedDay(days[currentIndex - 1]);
+      }
+    }
+  }
 
   useEffect(() => {
     const emptyPlanner =
@@ -575,7 +635,11 @@ export default function WeeklyPlannerPage() {
 
         {/* MOBILE PLANNER */}
 
-        <div className="md:hidden">
+        <div
+          className="md:hidden"
+          onTouchStart={handlePlannerTouchStart}
+          onTouchEnd={handlePlannerTouchEnd}
+        >
 
           <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
 
@@ -1198,17 +1262,21 @@ export default function WeeklyPlannerPage() {
 
         {/* SHOPPING LIST / CLEAR */}
 
-        <div className="mt-4 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-black/5 md:mt-4 md:p-4">
+        <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-stretch">
 
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <Link
+            href="/shopping"
+            className="group flex flex-1 items-center justify-between rounded-3xl bg-white p-4 text-left shadow-sm ring-1 ring-black/5 transition hover:bg-green-50 hover:ring-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 md:p-5"
+            aria-label="Go to Shopping List"
+          >
 
-            <div className="flex items-center gap-3">
+            <div className="flex min-w-0 items-center gap-3">
 
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-green-100 text-xl">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-green-100 text-xl transition group-hover:scale-105">
                 🛒
               </span>
 
-              <div>
+              <div className="min-w-0">
 
                 <h2 className="text-base font-bold text-slate-900 md:text-lg">
                   Your shopping list is ready
@@ -1220,47 +1288,37 @@ export default function WeeklyPlannerPage() {
 
               </div>
 
-              <Link
-                href="/shopping"
-                className="ml-auto hidden shrink-0 items-center text-green-600 transition hover:text-green-700 md:inline-flex"
-                aria-label="Go to Shopping List"
-              >
-                →
-              </Link>
-
             </div>
 
-            <Link
-              href="/shopping"
-              className="inline-flex items-center justify-center rounded-xl bg-green-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-green-700 md:hidden"
+            <span
+              className="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-xl font-bold text-green-600 transition group-hover:translate-x-1 group-hover:bg-green-600 group-hover:text-white"
+              aria-hidden="true"
             >
-              🛒 Go to Shopping List
-              <span className="ml-2">
-                →
-              </span>
-            </Link>
+              →
+            </span>
 
-            <div className="flex items-center gap-2 self-start md:self-auto">
+          </Link>
 
-              <button
-                type="button"
-                onClick={startPickForMe}
-                className="rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-orange-600 md:px-5 md:py-3 md:text-sm"
-              >
-                🎲 Pick for Me
-              </button>
+          <div className="flex items-center gap-2 self-stretch md:self-auto">
 
-              <button
-                type="button"
-                onClick={() =>
-                  setShowClearConfirm(true)
-                }
-                className="rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-600 shadow-sm ring-1 ring-black/10 transition hover:bg-red-50 hover:text-red-600 md:px-5 md:py-3 md:text-sm"
-              >
-                🗑️ Clear Week
-              </button>
+            <button
+              type="button"
+              onClick={startPickForMe}
+              className="flex-1 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-orange-600 md:flex-none md:px-5 md:py-3 md:text-sm"
+            >
+              <span className="text-xl leading-none md:text-2xl" aria-hidden="true">🎲</span>
+              <span>Pick for Me</span>
+            </button>
 
-            </div>
+            <button
+              type="button"
+              onClick={() =>
+                setShowClearConfirm(true)
+              }
+              className="flex-1 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-600 shadow-sm ring-1 ring-black/10 transition hover:bg-red-50 hover:text-red-600 md:flex-none md:px-5 md:py-3 md:text-sm"
+            >
+              🗑️ Clear Week
+            </button>
 
           </div>
 

@@ -5,7 +5,6 @@ import { recipes } from "@/data/recipes";
 
 type ShoppingItem = {
   item: string;
-  shoppingItem?: string;
   quantity: string;
 };
 
@@ -14,32 +13,41 @@ type ShoppingData = {
   shoppingList: ShoppingItem[];
   checkedItems: string[];
   people: number;
-
-  // Recipes deliberately added directly from the Recipes page.
-  manualRecipes?: string[];
-
-  // Recipes currently represented in the Weekly Planner.
   plannerRecipes?: string[];
-
-  // Number of times each recipe occurs in the Weekly Planner.
   plannerCounts?: Record<string, number>;
 };
 
+/*
+ * SHOPPING LIST V3
+ *
+ * Important:
+ * - recipes.ts remains the source of truth.
+ * - Recipe quantities are never changed.
+ * - The shopping list translates recipe quantities into
+ *   practical quantities for buying.
+ * - One shopping item = one line = one final quantity.
+ */
+
+/* ============================================================
+ * CATEGORIES
+ * ============================================================ */
+
 const ingredientCategories: Record<string, string> = {
-  // 🥩 Meat & Fish
+  // Meat & Fish
   chicken: "🥩 Meat & Fish",
   beef: "🥩 Meat & Fish",
   mince: "🥩 Meat & Fish",
   sausage: "🥩 Meat & Fish",
   bacon: "🥩 Meat & Fish",
+  ham: "🥩 Meat & Fish",
   salmon: "🥩 Meat & Fish",
   tuna: "🥩 Meat & Fish",
-  fish: "🥩 Meat & Fish",
-  sirloin: "🥩 Meat & Fish",
-  "pork loin": "🥩 Meat & Fish",
   cod: "🥩 Meat & Fish",
+  fish: "🥩 Meat & Fish",
+  pork: "🥩 Meat & Fish",
+  sirloin: "🥩 Meat & Fish",
 
-  // 🥕 Fruit & Vegetables
+  // Fruit & Vegetables
   onion: "🥕 Fruit & Vegetables",
   "red onion": "🥕 Fruit & Vegetables",
   "white onion": "🥕 Fruit & Vegetables",
@@ -52,8 +60,8 @@ const ingredientCategories: Record<string, string> = {
   tomato: "🥕 Fruit & Vegetables",
   potato: "🥕 Fruit & Vegetables",
   potatoes: "🥕 Fruit & Vegetables",
-  "floury potato": "🥕 Fruit & Vegetables",
-  "floury potatoes": "🥕 Fruit & Vegetables",
+  "baking potato": "🥕 Fruit & Vegetables",
+  "baking potatoes": "🥕 Fruit & Vegetables",
   carrot: "🥕 Fruit & Vegetables",
   broccoli: "🥕 Fruit & Vegetables",
   mushroom: "🥕 Fruit & Vegetables",
@@ -61,6 +69,7 @@ const ingredientCategories: Record<string, string> = {
   spinach: "🥕 Fruit & Vegetables",
   lettuce: "🥕 Fruit & Vegetables",
   beans: "🥕 Fruit & Vegetables",
+  "green beans": "🥕 Fruit & Vegetables",
   lemon: "🥕 Fruit & Vegetables",
   lime: "🥕 Fruit & Vegetables",
   apple: "🥕 Fruit & Vegetables",
@@ -72,80 +81,85 @@ const ingredientCategories: Record<string, string> = {
   peach: "🥕 Fruit & Vegetables",
   peaches: "🥕 Fruit & Vegetables",
 
-  // 🧊 Chilled
+  // Chilled
   egg: "🧊 Chilled",
   eggs: "🧊 Chilled",
-  "egg white": "🧊 Chilled",
-  "egg whites": "🧊 Chilled",
+  yoghurt: "🧊 Chilled",
   cheese: "🧊 Chilled",
   cheddar: "🧊 Chilled",
   parmesan: "🧊 Chilled",
   mozzarella: "🧊 Chilled",
-  yoghurt: "🧊 Chilled",
-  cream: "🧊 Chilled",
-  milk: "🧊 Chilled",
+  feta: "🧊 Chilled",
+  "reduced-fat feta cheese": "🧊 Chilled",
   butter: "🧊 Chilled",
+  milk: "🧊 Chilled",
+  cream: "🧊 Chilled",
   "crème fraîche": "🧊 Chilled",
 
-  // ❄️ Frozen
+  // Frozen
   peas: "❄️ Frozen",
+  "frozen peas": "❄️ Frozen",
   "frozen berries": "❄️ Frozen",
 
-  // 🍞 Bakery
+  // Bakery
   bread: "🍞 Bakery",
-  bun: "🍞 Bakery",
+  "white bread": "🍞 Bakery",
   roll: "🍞 Bakery",
+  bun: "🍞 Bakery",
+  bagel: "🍞 Bakery",
+  crumpet: "🍞 Bakery",
+  crumpets: "🍞 Bakery",
+  muffin: "🍞 Bakery",
+  muffins: "🍞 Bakery",
+  "breakfast muffin": "🍞 Bakery",
+  "breakfast muffins": "🍞 Bakery",
   wrap: "🍞 Bakery",
   tortilla: "🍞 Bakery",
   pitta: "🍞 Bakery",
   naan: "🍞 Bakery",
-  bagel: "🍞 Bakery",
-  toast: "🍞 Bakery",
-  crumpets: "🍞 Bakery",
 
-  // 🥫 Cupboard
-  passata: "🥫 Cupboard",
+  // Cupboard
+  rice: "🥫 Cupboard",
   pasta: "🥫 Cupboard",
   penne: "🥫 Cupboard",
   spaghetti: "🥫 Cupboard",
-  rice: "🥫 Cupboard",
+  couscous: "🥫 Cupboard",
   flour: "🥫 Cupboard",
   breadcrumbs: "🥫 Cupboard",
-  couscous: "🥫 Cupboard",
-  cornflour: "🥫 Cupboard",
   sweetcorn: "🥫 Cupboard",
-  gravy: "🥫 Cupboard",
+  passata: "🥫 Cupboard",
   stock: "🥫 Cupboard",
-  "tomato purée": "🥫 Cupboard",
-  olive: "🥫 Cupboard",
-  worcestershire: "🥫 Cupboard",
-  honey: "🥫 Cupboard",
+  gravy: "🥫 Cupboard",
+  mayonnaise: "🥫 Cupboard",
   mustard: "🥫 Cupboard",
-  seasoning: "🥫 Cupboard",
+  worcestershire: "🥫 Cupboard",
+  "worcestershire sauce": "🥫 Cupboard",
+  honey: "🥫 Cupboard",
   "maple syrup": "🥫 Cupboard",
   "golden syrup": "🥫 Cupboard",
-  jam: "🥫 Cupboard",
-  mayonnaise: "🥫 Cupboard",
+  "tomato purée": "🥫 Cupboard",
+  "tomato puree": "🥫 Cupboard",
+  "olive oil": "🥫 Cupboard",
   "vegetable oil": "🥫 Cupboard",
-  oats: "🥫 Cupboard",
-  oatmeal: "🥫 Cupboard",
-  porridge: "🥫 Cupboard",
-  "rolled oats": "🥫 Cupboard",
+  "fresh basil pesto": "🥫 Cupboard",
+  "basil pesto": "🥫 Cupboard",
   sugar: "🥫 Cupboard",
   "caster sugar": "🥫 Cupboard",
   "brown sugar": "🥫 Cupboard",
+  "vanilla extract": "🥫 Cupboard",
   "baking powder": "🥫 Cupboard",
   "baking soda": "🥫 Cupboard",
   bicarbonate: "🥫 Cupboard",
-  "vanilla extract": "🥫 Cupboard",
-  "vanilla": "🥫 Cupboard",
+  oats: "🥫 Cupboard",
+  "rolled oats": "🥫 Cupboard",
 
-  // 🧂 Herbs & Spices
+  // Herbs & Spices
   thyme: "🧂 Herbs & Spices",
   rosemary: "🧂 Herbs & Spices",
   oregano: "🧂 Herbs & Spices",
   basil: "🧂 Herbs & Spices",
   parsley: "🧂 Herbs & Spices",
+  chives: "🧂 Herbs & Spices",
   paprika: "🧂 Herbs & Spices",
   cumin: "🧂 Herbs & Spices",
   turmeric: "🧂 Herbs & Spices",
@@ -154,896 +168,1026 @@ const ingredientCategories: Record<string, string> = {
   "curry powder": "🧂 Herbs & Spices",
   "chilli flakes": "🧂 Herbs & Spices",
   ginger: "🧂 Herbs & Spices",
-  sage: "🧂 Herbs & Spices",
-  dill: "🧂 Herbs & Spices",
   cinnamon: "🧂 Herbs & Spices",
   "ground cinnamon": "🧂 Herbs & Spices",
+  dill: "🧂 Herbs & Spices",
+  sage: "🧂 Herbs & Spices",
+  
   "black pepper": "🧂 Herbs & Spices",
   "freshly ground black pepper": "🧂 Herbs & Spices",
-  "fresh mint": "🧂 Herbs & Spices",
-  chives: "🧂 Herbs & Spices",
-  salt: "🧂 Herbs & Spices",
 };
 
-/*
-   * Clean up text that has been saved/read with the wrong
-   * character encoding. This is why values such as Â¼, Â½,
-   * Â¾, Ã© and Ã— were appearing in the shopping list.
-   *
-   * The replacement is deliberately kept here so we can fix
-   * old recipe data without having to rename or recreate
-   * any recipe files/images.
-   */
-  function cleanText(value: string): string {
-    return value
-      .replace(/Â¼/g, "¼")
-      .replace(/Â½/g, "½")
-      .replace(/Â¾/g, "¾")
-      .replace(/Ã—/g, "×")
-      .replace(/Ã©/g, "é")
-      .replace(/Ã¨/g, "è")
-      .replace(/Ãª/g, "ê")
-      .replace(/Ã´/g, "ô")
-      .replace(/Ã¹/g, "ù")
-      .replace(/Ã¢/g, "â")
-      .replace(/Ã®/g, "î")
-      .replace(/â€™/g, "’")
-      .replace(/â€“/g, "–")
-      .replace(/â€”/g, "—")
-      .replace(/â€¦/g, "…")
-      .replace(/Â/g, "")
-      .trim();
-  }
+/* ============================================================
+ * BASIC TEXT / NUMBER HELPERS
+ * ============================================================ */
 
-function getCategory(item: string) {
-  const lowerItem = cleanText(item).toLowerCase();
-
-  const match = Object.keys(
-    ingredientCategories
-  )
-    .sort(
-      (a, b) =>
-        b.length - a.length
-    )
-    .find((key) =>
-      lowerItem.includes(key)
-    );
-
-  return match
-    ? ingredientCategories[match]
-    : "Other";
+function cleanText(value: string): string {
+  return value
+    .replace(/Â¼/g, "¼")
+    .replace(/Â½/g, "½")
+    .replace(/Â¾/g, "¾")
+    .replace(/Ã—/g, "×")
+    .replace(/Ã©/g, "é")
+    .replace(/Ã¨/g, "è")
+    .replace(/Ãª/g, "ê")
+    .replace(/Ã´/g, "ô")
+    .replace(/Ã¹/g, "ù")
+    .replace(/Ã¢/g, "â")
+    .replace(/Ã®/g, "î")
+    .replace(/â€™/g, "’")
+    .replace(/â€“/g, "–")
+    .replace(/â€”/g, "—")
+    .replace(/â€¦/g, "…")
+    .replace(/Â/g, "")
+    .trim();
 }
 
-export default function ShoppingPage() {
-  const [selectedRecipes, setSelectedRecipes] =
-    useState<string[]>([]);
+function fractionToDecimal(value: string): number | null {
+  const v = cleanText(value).trim();
 
-  const [shoppingList, setShoppingList] =
-    useState<ShoppingItem[]>([]);
+  const fractions: Record<string, number> = {
+    "¼": 0.25,
+    "½": 0.5,
+    "¾": 0.75,
+    "⅛": 0.125,
+    "⅜": 0.375,
+    "⅝": 0.625,
+    "⅞": 0.875,
+  };
 
-  const [checkedItems, setCheckedItems] =
-    useState<string[]>([]);
+  if (fractions[v] !== undefined) return fractions[v];
 
-  const [people, setPeople] =
-    useState<number>(1);
+  const mixedUnicode = v.match(/^(\d+)([¼½¾⅛⅜⅝⅞])$/);
+  if (mixedUnicode) {
+    return Number(mixedUnicode[1]) + fractions[mixedUnicode[2]];
+  }
 
-  const [manualRecipes, setManualRecipes] =
-    useState<string[]>([]);
+  const mixedSlash = v.match(/^(\d+)\s+(\d+)\s*\/\s*(\d+)$/);
+  if (mixedSlash) {
+    const denominator = Number(mixedSlash[3]);
+    return denominator
+      ? Number(mixedSlash[1]) + Number(mixedSlash[2]) / denominator
+      : null;
+  }
 
-  const [plannerRecipes, setPlannerRecipes] =
-    useState<string[]>([]);
+  const slash = v.match(/^(\d+)\s*\/\s*(\d+)$/);
+  if (slash) {
+    const denominator = Number(slash[2]);
+    return denominator ? Number(slash[1]) / denominator : null;
+  }
 
-  const [plannerCounts, setPlannerCounts] =
-    useState<Record<string, number>>({});
+  const numeric = Number(v);
+  return Number.isFinite(numeric) ? numeric : null;
+}
 
-  const [loaded, setLoaded] =
-    useState(false);
+function decimalToFraction(value: number): string {
+  const rounded = Math.round(value * 100) / 100;
+  const whole = Math.floor(rounded);
+  const fraction = Math.round((rounded - whole) * 100) / 100;
 
-  function fractionToDecimal(
-    value: string
-  ): number | null {
-    value = cleanText(value);
+  const map: Record<string, string> = {
+    "0.125": "⅛",
+    "0.25": "¼",
+    "0.375": "⅜",
+    "0.5": "½",
+    "0.625": "⅝",
+    "0.75": "¾",
+    "0.875": "⅞",
+  };
 
-    const fractionValues: Record<
-      string,
-      number
-    > = {
-      "¼": 0.25,
-      "½": 0.5,
-      "¾": 0.75,
+  if (fraction === 0) return String(whole);
+
+  const key = Object.keys(map).find(
+    (candidate) => Math.abs(Number(candidate) - fraction) < 0.0001
+  );
+
+  if (!key) return Number(rounded.toFixed(2)).toString();
+
+  return whole === 0 ? map[key] : `${whole}${map[key]}`;
+}
+
+function normaliseUnit(unit: string): string {
+  const u = cleanText(unit).toLowerCase().trim();
+
+  const map: Record<string, string> = {
+    gram: "g",
+    grams: "g",
+    kilogram: "kg",
+    kilograms: "kg",
+    millilitre: "ml",
+    millilitres: "ml",
+    litre: "l",
+    litres: "l",
+    teaspoon: "tsp",
+    teaspoons: "tsp",
+    tablespoon: "tbsp",
+    tablespoons: "tbsp",
+    cloves: "clove",
+  };
+
+  return map[u] ?? u;
+}
+
+function parseQuantity(
+  quantity: string
+): { amount: number; unit: string } | null {
+  const q = cleanText(quantity);
+
+  if (!q) return null;
+
+  const lower = q.toLowerCase();
+
+  if (
+    lower === "to taste" ||
+    lower === "as required" ||
+    lower === "as needed" ||
+    lower === "optional"
+  ) {
+    return null;
+  }
+
+  const multiplied = q.match(
+    /^(\d+(?:\.\d+)?)\s*[×x]\s*(\d+(?:\.\d+)?(?:[¼½¾⅛⅜⅝⅞])?|\d+\s*\/\s*\d+|[¼½¾⅛⅜⅝⅞])\s*(.*)$/i
+  );
+
+  if (multiplied) {
+    const count = Number(multiplied[1]);
+    const each = fractionToDecimal(multiplied[2]);
+    if (each === null) return null;
+    return {
+      amount: count * each,
+      unit: normaliseUnit(multiplied[3]),
     };
+  }
+
+  const match = q.match(
+    /^(\d+(?:\.\d+)?(?:[¼½¾⅛⅜⅝⅞])?|\d+\s+\d+\s*\/\s*\d+|\d+\s*\/\s*\d+|[¼½¾⅛⅜⅝⅞])\s*(.*)$/
+  );
+
+  if (!match) {
+    const sizeOnly = lower.match(/^(small|medium|large)$/);
+    if (sizeOnly) return { amount: 1, unit: sizeOnly[1] };
+    return null;
+  }
+
+  const amount = fractionToDecimal(match[1]);
+  if (amount === null) return null;
+
+  return {
+    amount,
+    unit: normaliseUnit(match[2]),
+  };
+}
+
+function formatQuantity(amount: number, unit: string): string {
+  const n = Math.round(amount * 100) / 100;
+  const a = decimalToFraction(n);
+  const u = normaliseUnit(unit);
+
+  if (u === "g" || u === "kg" || u === "ml" || u === "l") {
+    return `${a}${u}`;
+  }
+
+  if (u === "clove") {
+    return `${a} clove${n === 1 ? "" : "s"}`;
+  }
+
+  if (u === "lemon") {
+    return `${a} lemon${n === 1 ? "" : "s"}`;
+  }
+
+  if (u === "small handful") {
+    return `${a} small handful${n === 1 ? "" : "s"}`;
+  }
+
+  return `${a} ${u}`;
+}
+
+/* ============================================================
+ * SHOPPING NORMALISATION
+ * ============================================================ */
+
+const WHOLE_PRODUCE = new Set([
+  "courgette",
+  "onion",
+  "red pepper",
+  "green pepper",
+  "yellow pepper",
+  "lemon",
+  "apple",
+  "potatoes",
+  "baking potatoes",
+]);
+
+const ML_ITEMS = new Set([
+  "mayonnaise",
+  "mustard",
+  "worcestershire sauce",
+  "worcestershire",
+  "tomato purée",
+  "tomato puree",
+  "passata",
+  "honey",
+  "maple syrup",
+  "golden syrup",
+  "olive oil",
+  "vegetable oil",
+  "fresh basil pesto",
+  "basil pesto",
+  "vanilla extract",
+  "milk",
+  "cream",
+  "crème fraîche",
+  "lemon juice",
+]);
+
+function removePreparationWords(value: string): string {
+  return value
+    .replace(
+      /\s*,\s*(?:finely chopped|roughly chopped|diced|sliced|chopped|crushed|minced|grated|cubed|trimmed|peeled|halved|quartered|crumbled|separated|drained|cut into bite[- ]sized pieces|cut into strips|cut into thin strips)\b/gi,
+      ""
+    )
+    .replace(
+      /\s*[-–]\s*(?:to taste|as required|as needed|optional)\b/gi,
+      ""
+    )
+    .replace(/[.,]+$/, "")
+    .trim();
+}
+
+function normaliseIngredient(raw: string): string {
+  let value = removePreparationWords(cleanText(raw));
+  const lower = value.toLowerCase();
+
+  if (/^egg(?:s)?$/.test(lower) || /^egg white(?:s)?$/.test(lower)) {
+    return "Eggs";
+  }
+
+  if (lower.includes("feta cheese")) {
+    return "Reduced-fat feta cheese";
+  }
+
+  if (/^potato(?:es)?$/.test(lower)) {
+    return "Potatoes";
+  }
+
+  if (/^(?:baking )?potato(?:es)?$/.test(lower)) {
+    return lower.startsWith("baking") ? "Baking potatoes" : "Potatoes";
+  }
+
+  if (/^(small|medium|large)\s+courgette$/.test(lower) || /^courgette(?:s)?$/.test(lower)) {
+    return "Courgette";
+  }
+
+  if (/^(small|medium|large)\s+onion$/.test(lower) || /^onion(?:s)?$/.test(lower)) {
+    return "Onion";
+  }
+
+  if (/^(red|green|yellow)\s+pepper(?:s)?$/.test(lower)) {
+    return lower.replace(/s$/, "").replace(/^./, (c) => c.toUpperCase());
+  }
+
+  if (lower.includes("lemon juice")) {
+    return "Lemon juice";
+  }
+
+  if (lower.includes("lemon zest")) {
+    return "Lemon zest";
+  }
+
+  if (/^lemon(?:s)?$/.test(lower)) {
+    return "Lemon";
+  }
+
+  if (/^lettuce leaves?$/.test(lower) || lower === "lettuce") {
+    return "Lettuce";
+  }
+
+  if (/^breakfast muffins?$/.test(lower)) {
+    return "Breakfast muffins";
+  }
+
+  if (/^lean cooked ham$/.test(lower) || lower === "cooked ham" || lower === "ham") {
+    return "Cooked ham";
+  }
+
+  if (lower === "fresh basil pesto" || lower === "basil pesto") {
+    return "Fresh basil pesto";
+  }
+
+  if (lower === "fresh chives" || lower === "fresh chives chopped" || lower === "chives") {
+    return "Chives";
+  }
+
+  return value;
+}
+
+/* ============================================================
+ * RECIPE SERVINGS
+ * ============================================================ */
+
+/*
+ * Dinner recipes in the current library are written as family-sized
+ * recipes (4 people). Breakfast and lunch recipes are written per person.
+ *
+ * This replaces the old lexicographical recipe.code >= "D016" test,
+ * which was the source of the inconsistent scaling seen in the last test.
+ */
+function recipeServings(recipe: any): number {
+  return recipe.category === "Dinner" ? 4 : 1;
+}
+
+/* ============================================================
+ * PRACTICAL SHOPPING CONVERSIONS
+ * ============================================================ */
+
+function quantityToMl(parsed: { amount: number; unit: string }): number | null {
+  if (parsed.unit === "ml") return parsed.amount;
+  if (parsed.unit === "l") return parsed.amount * 1000;
+  if (parsed.unit === "tsp") return parsed.amount * 5;
+  if (parsed.unit === "tbsp") return parsed.amount * 15;
+  return null;
+}
+
+function normaliseProduceAmount(
+  name: string,
+  parsed: { amount: number; unit: string }
+): number | null {
+  const lower = name.toLowerCase();
+
+  // All courgettes are treated as medium for shopping purposes.
+  if (lower === "courgette") {
+    if (["small", "medium", "large", "", "courgette"].includes(parsed.unit)) {
+      return parsed.amount;
+    }
+    return null;
+  }
+
+  // Small/medium/large onions and peppers are normalised to medium equivalents.
+  if (
+    lower === "onion" ||
+    lower === "red pepper" ||
+    lower === "green pepper" ||
+    lower === "yellow pepper"
+  ) {
+    const sizeFactor =
+      parsed.unit === "small"
+        ? 0.5
+        : parsed.unit === "large"
+          ? 1.5
+          : 1;
 
     if (
-      fractionValues[value] !== undefined
+      parsed.unit === "" ||
+      parsed.unit === lower ||
+      parsed.unit === "small" ||
+      parsed.unit === "medium" ||
+      parsed.unit === "large"
     ) {
-      return fractionValues[value];
+      return parsed.amount * sizeFactor;
     }
 
-    const mixed = value.match(
-      /^(\d+)([¼½¾])$/
-    );
-
-    if (mixed) {
-      const whole = Number(mixed[1]);
-      const fraction =
-        fractionValues[mixed[2]];
-
-      return whole + fraction;
-    }
-
-    const number = Number(value);
-
-    if (!isNaN(number)) {
-      return number;
+    // Chopped onion is not a shopping quantity.
+    // 2 tbsp chopped onion ≈ ¼ onion.
+    if (lower === "onion" && parsed.unit === "tbsp") {
+      return parsed.amount / 8;
     }
 
     return null;
   }
 
-  function decimalToFraction(
-    value: number
-  ): string {
-    const whole = Math.floor(value);
-
-    const fraction =
-      Math.round(
-        (value - whole) * 100
-      ) / 100;
-
-    if (fraction === 0) {
-      return `${whole}`;
+  if (lower === "lemon") {
+    if (parsed.unit === "" || parsed.unit === "lemon") {
+      return parsed.amount;
     }
-
-    const fractionMap: Record<
-      number,
-      string
-    > = {
-      0.25: "¼",
-      0.5: "½",
-      0.75: "¾",
-    };
-
-    const fractionText =
-      fractionMap[fraction];
-
-    if (!fractionText) {
-      return value.toString();
-    }
-
-    if (whole === 0) {
-      return fractionText;
-    }
-
-    return `${whole}${fractionText}`;
   }
 
-  const unitConversions = {
-    tsp: {
-      base: "tsp",
-      factor: 1,
-    },
+  if (lower === "apple") {
+    if (["", "apple", "small", "medium", "large"].includes(parsed.unit)) {
+      return parsed.amount;
+    }
+  }
 
-    tbsp: {
-      base: "tsp",
-      factor: 3,
-    },
+  return null;
+}
 
-    ml: {
-      base: "ml",
-      factor: 1,
-    },
+/*
+ * Potatoes are a purchase-unit item.
+ *
+ * Ordinary potatoes:
+ *   2 kg bag
+ *
+ * Baking potatoes:
+ *   whole potatoes
+ *
+ * A 250g baking potato in the recipe represents one baking potato.
+ */
+function normalisePotato(
+  name: string,
+  parsed: { amount: number; unit: string }
+): { amount: number; unit: string } | null {
+  const lower = name.toLowerCase();
 
-    l: {
-      base: "ml",
-      factor: 1000,
-    },
+  if (lower === "potatoes") {
+    if (parsed.unit === "g") {
+      return { amount: parsed.amount, unit: "2kg-bag-source-g" };
+    }
+    if (parsed.unit === "kg") {
+      return { amount: parsed.amount * 1000, unit: "2kg-bag-source-g" };
+    }
+    if (parsed.unit === "" || parsed.unit === "potato" || parsed.unit === "potatoes") {
+      // Individual ordinary potatoes: one potato each, represented as a bag
+      // only after a reliable weight is available. Keep these as potatoes.
+      return { amount: parsed.amount, unit: "individual-potato" };
+    }
+  }
 
-    g: {
-      base: "g",
-      factor: 1,
-    },
+  if (lower === "baking potatoes") {
+    if (parsed.unit === "g") {
+      return { amount: parsed.amount / 250, unit: "baking-potato" };
+    }
+    if (parsed.unit === "kg") {
+      return { amount: (parsed.amount * 1000) / 250, unit: "baking-potato" };
+    }
+    if (
+      parsed.unit === "" ||
+      parsed.unit === "baking potato" ||
+      parsed.unit === "baking potatoes"
+    ) {
+      return { amount: parsed.amount, unit: "baking-potato" };
+    }
+  }
 
-    kg: {
-      base: "g",
-      factor: 1000,
-    },
-  } as const;
+  return null;
+}
 
-  function convertToBaseUnit(
-    amount: number,
-    unit: string
+/*
+ * Lettuce is bought whole, not by the leaf.
+ *
+ * Practical shopping assumption: 20 usable leaves per lettuce.
+ * This is intentionally a shopping conversion only; recipe data is unchanged.
+ */
+function normaliseLettuce(
+  parsed: { amount: number; unit: string }
+): { amount: number; unit: string } | null {
+  if (parsed.unit === "" || parsed.unit === "leaf" || parsed.unit === "leaves") {
+    return { amount: parsed.amount / 20, unit: "lettuce" };
+  }
+
+  return null;
+}
+
+/*
+ * Fresh chives are bought as a bunch/pack rather than tablespoons.
+ * Practical assumption: 1 tbsp chopped chives ≈ 1/8 bunch.
+ * Therefore 8 tbsp = 1 bunch.
+ */
+function normaliseFreshChives(
+  parsed: { amount: number; unit: string }
+): { amount: number; unit: string } | null {
+  if (parsed.unit === "tbsp") {
+    return { amount: parsed.amount / 8, unit: "bunch" };
+  }
+
+  if (parsed.unit === "g") {
+    return { amount: parsed.amount, unit: "g" };
+  }
+
+  return null;
+}
+
+/*
+ * Fresh pesto is a purchased product, so its recipe tbsp/tsp measurement
+ * becomes exact ml on the shopping list.
+ */
+function normaliseShoppingQuantity(
+  name: string,
+  quantity: string
+): string {
+  const parsed = parseQuantity(quantity);
+  if (!parsed) return cleanText(quantity);
+
+  const lower = name.toLowerCase();
+
+  if (lower === "eggs") {
+    return decimalToFraction(parsed.amount);
+  }
+
+  if (lower === "potatoes" || lower === "baking potatoes") {
+    const converted = normalisePotato(name, parsed);
+    if (converted) {
+      if (converted.unit === "2kg-bag-source-g") {
+        return `${converted.amount}g`;
+      }
+      if (converted.unit === "baking-potato") {
+        return decimalToFraction(converted.amount);
+      }
+      if (converted.unit === "individual-potato") {
+        return decimalToFraction(converted.amount);
+      }
+    }
+  }
+
+  if (lower === "lettuce") {
+    const converted = normaliseLettuce(parsed);
+    if (converted) return decimalToFraction(converted.amount);
+  }
+
+  if (lower === "chives") {
+    const converted = normaliseFreshChives(parsed);
+    if (converted) {
+      if (converted.unit === "bunch") return `${decimalToFraction(converted.amount)} bunch`;
+      return formatQuantity(converted.amount, "g");
+    }
+  }
+
+  if (WHOLE_PRODUCE.has(lower)) {
+    const converted = normaliseProduceAmount(name, parsed);
+    if (converted !== null) return decimalToFraction(converted);
+  }
+
+  if (ML_ITEMS.has(lower) || lower.includes("oil") || lower.includes("syrup")) {
+    const ml = quantityToMl(parsed);
+    if (ml !== null) return formatQuantity(ml, "ml");
+  }
+
+  // Caster sugar is a dry product: don't display tbsp on the shopping list.
+  // Practical conversion: 1 tbsp caster sugar ≈ 12.5g.
+  if (lower === "caster sugar" && parsed.unit === "tbsp") {
+    return formatQuantity(parsed.amount * 12.5, "g");
+  }
+
+  // Vanilla extract is a liquid product.
+  if (lower === "vanilla extract") {
+    const ml = quantityToMl(parsed);
+    if (ml !== null) return formatQuantity(ml, "ml");
+  }
+
+  // For herbs/spices, tsp remains a useful shopping quantity.
+  if (parsed.unit === "tbsp") {
+    // Avoid ever displaying tbsp. For dry herbs/spices, convert to tsp.
+    return formatQuantity(parsed.amount * 3, "tsp");
+  }
+
+  return formatQuantity(parsed.amount, parsed.unit);
+}
+
+function combineQuantity(
+  current: string,
+  incoming: string,
+  name: string
+): string {
+  const a = parseQuantity(current);
+  const b = parseQuantity(incoming);
+
+  if (!a) return incoming;
+  if (!b) return current;
+
+  const lower = name.toLowerCase();
+
+  if (lower === "eggs") {
+    return decimalToFraction(a.amount + b.amount);
+  }
+
+  if (lower === "lemon") {
+    // Juice and zest from the same physical lemon can be shared.
+    return decimalToFraction(Math.max(a.amount, b.amount));
+  }
+
+  if (lower === "lettuce") {
+    const aLeaves = a.amount;
+    const bLeaves = b.amount;
+    return decimalToFraction(aLeaves + bLeaves);
+  }
+
+  if (lower === "potatoes") {
+    if (a.unit === "g" && b.unit === "g") {
+      return `${Math.round((a.amount + b.amount) * 100) / 100}g`;
+    }
+    if (a.unit === "individual-potato" && b.unit === "individual-potato") {
+      return decimalToFraction(a.amount + b.amount);
+    }
+  }
+
+  if (lower === "baking potatoes") {
+    return decimalToFraction(a.amount + b.amount);
+  }
+
+  if (
+    lower === "courgette" ||
+    lower === "onion" ||
+    lower === "red pepper" ||
+    lower === "green pepper" ||
+    lower === "yellow pepper" ||
+    lower === "apple"
   ) {
-    const conversion =
-      unitConversions[
-        unit as keyof typeof unitConversions
-      ];
-
-    if (!conversion) {
-      return {
-        amount,
-        unit,
-      };
-    }
-
-    return {
-      amount:
-        amount * conversion.factor,
-      unit: conversion.base,
-    };
+    return decimalToFraction(a.amount + b.amount);
   }
 
-  function normaliseUnit(
-    unit: string
-  ): string {
-    const cleaned =
-      cleanText(unit).toLowerCase();
-
-    const aliases: Record<
-      string,
-      string
-    > = {
-      clove: "clove",
-      cloves: "clove",
-      tsp: "tsp",
-      tsps: "tsp",
-      teaspoon: "tsp",
-      teaspoons: "tsp",
-      tbsp: "tbsp",
-      tbsps: "tbsp",
-      tablespoon: "tbsp",
-      tablespoons: "tbsp",
-      ml: "ml",
-      l: "l",
-      g: "g",
-      kg: "kg",
-      small: "small",
-      medium: "medium",
-      large: "large",
-      "small handful":
-        "small handful",
-      "small handfuls":
-        "small handful",
-    };
-
-    return (
-      aliases[cleaned] ??
-      unit.trim()
-    );
+  if (a.unit === "ml" && b.unit === "ml") {
+    return formatQuantity(a.amount + b.amount, "ml");
   }
 
-  function formatQuantity(
-    amount: number,
-    unit: string
-  ): string {
-    const normalisedUnit =
-      normaliseUnit(unit);
-
-    const rounded =
-      Math.round(amount * 100) /
-      100;
-
-    const amountText =
-      decimalToFraction(
-        rounded
-      );
-
-    const noSpaceUnits = [
-      "g",
-      "kg",
-      "ml",
-      "l",
-    ];
-
-    if (
-      normalisedUnit ===
-      "clove"
-    ) {
-      return rounded === 1
-        ? `${amountText} clove`
-        : `${amountText} cloves`;
-    }
-
-    if (
-      normalisedUnit ===
-      "small handful"
-    ) {
-      return rounded === 1
-        ? `${amountText} small handful`
-        : `${amountText} small handfuls`;
-    }
-
-    return noSpaceUnits.includes(
-      normalisedUnit
-    )
-      ? `${amountText}${normalisedUnit}`
-      : `${amountText} ${normalisedUnit}`;
-  }
-
-  function scaleQuantity(
-    quantity: string,
-    recipeServings: number = 1,
-    recipeCount: number = 1
-  ): string {
-    const parsed =
-      parseQuantity(quantity);
-
-    if (!parsed) {
-      return quantity;
-    }
-
-    const scaled =
-      (parsed.amount *
-        people *
-        recipeCount) /
-      recipeServings;
-
-    return formatQuantity(
-      scaled,
-      parsed.unit
-    );
-  }
-
-  function parseQuantity(
-    quantity: string
+  if (
+    (a.unit === "g" || a.unit === "kg") &&
+    (b.unit === "g" || b.unit === "kg")
   ) {
-    quantity = cleanText(quantity);
+    const ag = a.unit === "kg" ? a.amount * 1000 : a.amount;
+    const bg = b.unit === "kg" ? b.amount * 1000 : b.amount;
+    return formatQuantity(ag + bg, "g");
+  }
 
-    const multipliedMatch =
-      quantity.match(
-        /^(\d+(?:\.\d+)?)\s*[×x]\s*(\d+(?:\.\d+)?(?:[¼½¾])?)\s*(.*)$/i
-      );
+  if (a.unit === b.unit) {
+    return formatQuantity(a.amount + b.amount, a.unit);
+  }
 
-    if (multipliedMatch) {
-      const count =
-        Number(
-          multipliedMatch[1]
-        );
+  // Never create a second quantity for one shopping item.
+  return current;
+}
 
-      const each =
-        fractionToDecimal(
-          multipliedMatch[2]
-        );
+function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
+  const name = normaliseIngredient(item.item);
+  const lower = name.toLowerCase();
+  const parsed = parseQuantity(item.quantity);
 
-      if (each === null) {
-        return null;
-      }
+  if (!parsed) return item;
 
-      return {
-        amount:
-          count * each,
-        unit: normaliseUnit(
-          multipliedMatch[3]
-        ),
-      };
-    }
-
-    const trimmedQuantity =
-      quantity.trim();
-
-    if (
-      normaliseUnit(
-        trimmedQuantity
-      ) ===
-      "small handful"
-    ) {
-      return {
-        amount: 1,
-        unit: "small handful",
-      };
-    }
-
-    const match =
-      trimmedQuantity.match(
-        /^(\d+(?:\.\d+)?(?:[¼½¾])?|[¼½¾])\s*(.*)$/
-      );
-
-    if (!match) {
-      return null;
-    }
-
-    let amount =
-      fractionToDecimal(
-        match[1]
-      );
-
-    if (amount === null) {
-      return null;
-    }
-
-    const decimalFraction =
-      match[1].match(
-        /^(\d+(?:\.\d+)?)([¼½¾])$/
-      );
-
-    if (decimalFraction) {
-      const whole =
-        Number(
-          decimalFraction[1]
-        );
-
-      const fraction =
-        fractionToDecimal(
-          decimalFraction[2]
-        );
-
-      if (
-        fraction !== null
-      ) {
-        amount =
-          whole + fraction;
-      }
-    }
-
+  if (lower === "potatoes" && parsed.unit === "g") {
+    const bags = Math.ceil(parsed.amount / 2000);
     return {
-      amount,
-      unit: normaliseUnit(
-        match[2]
-      ),
+      item: "Potatoes",
+      quantity: `${bags} × 2kg bag${bags === 1 ? "" : "s"}`,
     };
   }
 
-  function normaliseIngredient(
-    item: string
-  ): string {
-    item = cleanText(item);
+  if (lower === "baking potatoes") {
+    return {
+      item: "Baking potatoes",
+      quantity: decimalToFraction(Math.ceil(parsed.amount)),
+    };
+  }
 
-    const removePreparation = [
-      ", diced",
-      ", sliced",
-      ", chopped",
-      ", finely chopped",
-      ", roughly chopped",
-      ", crushed",
-      ", minced",
-      ", grated",
-      ", cubed",
-      ", trimmed",
-      ", peeled",
-      ", halved",
-      ", quartered",
-      ", cut into bite-sized pieces",
-      ", cut into strips",
-    ];
+  if (lower === "lettuce") {
+    return {
+      item: "Lettuce",
+      quantity: decimalToFraction(Math.ceil(parsed.amount)),
+    };
+  }
 
-    let result = item;
+  if (lower === "courgette") {
+    return {
+      item: "Courgette",
+      quantity: decimalToFraction(Math.ceil(parsed.amount)),
+    };
+  }
 
-    removePreparation.forEach(
-      (text) => {
-        result =
-          result.replace(
-            text,
-            ""
-          );
+  if (
+    lower === "onion" ||
+    lower === "red pepper" ||
+    lower === "green pepper" ||
+    lower === "yellow pepper" ||
+    lower === "apple" ||
+    lower === "lemon"
+  ) {
+    return {
+      item: name,
+      quantity: decimalToFraction(Math.ceil(parsed.amount)),
+    };
+  }
+
+  if (lower === "chives" && parsed.unit === "bunch") {
+    return {
+      item: "Chives",
+      quantity: `${decimalToFraction(Math.ceil(parsed.amount))} bunch${
+        Math.ceil(parsed.amount) === 1 ? "" : "es"
+      }`,
+    };
+  }
+
+  return item;
+}
+
+function getCategory(item: string): string {
+  const lower = cleanText(item).toLowerCase();
+
+  const key = Object.keys(ingredientCategories)
+    .sort((a, b) => b.length - a.length)
+    .find((candidate) => lower.includes(candidate));
+
+  return key ? ingredientCategories[key] : "Other";
+}
+
+/* ============================================================
+ * PAGE
+ * ============================================================ */
+
+export default function ShoppingPage() {
+  const [selectedRecipes, setSelectedRecipes] = useState<string[]>([]);
+  const [shoppingList, setShoppingList] = useState<ShoppingItem[]>([]);
+  const [checkedItems, setCheckedItems] = useState<string[]>([]);
+  const [people, setPeople] = useState<number>(1);
+  const [plannerRecipes, setPlannerRecipes] = useState<string[]>([]);
+  const [plannerCounts, setPlannerCounts] = useState<Record<string, number>>({});
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("shopping-data");
+
+    if (saved) {
+      try {
+        const data: ShoppingData = JSON.parse(saved);
+
+        const savedPlannerRecipes = data.plannerRecipes ?? [];
+
+        /*
+         * The Weekly Planner is now the single source of truth.
+         * Ignore any legacy selected/manual recipes that may still
+         * exist in older localStorage data.
+         */
+        setSelectedRecipes(savedPlannerRecipes);
+        setShoppingList(data.shoppingList ?? []);
+        setCheckedItems(data.checkedItems ?? []);
+        setPeople(data.people ?? 1);
+        setPlannerRecipes(savedPlannerRecipes);
+        setPlannerCounts(data.plannerCounts ?? {});
+      } catch {
+        // Ignore invalid saved data.
       }
-    );
-
-    const lower =
-      result.trim().toLowerCase();
-
-    if (
-      lower.includes(
-        "lemon juice"
-      )
-    ) {
-      return "Lemon juice";
     }
 
-    if (
-      lower.includes(
-        "lemon zest"
-      )
-    ) {
-      return "Lemon zest";
-    }
+    setLoaded(true);
+  }, []);
 
-    // Treat all egg-white wording as one shopping item.
-    // This also handles wording such as "egg white, separated".
-    if (
-      lower === "egg white" ||
-      lower === "egg whites" ||
-      lower.startsWith("egg white,") ||
-      lower.startsWith("egg whites,")
-    ) {
-      return "Egg whites";
-    }
+  useEffect(() => {
+    if (!loaded) return;
 
-    if (
-      lower === "potato" ||
-      lower === "potatoes"
-    ) {
-      return "Potatoes";
-    }
+    /*
+     * Clean up legacy shopping data from before the Weekly Planner
+     * became the single source of truth. Current planner data is kept;
+     * old manually-added recipe IDs are discarded.
+     */
+    const saved = localStorage.getItem("shopping-data");
 
-    if (
-      lower === "onion" ||
-      lower === "onions"
-    ) {
-      return "Onion";
-    }
+    if (saved) {
+      try {
+        const data: ShoppingData = JSON.parse(saved);
+        const currentPlannerRecipes = data.plannerRecipes ?? [];
 
-    if (
-      lower === "red pepper" ||
-      lower === "red peppers"
-    ) {
-      return "Red pepper";
-    }
-
-    if (
-      lower === "green pepper" ||
-      lower === "green peppers"
-    ) {
-      return "Green pepper";
-    }
-
-    if (
-      lower === "yellow pepper" ||
-      lower === "yellow peppers"
-    ) {
-      return "Yellow pepper";
-    }
-
-    if (
-      lower === "lemon" ||
-      lower === "lemons"
-    ) {
-      return "Lemon";
-    }
-
-    return result.trim();
-  }
-
-  function formatSizedProduceAmount(amount: number): string {
-    // Whole produce should be shown in practical shopping quantities.
-    // Onions and peppers are bought as whole items, so use quarter-onion
-    // increments rather than displaying awkward decimals such as 0.88.
-    const nearestQuarter =
-      Math.max(0.25, Math.round(amount * 4) / 4);
-
-    return decimalToFraction(nearestQuarter);
-  }
-
-  function normaliseSizedProduce(
-    item: string,
-    quantity: string
-  ): string {
-    const name =
-      normaliseIngredient(
-        item
-      ).toLowerCase();
-
-    const sizedItems = [
-      "onion",
-      "red pepper",
-      "green pepper",
-      "yellow pepper",
-    ];
-
-    if (
-      !sizedItems.includes(name)
-    ) {
-      return quantity;
-    }
-
-    const parsed =
-      parseQuantity(quantity);
-
-    if (!parsed) {
-      return quantity;
-    }
-
-    let multiplier = 1;
-
-    switch (parsed.unit) {
-      case "small":
-        multiplier = 0.5;
-        break;
-
-      case "medium":
-        multiplier = 1;
-        break;
-
-      case "large":
-        multiplier = 1.5;
-        break;
-
-      default:
-        // parseQuantity("¼ onion") returns unit "onion".
-        // Treat the item name itself as the whole-produce unit so that
-        // fractional quantities can be combined with other onions.
-        if (
-          parsed.unit !== "" &&
-          parsed.unit !== name
-        ) {
-          return quantity;
-        }
-        break;
-    }
-
-    return formatSizedProduceAmount(
-      parsed.amount * multiplier
-    );
-  }
-
-  function normaliseLemonQuantity(
-    item: string,
-    quantity: string
-  ): string {
-    if (
-      normaliseIngredient(
-        item
-      ).toLowerCase() !==
-      "lemon"
-    ) {
-      return quantity;
-    }
-
-    const parsed =
-      parseQuantity(quantity);
-
-    if (!parsed) {
-      return quantity;
-    }
-
-    if (
-      parsed.unit ===
-        "lemon" ||
-      parsed.unit === ""
-    ) {
-      return decimalToFraction(
-        parsed.amount
-      );
-    }
-
-    return quantity;
-  }
-
-  function combineIngredients(
-    ingredients: ShoppingItem[]
-  ): ShoppingItem[] {
-    const combined: ShoppingItem[] =
-      [];
-
-    function addQuantity(
-      current: string,
-      incoming: string,
-      itemName: string
-    ): string {
-      current = cleanText(current);
-      incoming = cleanText(incoming);
-
-      const currentLower =
-        current.toLowerCase().trim();
-
-      const incomingLower =
-        incoming.toLowerCase().trim();
-
-      if (
-        incomingLower ===
-          "to taste" ||
-        incomingLower ===
-          "as required"
-      ) {
-        return current;
-      }
-
-      if (
-        currentLower ===
-          "to taste" ||
-        currentLower ===
-          "as required"
-      ) {
-        return incoming;
-      }
-
-      const parts =
-        current
-          .split(",")
-          .map(
-            (part) =>
-              part.trim()
-          )
-          .filter(Boolean);
-
-      const incomingParsed =
-        parseQuantity(
-          incoming
+        localStorage.setItem(
+          "shopping-data",
+          JSON.stringify({
+            ...data,
+            selectedRecipes: currentPlannerRecipes,
+            plannerRecipes: currentPlannerRecipes,
+            plannerCounts: data.plannerCounts ?? {},
+          })
         );
-
-      if (!incomingParsed) {
-        return `${current}, ${incoming}`;
+      } catch {
+        // Ignore invalid saved data.
       }
-
-      for (
-        let i = 0;
-        i < parts.length;
-        i++
-      ) {
-        const existingParsed =
-          parseQuantity(
-            parts[i]
-          );
-
-        if (!existingParsed) {
-          continue;
-        }
-
-        const converted1 =
-          convertToBaseUnit(
-            existingParsed.amount,
-            existingParsed.unit
-          );
-
-        const converted2 =
-          convertToBaseUnit(
-            incomingParsed.amount,
-            incomingParsed.unit
-          );
-
-        if (
-          converted1.unit ===
-          converted2.unit
-        ) {
-          const total =
-            converted1.amount +
-            converted2.amount;
-
-          const normalisedItemName =
-            normaliseIngredient(
-              itemName
-            ).toLowerCase();
-
-          const sizedProduce = [
-            "onion",
-            "red pepper",
-            "green pepper",
-            "yellow pepper",
-          ];
-
-          parts[i] =
-            converted1.unit === "" &&
-            sizedProduce.includes(
-              normalisedItemName
-            )
-              ? formatSizedProduceAmount(
-                  total
-                )
-              : formatQuantity(
-                  total,
-                  converted1.unit
-                );
-
-          return parts.join(
-            ", "
-          );
-        }
-      }
-
-      return `${current}, ${incoming}`;
     }
 
-    ingredients.forEach(
-      (ingredient) => {
-        const rawItem =
-          cleanText(
-            ingredient.item?.trim() ??
-              ""
-          );
+    function reloadShoppingData() {
+      const saved = localStorage.getItem("shopping-data");
+      if (!saved) return;
 
-        if (
-          rawItem
-            .toLowerCase() ===
-          "no added salt"
-        ) {
-          return;
-        }
+      try {
+        const data: ShoppingData = JSON.parse(saved);
 
-        const lowerItem =
-          rawItem.toLowerCase();
+        const savedPlannerRecipes = data.plannerRecipes ?? [];
 
-        const cleanedQuantity =
-          cleanText(
-            ingredient.quantity
-          );
+        setSelectedRecipes(savedPlannerRecipes);
+        setPlannerRecipes(savedPlannerRecipes);
+        setPlannerCounts(data.plannerCounts ?? {});
+        setPeople(data.people ?? 1);
+      } catch {
+        // Ignore invalid saved data.
+      }
+    }
 
-        const parsedQuantity =
-          parseQuantity(
-            cleanedQuantity
-          );
+    window.addEventListener("shopping-list-updated", reloadShoppingData);
+    window.addEventListener("storage", reloadShoppingData);
 
-        const isFreshLemonQuantity =
-          lowerItem.includes(
-            "lemon juice"
-          ) &&
-          parsedQuantity !== null &&
-          (
-            parsedQuantity.unit ===
-              "lemon" ||
-            parsedQuantity.unit ===
-              ""
-          );
+    return () => {
+      window.removeEventListener("shopping-list-updated", reloadShoppingData);
+      window.removeEventListener("storage", reloadShoppingData);
+    };
+  }, [loaded]);
 
-        const sourceName =
-          lowerItem.includes(
-            "lemon juice"
+  useEffect(() => {
+    if (!loaded) return;
+
+    const combined: ShoppingItem[] = [];
+
+    // Lemon is a shared physical resource. Track juice and zest separately
+    // so one lemon can satisfy both, while two separate juice requirements
+    // correctly require two lemons.
+    let lemonJuiceLemons = 0;
+    let lemonZestLemons = 0;
+    let wholeLemons = 0;
+
+    recipes
+      .filter((recipe) => selectedRecipes.includes(recipe.id))
+      .forEach((recipe: any) => {
+        const plannerCount = plannerCounts[recipe.id] ?? 0;
+        const recipeCount = plannerCount > 0 ? plannerCount : 1;
+        const servings = recipeServings(recipe);
+
+        recipe.ingredients
+          .filter(
+            (ingredient: any) =>
+              ingredient.item?.trim().toLowerCase() !== "water" &&
+              ingredient.item?.trim().toLowerCase() !== "no added salt"
           )
-            ? isFreshLemonQuantity
-              ? "Lemon"
-              : "Lemon juice"
-            : lowerItem.includes(
-                "lemon zest"
-              )
-              ? "Lemon zest"
-              : lowerItem ===
-                    "fresh parsley" ||
-                  lowerItem ===
-                    "fresh basil or parsley" ||
-                  lowerItem ===
-                    "basil or parsley"
-                ? "Parsley"
-                : ingredient.shoppingItem ??
-                  rawItem;
+          .forEach((ingredient: any) => {
+            const parsed = parseQuantity(ingredient.quantity);
+            if (!parsed) return;
 
-        const shoppingName =
-          normaliseIngredient(
-            cleanText(sourceName)
-          );
+            /*
+             * Scale recipe quantity first.
+             * This is the critical fix: the old code used a
+             * lexicographical recipe-code test and therefore
+             * scaled some lunch recipes differently from others.
+             */
+            const scaledAmount =
+              (parsed.amount * people * recipeCount) / servings;
 
-        const shoppingQuantity =
-          normaliseLemonQuantity(
-            shoppingName,
-            normaliseSizedProduce(
+            const scaledQuantity = formatQuantity(
+              scaledAmount,
+              parsed.unit
+            );
+
+            let sourceName = ingredient.shoppingItem || ingredient.item;
+
+            /*
+             * Lemon:
+             * Explicit lemon fractions are tracked as a physical resource.
+             * Juice and zest are separate requirements because one lemon can
+             * supply both; two juice requirements still add together.
+             */
+            const rawLower = cleanText(ingredient.item).toLowerCase();
+            const isLemonBased = rawLower.includes("lemon");
+            const isLemonFraction =
+              parsed.unit === "lemon" || parsed.unit === "";
+
+            /*
+             * Lemon is a special physical ingredient:
+             *
+             * - "1 lemon's worth of juice" and "1 lemon's worth of zest"
+             *   can come from the SAME lemon.
+             * - Whole lemons are also combined with those requirements.
+             * - We never add lemon zest as a separate shopping item, because
+             *   that is what previously created duplicate "Lemon" rows.
+             *
+             * If a recipe specifies lemon juice in ml, keep that exact ml
+             * requirement. Only quantities expressed as a whole lemon are
+             * treated as a physical lemon.
+             */
+            if (rawLower.includes("lemon juice") && isLemonFraction) {
+              lemonJuiceLemons += scaledAmount;
+              return;
+            }
+
+            if (rawLower.includes("lemon zest") && isLemonFraction) {
+              lemonZestLemons += scaledAmount;
+              return;
+            }
+
+            if (
+              (rawLower === "lemon" || rawLower === "lemons") &&
+              (parsed.unit === "" || parsed.unit === "lemon")
+            ) {
+              wholeLemons += scaledAmount;
+              return;
+            }
+
+            if (rawLower.includes("lemon juice")) {
+              sourceName = "Lemon juice";
+            } else if (rawLower.includes("lemon zest")) {
+              /*
+               * Do not turn zest into a separate "Lemon" shopping item.
+               * A lemon is added once below after all lemon requirements
+               * have been combined.
+               */
+              if (isLemonBased && isLemonFraction) return;
+              sourceName = "Lemon zest";
+            }
+
+            const shoppingName = normaliseIngredient(sourceName);
+
+            const shoppingQuantity = normaliseShoppingQuantity(
               shoppingName,
-              ingredient.quantity
-            )
-          );
+              scaledQuantity
+            );
 
-        const normalisedIngredient = {
-          ...ingredient,
-          quantity:
-            shoppingQuantity,
-        };
+            const existing = combined.find(
+              (item) =>
+                normaliseIngredient(item.item).toLowerCase() ===
+                shoppingName.toLowerCase()
+            );
 
-        const existing =
-          combined.find(
-            (item) =>
-              normaliseIngredient(
-                item.item
-              ).toLowerCase() ===
-              shoppingName.toLowerCase()
-          );
-
-        if (!existing) {
-          combined.push({
-            item:
-              shoppingName,
-            quantity:
-              normalisedIngredient.quantity,
+            if (!existing) {
+              combined.push({
+                item: shoppingName,
+                quantity: shoppingQuantity,
+              });
+            } else {
+              existing.quantity = combineQuantity(
+                existing.quantity,
+                shoppingQuantity,
+                shoppingName
+              );
+            }
           });
+      });
 
-          return;
-        }
-
-        existing.quantity =
-          addQuantity(
-            existing.quantity,
-            normalisedIngredient.quantity,
-            shoppingName
-          );
-      }
+    // One lemon can provide both its juice and its zest. We therefore need
+    // the maximum of the two requirements, while whole lemons are also
+    // respected. This avoids double-counting the same physical lemon.
+    const lemonsNeeded = Math.ceil(
+      Math.max(wholeLemons, lemonJuiceLemons, lemonZestLemons)
     );
 
-    return combined;
-  }
+    if (lemonsNeeded > 0) {
+      const existingLemon = combined.find(
+        (item) => normaliseIngredient(item.item).toLowerCase() === "lemon"
+      );
 
-  function resetShopping() {
-    setSelectedRecipes([]);
-    setShoppingList([]);
-    setCheckedItems([]);
+      if (existingLemon) {
+        existingLemon.quantity = decimalToFraction(
+          Math.max(lemonsNeeded, parseQuantity(existingLemon.quantity)?.amount ?? 0)
+        );
+      } else {
+        combined.push({
+          item: "Lemon",
+          quantity: decimalToFraction(lemonsNeeded),
+        });
+      }
+    }
 
-    setManualRecipes([]);
-    setPlannerRecipes([]);
-    setPlannerCounts({});
-  }
+    /*
+     * Final purchase-unit conversion happens only after all recipe
+     * quantities have been combined. This prevents early rounding.
+     */
+    /*
+     * Safety net: collapse any duplicate normalised shopping names before
+     * rendering. This prevents duplicate rows (and duplicate React keys)
+     * even if two recipe aliases resolve to the same shopping item.
+     */
+    const deduped = combined.reduce<ShoppingItem[]>((list, item) => {
+      const name = normaliseIngredient(item.item);
+      const existing = list.find(
+        (entry) => normaliseIngredient(entry.item).toLowerCase() === name.toLowerCase()
+      );
+
+      if (!existing) {
+        list.push({ item: name, quantity: item.quantity });
+      } else {
+        existing.quantity = combineQuantity(existing.quantity, item.quantity, name);
+      }
+
+      return list;
+    }, []);
+
+    const finalList = deduped.map(finaliseShoppingQuantity);
+
+    setShoppingList(finalList);
+
+    setCheckedItems((current) =>
+      current.filter((name) =>
+        finalList.some((item) => item.item === name)
+      )
+    );
+  }, [
+    loaded,
+    selectedRecipes,
+    people,
+    plannerCounts,
+  ]);
+
+  useEffect(() => {
+    if (!loaded) return;
+
+    localStorage.setItem(
+      "shopping-data",
+      JSON.stringify({
+        selectedRecipes: plannerRecipes,
+        shoppingList,
+        checkedItems,
+        people,
+        plannerRecipes,
+        plannerCounts,
+      })
+    );
+  }, [
+    loaded,
+    selectedRecipes,
+    shoppingList,
+    checkedItems,
+    people,
+    plannerRecipes,
+    plannerCounts,
+  ]);
 
   function uncheckAll() {
     setCheckedItems([]);
@@ -1060,313 +1204,23 @@ export default function ShoppingPage() {
     "Other",
   ];
 
-  /*
-   * Load saved shopping data.
-   */
-  useEffect(() => {
-    const saved =
-      localStorage.getItem(
-        "shopping-data"
-      );
-
-    if (saved) {
-      try {
-        const data =
-          JSON.parse(saved);
-
-        const savedSelectedRecipes =
-          data.selectedRecipes ??
-          [];
-
-        const savedPlannerRecipes =
-          data.plannerRecipes ??
-          [];
-
-        /*
-         * If the new fields don't exist yet,
-         * assume existing selected recipes were
-         * direct/manual selections.
-         */
-        const savedManualRecipes =
-          data.manualRecipes ??
-          savedSelectedRecipes.filter(
-            (recipeId: string) =>
-              !savedPlannerRecipes.includes(
-                recipeId
-              )
-          );
-
-        setSelectedRecipes(
-          savedSelectedRecipes
-        );
-
-        setShoppingList(
-          data.shoppingList ??
-            []
-        );
-
-        setCheckedItems(
-          data.checkedItems ??
-            []
-        );
-
-        setPeople(
-          data.people ?? 1
-        );
-
-        setManualRecipes(
-          savedManualRecipes
-        );
-
-        setPlannerRecipes(
-          savedPlannerRecipes
-        );
-
-        setPlannerCounts(
-          data.plannerCounts ??
-            {}
-        );
-      } catch {
-        // Ignore invalid saved data.
-      }
-    }
-
-    setLoaded(true);
-  }, []);
-
-  /*
-   * Listen for changes made by the Planner or
-   * Recipe Cards.
-   */
-  useEffect(() => {
-    if (!loaded) {
-      return;
-    }
-
-    function reloadShoppingData() {
-      const saved =
-        localStorage.getItem(
-          "shopping-data"
-        );
-
-      if (!saved) {
-        setSelectedRecipes([]);
-        setManualRecipes([]);
-        setPlannerRecipes([]);
-        setPlannerCounts({});
-        return;
-      }
-
-      try {
-        const data =
-          JSON.parse(saved);
-
-        setSelectedRecipes(
-          data.selectedRecipes ??
-            []
-        );
-
-        setManualRecipes(
-          data.manualRecipes ??
-            []
-        );
-
-        setPlannerRecipes(
-          data.plannerRecipes ??
-            []
-        );
-
-        setPlannerCounts(
-          data.plannerCounts ??
-            {}
-        );
-
-        setPeople(
-          data.people ?? 1
-        );
-      } catch {
-        // Ignore invalid data.
-      }
-    }
-
-    window.addEventListener(
-      "shopping-list-updated",
-      reloadShoppingData
-    );
-
-    window.addEventListener(
-      "storage",
-      reloadShoppingData
-    );
-
-    return () => {
-      window.removeEventListener(
-        "shopping-list-updated",
-        reloadShoppingData
-      );
-
-      window.removeEventListener(
-        "storage",
-        reloadShoppingData
-      );
-    };
-  }, [loaded]);
-
-  /*
-   * Automatically regenerate the shopping list.
-   *
-   * Planner recipes use their actual occurrence count.
-   * Direct shopping-list recipes use a count of 1.
-   */
-  useEffect(() => {
-    if (!loaded) {
-      return;
-    }
-
-    const ingredients =
-      recipes
-        .filter((recipe) => {
-          return selectedRecipes.includes(
-            recipe.id
-          );
-        })
-        .flatMap((recipe) => {
-          const plannerCount =
-            plannerCounts[
-              recipe.id
-            ] ?? 0;
-
-          /*
-           * If the recipe is planned, the planner
-           * controls the number of meals.
-           *
-           * Otherwise it is a direct shopping-list
-           * selection and counts once.
-           */
-          const recipeCount =
-            plannerCount > 0
-              ? plannerCount
-              : 1;
-
-          return recipe.ingredients
-            .filter(
-              (ingredient) =>
-                ingredient.item
-                  .trim()
-                  .toLowerCase() !==
-                "water"
-            )
-            .map(
-              (ingredient) => ({
-                item:
-                  ingredient.item,
-
-                shoppingItem:
-                  ingredient.shoppingItem,
-
-                quantity:
-                  scaleQuantity(
-                    ingredient.quantity,
-                    recipe.code >=
-                      "D016"
-                      ? 4
-                      : 1,
-                    recipeCount
-                  ),
-              })
-            );
-        });
-
-    const newShoppingList =
-      combineIngredients(
-        ingredients
-      );
-
-    setShoppingList(
-      newShoppingList
-    );
-
-    setCheckedItems(
-      (current) =>
-        current.filter(
-          (name) =>
-            newShoppingList.some(
-              (item) =>
-                item.item === name
-            )
-        )
-    );
-  }, [
-    loaded,
-    selectedRecipes,
-    people,
-    plannerCounts,
-  ]);
-
-  /*
-   * Save current state.
-   *
-   * IMPORTANT:
-   * Preserve manualRecipes, plannerRecipes and
-   * plannerCounts so the Planner relationship
-   * isn't lost.
-   */
-  useEffect(() => {
-    if (!loaded) {
-      return;
-    }
-
-    localStorage.setItem(
-      "shopping-data",
-      JSON.stringify({
-        selectedRecipes,
-        shoppingList,
-        checkedItems,
-        people,
-        manualRecipes,
-        plannerRecipes,
-        plannerCounts,
-      })
-    );
-  }, [
-    loaded,
-    selectedRecipes,
-    shoppingList,
-    checkedItems,
-    people,
-    manualRecipes,
-    plannerRecipes,
-    plannerCounts,
-  ]);
-
-  const groupedShoppingList =
-    categoryOrder
-      .map((category) => ({
-        category,
-        items:
-          shoppingList.filter(
-            (item) =>
-              getCategory(
-                item.item
-              ) === category
-          ),
-      }))
-      .filter(
-        (group) =>
-          group.items.length > 0
-      );
+  const groupedShoppingList = categoryOrder
+    .map((category) => ({
+      category,
+      items: shoppingList.filter(
+        (item) => getCategory(item.item) === category
+      ),
+    }))
+    .filter((group) => group.items.length > 0);
 
   return (
     <main className="p-6 max-w-5xl mx-auto">
-
       <h1 className="text-3xl font-bold mb-6">
         🛒 Shopping List
       </h1>
 
       <div className="bg-white rounded-xl shadow p-6">
-
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-
           <div>
             <h2 className="text-xl font-semibold">
               Cooking for:
@@ -1374,220 +1228,109 @@ export default function ShoppingPage() {
 
             <select
               value={people}
-              onChange={(e) =>
-                setPeople(
-                  Number(
-                    e.target.value
-                  )
-                )
-              }
+              onChange={(e) => setPeople(Number(e.target.value))}
               className="border rounded-lg px-4 py-2 mt-2"
             >
-              <option value={1}>
-                1 person
-              </option>
-
-              <option value={2}>
-                2 people
-              </option>
-
-              <option value={3}>
-                3 people
-              </option>
-
-              <option value={4}>
-                4 people
-              </option>
-
-              <option value={5}>
-                5 people
-              </option>
-
-              <option value={6}>
-                6 people
-              </option>
-
-              <option value={7}>
-                7 people
-              </option>
-
-              <option value={8}>
-                8 people
-              </option>
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                <option key={n} value={n}>
+                  {n} {n === 1 ? "person" : "people"}
+                </option>
+              ))}
             </select>
           </div>
 
-          {selectedRecipes.length >
-            0 && (
+          {selectedRecipes.length > 0 && (
             <div className="text-sm text-slate-500 text-right">
-
               <div>
-                {selectedRecipes.length} meal
-                {selectedRecipes.length ===
-                1
-                  ? ""
-                  : "s"}{" "}
-                •{" "}
-                {people}{" "}
-                {people === 1
-                  ? "person"
-                  : "people"}{" "}
-                •{" "}
-                {shoppingList.length} item
-                {shoppingList.length ===
-                1
-                  ? ""
-                  : "s"}
+                {selectedRecipes.length}{" "}
+                {selectedRecipes.length === 1 ? "meal" : "meals"} •{" "}
+                {people} {people === 1 ? "person" : "people"} •{" "}
+                {shoppingList.length}{" "}
+                {shoppingList.length === 1 ? "item" : "items"}
               </div>
 
-              <div className="flex gap-2">
-
-                <button
-                  onClick={
-                    uncheckAll
-                  }
-                  className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
-                >
-                  ☐ Uncheck All
-                </button>
-
-                
-
-              </div>
-
+              <button
+                onClick={uncheckAll}
+                className="mt-2 bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
+              >
+                ☐ Uncheck All
+              </button>
             </div>
           )}
-
         </div>
 
-        {shoppingList.length ===
-        0 ? (
-
+        {shoppingList.length === 0 ? (
           <div className="py-12 text-center">
-
-            <div className="text-5xl mb-4">
-              🛒
-            </div>
-
+            <div className="text-5xl mb-4">🛒</div>
             <h2 className="text-xl font-semibold text-slate-900">
               Your shopping list is empty
             </h2>
-
             <p className="mt-3 text-slate-500">
-              Choose meals from the
-              Recipes page and add
-              them to your shopping
-              list.
+              Add meals to your Weekly Planner and they will appear here
+              automatically.
             </p>
-
           </div>
-
         ) : (
-
           <div className="space-y-6">
+            {groupedShoppingList.map((group) => (
+              <div key={group.category}>
+                <h3 className="text-lg font-bold mb-3">
+                  {group.category}
+                </h3>
 
-            {groupedShoppingList.map(
-              (group) => (
+                <ul className="space-y-3">
+                  {group.items.map((item, itemIndex) => {
+                    const checked = checkedItems.includes(item.item);
 
-                <div
-                  key={
-                    group.category
-                  }
-                >
-
-                  <h3 className="text-lg font-bold mb-3">
-                    {group.category}
-                  </h3>
-
-                  <ul className="space-y-3">
-
-                    {group.items.map(
-                      (
-                        item,
-                        index
-                      ) => (
-
-                        <li
-                          key={
-                            index
-                          }
-                          className="flex items-center justify-between border-b pb-2"
-                        >
-
-                          <label className="flex items-center gap-3 cursor-pointer flex-1">
-
-                            <input
-                              type="checkbox"
-                              checked={checkedItems.includes(
-                                item.item
-                              )}
-                              onChange={() => {
-                                setCheckedItems(
-                                  (
-                                    current
-                                  ) =>
-                                    current.includes(
-                                      item.item
+                    return (
+                      <li
+                        key={`${group.category}-${item.item}-${itemIndex}`}
+                        className="flex items-center justify-between border-b pb-2"
+                      >
+                        <label className="flex items-center gap-3 cursor-pointer flex-1">
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={() => {
+                              setCheckedItems((current) =>
+                                checked
+                                  ? current.filter(
+                                      (name) => name !== item.item
                                     )
-                                      ? current.filter(
-                                          (
-                                            name
-                                          ) =>
-                                            name !==
-                                            item.item
-                                        )
-                                      : [
-                                          ...current,
-                                          item.item,
-                                        ]
-                                );
-                              }}
-                            />
-
-                            <span
-                              className={
-                                checkedItems.includes(
-                                  item.item
-                                )
-                                  ? "line-through text-slate-400"
-                                  : ""
-                              }
-                            >
-                              {item.item}
-                            </span>
-
-                          </label>
+                                  : [...current, item.item]
+                              );
+                            }}
+                          />
 
                           <span
                             className={
-                              checkedItems.includes(
-                                item.item
-                              )
-                                ? "font-medium line-through text-slate-400"
-                                : "font-medium"
+                              checked
+                                ? "line-through text-slate-400"
+                                : ""
                             }
                           >
-                            {item.quantity}
+                            {item.item}
                           </span>
+                        </label>
 
-                        </li>
-
-                      )
-                    )}
-
-                  </ul>
-
-                </div>
-
-              )
-            )}
-
+                        <span
+                          className={
+                            checked
+                              ? "font-medium line-through text-slate-400"
+                              : "font-medium"
+                          }
+                        >
+                          {item.quantity}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
           </div>
-
         )}
-
       </div>
-
     </main>
   );
 }

@@ -7,7 +7,7 @@ export default function Home() {
 
       {/* HERO */}
       <section
-        className="relative min-h-[305px] overflow-hidden bg-cover bg-center pb-0 md:min-h-[300px]"
+        className="relative min-h-[305px] overflow-hidden bg-cover bg-center pb-0 md:min-h-[350px]"
         style={{
           backgroundImage: "url('/images/background.png')",
         }}
@@ -17,7 +17,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/35" />
 
         {/* HERO CONTENT */}
-        <div className="relative z-10 mx-auto min-h-[305px] max-w-6xl px-5 pb-2 pt-10 sm:px-8 sm:pt-12 md:min-h-[300px] md:pb-8 md:pt-10">
+        <div className="relative z-10 mx-auto min-h-[305px] max-w-6xl px-5 pb-2 pt-10 sm:px-8 sm:pt-12 md:min-h-[350px] md:pb-10 md:pt-10">
 
           {/* HERO TEXT */}
           <div className="relative z-20 w-[68%] md:w-1/2">
@@ -51,25 +51,25 @@ export default function Home() {
       {/* MAIN NAVIGATION */}
       <section className="px-5 py-4 sm:px-8 sm:py-6">
 
-        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 sm:gap-4 md:grid-cols-3">
 
           {/* WEEKLY PLANNER */}
           <Link
             href="/planner"
-            className="group flex min-h-[150px] items-center gap-4 rounded-3xl bg-blue-50 px-5 py-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-h-[180px] md:flex-col md:items-start md:justify-center md:px-6"
+            className="group flex min-h-[130px] items-center gap-5 rounded-3xl bg-blue-50 px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-h-[270px] md:flex-col md:items-start md:gap-4 md:px-7 md:py-7"
           >
 
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-blue-200 text-4xl md:h-20 md:w-20">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-blue-200 text-5xl">
               📅
             </div>
 
             <div className="min-w-0 flex-1 md:flex-none">
 
-              <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Weekly Planner
               </h2>
 
-              <p className="mt-1 text-base leading-snug text-slate-800 md:text-lg">
+              <p className="mt-1 text-lg leading-snug text-slate-800">
                 Plan your breakfasts, lunches and dinners for the week ahead.
               </p>
 
@@ -81,20 +81,20 @@ export default function Home() {
           {/* RECIPES */}
           <Link
             href="/recipes"
-            className="group flex min-h-[150px] items-center gap-4 rounded-3xl bg-green-50 px-5 py-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-h-[180px] md:flex-col md:items-start md:justify-center md:px-6"
+            className="group flex min-h-[130px] items-center gap-5 rounded-3xl bg-green-50 px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-h-[270px] md:flex-col md:items-start md:gap-4 md:px-7 md:py-7"
           >
 
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-green-200 text-4xl md:h-20 md:w-20">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-green-200 text-5xl">
               📖
             </div>
 
             <div className="min-w-0 flex-1 md:flex-none">
 
-              <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Recipes
               </h2>
 
-              <p className="mt-1 text-base leading-snug text-slate-800 md:text-lg">
+              <p className="mt-1 text-lg leading-snug text-slate-800">
                 Browse delicious kidney-friendly recipes with nutrition info,
                 cooking times and more.
               </p>
@@ -107,20 +107,20 @@ export default function Home() {
           {/* SHOPPING LIST */}
           <Link
             href="/shopping"
-            className="group flex min-h-[150px] items-center gap-4 rounded-3xl bg-orange-50 px-5 py-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-h-[180px] md:flex-col md:items-start md:justify-center md:px-6"
+            className="group flex min-h-[130px] items-center gap-5 rounded-3xl bg-orange-50 px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-h-[270px] md:flex-col md:items-start md:gap-4 md:px-7 md:py-7"
           >
 
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-orange-200 text-4xl md:h-20 md:w-20">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-orange-200 text-5xl">
               🛒
             </div>
 
             <div className="min-w-0 flex-1 md:flex-none">
 
-              <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Shopping List
               </h2>
 
-              <p className="mt-1 text-base leading-snug text-slate-800 md:text-lg">
+              <p className="mt-1 text-lg leading-snug text-slate-800">
                 Your ingredients, combined and ready to go. No duplicates!
               </p>
 
@@ -132,11 +132,10 @@ export default function Home() {
 
       </section>
 
-
       {/* BOTTOM INFORMATION */}
       <section className="px-5 pb-8 sm:px-8">
 
-        <div className="mx-auto flex max-w-6xl items-center gap-5 rounded-3xl bg-green-50 px-6 py-6 shadow-sm sm:px-8">
+        <div className="mx-auto flex max-w-5xl items-center gap-5 rounded-3xl bg-green-50 px-6 py-6 shadow-sm sm:px-8">
 
           <div className="hidden h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 border-green-700 text-4xl text-green-700 sm:flex">
             ✓
@@ -149,8 +148,8 @@ export default function Home() {
             </h2>
 
             <p className="mt-1 text-base leading-relaxed text-slate-800 sm:text-lg">
-              All recipes are low in potassium, phosphorus and sodium,
-              and suitable for a kidney-friendly diet.
+              Kidney-friendly recipes with nutrition information to help you
+              plan meals that suit your needs.
             </p>
 
           </div>

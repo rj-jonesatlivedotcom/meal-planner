@@ -40,7 +40,7 @@ export const recipes: Recipe[] = [
     code: "L001",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸ¥ª",
+    emoji: "🥪",
     image: "/images/recipes/chicken-sandwich.png",
     name: "Chicken Sandwich",
     description:
@@ -82,7 +82,7 @@ export const recipes: Recipe[] = [
     code: "L002",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸ¥ª",
+    emoji: "🥪",
     image: "/images/recipes/tuna-sweetcorn-sandwich.png",
     name: "Tuna & Sweetcorn Sandwich",
     description:
@@ -125,7 +125,7 @@ export const recipes: Recipe[] = [
     code: "L003",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸ¥ª",
+    emoji: "🥪",
     image: "/images/recipes/chicken-tikka-sandwich.png",
     name: "Chicken Tikka Sandwich",
     description:
@@ -138,17 +138,17 @@ export const recipes: Recipe[] = [
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Chicken breast, diced", shoppingItem: "Chicken breast", quantity: "100 g" },
       { item: "Plain natural yoghurt", quantity: "1 tbsp" },
-      { item: "Mild curry powder", quantity: "Â½ tsp" },
-      { item: "Red pepper, finely sliced", shoppingItem: "Red pepper", quantity: "Â¼" },
+      { item: "Mild curry powder", quantity: "½ tsp" },
+      { item: "Red pepper, finely sliced", shoppingItem: "Red pepper", quantity: "¼" },
       { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
-      { item: "Olive oil", quantity: "Â½ tsp" },
+      { item: "Olive oil", quantity: "½ tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
       "Mix the yoghurt and curry powder in a bowl.",
       "Add the diced chicken and coat evenly.",
       "Heat the olive oil in a frying pan over a medium heat.",
-      "Cook the chicken for 7â€“8 minutes, turning regularly, until browned and cooked through.",
+      "Cook the chicken for 7–8 minutes, turning regularly, until browned and cooked through.",
       "Allow the chicken to cool slightly.",
       "Spread the remaining yoghurt mixture over the bread.",
       "Add the lettuce, red pepper and cooked chicken.",
@@ -173,7 +173,7 @@ export const recipes: Recipe[] = [
     code: "L004",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸ¥ª",
+    emoji: "🥪",
     image: "/images/recipes/beef-sandwich.png",
     name: "Beef Sandwich",
     description:
@@ -215,11 +215,11 @@ export const recipes: Recipe[] = [
     code: "L005",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸ¥ª",
+    emoji: "🥪",
     image: "/images/recipes/ham-cheese-sandwich.png",
     name: "Ham & Cheese Sandwich",
     description:
-      "A familiar ham and cheese sandwich with crisp lettuce on soft white bread â€” a higher-phosphate option included for variety and realism.",
+      "A familiar ham and cheese sandwich with crisp lettuce on soft white bread — a higher-phosphate option included for variety and realism.",
     cookingTime: "10 minutes",
     calories: "430 kcal",
     protein: "25 g",
@@ -258,7 +258,7 @@ export const recipes: Recipe[] = [
     code: "L006",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸ¥”",
+    emoji: "🥔",
     image: "/images/recipes/jacket-potato-tuna.png",
     name: "Jacket Potato with Tuna",
     description:
@@ -275,9 +275,9 @@ export const recipes: Recipe[] = [
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
-      "Preheat the oven to 200Â°C (180Â°C fan).",
+      "Preheat the oven to 200°C (180°C fan).",
       "Prick the potato several times with a fork and place it on a baking tray.",
-      "Bake for 50â€“55 minutes until the skin is crisp and the centre is completely tender.",
+      "Bake for 50–55 minutes until the skin is crisp and the centre is completely tender.",
       "While the potato is baking, drain the tuna thoroughly and mix with the mayonnaise and black pepper.",
       "Remove the potato from the oven and cut a cross into the top.",
       "Gently squeeze the sides to open the potato.",
@@ -302,7 +302,7 @@ export const recipes: Recipe[] = [
     code: "L007",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸ¥”",
+    emoji: "🥔",
     image: "/images/recipes/jacket-potato-beef.png",
     name: "Jacket Potato with Beef",
     description:
@@ -319,9 +319,9 @@ export const recipes: Recipe[] = [
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
-      "Preheat the oven to 200Â°C (180Â°C fan).",
+      "Preheat the oven to 200°C (180°C fan).",
       "Prick the potato several times with a fork and place it on a baking tray.",
-      "Bake for 50â€“55 minutes until the skin is crisp and the centre is completely tender.",
+      "Bake for 50–55 minutes until the skin is crisp and the centre is completely tender.",
       "While the potato is baking, slice the cooked beef thinly and mix it with the mayonnaise.",
       "Remove the potato from the oven and cut a cross into the top.",
       "Gently squeeze the sides to open the potato.",
@@ -346,11 +346,11 @@ export const recipes: Recipe[] = [
     code: "L008",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸ¥”",
+    emoji: "🥔",
     image: "/images/recipes/jacket-potato-beef-chilli.png",
     name: "Jacket Potato with Beef Chilli",
     description:
-      "A proper British jacket potato topped with a mild homemade beef chilli â€” one of the heartier lunch choices in the collection.",
+      "A proper British jacket potato topped with a mild homemade beef chilli — one of the heartier lunch choices in the collection.",
     cookingTime: "60 minutes",
     calories: "480 kcal",
     protein: "29 g",
@@ -359,22 +359,22 @@ export const recipes: Recipe[] = [
       { item: "Floury baking potato", shoppingItem: "Baking potato", quantity: "250 g" },
       { item: "Lean beef mince (5% fat)", shoppingItem: "Beef mince", quantity: "90 g" },
       { item: "Onion, finely diced", shoppingItem: "Onion", quantity: "2 tbsp" },
-      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "Â¼" },
+      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "¼" },
       { item: "Passata", quantity: "60 g" },
-      { item: "Tomato purÃ©e", quantity: "1 tsp" },
-      { item: "Mild chilli seasoning", quantity: "Â½ tsp" },
-      { item: "Olive oil", quantity: "Â½ tsp" },
+      { item: "Tomato purée", quantity: "1 tsp" },
+      { item: "Mild chilli seasoning", quantity: "½ tsp" },
+      { item: "Olive oil", quantity: "½ tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
-      "Preheat the oven to 200Â°C (180Â°C fan).",
+      "Preheat the oven to 200°C (180°C fan).",
       "Prick the potato several times with a fork and place it on a baking tray.",
       "Bake for 45 minutes.",
       "While the potato is baking, heat the olive oil in a frying pan over a medium heat.",
-      "Add the beef mince and onion and cook for 5â€“6 minutes, breaking up the mince until browned.",
+      "Add the beef mince and onion and cook for 5–6 minutes, breaking up the mince until browned.",
       "Add the red pepper and cook for 2 minutes.",
-      "Stir in the tomato purÃ©e and chilli seasoning and cook for 1 minute.",
-      "Add the passata, bring to a gentle simmer and cook for 10â€“12 minutes until the chilli has thickened and the beef is cooked through.",
+      "Stir in the tomato purée and chilli seasoning and cook for 1 minute.",
+      "Add the passata, bring to a gentle simmer and cook for 10–12 minutes until the chilli has thickened and the beef is cooked through.",
       "Remove the potato from the oven and cut a cross into the top.",
       "Open the potato, spoon over the beef chilli and season with black pepper.",
       "Serve immediately.",
@@ -398,7 +398,7 @@ export const recipes: Recipe[] = [
     code: "L009",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸŒ¶ï¸",
+    emoji: "🌶️",
     image: "/images/recipes/beef-chilli-rice.png",
     name: "Beef Chilli with Rice",
     description:
@@ -410,21 +410,21 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Lean beef mince (5% fat)", shoppingItem: "Beef mince", quantity: "90 g" },
       { item: "Dry basmati rice", shoppingItem: "Rice", quantity: "65 g" },
-      { item: "Onion, diced", shoppingItem: "Onion", quantity: "Â¼" },
-      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "Â¼" },
+      { item: "Onion, diced", shoppingItem: "Onion", quantity: "¼" },
+      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼" },
       { item: "Passata", quantity: "80 g" },
-      { item: "Tomato purÃ©e", quantity: "1 tsp" },
-      { item: "Mild chilli seasoning", quantity: "Â½ tsp" },
-      { item: "Olive oil", quantity: "Â½ tsp" },
+      { item: "Tomato purée", quantity: "1 tsp" },
+      { item: "Mild chilli seasoning", quantity: "½ tsp" },
+      { item: "Olive oil", quantity: "½ tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
       "Bring a saucepan of water to the boil and cook the basmati rice according to the packet instructions.",
       "While the rice cooks, heat the olive oil in a frying pan over a medium heat.",
-      "Add the beef mince and onion and cook for 5â€“6 minutes, breaking up the mince until browned.",
+      "Add the beef mince and onion and cook for 5–6 minutes, breaking up the mince until browned.",
       "Add the red pepper and cook for 2 minutes.",
-      "Stir in the tomato purÃ©e and chilli seasoning and cook for 1 minute.",
-      "Add the passata and simmer for 12â€“15 minutes until the chilli has thickened and the beef is cooked through.",
+      "Stir in the tomato purée and chilli seasoning and cook for 1 minute.",
+      "Add the passata and simmer for 12–15 minutes until the chilli has thickened and the beef is cooked through.",
       "Drain the rice.",
       "Serve the chilli over the rice and finish with black pepper.",
     ],
@@ -447,7 +447,7 @@ export const recipes: Recipe[] = [
     code: "L010",
     servings: 1,
     category: "Lunch",
-    emoji: "ðŸ¥—",
+    emoji: "🥗",
     image: "/images/recipes/chicken-pasta-salad.png",
     name: "Chicken Pasta Salad",
     description:
@@ -459,11 +459,11 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Dried pasta", shoppingItem: "Pasta", quantity: "70 g" },
       { item: "Cooked chicken breast, sliced", shoppingItem: "Cooked chicken breast", quantity: "100 g" },
-      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "Â¼" },
+      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "¼" },
       { item: "Lettuce leaves, shredded", shoppingItem: "Lettuce", quantity: "2" },
       { item: "Mayonnaise", quantity: "1 tbsp" },
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "1 tsp" },
-      { item: "Dried mixed herbs", quantity: "Â¼ tsp" },
+      { item: "Dried mixed herbs", quantity: "¼ tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -493,7 +493,7 @@ export const recipes: Recipe[] = [
     code: "D001",
     servings: 1,
     category: "Chicken",
-    emoji: "ðŸ›",
+    emoji: "🍛",
     image: "/images/recipes/chicken-curry.png",
     name: "Chicken Curry",
 
@@ -507,7 +507,7 @@ export const recipes: Recipe[] = [
     protein: "42g",
 
     equipment:
-      "Large frying pan or sautÃ© pan, saucepan",
+      "Large frying pan or sauté pan, saucepan",
 
     ingredients: [
       {
@@ -518,7 +518,7 @@ export const recipes: Recipe[] = [
       {
         item: "Large onion, diced",
         shoppingItem: "Onion",
-        quantity: "Â¼",
+        quantity: "¼",
       },
       {
         item: "Garlic, crushed",
@@ -528,15 +528,15 @@ export const recipes: Recipe[] = [
       {
         item: "Red pepper, diced",
         shoppingItem: "Red pepper",
-        quantity: "Â½",
+        quantity: "½",
       },
       {
         item: "Mild curry powder",
         quantity: "1 tsp",
       },
       {
-        item: "Tomato purÃ©e",
-        quantity: "1Â½ tsp",
+        item: "Tomato purée",
+        quantity: "1½ tsp",
       },
       {
         item: "Passata",
@@ -557,7 +557,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Olive oil",
-        quantity: "1Â½ tsp",
+        quantity: "1½ tsp",
       },
       {
         item: "Freshly ground black pepper",
@@ -568,12 +568,12 @@ export const recipes: Recipe[] = [
     method: [
       "Bring a saucepan of water to the boil, ready for the rice later.",
       "Heat the olive oil in a large frying pan over a medium heat.",
-      "Add the onion and cook for 4â€“5 minutes until softened.",
+      "Add the onion and cook for 4–5 minutes until softened.",
       "Stir in the garlic and cook for 30 seconds.",
-      "Add the diced chicken and cook for 5â€“6 minutes until lightly browned on all sides.",
+      "Add the diced chicken and cook for 5–6 minutes until lightly browned on all sides.",
       "Stir in the red pepper and cook for a further 2 minutes.",
       "Sprinkle over the curry powder and stir until the chicken and vegetables are evenly coated.",
-      "Stir in the tomato purÃ©e and cook for 1 minute.",
+      "Stir in the tomato purée and cook for 1 minute.",
       "Pour in the passata and reduced-salt chicken stock, then add the green beans. Bring to a gentle simmer and cook for 15 minutes, stirring occasionally.",
       "While the curry is simmering, cook the basmati rice according to the packet instructions.",
       "Taste the curry and season with freshly ground black pepper if required.",
@@ -597,7 +597,7 @@ export const recipes: Recipe[] = [
     code: "D002",
     servings: 1,
     category: "Beef",
-    emoji: "ðŸ¥§",
+    emoji: "🥧",
     image: "/images/recipes/cottage-pie.png",
     name: "Cottage Pie",
 
@@ -629,24 +629,24 @@ export const recipes: Recipe[] = [
       {
         item: "Large onion, diced",
         shoppingItem: "Onion",
-        quantity: "Â¼"
+        quantity: "¼"
       },
       {
         item: "Medium carrot, diced",
         shoppingItem: "Carrot",
-        quantity: "Â½"
+        quantity: "½"
       },
       {
-        item: "Tomato purÃ©e",
-        quantity: "1Â½ tsp"
+        item: "Tomato purée",
+        quantity: "1½ tsp"
       },
       {
         item: "Worcestershire sauce",
-        quantity: "Â¼ tsp"
+        quantity: "¼ tsp"
       },
       {
         item: "Dried thyme",
-        quantity: "Â¼ tsp"
+        quantity: "¼ tsp"
       },
       {
         item: "Reduced-salt beef stock",
@@ -671,16 +671,16 @@ export const recipes: Recipe[] = [
     ],
 
     method: [
-      "Preheat the oven to 200Â°C (180Â°C fan).",
-      "Place the potatoes into a saucepan of cold water, bring to the boil and cook for 18â€“20 minutes until tender.",
-      "While the potatoes are cooking, place the beef mince, onion and carrot into a large frying pan over a medium heat. Cook for 8â€“10 minutes, breaking up the mince with a wooden spoon, until the beef is browned and the vegetables have softened.",
-      "Stir in the tomato purÃ©e, Worcestershire sauce and dried thyme, then cook for 1 minute.",
+      "Preheat the oven to 200°C (180°C fan).",
+      "Place the potatoes into a saucepan of cold water, bring to the boil and cook for 18–20 minutes until tender.",
+      "While the potatoes are cooking, place the beef mince, onion and carrot into a large frying pan over a medium heat. Cook for 8–10 minutes, breaking up the mince with a wooden spoon, until the beef is browned and the vegetables have softened.",
+      "Stir in the tomato purée, Worcestershire sauce and dried thyme, then cook for 1 minute.",
       "Pour in the reduced-salt beef stock, stir well and bring to a gentle simmer.",
-      "Add the frozen peas and simmer for 10â€“12 minutes, stirring occasionally until the sauce has reduced slightly.",
+      "Add the frozen peas and simmer for 10–12 minutes, stirring occasionally until the sauce has reduced slightly.",
       "While the filling is simmering, drain the potatoes thoroughly. Add the butter and milk, then mash until smooth. Season with freshly ground black pepper.",
       "Spoon the beef mixture evenly into an ovenproof dish.",
       "Spread the mashed potato over the filling, smoothing it with the back of a spoon. Lightly roughen the surface with a fork to help it brown.",
-      "Bake for 20â€“25 minutes, until the potato is lightly golden and the filling is bubbling around the edges.",
+      "Bake for 20–25 minutes, until the potato is lightly golden and the filling is bubbling around the edges.",
       "Leave to stand for 5 minutes before serving."
     ],
 
@@ -702,7 +702,7 @@ export const recipes: Recipe[] = [
     code: "D003",
     servings: 1,
     category: "Chicken",
-    emoji: "ðŸ",
+    emoji: "🍝",
     image: "/images/recipes/chicken-arrabbiata.png",
     name: "Chicken Arrabbiata Pasta",
 
@@ -716,7 +716,7 @@ export const recipes: Recipe[] = [
     protein: "40g",
 
     equipment:
-      "Large frying pan or sautÃ© pan, saucepan",
+      "Large frying pan or sauté pan, saucepan",
 
     ingredients: [
       {
@@ -732,7 +732,7 @@ export const recipes: Recipe[] = [
       {
         item: "Large onion, diced",
         shoppingItem: "Onion",
-        quantity: "Â¼",
+        quantity: "¼",
       },
       {
         item: "Garlic, crushed",
@@ -742,11 +742,11 @@ export const recipes: Recipe[] = [
       {
         item: "Red pepper, diced",
         shoppingItem: "Red pepper",
-        quantity: "Â½",
+        quantity: "½",
       },
       {
-        item: "Tomato purÃ©e",
-        quantity: "1Â½ tsp",
+        item: "Tomato purée",
+        quantity: "1½ tsp",
       },
       {
         item: "Passata",
@@ -758,11 +758,11 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Dried chilli flakes",
-        quantity: "Â¼ tsp",
+        quantity: "¼ tsp",
       },
       {
         item: "Olive oil",
-        quantity: "1Â½ tsp",
+        quantity: "1½ tsp",
       },
       {
         item: "Freshly ground black pepper",
@@ -773,12 +773,12 @@ export const recipes: Recipe[] = [
     method: [
       "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions.",
       "Heat the olive oil in a large frying pan over a medium heat.",
-      "Add the onion and cook for 4â€“5 minutes until softened.",
+      "Add the onion and cook for 4–5 minutes until softened.",
       "Stir in the garlic and cook for 30 seconds.",
-      "Add the diced chicken and cook for 5â€“6 minutes until lightly browned.",
+      "Add the diced chicken and cook for 5–6 minutes until lightly browned.",
       "Add the red pepper and cook for a further 2 minutes.",
-      "Stir in the tomato purÃ©e and chilli flakes and cook for 1 minute.",
-      "Pour in the passata and reduced-salt chicken stock, then simmer gently for 10â€“15 minutes until the chicken is cooked through.",
+      "Stir in the tomato purée and chilli flakes and cook for 1 minute.",
+      "Pour in the passata and reduced-salt chicken stock, then simmer gently for 10–15 minutes until the chicken is cooked through.",
       "Drain the pasta and add it to the sauce.",
       "Stir everything together and season with freshly ground black pepper if required.",
       "Serve immediately.",
@@ -801,7 +801,7 @@ export const recipes: Recipe[] = [
   code: "D004",
     servings: 1,
   category: "Beef",
-  emoji: "ðŸ",
+  emoji: "🍝",
   image: "/images/recipes/spaghetti-bolognese.png",
   name: "Spaghetti Bolognese",
 
@@ -829,12 +829,12 @@ export const recipes: Recipe[] = [
     {
       item: "Large onion, finely diced",
       shoppingItem: "Onion",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Medium carrot, finely diced",
       shoppingItem: "Carrot",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Garlic, crushed",
@@ -842,8 +842,8 @@ export const recipes: Recipe[] = [
       quantity: "1 clove",
     },
     {
-      item: "Tomato purÃ©e",
-      quantity: "1Â½ tsp",
+      item: "Tomato purée",
+      quantity: "1½ tsp",
     },
     {
       item: "Passata",
@@ -851,7 +851,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Dried mixed herbs",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
@@ -861,11 +861,11 @@ export const recipes: Recipe[] = [
 
   method: [
     "Bring a saucepan of water to the boil and cook the spaghetti according to the packet instructions.",
-    "While the spaghetti is cooking, place the lean beef mince and onion into a large frying pan over a medium heat. Cook for 5â€“6 minutes, breaking up the mince with a wooden spoon until browned.",
-    "Add the carrot and garlic and cook for a further 2â€“3 minutes until softened.",
-    "Stir in the tomato purÃ©e and cook for 1 minute, stirring continuously.",
+    "While the spaghetti is cooking, place the lean beef mince and onion into a large frying pan over a medium heat. Cook for 5–6 minutes, breaking up the mince with a wooden spoon until browned.",
+    "Add the carrot and garlic and cook for a further 2–3 minutes until softened.",
+    "Stir in the tomato purée and cook for 1 minute, stirring continuously.",
     "Pour in the passata and stir in the dried mixed herbs. Bring to a gentle simmer.",
-    "Simmer for 12â€“15 minutes, stirring occasionally until the sauce has thickened.",
+    "Simmer for 12–15 minutes, stirring occasionally until the sauce has thickened.",
     "While the sauce is finishing, drain the spaghetti.",
     "Divide the spaghetti between serving bowls and spoon the Bolognese sauce over the top.",
     "Finish with freshly ground black pepper and serve immediately.",
@@ -888,7 +888,7 @@ export const recipes: Recipe[] = [
   code: "D005",
     servings: 1,
   category: "Chicken",
-  emoji: "ðŸ—",
+  emoji: "🍗",
   image: "/images/recipes/lemon-herb-chicken.png",
   name: "Lemon & Herb Chicken Tray Bake",
 
@@ -918,30 +918,30 @@ export const recipes: Recipe[] = [
     {
       item: "Red pepper, cut into chunks",
       shoppingItem: "Red pepper",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Red onion, cut into wedges",
       shoppingItem: "Red onion",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "1Â½ tsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Lemon juice",
       shoppingItem: "Lemon",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Lemon zest",
       shoppingItem: "Lemon",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
@@ -950,11 +950,11 @@ export const recipes: Recipe[] = [
   ],
 
   method: [
-    "Preheat the oven to 200Â°C (180Â°C fan).",
+    "Preheat the oven to 200°C (180°C fan).",
     "Place the potatoes into a large roasting tray and drizzle with half of the olive oil. Toss to coat evenly and roast for 15 minutes.",
     "While the potatoes are roasting, place the chicken, red pepper and red onion into a bowl. Add the remaining olive oil, lemon juice, lemon zest, dried mixed herbs and freshly ground black pepper. Mix well until everything is evenly coated.",
     "Remove the roasting tray from the oven and add the chicken and vegetables to the potatoes, spreading everything into a single layer.",
-    "Return the tray to the oven and roast for 25â€“30 minutes, turning everything halfway through, until the chicken is cooked through, the potatoes are golden and the vegetables are lightly roasted.",
+    "Return the tray to the oven and roast for 25–30 minutes, turning everything halfway through, until the chicken is cooked through, the potatoes are golden and the vegetables are lightly roasted.",
     "Serve immediately.",
   ],
 
@@ -975,7 +975,7 @@ export const recipes: Recipe[] = [
   code: "D006",
     servings: 1,
   category: "Chicken",
-  emoji: "ðŸŒ¯",
+  emoji: "🌯",
   image: "/images/recipes/chicken-fajitas.png",
   name: "Chicken Fajitas",
 
@@ -1004,21 +1004,21 @@ export const recipes: Recipe[] = [
     {
       item: "Large onion, sliced",
       shoppingItem: "Onion",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Red pepper, sliced",
       shoppingItem: "Red pepper",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Green pepper, sliced",
       shoppingItem: "Green pepper",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Olive oil",
-      quantity: "1Â½ tsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Ready-made mild fajita seasoning",
@@ -1027,7 +1027,7 @@ export const recipes: Recipe[] = [
     {
       item: "Lime juice",
       shoppingItem: "Lime",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Freshly ground black pepper",
@@ -1037,7 +1037,7 @@ export const recipes: Recipe[] = [
 
   method: [
     "Heat the olive oil in a large frying pan over a medium-high heat.",
-    "Add the chicken strips and cook for 5â€“6 minutes, stirring regularly until lightly browned.",
+    "Add the chicken strips and cook for 5–6 minutes, stirring regularly until lightly browned.",
     "Add the sliced onion and peppers and continue cooking for 5 minutes, stirring occasionally until softened but still with a little bite.",
     "Sprinkle over the fajita seasoning and stir well until the chicken and vegetables are evenly coated.",
     "Add the lime juice and cook for a further 1 minute, stirring continuously.",
@@ -1062,7 +1062,7 @@ export const recipes: Recipe[] = [
   code: "D007",
     servings: 1,
   category: "Chicken",
-  emoji: "ðŸ—",
+  emoji: "🍗",
   image: "/images/recipes/roast-chicken-dinner.png",
   name: "Roast Chicken Dinner",
 
@@ -1092,7 +1092,7 @@ export const recipes: Recipe[] = [
     {
       item: "Carrot, cut into batons",
       shoppingItem: "Carrot",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Frozen peas",
@@ -1101,15 +1101,15 @@ export const recipes: Recipe[] = [
     {
       item: "Red onion, cut into wedges",
       shoppingItem: "Onion",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "1Â½ tsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Reduced-salt chicken gravy",
@@ -1122,11 +1122,11 @@ export const recipes: Recipe[] = [
   ],
 
   method: [
-    "Preheat the oven to 200Â°C (180Â°C fan).",
+    "Preheat the oven to 200°C (180°C fan).",
     "Place the potatoes into a saucepan of cold water. Bring to the boil and cook for 8 minutes, then drain well and allow them to steam dry for 2 minutes.",
     "Place the potatoes into a roasting tray, drizzle with the olive oil and roast for 20 minutes.",
     "While the potatoes are roasting, season the chicken with the dried mixed herbs and freshly ground black pepper.",
-    "Remove the roasting tray from the oven and add the chicken, carrots and red onion. Return to the oven and roast for a further 25â€“30 minutes, turning the potatoes halfway through, until the chicken is cooked through and the potatoes are crisp and golden.",
+    "Remove the roasting tray from the oven and add the chicken, carrots and red onion. Return to the oven and roast for a further 25–30 minutes, turning the potatoes halfway through, until the chicken is cooked through and the potatoes are crisp and golden.",
     "During the last 5 minutes of cooking, boil the frozen peas until tender and heat the reduced-salt chicken gravy according to the packet instructions.",
     "Serve the roast chicken with the potatoes, vegetables and gravy.",
   ],
@@ -1148,7 +1148,7 @@ export const recipes: Recipe[] = [
   code: "D008",
     servings: 1,
   category: "Chicken",
-  emoji: "ðŸ¯",
+  emoji: "🍯",
   image: "/images/recipes/honey-mustard-chicken.png",
   name: "Honey & Mustard Chicken",
 
@@ -1178,16 +1178,16 @@ export const recipes: Recipe[] = [
     {
       item: "Red pepper, cut into chunks",
       shoppingItem: "Red pepper",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Red onion, cut into wedges",
       shoppingItem: "Red onion",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "1Â½ tsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Clear honey",
@@ -1199,7 +1199,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Dried mixed herbs",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
@@ -1208,12 +1208,12 @@ export const recipes: Recipe[] = [
   ],
 
   method: [
-    "Preheat the oven to 200Â°C (180Â°C fan).",
+    "Preheat the oven to 200°C (180°C fan).",
     "Place the potatoes into a large roasting tray, drizzle with half of the olive oil and toss to coat. Roast for 15 minutes.",
     "While the potatoes are roasting, place the chicken into a mixing bowl. Add the remaining olive oil, honey, Dijon mustard, dried mixed herbs and freshly ground black pepper. Mix until the chicken is evenly coated.",
     "Add the red pepper and red onion to the bowl and toss lightly to coat with any remaining glaze.",
     "Remove the roasting tray from the oven and add the chicken and vegetables to the potatoes, spreading everything into a single layer.",
-    "Return to the oven and roast for 20â€“25 minutes, turning the potatoes and vegetables halfway through, until the chicken is cooked through and the potatoes are crisp and golden.",
+    "Return to the oven and roast for 20–25 minutes, turning the potatoes and vegetables halfway through, until the chicken is cooked through and the potatoes are crisp and golden.",
     "Serve immediately.",
   ],
 
@@ -1234,7 +1234,7 @@ export const recipes: Recipe[] = [
   code: "D009",
     servings: 1,
   category: "Beef",
-  emoji: "ðŸ”",
+  emoji: "🍔",
   image: "/images/recipes/homemade-beef-burgers.png",
   name: "Homemade Beef Burgers",
 
@@ -1267,19 +1267,19 @@ export const recipes: Recipe[] = [
     {
       item: "Small onion, finely diced",
       shoppingItem: "Onion",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "1Â½ tsp",
+      quantity: "1½ tsp",
     },
     {
-      item: "Tomato purÃ©e",
+      item: "Tomato purée",
       quantity: "1 tsp",
     },
     {
       item: "Worcestershire sauce",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Lettuce leaf",
@@ -1297,12 +1297,12 @@ export const recipes: Recipe[] = [
   ],
 
   method: [
-    "Preheat the oven to 200Â°C (180Â°C fan).",
-    "Place the potato wedges onto a baking tray, drizzle with the olive oil and toss to coat evenly. Roast for 35â€“40 minutes, turning halfway through, until golden and crisp.",
-    "While the wedges are cooking, place the beef mince, diced onion, tomato purÃ©e, Worcestershire sauce and freshly ground black pepper into a mixing bowl. Mix gently until just combined.",
+    "Preheat the oven to 200°C (180°C fan).",
+    "Place the potato wedges onto a baking tray, drizzle with the olive oil and toss to coat evenly. Roast for 35–40 minutes, turning halfway through, until golden and crisp.",
+    "While the wedges are cooking, place the beef mince, diced onion, tomato purée, Worcestershire sauce and freshly ground black pepper into a mixing bowl. Mix gently until just combined.",
     "Shape the mixture into one burger approximately 2cm thick.",
     "Heat a frying pan or grill pan over a medium-high heat.",
-    "Cook the burger for 5â€“6 minutes on each side, until browned and cooked all the way through.",
+    "Cook the burger for 5–6 minutes on each side, until browned and cooked all the way through.",
     "During the final 2 minutes, lightly warm the burger bun.",
     "Place the burger into the bun and top with the lettuce and tomato slices.",
     "Serve immediately with the oven-baked potato wedges.",
@@ -1325,7 +1325,7 @@ export const recipes: Recipe[] = [
   code: "D010",
     servings: 1,
   category: "Beef",
-  emoji: "ðŸ",
+  emoji: "🍝",
   image: "/images/recipes/beef-meatballs.png",
   name: "Beef Meatballs in Tomato & Herb Sauce",
 
@@ -1353,7 +1353,7 @@ export const recipes: Recipe[] = [
     {
       item: "Large onion, finely diced",
       shoppingItem: "Onion",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Garlic, crushed",
@@ -1361,8 +1361,8 @@ export const recipes: Recipe[] = [
       quantity: "1 clove",
     },
     {
-      item: "Tomato purÃ©e",
-      quantity: "1Â½ tsp",
+      item: "Tomato purée",
+      quantity: "1½ tsp",
     },
     {
       item: "Passata",
@@ -1370,11 +1370,11 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Dried mixed herbs",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Worcestershire sauce",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
@@ -1385,12 +1385,12 @@ export const recipes: Recipe[] = [
   method: [
     "Bring a saucepan of water to the boil and cook the spaghetti according to the packet instructions.",
     "While the spaghetti is cooking, place the beef mince, half of the diced onion, Worcestershire sauce and freshly ground black pepper into a mixing bowl. Mix gently and shape into small meatballs.",
-    "Heat a large frying pan over a medium heat and cook the meatballs for 6â€“8 minutes, turning regularly until browned on all sides.",
-    "Add the remaining onion and cook for 3â€“4 minutes until softened.",
+    "Heat a large frying pan over a medium heat and cook the meatballs for 6–8 minutes, turning regularly until browned on all sides.",
+    "Add the remaining onion and cook for 3–4 minutes until softened.",
     "Stir in the garlic and cook for 30 seconds.",
-    "Add the tomato purÃ©e and cook for 1 minute, stirring continuously.",
+    "Add the tomato purée and cook for 1 minute, stirring continuously.",
     "Pour in the passata and stir in the dried mixed herbs. Bring to a gentle simmer.",
-    "Simmer for 10â€“12 minutes, stirring occasionally until the meatballs are cooked through and the sauce has thickened.",
+    "Simmer for 10–12 minutes, stirring occasionally until the meatballs are cooked through and the sauce has thickened.",
     "While the sauce is finishing, drain the spaghetti.",
     "Divide the spaghetti between serving bowls and spoon the meatballs and sauce over the top.",
     "Finish with freshly ground black pepper and serve immediately.",
@@ -1413,7 +1413,7 @@ export const recipes: Recipe[] = [
   code: "D011",
     servings: 1,
   category: "Beef",
-  emoji: "ðŸŒ¶ï¸",
+  emoji: "🌶️",
   image: "/images/recipes/chilli-con-carne.png",
   name: "Chilli Con Carne",
 
@@ -1441,12 +1441,12 @@ export const recipes: Recipe[] = [
     {
       item: "Large onion, diced",
       shoppingItem: "Onion",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Red pepper, diced",
       shoppingItem: "Red pepper",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Garlic, crushed",
@@ -1454,8 +1454,8 @@ export const recipes: Recipe[] = [
       quantity: "1 clove",
     },
     {
-      item: "Tomato purÃ©e",
-      quantity: "1Â½ tsp",
+      item: "Tomato purée",
+      quantity: "1½ tsp",
     },
     {
       item: "Passata",
@@ -1474,12 +1474,12 @@ export const recipes: Recipe[] = [
   method: [
     "Bring a saucepan of water to the boil and cook the basmati rice according to the packet instructions.",
     "While the rice is cooking, heat a large frying pan over a medium heat.",
-    "Add the beef mince and onion and cook for 5â€“6 minutes, breaking up the mince with a wooden spoon until browned.",
+    "Add the beef mince and onion and cook for 5–6 minutes, breaking up the mince with a wooden spoon until browned.",
     "Stir in the red pepper and cook for 3 minutes until beginning to soften.",
     "Add the garlic and cook for 30 seconds.",
-    "Stir in the tomato purÃ©e and cook for 1 minute, stirring continuously.",
+    "Stir in the tomato purée and cook for 1 minute, stirring continuously.",
     "Add the passata and the mild chilli seasoning, stirring well to combine.",
-    "Simmer for 12â€“15 minutes, stirring occasionally until the sauce has thickened and the beef is fully cooked.",
+    "Simmer for 12–15 minutes, stirring occasionally until the sauce has thickened and the beef is fully cooked.",
     "While the chilli is finishing, drain the rice.",
     "Divide the rice between serving bowls and spoon the chilli over the top.",
     "Finish with freshly ground black pepper and serve immediately.",
@@ -1501,7 +1501,7 @@ export const recipes: Recipe[] = [
   code: "D012",
     servings: 1,
   category: "Pork",
-  emoji: "ðŸŒ­",
+  emoji: "🌭",
   image: "/images/recipes/sausage-mash-onion-gravy.png",
   name: "Sausage & Mash with Onion Gravy",
 
@@ -1529,7 +1529,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large onion, thinly sliced",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Frozen peas",
@@ -1554,9 +1554,9 @@ export const recipes: Recipe[] = [
   ],
 
   method: [
-    "Preheat the oven to 200Â°C (180Â°C fan).",
-    "Place the sausages onto a baking tray and cook for 25â€“30 minutes, turning halfway through, until browned and cooked through.",
-    "While the sausages are cooking, place the potatoes into a saucepan of cold water. Bring to the boil and cook for 18â€“20 minutes until tender.",
+    "Preheat the oven to 200°C (180°C fan).",
+    "Place the sausages onto a baking tray and cook for 25–30 minutes, turning halfway through, until browned and cooked through.",
+    "While the sausages are cooking, place the potatoes into a saucepan of cold water. Bring to the boil and cook for 18–20 minutes until tender.",
     "During the final 10 minutes, cook the sliced onion in a small saucepan over a medium-low heat until softened and lightly browned.",
     "Add the reduced-salt onion gravy to the onions and heat gently until piping hot.",
     "During the final 5 minutes, boil the frozen peas until tender.",
@@ -1574,14 +1574,14 @@ export const recipes: Recipe[] = [
   potassium: "High",
   phosphate: "High",
   purines: "Moderate",
-  dietaryNote: "âš ï¸ Higher in potassium and phosphate because of the potato and processed sausages; best treated as an occasional meal.",
+  dietaryNote: "⚠️ Higher in potassium and phosphate because of the potato and processed sausages; best treated as an occasional meal.",
 },
 {
   id: "salmon-lemon-herbs",
   code: "D013",
     servings: 1,
   category: "Fish",
-  emoji: "ðŸŸ",
+  emoji: "🐟",
   image: "/images/recipes/salmon-lemon-herbs.png",
   name: "Salmon with Lemon & Herbs",
 
@@ -1610,29 +1610,29 @@ export const recipes: Recipe[] = [
     {
       item: "Red pepper, cut into chunks",
       shoppingItem: "Red pepper",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Red onion, cut into wedges",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "1Â½ tsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Lemon juice",
       shoppingItem: "Lemon",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Lemon zest",
       shoppingItem: "Lemon",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
@@ -1641,11 +1641,11 @@ export const recipes: Recipe[] = [
   ],
 
   method: [
-    "Preheat the oven to 200Â°C (180Â°C fan).",
+    "Preheat the oven to 200°C (180°C fan).",
     "Place the potatoes into a large roasting tray, drizzle with half of the olive oil and toss to coat evenly. Roast for 15 minutes.",
     "While the potatoes are roasting, place the salmon into a bowl. Add the remaining olive oil, lemon juice, lemon zest, dried mixed herbs and freshly ground black pepper. Coat the salmon evenly.",
     "Remove the roasting tray from the oven and add the red pepper and red onion. Place the salmon on top or alongside the vegetables.",
-    "Return the tray to the oven and roast for 18â€“20 minutes, until the salmon flakes easily with a fork and the potatoes are golden.",
+    "Return the tray to the oven and roast for 18–20 minutes, until the salmon flakes easily with a fork and the potatoes are golden.",
     "Serve immediately.",
   ],
 
@@ -1659,14 +1659,14 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Low",
   purines: "Moderate",
-  dietaryNote: "âš ï¸ Salmon is relatively higher in purines than chicken, so enjoy as part of a balanced rotation.",
+  dietaryNote: "⚠️ Salmon is relatively higher in purines than chicken, so enjoy as part of a balanced rotation.",
 },
 {
   id: "tuna-pasta-bake",
   code: "D014",
     servings: 1,
   category: "Fish",
-  emoji: "ðŸŸ",
+  emoji: "🐟",
   image: "/images/recipes/tuna-pasta-bake.png",
   name: "Tuna Pasta Bake",
 
@@ -1695,12 +1695,12 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large onion, finely diced",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Red pepper, diced",
       shoppingItem: "Red pepper",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Garlic, crushed",
@@ -1708,8 +1708,8 @@ export const recipes: Recipe[] = [
       quantity: "1 clove",
     },
     {
-      item: "Tomato purÃ©e",
-      quantity: "1Â½ tsp",
+      item: "Tomato purée",
+      quantity: "1½ tsp",
     },
     {
       item: "Passata",
@@ -1717,7 +1717,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Dried mixed herbs",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Reduced-fat Cheddar cheese, grated",
@@ -1730,16 +1730,16 @@ export const recipes: Recipe[] = [
   ],
 
   method: [
-    "Preheat the oven to 200Â°C (180Â°C fan).",
+    "Preheat the oven to 200°C (180°C fan).",
     "Bring a saucepan of water to the boil and cook the penne according to the packet instructions until just al dente.",
-    "While the pasta is cooking, heat a large frying pan over a medium heat. Add the onion and cook for 4â€“5 minutes until softened.",
+    "While the pasta is cooking, heat a large frying pan over a medium heat. Add the onion and cook for 4–5 minutes until softened.",
     "Stir in the garlic and red pepper and cook for 2 minutes.",
-    "Add the tomato purÃ©e and cook for 1 minute, stirring continuously.",
+    "Add the tomato purée and cook for 1 minute, stirring continuously.",
     "Pour in the passata and stir in the dried mixed herbs. Simmer for 5 minutes.",
     "Fold the drained tuna into the sauce and heat gently for 2 minutes.",
     "Drain the pasta and stir it into the sauce until evenly coated.",
     "Transfer the mixture to an ovenproof dish and sprinkle with the grated reduced-fat Cheddar.",
-    "Bake for 12â€“15 minutes, until the cheese has melted and turned lightly golden.",
+    "Bake for 12–15 minutes, until the cheese has melted and turned lightly golden.",
     "Finish with freshly ground black pepper and serve immediately.",
   ],
 
@@ -1753,14 +1753,14 @@ export const recipes: Recipe[] = [
   potassium: "Low",
   phosphate: "Moderate",
   purines: "Moderate",
-  dietaryNote: "âš ï¸ Tuna and cheese contribute more phosphate; fish is also relatively higher in purines.",
+  dietaryNote: "⚠️ Tuna and cheese contribute more phosphate; fish is also relatively higher in purines.",
 },
 {
   id: "mediterranean-chicken",
   code: "D015",
     servings: 1,
   category: "Chicken",
-  emoji: "ðŸ…",
+  emoji: "🍅",
   image: "/images/recipes/mediterranean-chicken.png",
   name: "Mediterranean Chicken",
 
@@ -1789,12 +1789,12 @@ export const recipes: Recipe[] = [
     {
       item: "Large red onion, diced",
       shoppingItem: "Red onion",
-      quantity: "Â¼",
+      quantity: "¼",
     },
     {
       item: "Red pepper, diced",
       shoppingItem: "Red pepper",
-      quantity: "Â½",
+      quantity: "½",
     },
     {
       item: "Garlic, crushed",
@@ -1806,16 +1806,16 @@ export const recipes: Recipe[] = [
       quantity: "100g",
     },
     {
-      item: "Tomato purÃ©e",
-      quantity: "1Â½ tsp",
+      item: "Tomato purée",
+      quantity: "1½ tsp",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "Â½ tsp",
+      quantity: "½ tsp",
     },
     {
       item: "Olive oil",
-      quantity: "1Â½ tsp",
+      quantity: "1½ tsp",
     },
     {
       item: "Freshly ground black pepper",
@@ -1826,12 +1826,12 @@ export const recipes: Recipe[] = [
   method: [
     "Bring a saucepan of water to the boil and cook the basmati rice according to the packet instructions.",
     "While the rice is cooking, heat the olive oil in a large frying pan over a medium heat.",
-    "Add the diced chicken and cook for 5â€“6 minutes, stirring regularly until lightly browned.",
-    "Add the red onion and cook for 4â€“5 minutes until softened.",
+    "Add the diced chicken and cook for 5–6 minutes, stirring regularly until lightly browned.",
+    "Add the red onion and cook for 4–5 minutes until softened.",
     "Stir in the garlic and red pepper and cook for a further 2 minutes.",
-    "Add the tomato purÃ©e and cook for 1 minute, stirring continuously.",
+    "Add the tomato purée and cook for 1 minute, stirring continuously.",
     "Pour in the passata and stir in the dried mixed herbs.",
-    "Simmer for 8â€“10 minutes, stirring occasionally until the chicken is cooked through and the sauce has thickened.",
+    "Simmer for 8–10 minutes, stirring occasionally until the chicken is cooked through and the sauce has thickened.",
     "While the chicken is finishing, drain the rice.",
     "Divide the rice between serving plates and spoon the Mediterranean chicken over the top.",
     "Finish with freshly ground black pepper and serve immediately.",
@@ -1855,7 +1855,7 @@ export const recipes: Recipe[] = [
     code: "D016",
     servings: 1,
     category: "Chicken",
-    emoji: "ðŸ‹",
+    emoji: "🍋",
     image: "/images/recipes/lemon-herb-chicken-couscous.png",
     name: "Lemon & Herb Chicken with Couscous",
     description:
@@ -1884,9 +1884,9 @@ export const recipes: Recipe[] = [
       "Put the couscous into a large bowl and pour over 75ml boiling water. Cover and leave for 5 minutes.",
       "Fluff the couscous with a fork and stir through ⅜ tbsp of the olive oil, the lemon zest, half the lemon juice and the dried herbs.",
       "Heat the remaining olive oil in a large frying pan over a medium heat.",
-      "Season the chicken with black pepper and garlic granules. Cook for around 6â€“7 minutes per side, until cooked through and lightly browned.",
+      "Season the chicken with black pepper and garlic granules. Cook for around 6–7 minutes per side, until cooked through and lightly browned.",
       "Remove the chicken from the pan and keep warm.",
-      "Add the onion, red pepper and courgette to the pan. Cook for 5â€“6 minutes until softened.",
+      "Add the onion, red pepper and courgette to the pan. Cook for 5–6 minutes until softened.",
       "Return the chicken to the pan and add the remaining lemon juice.",
       "Serve the chicken with the couscous and vegetables, topped with fresh parsley.",
     ],
@@ -1908,7 +1908,7 @@ export const recipes: Recipe[] = [
     code: "D017",
     servings: 1,
     category: "Chicken",
-    emoji: "ðŸ¯",
+    emoji: "🍯",
     image: "/images/recipes/honey-garlic-chicken-rice.png",
     name: "Honey Garlic Chicken with Rice",
     description:
@@ -1937,12 +1937,12 @@ export const recipes: Recipe[] = [
       "Cook the basmati rice according to the packet instructions.",
       "Mix the honey, lemon juice, cornflour and 25ml water in a small jug.",
       "Heat the olive oil in a large frying pan over a medium heat.",
-      "Season the chicken with black pepper and cook for 5â€“6 minutes per side, until lightly browned and cooked through.",
+      "Season the chicken with black pepper and cook for 5–6 minutes per side, until lightly browned and cooked through.",
       "Remove the chicken from the pan and keep warm.",
-      "Add the onion and red pepper to the pan and cook for 4â€“5 minutes until softened.",
+      "Add the onion and red pepper to the pan and cook for 4–5 minutes until softened.",
       "Add the garlic and cook for 30 seconds.",
       "Pour in the honey mixture and stir until the sauce thickens.",
-      "Return the chicken to the pan and turn it in the glaze for 2â€“3 minutes.",
+      "Return the chicken to the pan and turn it in the glaze for 2–3 minutes.",
       "Meanwhile, steam or boil the green beans until tender but still slightly crisp.",
       "Drain the rice and serve with the honey garlic chicken and green beans.",
     ],
@@ -1964,7 +1964,7 @@ export const recipes: Recipe[] = [
     code: "D018",
     servings: 1,
     category: "Chicken",
-    emoji: "ðŸ›",
+    emoji: "🍛",
     image: "/images/recipes/chicken-tikka-rice.png",
     name: "Chicken Tikka with Rice",
     description:
@@ -1998,8 +1998,8 @@ export const recipes: Recipe[] = [
       "Mix the yoghurt, lemon juice, curry powder, cumin, paprika, turmeric, garlic granules and ginger.",
       "Stir the chicken into the marinade and leave for at least 15 minutes.",
       "Cook the basmati rice according to the packet instructions.",
-      "Heat ½ tbsp of the olive oil in a large frying pan and cook the onion, pepper and courgette for 5â€“6 minutes. Remove and keep warm.",
-      "Add the remaining oil to the pan and cook the marinated chicken for 8â€“10 minutes, turning regularly, until completely cooked through.",
+      "Heat ½ tbsp of the olive oil in a large frying pan and cook the onion, pepper and courgette for 5–6 minutes. Remove and keep warm.",
+      "Add the remaining oil to the pan and cook the marinated chicken for 8–10 minutes, turning regularly, until completely cooked through.",
       "Return the vegetables to the pan and cook together for another 2 minutes.",
       "Serve the chicken and vegetables with the basmati rice and sprinkle with fresh parsley.",
     ],
@@ -2021,7 +2021,7 @@ export const recipes: Recipe[] = [
     code: "D019",
     servings: 1,
     category: "Chicken",
-    emoji: "ðŸ",
+    emoji: "🍝",
     image: "/images/recipes/chicken-pesto-pasta.png",
     name: "Chicken Pesto Pasta",
     description:
@@ -2049,9 +2049,9 @@ export const recipes: Recipe[] = [
     method: [
       "Cook the pasta according to the packet instructions until just tender. Reserve a small cup of the cooking water, then drain.",
       "Cut the chicken into bite-sized pieces and season with black pepper, oregano and garlic granules.",
-      "Heat ½ tbsp of the olive oil in a large frying pan and cook the chicken for 7â€“8 minutes, turning regularly, until completely cooked through.",
+      "Heat ½ tbsp of the olive oil in a large frying pan and cook the chicken for 7–8 minutes, turning regularly, until completely cooked through.",
       "Remove the chicken and keep warm.",
-      "Add the remaining olive oil, onion, pepper and courgette to the pan. Cook for 5â€“6 minutes until softened.",
+      "Add the remaining olive oil, onion, pepper and courgette to the pan. Cook for 5–6 minutes until softened.",
       "Return the chicken to the pan.",
       "Add the drained pasta and pesto, together with a small splash of the reserved pasta water. Toss everything together over a low heat.",
       "Add the lemon juice, season with black pepper and finish with fresh basil or parsley.",
@@ -2074,7 +2074,7 @@ export const recipes: Recipe[] = [
     code: "D020",
     servings: 1,
     category: "Beef",
-    emoji: "ðŸ¥©",
+    emoji: "🥩",
     image: "/images/recipes/beef-stroganoff-pasta.png",
     name: "Beef Stroganoff with Pasta",
     description:
@@ -2089,7 +2089,7 @@ export const recipes: Recipe[] = [
       { item: "Dried penne pasta", shoppingItem: "Pasta", quantity: "75g" },
       { item: "Mushrooms, sliced", shoppingItem: "Mushrooms", quantity: "37.5g" },
       { item: "Onion, thinly sliced", shoppingItem: "Onion", quantity: "¼ medium" },
-      { item: "Half-fat crÃ¨me fraÃ®che", quantity: "37.5ml" },
+      { item: "Half-fat crème fraîche", quantity: "37.5ml" },
       { item: "Olive oil", quantity: "½ tbsp" },
       { item: "Paprika", quantity: "¼ tsp" },
       { item: "Dijon mustard", quantity: "¼ tsp" },
@@ -2104,13 +2104,13 @@ export const recipes: Recipe[] = [
     method: [
       "Cook the pasta according to the packet instructions until just tender. Reserve a little cooking water, then drain.",
       "Heat ½ tbsp olive oil in a large frying pan over a high heat.",
-      "Add the beef strips and cook for 2â€“3 minutes, stirring regularly, until browned. Remove from the pan and keep warm.",
+      "Add the beef strips and cook for 2–3 minutes, stirring regularly, until browned. Remove from the pan and keep warm.",
       "Reduce the heat and add the remaining olive oil.",
-      "Add the onion and mushrooms and cook for 5â€“6 minutes until softened.",
+      "Add the onion and mushrooms and cook for 5–6 minutes until softened.",
       "Stir in the paprika and garlic granules and cook for 30 seconds.",
       "Add the water and Dijon mustard and stir well, scraping any browned pieces from the bottom of the pan.",
-      "Reduce the heat and stir in the crÃ¨me fraÃ®che.",
-      "Return the beef to the pan and cook gently for 2â€“3 minutes. Do not boil the sauce.",
+      "Reduce the heat and stir in the crème fraîche.",
+      "Return the beef to the pan and cook gently for 2–3 minutes. Do not boil the sauce.",
       "Add the lemon juice and dried parsley, then season with black pepper.",
       "Toss the pasta through the sauce or serve the stroganoff over the pasta.",
       "Finish with fresh parsley.",
@@ -2133,7 +2133,7 @@ export const recipes: Recipe[] = [
     code: "D021",
     servings: 1,
     category: "Beef",
-    emoji: "ðŸ¥™",
+    emoji: "🥙",
     image: "/images/recipes/beef-kofta-couscous.png",
     name: "Beef Kofta with Couscous",
     description:
@@ -2165,9 +2165,9 @@ export const recipes: Recipe[] = [
       "Put the couscous into a large bowl and pour over 70ml boiling water. Cover and leave for 5 minutes.",
       "Fluff the couscous with a fork and stir through ¼ tbsp olive oil, the lemon juice and half the fresh parsley.",
       "Heat ¼ tbsp olive oil in a large frying pan over a medium heat.",
-      "Add the kofta and cook for 10â€“12 minutes, turning regularly, until browned and completely cooked through.",
+      "Add the kofta and cook for 10–12 minutes, turning regularly, until browned and completely cooked through.",
       "Remove the kofta and keep warm.",
-      "Add the remaining olive oil, onion, red pepper and courgette to the pan. Cook for 5â€“6 minutes until softened.",
+      "Add the remaining olive oil, onion, red pepper and courgette to the pan. Cook for 5–6 minutes until softened.",
       "Serve the kofta with the couscous and vegetables, finished with the remaining fresh parsley.",
     ],
     nutrition: {
@@ -2188,7 +2188,7 @@ export const recipes: Recipe[] = [
     code: "D022",
     servings: 1,
     category: "Beef",
-    emoji: "ðŸ¥©",
+    emoji: "🥩",
     image: "/images/recipes/steak-chips-green-beans.png",
     name: "Steak, Chips & Green Beans",
     description:
@@ -2214,8 +2214,8 @@ export const recipes: Recipe[] = [
       "Peel the potatoes and cut them into chunky chips.",
       "Put the chips into a saucepan of cold water, bring to the boil and simmer for 5 minutes.",
       "Drain the potatoes thoroughly and leave them to steam dry for a few minutes.",
-      "Heat ½ tbsp olive oil in a large frying pan and cook the chips over a medium heat for 15â€“20 minutes, turning regularly, until golden and cooked through.",
-      "Meanwhile, trim the green beans and steam or boil them for 5â€“6 minutes until tender but still slightly crisp.",
+      "Heat ½ tbsp olive oil in a large frying pan and cook the chips over a medium heat for 15–20 minutes, turning regularly, until golden and cooked through.",
+      "Meanwhile, trim the green beans and steam or boil them for 5–6 minutes until tender but still slightly crisp.",
       "Remove the chips from the pan and keep warm.",
       "Rub the steaks with the remaining olive oil, rosemary, garlic granules and black pepper.",
       "Heat the frying pan until hot and cook the steaks to your preferred level of doneness, turning once or twice.",
@@ -2241,7 +2241,7 @@ export const recipes: Recipe[] = [
     code: "D023",
     servings: 1,
     category: "Pork",
-    emoji: "ðŸŽ",
+    emoji: "🍎",
     image: "/images/recipes/pork-apple-potatoes.png",
     name: "Pork & Apple with Potatoes",
     description:
@@ -2265,13 +2265,13 @@ export const recipes: Recipe[] = [
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
-      "Peel and cut the potatoes into even chunks. Boil for 12â€“15 minutes until tender.",
+      "Peel and cut the potatoes into even chunks. Boil for 12–15 minutes until tender.",
       "Drain and allow them to steam dry for a few minutes.",
-      "Heat ¼ tbsp olive oil in a large frying pan. Season the pork with black pepper and sage and cook for 4â€“5 minutes per side, until cooked through. Remove and keep warm.",
-      "Add the remaining oil and the sliced onion to the pan. Cook for 3â€“4 minutes until softened.",
-      "Core and slice the apples, then add them to the pan with the lemon juice. Cook for 3â€“4 minutes until just softened but still holding their shape.",
-      "Meanwhile, steam or boil the green beans for 5â€“6 minutes.",
-      "Return the pork to the pan for 1â€“2 minutes to warm through.",
+      "Heat ¼ tbsp olive oil in a large frying pan. Season the pork with black pepper and sage and cook for 4–5 minutes per side, until cooked through. Remove and keep warm.",
+      "Add the remaining oil and the sliced onion to the pan. Cook for 3–4 minutes until softened.",
+      "Core and slice the apples, then add them to the pan with the lemon juice. Cook for 3–4 minutes until just softened but still holding their shape.",
+      "Meanwhile, steam or boil the green beans for 5–6 minutes.",
+      "Return the pork to the pan for 1–2 minutes to warm through.",
       "Toss the potatoes with dried parsley and serve with the pork, apple and green beans.",
     ],
     nutrition: {
@@ -2292,7 +2292,7 @@ export const recipes: Recipe[] = [
     code: "D024",
     servings: 1,
     category: "Pork",
-    emoji: "ðŸ¥¢",
+    emoji: "🥢",
     image: "/images/recipes/pork-stir-fry-rice.png",
     name: "Pork Stir-Fry with Rice",
     description:
@@ -2324,12 +2324,12 @@ export const recipes: Recipe[] = [
       "Cook the basmati rice according to the packet instructions.",
       "Mix the water, honey, lemon juice and cornflour in a small jug.",
       "Heat ⅜ tbsp olive oil in a large frying pan or wok over a high heat.",
-      "Add the pork and stir-fry for 5â€“6 minutes until browned and cooked through. Remove and keep warm.",
+      "Add the pork and stir-fry for 5–6 minutes until browned and cooked through. Remove and keep warm.",
       "Add the remaining oil, onion, pepper, courgette and green beans to the pan.",
-      "Stir-fry the vegetables for 5â€“6 minutes until cooked but still slightly crisp.",
+      "Stir-fry the vegetables for 5–6 minutes until cooked but still slightly crisp.",
       "Add the garlic, ginger and paprika and cook for 30 seconds.",
       "Return the pork to the pan.",
-      "Pour in the honey and lemon mixture and stir for 2â€“3 minutes until the sauce lightly thickens.",
+      "Pour in the honey and lemon mixture and stir for 2–3 minutes until the sauce lightly thickens.",
       "Serve immediately with the basmati rice.",
     ],
     nutrition: {
@@ -2350,7 +2350,7 @@ export const recipes: Recipe[] = [
     code: "D025",
     servings: 1,
     category: "Pork",
-    emoji: "ðŸŒ­",
+    emoji: "🌭",
     image: "/images/recipes/sausage-tomato-pasta.png",
     name: "Sausage & Tomato Pasta",
     description:
@@ -2381,13 +2381,13 @@ export const recipes: Recipe[] = [
       "Remove the skins from the sausages and break the meat into small pieces.",
       "Cook the pasta according to the packet instructions until just tender. Drain and set aside.",
       "Heat ¼ tbsp olive oil in a large frying pan.",
-      "Add the sausage meat and cook for 6â€“8 minutes, breaking it up as it cooks, until browned and cooked through.",
+      "Add the sausage meat and cook for 6–8 minutes, breaking it up as it cooks, until browned and cooked through.",
       "Remove the sausage from the pan and set aside.",
-      "Add the remaining olive oil, onion, pepper and courgette and cook for 5â€“6 minutes.",
+      "Add the remaining olive oil, onion, pepper and courgette and cook for 5–6 minutes.",
       "Add the garlic, oregano, basil and paprika and cook for 30 seconds.",
       "Stir in the chopped tomatoes and water and simmer for 5 minutes.",
-      "Return the sausage meat to the pan and simmer for another 3â€“4 minutes.",
-      "Stir through the cooked pasta and heat for 1â€“2 minutes.",
+      "Return the sausage meat to the pan and simmer for another 3–4 minutes.",
+      "Stir through the cooked pasta and heat for 1–2 minutes.",
       "Season with black pepper and finish with fresh parsley.",
     ],
     nutrition: {
@@ -2408,7 +2408,7 @@ export const recipes: Recipe[] = [
     code: "D026",
     servings: 1,
     category: "Fish",
-    emoji: "ðŸŸ",
+    emoji: "🐟",
     image: "/images/recipes/cod-herby-potatoes-green-beans.png",
     name: "Cod with Herby Potatoes & Green Beans",
     description:
@@ -2433,14 +2433,14 @@ export const recipes: Recipe[] = [
     ],
     method: [
       "Peel the potatoes and cut them into even chunks.",
-      "Place them in a saucepan of cold water, bring to the boil and cook for 12â€“15 minutes until tender.",
+      "Place them in a saucepan of cold water, bring to the boil and cook for 12–15 minutes until tender.",
       "Drain the potatoes and allow them to steam dry.",
       "Heat ½ tbsp olive oil in a large frying pan over a medium heat.",
       "Season the cod with black pepper, garlic granules and dried dill.",
-      "Place the cod in the pan and cook for 4â€“5 minutes on each side, until opaque and cooked through.",
+      "Place the cod in the pan and cook for 4–5 minutes on each side, until opaque and cooked through.",
       "Remove the cod and keep warm.",
-      "Add the remaining olive oil to the pan and gently toss the potatoes with the dried parsley and lemon juice for 3â€“4 minutes.",
-      "Meanwhile, steam or boil the green beans for 5â€“6 minutes until tender but still slightly crisp.",
+      "Add the remaining olive oil to the pan and gently toss the potatoes with the dried parsley and lemon juice for 3–4 minutes.",
+      "Meanwhile, steam or boil the green beans for 5–6 minutes until tender but still slightly crisp.",
       "Serve the cod with the herby potatoes and green beans, finished with fresh parsley.",
     ],
     nutrition: {
@@ -2461,7 +2461,7 @@ export const recipes: Recipe[] = [
     code: "D027",
     servings: 1,
     category: "Fish",
-    emoji: "ðŸŸ",
+    emoji: "🐟",
     image: "/images/recipes/cod-couscous-vegetables.png",
     name: "Cod with Couscous & Vegetables",
     description:
@@ -2491,10 +2491,10 @@ export const recipes: Recipe[] = [
       "Put the couscous into a large bowl and pour over 75ml boiling water. Cover and leave for 5 minutes.",
       "Fluff the couscous with a fork and stir through ¼ tbsp olive oil, lemon juice and the dried herbs.",
       "Heat ¼ tbsp olive oil in a large frying pan.",
-      "Add the onion, pepper and courgette and cook for 5â€“6 minutes until softened.",
+      "Add the onion, pepper and courgette and cook for 5–6 minutes until softened.",
       "Remove the vegetables and keep warm.",
       "Add the remaining oil to the pan and season the cod with black pepper, garlic granules and oregano.",
-      "Cook the cod for 4â€“5 minutes on each side until completely cooked through.",
+      "Cook the cod for 4–5 minutes on each side until completely cooked through.",
       "Return the vegetables to the pan and add 25ml water.",
       "Simmer gently for 2 minutes to bring everything together.",
       "Serve the cod with the couscous and vegetables, finished with fresh parsley.",
@@ -2517,7 +2517,7 @@ export const recipes: Recipe[] = [
     code: "D028",
     servings: 1,
     category: "Fish",
-    emoji: "ðŸŸ",
+    emoji: "🐟",
     image: "/images/recipes/cod-tomato-rice.png",
     name: "Cod & Tomato Rice",
     description:
@@ -2546,14 +2546,14 @@ export const recipes: Recipe[] = [
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
-      "Heat ¼ tbsp olive oil in a large frying pan and gently cook the onion, pepper and courgette for 5â€“6 minutes.",
+      "Heat ¼ tbsp olive oil in a large frying pan and gently cook the onion, pepper and courgette for 5–6 minutes.",
       "Add the garlic, oregano, parsley and paprika and cook for 30 seconds.",
       "Stir in the chopped tomatoes and water.",
       "Add the rice and stir well.",
       "Bring to a gentle simmer, cover and cook according to the rice packet instructions, stirring occasionally.",
       "Season the cod with black pepper.",
       "When the rice is nearly cooked, place the cod fillets on top.",
-      "Cover and cook for around 8â€“10 minutes, until the cod is completely cooked through and flakes easily.",
+      "Cover and cook for around 8–10 minutes, until the cod is completely cooked through and flakes easily.",
       "Drizzle over the lemon juice and remaining olive oil.",
       "Finish with fresh parsley and serve.",
     ],
@@ -2575,7 +2575,7 @@ export const recipes: Recipe[] = [
     code: "D029",
     servings: 1,
     category: "Vegetarian",
-    emoji: "ðŸŒ±",
+    emoji: "🌱",
     image: "/images/recipes/vegetable-herb-couscous.png",
     name: "Vegetable & Herb Couscous",
     description:
@@ -2607,7 +2607,7 @@ export const recipes: Recipe[] = [
       "Put the couscous into a large bowl and pour over 75ml boiling water. Cover and leave for 5 minutes.",
       "Fluff the couscous with a fork and stir through ¼ tbsp olive oil, the lemon zest and half the lemon juice.",
       "Heat ½ tbsp olive oil in a large frying pan.",
-      "Add the onion, red and yellow peppers and courgette. Cook for 7â€“8 minutes until softened and lightly browned.",
+      "Add the onion, red and yellow peppers and courgette. Cook for 7–8 minutes until softened and lightly browned.",
       "Add the sweetcorn, oregano, parsley, garlic granules and paprika and cook for another 2 minutes.",
       "Stir the vegetables through the couscous.",
       "Add the remaining olive oil and lemon juice and mix well.",
@@ -2632,7 +2632,7 @@ export const recipes: Recipe[] = [
     code: "D030",
     servings: 1,
     category: "Vegetarian",
-    emoji: "ðŸ„",
+    emoji: "🍄",
     image: "/images/recipes/creamy-mushroom-garlic-pasta.png",
     name: "Creamy Mushroom & Garlic Pasta",
     description:
@@ -2647,7 +2647,7 @@ export const recipes: Recipe[] = [
       { item: "Chestnut mushrooms, sliced", shoppingItem: "Mushrooms", quantity: "75g" },
       { item: "Onion, finely sliced", shoppingItem: "Onion", quantity: "¼ medium" },
       { item: "Garlic, crushed", shoppingItem: "Garlic", quantity: "½ clove" },
-      { item: "Half-fat crÃ¨me fraÃ®che", quantity: "37.5ml" },
+      { item: "Half-fat crème fraîche", quantity: "37.5ml" },
       { item: "Olive oil", quantity: "¼ tbsp" },
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "⅛ lemon" },
       { item: "Dried parsley", quantity: "¼ tsp" },
@@ -2659,12 +2659,12 @@ export const recipes: Recipe[] = [
     method: [
       "Cook the pasta according to the packet instructions until just tender. Reserve a little cooking water, then drain.",
       "Heat ½ tbsp olive oil in a large frying pan over a medium-high heat.",
-      "Add the mushrooms and cook for 5â€“7 minutes until softened and lightly browned.",
-      "Add the remaining olive oil and the onion and cook for 4â€“5 minutes until softened.",
+      "Add the mushrooms and cook for 5–7 minutes until softened and lightly browned.",
+      "Add the remaining olive oil and the onion and cook for 4–5 minutes until softened.",
       "Add the garlic, thyme and dried parsley and cook for 30 seconds.",
-      "Reduce the heat and stir in the crÃ¨me fraÃ®che and a small splash of the reserved pasta water.",
+      "Reduce the heat and stir in the crème fraîche and a small splash of the reserved pasta water.",
       "Add the drained pasta and toss gently until coated in the sauce.",
-      "Add the lemon juice and black pepper and warm through for 1â€“2 minutes. Do not boil the sauce.",
+      "Add the lemon juice and black pepper and warm through for 1–2 minutes. Do not boil the sauce.",
       "Finish with fresh parsley and serve.",
     ],
     nutrition: {
@@ -2678,14 +2678,14 @@ export const recipes: Recipe[] = [
     phosphate: "High",
     purines: "Low",
     dietaryNote:
-      "This vegetarian recipe is relatively low in purines because it contains no meat, fish or pulses. Mushrooms contribute potassium and the crÃ¨me fraÃ®che contributes some phosphate.",
+      "This vegetarian recipe is relatively low in purines because it contains no meat, fish or pulses. Mushrooms contribute potassium and the crème fraîche contributes some phosphate.",
   },
       {
     id: "apple-cinnamon-french-toast",
     code: "B001",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸŽ",
+    emoji: "🍎",
     image: "/images/recipes/apple-cinnamon-french-toast.png",
     name: "Apple & Cinnamon French Toast",
     description:
@@ -2708,11 +2708,11 @@ export const recipes: Recipe[] = [
       {
         item: "Apple, thinly sliced",
         shoppingItem: "Apple",
-        quantity: "Â½ medium",
+        quantity: "½ medium",
       },
       {
         item: "Ground cinnamon",
-        quantity: "Â½ tsp",
+        quantity: "½ tsp",
       },
       {
         item: "Olive oil",
@@ -2727,8 +2727,8 @@ export const recipes: Recipe[] = [
       "Whisk the egg whites with half of the cinnamon in a shallow bowl.",
       "Dip the bread into the egg-white mixture, turning once so both sides are coated.",
       "Heat the olive oil in a non-stick frying pan over a medium heat.",
-      "Cook the bread for 2â€“3 minutes on each side until lightly golden and cooked through.",
-      "Add the sliced apple to the pan and cook for 2â€“3 minutes until just softened.",
+      "Cook the bread for 2–3 minutes on each side until lightly golden and cooked through.",
+      "Add the sliced apple to the pan and cook for 2–3 minutes until just softened.",
       "Serve the French toast topped with the warm apple, remaining cinnamon and maple syrup.",
     ],
     nutrition: {
@@ -2750,7 +2750,7 @@ export const recipes: Recipe[] = [
     code: "B002",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ¥ž",
+    emoji: "🥞",
     image: "/images/recipes/blueberry-lemon-pancakes.png",
     name: "Blueberry & Lemon Pancakes",
     description:
@@ -2789,7 +2789,7 @@ export const recipes: Recipe[] = [
       {
         item: "Lemon zest",
         shoppingItem: "Lemon",
-        quantity: "Â½ lemon",
+        quantity: "½ lemon",
       },
       {
         item: "Olive oil",
@@ -2827,7 +2827,7 @@ export const recipes: Recipe[] = [
     code: "B003",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ³",
+    emoji: "🍳",
     image: "/images/recipes/scrambled-egg-red-pepper-toast.png",
     name: "Scrambled Egg & Red Pepper Toast",
     description:
@@ -2850,7 +2850,7 @@ export const recipes: Recipe[] = [
       {
         item: "Red pepper, finely diced",
         shoppingItem: "Red pepper",
-        quantity: "Â½ medium",
+        quantity: "½ medium",
       },
       {
         item: "Spring onion, finely sliced",
@@ -2869,7 +2869,7 @@ export const recipes: Recipe[] = [
     method: [
       "Toast the bread.",
       "Heat the olive oil in a non-stick frying pan over a medium heat.",
-      "Add the red pepper and spring onion and cook for 3â€“4 minutes until softened.",
+      "Add the red pepper and spring onion and cook for 3–4 minutes until softened.",
       "Whisk the egg whites with black pepper and pour into the pan.",
       "Stir gently until softly scrambled and cooked through.",
       "Serve immediately on the toast.",
@@ -2893,7 +2893,7 @@ export const recipes: Recipe[] = [
     code: "B004",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ“",
+    emoji: "🍓",
     image: "/images/recipes/strawberry-crumpets.png",
     name: "Strawberry Breakfast Crumpets",
     description:
@@ -2953,7 +2953,7 @@ export const recipes: Recipe[] = [
     code: "B005",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸš",
+    emoji: "🍚",
     image: "/images/recipes/apple-cinnamon-rice-pudding.png",
     name: "Apple & Cinnamon Breakfast Rice",
     description:
@@ -2976,7 +2976,7 @@ export const recipes: Recipe[] = [
       {
         item: "Apple, peeled and diced",
         shoppingItem: "Apple",
-        quantity: "Â½ medium",
+        quantity: "½ medium",
       },
       {
         item: "Caster sugar",
@@ -2984,16 +2984,16 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Ground cinnamon",
-        quantity: "Â½ tsp",
+        quantity: "½ tsp",
       },
       {
         item: "Vanilla extract",
-        quantity: "Â½ tsp",
+        quantity: "½ tsp",
       },
     ],
     method: [
       "Place the cooked rice, water, diced apple, sugar and cinnamon into a saucepan.",
-      "Bring gently to a simmer and cook for 7â€“8 minutes, stirring regularly, until creamy and the apple is tender.",
+      "Bring gently to a simmer and cook for 7–8 minutes, stirring regularly, until creamy and the apple is tender.",
       "Stir in the vanilla extract.",
       "Serve warm with a light dusting of cinnamon.",
     ],
@@ -3016,7 +3016,7 @@ export const recipes: Recipe[] = [
     code: "B006",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ¥ª",
+    emoji: "🥪",
     image: "/images/recipes/egg-herb-sandwich.png",
     name: "Egg & Herb Breakfast Sandwich",
     description:
@@ -3039,7 +3039,7 @@ export const recipes: Recipe[] = [
       {
         item: "Red pepper, thinly sliced",
         shoppingItem: "Red pepper",
-        quantity: "Â¼ medium",
+        quantity: "¼ medium",
       },
       {
         item: "Lettuce leaves",
@@ -3057,7 +3057,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Olive oil",
-        quantity: "Â½ tsp",
+        quantity: "½ tsp",
       },
       {
         item: "Freshly ground black pepper",
@@ -3066,7 +3066,7 @@ export const recipes: Recipe[] = [
     ],
     method: [
       "Slice the bread roll and lightly toast the cut sides.",
-      "Heat the olive oil in a non-stick frying pan and cook the red pepper for 2â€“3 minutes.",
+      "Heat the olive oil in a non-stick frying pan and cook the red pepper for 2–3 minutes.",
       "Whisk the egg whites with the chives and black pepper.",
       "Pour into the pan and gently scramble until cooked through.",
       "Spread the mayonnaise over the toasted bread roll.",
@@ -3092,7 +3092,7 @@ export const recipes: Recipe[] = [
     code: "B007",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ«",
+    emoji: "🫐",
     image: "/images/recipes/lemon-blueberry-pancake-stack.png",
     name: "Lemon & Blueberry Pancake Stack",
     description:
@@ -3131,7 +3131,7 @@ export const recipes: Recipe[] = [
       {
         item: "Lemon zest",
         shoppingItem: "Lemon",
-        quantity: "Â½ lemon",
+        quantity: "½ lemon",
       },
       {
         item: "Vegetable oil",
@@ -3170,7 +3170,7 @@ export const recipes: Recipe[] = [
     code: "B008",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ‘",
+    emoji: "🍑",
     image: "/images/recipes/peach-vanilla-rice.png",
     name: "Peach & Vanilla Breakfast Rice Bowl",
     description:
@@ -3197,11 +3197,11 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Vanilla extract",
-        quantity: "Â½ tsp",
+        quantity: "½ tsp",
       },
       {
         item: "Ground cinnamon",
-        quantity: "Â¼ tsp",
+        quantity: "¼ tsp",
       },
       {
         item: "Water",
@@ -3209,7 +3209,7 @@ export const recipes: Recipe[] = [
       },
     ],
     method: [
-      "Place the cooked rice and water into a saucepan and warm gently for 3â€“4 minutes.",
+      "Place the cooked rice and water into a saucepan and warm gently for 3–4 minutes.",
       "Stir in the sugar and vanilla extract.",
       "Spoon into a breakfast bowl.",
       "Top with the drained peach slices and sprinkle with cinnamon.",
@@ -3234,7 +3234,7 @@ export const recipes: Recipe[] = [
     code: "B009",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸŒ¯",
+    emoji: "🌯",
     image: "/images/recipes/egg-pepper-wrap.png",
     name: "Savoury Egg & Pepper Breakfast Wrap",
     description:
@@ -3257,7 +3257,7 @@ export const recipes: Recipe[] = [
       {
         item: "Red pepper, diced",
         shoppingItem: "Red pepper",
-        quantity: "Â½ medium",
+        quantity: "½ medium",
       },
       {
         item: "Onion, finely sliced",
@@ -3281,7 +3281,7 @@ export const recipes: Recipe[] = [
     method: [
       "Warm the tortilla briefly in a dry frying pan and set aside.",
       "Heat the olive oil in the pan over a medium heat.",
-      "Add the onion and red pepper and cook for 3â€“4 minutes until softened.",
+      "Add the onion and red pepper and cook for 3–4 minutes until softened.",
       "Whisk the egg whites with black pepper and pour into the pan.",
       "Stir gently until the egg whites are cooked through.",
       "Place the lettuce in the centre of the tortilla and spoon the egg mixture over it.",
@@ -3307,7 +3307,7 @@ export const recipes: Recipe[] = [
     code: "B010",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ",
+    emoji: "🍏",
     image: "/images/recipes/apple-blueberry-toast.png",
     name: "Apple & Blueberry Breakfast Toast",
     description:
@@ -3326,7 +3326,7 @@ export const recipes: Recipe[] = [
       {
         item: "Apple, thinly sliced",
         shoppingItem: "Apple",
-        quantity: "Â½ medium",
+        quantity: "½ medium",
       },
       {
         item: "Blueberries",
@@ -3343,13 +3343,13 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Ground cinnamon",
-        quantity: "Â½ tsp",
+        quantity: "½ tsp",
       },
     ],
     method: [
       "Toast the bread until golden.",
       "Melt the butter in a non-stick frying pan over a medium heat.",
-      "Add the apple and cinnamon and cook for 3â€“4 minutes until just softened.",
+      "Add the apple and cinnamon and cook for 3–4 minutes until just softened.",
       "Add the blueberries and warm for 1 minute without breaking them up too much.",
       "Place the warm fruit over the toast.",
       "Drizzle with maple syrup and serve immediately.",
@@ -3374,7 +3374,7 @@ export const recipes: Recipe[] = [
     code: "B011",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ³",
+    emoji: "🍳",
     image: "/images/recipes/scrambled-eggs-on-toast.png",
     name: "Scrambled Eggs on Toast",
     description:
@@ -3418,7 +3418,7 @@ export const recipes: Recipe[] = [
     code: "B012",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ¥š",
+    emoji: "🥚",
     image: "/images/recipes/poached-eggs-on-toast.png",
     name: "Poached Eggs on Toast",
     description:
@@ -3437,7 +3437,7 @@ export const recipes: Recipe[] = [
     method: [
       "Bring a saucepan of water to a gentle simmer.",
       "Crack each egg into a small bowl.",
-      "Carefully slide the eggs into the simmering water and poach for about 3â€“4 minutes until the whites are set and the yolks remain soft.",
+      "Carefully slide the eggs into the simmering water and poach for about 3–4 minutes until the whites are set and the yolks remain soft.",
       "Toast the bread and spread with the butter.",
       "Lift the eggs from the water with a slotted spoon and drain briefly.",
       "Place one poached egg on each slice of toast.",
@@ -3463,7 +3463,7 @@ export const recipes: Recipe[] = [
     code: "B013",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ¥š",
+    emoji: "🥚",
     image: "/images/recipes/egg-and-soldiers.png",
     name: "Egg & Soldiers",
     description:
@@ -3480,7 +3480,7 @@ export const recipes: Recipe[] = [
     ],
     method: [
       "Bring a saucepan of water to the boil.",
-      "Carefully lower the eggs into the water and cook for 5â€“6 minutes for soft-boiled eggs.",
+      "Carefully lower the eggs into the water and cook for 5–6 minutes for soft-boiled eggs.",
       "Toast the bread until golden.",
       "Spread the butter over the toast and cut each slice into four long soldiers.",
       "Place the eggs in egg cups and carefully remove the tops.",
@@ -3505,7 +3505,7 @@ export const recipes: Recipe[] = [
     code: "B014",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸŒ­",
+    emoji: "🌭",
     image: "/images/recipes/sausage-and-egg-breakfast-muffin.png",
     name: "Sausage & Egg Breakfast Muffin",
     description:
@@ -3551,7 +3551,7 @@ export const recipes: Recipe[] = [
     code: "B015",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ¥“",
+    emoji: "🥓",
     image: "/images/recipes/bacon-and-egg-toast.png",
     name: "Bacon & Egg Toast",
     description:
@@ -3595,7 +3595,7 @@ export const recipes: Recipe[] = [
     code: "B016",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ§€",
+    emoji: "🧀",
     image: "/images/recipes/egg-and-cheese-crumpets.png",
     name: "Egg & Cheese Crumpets",
     description:
@@ -3639,7 +3639,7 @@ export const recipes: Recipe[] = [
     code: "B017",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸŒ­",
+    emoji: "🌭",
     image: "/images/recipes/sausage-on-toast.png",
     name: "Sausage on Toast",
     description:
@@ -3680,7 +3680,7 @@ export const recipes: Recipe[] = [
     code: "B018",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ¥¯",
+    emoji: "🥯",
     image: "/images/recipes/egg-and-ham-breakfast-bagel.png",
     name: "Egg & Ham Breakfast Bagel",
     description:
@@ -3725,7 +3725,7 @@ export const recipes: Recipe[] = [
     code: "B019",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ¥¯",
+    emoji: "🥯",
     image: "/images/recipes/egg-and-pepper-breakfast-bagel.png",
     name: "Egg & Pepper Breakfast Bagel",
     description:
@@ -3737,7 +3737,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Plain white bagel, phosphate-additive-free", shoppingItem: "Plain bagels", quantity: "1" },
       { item: "Egg whites", quantity: "3 large" },
-      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "Â¼ medium" },
+      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "¼ medium" },
       { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
       { item: "Olive oil", quantity: "¼ tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
@@ -3745,7 +3745,7 @@ export const recipes: Recipe[] = [
     method: [
       "Toast the bagel halves until lightly golden.",
       "Heat the olive oil in a non-stick frying pan over a medium heat.",
-      "Add the diced red pepper and cook for 2â€“3 minutes until slightly softened.",
+      "Add the diced red pepper and cook for 2–3 minutes until slightly softened.",
       "Whisk the egg whites with black pepper and pour them into the pan.",
       "Stir gently until the egg whites are softly scrambled and cooked through.",
       "Place the lettuce on the bottom half of the bagel.",
@@ -3771,7 +3771,7 @@ export const recipes: Recipe[] = [
     code: "B020",
     servings: 1,
     category: "Breakfast",
-    emoji: "ðŸ¥£",
+    emoji: "🥣",
     image: "/images/recipes/apple-cinnamon-porridge.png",
     name: "Apple & Cinnamon Porridge",
     description:
@@ -3783,15 +3783,15 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Rolled oats", shoppingItem: "Rolled oats", quantity: "50 g" },
       { item: "Water", quantity: "250 ml" },
-      { item: "Apple, peeled and finely diced", shoppingItem: "Apple", quantity: "Â½ medium" },
+      { item: "Apple, peeled and finely diced", shoppingItem: "Apple", quantity: "½ medium" },
       { item: "Caster sugar", quantity: "¼ tbsp" },
-      { item: "Ground cinnamon", quantity: "Â½ tsp" },
-      { item: "Vanilla extract", quantity: "Â½ tsp" },
+      { item: "Ground cinnamon", quantity: "½ tsp" },
+      { item: "Vanilla extract", quantity: "½ tsp" },
     ],
     method: [
       "Place the oats and water into a saucepan.",
-      "Bring gently to a simmer and cook for 4â€“5 minutes, stirring regularly, until creamy.",
-      "Meanwhile, place the diced apple in a small pan with a splash of water and cook for 3â€“4 minutes until just softened.",
+      "Bring gently to a simmer and cook for 4–5 minutes, stirring regularly, until creamy.",
+      "Meanwhile, place the diced apple in a small pan with a splash of water and cook for 3–4 minutes until just softened.",
       "Stir the sugar and vanilla extract into the porridge.",
       "Spoon the porridge into a bowl and top with the warm apple.",
       "Finish with the cinnamon and serve immediately.",

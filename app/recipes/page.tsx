@@ -272,8 +272,21 @@ export default function RecipesPage() {
             dietaryRank[b.purines]
           );
 
-        default:
-          return 0;
+        default: {
+          // Keep the recipe data order untouched, but make the
+          // default browse order feel natural: Breakfast → Lunch → Dinner.
+          const mealOrder: Record<string, number> = {
+            Breakfast: 1,
+            Lunch: 2,
+            Dinner: 3,
+            Other: 4,
+          };
+
+          return (
+            mealOrder[getMealType(a)] -
+            mealOrder[getMealType(b)]
+          );
+        }
       }
     });
 

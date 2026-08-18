@@ -472,6 +472,25 @@ export default function WeeklyPlannerPage() {
         },
       };
     });
+
+    // Removing a meal must also remove its previous
+    // people override. The next meal added to this slot
+    // will then default to the current Shopping List
+    // household size.
+    setMealPeople((current) => {
+      if (!current) return current;
+
+      const updatedDay = {
+        ...current[day],
+      };
+
+      delete updatedDay[meal];
+
+      return {
+        ...current,
+        [day]: updatedDay,
+      };
+    });
   }
 
   function getRandomRecipeId(

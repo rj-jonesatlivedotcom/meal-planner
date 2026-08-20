@@ -121,7 +121,7 @@ export default function Home() {
               </h2>
 
               <p className="mt-1 text-lg leading-snug text-slate-800">
-                Your ingredients, combined and ready to go. No duplicates!
+                Automatically create a shopping list of ingredients for your chosen meals!
               </p>
 
             </div>

@@ -1232,9 +1232,9 @@ export default function ShoppingPage() {
       </h1>
 
       <div className="bg-white rounded-xl shadow p-6">
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div className="flex flex-nowrap items-center justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-xl font-semibold">
+            <h2 className="text-xl font-semibold whitespace-nowrap">
               Cooking for:
             </h2>
 
@@ -1252,23 +1252,23 @@ export default function ShoppingPage() {
           </div>
 
           {selectedRecipes.length > 0 && (
-            <div className="text-sm text-slate-500 text-right">
-              <div>
-                {selectedRecipes.length}{" "}
-                {selectedRecipes.length === 1 ? "meal" : "meals"} •{" "}
-                {people} {people === 1 ? "person" : "people"} •{" "}
-                {shoppingList.length}{" "}
-                {shoppingList.length === 1 ? "item" : "items"}
-              </div>
+  <div className="flex min-w-0 flex-col items-end text-sm text-slate-500 text-right">
+    <button
+      onClick={uncheckAll}
+      className="whitespace-nowrap bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
+    >
+      ☐ Uncheck All
+    </button>
 
-              <button
-                onClick={uncheckAll}
-                className="mt-2 bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
-              >
-                ☐ Uncheck All
-              </button>
-            </div>
-          )}
+    <div className="mt-2 whitespace-nowrap">
+      {selectedRecipes.length}{" "}
+      {selectedRecipes.length === 1 ? "meal" : "meals"} •{" "}
+      {people} {people === 1 ? "person" : "people"} •{" "}
+      {shoppingList.length}{" "}
+      {shoppingList.length === 1 ? "item" : "items"}
+    </div>
+  </div>
+)}
         </div>
 
         {shoppingList.length === 0 ? (

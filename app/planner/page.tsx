@@ -1569,11 +1569,11 @@ export default function WeeklyPlannerPage() {
               <div className="min-w-0">
 
                 <h2 className="text-base font-bold text-slate-900 md:text-lg">
-                  Your shopping list is ready
+                  Go to Shopping List!
                 </h2>
 
                 <p className="mt-0.5 text-xs leading-5 text-slate-600 md:text-sm">
-                  Your planned meals have automatically been added to your Shopping List.
+                  Meals you select appear automatically in the Shopping List.
                 </p>
 
               </div>

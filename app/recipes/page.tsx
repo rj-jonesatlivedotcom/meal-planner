@@ -79,31 +79,16 @@ export default function RecipesPage() {
       }
 
       // A normal visit to /recipes should always start with clean filters.
-      // Clear any previously saved Recipes-page filters before restoring them.
-      sessionStorage.removeItem("recipes-filters");
+      // Only a Weekly Planner URL supplies a meal filter.
+      setSelectedMealType("All");
+      setSelectedProtein("All");
+      setSearchText("");
+      setSortBy("default");
 
-      const savedFilters = sessionStorage.getItem(
-        "recipes-filters"
-      );
-
-      if (savedFilters) {
-        const data = JSON.parse(savedFilters);
-
-        if (typeof data.selectedMealType === "string") {
-          setSelectedMealType(data.selectedMealType);
-        }
-
-        if (typeof data.selectedProtein === "string") {
-          setSelectedProtein(data.selectedProtein);
-        }
-
-        if (typeof data.searchText === "string") {
-          setSearchText(data.searchText);
-        }
-
-        if (typeof data.sortBy === "string") {
-          setSortBy(data.sortBy);
-        }
+      try {
+        sessionStorage.removeItem("recipes-filters");
+      } catch {
+        // Ignore storage errors.
       }
     } catch {
       // Ignore invalid filter data.

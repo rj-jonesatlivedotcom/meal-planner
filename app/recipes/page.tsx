@@ -13,6 +13,7 @@ export default function RecipesPage() {
   const [filtersLoaded, setFiltersLoaded] = useState(false);
 
   const filterRef = useRef<HTMLDivElement>(null);
+  const plannerFilterRef = useRef(false);
 
   const mealTypes = [
     "All",
@@ -66,6 +67,7 @@ export default function RecipesPage() {
         plannerMeal &&
         validMealTypes.includes(plannerMeal)
       ) {
+        plannerFilterRef.current = true;
         setSelectedMealType(plannerMeal);
         setSelectedProtein("All");
         setSearchText("");
@@ -108,6 +110,13 @@ export default function RecipesPage() {
   // opening a recipe and pressing the Android Back button.
   useEffect(() => {
     if (!filtersLoaded) {
+      return;
+    }
+
+    // A meal type supplied by the Weekly Planner is temporary context,
+    // not a user-selected Recipes-page filter. Do not save it.
+    if (plannerFilterRef.current) {
+      plannerFilterRef.current = false;
       return;
     }
 

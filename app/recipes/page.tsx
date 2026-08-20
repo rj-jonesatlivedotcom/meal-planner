@@ -79,7 +79,9 @@ export default function RecipesPage() {
       }
 
       // A normal visit to /recipes should always start with clean filters.
-      // Only a Weekly Planner URL supplies a meal filter.
+      // Mark this reset so the save effect does not immediately write
+      // the previous filter state back into sessionStorage.
+      plannerFilterRef.current = true;
       setSelectedMealType("All");
       setSelectedProtein("All");
       setSearchText("");

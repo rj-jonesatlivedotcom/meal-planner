@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/recipes";
 
 export default function RecipesPage() {
-    const searchParams = useSearchParams();
+
   const [selectedMealType, setSelectedMealType] = useState("All");
   const [selectedProtein, setSelectedProtein] = useState("All");
   const [searchText, setSearchText] = useState("");
@@ -97,7 +96,7 @@ export default function RecipesPage() {
     }
 
     setFiltersLoaded(true);
-    }, [searchParams]);
+    }, []);
 
   // Save the current recipe filters so they survive
   // opening a recipe and pressing the Android Back button.

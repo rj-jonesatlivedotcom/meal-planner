@@ -880,11 +880,17 @@ export default function WeeklyPlannerPage() {
 
                     <div className="col-span-3 flex items-center gap-3">
 
-                      <img
-                        src={mobileBreakfast.image}
-                        alt={mobileBreakfast.name}
-                        className="h-20 w-20 shrink-0 rounded-xl object-cover shadow-sm"
-                      />
+                      <Link
+                        href={`/recipes/${mobileBreakfast.id}`}
+                        className="shrink-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                        aria-label={`View ${mobileBreakfast.name} recipe`}
+                      >
+                        <img
+                          src={mobileBreakfast.image}
+                          alt={mobileBreakfast.name}
+                          className="h-20 w-20 rounded-xl object-cover shadow-sm"
+                        />
+                      </Link>
 
                       <h3 className="min-w-0 flex-1 text-left text-lg font-bold leading-6 text-slate-900">
                         {mobileBreakfast.name}
@@ -969,11 +975,17 @@ export default function WeeklyPlannerPage() {
 
                     <div className="col-span-3 flex items-center gap-3">
 
-                      <img
-                        src={mobileLunch.image}
-                        alt={mobileLunch.name}
-                        className="h-20 w-20 shrink-0 rounded-xl object-cover shadow-sm"
-                      />
+                      <Link
+                        href={`/recipes/${mobileLunch.id}`}
+                        className="shrink-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                        aria-label={`View ${mobileLunch.name} recipe`}
+                      >
+                        <img
+                          src={mobileLunch.image}
+                          alt={mobileLunch.name}
+                          className="h-20 w-20 rounded-xl object-cover shadow-sm"
+                        />
+                      </Link>
 
                       <h3 className="min-w-0 flex-1 text-left text-lg font-bold leading-6 text-slate-900">
                         {mobileLunch.name}
@@ -1058,11 +1070,17 @@ export default function WeeklyPlannerPage() {
 
                     <div className="col-span-3 flex items-center gap-3">
 
-                      <img
-                        src={mobileDinner.image}
-                        alt={mobileDinner.name}
-                        className="h-20 w-20 shrink-0 rounded-xl object-cover shadow-sm"
-                      />
+                      <Link
+                        href={`/recipes/${mobileDinner.id}`}
+                        className="shrink-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                        aria-label={`View ${mobileDinner.name} recipe`}
+                      >
+                        <img
+                          src={mobileDinner.image}
+                          alt={mobileDinner.name}
+                          className="h-20 w-20 rounded-xl object-cover shadow-sm"
+                        />
+                      </Link>
 
                       <h3 className="min-w-0 flex-1 text-left text-lg font-bold leading-6 text-slate-900">
                         {mobileDinner.name}
@@ -1190,11 +1208,17 @@ export default function WeeklyPlannerPage() {
 
                         <div className="relative flex justify-center pt-2">
 
-                          <img
-                            src={recipe.image}
-                            alt={recipe.name}
-                            className="h-[76px] w-[76px] rounded-xl object-cover shadow-sm"
-                          />
+                          <Link
+                            href={`/recipes/${recipe.id}`}
+                            className="rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                            aria-label={`View ${recipe.name} recipe`}
+                          >
+                            <img
+                              src={recipe.image}
+                              alt={recipe.name}
+                              className="h-[76px] w-[76px] rounded-xl object-cover shadow-sm"
+                            />
+                          </Link>
 
                           <button
                             type="button"
@@ -1326,11 +1350,17 @@ export default function WeeklyPlannerPage() {
 
                         <div className="relative flex justify-center pt-2">
 
-                          <img
-                            src={recipe.image}
-                            alt={recipe.name}
-                            className="h-[76px] w-[76px] rounded-xl object-cover shadow-sm"
-                          />
+                          <Link
+                            href={`/recipes/${recipe.id}`}
+                            className="rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                            aria-label={`View ${recipe.name} recipe`}
+                          >
+                            <img
+                              src={recipe.image}
+                              alt={recipe.name}
+                              className="h-[76px] w-[76px] rounded-xl object-cover shadow-sm"
+                            />
+                          </Link>
 
                           <button
                             type="button"
@@ -1461,11 +1491,17 @@ export default function WeeklyPlannerPage() {
 
                         <div className="relative flex justify-center pt-2">
 
-                          <img
-                            src={recipe.image}
-                            alt={recipe.name}
-                            className="h-[76px] w-[76px] rounded-xl object-cover shadow-sm"
-                          />
+                          <Link
+                            href={`/recipes/${recipe.id}`}
+                            className="rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                            aria-label={`View ${recipe.name} recipe`}
+                          >
+                            <img
+                              src={recipe.image}
+                              alt={recipe.name}
+                              className="h-[76px] w-[76px] rounded-xl object-cover shadow-sm"
+                            />
+                          </Link>
 
                           <button
                             type="button"

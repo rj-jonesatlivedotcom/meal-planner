@@ -491,13 +491,10 @@ export default function RecipeDetailPage() {
       <div className="mb-4 sm:mb-5">
         <button
           type="button"
-          onClick={() =>
-            (window.location.href =
-              "/recipes")
-          }
+          onClick={() => window.history.back()}
           className="inline-flex items-center rounded-lg px-1 py-1 text-sm font-semibold text-slate-600 transition hover:text-orange-600"
         >
-          ← Back to Recipes
+          ← Back
         </button>
       </div>
 
@@ -695,13 +692,10 @@ export default function RecipeDetailPage() {
 
         <button
           type="button"
-          onClick={() =>
-            (window.location.href =
-              "/recipes")
-          }
+          onClick={() => window.history.back()}
           className="w-full rounded-xl border border-slate-300 bg-white px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50"
         >
-          ← Back to Recipes
+          ← Back
         </button>
 
       </div>
@@ -714,7 +708,9 @@ export default function RecipeDetailPage() {
           onClick={openPlanner}
           className="rounded-xl bg-orange-500 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-orange-600"
         >
-          📅 Add to Planner
+          {placements.length > 0
+            ? "📅 Add Another to Planner"
+            : "📅 Add to Planner"}
         </button>
 
       </div>

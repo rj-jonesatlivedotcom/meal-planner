@@ -76,6 +76,10 @@ export default function RecipesPage() {
         return;
       }
 
+      // A normal visit to /recipes should always start with clean filters.
+      // Clear any previously saved Recipes-page filters before restoring them.
+      sessionStorage.removeItem("recipes-filters");
+
       const savedFilters = sessionStorage.getItem(
         "recipes-filters"
       );

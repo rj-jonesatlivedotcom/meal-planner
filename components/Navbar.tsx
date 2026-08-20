@@ -59,13 +59,13 @@ export default function Navbar() {
           </Link>
 
           {/* RECIPES */}
-          <Link
-            href="/recipes"
-            onClick={() => setOpen(false)}
-            className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-green-50"
-          >
-            📖 Recipes
-          </Link>
+          <a
+  href="/recipes"
+  onClick={() => setOpen(false)}
+  className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-green-50"
+>
+  📖 Recipes
+</a>
 
           {/* SHOPPING LIST */}
           <Link

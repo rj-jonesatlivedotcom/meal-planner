@@ -66,17 +66,27 @@ export default function RecipesPage() {
         ).get("meal");
 
         if (
-          plannerMeal &&
-          validMealTypes.includes(plannerMeal)
-        ) {
-          plannerFilterRef.current = true;
-          setSelectedMealType(plannerMeal);
-          setSelectedProtein("All");
-          setSearchText("");
-          setSortBy("default");
-          setFiltersLoaded(true);
-          return;
-        }
+  plannerMeal &&
+  validMealTypes.includes(plannerMeal)
+) {
+  plannerFilterRef.current = true;
+  setSelectedMealType(plannerMeal);
+  setSelectedProtein("All");
+  setSearchText("");
+  setSortBy("default");
+
+  // Use the planner meal once, then remove it from the URL.
+  const url = new URL(window.location.href);
+  url.searchParams.delete("meal");
+  window.history.replaceState(
+    {},
+    "",
+    `${url.pathname}${url.search}${url.hash}`
+  );
+
+  setFiltersLoaded(true);
+  return;
+}
 
         // A normal visit to /recipes should always start with clean filters.
         // Mark this reset so the save effect does not immediately write

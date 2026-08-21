@@ -48,10 +48,10 @@ export default function RecipesPage() {
     Vegetarian: "🥕",
   };
 
-  // Restore the user's previous recipe filters when returning
-  // to the Recipes page, unless the page was opened from a
-  // specific Weekly Planner meal slot. In that case the planner
-  // meal type takes priority.
+  // Apply the Recipes-page state from the current URL.
+  // A Weekly Planner link such as /recipes?meal=Dinner supplies
+  // temporary meal context. A normal /recipes visit must always
+  // start clean.
   useEffect(() => {
     const validMealTypes = [
       "Breakfast",
@@ -59,44 +59,100 @@ export default function RecipesPage() {
       "Dinner",
     ];
 
-    try {
-      const plannerMeal = new URLSearchParams(
-        window.location.search
-      ).get("meal");
+    function applyUrlFilters() {
+      try {
+        const plannerMeal = new URLSearchParams(
+          window.location.search
+        ).get("meal");
 
-      if (
-        plannerMeal &&
-        validMealTypes.includes(plannerMeal)
-      ) {
+        if (
+          plannerMeal &&
+          validMealTypes.includes(plannerMeal)
+        ) {
+          plannerFilterRef.current = true;
+          setSelectedMealType(plannerMeal);
+          setSelectedProtein("All");
+          setSearchText("");
+          setSortBy("default");
+          setFiltersLoaded(true);
+          return;
+        }
+
+        // A normal visit to /recipes should always start with clean filters.
+        // Mark this reset so the save effect does not immediately write
+        // the previous filter state back into sessionStorage.
         plannerFilterRef.current = true;
-        setSelectedMealType(plannerMeal);
+        setSelectedMealType("All");
         setSelectedProtein("All");
         setSearchText("");
         setSortBy("default");
-        setFiltersLoaded(true);
-        return;
-      }
 
-      // A normal visit to /recipes should always start with clean filters.
-      // Mark this reset so the save effect does not immediately write
-      // the previous filter state back into sessionStorage.
-      plannerFilterRef.current = true;
-      setSelectedMealType("All");
-      setSelectedProtein("All");
-      setSearchText("");
-      setSortBy("default");
-
-      try {
-        sessionStorage.removeItem("recipes-filters");
+        try {
+          sessionStorage.removeItem("recipes-filters");
+        } catch {
+          // Ignore storage errors.
+        }
       } catch {
-        // Ignore storage errors.
+        // Ignore invalid filter data.
       }
-    } catch {
-      // Ignore invalid filter data.
+
+      setFiltersLoaded(true);
     }
 
-    setFiltersLoaded(true);
-    }, []);
+    // Apply the correct state on the initial visit.
+    applyUrlFilters();
+
+    // Next.js client-side navigation can change the URL without remounting
+    // this page. Watch history navigation as well so /recipes?meal=Dinner
+    // is cleared when the user later navigates back to plain /recipes.
+    const handleUrlChange = () => {
+      applyUrlFilters();
+    };
+
+    window.addEventListener("popstate", handleUrlChange);
+    window.addEventListener(
+      "recipes-url-change",
+      handleUrlChange
+    );
+
+    const originalPushState = window.history.pushState;
+    const originalReplaceState = window.history.replaceState;
+
+    window.history.pushState = function (...args) {
+      const result = originalPushState.apply(
+        this,
+        args as Parameters<History["pushState"]>
+      );
+      window.dispatchEvent(
+        new Event("recipes-url-change")
+      );
+      return result;
+    };
+
+    window.history.replaceState = function (...args) {
+      const result = originalReplaceState.apply(
+        this,
+        args as Parameters<History["replaceState"]>
+      );
+      window.dispatchEvent(
+        new Event("recipes-url-change")
+      );
+      return result;
+    };
+
+    return () => {
+      window.removeEventListener(
+        "popstate",
+        handleUrlChange
+      );
+      window.removeEventListener(
+        "recipes-url-change",
+        handleUrlChange
+      );
+      window.history.pushState = originalPushState;
+      window.history.replaceState = originalReplaceState;
+    };
+  }, []);
 
   // Save the current recipe filters so they survive
   // opening a recipe and pressing the Android Back button.

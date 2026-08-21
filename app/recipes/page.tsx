@@ -67,15 +67,13 @@ export default function RecipesPage() {
         plannerMeal &&
         validMealTypes.includes(plannerMeal)
       ) {
-        // A meal supplied by the Weekly Planner is temporary context.
         plannerFilterRef.current = true;
         setSelectedMealType(plannerMeal);
         setSelectedProtein("All");
         setSearchText("");
         setSortBy("default");
 
-        // Consume the planner meal so normal navigation to /recipes
-        // starts with no URL filter.
+        // Consume the planner meal once so the URL becomes plain /recipes.
         const url = new URL(window.location.href);
         url.searchParams.delete("meal");
         window.history.replaceState(
@@ -89,8 +87,6 @@ export default function RecipesPage() {
       }
 
       // A normal visit to /recipes should always start with clean filters.
-      // Mark this reset so the save effect does not immediately write
-      // the previous filter state back into sessionStorage.
       plannerFilterRef.current = true;
       setSelectedMealType("All");
       setSelectedProtein("All");

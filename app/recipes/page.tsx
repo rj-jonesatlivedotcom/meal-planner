@@ -5,7 +5,6 @@ import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/recipes";
 
 export default function RecipesPage() {
-
   const [selectedMealType, setSelectedMealType] = useState("All");
   const [selectedProtein, setSelectedProtein] = useState("All");
   const [searchText, setSearchText] = useState("");
@@ -59,109 +58,55 @@ export default function RecipesPage() {
       "Dinner",
     ];
 
-    function applyUrlFilters() {
-      try {
-        const plannerMeal = new URLSearchParams(
-          window.location.search
-        ).get("meal");
+    try {
+      const plannerMeal = new URLSearchParams(
+        window.location.search
+      ).get("meal");
 
-        if (
-  plannerMeal &&
-  validMealTypes.includes(plannerMeal)
-) {
-  plannerFilterRef.current = true;
-  setSelectedMealType(plannerMeal);
-  setSelectedProtein("All");
-  setSearchText("");
-  setSortBy("default");
-
-  // Use the planner meal once, then remove it from the URL.
-  const url = new URL(window.location.href);
-  url.searchParams.delete("meal");
-  window.history.replaceState(
-    {},
-    "",
-    `${url.pathname}${url.search}${url.hash}`
-  );
-
-  setFiltersLoaded(true);
-  return;
-}
-
-        // A normal visit to /recipes should always start with clean filters.
-        // Mark this reset so the save effect does not immediately write
-        // the previous filter state back into sessionStorage.
+      if (
+        plannerMeal &&
+        validMealTypes.includes(plannerMeal)
+      ) {
+        // A meal supplied by the Weekly Planner is temporary context.
         plannerFilterRef.current = true;
-        setSelectedMealType("All");
+        setSelectedMealType(plannerMeal);
         setSelectedProtein("All");
         setSearchText("");
         setSortBy("default");
 
-        try {
-          sessionStorage.removeItem("recipes-filters");
-        } catch {
-          // Ignore storage errors.
-        }
-      } catch {
-        // Ignore invalid filter data.
+        // Consume the planner meal so normal navigation to /recipes
+        // starts with no URL filter.
+        const url = new URL(window.location.href);
+        url.searchParams.delete("meal");
+        window.history.replaceState(
+          {},
+          "",
+          `${url.pathname}${url.search}${url.hash}`
+        );
+
+        setFiltersLoaded(true);
+        return;
       }
 
-      setFiltersLoaded(true);
+      // A normal visit to /recipes should always start with clean filters.
+      // Mark this reset so the save effect does not immediately write
+      // the previous filter state back into sessionStorage.
+      plannerFilterRef.current = true;
+      setSelectedMealType("All");
+      setSelectedProtein("All");
+      setSearchText("");
+      setSortBy("default");
+
+      try {
+        sessionStorage.removeItem("recipes-filters");
+      } catch {
+        // Ignore storage errors.
+      }
+    } catch {
+      // Ignore invalid URL data.
     }
 
-    // Apply the correct state on the initial visit.
-    applyUrlFilters();
-
-    // Next.js client-side navigation can change the URL without remounting
-    // this page. Watch history navigation as well so /recipes?meal=Dinner
-    // is cleared when the user later navigates back to plain /recipes.
-    const handleUrlChange = () => {
-      applyUrlFilters();
-    };
-
-    window.addEventListener("popstate", handleUrlChange);
-    window.addEventListener(
-      "recipes-url-change",
-      handleUrlChange
-    );
-
-    const originalPushState = window.history.pushState;
-    const originalReplaceState = window.history.replaceState;
-
-    window.history.pushState = function (...args) {
-      const result = originalPushState.apply(
-        this,
-        args as Parameters<History["pushState"]>
-      );
-      window.dispatchEvent(
-        new Event("recipes-url-change")
-      );
-      return result;
-    };
-
-    window.history.replaceState = function (...args) {
-      const result = originalReplaceState.apply(
-        this,
-        args as Parameters<History["replaceState"]>
-      );
-      window.dispatchEvent(
-        new Event("recipes-url-change")
-      );
-      return result;
-    };
-
-    return () => {
-      window.removeEventListener(
-        "popstate",
-        handleUrlChange
-      );
-      window.removeEventListener(
-        "recipes-url-change",
-        handleUrlChange
-      );
-      window.history.pushState = originalPushState;
-      window.history.replaceState = originalReplaceState;
-    };
+    setFiltersLoaded(true);
   }, []);
 
   // Save the current recipe filters so they survive

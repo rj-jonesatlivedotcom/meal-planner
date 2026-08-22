@@ -709,6 +709,178 @@ export default function WeeklyPlannerPage() {
     });
   }
 
+  type NutritionView =
+    | "Calories"
+    | "Protein"
+    | "Potassium"
+    | "Phosphate"
+    | "Purines";
+
+  const [nutritionView, setNutritionView] =
+    useState<NutritionView>("Potassium");
+
+  function getNutritionNumber(
+    value: string
+  ) {
+    const match = value.match(/-?\d+(?:\.\d+)?/);
+    return match ? Number(match[0]) : 0;
+  }
+
+  function getDayMealRecipes(day: string) {
+    return {
+      Breakfast: getRecipe(
+        plannerMeals?.[day]?.Breakfast ?? null
+      ),
+      Lunch: getRecipe(
+        plannerMeals?.[day]?.Lunch ?? null
+      ),
+      Dinner: getRecipe(
+        plannerMeals?.[day]?.Dinner ?? null
+      ),
+    };
+  }
+
+  function getDailyNutritionTotal(
+    day: string,
+    field: "calories" | "protein"
+  ) {
+    const meals = getDayMealRecipes(day);
+    const values = mealTypes
+      .map((meal) => meals[meal as keyof typeof meals])
+      .filter(Boolean)
+      .map((recipe) =>
+        getNutritionNumber(
+          field === "calories"
+            ? recipe!.calories
+            : recipe!.protein
+        )
+      );
+
+    if (values.length === 0) {
+      return null;
+    }
+
+    return values.reduce(
+      (total, value) => total + value,
+      0
+    );
+  }
+
+  function getMealNutritionRating(
+    day: string,
+    meal: string
+  ) {
+    const recipe = getRecipe(
+      plannerMeals?.[day]?.[meal] ?? null
+    );
+
+    if (!recipe) {
+      return "Empty";
+    }
+
+    if (
+      nutritionView !== "Potassium" &&
+      nutritionView !== "Phosphate" &&
+      nutritionView !== "Purines"
+    ) {
+      return "Empty";
+    }
+
+    if (nutritionView === "Potassium") {
+      return recipe.potassium;
+    }
+
+    if (nutritionView === "Phosphate") {
+      return recipe.phosphate;
+    }
+
+    return recipe.purines;
+  }
+
+  function getNutritionSegmentClass(
+    rating: string
+  ) {
+    if (rating === "Low") {
+      return "#4ade80";
+    }
+
+    if (rating === "Moderate") {
+      return "#fbbf24";
+    }
+
+    if (rating === "High") {
+      return "#f87171";
+    }
+
+    return "#e2e8f0";
+  }
+
+  function Tricirculus({
+    day,
+  }: {
+    day: string;
+  }) {
+    if (
+      nutritionView === "Calories" ||
+      nutritionView === "Protein"
+    ) {
+      const total = getDailyNutritionTotal(
+        day,
+        nutritionView === "Calories"
+          ? "calories"
+          : "protein"
+      );
+
+      if (total === null) {
+        return (
+          <span className="text-sm font-bold text-slate-300">
+            —
+          </span>
+        );
+      }
+
+      return (
+        <span className="text-sm font-extrabold text-slate-800">
+          {total.toLocaleString()}
+          {nutritionView === "Calories"
+            ? " kcal"
+            : " g"}
+        </span>
+      );
+    }
+
+    const breakfast = getMealNutritionRating(
+      day,
+      "Breakfast"
+    );
+    const lunch = getMealNutritionRating(
+      day,
+      "Lunch"
+    );
+    const dinner = getMealNutritionRating(
+      day,
+      "Dinner"
+    );
+
+    const breakfastColour =
+      getNutritionSegmentClass(breakfast);
+    const lunchColour =
+      getNutritionSegmentClass(lunch);
+    const dinnerColour =
+      getNutritionSegmentClass(dinner);
+
+    return (
+      <span
+        className="h-11 w-11 shrink-0 rounded-full shadow-sm ring-1 ring-slate-200/90"
+        style={{
+          background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 118deg, #ffffff 118deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 242deg, ${dinnerColour} 242deg 358deg, #ffffff 358deg 360deg)`,
+        }}
+        aria-label={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+        title={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+      />
+    );
+  }
+
   if (plannerMeals === null) {
     return (
       <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 px-4 py-8">
@@ -1116,6 +1288,55 @@ export default function WeeklyPlannerPage() {
                 </button>
 
               )}
+
+            </div>
+
+          </section>
+
+          {/* MOBILE DAILY NUTRITION */}
+
+          <section className="mt-3 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+
+            <div className="flex items-center justify-between gap-4 border-t border-slate-100 px-4 py-3">
+
+              <div className="min-w-0">
+
+                <h2 className="text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">
+                  Daily Nutrition
+                </h2>
+
+                <select
+                  value={nutritionView}
+                  onChange={(event) =>
+                    setNutritionView(
+                      event.target.value as NutritionView
+                    )
+                  }
+                  className="mt-1.5 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-700 outline-none transition focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"
+                  aria-label="Choose daily nutrition"
+                >
+                  <option value="Calories">
+                    Calories
+                  </option>
+                  <option value="Protein">
+                    Protein
+                  </option>
+                  <option value="Potassium">
+                    Potassium
+                  </option>
+                  <option value="Phosphate">
+                    Phosphate
+                  </option>
+                  <option value="Purines">
+                    Purines
+                  </option>
+                </select>
+
+              </div>
+
+              <div className="flex shrink-0 items-center justify-center pr-1">
+                <Tricirculus day={selectedDay} />
+              </div>
 
             </div>
 
@@ -1579,6 +1800,62 @@ export default function WeeklyPlannerPage() {
                 );
 
               })}
+
+            </div>
+
+            {/* DAILY NUTRITION ROW */}
+
+            <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))] border-t border-slate-100 bg-slate-50/30">
+
+              <div className="flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-2 py-3">
+
+                <div className="flex flex-col items-center gap-1.5">
+
+                  <h2 className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">
+                    Daily Nutrition
+                  </h2>
+
+                  <select
+                    value={nutritionView}
+                    onChange={(event) =>
+                      setNutritionView(
+                        event.target.value as NutritionView
+                      )
+                    }
+                    className="w-full rounded-xl border border-slate-200 bg-white px-2 py-1.5 text-[10px] font-bold text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                    aria-label="Choose daily nutrition"
+                  >
+                    <option value="Calories">
+                      Calories
+                    </option>
+                    <option value="Protein">
+                      Protein
+                    </option>
+                    <option value="Potassium">
+                      Potassium
+                    </option>
+                    <option value="Phosphate">
+                      Phosphate
+                    </option>
+                    <option value="Purines">
+                      Purines
+                    </option>
+                  </select>
+
+                </div>
+
+              </div>
+
+              {days.map((day) => (
+
+                <div
+                  key={`nutrition-${day}-${nutritionView}`}
+                  className="flex min-h-[68px] items-center justify-center border-l border-slate-100 px-2 py-3"
+                >
+                  <Tricirculus day={day} />
+                </div>
+
+              ))}
 
             </div>
 

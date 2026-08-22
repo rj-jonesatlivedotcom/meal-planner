@@ -742,7 +742,7 @@ export default function WeeklyPlannerPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 px-4 py-5 md:px-6 md:py-6">
 
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl md:max-w-[1280px]">
 
         {/* HEADER */}
 
@@ -1145,10 +1145,10 @@ export default function WeeklyPlannerPage() {
 
                 <div
                   key={day}
-                  className="flex items-center justify-center border-l border-slate-100 py-2"
+                  className="flex items-center justify-center border-l border-slate-100 bg-orange-50/30 py-2.5"
                 >
 
-                  <span className="text-sm font-bold text-orange-600">
+                  <span className="text-base font-extrabold tracking-tight text-orange-600">
                     {day.slice(0, 3)}
                   </span>
 
@@ -1162,7 +1162,7 @@ export default function WeeklyPlannerPage() {
 
             <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
 
-              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-3">
+              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-3 py-3">
 
                 <div>
 
@@ -1170,7 +1170,7 @@ export default function WeeklyPlannerPage() {
                     🥣
                   </div>
 
-                  <h2 className="mt-2 text-base font-bold text-slate-900">
+                  <h2 className="mt-2 text-[15px] font-extrabold tracking-tight text-slate-900">
                     Breakfast
                   </h2>
 
@@ -1195,7 +1195,7 @@ export default function WeeklyPlannerPage() {
 
                   <div
                     key={`${day}-Breakfast-${plannerMeals[day].Breakfast ?? "empty"}`}
-                    className={`border-l border-slate-100 p-2 ${
+                    className={`border-l border-slate-100 p-1.5 md:p-2 ${
                       recipe
                         ? "bg-orange-50/35"
                         : "bg-white"
@@ -1204,7 +1204,7 @@ export default function WeeklyPlannerPage() {
 
                     {recipe ? (
 
-                      <div className="relative flex min-h-[136px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100">
+                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100 transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
 
                         <div className="relative flex justify-center pt-2">
 
@@ -1228,7 +1228,7 @@ export default function WeeklyPlannerPage() {
                                 "Breakfast"
                               )
                             }
-                            className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-white text-sm font-bold leading-none text-slate-500 shadow-sm ring-1 ring-black/10 transition hover:text-red-600"
+                            className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -1259,7 +1259,7 @@ export default function WeeklyPlannerPage() {
 
                         <div className="flex flex-1 items-center justify-center px-2 pb-2 pt-1 text-center">
 
-                          <h3 className="text-sm font-bold leading-5 text-slate-900">
+                          <h3 className="line-clamp-2 text-sm font-bold leading-5 text-slate-900">
                             {recipe.name}
                           </h3>
 
@@ -1277,7 +1277,7 @@ export default function WeeklyPlannerPage() {
                             meal: "Breakfast",
                           })
                         }
-                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-white px-3 text-center transition hover:border-orange-300 hover:bg-orange-50/50"
+                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
                       >
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
@@ -1304,7 +1304,7 @@ export default function WeeklyPlannerPage() {
 
             <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
 
-              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-3">
+              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-3 py-3">
 
                 <div>
 
@@ -1312,7 +1312,7 @@ export default function WeeklyPlannerPage() {
                     🥪
                   </div>
 
-                  <h2 className="mt-2 text-base font-bold text-slate-900">
+                  <h2 className="mt-2 text-[15px] font-extrabold tracking-tight text-slate-900">
                     Lunch
                   </h2>
 
@@ -1337,7 +1337,7 @@ export default function WeeklyPlannerPage() {
 
                   <div
                     key={`${day}-Lunch-${plannerMeals[day].Lunch ?? "empty"}`}
-                    className={`border-l border-slate-100 p-2 ${
+                    className={`border-l border-slate-100 p-1.5 md:p-2 ${
                       recipe
                         ? "bg-orange-50/35"
                         : "bg-white"
@@ -1346,7 +1346,7 @@ export default function WeeklyPlannerPage() {
 
                     {recipe ? (
 
-                      <div className="relative flex min-h-[136px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100">
+                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100 transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
 
                         <div className="relative flex justify-center pt-2">
 
@@ -1370,7 +1370,7 @@ export default function WeeklyPlannerPage() {
                                 "Lunch"
                               )
                             }
-                            className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-white text-sm font-bold leading-none text-slate-500 shadow-sm ring-1 ring-black/10 transition hover:text-red-600"
+                            className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -1400,7 +1400,7 @@ export default function WeeklyPlannerPage() {
 
                         <div className="flex flex-1 items-center justify-center px-2 pb-2 pt-1 text-center">
 
-                          <h3 className="text-sm font-bold leading-5 text-slate-900">
+                          <h3 className="line-clamp-2 text-sm font-bold leading-5 text-slate-900">
                             {recipe.name}
                           </h3>
 
@@ -1418,7 +1418,7 @@ export default function WeeklyPlannerPage() {
                             meal: "Lunch",
                           })
                         }
-                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-white px-3 text-center transition hover:border-orange-300 hover:bg-orange-50/50"
+                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
                       >
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
@@ -1445,7 +1445,7 @@ export default function WeeklyPlannerPage() {
 
             <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))]">
 
-              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-3">
+              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-3 py-3">
 
                 <div>
 
@@ -1453,7 +1453,7 @@ export default function WeeklyPlannerPage() {
                     🍽️
                   </div>
 
-                  <h2 className="mt-2 text-base font-bold text-slate-900">
+                  <h2 className="mt-2 text-[15px] font-extrabold tracking-tight text-slate-900">
                     Dinner
                   </h2>
 
@@ -1478,7 +1478,7 @@ export default function WeeklyPlannerPage() {
 
                   <div
                     key={`${day}-Dinner-${plannerMeals[day].Dinner ?? "empty"}`}
-                    className={`border-l border-slate-100 p-2 ${
+                    className={`border-l border-slate-100 p-1.5 md:p-2 ${
                       recipe
                         ? "bg-orange-50/35"
                         : "bg-white"
@@ -1487,7 +1487,7 @@ export default function WeeklyPlannerPage() {
 
                     {recipe ? (
 
-                      <div className="relative flex min-h-[136px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100">
+                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100 transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
 
                         <div className="relative flex justify-center pt-2">
 
@@ -1511,7 +1511,7 @@ export default function WeeklyPlannerPage() {
                                 "Dinner"
                               )
                             }
-                            className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-white text-sm font-bold leading-none text-slate-500 shadow-sm ring-1 ring-black/10 transition hover:text-red-600"
+                            className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -1541,7 +1541,7 @@ export default function WeeklyPlannerPage() {
 
                         <div className="flex flex-1 items-center justify-center px-2 pb-2 pt-1 text-center">
 
-                          <h3 className="text-sm font-bold leading-5 text-slate-900">
+                          <h3 className="line-clamp-2 text-sm font-bold leading-5 text-slate-900">
                             {recipe.name}
                           </h3>
 
@@ -1559,7 +1559,7 @@ export default function WeeklyPlannerPage() {
                             meal: "Dinner",
                           })
                         }
-                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-white px-3 text-center transition hover:border-orange-300 hover:bg-orange-50/50"
+                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
                       >
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">

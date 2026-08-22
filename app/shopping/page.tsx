@@ -1286,7 +1286,7 @@ export default function ShoppingPage() {
           <div className="space-y-6">
             {groupedShoppingList.map((group) => (
               <div key={group.category}>
-                <h3 className="text-lg font-bold mb-3">
+                <h3 className="text-lg font-bold mb-3 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100 text-slate-800">
                   {group.category}
                 </h3>
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { recipes } from "@/data/recipes";
+import PageHeader from "@/components/PageHeader";
 
 const days = [
   "Monday",
@@ -1075,37 +1076,11 @@ export default function WeeklyPlannerPage() {
 
         {/* HEADER */}
 
-        <section className="relative mb-4 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5 md:mb-4">
-
-          <div className="absolute -right-16 -top-20 h-40 w-40 rounded-full bg-orange-100/70 md:h-48 md:w-48" />
-
-          <div className="absolute -bottom-20 -left-10 h-32 w-32 rounded-full bg-amber-100/60 md:h-40 md:w-40" />
-
-          <div className="relative px-5 py-5 md:px-8 md:py-5">
-
-            <div className="flex items-center gap-3 md:gap-4">
-
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-xl shadow-sm md:h-12 md:w-12 md:rounded-2xl md:text-2xl">
-                🍽️
-              </div>
-
-              <div>
-
-                <h1 className="text-2xl font-bold tracking-tight text-slate-900 md:text-4xl">
-                  Weekly Planner
-                </h1>
-
-                <p className="mt-1 max-w-xl text-sm leading-5 text-slate-600 md:text-base md:leading-6">
-                  Plan your meals for the week and let your Shopping List do the rest.
-                </p>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </section>
+        <PageHeader
+          icon="🍽️"
+          title="Weekly Planner"
+          subtitle="Plan your meals for the week and let your Shopping List do the rest."
+        />
 
         {/* MOBILE DAY SELECTOR */}
 

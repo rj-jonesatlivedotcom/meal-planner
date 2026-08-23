@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { recipes } from "@/data/recipes";
+import PageHeader from "@/components/PageHeader";
 
 type ShoppingItem = {
   item: string;
@@ -1347,19 +1348,14 @@ export default function ShoppingPage() {
   );
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-5 md:max-w-6xl md:px-8 md:py-8">
-      <div className="mb-6 md:mb-8">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">
-              🛒 Shopping List
-            </h1>
-            <p className="mt-1 text-slate-500 md:text-base">
-              Your ingredients, organised by category.
-            </p>
-          </div>
-        </div>
-      </div>
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-sky-50">
+      <div className="mx-auto max-w-5xl px-4 py-5 md:max-w-6xl md:px-8 md:py-8">
+      <PageHeader
+        icon="🛒"
+        title="Shopping List"
+        subtitle="Your ingredients, organised by category."
+        colour="blue"
+      />
 
       <div className="bg-white rounded-xl shadow p-6 md:rounded-2xl md:border md:border-slate-200 md:shadow-sm md:p-7">
         <div className="flex flex-nowrap items-center justify-between gap-4 mb-6 md:mb-7">
@@ -1567,6 +1563,7 @@ export default function ShoppingPage() {
             </div>
           </>
         )}
+      </div>
       </div>
     </main>
   );

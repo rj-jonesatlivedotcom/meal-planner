@@ -485,7 +485,195 @@ export default function RecipeDetailPage() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-6 pb-20 pt-4 sm:pb-24 sm:pt-6">
+    <main className="mx-auto max-w-6xl px-6 pb-20 pt-4 sm:pb-24 sm:pt-6">
+
+      {/* Desktop recipe detail */}
+      <div className="hidden lg:block">
+
+        <div className="mb-6">
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            className="inline-flex items-center rounded-lg px-1 py-1 text-sm font-semibold text-slate-600 transition hover:text-orange-600"
+          >
+            ← Back
+          </button>
+        </div>
+
+        <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <div className="grid grid-cols-[1.05fr_0.95fr]">
+
+            <div className="relative min-h-[470px]">
+              <Image
+                src={recipe.image}
+                alt={recipe.name}
+                fill
+                priority
+                sizes="(min-width: 1024px) 52vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col p-10">
+              <div className="mb-5 flex items-start justify-between gap-6">
+                <span className="inline-flex rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-600">
+                  {getDefaultMealType(recipe.code ?? "")}
+                </span>
+
+              </div>
+
+              <h1 className="max-w-xl text-4xl font-extrabold leading-tight tracking-tight text-slate-900">
+                {recipe.name}
+              </h1>
+
+              <p className="mt-5 max-w-xl text-base leading-7 text-slate-600">
+                {recipe.description}
+              </p>
+
+              <div className="mt-7 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+                <div className="grid grid-cols-3 divide-x divide-y divide-slate-200">
+
+                  <div className="px-3 py-4 text-center">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Time</div>
+                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.cookingTime}</div>
+                  </div>
+
+                  <div className="px-3 py-4 text-center">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Calories</div>
+                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.nutrition.calories}</div>
+                  </div>
+
+                  <div className="px-3 py-4 text-center">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Protein</div>
+                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.nutrition.protein}</div>
+                  </div>
+
+                  <div className="px-3 py-4 text-center">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Potassium</div>
+                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.potassium}</div>
+                  </div>
+
+                  <div className="px-3 py-4 text-center">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Phosphate</div>
+                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.phosphate}</div>
+                  </div>
+
+                  <div className="px-3 py-4 text-center">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Purines</div>
+                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.purines}</div>
+                  </div>
+
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={openPlanner}
+                className="mt-auto w-full rounded-xl bg-orange-500 px-5 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-orange-600"
+              >
+                {placements.length > 0
+                  ? "📅 Add Another to Planner"
+                  : "📅 Add to Planner"}
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <section className="mt-8 grid grid-cols-2 gap-8">
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
+              Ingredients
+            </h2>
+
+            <ul className="space-y-3">
+              {recipe.ingredients.map((ingredient, index) => (
+                <li
+                  key={index}
+                  className="flex gap-3 border-b border-slate-100 pb-3 last:border-0 last:pb-0"
+                >
+                  <span className="mt-1 text-orange-500">•</span>
+                  <span className="text-base leading-7 text-slate-700">
+                    <strong className="font-semibold text-slate-900">
+                      {ingredient.quantity}
+                    </strong>{" "}
+                    {ingredient.item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-7 rounded-xl bg-slate-50 p-4">
+              <h3 className="mb-1 text-sm font-bold text-slate-900">Equipment</h3>
+              <p className="text-sm leading-6 text-slate-600">{recipe.equipment}</p>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
+              Method
+            </h2>
+
+            <ol className="space-y-4">
+              {recipe.method.map((step, index) => (
+                <li key={index} className="flex gap-4">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-50 text-xs font-extrabold text-orange-600">
+                    {index + 1}
+                  </span>
+                  <span className="pt-0.5 text-base leading-7 text-slate-700">
+                    {step}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+        </section>
+
+        <section className="mt-8 grid grid-cols-2 gap-8">
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
+              Nutrition
+            </h2>
+
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Calories</span><strong>{recipe.nutrition.calories}</strong></div>
+              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Protein</span><strong>{recipe.nutrition.protein}</strong></div>
+              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Carbohydrates</span><strong>{recipe.nutrition.carbohydrates}</strong></div>
+              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Fat</span><strong>{recipe.nutrition.fat}</strong></div>
+              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Fibre</span><strong>{recipe.nutrition.fibre}</strong></div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
+              Dietary Guide
+            </h2>
+
+            <div className="space-y-3">
+              <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+                🥔 <strong>Potassium:</strong> {recipe.potassium}
+              </p>
+              <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+                🧀 <strong>Phosphate:</strong> {recipe.phosphate}
+              </p>
+              <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+                🍖 <strong>Purines:</strong> {recipe.purines}
+              </p>
+              {recipe.dietaryNote && (
+                <p className="text-sm leading-6 text-slate-600">{recipe.dietaryNote}</p>
+              )}
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+
+      <div className="lg:hidden">
+      <main className="mx-auto max-w-3xl px-6 pb-20 pt-4 sm:pb-24 sm:pt-6">
 
       {/* Back to Recipes */}
       <div className="mb-4 sm:mb-5">
@@ -700,8 +888,10 @@ export default function RecipeDetailPage() {
 
       </div>
 
+      </main>
+
       {/* Floating Add to Planner button */}
-      <div className="fixed bottom-4 right-4 z-40">
+      <div className="fixed bottom-4 right-4 z-40 lg:hidden">
 
         <button
           type="button"
@@ -714,6 +904,8 @@ export default function RecipeDetailPage() {
         </button>
 
       </div>
+
+    </div>
 
       {/* Planner popup */}
       {showPlanner && (

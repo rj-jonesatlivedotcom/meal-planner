@@ -51,6 +51,21 @@ function getDefaultMealType(code: string) {
   return "Dinner";
 }
 
+function getMealTypeLabel(code: string) {
+  const firstLetter =
+    code?.charAt(0).toUpperCase();
+
+  if (firstLetter === "B") {
+    return "Breakfast";
+  }
+
+  if (firstLetter === "L") {
+    return "Lunch";
+  }
+
+  return "Dinner";
+}
+
 type Placement = {
   day: string;
   meal: string;
@@ -555,24 +570,30 @@ export default function RecipeCard({
     }
   }
 
+  const mealType = getMealTypeLabel(recipe.code);
+
   return (
     <article
       className="
+        group
         relative
         flex
         h-full
         flex-col
         overflow-visible
-        rounded-xl
+        rounded-2xl
         border
-        border-gray-200
+        border-slate-200
         bg-white
         shadow-sm
         transition-all
         duration-200
-        hover:shadow-md
+        hover:-translate-y-1
+        hover:shadow-lg
 
         sm:flex-row
+
+        md:flex-col
       "
     >
 
@@ -588,6 +609,8 @@ export default function RecipeCard({
           shrink-0
 
           sm:w-28
+
+          md:w-full
         "
       >
         <Image
@@ -597,19 +620,25 @@ export default function RecipeCard({
           height={420}
           sizes="
             (max-width: 639px) 100vw,
-            112px
+            (max-width: 1023px) 112px,
+            50vw
           "
           className="
             h-52
             w-full
-            rounded-t-xl
+            rounded-t-2xl
             object-cover
 
             sm:h-full
             sm:min-h-[150px]
             sm:w-28
-            sm:rounded-l-xl
+            sm:rounded-l-2xl
             sm:rounded-t-none
+
+            md:h-48
+            md:w-full
+            md:rounded-l-none
+            md:rounded-t-2xl
           "
         />
       </Link>
@@ -625,6 +654,8 @@ export default function RecipeCard({
           flex-1
           flex-col
           p-4
+
+          md:p-5
         "
       >
 
@@ -634,6 +665,24 @@ export default function RecipeCard({
           className="block"
         >
 
+          {/* Meal type */}
+          <div
+            className="
+              mb-2
+              inline-flex
+              items-center
+              rounded-full
+              bg-orange-50
+              px-2.5
+              py-1
+              text-xs
+              font-bold
+              text-orange-600
+            "
+          >
+            {mealType}
+          </div>
+
           <h2
             className="
               text-lg
@@ -641,7 +690,7 @@ export default function RecipeCard({
               leading-tight
               text-slate-900
               transition
-              hover:text-orange-600
+              group-hover:text-orange-600
             "
           >
             {recipe.name}
@@ -664,22 +713,59 @@ export default function RecipeCard({
 
           <div
             className="
-              mt-3
+              mt-4
               flex
               flex-wrap
-              gap-x-4
-              gap-y-1
-              text-sm
-              text-slate-500
+              gap-2
             "
           >
 
-            <span>
+            <span
+              className="
+                inline-flex
+                items-center
+                rounded-full
+                bg-slate-50
+                px-2.5
+                py-1
+                text-xs
+                font-semibold
+                text-slate-600
+              "
+            >
               ⏱️ {recipe.cookingTime}
             </span>
 
-            <span>
+            <span
+              className="
+                inline-flex
+                items-center
+                rounded-full
+                bg-orange-50
+                px-2.5
+                py-1
+                text-xs
+                font-semibold
+                text-orange-700
+              "
+            >
               🔥 {recipe.calories}
+            </span>
+
+            <span
+              className="
+                inline-flex
+                items-center
+                rounded-full
+                bg-green-50
+                px-2.5
+                py-1
+                text-xs
+                font-semibold
+                text-green-700
+              "
+            >
+              💪 {recipe.protein}
             </span>
 
           </div>
@@ -701,6 +787,9 @@ export default function RecipeCard({
 
             sm:mt-auto
             sm:pt-4
+
+            md:mt-auto
+            md:pt-5
           "
         >
 
@@ -714,14 +803,16 @@ export default function RecipeCard({
               items-center
               justify-center
               whitespace-nowrap
-              rounded-lg
+              rounded-xl
               bg-orange-500
               px-4
               text-sm
               font-semibold
               text-white
+              shadow-sm
               transition
               hover:bg-orange-600
+              hover:shadow-md
             "
           >
             📅 Add to Planner
@@ -742,6 +833,7 @@ export default function RecipeCard({
               text-sm
               font-semibold
               text-orange-600
+              transition
               hover:text-orange-700
 
               sm:inline-flex

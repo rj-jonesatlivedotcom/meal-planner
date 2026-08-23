@@ -4,8 +4,8 @@ import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Family Meal Planner",
-  description: "Family Meal Planner",
+  title: "Meal Planner",
+  description: "Meal Planner",
 };
 
 export default function RootLayout({

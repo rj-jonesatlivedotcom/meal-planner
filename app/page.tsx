@@ -7,7 +7,7 @@ export default function Home() {
 
       {/* HERO */}
       <section
-        className="relative min-h-[305px] overflow-hidden bg-cover bg-center pb-0 md:min-h-[350px]"
+        className="relative min-h-[305px] overflow-hidden bg-cover bg-center pb-0 md:min-h-[315px]"
         style={{
           backgroundImage: "url('/images/background.png')",
         }}
@@ -17,7 +17,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/35" />
 
         {/* HERO CONTENT */}
-        <div className="relative z-10 mx-auto min-h-[305px] max-w-6xl px-5 pb-2 pt-10 sm:px-8 sm:pt-12 md:min-h-[350px] md:pb-10 md:pt-10">
+        <div className="relative z-10 mx-auto min-h-[305px] max-w-6xl px-5 pb-2 pt-10 sm:px-8 sm:pt-12 md:min-h-[315px] md:pb-6 md:pt-8">
 
           {/* HERO TEXT */}
           <div className="relative z-20 w-[68%] md:w-1/2">
@@ -42,8 +42,10 @@ export default function Home() {
 
         </div>
 
-        {/* HAMBURGER MENU */}
-        <HomeMenu />
+        {/* MOBILE MENU ONLY */}
+        <div className="lg:hidden">
+          <HomeMenu />
+        </div>
 
       </section>
 
@@ -56,23 +58,88 @@ export default function Home() {
           {/* WEEKLY PLANNER */}
           <Link
             href="/planner"
-            className="group flex min-h-[130px] items-center gap-5 rounded-3xl bg-blue-50 px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-h-[270px] md:flex-col md:items-start md:gap-4 md:px-7 md:py-7"
+            className="
+              group
+              flex
+              min-h-[130px]
+              items-center
+              gap-5
+              rounded-3xl
+              border
+              border-blue-100
+              bg-blue-50
+              px-5
+              py-4
+              shadow-sm
+              transition
+              hover:-translate-y-0.5
+              hover:shadow-md
+              sm:px-8
+              sm:py-6
+
+              md:min-h-[250px]
+              md:flex-col
+              md:items-start
+              md:gap-4
+              md:rounded-2xl
+              md:border-blue-100
+              md:px-6
+              md:py-6
+            "
           >
 
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-blue-200 text-5xl">
+            <div
+              className="
+                flex
+                h-24
+                w-24
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-blue-200
+                text-5xl
+
+                md:h-20
+                md:w-20
+                md:text-4xl
+              "
+            >
               📅
             </div>
 
             <div className="min-w-0 flex-1 md:flex-none">
 
-              <h2 className="text-3xl font-bold text-slate-900">
+              <h2 className="text-3xl font-bold text-slate-900 md:text-2xl">
                 Weekly Planner
               </h2>
 
-              <p className="mt-1 text-lg leading-snug text-slate-800">
+              <p className="mt-1 text-lg leading-snug text-slate-800 md:text-base md:leading-relaxed">
                 Plan your breakfasts, lunches and dinners for the week ahead.
               </p>
 
+            </div>
+
+            <div
+              className="
+                hidden
+                md:flex
+                md:h-10
+                md:w-10
+                md:items-center
+                md:justify-center
+                md:self-end
+                md:rounded-full
+                md:bg-orange-500
+                md:text-2xl
+                md:font-semibold
+                md:text-white
+                md:transition
+                md:group-hover:translate-x-1
+              "
+              aria-hidden="true"
+            >
+              →
             </div>
 
           </Link>
@@ -81,24 +148,89 @@ export default function Home() {
           {/* RECIPES */}
           <Link
             href="/recipes"
-            className="group flex min-h-[130px] items-center gap-5 rounded-3xl bg-green-50 px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-h-[270px] md:flex-col md:items-start md:gap-4 md:px-7 md:py-7"
+            className="
+              group
+              flex
+              min-h-[130px]
+              items-center
+              gap-5
+              rounded-3xl
+              border
+              border-green-100
+              bg-green-50
+              px-5
+              py-4
+              shadow-sm
+              transition
+              hover:-translate-y-0.5
+              hover:shadow-md
+              sm:px-8
+              sm:py-6
+
+              md:min-h-[250px]
+              md:flex-col
+              md:items-start
+              md:gap-4
+              md:rounded-2xl
+              md:border-green-100
+              md:px-6
+              md:py-6
+            "
           >
 
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-green-200 text-5xl">
+            <div
+              className="
+                flex
+                h-24
+                w-24
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-green-200
+                text-5xl
+
+                md:h-20
+                md:w-20
+                md:text-4xl
+              "
+            >
               📖
             </div>
 
             <div className="min-w-0 flex-1 md:flex-none">
 
-              <h2 className="text-3xl font-bold text-slate-900">
+              <h2 className="text-3xl font-bold text-slate-900 md:text-2xl">
                 Recipes
               </h2>
 
-              <p className="mt-1 text-lg leading-snug text-slate-800">
+              <p className="mt-1 text-lg leading-snug text-slate-800 md:text-base md:leading-relaxed">
                 Browse delicious kidney-friendly recipes with nutrition info,
                 cooking times and more.
               </p>
 
+            </div>
+
+            <div
+              className="
+                hidden
+                md:flex
+                md:h-10
+                md:w-10
+                md:items-center
+                md:justify-center
+                md:self-end
+                md:rounded-full
+                md:bg-orange-500
+                md:text-2xl
+                md:font-semibold
+                md:text-white
+                md:transition
+                md:group-hover:translate-x-1
+              "
+              aria-hidden="true"
+            >
+              →
             </div>
 
           </Link>
@@ -107,23 +239,88 @@ export default function Home() {
           {/* SHOPPING LIST */}
           <Link
             href="/shopping"
-            className="group flex min-h-[130px] items-center gap-5 rounded-3xl bg-orange-50 px-5 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-h-[270px] md:flex-col md:items-start md:gap-4 md:px-7 md:py-7"
+            className="
+              group
+              flex
+              min-h-[130px]
+              items-center
+              gap-5
+              rounded-3xl
+              border
+              border-orange-100
+              bg-orange-50
+              px-5
+              py-4
+              shadow-sm
+              transition
+              hover:-translate-y-0.5
+              hover:shadow-md
+              sm:px-8
+              sm:py-6
+
+              md:min-h-[250px]
+              md:flex-col
+              md:items-start
+              md:gap-4
+              md:rounded-2xl
+              md:border-orange-100
+              md:px-6
+              md:py-6
+            "
           >
 
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-orange-200 text-5xl">
+            <div
+              className="
+                flex
+                h-24
+                w-24
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-orange-200
+                text-5xl
+
+                md:h-20
+                md:w-20
+                md:text-4xl
+              "
+            >
               🛒
             </div>
 
             <div className="min-w-0 flex-1 md:flex-none">
 
-              <h2 className="text-3xl font-bold text-slate-900">
+              <h2 className="text-3xl font-bold text-slate-900 md:text-2xl">
                 Shopping List
               </h2>
 
-              <p className="mt-1 text-lg leading-snug text-slate-800">
-                Automatically create a shopping list of ingredients for your chosen meals!
+              <p className="mt-1 text-lg leading-snug text-slate-800 md:text-base md:leading-relaxed">
+                Your ingredients, combined and ready to go. No duplicates!
               </p>
 
+            </div>
+
+            <div
+              className="
+                hidden
+                md:flex
+                md:h-10
+                md:w-10
+                md:items-center
+                md:justify-center
+                md:self-end
+                md:rounded-full
+                md:bg-orange-500
+                md:text-2xl
+                md:font-semibold
+                md:text-white
+                md:transition
+                md:group-hover:translate-x-1
+              "
+              aria-hidden="true"
+            >
+              →
             </div>
 
           </Link>
@@ -132,10 +329,29 @@ export default function Home() {
 
       </section>
 
+
       {/* BOTTOM INFORMATION */}
       <section className="px-5 pb-8 sm:px-8">
 
-        <div className="mx-auto flex max-w-5xl items-center gap-5 rounded-3xl bg-green-50 px-6 py-6 shadow-sm sm:px-8">
+        <div
+          className="
+            mx-auto
+            flex
+            max-w-5xl
+            items-center
+            gap-5
+            rounded-3xl
+            bg-green-50
+            px-6
+            py-6
+            shadow-sm
+            sm:px-8
+
+            md:rounded-2xl
+            md:border
+            md:border-green-100
+          "
+        >
 
           <div className="hidden h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 border-green-700 text-4xl text-green-700 sm:flex">
             ✓

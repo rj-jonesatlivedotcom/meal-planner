@@ -817,8 +817,10 @@ export default function WeeklyPlannerPage() {
 
   function Tricirculus({
     day,
+    desktop = false,
   }: {
     day: string;
+    desktop?: boolean;
   }) {
     if (
       nutritionView === "Calories" ||
@@ -839,13 +841,33 @@ export default function WeeklyPlannerPage() {
         );
       }
 
+      if (!desktop) {
+        return (
+          <span className="text-sm font-extrabold text-slate-800">
+            {total.toLocaleString()}
+            {nutritionView === "Calories"
+              ? " kcal"
+              : " g"}
+          </span>
+        );
+      }
+
       return (
-        <span className="text-sm font-extrabold text-slate-800">
-          {total.toLocaleString()}
-          {nutritionView === "Calories"
-            ? " kcal"
-            : " g"}
-        </span>
+        <div className="flex flex-col items-center justify-center">
+          <div className="flex h-[68px] w-[68px] items-center justify-center rounded-full border-[5px] border-slate-200 bg-white shadow-sm">
+            <div className="text-center leading-tight">
+              <div className="text-[11px] font-extrabold text-slate-800">
+                {total.toLocaleString()}
+              </div>
+
+              <div className="text-[8px] font-bold uppercase tracking-wide text-slate-400">
+                {nutritionView === "Calories"
+                  ? "kcal"
+                  : "protein"}
+              </div>
+            </div>
+          </div>
+        </div>
       );
     }
 
@@ -853,10 +875,12 @@ export default function WeeklyPlannerPage() {
       day,
       "Breakfast"
     );
+
     const lunch = getMealNutritionRating(
       day,
       "Lunch"
     );
+
     const dinner = getMealNutritionRating(
       day,
       "Dinner"
@@ -864,20 +888,153 @@ export default function WeeklyPlannerPage() {
 
     const breakfastColour =
       getNutritionSegmentClass(breakfast);
+
     const lunchColour =
       getNutritionSegmentClass(lunch);
+
     const dinnerColour =
       getNutritionSegmentClass(dinner);
 
+    if (!desktop) {
+      return (
+        <span
+          className="h-11 w-11 shrink-0 rounded-full shadow-sm ring-1 ring-slate-200/90"
+          style={{
+            background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 118deg, #ffffff 118deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 242deg, ${dinnerColour} 242deg 358deg, #ffffff 358deg 360deg)`,
+          }}
+          aria-label={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+          title={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+        />
+      );
+    }
+
+    const ratings = [
+      breakfast,
+      lunch,
+      dinner,
+    ].filter(
+      (rating) => rating !== "Empty"
+    );
+
+    let overallStatus = "No meals";
+
+    if (ratings.includes("High")) {
+      overallStatus = "High";
+    } else if (ratings.includes("Moderate")) {
+      overallStatus = "Moderate";
+    } else if (ratings.includes("Low")) {
+      overallStatus = "Low";
+    }
+
+    const statusColour =
+      overallStatus === "High"
+        ? "#ef4444"
+        : overallStatus === "Moderate"
+          ? "#f59e0b"
+          : overallStatus === "Low"
+            ? "#16a34a"
+            : "#94a3b8";
+
+    const mealCount = ratings.length;
+
+    function getBadgeClass(rating: string) {
+      if (rating === "High") {
+        return "bg-red-500 text-white";
+      }
+
+      if (rating === "Moderate") {
+        return "bg-amber-400 text-white";
+      }
+
+      if (rating === "Low") {
+        return "bg-green-500 text-white";
+      }
+
+      return "bg-slate-200 text-slate-400";
+    }
+
+    function getShortRating(rating: string) {
+      if (rating === "Moderate") {
+        return "Mod";
+      }
+
+      if (rating === "Empty") {
+        return "—";
+      }
+
+      return rating;
+    }
+
     return (
-      <span
-        className="h-11 w-11 shrink-0 rounded-full shadow-sm ring-1 ring-slate-200/90"
-        style={{
-          background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 118deg, #ffffff 118deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 242deg, ${dinnerColour} 242deg 358deg, #ffffff 358deg 360deg)`,
-        }}
+      <div
+        className="flex flex-col items-center justify-center"
         aria-label={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
         title={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
-      />
+      >
+        <div
+          className="relative flex h-[70px] w-[70px] items-center justify-center rounded-full shadow-sm"
+          style={{
+            background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 116deg, #ffffff 116deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 244deg, ${dinnerColour} 244deg 358deg, #ffffff 358deg 360deg)`,
+          }}
+        >
+          <div className="flex h-[54px] w-[54px] flex-col items-center justify-center rounded-full bg-white shadow-inner">
+            <span
+              className="text-[10px] font-extrabold uppercase tracking-wide"
+              style={{ color: statusColour }}
+            >
+              {overallStatus}
+            </span>
+
+            <span className="mt-0.5 text-[9px] font-bold text-slate-500">
+              {mealCount} {mealCount === 1 ? "meal" : "meals"}
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-2 flex items-start justify-center gap-2">
+          <div className="flex flex-col items-center">
+            <span
+              className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-extrabold shadow-sm ${getBadgeClass(
+                breakfast
+              )}`}
+            >
+              B
+            </span>
+
+            <span className="mt-1 text-[8px] font-semibold text-slate-400">
+              {getShortRating(breakfast)}
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <span
+              className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-extrabold shadow-sm ${getBadgeClass(
+                lunch
+              )}`}
+            >
+              L
+            </span>
+
+            <span className="mt-1 text-[8px] font-semibold text-slate-400">
+              {getShortRating(lunch)}
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <span
+              className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-extrabold shadow-sm ${getBadgeClass(
+                dinner
+              )}`}
+            >
+              D
+            </span>
+
+            <span className="mt-1 text-[8px] font-semibold text-slate-400">
+              {getShortRating(dinner)}
+            </span>
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -1842,6 +1999,23 @@ export default function WeeklyPlannerPage() {
                     </option>
                   </select>
 
+                  <div className="mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-2 w-2 rounded-full bg-green-500" />
+                      Low
+                    </span>
+
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-2 w-2 rounded-full bg-amber-400" />
+                      Moderate
+                    </span>
+
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-2 w-2 rounded-full bg-red-500" />
+                      High
+                    </span>
+                  </div>
+
                 </div>
 
               </div>
@@ -1850,9 +2024,12 @@ export default function WeeklyPlannerPage() {
 
                 <div
                   key={`nutrition-${day}-${nutritionView}`}
-                  className="flex min-h-[68px] items-center justify-center border-l border-slate-100 px-2 py-3"
+                  className="flex min-h-[118px] items-center justify-center border-l border-slate-100 px-1 py-3"
                 >
-                  <Tricirculus day={day} />
+                  <Tricirculus
+                    day={day}
+                    desktop
+                  />
                 </div>
 
               ))}

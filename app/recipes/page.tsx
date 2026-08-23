@@ -331,7 +331,7 @@ export default function RecipesPage() {
       {/* Page heading */}
       <div className="relative mb-3">
         <h1 className="text-2xl sm:text-3xl font-bold whitespace-nowrap">
-          Family Recipes
+          Recipes
         </h1>
       </div>
 
@@ -542,7 +542,7 @@ export default function RecipesPage() {
 
       {/* Recipes */}
       {filteredRecipes.length > 0 ? (
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 lg:grid-cols-3 xl:grid-cols-4">
 
           {filteredRecipes.map((recipe) => (
             <RecipeCard

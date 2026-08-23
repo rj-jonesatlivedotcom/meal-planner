@@ -1339,16 +1339,34 @@ export default function ShoppingPage() {
     }))
     .filter((group) => group.items.length > 0);
 
-  return (
-    <main className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">
-        🛒 Shopping List
-      </h1>
+  // On desktop the category cards use two independent columns so a short
+  // category does not leave a large empty area before the next card.
+  const leftCategoryGroups = groupedShoppingList.filter(
+    (_, index) => index % 2 === 0
+  );
+  const rightCategoryGroups = groupedShoppingList.filter(
+    (_, index) => index % 2 === 1
+  );
 
-      <div className="bg-white rounded-xl shadow p-6">
-        <div className="flex flex-nowrap items-center justify-between gap-4 mb-6">
+  return (
+    <main className="p-6 max-w-5xl mx-auto md:max-w-6xl md:px-8 md:py-8">
+      <div className="mb-6 md:mb-8">
+        <div className="flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-xl font-semibold whitespace-nowrap">
+            <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">
+              🛒 Shopping List
+            </h1>
+            <p className="mt-1 text-slate-500 md:text-base">
+              Your ingredients, organised by category.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow p-6 md:rounded-2xl md:border md:border-slate-200 md:shadow-sm md:p-7">
+        <div className="flex flex-nowrap items-center justify-between gap-4 mb-6 md:mb-7">
+          <div>
+            <h2 className="text-xl font-semibold whitespace-nowrap text-slate-900 md:text-lg">
               Cooking for:
             </h2>
 
@@ -1357,7 +1375,7 @@ export default function ShoppingPage() {
               onChange={(e) =>
                 updateHouseholdPeople(Number(e.target.value))
               }
-              className="border rounded-lg px-4 py-2 mt-2"
+              className="border rounded-lg px-4 py-2 mt-2 bg-white text-slate-700 md:mt-2 md:min-w-[150px] md:border-slate-200 md:shadow-sm"
             >
               {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                 <option key={n} value={n}>
@@ -1368,23 +1386,23 @@ export default function ShoppingPage() {
           </div>
 
           {selectedRecipes.length > 0 && (
-  <div className="flex min-w-0 flex-col items-end text-sm text-slate-500 text-right">
-    <button
-      onClick={uncheckAll}
-      className="whitespace-nowrap bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
-    >
-      ☐ Uncheck All
-    </button>
+            <div className="flex min-w-0 flex-col items-end text-sm text-slate-500 text-right">
+              <button
+                onClick={uncheckAll}
+                className="whitespace-nowrap bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black md:bg-white md:border md:border-slate-200 md:text-slate-700 md:hover:bg-slate-50 md:shadow-sm"
+              >
+                🗑️ Clear Checked
+              </button>
 
-    <div className="mt-2 whitespace-nowrap">
-      {selectedRecipes.length}{" "}
-      {selectedRecipes.length === 1 ? "meal" : "meals"} •{" "}
-      {people} {people === 1 ? "person" : "people"} •{" "}
-      {shoppingList.length}{" "}
-      {shoppingList.length === 1 ? "item" : "items"}
-    </div>
-  </div>
-)}
+              <div className="mt-2 whitespace-nowrap">
+                {selectedRecipes.length}{" "}
+                {selectedRecipes.length === 1 ? "meal" : "meals"} •{" "}
+                {people} {people === 1 ? "person" : "people"} •{" "}
+                {shoppingList.length}{" "}
+                {shoppingList.length === 1 ? "item" : "items"}
+              </div>
+            </div>
+          )}
         </div>
 
         {shoppingList.length === 0 ? (
@@ -1399,64 +1417,157 @@ export default function ShoppingPage() {
             </p>
           </div>
         ) : (
-          <div className="space-y-6">
-            {groupedShoppingList.map((group) => (
-              <div key={group.category}>
-                <h3 className="text-lg font-bold mb-3 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100 text-slate-800">
-                  {group.category}
-                </h3>
+          <>
+            <div className="space-y-6 md:grid md:grid-cols-2 md:gap-5 md:space-y-0 md:items-start">
+              <div className="space-y-5">
+                {leftCategoryGroups.map((group) => (
+                  <div
+                    key={group.category}
+                    className="md:rounded-xl md:border md:border-slate-200 md:bg-white md:p-5"
+                  >
+                    <h3 className="text-lg font-bold mb-3 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100 text-slate-800 md:mb-4 md:px-0 md:py-0 md:rounded-none md:border-0 md:bg-transparent md:text-base md:flex md:items-center md:gap-2">
+                      {group.category}
+                    </h3>
 
-                <ul className="space-y-3">
-                  {group.items.map((item, itemIndex) => {
-                    const checked = checkedItems.includes(item.item);
+                    <ul className="space-y-3 md:space-y-2.5">
+                      {group.items.map((item, itemIndex) => {
+                        const checked = checkedItems.includes(item.item);
 
-                    return (
-                      <li
-                        key={`${group.category}-${item.item}-${itemIndex}`}
-                        className="flex items-center justify-between border-b pb-2"
-                      >
-                        <label className="flex items-center gap-3 cursor-pointer flex-1">
-                          <input
-                            type="checkbox"
-                            checked={checked}
-                            onChange={() => {
-                              setCheckedItems((current) =>
-                                checked
-                                  ? current.filter(
-                                      (name) => name !== item.item
-                                    )
-                                  : [...current, item.item]
-                              );
-                            }}
-                          />
-
-                          <span
-                            className={
-                              checked
-                                ? "line-through text-slate-400"
-                                : ""
-                            }
+                        return (
+                          <li
+                            key={`${group.category}-${item.item}-${itemIndex}`}
+                            className="flex items-center justify-between border-b pb-2 md:border-b-0 md:pb-0 md:min-h-[30px]"
                           >
-                            {item.item}
-                          </span>
-                        </label>
+                            <label className="flex items-center gap-3 cursor-pointer flex-1 md:gap-3">
+                              <input
+                                type="checkbox"
+                                checked={checked}
+                                onChange={() => {
+                                  setCheckedItems((current) =>
+                                    checked
+                                      ? current.filter(
+                                          (name) => name !== item.item
+                                        )
+                                      : [...current, item.item]
+                                  );
+                                }}
+                                className="md:h-4 md:w-4 md:accent-orange-500"
+                              />
 
-                        <span
-                          className={
-                            checked
-                              ? "font-medium line-through text-slate-400"
-                              : "font-medium"
-                          }
-                        >
-                          {item.quantity}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
+                              <span
+                                className={
+                                  checked
+                                    ? "line-through text-slate-400"
+                                    : "text-slate-700"
+                                }
+                              >
+                                {item.item}
+                              </span>
+                            </label>
+
+                            <span
+                              className={
+                                checked
+                                  ? "font-medium line-through text-slate-400"
+                                  : "font-medium text-slate-700"
+                              }
+                            >
+                              {item.quantity}
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+
+              <div className="space-y-5">
+                {rightCategoryGroups.map((group) => (
+                  <div
+                    key={group.category}
+                    className="md:rounded-xl md:border md:border-slate-200 md:bg-white md:p-5"
+                  >
+                    <h3 className="text-lg font-bold mb-3 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100 text-slate-800 md:mb-4 md:px-0 md:py-0 md:rounded-none md:border-0 md:bg-transparent md:text-base md:flex md:items-center md:gap-2">
+                      {group.category}
+                    </h3>
+
+                    <ul className="space-y-3 md:space-y-2.5">
+                      {group.items.map((item, itemIndex) => {
+                        const checked = checkedItems.includes(item.item);
+
+                        return (
+                          <li
+                            key={`${group.category}-${item.item}-${itemIndex}`}
+                            className="flex items-center justify-between border-b pb-2 md:border-b-0 md:pb-0 md:min-h-[30px]"
+                          >
+                            <label className="flex items-center gap-3 cursor-pointer flex-1 md:gap-3">
+                              <input
+                                type="checkbox"
+                                checked={checked}
+                                onChange={() => {
+                                  setCheckedItems((current) =>
+                                    checked
+                                      ? current.filter(
+                                          (name) => name !== item.item
+                                        )
+                                      : [...current, item.item]
+                                  );
+                                }}
+                                className="md:h-4 md:w-4 md:accent-orange-500"
+                              />
+
+                              <span
+                                className={
+                                  checked
+                                    ? "line-through text-slate-400"
+                                    : "text-slate-700"
+                                }
+                              >
+                                {item.item}
+                              </span>
+                            </label>
+
+                            <span
+                              className={
+                                checked
+                                  ? "font-medium line-through text-slate-400"
+                                  : "font-medium text-slate-700"
+                              }
+                            >
+                              {item.quantity}
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 border-t border-slate-100 pt-5 md:mt-6 md:pt-5">
+              <div className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white px-4 py-4 md:flex-row md:items-center md:justify-between md:px-5">
+                <div>
+                  <div className="text-xl font-bold text-slate-900">
+                    {shoppingList.length}{" "}
+                    {shoppingList.length === 1 ? "item" : "items"}
+                  </div>
+                  <div className="mt-1 text-sm text-slate-500">
+                    {checkedItems.length} checked
+                  </div>
+                </div>
+
+                <button
+                  onClick={uncheckAll}
+                  className="w-full rounded-lg bg-orange-500 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-orange-600 md:w-auto md:min-w-[220px]"
+                >
+                  Clear Checked
+                  <span className="ml-2">→</span>
+                </button>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </main>

@@ -1201,6 +1201,69 @@ export default function ShoppingPage() {
     plannerCounts,
   ]);
 
+  function updateHouseholdPeople(newPeople: number) {
+    const nextPeople = Math.max(1, Math.min(8, newPeople));
+
+    setPeople(nextPeople);
+
+    /*
+     * The Weekly Planner stores the meal selections and any per-meal
+     * people overrides separately from the Shopping List. When the
+     * household size is changed here, recalculate plannerCounts now
+     * rather than waiting for the Weekly Planner page to be opened.
+     *
+     * Meals with an explicit people override keep that override; meals
+     * without one use the new household size.
+     */
+    try {
+      const savedPlanner =
+        localStorage.getItem("weekly-planner");
+
+      if (savedPlanner) {
+        const plannerData = JSON.parse(savedPlanner);
+        const planner = plannerData ?? {};
+        const mealPeople = planner.mealPeople ?? {};
+        const nextPlannerCounts: Record<string, number> = {};
+
+        const days = [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ];
+
+        const mealTypes = [
+          "Breakfast",
+          "Lunch",
+          "Dinner",
+        ];
+
+        days.forEach((day) => {
+          mealTypes.forEach((meal) => {
+            const recipeId = planner[day]?.[meal];
+            if (!recipeId) return;
+
+            const mealOverride = mealPeople?.[day]?.[meal];
+            const mealCount =
+              typeof mealOverride === "number" && mealOverride > 0
+                ? mealOverride
+                : nextPeople;
+
+            nextPlannerCounts[recipeId] =
+              (nextPlannerCounts[recipeId] ?? 0) + mealCount;
+          });
+        });
+
+        setPlannerCounts(nextPlannerCounts);
+      }
+    } catch {
+      // Keep the existing planner counts if saved planner data is invalid.
+    }
+  }
+
   function uncheckAll() {
     setCheckedItems([]);
   }
@@ -1240,7 +1303,9 @@ export default function ShoppingPage() {
 
             <select
               value={people}
-              onChange={(e) => setPeople(Number(e.target.value))}
+              onChange={(e) =>
+                updateHouseholdPeople(Number(e.target.value))
+              }
               className="border rounded-lg px-4 py-2 mt-2"
             >
               {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (

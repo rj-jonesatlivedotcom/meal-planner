@@ -2365,7 +2365,7 @@ export const recipes: Recipe[] = [
       { item: "Dried penne pasta", shoppingItem: "Pasta", quantity: "75g" },
       { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼ medium" },
       { item: "Onion, finely sliced", shoppingItem: "Onion", quantity: "¼ small" },
-      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "37.5g" },
+      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "¼ small" },
       { item: "Chopped tomatoes", quantity: "12.5g" },
       { item: "Olive oil", quantity: "½ tbsp" },
       { item: "Garlic, crushed", shoppingItem: "Garlic", quantity: "½ clove" },

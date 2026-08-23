@@ -355,12 +355,17 @@ function formatQuantity(amount: number, unit: string): string {
   const a = decimalToFraction(n);
   const u = normaliseUnit(unit);
 
-  if (u === "g" || u === "kg" || u === "ml" || u === "l") {
-    return `${a}${u}`;
-  }
+  if (u === "ml") {
+  return `${Math.ceil(n)}ml`;
+}
+
+if (u === "g" || u === "kg" || u === "l") {
+  return `${a}${u}`;
+}
 
   if (u === "clove") {
-    return `${a} clove${n === 1 ? "" : "s"}`;
+    const wholeCloves = Math.ceil(n);
+    return `${wholeCloves} clove${wholeCloves === 1 ? "" : "s"}`;
   }
 
   if (u === "lemon") {
@@ -481,6 +486,17 @@ function normaliseIngredient(raw: string): string {
   if (/^lean cooked ham$/.test(lower) || lower === "cooked ham" || lower === "ham") {
     return "Cooked ham";
   }
+if (
+  lower === "pork sausages" ||
+  lower === "light pork sausages" ||
+  lower === "sausages"
+) {
+  return "Sausages";
+}
+
+
+
+
 
   if (lower === "fresh basil pesto" || lower === "basil pesto") {
     return "Fresh basil pesto";
@@ -685,6 +701,41 @@ function normaliseShoppingQuantity(
     return decimalToFraction(parsed.amount);
   }
 
+  if (lower === "tomato purée" || lower === "tomato puree") {
+  if (parsed.unit === "g") {
+    return formatQuantity(parsed.amount, "g");
+  }
+
+  if (parsed.unit === "tsp") {
+    return formatQuantity(parsed.amount * 5, "g");
+  }
+
+  if (parsed.unit === "tbsp") {
+    return formatQuantity(parsed.amount * 15, "g");
+  }
+}
+
+if (lower === "passata") {
+  if (parsed.unit === "g") {
+    return formatQuantity(parsed.amount, "ml");
+  }
+
+  if (parsed.unit === "ml") {
+    return formatQuantity(parsed.amount, "ml");
+  }
+
+  if (parsed.unit === "l") {
+    return formatQuantity(parsed.amount * 1000, "ml");
+  }
+
+  if (parsed.unit === "tsp") {
+    return formatQuantity(parsed.amount * 5, "ml");
+  }
+
+  if (parsed.unit === "tbsp") {
+    return formatQuantity(parsed.amount * 15, "ml");
+  }
+}
   if (lower === "potatoes" || lower === "baking potatoes") {
     const converted = normalisePotato(name, parsed);
     if (converted) {
@@ -825,12 +876,12 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
   if (!parsed) return item;
 
   if (lower === "potatoes" && parsed.unit === "g") {
-    const bags = Math.ceil(parsed.amount / 2000);
-    return {
-      item: "Potatoes",
-      quantity: `${bags} × 2kg bag${bags === 1 ? "" : "s"}`,
-    };
-  }
+  const kg = parsed.amount / 1000;
+  return {
+    item: "Potatoes",
+    quantity: `${kg.toFixed(1)}kg`,
+  };
+}
 
   if (lower === "baking potatoes") {
     return {

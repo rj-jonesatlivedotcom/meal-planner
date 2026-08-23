@@ -356,12 +356,12 @@ function formatQuantity(amount: number, unit: string): string {
   const u = normaliseUnit(unit);
 
   if (u === "ml") {
-  return `${Math.ceil(n)}ml`;
-}
+    return `${Math.ceil(n)}ml`;
+  }
 
-if (u === "g" || u === "kg" || u === "l") {
-  return `${a}${u}`;
-}
+  if (u === "g" || u === "kg" || u === "l") {
+    return `${a}${u}`;
+  }
 
   if (u === "clove") {
     const wholeCloves = Math.ceil(n);
@@ -486,17 +486,14 @@ function normaliseIngredient(raw: string): string {
   if (/^lean cooked ham$/.test(lower) || lower === "cooked ham" || lower === "ham") {
     return "Cooked ham";
   }
-if (
-  lower === "pork sausages" ||
-  lower === "light pork sausages" ||
-  lower === "sausages"
-) {
-  return "Sausages";
-}
 
-
-
-
+  if (
+    lower === "pork sausages" ||
+    lower === "light pork sausages" ||
+    lower === "sausages"
+  ) {
+    return "Sausages";
+  }
 
   if (lower === "fresh basil pesto" || lower === "basil pesto") {
     return "Fresh basil pesto";
@@ -702,40 +699,41 @@ function normaliseShoppingQuantity(
   }
 
   if (lower === "tomato purée" || lower === "tomato puree") {
-  if (parsed.unit === "g") {
-    return formatQuantity(parsed.amount, "g");
+    if (parsed.unit === "g") {
+      return formatQuantity(parsed.amount, "g");
+    }
+
+    if (parsed.unit === "tsp") {
+      return formatQuantity(parsed.amount * 5, "g");
+    }
+
+    if (parsed.unit === "tbsp") {
+      return formatQuantity(parsed.amount * 15, "g");
+    }
   }
 
-  if (parsed.unit === "tsp") {
-    return formatQuantity(parsed.amount * 5, "g");
+  if (lower === "passata") {
+    if (parsed.unit === "g") {
+      return formatQuantity(parsed.amount, "ml");
+    }
+
+    if (parsed.unit === "ml") {
+      return formatQuantity(parsed.amount, "ml");
+    }
+
+    if (parsed.unit === "l") {
+      return formatQuantity(parsed.amount * 1000, "ml");
+    }
+
+    if (parsed.unit === "tsp") {
+      return formatQuantity(parsed.amount * 5, "ml");
+    }
+
+    if (parsed.unit === "tbsp") {
+      return formatQuantity(parsed.amount * 15, "ml");
+    }
   }
 
-  if (parsed.unit === "tbsp") {
-    return formatQuantity(parsed.amount * 15, "g");
-  }
-}
-
-if (lower === "passata") {
-  if (parsed.unit === "g") {
-    return formatQuantity(parsed.amount, "ml");
-  }
-
-  if (parsed.unit === "ml") {
-    return formatQuantity(parsed.amount, "ml");
-  }
-
-  if (parsed.unit === "l") {
-    return formatQuantity(parsed.amount * 1000, "ml");
-  }
-
-  if (parsed.unit === "tsp") {
-    return formatQuantity(parsed.amount * 5, "ml");
-  }
-
-  if (parsed.unit === "tbsp") {
-    return formatQuantity(parsed.amount * 15, "ml");
-  }
-}
   if (lower === "potatoes" || lower === "baking potatoes") {
     const converted = normalisePotato(name, parsed);
     if (converted) {
@@ -876,12 +874,12 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
   if (!parsed) return item;
 
   if (lower === "potatoes" && parsed.unit === "g") {
-  const kg = parsed.amount / 1000;
-  return {
-    item: "Potatoes",
-    quantity: `${kg.toFixed(1)}kg`,
-  };
-}
+    const kg = parsed.amount / 1000;
+    return {
+      item: "Potatoes",
+      quantity: `${kg.toFixed(1)}kg`,
+    };
+  }
 
   if (lower === "baking potatoes") {
     return {
@@ -1349,7 +1347,7 @@ export default function ShoppingPage() {
   );
 
   return (
-    <main className="p-6 max-w-5xl mx-auto md:max-w-6xl md:px-8 md:py-8">
+    <main className="mx-auto max-w-5xl px-4 py-5 md:max-w-6xl md:px-8 md:py-8">
       <div className="mb-6 md:mb-8">
         <div className="flex items-start justify-between gap-4">
           <div>

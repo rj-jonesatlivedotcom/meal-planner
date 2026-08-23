@@ -326,7 +326,7 @@ export default function RecipesPage() {
   }
 
   return (
-    <main className="max-w-6xl mx-auto px-6 py-8">
+    <main className="mx-auto max-w-6xl px-4 py-5 md:px-6 md:py-8">
 
       {/* Page heading */}
       <div className="relative mb-3">

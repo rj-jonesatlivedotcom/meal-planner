@@ -328,7 +328,7 @@ export default function RecipesPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
-      <div className="mx-auto max-w-6xl px-4 py-5 md:px-6 md:py-8">
+      <div className="mx-auto max-w-7xl px-4 py-5 md:max-w-[1280px] md:px-6 md:py-6">
 
       {/* Page heading */}
       <PageHeader

@@ -1349,7 +1349,7 @@ export default function ShoppingPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-sky-50">
-      <div className="mx-auto max-w-5xl px-4 py-5 md:max-w-6xl md:px-8 md:py-8">
+      <div className="mx-auto max-w-7xl px-4 py-5 md:max-w-[1280px] md:px-6 md:py-6">
       <PageHeader
         icon="🛒"
         title="Shopping List"

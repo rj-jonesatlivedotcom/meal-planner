@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/recipes";
+import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
 
 export default function RecipesPage() {
   const [selectedMealType, setSelectedMealType] = useState("All");
@@ -11,6 +12,8 @@ export default function RecipesPage() {
   const [sortBy, setSortBy] = useState("default");
   const [showFilters, setShowFilters] = useState(false);
   const [filtersLoaded, setFiltersLoaded] = useState(false);
+  const [requirements, setRequirements] =
+    useState<Requirements | null>(null);
 
   const filterRef = useRef<HTMLDivElement>(null);
   const plannerFilterRef = useRef(false);
@@ -141,6 +144,26 @@ export default function RecipesPage() {
   ]);
 
   useEffect(() => {
+    setRequirements(getStoredRequirements());
+
+    function handleRequirementsUpdated() {
+      setRequirements(getStoredRequirements());
+    }
+
+    window.addEventListener(
+      "meal-planner-requirements-updated",
+      handleRequirementsUpdated
+    );
+
+    return () => {
+      window.removeEventListener(
+        "meal-planner-requirements-updated",
+        handleRequirementsUpdated
+      );
+    };
+  }, []);
+
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
         filterRef.current &&
@@ -217,6 +240,12 @@ export default function RecipesPage() {
         selectedProtein === "All" ||
         recipe.category === selectedProtein;
 
+      const matchesRequirements =
+        recipeMatchesRequirements(
+          recipe,
+          requirements
+        );
+
       const matchesSearch =
         searchWords.length === 0 ||
         searchWords.every((word) => {
@@ -233,6 +262,7 @@ export default function RecipesPage() {
       return (
         matchesMealType &&
         matchesProtein &&
+        matchesRequirements &&
         matchesSearch
       );
     })
@@ -302,27 +332,32 @@ export default function RecipesPage() {
 
   let helperText = "";
 
+  const requirementsText =
+    requirements
+      ? " • Requirements applied"
+      : "";
+
   if (searchDisplay) {
     helperText = `${filteredRecipes.length} recipe${
       filteredRecipes.length === 1 ? "" : "s"
-    } matching "${searchDisplay}"`;
+    } matching "${searchDisplay}"${requirementsText}`;
   } else if (
     selectedMealType !== "All" &&
     selectedProtein !== "All"
   ) {
     helperText = `${filteredRecipes.length} ${selectedMealType.toLowerCase()} ${
       selectedProtein.toLowerCase()
-    } recipe${filteredRecipes.length === 1 ? "" : "s"}`;
+    } recipe${filteredRecipes.length === 1 ? "" : "s"}${requirementsText}`;
   } else if (selectedMealType !== "All") {
     helperText = `${filteredRecipes.length} ${selectedMealType.toLowerCase()} recipe${
       filteredRecipes.length === 1 ? "" : "s"
-    }`;
+    }${requirementsText}`;
   } else if (selectedProtein !== "All") {
     helperText = `${filteredRecipes.length} ${selectedProtein.toLowerCase()} recipe${
       filteredRecipes.length === 1 ? "" : "s"
-    }`;
+    }${requirementsText}`;
   } else {
-    helperText = `${filteredRecipes.length} recipes`;
+    helperText = `${filteredRecipes.length} recipes${requirementsText}`;
   }
 
   return (

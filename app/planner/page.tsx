@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { recipes } from "@/data/recipes";
+import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
 
 const days = [
   "Monday",
@@ -220,6 +221,9 @@ export default function WeeklyPlannerPage() {
   const [showPickConfirm, setShowPickConfirm] =
     useState(false);
 
+  const [requirements, setRequirements] =
+    useState<Requirements | null>(null);
+
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
 
@@ -281,6 +285,17 @@ export default function WeeklyPlannerPage() {
   }
 
   useEffect(() => {
+    setRequirements(getStoredRequirements());
+
+    const handleRequirementsUpdated = () => {
+      setRequirements(getStoredRequirements());
+    };
+
+    window.addEventListener(
+      "meal-planner-requirements-updated",
+      handleRequirementsUpdated
+    );
+
     const emptyPlanner =
       createEmptyPlanner();
 
@@ -373,6 +388,13 @@ export default function WeeklyPlannerPage() {
       setPlannerMeals(emptyPlanner);
       setMealPeople(createEmptyMealPeople());
     }
+
+    return () => {
+      window.removeEventListener(
+        "meal-planner-requirements-updated",
+        handleRequirementsUpdated
+      );
+    };
   }, []);
 
   useEffect(() => {
@@ -505,10 +527,12 @@ export default function WeeklyPlannerPage() {
         (recipe) => !usedIds.has(recipe.id)
       );
 
-    const pool =
-      unusedRecipes.length > 0
-        ? unusedRecipes
-        : mealRecipes;
+    /*
+     * Only use unused suitable recipes. If there are not enough
+     * suitable recipes to fill all the slots, leave the remaining
+     * slots empty rather than repeating or using an unsuitable recipe.
+     */
+    const pool = unusedRecipes;
 
     if (pool.length === 0) {
       return null;
@@ -693,19 +717,22 @@ export default function WeeklyPlannerPage() {
       const code =
         recipe.code?.toUpperCase() ?? "";
 
-      if (meal === "Breakfast") {
-        return code.startsWith("B");
-      }
+      const matchesMeal =
+        meal === "Breakfast"
+          ? code.startsWith("B")
+          : meal === "Lunch"
+            ? code.startsWith("L")
+            : meal === "Dinner"
+              ? code.startsWith("D")
+              : false;
 
-      if (meal === "Lunch") {
-        return code.startsWith("L");
-      }
-
-      if (meal === "Dinner") {
-        return code.startsWith("D");
-      }
-
-      return false;
+      return (
+        matchesMeal &&
+        recipeMatchesRequirements(
+          recipe,
+          requirements
+        )
+      );
     });
   }
 
@@ -2357,6 +2384,12 @@ export default function WeeklyPlannerPage() {
 
             <div className="flex-1 overflow-y-auto p-5">
 
+              {requirements && (
+                <div className="mb-4 rounded-2xl bg-purple-50 p-4 text-sm leading-6 text-purple-900 ring-1 ring-purple-100">
+                  Showing recipes that match your saved requirements.
+                </div>
+              )}
+
               <div className="grid gap-3 sm:grid-cols-2">
 
                 {getMealRecipes(
@@ -2387,6 +2420,12 @@ export default function WeeklyPlannerPage() {
                   </button>
 
                 ))}
+
+                {getMealRecipes(picker.meal).length === 0 && (
+                  <div className="col-span-full rounded-2xl bg-slate-50 p-5 text-center text-sm leading-6 text-slate-500">
+                    There are no recipes for this meal that meet your saved requirements.
+                  </div>
+                )}
 
               </div>
 

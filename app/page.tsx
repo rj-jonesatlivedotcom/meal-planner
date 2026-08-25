@@ -172,15 +172,14 @@ export default function Home() {
               Meal Planner
             </h1>
 
-            <p className="mt-3 max-w-[720px] text-[0.95rem] leading-snug text-slate-800 sm:text-xl md:mt-4 md:text-[1.1rem]">
-              Meal planning when you have dietary restrictions can be difficult.
-              <br className="hidden md:block" />
-              Meal Planner helps you find suitable meals, check nutrition values,
-              <br className="hidden lg:block" />
-              plan your meals for the week ahead, and get your shopping list -
-              <br className="hidden lg:block" />
-              all in one place.
-            </p>
+            <div className="mt-3 max-w-[720px] text-slate-800 md:mt-4">
+              <p className="text-[0.95rem] leading-snug sm:text-xl md:text-[1.1rem]">
+                Meal planning with dietary restrictions can be difficult.
+              </p>
+              <p className="mt-2 text-[0.9rem] leading-snug sm:text-xl md:text-[1.1rem]">
+                Meal Planner helps you find suitable meals, check nutrition values, plan your week and create your shopping list — all in one place.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -192,32 +191,32 @@ export default function Home() {
             <div key={step.title} className="relative">
               <Link
                 href={step.href}
-                className={`group flex h-[72px] w-full items-center gap-3 rounded-xl border px-3 py-2 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-[80px] sm:px-4 md:h-full md:min-h-[225px] md:items-stretch md:rounded-2xl md:px-5 md:py-6 lg:px-6 xl:min-h-[235px] ${step.cardClass}`}
+                className={`group flex h-[82px] w-full items-center gap-3 rounded-xl border px-3 py-2 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-[88px] sm:px-4 md:h-full md:min-h-[225px] md:items-stretch md:rounded-2xl md:px-5 md:py-6 lg:px-6 xl:min-h-[235px] ${step.cardClass}`}
               >
                 <span
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white md:h-10 md:w-10 md:text-base ${step.numberClass}`}
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white md:h-10 md:w-10 md:text-base ${step.numberClass}`}
                 >
                   {step.number}
                 </span>
 
                 <div
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full md:h-20 md:w-20 ${step.iconClass}`}
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full md:h-20 md:w-20 ${step.iconClass}`}
                 >
                   {step.icon}
                 </div>
 
                 <div className="min-w-0 flex-1 md:mt-4">
-                  <h2 className="text-[1rem] font-bold leading-tight text-slate-900 md:text-[1.3rem] lg:text-[1.45rem]">
+                  <h2 className="text-[1.08rem] font-bold leading-tight text-slate-900 md:text-[1.3rem] lg:text-[1.45rem]">
                     {step.title}
                   </h2>
 
-                  <p className="mt-0.5 text-[0.68rem] leading-tight text-slate-800 md:mt-2 md:text-[0.9rem] lg:text-[0.95rem]">
+                  <p className="mt-0.5 text-[0.74rem] leading-snug text-slate-800 md:mt-2 md:text-[0.9rem] lg:text-[0.95rem]">
                     {step.description}
                   </p>
                 </div>
 
                 <div
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-base font-semibold leading-none text-white shadow-sm transition group-hover:translate-x-1 md:mt-auto md:h-10 md:w-10 md:text-2xl ${step.arrowClass}`}
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-lg font-semibold leading-none text-white shadow-sm transition group-hover:translate-x-1 md:mt-auto md:h-10 md:w-10 md:text-2xl ${step.arrowClass}`}
                   aria-hidden="true"
                 >
                   →

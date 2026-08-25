@@ -4,162 +4,345 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+function KidneyLogo() {
+  return (
+    <svg
+      viewBox="0 0 64 76"
+      className="h-14 w-12 shrink-0 text-green-700 sm:h-16 sm:w-14"
+      aria-hidden="true"
+    >
+      <path
+        d="M39 7C25 2 11 11 9 27c-2 13 3 25 12 31 7 5 15 7 21 4 7-3 11-10 11-18 0-8-4-14-9-18-3-3-4-7-2-11 1-3 1-6-3-8Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m20 41 7 8 17-22"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function PageIcon({ type }: { type: "requirements" | "recipes" | "planner" | "shopping" }) {
+  const colour =
+    type === "requirements"
+      ? "text-purple-600"
+      : type === "recipes"
+        ? "text-green-700"
+        : type === "planner"
+          ? "text-orange-600"
+          : "text-blue-600";
+
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      className={`h-8 w-8 ${colour}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {type === "requirements" && (
+        <>
+          <circle cx="24" cy="16" r="6" />
+          <path d="M12 38c0-7 5-12 12-12s12 5 12 12" />
+        </>
+      )}
+
+      {type === "recipes" && (
+        <>
+          <path d="M8 10.5c5-2 10-1.2 16 2v25c-6-3.2-11-4-16-2Z" />
+          <path d="M40 10.5c-5-2-10-1.2-16 2v25c6-3.2 11-4 16-2Z" />
+          <path d="M24 12.5v25" />
+        </>
+      )}
+
+      {type === "planner" && (
+        <>
+          <rect x="8" y="10" width="32" height="30" rx="4" />
+          <path d="M15 7v7M33 7v7M8 19h32" />
+          <path d="M16 25h4M28 25h4M16 32h4M28 32h4" />
+        </>
+      )}
+
+      {type === "shopping" && (
+        <>
+          <path d="M8 11h5l4 20h20l4-14H15" />
+          <circle cx="20" cy="37" r="2.5" />
+          <circle cx="34" cy="37" r="2.5" />
+        </>
+      )}
+    </svg>
+  );
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+
+  const pageHeader: {
+    icon: "requirements" | "recipes" | "planner" | "shopping";
+    title: string;
+    subtitle: string;
+  } | null =
+    pathname.startsWith("/recipes")
+      ? {
+          icon: "recipes",
+          title: "Recipes",
+          subtitle: "Browse delicious kidney-friendly recipes.",
+        }
+      : pathname.startsWith("/planner")
+        ? {
+            icon: "planner",
+            title: "Weekly Planner",
+            subtitle: "Plan your meals for the week.",
+          }
+        : pathname.startsWith("/shopping")
+          ? {
+              icon: "shopping",
+              title: "Shopping List",
+              subtitle: "Your ingredients, organised by category.",
+            }
+          : pathname.startsWith("/requirements")
+            ? {
+                icon: "requirements",
+                title: "My Requirements",
+                subtitle: "Tell us what matters to you.",
+              }
+            : null;
+
+  const navItems = [
+    { href: "/", label: "Home", active: pathname === "/" },
+    {
+      href: "/requirements",
+      label: "My Requirements",
+      active: pathname.startsWith("/requirements"),
+    },
+    {
+      href: "/recipes",
+      label: "Recipes",
+      active: pathname.startsWith("/recipes"),
+    },
+    {
+      href: "/planner",
+      label: "Weekly Planner",
+      active: pathname.startsWith("/planner"),
+    },
+    {
+      href: "/shopping",
+      label: "Shopping List",
+      active: pathname.startsWith("/shopping"),
+    },
+  ];
+
   return (
-    <>
+    <header className="relative z-50 w-full border-b border-slate-200/80 bg-white shadow-sm">
       {/* DESKTOP NAVIGATION */}
-      <div className="sticky top-0 z-50 hidden w-full border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-sm md:block">
-
-        <div className="mx-auto flex h-16 max-w-7xl items-center px-6">
-
-          {/* BRAND */}
+      <div className="hidden md:block">
+        <div className="mx-auto flex min-h-[82px] max-w-[1500px] items-center gap-8 px-8 lg:px-10">
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-2 text-lg font-extrabold tracking-tight text-slate-900"
+            className="flex min-w-0 shrink-0 items-center gap-3"
           >
-            <span className="text-xl">🍴</span>
-            <span>Meal Planner</span>
+            {pageHeader ? (
+              <>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl">
+                  <PageIcon type={pageHeader.icon} />
+                </div>
+
+                <div className="leading-tight">
+                  <div className="text-2xl font-extrabold tracking-tight text-slate-900">
+                    {pageHeader.title}
+                  </div>
+                  <div className="mt-1 text-base text-slate-600">
+                    {pageHeader.subtitle}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <KidneyLogo />
+
+                <div className="leading-tight">
+                  <div className="text-2xl font-extrabold tracking-tight text-slate-900">
+                    Meal Planner
+                  </div>
+                  <div className="mt-1 text-base text-slate-600">
+                    Kidney-friendly meals made easier
+                  </div>
+                </div>
+              </>
+            )}
           </Link>
 
-          {/* NAVIGATION */}
-          <nav className="ml-10 flex h-full items-center gap-1">
-
-            <Link
-              href="/"
-              className={`flex h-full items-center rounded-lg px-4 text-sm font-bold transition ${
-                pathname === "/"
-                  ? "text-orange-600"
-                  : "text-slate-600 hover:bg-orange-50 hover:text-orange-600"
-              }`}
-            >
-              Home
-            </Link>
-
-            <Link
-              href="/recipes"
-              className={`flex h-full items-center rounded-lg px-4 text-sm font-bold transition ${
-                pathname.startsWith("/recipes")
-                  ? "text-orange-600"
-                  : "text-slate-600 hover:bg-orange-50 hover:text-orange-600"
-              }`}
-            >
-              Recipes
-            </Link>
-
-            <Link
-              href="/planner"
-              className={`flex h-full items-center rounded-lg px-4 text-sm font-bold transition ${
-                pathname.startsWith("/planner")
-                  ? "text-orange-600"
-                  : "text-slate-600 hover:bg-orange-50 hover:text-orange-600"
-              }`}
-            >
-              Planner
-            </Link>
-
-            <Link
-              href="/shopping"
-              className={`flex h-full items-center rounded-lg px-4 text-sm font-bold transition ${
-                pathname.startsWith("/shopping")
-                  ? "text-orange-600"
-                  : "text-slate-600 hover:bg-orange-50 hover:text-orange-600"
-              }`}
-            >
-              Shopping List
-            </Link>
-
+          <nav className="ml-auto flex items-center gap-1 lg:gap-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex min-h-12 items-center rounded-lg px-4 text-base font-bold transition lg:px-5 ${
+                  item.active
+                    ? "text-green-700"
+                    : "text-slate-900 hover:bg-green-50 hover:text-green-700"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
+          <div className="ml-2 flex shrink-0 items-center gap-3">
+            <span
+              className="flex h-9 w-9 items-center justify-center text-slate-900"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 32 32" className="h-7 w-7">
+                <circle
+                  cx="16"
+                  cy="10"
+                  r="5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M6 27c0-6 4-10 10-10s10 4 10 10"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+
+            <Link
+              href="/login"
+              className="rounded-xl border border-slate-300 px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
+            >
+              Log in
+            </Link>
+
+            <Link
+              href="/signup"
+              className="rounded-xl bg-green-700 px-5 py-3 text-base font-bold text-white transition hover:bg-green-800"
+            >
+              Sign up
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* MOBILE NAVIGATION */}
+      <div className="md:hidden">
+        <div className="flex min-h-[76px] items-center justify-between px-5">
+          <Link
+            href="/"
+            className="flex min-w-0 items-center gap-3"
+          >
+            {pageHeader ? (
+              <>
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl">
+                  <PageIcon type={pageHeader.icon} />
+                </div>
+
+                <div className="min-w-0 leading-tight">
+                  <div className="text-xl font-extrabold tracking-tight text-slate-900">
+                    {pageHeader.title}
+                  </div>
+                  <div className="mt-1 text-sm text-slate-600">
+                    {pageHeader.subtitle}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <KidneyLogo />
+
+                <div className="min-w-0 leading-tight">
+                  <div className="text-xl font-extrabold tracking-tight text-slate-900">
+                    Meal Planner
+                  </div>
+                  <div className="mt-1 text-sm text-slate-600">
+                    Kidney-friendly meals made easier
+                  </div>
+                </div>
+              </>
+            )}
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="flex h-12 w-12 shrink-0 flex-col items-center justify-center gap-1.5 rounded-xl text-green-700 transition hover:bg-green-50"
+          >
+            <span
+              className={`block h-1 w-8 rounded-full bg-current transition ${
+                open ? "translate-y-2 rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`block h-1 w-8 rounded-full bg-current transition ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block h-1 w-8 rounded-full bg-current transition ${
+                open ? "-translate-y-2 -rotate-45" : ""
+              }`}
+            />
+          </button>
         </div>
 
-      </div>
-
-      {/* MOBILE NAVIGATION — UNCHANGED */}
-      <div className="absolute right-5 top-5 z-50 md:hidden">
-
-        {/* HAMBURGER BUTTON */}
-        <button
-          type="button"
-          onClick={() => setOpen(!open)}
-          aria-label="Open menu"
-          aria-expanded={open}
-          className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-xl bg-white/90 shadow-sm backdrop-blur-sm"
-        >
-          <span
-            className={`block h-1 w-7 rounded-full bg-green-700 transition ${
-              open ? "translate-y-2 rotate-45" : ""
-            }`}
-          />
-
-          <span
-            className={`block h-1 w-7 rounded-full bg-green-700 transition ${
-              open ? "opacity-0" : ""
-            }`}
-          />
-
-          <span
-            className={`block h-1 w-7 rounded-full bg-green-700 transition ${
-              open ? "-translate-y-2 -rotate-45" : ""
-            }`}
-          />
-        </button>
-
-        {/* MENU */}
         {open && (
-          <div className="absolute right-0 top-14 w-64 overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-200">
+          <nav className="border-t border-slate-200 bg-white px-5 pb-4 pt-2 shadow-lg">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={`block rounded-xl px-4 py-3 text-lg font-semibold ${
+                  item.active
+                    ? "bg-green-50 text-green-700"
+                    : "text-slate-900 hover:bg-slate-50"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
 
-            {/* HOME */}
-            <Link
-              href="/"
-              onClick={() => setOpen(false)}
-              className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-green-50"
-            >
-              🏠 Home
-            </Link>
+            <div className="mt-2 flex gap-3 border-t border-slate-200 pt-3">
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="flex-1 rounded-xl border border-slate-300 px-4 py-3 text-center font-semibold text-slate-900"
+              >
+                Log in
+              </Link>
 
-            {/* WEEKLY PLANNER */}
-            <Link
-              href="/planner"
-              onClick={() => setOpen(false)}
-              className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-blue-50"
-            >
-              📅 Weekly Planner
-            </Link>
-
-            {/* RECIPES */}
-            <a
-              href="/recipes"
-              onClick={() => setOpen(false)}
-              className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-green-50"
-            >
-              📖 Recipes
-            </a>
-
-            {/* SHOPPING LIST */}
-            <Link
-              href="/shopping"
-              onClick={() => setOpen(false)}
-              className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-orange-50"
-            >
-              🛒 Shopping List
-            </Link>
-
-            {/* ABOUT */}
-            <Link
-              href="/about"
-              onClick={() => setOpen(false)}
-              className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-green-50"
-            >
-              ℹ️ About Meal Planner
-            </Link>
-
-          </div>
+              <Link
+                href="/signup"
+                onClick={() => setOpen(false)}
+                className="flex-1 rounded-xl bg-green-700 px-4 py-3 text-center font-bold text-white"
+              >
+                Sign up
+              </Link>
+            </div>
+          </nav>
         )}
-
       </div>
-    </>
+    </header>
   );
 }

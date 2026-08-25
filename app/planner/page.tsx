@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { recipes } from "@/data/recipes";
-import PageHeader from "@/components/PageHeader";
 
 const days = [
   "Monday",
@@ -1073,14 +1072,6 @@ export default function WeeklyPlannerPage() {
     <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 px-4 py-5 md:px-6 md:py-6">
 
       <div className="mx-auto max-w-7xl md:max-w-[1280px]">
-
-        {/* HEADER */}
-
-        <PageHeader
-          icon="🍽️"
-          title="Weekly Planner"
-          subtitle="Plan your meals for the week and let your Shopping List do the rest."
-        />
 
         {/* MOBILE DAY SELECTOR */}
 

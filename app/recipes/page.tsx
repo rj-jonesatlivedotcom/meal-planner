@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/recipes";
-import PageHeader from "@/components/PageHeader";
 
 export default function RecipesPage() {
   const [selectedMealType, setSelectedMealType] = useState("All");
@@ -329,14 +328,6 @@ export default function RecipesPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
       <div className="mx-auto max-w-7xl px-4 py-5 md:max-w-[1280px] md:px-6 md:py-6">
-
-      {/* Page heading */}
-      <PageHeader
-        icon="📖"
-        title="Recipes"
-        subtitle="Browse delicious kidney-friendly recipes."
-        colour="green"
-      />
 
       {/* Search and filters */}
       <div className="mb-4">

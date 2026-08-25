@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { recipes } from "@/data/recipes";
-import PageHeader from "@/components/PageHeader";
 
 type ShoppingItem = {
   item: string;
@@ -1350,13 +1349,6 @@ export default function ShoppingPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-sky-50">
       <div className="mx-auto max-w-7xl px-4 py-5 md:max-w-[1280px] md:px-6 md:py-6">
-      <PageHeader
-        icon="🛒"
-        title="Shopping List"
-        subtitle="Your ingredients, organised by category."
-        colour="blue"
-      />
-
       <div className="bg-white rounded-xl shadow p-6 md:rounded-2xl md:border md:border-slate-200 md:shadow-sm md:p-7">
         <div className="flex flex-nowrap items-center justify-between gap-4 mb-6 md:mb-7">
           <div>

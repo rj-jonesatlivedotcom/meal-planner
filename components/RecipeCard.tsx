@@ -103,6 +103,73 @@ export default function RecipeCard({
       null
     );
 
+  const [isFavourite, setIsFavourite] =
+    useState(false);
+
+  function loadFavouriteStatus() {
+    try {
+      const saved =
+        localStorage.getItem(
+          "meal-planner-favourites"
+        );
+
+      if (!saved) {
+        setIsFavourite(false);
+        return;
+      }
+
+      const favourites =
+        JSON.parse(saved);
+
+      setIsFavourite(
+        Array.isArray(favourites) &&
+          favourites.includes(recipe.id)
+      );
+    } catch {
+      setIsFavourite(false);
+    }
+  }
+
+  function toggleFavourite() {
+    try {
+      const saved =
+        localStorage.getItem(
+          "meal-planner-favourites"
+        );
+
+      const favourites = saved
+        ? JSON.parse(saved)
+        : [];
+
+      const currentFavourites =
+        Array.isArray(favourites)
+          ? favourites
+          : [];
+
+      const nextFavourites =
+        currentFavourites.includes(recipe.id)
+          ? currentFavourites.filter(
+              (id: string) => id !== recipe.id
+            )
+          : [...currentFavourites, recipe.id];
+
+      localStorage.setItem(
+        "meal-planner-favourites",
+        JSON.stringify(nextFavourites)
+      );
+
+      setIsFavourite(
+        nextFavourites.includes(recipe.id)
+      );
+
+      window.dispatchEvent(
+        new Event("meal-planner-favourites-updated")
+      );
+    } catch {
+      // Ignore storage errors.
+    }
+  }
+
   /*
    * Find every place where this recipe
    * currently appears in the Weekly Planner.
@@ -201,6 +268,7 @@ export default function RecipeCard({
 
   useEffect(() => {
     loadPlannerStatus();
+    loadFavouriteStatus();
 
     window.addEventListener(
       "weekly-planner-updated",
@@ -208,8 +276,18 @@ export default function RecipeCard({
     );
 
     window.addEventListener(
+      "meal-planner-favourites-updated",
+      loadFavouriteStatus
+    );
+
+    window.addEventListener(
       "storage",
       loadPlannerStatus
+    );
+
+    window.addEventListener(
+      "storage",
+      loadFavouriteStatus
     );
 
     return () => {
@@ -219,8 +297,18 @@ export default function RecipeCard({
       );
 
       window.removeEventListener(
+        "meal-planner-favourites-updated",
+        loadFavouriteStatus
+      );
+
+      window.removeEventListener(
         "storage",
         loadPlannerStatus
+      );
+
+      window.removeEventListener(
+        "storage",
+        loadFavouriteStatus
       );
     };
   }, [recipe.id]);
@@ -811,6 +899,35 @@ export default function RecipeCard({
             md:pt-5
           "
         >
+
+          {/* Favourite */}
+          <button
+            type="button"
+            onClick={toggleFavourite}
+            aria-pressed={isFavourite}
+            className={`
+              inline-flex
+              h-10
+              items-center
+              justify-center
+              whitespace-nowrap
+              rounded-xl
+              px-4
+              text-sm
+              font-semibold
+              shadow-sm
+              transition
+              ${
+                isFavourite
+                  ? "bg-amber-100 text-amber-800 hover:bg-amber-200"
+                  : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+              }
+            `}
+          >
+            {isFavourite
+              ? "★ Favourite"
+              : "☆ Favourite"}
+          </button>
 
           {/* Add to Planner */}
           <button

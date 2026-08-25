@@ -72,6 +72,82 @@ export default function RecipeDetailPage() {
       null
     );
 
+  const [isFavourite, setIsFavourite] =
+    useState(false);
+
+  function loadFavouriteStatus() {
+    if (!recipe) {
+      setIsFavourite(false);
+      return;
+    }
+
+    try {
+      const saved =
+        localStorage.getItem(
+          "meal-planner-favourites"
+        );
+
+      if (!saved) {
+        setIsFavourite(false);
+        return;
+      }
+
+      const favourites =
+        JSON.parse(saved);
+
+      setIsFavourite(
+        Array.isArray(favourites) &&
+          favourites.includes(recipe.id)
+      );
+    } catch {
+      setIsFavourite(false);
+    }
+  }
+
+  function toggleFavourite() {
+    if (!recipe) {
+      return;
+    }
+
+    try {
+      const saved =
+        localStorage.getItem(
+          "meal-planner-favourites"
+        );
+
+      const favourites = saved
+        ? JSON.parse(saved)
+        : [];
+
+      const currentFavourites =
+        Array.isArray(favourites)
+          ? favourites
+          : [];
+
+      const nextFavourites =
+        currentFavourites.includes(recipe.id)
+          ? currentFavourites.filter(
+              (id: string) => id !== recipe.id
+            )
+          : [...currentFavourites, recipe.id];
+
+      localStorage.setItem(
+        "meal-planner-favourites",
+        JSON.stringify(nextFavourites)
+      );
+
+      setIsFavourite(
+        nextFavourites.includes(recipe.id)
+      );
+
+      window.dispatchEvent(
+        new Event("meal-planner-favourites-updated")
+      );
+    } catch {
+      // Ignore storage errors.
+    }
+  }
+
   /*
    * Find every place where this recipe
    * currently appears in the Weekly Planner.
@@ -183,6 +259,7 @@ export default function RecipeDetailPage() {
     }
 
     loadPlannerStatus();
+    loadFavouriteStatus();
 
     window.addEventListener(
       "weekly-planner-updated",
@@ -190,8 +267,18 @@ export default function RecipeDetailPage() {
     );
 
     window.addEventListener(
+      "meal-planner-favourites-updated",
+      loadFavouriteStatus
+    );
+
+    window.addEventListener(
       "storage",
       loadPlannerStatus
+    );
+
+    window.addEventListener(
+      "storage",
+      loadFavouriteStatus
     );
 
     return () => {
@@ -201,8 +288,18 @@ export default function RecipeDetailPage() {
       );
 
       window.removeEventListener(
+        "meal-planner-favourites-updated",
+        loadFavouriteStatus
+      );
+
+      window.removeEventListener(
         "storage",
         loadPlannerStatus
+      );
+
+      window.removeEventListener(
+        "storage",
+        loadFavouriteStatus
       );
     };
   }, [recipe?.id]);
@@ -520,6 +617,21 @@ export default function RecipeDetailPage() {
                   {getDefaultMealType(recipe.code ?? "")}
                 </span>
 
+                <button
+                  type="button"
+                  onClick={toggleFavourite}
+                  aria-pressed={isFavourite}
+                  className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
+                    isFavourite
+                      ? "bg-amber-100 text-amber-800 hover:bg-amber-200"
+                      : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+                  }`}
+                >
+                  {isFavourite
+                    ? "★ Favourite"
+                    : "☆ Favourite"}
+                </button>
+
               </div>
 
               <h1 className="max-w-xl text-4xl font-extrabold leading-tight tracking-tight text-slate-900">
@@ -705,6 +817,21 @@ export default function RecipeDetailPage() {
       <h1 className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl">
         {recipe.name}
       </h1>
+
+      <button
+        type="button"
+        onClick={toggleFavourite}
+        aria-pressed={isFavourite}
+        className={`mb-4 rounded-xl px-4 py-2 text-sm font-semibold transition ${
+          isFavourite
+            ? "bg-amber-100 text-amber-800 hover:bg-amber-200"
+            : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+        }`}
+      >
+        {isFavourite
+          ? "★ Favourite"
+          : "☆ Favourite"}
+      </button>
 
       {/* Description */}
       <p className="mb-4 text-base leading-snug sm:mb-6 sm:text-lg sm:leading-normal">

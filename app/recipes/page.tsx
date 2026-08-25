@@ -10,6 +10,7 @@ export default function RecipesPage() {
   const [selectedProtein, setSelectedProtein] = useState("All");
   const [searchText, setSearchText] = useState("");
   const [sortBy, setSortBy] = useState("default");
+  const [showFavourites, setShowFavourites] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [filtersLoaded, setFiltersLoaded] = useState(false);
   const [requirements, setRequirements] =
@@ -73,6 +74,7 @@ export default function RecipesPage() {
         plannerFilterRef.current = true;
         setSelectedMealType(plannerMeal);
         setSelectedProtein("All");
+        setShowFavourites(false);
         setSearchText("");
         setSortBy("default");
 
@@ -93,6 +95,7 @@ export default function RecipesPage() {
       plannerFilterRef.current = true;
       setSelectedMealType("All");
       setSelectedProtein("All");
+      setShowFavourites(false);
       setSearchText("");
       setSortBy("default");
 
@@ -128,6 +131,7 @@ export default function RecipesPage() {
         JSON.stringify({
           selectedMealType,
           selectedProtein,
+          showFavourites,
           searchText,
           sortBy,
         })
@@ -139,6 +143,7 @@ export default function RecipesPage() {
     filtersLoaded,
     selectedMealType,
     selectedProtein,
+    showFavourites,
     searchText,
     sortBy,
   ]);
@@ -159,6 +164,47 @@ export default function RecipesPage() {
       window.removeEventListener(
         "meal-planner-requirements-updated",
         handleRequirementsUpdated
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    function loadFavouriteFilter() {
+      try {
+        const saved =
+          localStorage.getItem(
+            "meal-planner-favourites"
+          );
+
+        if (!saved) {
+          setShowFavourites(false);
+        }
+      } catch {
+        setShowFavourites(false);
+      }
+    }
+
+    loadFavouriteFilter();
+
+    window.addEventListener(
+      "meal-planner-favourites-updated",
+      loadFavouriteFilter
+    );
+
+    window.addEventListener(
+      "storage",
+      loadFavouriteFilter
+    );
+
+    return () => {
+      window.removeEventListener(
+        "meal-planner-favourites-updated",
+        loadFavouriteFilter
+      );
+
+      window.removeEventListener(
+        "storage",
+        loadFavouriteFilter
       );
     };
   }, []);
@@ -240,6 +286,27 @@ export default function RecipesPage() {
         selectedProtein === "All" ||
         recipe.category === selectedProtein;
 
+      let matchesFavourite = true;
+
+      if (showFavourites) {
+        try {
+          const saved =
+            localStorage.getItem(
+              "meal-planner-favourites"
+            );
+
+          const favourites = saved
+            ? JSON.parse(saved)
+            : [];
+
+          matchesFavourite =
+            Array.isArray(favourites) &&
+            favourites.includes(recipe.id);
+        } catch {
+          matchesFavourite = false;
+        }
+      }
+
       const matchesRequirements =
         recipeMatchesRequirements(
           recipe,
@@ -262,6 +329,7 @@ export default function RecipesPage() {
       return (
         matchesMealType &&
         matchesProtein &&
+        matchesFavourite &&
         matchesRequirements &&
         matchesSearch
       );
@@ -337,27 +405,32 @@ export default function RecipesPage() {
       ? " • Requirements applied"
       : "";
 
+  const favouritesText =
+    showFavourites
+      ? " • Favourites"
+      : "";
+
   if (searchDisplay) {
     helperText = `${filteredRecipes.length} recipe${
       filteredRecipes.length === 1 ? "" : "s"
-    } matching "${searchDisplay}"${requirementsText}`;
+    } matching "${searchDisplay}"${requirementsText}${favouritesText}`;
   } else if (
     selectedMealType !== "All" &&
     selectedProtein !== "All"
   ) {
     helperText = `${filteredRecipes.length} ${selectedMealType.toLowerCase()} ${
       selectedProtein.toLowerCase()
-    } recipe${filteredRecipes.length === 1 ? "" : "s"}${requirementsText}`;
+    } recipe${filteredRecipes.length === 1 ? "" : "s"}${requirementsText}${favouritesText}`;
   } else if (selectedMealType !== "All") {
     helperText = `${filteredRecipes.length} ${selectedMealType.toLowerCase()} recipe${
       filteredRecipes.length === 1 ? "" : "s"
-    }${requirementsText}`;
+    }${requirementsText}${favouritesText}`;
   } else if (selectedProtein !== "All") {
     helperText = `${filteredRecipes.length} ${selectedProtein.toLowerCase()} recipe${
       filteredRecipes.length === 1 ? "" : "s"
-    }${requirementsText}`;
+    }${requirementsText}${favouritesText}`;
   } else {
-    helperText = `${filteredRecipes.length} recipes${requirementsText}`;
+    helperText = `${filteredRecipes.length} recipes${requirementsText}${favouritesText}`;
   }
 
   return (
@@ -465,8 +538,34 @@ export default function RecipesPage() {
 
                   </div>
 
+                  {/* Favourites */}
+                  <div>
+
+                    <label className="block mb-2 font-semibold text-gray-800">
+                      Show
+                    </label>
+
+                    <select
+                      value={showFavourites ? "Favourites" : "All"}
+                      onChange={(e) =>
+                        setShowFavourites(
+                          e.target.value === "Favourites"
+                        )
+                      }
+                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="All">
+                        🍽️ All recipes
+                      </option>
+                      <option value="Favourites">
+                        ⭐ Favourites
+                      </option>
+                    </select>
+
+                  </div>
+
                   {/* Sort */}
-                  <div className="md:col-span-3">
+                  <div className="md:col-span-2">
 
                     <label className="block mb-2 font-semibold text-gray-800">
                       Sort by
@@ -521,6 +620,7 @@ export default function RecipesPage() {
                   {(searchText ||
                     selectedMealType !== "All" ||
                     selectedProtein !== "All" ||
+                    showFavourites ||
                     sortBy !== "default") ? (
                     <button
                       type="button"
@@ -528,6 +628,7 @@ export default function RecipesPage() {
                         setSearchText("");
                         setSelectedMealType("All");
                         setSelectedProtein("All");
+                        setShowFavourites(false);
                         setSortBy("default");
 
                         try {

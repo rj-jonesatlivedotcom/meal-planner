@@ -823,14 +823,14 @@ export default function RecipeCard({
               justify-center
               whitespace-nowrap
               rounded-xl
-              bg-orange-500
+              bg-green-700
               px-4
               text-sm
               font-semibold
               text-white
               shadow-sm
               transition
-              hover:bg-orange-600
+              hover:bg-green-800
               hover:shadow-md
             "
           >
@@ -1144,13 +1144,13 @@ export default function RecipeCard({
                   className="
                     w-full
                     rounded-xl
-                    bg-orange-500
+                    bg-green-700
                     px-4
                     py-3
                     font-bold
                     text-white
                     transition
-                    hover:bg-orange-600
+                    hover:bg-green-800
                   "
                 >
                   Add to Planner

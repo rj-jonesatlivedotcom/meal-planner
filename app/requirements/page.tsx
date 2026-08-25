@@ -141,7 +141,23 @@ export default function RequirementsPage() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <button
+              type="button"
+              onClick={saveRequirements}
+              className="min-h-12 rounded-xl bg-green-700 px-6 text-base font-extrabold text-white transition hover:bg-green-800"
+            >
+              Save my requirements
+            </button>
+
+            {saved && (
+              <span className="text-sm font-semibold text-green-700">
+                Requirements saved.
+              </span>
+            )}
+          </div>
+
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
             <div className="rounded-2xl border border-purple-100 bg-purple-100/40 p-5">
               <label
                 htmlFor="sodium-limit"
@@ -272,22 +288,6 @@ export default function RequirementsPage() {
                 <option>Moderate</option>
               </select>
             </div>
-          </div>
-
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <button
-              type="button"
-              onClick={saveRequirements}
-              className="min-h-12 rounded-xl bg-green-700 px-6 text-base font-extrabold text-white transition hover:bg-green-800"
-            >
-              Save my requirements
-            </button>
-
-            {saved && (
-              <span className="text-sm font-semibold text-green-700">
-                Requirements saved.
-              </span>
-            )}
           </div>
 
           <div className="mt-8 border-t border-slate-200 pt-8">

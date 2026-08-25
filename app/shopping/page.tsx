@@ -1375,9 +1375,10 @@ export default function ShoppingPage() {
             <div className="flex min-w-0 flex-col items-end text-sm text-slate-500 text-right">
               <button
                 onClick={uncheckAll}
-                className="whitespace-nowrap bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black md:bg-white md:border md:border-slate-200 md:text-slate-700 md:hover:bg-slate-50 md:shadow-sm"
+                className="whitespace-nowrap rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-600"
               >
-                🗑️ Clear Checked
+                Clear Checked
+                <span className="ml-2">→</span>
               </button>
 
               <div className="mt-2 whitespace-nowrap">

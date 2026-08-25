@@ -574,7 +574,7 @@ export default function RecipeDetailPage() {
               <button
                 type="button"
                 onClick={openPlanner}
-                className="mt-auto w-full rounded-xl bg-orange-500 px-5 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-orange-600"
+                className="mt-auto w-full rounded-xl bg-green-700 px-5 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-green-800"
               >
                 {placements.length > 0
                   ? "📅 Add Another to Planner"
@@ -923,7 +923,7 @@ export default function RecipeDetailPage() {
         <button
           type="button"
           onClick={openPlanner}
-          className="rounded-xl bg-orange-500 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-orange-600"
+          className="rounded-xl bg-green-700 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-green-800"
         >
           {placements.length > 0
             ? "📅 Add Another to Planner"
@@ -1091,7 +1091,7 @@ export default function RecipeDetailPage() {
                   onClick={
                     addToPlanner
                   }
-                  className="w-full rounded-xl bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600"
+                  className="w-full rounded-xl bg-green-700 px-4 py-3 font-bold text-white transition hover:bg-green-800"
                 >
                   Add to Planner
                 </button>

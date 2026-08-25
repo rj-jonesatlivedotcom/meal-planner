@@ -1297,7 +1297,7 @@ if (total <= limit * 0.75) {
                           meal: "Breakfast",
                         })
                       }
-                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                      className="shrink-0 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                     >
                       {getPeopleForMeal(
                         selectedDay,
@@ -1392,7 +1392,7 @@ if (total <= limit * 0.75) {
                           meal: "Lunch",
                         })
                       }
-                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                      className="shrink-0 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                     >
                       {getPeopleForMeal(
                         selectedDay,
@@ -1487,7 +1487,7 @@ if (total <= limit * 0.75) {
                           meal: "Dinner",
                         })
                       }
-                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                      className="shrink-0 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                     >
                       {getPeopleForMeal(
                         selectedDay,
@@ -1742,7 +1742,7 @@ if (total <= limit * 0.75) {
                               meal: "Breakfast",
                             })
                           }
-                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                          className="mx-auto mt-1 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                         >
                           {getPeopleForMeal(
                             day,
@@ -1884,7 +1884,7 @@ if (total <= limit * 0.75) {
                               meal: "Lunch",
                             })
                           }
-                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                          className="mx-auto mt-1 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                         >
                           {getPeopleForMeal(
                             day,
@@ -2025,7 +2025,7 @@ if (total <= limit * 0.75) {
                               meal: "Dinner",
                             })
                           }
-                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                          className="mx-auto mt-1 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                         >
                           {getPeopleForMeal(
                             day,

@@ -17,6 +17,9 @@ type RecipeCardProps = {
     calories: string;
     protein: string;
     equipment: string;
+    nutrition?: {
+      sodium?: string;
+    };
   };
 };
 
@@ -766,6 +769,22 @@ export default function RecipeCard({
               "
             >
               💪 {recipe.protein}
+            </span>
+
+            <span
+              className="
+                inline-flex
+                items-center
+                rounded-full
+                bg-blue-50
+                px-2.5
+                py-1
+                text-xs
+                font-semibold
+                text-blue-700
+              "
+            >
+              🧂 {recipe.nutrition?.sodium ?? "—"}
             </span>
 
           </div>

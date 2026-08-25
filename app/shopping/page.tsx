@@ -356,11 +356,11 @@ function formatQuantity(amount: number, unit: string): string {
   const u = normaliseUnit(unit);
 
   if (u === "ml") {
-    return `${Math.ceil(n)}ml`;
+    return `${Math.ceil(n)} ml`;
   }
 
   if (u === "g" || u === "kg" || u === "l") {
-    return `${a}${u}`;
+    return `${a} ${u}`;
   }
 
   if (u === "clove") {
@@ -738,7 +738,7 @@ function normaliseShoppingQuantity(
     const converted = normalisePotato(name, parsed);
     if (converted) {
       if (converted.unit === "2kg-bag-source-g") {
-        return `${converted.amount}g`;
+        return `${converted.amount} g`;
       }
       if (converted.unit === "baking-potato") {
         return decimalToFraction(converted.amount);
@@ -823,7 +823,7 @@ function combineQuantity(
 
   if (lower === "potatoes") {
     if (a.unit === "g" && b.unit === "g") {
-      return `${Math.round((a.amount + b.amount) * 100) / 100}g`;
+      return `${Math.round((a.amount + b.amount) * 100) / 100} g`;
     }
     if (a.unit === "individual-potato" && b.unit === "individual-potato") {
       return decimalToFraction(a.amount + b.amount);
@@ -877,7 +877,7 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
     const kg = parsed.amount / 1000;
     return {
       item: "Potatoes",
-      quantity: `${kg.toFixed(1)}kg`,
+      quantity: `${kg.toFixed(1)} kg`,
     };
   }
 

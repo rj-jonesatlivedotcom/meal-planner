@@ -10,6 +10,7 @@ export type Nutrition = {
   carbohydrates: string;
   fat: string;
   fibre: string;
+  sodium: string;
 };
 
 export type Recipe = {
@@ -69,6 +70,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "38 g",
       fat: "14 g",
       fibre: "3 g",
+      sodium: "400 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -112,6 +114,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "39 g",
       fat: "15 g",
       fibre: "3 g",
+      sodium: "580 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -160,6 +163,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "38 g",
       fat: "16 g",
       fibre: "3 g",
+      sodium: "390 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -202,6 +206,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "36 g",
       fat: "16 g",
       fibre: "3 g",
+      sodium: "440 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -219,7 +224,7 @@ export const recipes: Recipe[] = [
     image: "/images/recipes/ham-cheese-sandwich.png",
     name: "Ham & Cheese Sandwich",
     description:
-      "A familiar ham and cheese sandwich with crisp lettuce on soft white bread — a higher-phosphate option included for variety and realism.",
+      "A familiar ham and cheese sandwich with crisp lettuce on soft white bread. The ham and cheese make this higher in phosphate and sodium than many other lunches.",
     cookingTime: "10 minutes",
     calories: "430 kcal",
     protein: "25 g",
@@ -245,12 +250,13 @@ export const recipes: Recipe[] = [
       carbohydrates: "34 g",
       fat: "20 g",
       fibre: "3 g",
+      sodium: "940 mg",
     },
     potassium: "Low",
     phosphate: "High",
     purines: "Moderate",
     dietaryNote:
-      "Ham and cheese make this higher in phosphate and sodium than many of the other lunches. It is included as a realistic occasional choice.",
+      "Ham and cheese make this higher in phosphate and sodium than many other lunches. It is best enjoyed occasionally.",
   },
 
   {
@@ -289,12 +295,13 @@ export const recipes: Recipe[] = [
       carbohydrates: "55 g",
       fat: "12 g",
       fibre: "6 g",
+      sodium: "270 mg",
     },
     potassium: "High",
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "The baked potato makes this higher in potassium, while tuna contributes phosphate and purines. A useful option for variety rather than an everyday choice.",
+      "The baked potato makes this higher in potassium, while tuna contributes phosphate and purines. It is best enjoyed occasionally.",
   },
 
   {
@@ -333,6 +340,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "54 g",
       fat: "15 g",
       fibre: "6 g",
+      sodium: "90 mg",
     },
     potassium: "High",
     phosphate: "Moderate",
@@ -350,7 +358,7 @@ export const recipes: Recipe[] = [
     image: "/images/recipes/jacket-potato-beef-chilli.png",
     name: "Jacket Potato with Beef Chilli",
     description:
-      "A proper British jacket potato topped with a mild homemade beef chilli — one of the heartier lunch choices in the collection.",
+      "A proper British jacket potato topped with a mild homemade beef chilli for a hearty British lunch.",
     cookingTime: "60 minutes",
     calories: "480 kcal",
     protein: "29 g",
@@ -385,6 +393,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "59 g",
       fat: "14 g",
       fibre: "7 g",
+      sodium: "210 mg",
     },
     potassium: "High",
     phosphate: "Moderate",
@@ -434,6 +443,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "52 g",
       fat: "14 g",
       fibre: "5 g",
+      sodium: "200 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -480,6 +490,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "48 g",
       fat: "15 g",
       fibre: "4 g",
+      sodium: "90 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -522,6 +533,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "30 g",
       fat: "20 g",
       fibre: "3 g",
+      sodium: "610 mg",
     },
     potassium: "Low",
     phosphate: "High",
@@ -563,6 +575,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "53 g",
       fat: "6 g",
       fibre: "9 g",
+      sodium: "550 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -606,6 +619,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "30 g",
       fat: "19 g",
       fibre: "3 g",
+      sodium: "690 mg",
     },
     potassium: "Low",
     phosphate: "High",
@@ -647,6 +661,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "30 g",
       fat: "18 g",
       fibre: "3 g",
+      sodium: "890 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -688,6 +703,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "30 g",
       fat: "16 g",
       fibre: "3 g",
+      sodium: "400 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -731,6 +747,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "51 g",
       fat: "12 g",
       fibre: "8 g",
+      sodium: "660 mg",
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -772,6 +789,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "31 g",
       fat: "23 g",
       fibre: "3 g",
+      sodium: "970 mg",
     },
     potassium: "Low",
     phosphate: "High",
@@ -813,6 +831,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "1 g",
       fat: "26 g",
       fibre: "0 g",
+      sodium: "150 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -856,6 +875,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "2 g",
       fat: "30 g",
       fibre: "0 g",
+      sodium: "560 mg",
     },
     potassium: "Low",
     phosphate: "High",
@@ -897,6 +917,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "57 g",
       fat: "21 g",
       fibre: "5 g",
+      sodium: "530 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -915,7 +936,7 @@ export const recipes: Recipe[] = [
     name: "Chicken Curry",
 
     description:
-      "A mild, tomato-based chicken curry made with simple everyday ingredients, designed to be kidney-friendly by design while remaining a family favourite.",
+      "A mild, tomato-based chicken curry made with simple everyday ingredients for a comforting family favourite.",
 
     cookingTime: "40 minutes",
 
@@ -1003,6 +1024,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "50 g",
       fat: "13 g",
       fibre: "6 g",
+      sodium: "190 mg",
     },
   potassium: "Moderate",
   phosphate: "Low",
@@ -1019,7 +1041,7 @@ export const recipes: Recipe[] = [
     name: "Cottage Pie",
 
     description:
-      "A comforting family favourite made with lean beef, vegetables and creamy mashed potato, designed to be kidney-friendly by design while keeping all the flavour of a traditional Cottage Pie.",
+      "A comforting family favourite made with lean beef, vegetables and creamy mashed potato, with all the flavour of a traditional Cottage Pie.",
 
     cookingTime:
       "55 minutes",
@@ -1106,7 +1128,8 @@ export const recipes: Recipe[] = [
       protein: "38 g",
       carbohydrates: "44 g",
       fat: "18 g",
-      fibre: "7 g"
+      fibre: "7 g",
+      sodium: "260 mg",
     },
   potassium: "Moderate",
   phosphate: "Moderate",
@@ -1207,6 +1230,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "48 g",
       fat: "9 g",
       fibre: "6 g",
+      sodium: "190 mg",
     },
   potassium: "Moderate",
   phosphate: "Low",
@@ -1223,7 +1247,7 @@ export const recipes: Recipe[] = [
   name: "Spaghetti Bolognese",
 
   description:
-    "A rich, tomato-based family favourite made with lean beef, simple vegetables and everyday ingredients, designed to be kidney-friendly by design.",
+    "A rich, tomato-based family favourite made with lean beef, simple vegetables and everyday ingredients.",
 
   cookingTime: "40 minutes",
 
@@ -1294,6 +1318,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "47 g",
     fat: "11 g",
     fibre: "6 g",
+      sodium: "130 mg",
   },
   potassium: "Moderate",
   phosphate: "Low",
@@ -1381,6 +1406,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "42 g",
     fat: "12 g",
     fibre: "5 g",
+      sodium: "110 mg",
   },
   potassium: "Moderate",
   phosphate: "Low",
@@ -1469,6 +1495,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "38 g",
     fat: "13 g",
     fibre: "5 g",
+      sodium: "970 mg",
   },
   potassium: "Low",
   phosphate: "Low",
@@ -1484,7 +1511,7 @@ export const recipes: Recipe[] = [
   name: "Roast Chicken Dinner",
 
   description:
-    "A traditional roast chicken dinner made with lean chicken breast, roasted potatoes and vegetables, designed to be kidney-friendly by design while keeping all the flavour of a classic Sunday roast.",
+    "A traditional roast chicken dinner made with lean chicken breast, roasted potatoes and vegetables, with all the flavour of a classic Sunday roast.",
 
   cookingTime: "60 minutes",
 
@@ -1554,6 +1581,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "45 g",
     fat: "14 g",
     fibre: "6 g",
+      sodium: "230 mg",
   },
   potassium: "Moderate",
   phosphate: "Moderate",
@@ -1570,7 +1598,7 @@ export const recipes: Recipe[] = [
   name: "Honey & Mustard Chicken",
 
   description:
-    "Tender chicken breast coated in a light honey and mustard glaze, served with roasted potatoes and vegetables for a simple family dinner designed to be kidney-friendly by design.",
+    "Tender chicken breast coated in a light honey and mustard glaze, served with roasted potatoes and vegetables for a simple family dinner.",
 
   cookingTime: "40 minutes",
 
@@ -1640,6 +1668,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "43 g",
     fat: "12 g",
     fibre: "5 g",
+      sodium: "160 mg",
   },
   potassium: "Moderate",
   phosphate: "Low",
@@ -1656,7 +1685,7 @@ export const recipes: Recipe[] = [
   name: "Homemade Beef Burgers",
 
   description:
-    "Lean homemade beef burgers served in a soft white burger bun with salad and oven-baked potato wedges, designed to be kidney-friendly by design while remaining a family favourite.",
+    "Lean homemade beef burgers served in a soft white burger bun with salad and oven-baked potato wedges for a family favourite meal.",
 
   cookingTime: "40 minutes",
 
@@ -1731,6 +1760,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "44 g",
     fat: "16 g",
     fibre: "5 g",
+      sodium: "390 mg",
   },
   potassium: "High",
   phosphate: "Moderate",
@@ -1747,7 +1777,7 @@ export const recipes: Recipe[] = [
   name: "Beef Meatballs in Tomato & Herb Sauce",
 
   description:
-    "Lean homemade beef meatballs simmered in a rich tomato and herb sauce, served with spaghetti for a simple family meal designed to be kidney-friendly by design.",
+    "Lean homemade beef meatballs simmered in a rich tomato and herb sauce, served with spaghetti for a simple family meal.",
 
   cookingTime: "40 minutes",
 
@@ -1819,6 +1849,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "47 g",
     fat: "12 g",
     fibre: "6 g",
+      sodium: "150 mg",
   },
   potassium: "Moderate",
   phosphate: "Low",
@@ -1835,7 +1866,7 @@ export const recipes: Recipe[] = [
   name: "Chilli Con Carne",
 
   description:
-    "A mild chilli made with lean beef, tomatoes and peppers, served with basmati rice for a hearty family meal designed to be kidney-friendly by design.",
+    "A mild chilli made with lean beef, tomatoes and peppers, served with basmati rice for a hearty family meal.",
 
   cookingTime: "40 minutes",
 
@@ -1908,6 +1939,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "49 g",
     fat: "11 g",
     fibre: "6 g",
+      sodium: "360 mg",
   },
   potassium: "Moderate",
   phosphate: "Moderate",
@@ -1923,7 +1955,7 @@ export const recipes: Recipe[] = [
   name: "Sausage & Mash with Onion Gravy",
 
   description:
-    "A comforting family favourite made with quality pork sausages, creamy mashed potato and rich onion gravy, designed to be kidney-friendly by design.",
+    "A comforting family favourite made with quality pork sausages, creamy mashed potato and rich onion gravy.",
 
   cookingTime: "45 minutes",
 
@@ -1987,6 +2019,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "43 g",
     fat: "24 g",
     fibre: "5 g",
+      sodium: "900 mg",
   },
   potassium: "High",
   phosphate: "High",
@@ -2003,7 +2036,7 @@ export const recipes: Recipe[] = [
   name: "Salmon with Lemon & Herbs",
 
   description:
-    "Oven-baked salmon fillet served with roasted potatoes and vegetables, finished with lemon and herbs for a light family dinner designed to be kidney-friendly by design.",
+    "Oven-baked salmon fillet served with roasted potatoes and vegetables, finished with lemon and herbs for a light family dinner.",
 
   cookingTime: "40 minutes",
 
@@ -2072,6 +2105,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "42 g",
     fat: "20 g",
     fibre: "5 g",
+      sodium: "110 mg",
   },
   potassium: "Moderate",
   phosphate: "Low",
@@ -2088,7 +2122,7 @@ export const recipes: Recipe[] = [
   name: "Tuna Pasta Bake",
 
   description:
-    "A comforting tuna pasta bake with a light tomato sauce, designed to be kidney-friendly by design while using simple everyday ingredients.",
+    "A comforting tuna pasta bake with a light tomato sauce using simple everyday ingredients.",
 
   cookingTime: "40 minutes",
 
@@ -2166,6 +2200,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "46 g",
     fat: "11 g",
     fibre: "5 g",
+      sodium: "420 mg",
   },
   potassium: "Low",
   phosphate: "Moderate",
@@ -2182,7 +2217,7 @@ export const recipes: Recipe[] = [
   name: "Mediterranean Chicken",
 
   description:
-    "A colourful one-pan chicken dish with Mediterranean vegetables and herbs, served with basmati rice for a fresh, family-friendly dinner designed to be kidney-friendly by design.",
+    "A colourful one-pan chicken dish with Mediterranean vegetables and herbs, served with basmati rice for a fresh, family-friendly dinner.",
 
   cookingTime: "35 minutes",
 
@@ -2260,6 +2295,7 @@ export const recipes: Recipe[] = [
     carbohydrates: "48 g",
     fat: "10 g",
     fibre: "5 g",
+      sodium: "110 mg",
   },
   potassium: "Moderate",
   phosphate: "Low",
@@ -2313,6 +2349,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "65 g",
       fat: "21 g",
       fibre: "5 g",
+      sodium: "100 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -2369,6 +2406,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "75 g",
       fat: "25 g",
       fibre: "3 g",
+      sodium: "90 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -2426,6 +2464,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "72 g",
       fat: "19 g",
       fibre: "4 g",
+      sodium: "120 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -2479,6 +2518,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "68 g",
       fat: "22 g",
       fibre: "5 g",
+      sodium: "200 mg",
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -2538,6 +2578,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "65 g",
       fat: "24 g",
       fibre: "5 g",
+      sodium: "120 mg",
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -2593,6 +2634,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "63 g",
       fat: "27 g",
       fibre: "5 g",
+      sodium: "90 mg",
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -2646,6 +2688,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "53 g",
       fat: "31 g",
       fibre: "6 g",
+      sodium: "120 mg",
     },
     potassium: "High",
     phosphate: "Moderate",
@@ -2697,6 +2740,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "60 g",
       fat: "25 g",
       fibre: "6 g",
+      sodium: "100 mg",
     },
     potassium: "High",
     phosphate: "Moderate",
@@ -2755,6 +2799,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "70 g",
       fat: "23 g",
       fibre: "5 g",
+      sodium: "80 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -2813,6 +2858,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "68 g",
       fat: "29 g",
       fibre: "6 g",
+      sodium: "140 mg",
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -2866,6 +2912,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "55 g",
       fat: "31 g",
       fibre: "7 g",
+      sodium: "180 mg",
     },
     potassium: "High",
     phosphate: "Moderate",
@@ -2922,6 +2969,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "65 g",
       fat: "27 g",
       fibre: "5 g",
+      sodium: "170 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -2980,6 +3028,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "70 g",
       fat: "25 g",
       fibre: "5 g",
+      sodium: "160 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -3037,6 +3086,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "78 g",
       fat: "28 g",
       fibre: "7 g",
+      sodium: "140 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",
@@ -3090,6 +3140,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "82 g",
       fat: "27 g",
       fibre: "7 g",
+      sodium: "30 mg",
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -3154,6 +3205,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "54 g",
       fat: "7 g",
       fibre: "4 g",
+      sodium: "490 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3231,6 +3283,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "72 g",
       fat: "7 g",
       fibre: "3 g",
+      sodium: "210 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3297,6 +3350,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "39 g",
       fat: "8 g",
       fibre: "3 g",
+      sodium: "540 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3357,6 +3411,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "51 g",
       fat: "9 g",
       fibre: "4 g",
+      sodium: "1140 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3420,6 +3475,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "77 g",
       fat: "1 g",
       fibre: "3 g",
+      sodium: "10 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3496,6 +3552,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "43 g",
       fat: "12 g",
       fibre: "3 g",
+      sodium: "510 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3574,6 +3631,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "76 g",
       fat: "8 g",
       fibre: "3 g",
+      sodium: "210 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3638,6 +3696,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "72 g",
       fat: "1 g",
       fibre: "2 g",
+      sodium: "20 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3711,6 +3770,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "48 g",
       fat: "12 g",
       fibre: "4 g",
+      sodium: "570 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3777,6 +3837,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "50 g",
       fat: "9 g",
       fibre: "4 g",
+      sodium: "320 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -3822,6 +3883,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "31 g",
       fat: "18 g",
       fibre: "3 g",
+      sodium: "470 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -3867,6 +3929,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "30 g",
       fat: "17 g",
       fibre: "3 g",
+      sodium: "470 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -3909,6 +3972,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "30 g",
       fat: "18 g",
       fibre: "3 g",
+      sodium: "470 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -3955,6 +4019,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "31 g",
       fat: "21 g",
       fibre: "3 g",
+      sodium: "470 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -3999,6 +4064,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "30 g",
       fat: "20 g",
       fibre: "3 g",
+      sodium: "680 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -4043,6 +4109,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "40 g",
       fat: "21 g",
       fibre: "3 g",
+      sodium: "1390 mg",
     },
     potassium: "Low",
     phosphate: "High",
@@ -4084,6 +4151,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "30 g",
       fat: "21 g",
       fibre: "3 g",
+      sodium: "700 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -4129,6 +4197,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "48 g",
       fat: "16 g",
       fibre: "3 g",
+      sodium: "810 mg",
     },
     potassium: "Low",
     phosphate: "Moderate",
@@ -4175,6 +4244,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "51 g",
       fat: "13 g",
       fibre: "4 g",
+      sodium: "550 mg",
     },
     potassium: "Low",
     phosphate: "Low",
@@ -4219,6 +4289,7 @@ export const recipes: Recipe[] = [
       carbohydrates: "61 g",
       fat: "6 g",
       fibre: "6 g",
+      sodium: "0 mg",
     },
     potassium: "Moderate",
     phosphate: "Moderate",

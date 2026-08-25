@@ -549,6 +549,11 @@ export default function RecipeDetailPage() {
                   </div>
 
                   <div className="px-3 py-4 text-center">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Sodium</div>
+                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.nutrition.sodium}</div>
+                  </div>
+
+                  <div className="px-3 py-4 text-center">
                     <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Potassium</div>
                     <div className="mt-1 text-sm font-bold text-slate-900">{recipe.potassium}</div>
                   </div>
@@ -644,6 +649,7 @@ export default function RecipeDetailPage() {
               <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Carbohydrates</span><strong>{recipe.nutrition.carbohydrates}</strong></div>
               <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Fat</span><strong>{recipe.nutrition.fat}</strong></div>
               <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Fibre</span><strong>{recipe.nutrition.fibre}</strong></div>
+              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Sodium</span><strong>{recipe.nutrition.sodium}</strong></div>
             </div>
           </div>
 
@@ -756,6 +762,22 @@ export default function RecipeDetailPage() {
 
         </div>
 
+        <div className="rounded-lg border p-2 text-center sm:p-4">
+
+          <div className="text-lg sm:text-2xl">
+            🧂
+          </div>
+
+          <strong className="block text-[11px] leading-tight sm:text-base">
+            Sodium
+          </strong>
+
+          <p className="mt-1 text-xs sm:text-base">
+            {recipe.nutrition.sodium}
+          </p>
+
+        </div>
+
       </div>
 
       {/* Equipment */}
@@ -832,6 +854,11 @@ export default function RecipeDetailPage() {
         <p>
           Fibre:{" "}
           {recipe.nutrition.fibre}
+        </p>
+
+        <p>
+          Sodium:{" "}
+          {recipe.nutrition.sodium}
         </p>
 
       </div>

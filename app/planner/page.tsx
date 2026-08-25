@@ -712,6 +712,7 @@ export default function WeeklyPlannerPage() {
   type NutritionView =
     | "Calories"
     | "Protein"
+    | "Sodium"
     | "Potassium"
     | "Phosphate"
     | "Purines";
@@ -766,6 +767,20 @@ export default function WeeklyPlannerPage() {
     );
   }
 
+  function getSodiumRating(sodium: string) {
+    const value = getNutritionNumber(sodium);
+
+    if (value <= 500) {
+      return "Low";
+    }
+
+    if (value <= 767) {
+      return "Moderate";
+    }
+
+    return "High";
+  }
+
   function getMealNutritionRating(
     day: string,
     meal: string
@@ -779,11 +794,18 @@ export default function WeeklyPlannerPage() {
     }
 
     if (
+      nutritionView !== "Sodium" &&
       nutritionView !== "Potassium" &&
       nutritionView !== "Phosphate" &&
       nutritionView !== "Purines"
     ) {
       return "Empty";
+    }
+
+    if (nutritionView === "Sodium") {
+      return getSodiumRating(
+        recipe.nutrition.sodium
+      );
     }
 
     if (nutritionView === "Potassium") {
@@ -1444,6 +1466,9 @@ export default function WeeklyPlannerPage() {
                   <option value="Protein">
                     Protein
                   </option>
+                  <option value="Sodium">
+                    Sodium
+                  </option>
                   <option value="Potassium">
                     Potassium
                   </option>
@@ -1953,6 +1978,9 @@ export default function WeeklyPlannerPage() {
                     </option>
                     <option value="Protein">
                       Protein
+                    </option>
+                    <option value="Sodium">
+                      Sodium
                     </option>
                     <option value="Potassium">
                       Potassium

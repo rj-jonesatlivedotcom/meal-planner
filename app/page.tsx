@@ -154,8 +154,14 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       {/* HERO */}
-      <section className="relative overflow-hidden bg-white md:bg-cover md:bg-center" style={{ backgroundImage: "url('/images/background.png')" }}>
-        <div className="absolute inset-0 hidden md:block md:bg-gradient-to-r md:from-white/45 md:via-white/25 md:to-transparent" />
+      <section
+        className="relative overflow-hidden bg-white md:bg-cover"
+        style={{
+          backgroundImage: "url('/images/background.png')",
+          backgroundPosition: "65% center",
+        }}
+      >
+        <div className="absolute inset-0 hidden md:block md:bg-gradient-to-r md:from-white/80 md:via-white/45 md:to-transparent" />
 
         {/* Mobile hero: clean text area with a small food image, rather than text over the photograph */}
         <div className="relative z-10 mx-auto flex min-h-[235px] max-w-[1400px] items-center px-5 py-1 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">

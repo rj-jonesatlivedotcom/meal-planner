@@ -339,7 +339,22 @@ export default function RequirementsPage() {
                             {recipe.name}
                           </div>
                           <div className="mt-1 text-xs font-semibold text-slate-500">
-                            Sodium {recipe.nutrition.sodium}
+                            {[
+                              requirements.sodiumLimit !== null
+                                ? `Sodium ${recipe.nutrition.sodium}`
+                                : null,
+                              requirements.potassium !== "Any"
+                                ? `Potassium ${recipe.potassium}`
+                                : null,
+                              requirements.phosphate !== "Any"
+                                ? `Phosphate ${recipe.phosphate}`
+                                : null,
+                              requirements.purines !== "Any"
+                                ? `Purines ${recipe.purines}`
+                                : null,
+                            ]
+                              .filter(Boolean)
+                              .join(" · ")}
                           </div>
                         </Link>
                       ))}

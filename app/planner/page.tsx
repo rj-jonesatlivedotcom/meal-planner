@@ -808,6 +808,58 @@ export default function WeeklyPlannerPage() {
     return "High";
   }
 
+  function getDailySodiumTotal(day: string) {
+    const meals = getDayMealRecipes(day);
+
+    const values = mealTypes
+      .map((meal) => meals[meal as keyof typeof meals])
+      .filter(Boolean)
+      .map((recipe) =>
+        getNutritionNumber(recipe!.nutrition.sodium)
+      );
+
+    if (values.length === 0) {
+      return null;
+    }
+
+    return values.reduce(
+      (total, value) => total + value,
+      0
+    );
+  }
+
+  function getDailySodiumStatus(day: string) {
+    const total = getDailySodiumTotal(day);
+
+    if (total === null || requirements?.sodiumLimit === null) {
+      return "No limit";
+    }
+
+    /*
+     * Display bands are based on the user's own daily limit:
+     * Low = up to 75% of the limit
+     * Moderate = over 75% up to 100% of the limit
+     * High = over 100% of the limit
+     *
+     * These are planner display bands, not clinical thresholds.
+     */
+    const limit = requirements?.sodiumLimit;
+
+if (limit === null || limit === undefined) {
+  return "No limit";
+}
+
+if (total <= limit * 0.75) {
+      return "Low";
+    }
+
+    if (total <= limit) {
+      return "Moderate";
+    }
+
+    return "High";
+  }
+
   function getMealNutritionRating(
     day: string,
     meal: string
@@ -935,6 +987,11 @@ export default function WeeklyPlannerPage() {
       "Dinner"
     );
 
+    const dailySodiumStatus =
+      nutritionView === "Sodium"
+        ? getDailySodiumStatus(day)
+        : null;
+
     const breakfastColour =
       getNutritionSegmentClass(breakfast);
 
@@ -945,6 +1002,33 @@ export default function WeeklyPlannerPage() {
       getNutritionSegmentClass(dinner);
 
     if (!desktop) {
+      if (nutritionView === "Sodium") {
+        const mobileStatus = dailySodiumStatus ?? "No limit";
+        const mobileStatusColour =
+          mobileStatus === "High"
+            ? "#ef4444"
+            : mobileStatus === "Moderate"
+              ? "#f59e0b"
+              : mobileStatus === "Low"
+                ? "#16a34a"
+                : "#94a3b8";
+
+        return (
+          <span
+            className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full shadow-sm ring-1 ring-slate-200/90"
+            style={{
+              background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 118deg, #ffffff 118deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 242deg, ${dinnerColour} 242deg 358deg, #ffffff 358deg 360deg)`,
+            }}
+            aria-label={`${day} Sodium: daily total ${getDailySodiumTotal(day) ?? "no meals"} mg, ${mobileStatus.toLowerCase()}`}
+            title={`${day} Sodium: daily total ${getDailySodiumTotal(day) ?? "no meals"} mg, ${mobileStatus.toLowerCase()}`}
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[7px] font-extrabold uppercase leading-none shadow-inner" style={{ color: mobileStatusColour }}>
+              {mobileStatus === "No limit" ? "—" : mobileStatus}
+            </span>
+          </span>
+        );
+      }
+
       return (
         <span
           className="h-11 w-11 shrink-0 rounded-full shadow-sm ring-1 ring-slate-200/90"
@@ -967,7 +1051,9 @@ export default function WeeklyPlannerPage() {
 
     let overallStatus = "No meals";
 
-    if (ratings.includes("High")) {
+    if (nutritionView === "Sodium") {
+      overallStatus = dailySodiumStatus ?? "No limit";
+    } else if (ratings.includes("High")) {
       overallStatus = "High";
     } else if (ratings.includes("Moderate")) {
       overallStatus = "Moderate";
@@ -1017,8 +1103,16 @@ export default function WeeklyPlannerPage() {
     return (
       <div
         className="flex flex-col items-center justify-center"
-        aria-label={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
-        title={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+        aria-label={
+          nutritionView === "Sodium"
+            ? `${day} Sodium: daily total ${getDailySodiumTotal(day) ?? "no meals"} mg, ${overallStatus.toLowerCase()}`
+            : `${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`
+        }
+        title={
+          nutritionView === "Sodium"
+            ? `${day} Sodium: daily total ${getDailySodiumTotal(day) ?? "no meals"} mg, ${overallStatus.toLowerCase()}`
+            : `${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`
+        }
       >
         <div
           className="relative flex h-[70px] w-[70px] items-center justify-center rounded-full shadow-sm"
@@ -1037,6 +1131,13 @@ export default function WeeklyPlannerPage() {
             <span className="mt-0.5 text-[9px] font-bold text-slate-500">
               {mealCount} {mealCount === 1 ? "meal" : "meals"}
             </span>
+
+            {nutritionView === "Sodium" &&
+              getDailySodiumTotal(day) !== null && (
+                <span className="mt-0.5 text-[8px] font-semibold text-slate-400">
+                  {getDailySodiumTotal(day)!.toLocaleString()} mg
+                </span>
+              )}
           </div>
         </div>
 

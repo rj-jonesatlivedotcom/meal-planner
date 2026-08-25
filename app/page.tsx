@@ -158,22 +158,22 @@ export default function Home() {
         <div className="absolute inset-0 hidden md:block md:bg-gradient-to-r md:from-white/45 md:via-white/25 md:to-transparent" />
 
         {/* Mobile hero: clean text area with a small food image, rather than text over the photograph */}
-        <div className="relative z-10 mx-auto flex min-h-[270px] max-w-[1400px] items-center px-5 py-3 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
+        <div className="relative z-10 mx-auto flex min-h-[235px] max-w-[1400px] items-center px-5 py-1 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
           <div className="w-full max-w-[700px]">
             <div className="relative z-10 max-w-[650px] md:max-w-[700px]">
-              <p className="text-2xl font-bold text-green-700 sm:text-3xl md:text-3xl">
+              <p className="text-[1.65rem] font-bold text-green-700 sm:text-3xl md:text-3xl">
                 Welcome to
               </p>
 
-              <h1 className="mt-1 text-[2.5rem] font-extrabold leading-none tracking-tight text-slate-900 sm:text-5xl md:text-[4.25rem]">
+              <h1 className="mt-0.5 text-[2.25rem] font-extrabold leading-none tracking-tight text-slate-900 sm:text-5xl md:text-[4.25rem]">
                 Meal Planner
               </h1>
 
-              <div className="mt-3 max-w-[620px] text-slate-800 md:mt-4">
+              <div className="mt-2 max-w-[620px] text-slate-800 md:mt-4">
                 <p className="text-[1rem] leading-snug sm:text-xl md:text-[1.1rem]">
                   Meal planning with dietary restrictions can be difficult.
                 </p>
-                <p className="mt-3 text-[0.95rem] leading-snug sm:text-xl md:text-[1.1rem]">
+                <p className="mt-2 text-[0.95rem] leading-tight sm:text-xl md:text-[1.1rem]">
                   Meal Planner helps you find suitable meals, check nutrition values, plan your week and create your shopping list — all in one place.
                 </p>
               </div>
@@ -186,7 +186,7 @@ export default function Home() {
       <section className="px-4 py-4 sm:px-8 sm:py-5 md:px-10 lg:px-12">
         {/* Mobile */}
         <div className="mx-auto max-w-[700px] md:hidden">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-1">
             {steps.map((step, index) => (
               <div key={step.title} className="relative">
                 <Link
@@ -222,14 +222,6 @@ export default function Home() {
                   </div>
                 </Link>
 
-                {index < steps.length - 1 && (
-                  <div
-                    className="pointer-events-none flex h-3 items-center justify-center text-xl font-bold leading-none text-green-700"
-                    aria-hidden="true"
-                  >
-                    ↓
-                  </div>
-                )}
               </div>
             ))}
           </div>

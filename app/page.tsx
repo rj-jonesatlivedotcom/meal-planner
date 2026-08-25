@@ -158,18 +158,8 @@ export default function Home() {
         <div className="absolute inset-0 hidden md:block md:bg-gradient-to-r md:from-white/45 md:via-white/25 md:to-transparent" />
 
         {/* Mobile hero: clean text area with a small food image, rather than text over the photograph */}
-        <div className="relative z-10 mx-auto flex min-h-[330px] max-w-[1400px] items-center px-5 py-6 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
+        <div className="relative z-10 mx-auto flex min-h-[270px] max-w-[1400px] items-center px-5 py-3 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
           <div className="w-full max-w-[700px]">
-            <div className="relative md:hidden">
-              <div className="absolute right-[-20px] top-[-8px] h-[120px] w-[135px] overflow-hidden rounded-bl-[65px]">
-                <img
-                  src="/images/background.png"
-                  alt=""
-                  className="h-full w-full object-cover object-right"
-                />
-              </div>
-            </div>
-
             <div className="relative z-10 max-w-[650px] md:max-w-[700px]">
               <p className="text-2xl font-bold text-green-700 sm:text-3xl md:text-3xl">
                 Welcome to
@@ -179,7 +169,7 @@ export default function Home() {
                 Meal Planner
               </h1>
 
-              <div className="mt-5 max-w-[620px] text-slate-800 md:mt-4">
+              <div className="mt-3 max-w-[620px] text-slate-800 md:mt-4">
                 <p className="text-[1rem] leading-snug sm:text-xl md:text-[1.1rem]">
                   Meal planning with dietary restrictions can be difficult.
                 </p>

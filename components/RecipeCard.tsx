@@ -736,7 +736,7 @@ export default function RecipeCard({
                 text-slate-600
               "
             >
-              ⏱️ {recipe.cookingTime}
+              ⏱️ {recipe.cookingTime.replace(/\bminutes\b/gi, "mins")}
             </span>
 
             <span

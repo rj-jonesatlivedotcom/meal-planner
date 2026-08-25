@@ -154,44 +154,104 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       {/* HERO */}
-      <section
-        className="relative overflow-hidden bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/images/background.png')",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/55 to-white/10 md:from-white/45 md:via-white/25 md:to-transparent" />
+      <section className="relative overflow-hidden bg-white md:bg-cover md:bg-center" style={{ backgroundImage: "url('/images/background.png')" }}>
+        <div className="absolute inset-0 hidden md:block md:bg-gradient-to-r md:from-white/45 md:via-white/25 md:to-transparent" />
 
-        <div className="relative z-10 mx-auto flex min-h-[215px] max-w-[1400px] items-center px-5 py-4 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
+        {/* Mobile hero: clean text area with a small food image, rather than text over the photograph */}
+        <div className="relative z-10 mx-auto flex min-h-[330px] max-w-[1400px] items-center px-5 py-6 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
           <div className="w-full max-w-[700px]">
-            <p className="text-2xl font-bold text-green-700 sm:text-3xl md:text-3xl">
-              Welcome to
-            </p>
+            <div className="relative md:hidden">
+              <div className="absolute right-[-20px] top-[-8px] h-[120px] w-[135px] overflow-hidden rounded-bl-[65px]">
+                <img
+                  src="/images/background.png"
+                  alt=""
+                  className="h-full w-full object-cover object-right"
+                />
+              </div>
+            </div>
 
-            <h1 className="mt-1 text-[2.5rem] font-extrabold leading-none tracking-tight text-slate-900 sm:text-5xl md:text-[4.25rem]">
-              Meal Planner
-            </h1>
+            <div className="relative z-10 max-w-[650px] md:max-w-[700px]">
+              <p className="text-2xl font-bold text-green-700 sm:text-3xl md:text-3xl">
+                Welcome to
+              </p>
 
-            <div className="mt-3 max-w-[720px] text-slate-800 md:mt-4">
-              <p className="text-[0.95rem] leading-snug sm:text-xl md:text-[1.1rem]">
-                Meal planning with dietary restrictions can be difficult.
-              </p>
-              <p className="mt-2 text-[0.9rem] leading-snug sm:text-xl md:text-[1.1rem]">
-                Meal Planner helps you find suitable meals, check nutrition values, plan your week and create your shopping list — all in one place.
-              </p>
+              <h1 className="mt-1 text-[2.5rem] font-extrabold leading-none tracking-tight text-slate-900 sm:text-5xl md:text-[4.25rem]">
+                Meal Planner
+              </h1>
+
+              <div className="mt-5 max-w-[620px] text-slate-800 md:mt-4">
+                <p className="text-[1rem] leading-snug sm:text-xl md:text-[1.1rem]">
+                  Meal planning with dietary restrictions can be difficult.
+                </p>
+                <p className="mt-3 text-[0.95rem] leading-snug sm:text-xl md:text-[1.1rem]">
+                  Meal Planner helps you find suitable meals, check nutrition values, plan your week and create your shopping list — all in one place.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* FOUR-STEP USER JOURNEY */}
-      <section className="px-4 py-3 sm:px-8 sm:py-5 md:px-10 lg:px-12">
-        <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-2 md:grid-cols-4 md:gap-6">
+      <section className="px-4 py-4 sm:px-8 sm:py-5 md:px-10 lg:px-12">
+        {/* Mobile */}
+        <div className="mx-auto max-w-[700px] md:hidden">
+          <div className="flex flex-col gap-3">
+            {steps.map((step, index) => (
+              <div key={step.title} className="relative">
+                <Link
+                  href={step.href}
+                  className={`group flex min-h-[92px] w-full items-center gap-3 rounded-2xl border px-4 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${step.cardClass}`}
+                >
+                  <span
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${step.numberClass}`}
+                  >
+                    {step.number}
+                  </span>
+
+                  <div
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${step.iconClass}`}
+                  >
+                    {step.icon}
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <h2 className="text-[1.12rem] font-bold leading-tight text-slate-900">
+                      {step.title}
+                    </h2>
+                    <p className="mt-1 text-[0.78rem] leading-snug text-slate-800">
+                      {step.description}
+                    </p>
+                  </div>
+
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg font-semibold leading-none text-white shadow-sm transition group-hover:translate-x-1 ${step.arrowClass}`}
+                    aria-hidden="true"
+                  >
+                    →
+                  </div>
+                </Link>
+
+                {index < steps.length - 1 && (
+                  <div
+                    className="pointer-events-none flex h-3 items-center justify-center text-xl font-bold leading-none text-green-700"
+                    aria-hidden="true"
+                  >
+                    ↓
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop — kept as the established desktop layout */}
+        <div className="mx-auto hidden max-w-[1320px] grid-cols-1 gap-5 md:grid md:grid-cols-4 md:gap-6">
           {steps.map((step, index) => (
             <div key={step.title} className="relative">
               <Link
                 href={step.href}
-                className={`group flex h-[86px] w-full items-center gap-3 rounded-xl border px-3 py-2 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-[92px] sm:px-4 md:h-full md:min-h-[225px] md:flex-col md:items-stretch md:gap-0 md:rounded-2xl md:px-5 md:py-6 lg:px-6 xl:min-h-[235px] ${step.cardClass}`}
+                className={`group flex h-[82px] w-full items-center gap-3 rounded-xl border px-3 py-2 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-[88px] sm:px-4 md:h-full md:min-h-[225px] md:flex-col md:items-stretch md:gap-0 md:rounded-2xl md:px-5 md:py-6 lg:px-6 xl:min-h-[235px] ${step.cardClass}`}
               >
                 <div className="flex min-w-0 flex-1 items-center gap-3 md:items-start md:justify-between">
                   <span
@@ -201,23 +261,23 @@ export default function Home() {
                   </span>
 
                   <div
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full md:h-20 md:w-20 ${step.iconClass}`}
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full md:h-20 md:w-20 ${step.iconClass}`}
                   >
                     {step.icon}
                   </div>
                 </div>
 
                 <div className="min-w-0 flex-1 md:mt-4">
-                  <h2 className="text-[1.05rem] font-bold leading-tight text-slate-900 md:text-2xl lg:text-[1.45rem]">
+                  <h2 className="text-[1.08rem] font-bold leading-tight text-slate-900 md:text-2xl lg:text-[1.45rem]">
                     {step.title}
                   </h2>
 
-                  <p className="mt-0.5 text-[0.72rem] leading-snug text-slate-800 md:mt-2 md:text-[0.9rem] lg:text-[0.95rem]">
+                  <p className="mt-0.5 text-[0.74rem] leading-snug text-slate-800 md:mt-2 md:text-[0.9rem] lg:text-[0.95rem]">
                     {step.description}
                   </p>
 
                   <div
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg font-semibold leading-none text-white shadow-sm transition group-hover:translate-x-1 md:mt-auto md:ml-auto md:h-10 md:w-10 md:text-2xl ${step.arrowClass}`}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full text-lg font-semibold leading-none text-white shadow-sm transition group-hover:translate-x-1 md:mt-auto md:ml-auto md:h-10 md:w-10 md:text-2xl ${step.arrowClass}`}
                     aria-hidden="true"
                   >
                     →
@@ -231,15 +291,6 @@ export default function Home() {
                   aria-hidden="true"
                 >
                   →
-                </div>
-              )}
-
-              {index < steps.length - 1 && (
-                <div
-                  className="flex h-1 items-center justify-center text-base font-bold leading-none text-green-700 md:hidden"
-                  aria-hidden="true"
-                >
-                  ↓
                 </div>
               )}
             </div>

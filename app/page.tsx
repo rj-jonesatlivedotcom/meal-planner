@@ -160,19 +160,19 @@ export default function Home() {
           backgroundImage: "url('/images/background.png')",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/65 to-transparent md:from-white/45 md:via-white/25 md:to-transparent" />
+        <div className="absolute inset-0 bg-white/85 md:bg-gradient-to-r md:from-white/45 md:via-white/25 md:to-transparent" />
 
-        <div className="relative z-10 mx-auto flex min-h-[300px] max-w-[1400px] items-center px-5 py-6 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
+        <div className="relative z-10 mx-auto flex min-h-[275px] max-w-[1400px] items-center px-5 py-5 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
           <div className="w-full max-w-[700px]">
             <p className="text-2xl font-bold text-green-700 sm:text-3xl">
               Welcome to
             </p>
 
-            <h1 className="mt-1 text-[2.75rem] font-extrabold leading-none tracking-tight text-slate-900 sm:text-5xl md:text-[4.25rem]">
+            <h1 className="mt-1 text-[2.5rem] font-extrabold leading-none tracking-tight text-slate-900 sm:text-5xl md:text-[4.25rem]">
               Meal Planner
             </h1>
 
-            <p className="mt-4 max-w-[720px] text-[1.05rem] leading-relaxed text-slate-800 sm:text-xl md:text-[1.1rem]">
+            <p className="mt-3 max-w-[720px] text-[0.98rem] leading-relaxed text-slate-800 sm:text-xl md:mt-4 md:text-[1.1rem]">
               Meal planning when you have dietary restrictions can be difficult.
               <br className="hidden md:block" />
               Meal Planner helps you find suitable meals, check nutrition values,
@@ -192,33 +192,33 @@ export default function Home() {
             <div key={step.title} className="relative">
               <Link
                 href={step.href}
-                className={`group flex h-auto min-h-[185px] w-full flex-col rounded-2xl border px-5 py-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:min-h-[195px] sm:px-7 md:h-full md:min-h-[225px] md:px-5 md:py-6 lg:px-6 xl:min-h-[235px] ${step.cardClass}`}
+                className={`group flex h-auto min-h-[150px] w-full flex-col rounded-2xl border px-4 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:min-h-[165px] sm:px-6 md:h-full md:min-h-[225px] md:px-5 md:py-6 lg:px-6 xl:min-h-[235px] ${step.cardClass}`}
               >
                 <div className="flex items-start justify-between">
                   <span
-                    className={`flex h-10 w-10 items-center justify-center rounded-full text-lg font-bold text-white ${step.numberClass}`}
+                    className={`flex h-9 w-9 items-center justify-center rounded-full text-base font-bold text-white ${step.numberClass}`}
                   >
                     {step.number}
                   </span>
 
                   <div
-                    className={`flex h-16 w-16 items-center justify-center rounded-full md:h-20 md:w-20 ${step.iconClass}`}
+                    className={`flex h-12 w-12 items-center justify-center rounded-full md:h-20 md:w-20 ${step.iconClass}`}
                   >
                     {step.icon}
                   </div>
                 </div>
 
                 <div className="mt-4 flex flex-1 flex-col">
-                  <h2 className="text-[1.55rem] font-bold leading-tight text-slate-900 md:text-[1.3rem] lg:text-[1.45rem]">
+                  <h2 className="text-[1.3rem] font-bold leading-tight text-slate-900 md:text-[1.3rem] lg:text-[1.45rem]">
                     {step.title}
                   </h2>
 
-                  <p className="mt-2 text-[0.98rem] leading-relaxed text-slate-800 md:text-[0.9rem] lg:text-[0.95rem]">
+                  <p className="mt-1 text-[0.9rem] leading-relaxed text-slate-800 md:mt-2 md:text-[0.9rem] lg:text-[0.95rem]">
                     {step.description}
                   </p>
 
                   <div
-                    className={`mt-3 flex h-10 w-10 items-center justify-center self-end rounded-full text-2xl font-semibold leading-none text-white shadow-sm transition group-hover:translate-x-1 md:mt-auto ${step.arrowClass}`}
+                    className={`mt-2 flex h-9 w-9 items-center justify-center self-end rounded-full text-xl font-semibold leading-none text-white shadow-sm transition group-hover:translate-x-1 md:mt-auto md:h-10 md:w-10 md:text-2xl ${step.arrowClass}`}
                     aria-hidden="true"
                   >
                     →
@@ -237,7 +237,7 @@ export default function Home() {
 
               {index < steps.length - 1 && (
                 <div
-                  className="flex h-8 items-center justify-center text-4xl font-bold leading-none text-green-700 sm:h-8 md:hidden"
+                  className="flex h-7 items-center justify-center text-3xl font-bold leading-none text-green-700 sm:h-8 md:hidden"
                   aria-hidden="true"
                 >
                   ↓

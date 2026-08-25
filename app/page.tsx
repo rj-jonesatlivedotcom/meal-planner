@@ -162,9 +162,9 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/55 to-white/10 md:from-white/45 md:via-white/25 md:to-transparent" />
 
-        <div className="relative z-10 mx-auto flex min-h-[235px] max-w-[1400px] items-center px-5 py-4 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
+        <div className="relative z-10 mx-auto flex min-h-[215px] max-w-[1400px] items-center px-5 py-4 sm:px-10 md:min-h-[295px] md:px-12 md:py-6 lg:px-16">
           <div className="w-full max-w-[700px]">
-            <p className="text-2xl font-bold text-green-700 sm:text-3xl">
+            <p className="text-2xl font-bold text-green-700 sm:text-3xl md:text-3xl">
               Welcome to
             </p>
 
@@ -185,41 +185,43 @@ export default function Home() {
       </section>
 
       {/* FOUR-STEP USER JOURNEY */}
-      <section className="px-5 py-4 sm:px-8 sm:py-5 md:px-10 lg:px-12">
-        <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-5 md:grid-cols-4 md:gap-6">
+      <section className="px-4 py-3 sm:px-8 sm:py-5 md:px-10 lg:px-12">
+        <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-2 md:grid-cols-4 md:gap-6">
           {steps.map((step, index) => (
             <div key={step.title} className="relative">
               <Link
                 href={step.href}
-                className={`group flex h-[82px] w-full items-center gap-3 rounded-xl border px-3 py-2 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-[88px] sm:px-4 md:h-full md:min-h-[225px] md:items-stretch md:rounded-2xl md:px-5 md:py-6 lg:px-6 xl:min-h-[235px] ${step.cardClass}`}
+                className={`group flex h-[86px] w-full items-center gap-3 rounded-xl border px-3 py-2 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-[92px] sm:px-4 md:h-full md:min-h-[225px] md:flex-col md:items-stretch md:gap-0 md:rounded-2xl md:px-5 md:py-6 lg:px-6 xl:min-h-[235px] ${step.cardClass}`}
               >
-                <span
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white md:h-10 md:w-10 md:text-base ${step.numberClass}`}
-                >
-                  {step.number}
-                </span>
+                <div className="flex min-w-0 flex-1 items-center gap-3 md:items-start md:justify-between">
+                  <span
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white md:h-10 md:w-10 md:text-base ${step.numberClass}`}
+                  >
+                    {step.number}
+                  </span>
 
-                <div
-                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full md:h-20 md:w-20 ${step.iconClass}`}
-                >
-                  {step.icon}
+                  <div
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full md:h-20 md:w-20 ${step.iconClass}`}
+                  >
+                    {step.icon}
+                  </div>
                 </div>
 
                 <div className="min-w-0 flex-1 md:mt-4">
-                  <h2 className="text-[1.08rem] font-bold leading-tight text-slate-900 md:text-[1.3rem] lg:text-[1.45rem]">
+                  <h2 className="text-[1.05rem] font-bold leading-tight text-slate-900 md:text-2xl lg:text-[1.45rem]">
                     {step.title}
                   </h2>
 
-                  <p className="mt-0.5 text-[0.74rem] leading-snug text-slate-800 md:mt-2 md:text-[0.9rem] lg:text-[0.95rem]">
+                  <p className="mt-0.5 text-[0.72rem] leading-snug text-slate-800 md:mt-2 md:text-[0.9rem] lg:text-[0.95rem]">
                     {step.description}
                   </p>
-                </div>
 
-                <div
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-lg font-semibold leading-none text-white shadow-sm transition group-hover:translate-x-1 md:mt-auto md:h-10 md:w-10 md:text-2xl ${step.arrowClass}`}
-                  aria-hidden="true"
-                >
-                  →
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg font-semibold leading-none text-white shadow-sm transition group-hover:translate-x-1 md:mt-auto md:ml-auto md:h-10 md:w-10 md:text-2xl ${step.arrowClass}`}
+                    aria-hidden="true"
+                  >
+                    →
+                  </div>
                 </div>
               </Link>
 
@@ -234,7 +236,7 @@ export default function Home() {
 
               {index < steps.length - 1 && (
                 <div
-                  className="flex h-2 items-center justify-center text-lg font-bold leading-none text-green-700 md:hidden"
+                  className="flex h-1 items-center justify-center text-base font-bold leading-none text-green-700 md:hidden"
                   aria-hidden="true"
                 >
                   ↓

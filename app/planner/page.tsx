@@ -21,6 +21,62 @@ const mealTypes = [
   "Dinner",
 ];
 
+function MealIcon({
+  type,
+}: {
+  type: "Breakfast" | "Lunch" | "Dinner" | "Nutrition";
+}) {
+  const common =
+    "h-5 w-5 stroke-current stroke-[1.8]";
+
+  if (type === "Breakfast") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" className={common} aria-hidden="true">
+        <path d="M4 11h16" />
+        <path d="M5 11a7 7 0 0 1 14 0" />
+        <path d="M3 14h18" />
+        <path d="M6 17h12" />
+        <path d="M8 20h8" />
+      </svg>
+    );
+  }
+
+  if (type === "Lunch") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" className={common} aria-hidden="true">
+        <path d="M4 8h16" />
+        <path d="M5 8h14l-1 10H6L5 8Z" />
+        <path d="M8 5h8" />
+        <path d="M8 12h8" />
+      </svg>
+    );
+  }
+
+  if (type === "Dinner") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" className={common} aria-hidden="true">
+        <circle cx="12" cy="13" r="7" />
+        <path d="M5 6v5" />
+        <path d="M3.5 6v5" />
+        <path d="M6.5 6v5" />
+        <path d="M5 11v7" />
+        <path d="M19 6v12" />
+        <path d="M19 6c-2 1.5-2 4 0 5" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={common} aria-hidden="true">
+      <path d="M12 3v18" />
+      <path d="M3 12h18" />
+      <path d="M5.5 5.5l13 13" />
+      <path d="M18.5 5.5l-13 13" />
+      <circle cx="12" cy="12" r="8.5" />
+    </svg>
+  );
+}
+
 type PlannerMeals = {
   [day: string]: {
     [meal: string]: string | null;
@@ -255,12 +311,6 @@ export default function WeeklyPlannerPage() {
     touchStartX.current = null;
     touchStartY.current = null;
 
-    /*
-     * Only treat the gesture as a day swipe when
-     * the horizontal movement is clearly greater
-     * than the vertical movement. This keeps normal
-     * vertical page scrolling working as expected.
-     */
     if (
       Math.abs(deltaX) < 50 ||
       Math.abs(deltaX) <= Math.abs(deltaY)
@@ -272,12 +322,10 @@ export default function WeeklyPlannerPage() {
       days.indexOf(selectedDay);
 
     if (deltaX < 0) {
-      // Swipe left -> next day.
       if (currentIndex < days.length - 1) {
         setSelectedDay(days[currentIndex + 1]);
       }
     } else {
-      // Swipe right -> previous day.
       if (currentIndex > 0) {
         setSelectedDay(days[currentIndex - 1]);
       }
@@ -336,12 +384,6 @@ export default function WeeklyPlannerPage() {
         };
       });
 
-      /*
-       * Migration: older versions of this feature could save every meal
-       * as 1 person. If the Shopping List household size is larger and
-       * the saved meal settings are all still 1, treat those as defaults
-       * rather than genuine per-meal overrides.
-       */
       const householdPeople = getHouseholdPeople();
 
       if (
@@ -495,10 +537,6 @@ export default function WeeklyPlannerPage() {
       };
     });
 
-    // Removing a meal must also remove its previous
-    // people override. The next meal added to this slot
-    // will then default to the current Shopping List
-    // household size.
     setMealPeople((current) => {
       if (!current) return current;
 
@@ -527,11 +565,6 @@ export default function WeeklyPlannerPage() {
         (recipe) => !usedIds.has(recipe.id)
       );
 
-    /*
-     * Only use unused suitable recipes. If there are not enough
-     * suitable recipes to fill all the slots, leave the remaining
-     * slots empty rather than repeating or using an unsuitable recipe.
-     */
     const pool = unusedRecipes;
 
     if (pool.length === 0) {
@@ -568,11 +601,6 @@ export default function WeeklyPlannerPage() {
         Dinner: new Set<string>(),
       };
 
-      /*
-       * Keep existing choices in the
-       * used pool so Pick for Me does
-       * not create unnecessary repeats.
-       */
       if (!replaceAll) {
         days.forEach((day) => {
           mealTypes.forEach((meal) => {
@@ -591,12 +619,6 @@ export default function WeeklyPlannerPage() {
         });
       }
 
-      /*
-       * Fill empty slots.
-       *
-       * If replaceAll is true, every slot
-       * is filled with a new random choice.
-       */
       days.forEach((day) => {
         mealTypes.forEach((meal) => {
           if (
@@ -647,19 +669,11 @@ export default function WeeklyPlannerPage() {
         )
       );
 
-    /*
-     * If the week is already full,
-     * ask before replacing everything.
-     */
     if (!hasEmptySlots) {
       setShowPickConfirm(true);
       return;
     }
 
-    /*
-     * If there are empty slots,
-     * fill only those slots.
-     */
     pickForMe();
   }
 
@@ -835,14 +849,6 @@ export default function WeeklyPlannerPage() {
       return "No limit";
     }
 
-    /*
-     * Display bands are based on the user's own daily limit:
-     * Low = up to 75% of the limit
-     * Moderate = over 75% up to 100% of the limit
-     * High = over 100% of the limit
-     *
-     * These are planner display bands, not clinical thresholds.
-     */
     const limit = requirements?.sodiumLimit;
 
 if (limit === null || limit === undefined) {
@@ -1285,8 +1291,11 @@ if (total <= limit * 0.75) {
 
                   <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
 
-                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
-                      🥣 Breakfast
+                    <span className="flex min-w-0 items-center gap-2 text-lg font-bold leading-none text-slate-800">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
+                        <MealIcon type="Breakfast" />
+                      </span>
+                      Breakfast
                     </span>
 
                     <button
@@ -1380,8 +1389,11 @@ if (total <= limit * 0.75) {
 
                   <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
 
-                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
-                      🥪 Lunch
+                    <span className="flex min-w-0 items-center gap-2 text-lg font-bold leading-none text-slate-800">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
+                        <MealIcon type="Lunch" />
+                      </span>
+                      Lunch
                     </span>
 
                     <button
@@ -1475,8 +1487,11 @@ if (total <= limit * 0.75) {
 
                   <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
 
-                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
-                      🍽️ Dinner
+                    <span className="flex min-w-0 items-center gap-2 text-lg font-bold leading-none text-slate-800">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
+                        <MealIcon type="Dinner" />
+                      </span>
+                      Dinner
                     </span>
 
                     <button
@@ -1628,7 +1643,7 @@ if (total <= limit * 0.75) {
 
             {/* WEEK HEADER */}
 
-            <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))] border-b border-slate-100 bg-slate-50/80">
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100 bg-slate-50/80">
 
               <div className="flex items-center px-4 py-2">
 
@@ -1642,10 +1657,10 @@ if (total <= limit * 0.75) {
 
                 <div
                   key={day}
-                  className="flex items-center justify-center border-l border-slate-100 bg-orange-50/30 py-2.5"
+                  className="flex items-center justify-center border-l border-slate-100 bg-slate-50 py-2.5"
                 >
 
-                  <span className="text-base font-extrabold tracking-tight text-orange-600">
+                  <span className="text-base font-extrabold tracking-tight text-slate-800">
                     {day.slice(0, 3)}
                   </span>
 
@@ -1657,21 +1672,21 @@ if (total <= limit * 0.75) {
 
             {/* BREAKFAST ROW */}
 
-            <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
 
-              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-3 py-3">
+              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-4">
 
                 <div>
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-lg shadow-sm">
-                    🥣
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
+                    <MealIcon type="Breakfast" />
                   </div>
 
-                  <h2 className="mt-2 text-[15px] font-extrabold tracking-tight text-slate-900">
+                  <h2 className="mt-2 text-base font-extrabold tracking-tight text-slate-900">
                     Breakfast
                   </h2>
 
-                  <p className="mt-1 max-w-[65px] text-xs leading-5 text-slate-500">
+                  <p className="mt-1 max-w-[90px] text-xs leading-5 text-slate-500">
                     Morning meal
                   </p>
 
@@ -1799,21 +1814,21 @@ if (total <= limit * 0.75) {
 
             {/* LUNCH ROW */}
 
-            <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
 
-              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-3 py-3">
+              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-4">
 
                 <div>
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-lg shadow-sm">
-                    🥪
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
+                    <MealIcon type="Lunch" />
                   </div>
 
-                  <h2 className="mt-2 text-[15px] font-extrabold tracking-tight text-slate-900">
+                  <h2 className="mt-2 text-base font-extrabold tracking-tight text-slate-900">
                     Lunch
                   </h2>
 
-                  <p className="mt-1 max-w-[65px] text-xs leading-5 text-slate-500">
+                  <p className="mt-1 max-w-[90px] text-xs leading-5 text-slate-500">
                     Midday meal
                   </p>
 
@@ -1940,21 +1955,21 @@ if (total <= limit * 0.75) {
 
             {/* DINNER ROW */}
 
-            <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))]">
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))]">
 
-              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-3 py-3">
+              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-4">
 
                 <div>
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-lg shadow-sm">
-                    🍽️
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
+                    <MealIcon type="Dinner" />
                   </div>
 
-                  <h2 className="mt-2 text-[15px] font-extrabold tracking-tight text-slate-900">
+                  <h2 className="mt-2 text-base font-extrabold tracking-tight text-slate-900">
                     Dinner
                   </h2>
 
-                  <p className="mt-1 max-w-[65px] text-xs leading-5 text-slate-500">
+                  <p className="mt-1 max-w-[90px] text-xs leading-5 text-slate-500">
                     Evening meal
                   </p>
 
@@ -2081,13 +2096,13 @@ if (total <= limit * 0.75) {
 
             {/* DAILY NUTRITION ROW */}
 
-            <div className="grid grid-cols-[88px_repeat(7,minmax(0,1fr))] border-t border-slate-100 bg-slate-50/30">
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-100 bg-slate-50/30">
 
-              <div className="flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-2 py-3">
+              <div className="flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
 
                 <div className="flex flex-col items-center gap-1.5">
 
-                  <h2 className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">
+                  <h2 className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500 text-center">
                     Daily Nutrition
                   </h2>
 

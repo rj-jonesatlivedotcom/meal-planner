@@ -1441,7 +1441,7 @@ export const recipes: Recipe[] = [
       quantity: "150g",
     },
     {
-      item: "White Tortilla Wraps",
+      item: "Small white tortilla wraps",
       quantity: "2",
     },
     {
@@ -3324,7 +3324,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Spring onion, finely sliced",
-        shoppingItem: "Spring onions",
+        shoppingItem: "Spring onion",
         quantity: "1",
       },
       {
@@ -3722,8 +3722,8 @@ export const recipes: Recipe[] = [
       "Non-stick frying pan, bowl, spatula",
     ingredients: [
       {
-        item: "White Tortilla Wraps",
-        shoppingItem: "White Tortilla Wraps",
+        item: "White tortilla wrap, phosphate-additive-free",
+        shoppingItem: "White tortilla wraps",
         quantity: "1",
       },
       {
@@ -4320,7 +4320,7 @@ export const recipes: Recipe[] = [
       { item: "Parmesan cheese", shoppingItem: "Parmesan", quantity: "12.5 g" },
       { item: "Iceberg lettuce", shoppingItem: "Lettuce", quantity: "25 g" },
       { item: "Worcestershire sauce", quantity: "⅛ tsp" },
-      { item: "White Tortilla Wraps", shoppingItem: "White Tortilla Wraps", quantity: "1" },
+      { item: "Soft tortilla wrap", shoppingItem: "Tortilla wraps", quantity: "1" },
       { item: "Black pepper", quantity: "To taste" },
     ],
     method: [
@@ -4371,7 +4371,7 @@ export const recipes: Recipe[] = [
       { item: "Lime juice", shoppingItem: "Lime", quantity: "1 lime" },
       { item: "Chickpeas, drained", shoppingItem: "Chickpeas", quantity: "25 g" },
       { item: "Cumin seeds", quantity: "½ tsp" },
-      { item: "White Tortilla Wraps", shoppingItem: "White Tortilla Wraps", quantity: "1" },
+      { item: "Wholemeal tortilla wrap", shoppingItem: "Wholemeal tortilla wraps", quantity: "1" },
       { item: "Spring onions", shoppingItem: "Spring onions", quantity: "3" },
       { item: "Shredded lettuce", shoppingItem: "Lettuce", quantity: "35 g" },
     ],
@@ -4673,7 +4673,7 @@ export const recipes: Recipe[] = [
       { item: "Eggs", quantity: "2" },
       { item: "Reduced-fat soft cheese", shoppingItem: "Soft cheese", quantity: "20 g" },
       { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "½" },
-      { item: "Spring onion, finely sliced", shoppingItem: "Spring onions", quantity: "1" },
+      { item: "Spring onion, finely sliced", shoppingItem: "Spring onion", quantity: "1" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Olive oil", quantity: "1 tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },

@@ -553,8 +553,8 @@ function normaliseIngredient(raw: string): string {
   }
 
   if (lower === "cooked lamb" || lower === "lamb cooked") {
-  return "Lamb";
-}
+    return "Lamb";
+  }
 
   if (
     lower === "pork sausages" ||
@@ -995,9 +995,12 @@ function combineQuantity(
   }
 
   if (lower === "lettuce") {
-    const aLeaves = a.amount;
-    const bLeaves = b.amount;
-    return decimalToFraction(aLeaves + bLeaves);
+    // Only combine lettuce quantities when they use the same unit.
+    if (a.unit === b.unit) {
+      return decimalToFraction(a.amount + b.amount);
+    }
+
+    return current;
   }
 
   if (lower === "potatoes") {
@@ -1024,7 +1027,13 @@ function combineQuantity(
     lower === "cucumber" ||
     lower === "apple"
   ) {
-    return decimalToFraction(a.amount + b.amount);
+    // Only combine produce quantities when they use the same unit.
+    // For example, ¼ red onion must not be added to 15 g red onion.
+    if (a.unit === b.unit) {
+      return decimalToFraction(a.amount + b.amount);
+    }
+
+    return current;
   }
 
   if (a.unit === "ml" && b.unit === "ml") {
@@ -1348,7 +1357,7 @@ export default function ShoppingPage() {
              * Lemon:
              * Explicit lemon fractions are tracked as a physical resource.
              * Juice and zest are separate requirements because one lemon can
-             * supply both; two juice requirements still add together.
+             * supply both; whole lemons are also combined with those requirements.
              */
             const rawLower = cleanText(ingredient.item).toLowerCase();
             const isLemonBased = rawLower.includes("lemon");

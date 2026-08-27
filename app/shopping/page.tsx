@@ -46,6 +46,10 @@ const ingredientCategories: Record<string, string> = {
   fish: "🥩 Meat & Fish",
   pork: "🥩 Meat & Fish",
   sirloin: "🥩 Meat & Fish",
+  tofu: "🥩 Meat & Fish",
+  lamb: "🥩 Meat & Fish",
+  "cooked turkey": "🥩 Meat & Fish",
+  turkey: "🥩 Meat & Fish",
 
   // Fruit & Vegetables
   onion: "🥕 Fruit & Vegetables",
@@ -70,6 +74,7 @@ const ingredientCategories: Record<string, string> = {
   lettuce: "🥕 Fruit & Vegetables",
   beans: "🥕 Fruit & Vegetables",
   "green beans": "🥕 Fruit & Vegetables",
+  celery: "🥕 Fruit & Vegetables",
   lemon: "🥕 Fruit & Vegetables",
   lime: "🥕 Fruit & Vegetables",
   apple: "🥕 Fruit & Vegetables",
@@ -80,6 +85,16 @@ const ingredientCategories: Record<string, string> = {
   strawberries: "🥕 Fruit & Vegetables",
   peach: "🥕 Fruit & Vegetables",
   peaches: "🥕 Fruit & Vegetables",
+  leek: "🥕 Fruit & Vegetables",
+  watercress: "🥕 Fruit & Vegetables",
+  avocado: "🥕 Fruit & Vegetables",
+  cucumber: "🥕 Fruit & Vegetables",
+  "butternut squash": "🥕 Fruit & Vegetables",
+  "red chilli": "🥕 Fruit & Vegetables",
+  "spring greens": "🥕 Fruit & Vegetables",
+  swede: "🥕 Fruit & Vegetables",
+  "green chilli": "🥕 Fruit & Vegetables",
+  beansprouts: "🥕 Fruit & Vegetables",
 
   // Chilled
   egg: "🧊 Chilled",
@@ -100,6 +115,7 @@ const ingredientCategories: Record<string, string> = {
   peas: "❄️ Frozen",
   "frozen peas": "❄️ Frozen",
   "frozen berries": "❄️ Frozen",
+  "oven chips": "❄️ Frozen",
 
   // Bakery
   bread: "🍞 Bakery",
@@ -133,6 +149,10 @@ const ingredientCategories: Record<string, string> = {
   "beef stock": "🥫 Cupboard",
   "fish stock": "🥫 Cupboard",
   "vegetable stock": "🥫 Cupboard",
+  "low-salt chicken stock": "🥫 Cupboard",
+  "low-salt turkey stock": "🥫 Cupboard",
+  "chicken or turkey stock": "🥫 Cupboard",
+  "turkey stock": "🥫 Cupboard",
   gravy: "🥫 Cupboard",
   "chicken gravy": "🥫 Cupboard",
   "beef gravy": "🥫 Cupboard",
@@ -159,6 +179,30 @@ const ingredientCategories: Record<string, string> = {
   bicarbonate: "🥫 Cupboard",
   oats: "🥫 Cupboard",
   "rolled oats": "🥫 Cupboard",
+  "reduced-salt baked beans": "🥫 Cupboard",
+  "garlic paste": "🥫 Cupboard",
+  "oyster sauce": "🥫 Cupboard",
+  "sesame oil": "🥫 Cupboard",
+  "red wine": "🥫 Cupboard",
+  "white wine": "🥫 Cupboard",
+  cannellini: "🥫 Cupboard",
+  "cannellini beans": "🥫 Cupboard",
+  "sunflower oil": "🥫 Cupboard",
+  "rice noodles": "🥫 Cupboard",
+  "basmati rice": "🥫 Cupboard",
+  "brown rice": "🥫 Cupboard",
+  chickpeas: "🥫 Cupboard",
+  "low-salt soy sauce": "🥫 Cupboard",
+  "low salt soy sauce": "🥫 Cupboard",
+  "red wine vinegar": "🥫 Cupboard",
+  "white wine vinegar": "🥫 Cupboard",
+  cornflour: "🥫 Cupboard",
+  "coconut milk": "🥫 Cupboard",
+  "sweet chilli sauce": "🥫 Cupboard",
+  "tinned lentils": "🥫 Cupboard",
+  lentils: "🥫 Cupboard",
+  "sesame seeds": "🧂 Herbs & Spices",
+  "garlic granules": "🧂 Herbs & Spices",
 
   // Herbs & Spices
   thyme: "🧂 Herbs & Spices",
@@ -176,6 +220,8 @@ const ingredientCategories: Record<string, string> = {
   "chilli flakes": "🧂 Herbs & Spices",
   "mild chilli seasoning": "🧂 Herbs & Spices",
   "mild chili seasoning": "🧂 Herbs & Spices",
+  "red chilli powder": "🧂 Herbs & Spices",
+  "chilli powder": "🧂 Herbs & Spices",
   "chilli seasoning": "🧂 Herbs & Spices",
   "chili seasoning": "🧂 Herbs & Spices",
   ginger: "🧂 Herbs & Spices",
@@ -183,6 +229,8 @@ const ingredientCategories: Record<string, string> = {
   "ground cinnamon": "🧂 Herbs & Spices",
   dill: "🧂 Herbs & Spices",
   sage: "🧂 Herbs & Spices",
+  mint: "🧂 Herbs & Spices",
+  "white pepper": "🧂 Herbs & Spices",
   
   "black pepper": "🧂 Herbs & Spices",
   "freshly ground black pepper": "🧂 Herbs & Spices",
@@ -302,7 +350,7 @@ function normaliseUnit(unit: string): string {
 function parseQuantity(
   quantity: string
 ): { amount: number; unit: string } | null {
-  const q = cleanText(quantity);
+  const q = cleanText(quantity).replace(/\s*\(optional\)/gi, "").trim();
 
   if (!q) return null;
 
@@ -359,7 +407,11 @@ function formatQuantity(amount: number, unit: string): string {
     return `${Math.ceil(n)} ml`;
   }
 
-  if (u === "g" || u === "kg" || u === "l") {
+  if (u === "g") {
+    return `${Math.ceil(n)} g`;
+  }
+
+  if (u === "kg" || u === "l") {
     return `${a} ${u}`;
   }
 
@@ -386,9 +438,16 @@ function formatQuantity(amount: number, unit: string): string {
 const WHOLE_PRODUCE = new Set([
   "courgette",
   "onion",
+  "red onion",
   "red pepper",
   "green pepper",
   "yellow pepper",
+  "green chilli",
+  "red chilli",
+  "cucumber",
+  "butternut squash",
+  "spring greens",
+  "swede",
   "lemon",
   "apple",
   "potatoes",
@@ -420,7 +479,7 @@ const ML_ITEMS = new Set([
 function removePreparationWords(value: string): string {
   return value
     .replace(
-      /\s*,\s*(?:finely chopped|roughly chopped|diced|sliced|chopped|crushed|minced|grated|cubed|trimmed|peeled|halved|quartered|crumbled|separated|drained|cut into bite[- ]sized pieces|cut into strips|cut into thin strips)\b/gi,
+      /\s*,\s*(?:finely chopped|roughly chopped|diced|sliced|chopped|crushed|minced|grated|cubed|trimmed|peeled|halved|quartered|crumbled|separated|drained|cut into bite[- ]sized pieces|cut into strips|cut into thin strips|cut into wedges)\b/gi,
       ""
     )
     .replace(
@@ -432,7 +491,9 @@ function removePreparationWords(value: string): string {
 }
 
 function normaliseIngredient(raw: string): string {
-  let value = removePreparationWords(cleanText(raw));
+  let value = removePreparationWords(cleanText(raw))
+    .replace(/\s*\(optional\)/gi, "")
+    .trim();
   const lower = value.toLowerCase();
 
   if (/^egg(?:s)?$/.test(lower) || /^egg white(?:s)?$/.test(lower)) {
@@ -463,6 +524,10 @@ function normaliseIngredient(raw: string): string {
     return lower.replace(/s$/, "").replace(/^./, (c) => c.toUpperCase());
   }
 
+  if (/^red onion(?:s)?$/.test(lower)) {
+    return "Red onion";
+  }
+
   if (lower.includes("lemon juice")) {
     return "Lemon juice";
   }
@@ -487,16 +552,83 @@ function normaliseIngredient(raw: string): string {
     return "Cooked ham";
   }
 
+  if (lower === "cooked lamb" || lower === "lamb cooked") {
+  return "Lamb";
+}
+
   if (
     lower === "pork sausages" ||
     lower === "light pork sausages" ||
     lower === "sausages"
   ) {
-    return "Sausages";
+    return "Sausages (low fat pork)";
+  }
+
+  if (lower === "tinned tuna" || lower === "tuna") {
+    return "Tinned Tuna";
+  }
+
+  if (lower === "pepper") {
+    return "Green pepper";
+  }
+
+  if (lower === "oil") {
+    return "Sunflower oil";
+  }
+
+  if (/^green chilli(?:s)?$/.test(lower)) {
+    return "Green chilli";
+  }
+
+  if (/^red chilli(?:s)?$/.test(lower)) {
+    return "Red chilli";
+  }
+
+  if (/^cucumber(?:s)?$/.test(lower)) {
+    return "Cucumber";
+  }
+
+  if (/^avocado(?:s)?(?:\s*\(optional\))?$/.test(lower)) {
+    return "Avocado";
+  }
+
+  if (/^butternut squash(?:es)?$/.test(lower)) {
+    return "Butternut squash";
+  }
+
+  if (/^spring greens?$/.test(lower)) {
+    return "Spring greens";
+  }
+
+  if (/^swede(?:s)?$/.test(lower)) {
+    return "Swede";
   }
 
   if (lower === "fresh basil pesto" || lower === "basil pesto") {
     return "Fresh basil pesto";
+  }
+
+  if (
+    lower.includes("pitta") ||
+    lower.includes("pita")
+  ) {
+    return "White Pitta";
+  }
+
+  if (
+    lower === "natural yoghurt" ||
+    lower === "plain natural yoghurt" ||
+    lower === "plain yoghurt"
+  ) {
+    return "Natural Yoghurt";
+  }
+
+  if (lower === "butter" || lower === "unsalted butter") {
+    return "Unsalted Butter";
+  }
+
+  if (lower === "tinned lentils" || lower === "lentils") {
+    return "Tinned lentils";
   }
 
   if (lower === "fresh chives" || lower === "fresh chives chopped" || lower === "chives") {
@@ -551,6 +683,7 @@ function normaliseProduceAmount(
   // Small/medium/large onions and peppers are normalised to medium equivalents.
   if (
     lower === "onion" ||
+    lower === "red onion" ||
     lower === "red pepper" ||
     lower === "green pepper" ||
     lower === "yellow pepper"
@@ -589,6 +722,23 @@ function normaliseProduceAmount(
 
   if (lower === "apple") {
     if (["", "apple", "small", "medium", "large"].includes(parsed.unit)) {
+      return parsed.amount;
+    }
+  }
+
+  if (lower === "cucumber") {
+    // Recipe data may specify cucumber by weight.
+    // Practical shopping assumptions: 37.5 g = 1/6 cucumber,
+    // and 40 usable slices = 1 cucumber.
+    if (parsed.unit === "g") {
+      return (parsed.amount / 37.5) / 6;
+    }
+
+    if (parsed.unit === "slice" || parsed.unit === "slices") {
+      return parsed.amount / 40;
+    }
+
+    if (["", "cucumber", "small", "medium", "large"].includes(parsed.unit)) {
       return parsed.amount;
     }
   }
@@ -655,6 +805,14 @@ function normalisePotato(
 function normaliseLettuce(
   parsed: { amount: number; unit: string }
 ): { amount: number; unit: string } | null {
+  // Recipe data may specify lettuce by weight.
+  // Practical shopping assumptions: 12.5 g = 1 usable leaf,
+  // and 20 usable leaves = 1 lettuce.
+  if (parsed.unit === "g") {
+    const leaves = parsed.amount / 12.5;
+    return { amount: leaves / 20, unit: "lettuce" };
+  }
+
   if (parsed.unit === "" || parsed.unit === "leaf" || parsed.unit === "leaves") {
     return { amount: parsed.amount / 20, unit: "lettuce" };
   }
@@ -696,6 +854,21 @@ function normaliseShoppingQuantity(
 
   if (lower === "eggs") {
     return decimalToFraction(parsed.amount);
+  }
+
+  if (lower === "natural yoghurt") {
+    let tsp = 0;
+
+    if (parsed.unit === "tsp") tsp = parsed.amount;
+    else if (parsed.unit === "tbsp") tsp = parsed.amount * 3;
+    else if (parsed.unit === "ml") tsp = parsed.amount / 5;
+    else if (parsed.unit === "l") tsp = (parsed.amount * 1000) / 5;
+    else if (parsed.unit === "g") tsp = parsed.amount / 5;
+
+    if (tsp > 0) {
+      const roundedQuarter = Math.max(0.25, Math.round(tsp * 4) / 4);
+      return `${decimalToFraction(roundedQuarter)} tsp`;
+    }
   }
 
   if (lower === "tomato purée" || lower === "tomato puree") {
@@ -772,10 +945,16 @@ function normaliseShoppingQuantity(
     if (ml !== null) return formatQuantity(ml, "ml");
   }
 
-  // Caster sugar is a dry product: don't display tbsp on the shopping list.
-  // Practical conversion: 1 tbsp caster sugar ≈ 12.5g.
-  if (lower === "caster sugar" && parsed.unit === "tbsp") {
-    return formatQuantity(parsed.amount * 12.5, "g");
+  // Sugar is displayed as practical teaspoon fractions.
+  if (
+    (lower === "sugar" ||
+      lower === "caster sugar" ||
+      lower === "brown sugar") &&
+    (parsed.unit === "tsp" || parsed.unit === "tbsp")
+  ) {
+    const tsp = parsed.unit === "tbsp" ? parsed.amount * 3 : parsed.amount;
+    const rounded = Math.max(0.25, Math.round(tsp * 4) / 4);
+    return `${decimalToFraction(rounded)} tsp`;
   }
 
   // Vanilla extract is a liquid product.
@@ -837,9 +1016,12 @@ function combineQuantity(
   if (
     lower === "courgette" ||
     lower === "onion" ||
+    lower === "red onion" ||
     lower === "red pepper" ||
     lower === "green pepper" ||
     lower === "yellow pepper" ||
+    lower === "green chilli" ||
+    lower === "cucumber" ||
     lower === "apple"
   ) {
     return decimalToFraction(a.amount + b.amount);
@@ -873,6 +1055,38 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
 
   if (!parsed) return item;
 
+  /*
+   * Dry herbs/spices used in very small quantities are displayed as
+   * practical quarter-teaspoon fractions. Never show a decimal and never
+   * show less than ¼ tsp.
+   */
+  const FRACTIONAL_SPICES = new Set([
+    "garlic granules",
+    "black pepper",
+    "turmeric",
+    "ground ginger",
+    "paprika",
+    "sugar",
+    "caster sugar",
+    "brown sugar",
+  ]);
+
+  if (FRACTIONAL_SPICES.has(lower) && parsed.unit === "tsp") {
+    const rounded = Math.max(0.25, Math.round(parsed.amount * 4) / 4);
+
+    return {
+      item: name,
+      quantity: `${decimalToFraction(rounded)} tsp`,
+    };
+  }
+
+  if (lower === "cooked lamb" && parsed.unit === "g") {
+    return {
+      item: "Cooked lamb",
+      quantity: `${Math.ceil(parsed.amount)} g`,
+    };
+  }
+
   if (lower === "potatoes" && parsed.unit === "g") {
     const kg = parsed.amount / 1000;
     return {
@@ -889,9 +1103,10 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
   }
 
   if (lower === "lettuce") {
+    const roundedHalf = Math.max(0.5, Math.ceil(parsed.amount * 2) / 2);
     return {
       item: "Lettuce",
-      quantity: decimalToFraction(Math.ceil(parsed.amount)),
+      quantity: decimalToFraction(roundedHalf),
     };
   }
 
@@ -902,11 +1117,20 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
     };
   }
 
+  if (lower === "cucumber") {
+    const roundedHalf = Math.max(0.5, Math.ceil(parsed.amount * 2) / 2);
+    return {
+      item: "Cucumber",
+      quantity: decimalToFraction(roundedHalf),
+    };
+  }
+
   if (
     lower === "onion" ||
     lower === "red pepper" ||
     lower === "green pepper" ||
     lower === "yellow pepper" ||
+    lower === "green chilli" ||
     lower === "apple" ||
     lower === "lemon"
   ) {
@@ -930,6 +1154,45 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
 
 function getCategory(item: string): string {
   const lower = cleanText(item).toLowerCase();
+
+  // Explicit category overrides for common recipe/shopping aliases.
+  if (
+    lower === "beansprouts" ||
+    lower === "bean sprouts"
+  ) {
+    return "🥕 Fruit & Vegetables";
+  }
+
+  if (
+    lower === "chickpeas" ||
+    lower === "rice noodles" ||
+    lower === "basmati rice" ||
+    lower === "brown rice" ||
+    lower === "cornflour" ||
+    lower === "coconut milk" ||
+    lower === "low-salt soy sauce" ||
+    lower === "low salt soy sauce" ||
+    lower === "red wine vinegar" ||
+    lower === "white wine vinegar"
+  ) {
+    return "🥫 Cupboard";
+  }
+
+  if (
+    lower === "mint" ||
+    lower === "white pepper"
+  ) {
+    return "🧂 Herbs & Spices";
+  }
+
+  // Stock and gravy are cupboard items regardless of the meat/fish named
+  // within the product description.
+  if (
+    lower.includes("stock") ||
+    lower.includes("gravy")
+  ) {
+    return "🥫 Cupboard";
+  }
 
   const key = Object.keys(ingredientCategories)
     .sort((a, b) => b.length - a.length)
@@ -1058,6 +1321,7 @@ export default function ShoppingPage() {
           .filter(
             (ingredient: any) =>
               ingredient.item?.trim().toLowerCase() !== "water" &&
+              ingredient.item?.trim().toLowerCase() !== "boiling water" &&
               ingredient.item?.trim().toLowerCase() !== "no added salt"
           )
           .forEach((ingredient: any) => {
@@ -1331,9 +1595,13 @@ export default function ShoppingPage() {
   const groupedShoppingList = categoryOrder
     .map((category) => ({
       category,
-      items: shoppingList.filter(
-        (item) => getCategory(item.item) === category
-      ),
+      items: shoppingList
+        .filter((item) => getCategory(item.item) === category)
+        .sort((a, b) =>
+          a.item.localeCompare(b.item, "en-GB", {
+            sensitivity: "base",
+          })
+        ),
     }))
     .filter((group) => group.items.length > 0);
 

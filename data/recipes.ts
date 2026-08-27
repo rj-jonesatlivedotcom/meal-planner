@@ -53,7 +53,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Cooked chicken breast, sliced", shoppingItem: "Cooked chicken breast", quantity: "100 g" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
       { item: "Mayonnaise", quantity: "1 tbsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
@@ -98,7 +98,7 @@ export const recipes: Recipe[] = [
       { item: "Tuna in spring water, drained", shoppingItem: "Tuna", quantity: "80 g" },
       { item: "Sweetcorn, drained", shoppingItem: "Sweetcorn", quantity: "30 g" },
       { item: "Mayonnaise", quantity: "1 tbsp" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -140,10 +140,10 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Chicken breast, diced", shoppingItem: "Chicken breast", quantity: "100 g" },
-      { item: "Plain natural yoghurt", quantity: "1 tbsp" },
+      { item: "Plain natural yoghurt", shoppingItem: "Natural Yoghurt", quantity: "1 tbsp" },
       { item: "Mild curry powder", quantity: "½ tsp" },
       { item: "Red pepper, finely sliced", shoppingItem: "Red pepper", quantity: "¼" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
       { item: "Olive oil", quantity: "½ tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
@@ -189,7 +189,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Cooked lean beef, thinly sliced", shoppingItem: "Cooked lean beef", quantity: "90 g" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
       { item: "English mustard", quantity: "1 tsp" },
       { item: "Mayonnaise", quantity: "1 tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
@@ -233,8 +233,8 @@ export const recipes: Recipe[] = [
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Lean cooked ham", shoppingItem: "Cooked ham", quantity: "40 g" },
       { item: "Mature cheddar, thinly sliced", shoppingItem: "Mature cheddar", quantity: "20 g" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -277,7 +277,7 @@ export const recipes: Recipe[] = [
       { item: "Floury baking potato", shoppingItem: "Baking potato", quantity: "250 g" },
       { item: "Tuna in spring water, drained", shoppingItem: "Tuna", quantity: "80 g" },
       { item: "Mayonnaise", quantity: "1 tbsp" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -322,7 +322,7 @@ export const recipes: Recipe[] = [
       { item: "Floury baking potato", shoppingItem: "Baking potato", quantity: "250 g" },
       { item: "Cooked lean beef, thinly sliced", shoppingItem: "Cooked lean beef", quantity: "90 g" },
       { item: "Mayonnaise", quantity: "1 tbsp" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -470,7 +470,7 @@ export const recipes: Recipe[] = [
       { item: "Dried pasta", shoppingItem: "Pasta", quantity: "70 g" },
       { item: "Cooked chicken breast, sliced", shoppingItem: "Cooked chicken breast", quantity: "100 g" },
       { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "¼" },
-      { item: "Lettuce leaves, shredded", shoppingItem: "Lettuce", quantity: "2" },
+      { item: "Lettuce leaf, shredded", shoppingItem: "Lettuce", quantity: "2 leaves" },
       { item: "Mayonnaise", quantity: "1 tbsp" },
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "1 tsp" },
       { item: "Dried mixed herbs", quantity: "¼ tsp" },
@@ -517,7 +517,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Mature cheddar, grated", shoppingItem: "Mature cheddar", quantity: "40 g" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -559,7 +559,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Reduced-salt baked beans", shoppingItem: "Reduced-salt baked beans", quantity: "120 g" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -645,7 +645,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Back bacon, trimmed", shoppingItem: "Back bacon", quantity: "2 rashers" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -685,9 +685,9 @@ export const recipes: Recipe[] = [
     protein: "14 g",
     equipment: "Non-stick frying pan, toaster, spatula",
     ingredients: [
-      { item: "Egg", quantity: "1 large" },
+      { item: "Egg", quantity: "1" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
-      { item: "Butter", quantity: "8 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "8 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -730,7 +730,7 @@ export const recipes: Recipe[] = [
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Reduced-salt baked beans", shoppingItem: "Reduced-salt baked beans", quantity: "100 g" },
       { item: "Mature cheddar, grated", shoppingItem: "Mature cheddar", quantity: "20 g" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -774,7 +774,7 @@ export const recipes: Recipe[] = [
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Lean ham, sliced", shoppingItem: "Ham", quantity: "40 g" },
       { item: "Mature cheddar, grated", shoppingItem: "Mature cheddar", quantity: "25 g" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -813,8 +813,8 @@ export const recipes: Recipe[] = [
     protein: "14 g",
     equipment: "Non-stick frying pan, bowl, whisk, spatula",
     ingredients: [
-      { item: "Eggs", quantity: "2 large" },
-      { item: "Butter", quantity: "8 g" },
+      { item: "Eggs", quantity: "2" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "8 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -855,10 +855,10 @@ export const recipes: Recipe[] = [
     protein: "24 g",
     equipment: "Non-stick frying pan, bowl, whisk, spatula",
     ingredients: [
-      { item: "Eggs", quantity: "2 large" },
+      { item: "Eggs", quantity: "2" },
       { item: "Lean ham, finely chopped", shoppingItem: "Ham", quantity: "25 g" },
       { item: "Mature cheddar, grated", shoppingItem: "Mature cheddar", quantity: "15 g" },
-      { item: "Butter", quantity: "8 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "8 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -900,7 +900,7 @@ export const recipes: Recipe[] = [
     equipment: "Oven tray, non-stick frying pan, spatula",
     ingredients: [
       { item: "Frozen oven chips", shoppingItem: "Oven chips", quantity: "180 g" },
-      { item: "Egg", quantity: "1 large" },
+      { item: "Egg", quantity: "1" },
       { item: "Olive oil", quantity: "½ tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
@@ -1096,7 +1096,7 @@ export const recipes: Recipe[] = [
         quantity: "37.5g"
       },
       {
-        item: "Butter",
+        item: "Butter", shoppingItem: "Unsalted Butter",
         quantity: "5g"
       },
       {
@@ -1729,7 +1729,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Lettuce leaf",
-      quantity: "1",
+      quantity: "1 leaf",
     },
     {
       item: "Tomato slices",
@@ -1985,7 +1985,7 @@ export const recipes: Recipe[] = [
       quantity: "37.5g",
     },
     {
-      item: "Butter",
+      item: "Butter", shoppingItem: "Unsalted Butter",
       quantity: "5g",
     },
     {
@@ -2321,16 +2321,16 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Chicken breast, skinless", shoppingItem: "Chicken breast", quantity: "150g" },
       { item: "Couscous", shoppingItem: "Couscous", quantity: "75g" },
-      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "¼ small" },
-      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼ small" },
+      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "¼" },
+      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼" },
       { item: "Lemon, zest and juice", shoppingItem: "Lemon", quantity: "¼ lemon" },
       { item: "Olive oil", quantity: "¾ tbsp" },
       { item: "Dried oregano", quantity: "¼ tsp" },
       { item: "Dried parsley", quantity: "¼ tsp" },
       { item: "Garlic granules", quantity: "⅛ tsp" },
       { item: "Black pepper", quantity: "⅛ tsp" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -2375,9 +2375,9 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Chicken breast, skinless", shoppingItem: "Chicken breast", quantity: "140g" },
       { item: "Dry white basmati rice", shoppingItem: "Rice", quantity: "65g" },
-      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼ medium" },
+      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼" },
       { item: "Green beans, trimmed", shoppingItem: "Green beans", quantity: "37.5g" },
-      { item: "Onion, thinly sliced", shoppingItem: "Onion", quantity: "¼ small" },
+      { item: "Onion, thinly sliced", shoppingItem: "Onion", quantity: "¼" },
       { item: "Honey", quantity: "¼ tbsp" },
       { item: "Olive oil", quantity: "¼ tbsp" },
       { item: "Garlic, crushed", shoppingItem: "Garlic", quantity: "½ clove" },
@@ -2432,10 +2432,10 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Chicken breast, skinless", shoppingItem: "Chicken breast", quantity: "150g" },
       { item: "Dry white basmati rice", shoppingItem: "Rice", quantity: "70g" },
-      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼ small" },
-      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼ small" },
-      { item: "Plain natural yoghurt", quantity: "37.5g" },
+      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼" },
+      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼" },
+      { item: "Plain natural yoghurt", shoppingItem: "Natural Yoghurt", quantity: "37.5g" },
       { item: "Olive oil", quantity: "½ tbsp" },
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "¼ tbsp" },
       { item: "Mild curry powder", quantity: "½ tsp" },
@@ -2445,7 +2445,7 @@ export const recipes: Recipe[] = [
       { item: "Garlic granules", quantity: "⅛ tsp" },
       { item: "Ground ginger", quantity: "⅛ tsp" },
       { item: "Black pepper", quantity: "To taste" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -2490,16 +2490,16 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Chicken breast, skinless", shoppingItem: "Chicken breast", quantity: "140g" },
       { item: "Dried penne pasta", shoppingItem: "Pasta", quantity: "75g" },
-      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼ small" },
-      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼ small" },
+      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼" },
+      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼" },
       { item: "Fresh basil pesto", quantity: "1 tbsp" },
       { item: "Olive oil", quantity: "½ tbsp" },
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "⅛ lemon" },
       { item: "Dried oregano", quantity: "¼ tsp" },
       { item: "Garlic granules", quantity: "⅛ tsp" },
       { item: "Black pepper", quantity: "To taste" },
-      { item: "Fresh basil or parsley", quantity: "Small handful" },
+      { item: "Fresh basil or parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -2545,7 +2545,7 @@ export const recipes: Recipe[] = [
       { item: "Lean beef steak, cut into thin strips", shoppingItem: "Beef steak", quantity: "125g" },
       { item: "Dried penne pasta", shoppingItem: "Pasta", quantity: "75g" },
       { item: "Mushrooms, sliced", shoppingItem: "Mushrooms", quantity: "37.5g" },
-      { item: "Onion, thinly sliced", shoppingItem: "Onion", quantity: "¼ medium" },
+      { item: "Onion, thinly sliced", shoppingItem: "Onion", quantity: "¼" },
       { item: "Half-fat crème fraîche", quantity: "37.5ml" },
       { item: "Olive oil", quantity: "½ tbsp" },
       { item: "Paprika", quantity: "¼ tsp" },
@@ -2555,7 +2555,7 @@ export const recipes: Recipe[] = [
       { item: "Water", quantity: "25ml" },
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "¼ tbsp" },
       { item: "Black pepper", quantity: "To taste" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -2604,16 +2604,16 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Lean beef mince", shoppingItem: "Beef mince", quantity: "125g" },
       { item: "Couscous", shoppingItem: "Couscous", quantity: "70g" },
-      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼ small" },
-      { item: "Onion, finely chopped", shoppingItem: "Onion", quantity: "¼ small" },
+      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼" },
+      { item: "Onion, finely chopped", shoppingItem: "Onion", quantity: "¼" },
       { item: "Olive oil", quantity: "¾ tbsp" },
       { item: "Ground cumin", quantity: "¼ tsp" },
       { item: "Paprika", quantity: "¼ tsp" },
       { item: "Dried oregano", quantity: "¼ tsp" },
       { item: "Garlic granules", quantity: "⅛ tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "⅛ lemon" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "Black pepper", quantity: "To taste" },
       { item: "No added salt", quantity: "As required" },
     ],
@@ -2714,9 +2714,9 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Lean pork loin steaks", shoppingItem: "Pork loin steaks", quantity: "150g" },
       { item: "Potatoes", shoppingItem: "Potatoes", quantity: "175g" },
-      { item: "Eating apples", shoppingItem: "Apples", quantity: "½ medium" },
+      { item: "Eating apples", shoppingItem: "Apples", quantity: "½" },
       { item: "Green beans", shoppingItem: "Green beans", quantity: "12.5g" },
-      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼ medium" },
+      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼" },
       { item: "Olive oil", quantity: "¾ tbsp" },
       { item: "Dried sage", quantity: "¼ tsp" },
       { item: "Dried parsley", quantity: "¼ tsp" },
@@ -2766,9 +2766,9 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Lean pork loin, cut into thin strips", shoppingItem: "Pork loin", quantity: "125g" },
       { item: "Dry white basmati rice", shoppingItem: "Rice", quantity: "70g" },
-      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼ small" },
-      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼ small" },
+      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼" },
+      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼" },
       { item: "Green beans, trimmed", shoppingItem: "Green beans", quantity: "37.5g" },
       { item: "Olive oil", quantity: "¾ tbsp" },
       { item: "Garlic, crushed", shoppingItem: "Garlic", quantity: "½ clove" },
@@ -2825,9 +2825,9 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Good-quality pork sausages", shoppingItem: "Pork sausages", quantity: "2" },
       { item: "Dried penne pasta", shoppingItem: "Pasta", quantity: "75g" },
-      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Onion, finely sliced", shoppingItem: "Onion", quantity: "¼ small" },
-      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "¼ small" },
+      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Onion, finely sliced", shoppingItem: "Onion", quantity: "¼" },
+      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "¼" },
       { item: "Chopped tomatoes", quantity: "12.5g" },
       { item: "Olive oil", quantity: "½ tbsp" },
       { item: "Garlic, crushed", shoppingItem: "Garlic", quantity: "½ clove" },
@@ -2836,7 +2836,7 @@ export const recipes: Recipe[] = [
       { item: "Paprika", quantity: "¼ tsp" },
       { item: "Water", quantity: "25ml" },
       { item: "Black pepper", quantity: "To taste" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -2891,7 +2891,7 @@ export const recipes: Recipe[] = [
       { item: "Dried dill", quantity: "¼ tsp" },
       { item: "Garlic granules", quantity: "⅛ tsp" },
       { item: "Black pepper", quantity: "To taste" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -2938,9 +2938,9 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Cod fillets", shoppingItem: "Cod fillets", quantity: "170g" },
       { item: "Couscous", shoppingItem: "Couscous", quantity: "75g" },
-      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼ small" },
-      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼ small" },
+      { item: "Red pepper, sliced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Courgette, sliced", shoppingItem: "Courgette", quantity: "¼" },
+      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼" },
       { item: "Olive oil", quantity: "¾ tbsp" },
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "⅛ lemon" },
       { item: "Dried oregano", quantity: "¼ tsp" },
@@ -2948,7 +2948,7 @@ export const recipes: Recipe[] = [
       { item: "Garlic granules", quantity: "⅛ tsp" },
       { item: "Water", quantity: "25ml" },
       { item: "Black pepper", quantity: "To taste" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -2996,9 +2996,9 @@ export const recipes: Recipe[] = [
       { item: "Cod fillets", shoppingItem: "Cod fillets", quantity: "170g" },
       { item: "Dry white basmati rice", shoppingItem: "Rice", quantity: "70g" },
       { item: "Chopped tomatoes", quantity: "12.5g" },
-      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Onion, finely sliced", shoppingItem: "Onion", quantity: "¼ small" },
-      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "¼ small" },
+      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Onion, finely sliced", shoppingItem: "Onion", quantity: "¼" },
+      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "¼" },
       { item: "Olive oil", quantity: "¾ tbsp" },
       { item: "Garlic, crushed", shoppingItem: "Garlic", quantity: "½ clove" },
       { item: "Dried oregano", quantity: "¼ tsp" },
@@ -3007,7 +3007,7 @@ export const recipes: Recipe[] = [
       { item: "Water", quantity: "37.5ml" },
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "¼ tbsp" },
       { item: "Black pepper", quantity: "To taste" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -3053,10 +3053,10 @@ export const recipes: Recipe[] = [
       "Large frying pan, large bowl, measuring jug, chopping board, knife",
     ingredients: [
       { item: "Couscous", shoppingItem: "Couscous", quantity: "75g" },
-      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Yellow pepper, diced", shoppingItem: "Yellow pepper", quantity: "¼ medium" },
-      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "¼ small" },
-      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼ small" },
+      { item: "Red pepper, diced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Yellow pepper, diced", shoppingItem: "Yellow pepper", quantity: "¼" },
+      { item: "Courgette, diced", shoppingItem: "Courgette", quantity: "¼" },
+      { item: "Onion, sliced", shoppingItem: "Onion", quantity: "¼" },
       { item: "Sweetcorn, drained", shoppingItem: "Sweetcorn", quantity: "37.5g" },
       { item: "Olive oil", quantity: "¼ tbsp" },
       { item: "Lemon, zest and juice", shoppingItem: "Lemon", quantity: "¼ lemon" },
@@ -3066,7 +3066,7 @@ export const recipes: Recipe[] = [
       { item: "Paprika", quantity: "⅛ tsp" },
       { item: "Reduced-fat feta cheese, crumbled", quantity: "12.5g" },
       { item: "Black pepper", quantity: "To taste" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -3112,7 +3112,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Dried penne pasta", shoppingItem: "Pasta", quantity: "87.5g" },
       { item: "Chestnut mushrooms, sliced", shoppingItem: "Mushrooms", quantity: "75g" },
-      { item: "Onion, finely sliced", shoppingItem: "Onion", quantity: "¼ medium" },
+      { item: "Onion, finely sliced", shoppingItem: "Onion", quantity: "¼" },
       { item: "Garlic, crushed", shoppingItem: "Garlic", quantity: "½ clove" },
       { item: "Half-fat crème fraîche", quantity: "37.5ml" },
       { item: "Olive oil", quantity: "¼ tbsp" },
@@ -3120,7 +3120,7 @@ export const recipes: Recipe[] = [
       { item: "Dried parsley", quantity: "¼ tsp" },
       { item: "Dried thyme", quantity: "¼ tsp" },
       { item: "Black pepper", quantity: "To taste" },
-      { item: "Fresh parsley", quantity: "Small handful" },
+      { item: "Fresh parsley", quantity: "handful" },
       { item: "No added salt", quantity: "As required" },
     ],
     method: [
@@ -3171,12 +3171,12 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Egg whites",
-        quantity: "3 large",
+        quantity: "3",
       },
       {
         item: "Apple, thinly sliced",
         shoppingItem: "Apple",
-        quantity: "½ medium",
+        quantity: "½",
       },
       {
         item: "Ground cinnamon",
@@ -3236,7 +3236,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Egg white",
-        quantity: "1 large",
+        quantity: "1",
       },
       {
         item: "Water",
@@ -3310,7 +3310,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       {
         item: "Egg whites",
-        quantity: "4 large",
+        quantity: "4",
       },
       {
         item: "White bread, phosphate-additive-free",
@@ -3320,7 +3320,7 @@ export const recipes: Recipe[] = [
       {
         item: "Red pepper, finely diced",
         shoppingItem: "Red pepper",
-        quantity: "½ medium",
+        quantity: "½",
       },
       {
         item: "Spring onion, finely sliced",
@@ -3386,7 +3386,7 @@ export const recipes: Recipe[] = [
         quantity: "80 g",
       },
       {
-        item: "Butter",
+        item: "Butter", shoppingItem: "Unsalted Butter",
         quantity: "10 g",
       },
       {
@@ -3395,7 +3395,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Fresh mint",
-        quantity: "Small handful",
+        quantity: "handful",
       },
     ],
     method: [
@@ -3448,7 +3448,7 @@ export const recipes: Recipe[] = [
       {
         item: "Apple, peeled and diced",
         shoppingItem: "Apple",
-        quantity: "½ medium",
+        quantity: "½",
       },
       {
         item: "Caster sugar",
@@ -3507,15 +3507,15 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Egg whites",
-        quantity: "4 large",
+        quantity: "4",
       },
       {
         item: "Red pepper, thinly sliced",
         shoppingItem: "Red pepper",
-        quantity: "¼ medium",
+        quantity: "¼",
       },
       {
-        item: "Lettuce leaves",
+        item: "Lettuce leaf",
         shoppingItem: "Lettuce",
         quantity: "2",
       },
@@ -3583,7 +3583,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Egg white",
-        quantity: "1 large",
+        quantity: "1",
       },
       {
         item: "Water",
@@ -3724,24 +3724,24 @@ export const recipes: Recipe[] = [
       {
         item: "White tortilla wrap, phosphate-additive-free",
         shoppingItem: "White tortilla wraps",
-        quantity: "1 large",
+        quantity: "1",
       },
       {
         item: "Egg whites",
-        quantity: "3 large",
+        quantity: "3",
       },
       {
         item: "Red pepper, diced",
         shoppingItem: "Red pepper",
-        quantity: "½ medium",
+        quantity: "½",
       },
       {
         item: "Onion, finely sliced",
         shoppingItem: "Onion",
-        quantity: "0.25 onion",
+        quantity: "¼ onion",
       },
       {
-        item: "Lettuce leaves",
+        item: "Lettuce leaf",
         shoppingItem: "Lettuce",
         quantity: "2",
       },
@@ -3803,7 +3803,7 @@ export const recipes: Recipe[] = [
       {
         item: "Apple, thinly sliced",
         shoppingItem: "Apple",
-        quantity: "½ medium",
+        quantity: "½",
       },
       {
         item: "Blueberries",
@@ -3811,7 +3811,7 @@ export const recipes: Recipe[] = [
         quantity: "40 g",
       },
       {
-        item: "Butter",
+        item: "Butter", shoppingItem: "Unsalted Butter",
         quantity: "8 g",
       },
       {
@@ -3862,9 +3862,9 @@ export const recipes: Recipe[] = [
     protein: "18 g",
     equipment: "Non-stick frying pan, bowl, toaster, spatula",
     ingredients: [
-      { item: "Eggs", quantity: "2 large" },
+      { item: "Eggs", quantity: "2" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
-      { item: "Butter", quantity: "8 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "8 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
       { item: "Fresh chives, finely chopped", shoppingItem: "Fresh chives", quantity: "¼ tsp" },
     ],
@@ -3907,9 +3907,9 @@ export const recipes: Recipe[] = [
     protein: "17 g",
     equipment: "Saucepan, slotted spoon, toaster, small bowl",
     ingredients: [
-      { item: "Eggs", quantity: "2 large" },
+      { item: "Eggs", quantity: "2" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
-      { item: "Butter", quantity: "8 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "8 g" },
       { item: "Fresh chives, finely chopped", shoppingItem: "Fresh chives", quantity: "¼ tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
@@ -3953,9 +3953,9 @@ export const recipes: Recipe[] = [
     protein: "17 g",
     equipment: "Saucepan, egg cups, toaster, knife",
     ingredients: [
-      { item: "Eggs", quantity: "2 large" },
+      { item: "Eggs", quantity: "2" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
-      { item: "Butter", quantity: "10 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "10 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -3996,16 +3996,17 @@ export const recipes: Recipe[] = [
     protein: "23 g",
     equipment: "Non-stick frying pan, toaster, spatula",
     ingredients: [
-      { item: "Light pork breakfast sausage", shoppingItem: "Light pork sausages", quantity: "¼ small" },
-      { item: "Egg", quantity: "1 large" },
+      { item: "Light pork breakfast sausage", shoppingItem: "Light pork sausages", quantity: "1" },
+      { item: "Egg", quantity: "1" },
       { item: "Plain white breakfast muffin, phosphate-additive-free", shoppingItem: "Breakfast muffins", quantity: "1" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
-      "Cook the sausage in a non-stick frying pan over a medium heat until thoroughly cooked and browned.",
-      "Remove the sausage and keep warm.",
+      "Remove the sausage meat from its casing and shape it into a flat patty roughly the same diameter as the breakfast muffin.",
+      "Cook the sausage patty in a non-stick frying pan over a medium heat until thoroughly cooked and browned on both sides.",
+      "Remove the sausage patty and keep warm.",
       "Toast the breakfast muffin and spread lightly with butter.",
       "Crack the egg into the same pan and cook until the white is set and the yolk is cooked to your preference.",
       "Place the lettuce on the bottom half of the muffin.",
@@ -4044,9 +4045,9 @@ export const recipes: Recipe[] = [
     equipment: "Non-stick frying pan, toaster, spatula",
     ingredients: [
       { item: "Back bacon, trimmed", shoppingItem: "Back bacon", quantity: "1 rasher" },
-      { item: "Egg", quantity: "1 large" },
+      { item: "Egg", quantity: "1" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -4089,9 +4090,9 @@ export const recipes: Recipe[] = [
     equipment: "Non-stick frying pan, toaster, bowl, spatula",
     ingredients: [
       { item: "Plain crumpets", shoppingItem: "Crumpets", quantity: "2" },
-      { item: "Eggs", quantity: "2 large" },
+      { item: "Eggs", quantity: "2" },
       { item: "Mature cheddar, finely grated", shoppingItem: "Mature cheddar", quantity: "15 g" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -4133,9 +4134,9 @@ export const recipes: Recipe[] = [
     protein: "19 g",
     equipment: "Non-stick frying pan, toaster",
     ingredients: [
-      { item: "Light pork breakfast sausage", shoppingItem: "Light pork sausages", quantity: "1 large" },
+      { item: "Light pork breakfast sausage", shoppingItem: "Light pork sausages", quantity: "1" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
-      { item: "Butter", quantity: "8 g" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "8 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -4176,10 +4177,10 @@ export const recipes: Recipe[] = [
     equipment: "Non-stick frying pan, toaster, bowl, spatula",
     ingredients: [
       { item: "Plain white bagel, phosphate-additive-free", shoppingItem: "Plain bagels", quantity: "1" },
-      { item: "Egg", quantity: "1 large" },
+      { item: "Egg", quantity: "1" },
       { item: "Lean cooked ham", shoppingItem: "Cooked ham", quantity: "30 g" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
-      { item: "Butter", quantity: "5 g" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "5 g" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
     method: [
@@ -4222,9 +4223,9 @@ export const recipes: Recipe[] = [
     equipment: "Non-stick frying pan, toaster, bowl, spatula",
     ingredients: [
       { item: "Plain white bagel, phosphate-additive-free", shoppingItem: "Plain bagels", quantity: "1" },
-      { item: "Egg whites", quantity: "3 large" },
-      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "¼ medium" },
-      { item: "Lettuce leaves", shoppingItem: "Lettuce", quantity: "2" },
+      { item: "Egg whites", quantity: "3" },
+      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "¼" },
+      { item: "Lettuce leaf", shoppingItem: "Lettuce", quantity: "2 leaves" },
       { item: "Olive oil", quantity: "¼ tsp" },
       { item: "Freshly ground black pepper", quantity: "To taste" },
     ],
@@ -4270,7 +4271,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Rolled oats", shoppingItem: "Rolled oats", quantity: "50 g" },
       { item: "Water", quantity: "250 ml" },
-      { item: "Apple, peeled and finely diced", shoppingItem: "Apple", quantity: "½ medium" },
+      { item: "Apple, peeled and finely diced", shoppingItem: "Apple", quantity: "½" },
       { item: "Caster sugar", quantity: "¼ tbsp" },
       { item: "Ground cinnamon", quantity: "½ tsp" },
       { item: "Vanilla extract", quantity: "½ tsp" },
@@ -4365,8 +4366,8 @@ export const recipes: Recipe[] = [
       { item: "Red chilli", shoppingItem: "Red chilli", quantity: "½" },
       { item: "Carrot", shoppingItem: "Carrot", quantity: "50 g" },
       { item: "Low-salt soy sauce", quantity: "½ tbsp" },
-      { item: "Fresh coriander", shoppingItem: "Coriander", quantity: "Small handful" },
-      { item: "Fresh mint", shoppingItem: "Mint", quantity: "Small handful" },
+      { item: "Fresh coriander", shoppingItem: "Coriander", quantity: "handful" },
+      { item: "Fresh mint", shoppingItem: "Mint", quantity: "handful" },
       { item: "Lime juice", shoppingItem: "Lime", quantity: "1 lime" },
       { item: "Chickpeas, drained", shoppingItem: "Chickpeas", quantity: "25 g" },
       { item: "Cumin seeds", quantity: "½ tsp" },
@@ -4419,10 +4420,10 @@ export const recipes: Recipe[] = [
       { item: "Red wine vinegar", quantity: "7.5 ml" },
       { item: "Lentils, drained", shoppingItem: "Tinned lentils", quantity: "100 g" },
       { item: "Feta cheese", shoppingItem: "Feta", quantity: "7.5 g" },
-      { item: "Wholemeal pitta", shoppingItem: "Pitta breads", quantity: "1" },
-      { item: "Plain full-fat yoghurt", shoppingItem: "Natural yoghurt", quantity: "12.5 g" },
+      { item: "Wholemeal pitta", shoppingItem: "White Pitta", quantity: "1" },
+      { item: "Plain full-fat yoghurt", shoppingItem: "Natural Yoghurt", quantity: "12.5 g" },
       { item: "Lime", shoppingItem: "Lime", quantity: "¼" },
-      { item: "Fresh coriander", shoppingItem: "Coriander", quantity: "Small handful" },
+      { item: "Fresh coriander", shoppingItem: "Coriander", quantity: "handful" },
     ],
     method: [
       "Mix the chicken, tomato, cucumber, avocado if using, lentils and onion.",
@@ -4461,10 +4462,10 @@ export const recipes: Recipe[] = [
     protein: "22 g",
     equipment: "Frying pan, bowl, knife, spatula",
     ingredients: [
-      { item: "Eggs", quantity: "2 large" },
+      { item: "Eggs", quantity: "2" },
       { item: "Olive oil", quantity: "1 tbsp" },
-      { item: "Onion, finely chopped", shoppingItem: "Onion", quantity: "½ large" },
-      { item: "Tomato, finely chopped", shoppingItem: "Tomato", quantity: "½ large" },
+      { item: "Onion, finely chopped", shoppingItem: "Onion", quantity: "½" },
+      { item: "Tomato, finely chopped", shoppingItem: "Tomato", quantity: "½" },
       { item: "Garlic paste", quantity: "1½ tsp" },
       { item: "Turmeric", quantity: "⅛ tsp" },
       { item: "Red chilli powder", quantity: "¼ tsp" },
@@ -4472,7 +4473,7 @@ export const recipes: Recipe[] = [
       { item: "Cumin powder", quantity: "¼ tsp" },
       { item: "Garam masala or curry powder", quantity: "1 tsp" },
       { item: "Red or yellow pepper", shoppingItem: "Red pepper", quantity: "¼" },
-      { item: "Wholemeal pitta bread", shoppingItem: "Pitta bread", quantity: "1" },
+      { item: "Wholemeal pitta bread", shoppingItem: "White Pitta", quantity: "1" },
       { item: "Fresh coriander", shoppingItem: "Coriander", quantity: "½ tsp" },
       { item: "Black pepper", quantity: "To taste" },
     ],
@@ -4524,7 +4525,7 @@ export const recipes: Recipe[] = [
       { item: "Olive oil", quantity: "½ tbsp" },
       { item: "Mayonnaise", quantity: "1 tbsp" },
       { item: "Sweetcorn, drained", shoppingItem: "Sweetcorn", quantity: "30 g" },
-      { item: "Wholemeal pitta", shoppingItem: "Pitta bread", quantity: "1" },
+      { item: "Wholemeal pitta", shoppingItem: "White Pitta", quantity: "1" },
     ],
     method: [
       "Mix the lettuce, pepper, cucumber and carrot with a squeeze of lemon juice.",
@@ -4570,8 +4571,8 @@ export const recipes: Recipe[] = [
       { item: "Red onion, finely chopped", shoppingItem: "Red onion", quantity: "¼" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "⅙" },
       { item: "Baby plum tomatoes", shoppingItem: "Tomatoes", quantity: "3" },
-      { item: "Fresh parsley", shoppingItem: "Parsley", quantity: "Small handful" },
-      { item: "Fresh mint", shoppingItem: "Mint", quantity: "Small handful" },
+      { item: "Fresh parsley", shoppingItem: "Parsley", quantity: "handful" },
+      { item: "Fresh mint", shoppingItem: "Mint", quantity: "handful" },
       { item: "Olive oil", quantity: "½ dessertspoon" },
       { item: "Frozen peas", shoppingItem: "Frozen peas", quantity: "25 g" },
     ],
@@ -4669,9 +4670,9 @@ export const recipes: Recipe[] = [
     protein: "23 g",
     equipment: "Non-stick frying pan, bowl, whisk, toaster, spatula",
     ingredients: [
-      { item: "Eggs", quantity: "2 large" },
+      { item: "Eggs", quantity: "2" },
       { item: "Reduced-fat soft cheese", shoppingItem: "Soft cheese", quantity: "20 g" },
-      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "½ medium" },
+      { item: "Red pepper, finely diced", shoppingItem: "Red pepper", quantity: "½" },
       { item: "Spring onion, finely sliced", shoppingItem: "Spring onion", quantity: "1" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Olive oil", quantity: "1 tsp" },
@@ -4715,8 +4716,8 @@ export const recipes: Recipe[] = [
     equipment: "Saucepan, large frying pan, sieve, knife",
     ingredients: [
       { item: "Olive oil", quantity: "¾ tsp" },
-      { item: "Unsalted butter", quantity: "6.25 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "¼ large" },
+      { item: "Unsalted butter", shoppingItem: "Unsalted Butter", quantity: "6.25 g" },
+      { item: "Onion", shoppingItem: "Onion", quantity: "¼" },
       { item: "Garlic", shoppingItem: "Garlic", quantity: "1 clove" },
       { item: "Fresh ginger", shoppingItem: "Ginger", quantity: "⅝ cm" },
       { item: "Red chilli", shoppingItem: "Red chilli", quantity: "¼" },
@@ -4728,7 +4729,7 @@ export const recipes: Recipe[] = [
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "¾ tsp" },
       { item: "Cooked turkey", shoppingItem: "Cooked turkey", quantity: "100 g" },
       { item: "Basmati rice, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
-      { item: "Fresh coriander", shoppingItem: "Coriander", quantity: "Small handful" },
+      { item: "Fresh coriander", shoppingItem: "Coriander", quantity: "handful" },
     ],
     method: [
       "Rinse and soak the rice, then cook with fresh water and the spices until tender.",
@@ -4767,18 +4768,18 @@ export const recipes: Recipe[] = [
     protein: "29 g",
     equipment: "Roasting tin, saucepan, colander, grill or oven, knife",
     ingredients: [
-      { item: "Boneless leg of lamb", shoppingItem: "Lamb", quantity: "95 g cooked" },
-      { item: "Fresh rosemary", shoppingItem: "Rosemary", quantity: "Small sprig" },
+      { item: "Boneless leg of lamb", shoppingItem: "Lamb", quantity: "95 g" },
+      { item: "Fresh rosemary", shoppingItem: "Rosemary", quantity: "sprig" },
       { item: "Garlic", shoppingItem: "Garlic", quantity: "¼ clove" },
       { item: "Onion", shoppingItem: "Onion", quantity: "¼" },
       { item: "Potatoes", shoppingItem: "Potatoes", quantity: "125 g" },
       { item: "Olive oil", quantity: "½ tbsp" },
       { item: "Swede", shoppingItem: "Swede", quantity: "62.5 g" },
-      { item: "Unsalted butter", quantity: "10 g" },
+      { item: "Unsalted butter", shoppingItem: "Unsalted Butter", quantity: "10 g" },
       { item: "Spring greens or carrots", shoppingItem: "Spring greens", quantity: "62.5 g" },
       { item: "Plain flour", quantity: "3.75 g" },
       { item: "Low-salt lamb stock", quantity: "6.25 ml" },
-      { item: "Mint sauce", quantity: "Small amount" },
+      { item: "Mint sauce", quantity: "amount" },
       { item: "Black pepper", quantity: "To taste" },
     ],
     method: [
@@ -4821,12 +4822,12 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "White potatoes", shoppingItem: "Potatoes", quantity: "100 g" },
       { item: "Diced lamb leg steak", shoppingItem: "Lamb", quantity: "125 g" },
-      { item: "Oil", quantity: "¾ tsp" },
-      { item: "Leek", shoppingItem: "Leek", quantity: "¼ large" },
+      { item: "Oil", shoppingItem: "Sunflower oil", quantity: "¾ tsp" },
+      { item: "Leek", shoppingItem: "Leek", quantity: "¼" },
       { item: "Fresh rosemary", shoppingItem: "Rosemary", quantity: "½ sprig" },
       { item: "Low-salt lamb gravy", quantity: "125 ml" },
       { item: "Green beans", shoppingItem: "Green beans", quantity: "40 g" },
-      { item: "Butter", quantity: "¼ tbsp" },
+      { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "¼ tbsp" },
       { item: "Black pepper", quantity: "To taste" },
     ],
     method: [
@@ -4869,8 +4870,8 @@ export const recipes: Recipe[] = [
     ingredients: [
       { item: "Pork chop or pork mince", shoppingItem: "Pork", quantity: "100 g" },
       { item: "Celery", shoppingItem: "Celery", quantity: "50 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "½ small" },
-      { item: "Carrot", shoppingItem: "Carrot", quantity: "½ large" },
+      { item: "Onion", shoppingItem: "Onion", quantity: "½" },
+      { item: "Carrot", shoppingItem: "Carrot", quantity: "½" },
       { item: "Fresh ginger", shoppingItem: "Ginger", quantity: "1 cm" },
       { item: "Garlic", shoppingItem: "Garlic", quantity: "1 clove" },
       { item: "Vegetable oil", quantity: "½ tbsp" },
@@ -4930,7 +4931,6 @@ export const recipes: Recipe[] = [
       { item: "Mild chilli powder", quantity: "½ tsp" },
       { item: "Paprika", quantity: "½ tbsp" },
       { item: "Very low-salt beef stock", quantity: "¼ cube" },
-      { item: "Boiling water", quantity: "15 ml" },
       { item: "Clear honey", quantity: "½ tbsp" },
       { item: "Red wine vinegar", quantity: "½ tbsp" },
       { item: "Sunflower oil", quantity: "½ tbsp" },

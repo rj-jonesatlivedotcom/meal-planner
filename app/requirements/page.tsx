@@ -14,6 +14,8 @@ type Requirements = {
   purines: RequirementLevel;
 };
 
+const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
+
 const defaultRequirements: Requirements = {
   sodiumLimit: 1500,
   potassium: "Any",
@@ -39,6 +41,23 @@ function matchesLevel(
 function getSodiumNumber(value: string) {
   const match = value.match(/-?\d+(?:\.\d+)?/);
   return match ? Number(match[0]) : 0;
+}
+
+function syncRequirementsToLocalStorage(
+  requirements: Requirements
+) {
+  try {
+    window.localStorage.setItem(
+      REQUIREMENTS_STORAGE_KEY,
+      JSON.stringify(requirements)
+    );
+
+    window.dispatchEvent(
+      new Event("meal-planner-requirements-updated")
+    );
+  } catch {
+    // Ignore local storage errors.
+  }
 }
 
 export default function RequirementsPage() {
@@ -68,12 +87,20 @@ export default function RequirementsPage() {
         return;
       }
 
-      setRequirements({
+      const loadedRequirements: Requirements = {
         sodiumLimit: data.sodium_limit,
         potassium: data.potassium as RequirementLevel,
         phosphate: data.phosphate as RequirementLevel,
         purines: data.purines as RequirementLevel,
-      });
+      };
+
+      setRequirements(loadedRequirements);
+
+      // Keep the existing Recipes and Weekly Planner
+      // requirement system in sync with Supabase.
+      syncRequirementsToLocalStorage(
+        loadedRequirements
+      );
     }
 
     loadRequirements();
@@ -120,6 +147,13 @@ export default function RequirementsPage() {
     if (error) {
       return;
     }
+
+    // Keep Supabase and the existing local requirement
+    // system in sync so Recipes and Weekly Planner
+    // immediately use the newly saved requirements.
+    syncRequirementsToLocalStorage(
+      requirements
+    );
 
     setSaved(true);
   }

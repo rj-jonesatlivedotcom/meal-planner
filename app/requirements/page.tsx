@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { recipes } from "@/data/recipes";
+import { createClient } from "@/lib/supabase/client";
 
 type RequirementLevel = "Any" | "Low" | "Moderate";
 
@@ -12,8 +13,6 @@ type Requirements = {
   phosphate: RequirementLevel;
   purines: RequirementLevel;
 };
-
-const STORAGE_KEY = "meal-planner-requirements";
 
 const defaultRequirements: Requirements = {
   sodiumLimit: 1500,
@@ -48,20 +47,36 @@ export default function RequirementsPage() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
+    async function loadRequirements() {
+      const supabase = createClient();
 
-      if (stored) {
-        const parsed = JSON.parse(stored) as Partial<Requirements>;
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-        setRequirements({
-          ...defaultRequirements,
-          ...parsed,
-        });
+      if (!user) {
+        return;
       }
-    } catch {
-      // Keep the default requirements if saved data cannot be read.
+
+      const { data, error } = await supabase
+        .from("user_requirements")
+        .select("sodium_limit, potassium, phosphate, purines")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (error || !data) {
+        return;
+      }
+
+      setRequirements({
+        sodiumLimit: data.sodium_limit,
+        potassium: data.potassium as RequirementLevel,
+        phosphate: data.phosphate as RequirementLevel,
+        purines: data.purines as RequirementLevel,
+      });
     }
+
+    loadRequirements();
   }, []);
 
   function updateRequirement<K extends keyof Requirements>(
@@ -75,11 +90,37 @@ export default function RequirementsPage() {
     setSaved(false);
   }
 
-  function saveRequirements() {
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(requirements)
+  async function saveRequirements() {
+    setSaved(false);
+
+    const supabase = createClient();
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return;
+    }
+
+    const { error } = await supabase.from("user_requirements").upsert(
+      {
+        user_id: user.id,
+        sodium_limit: requirements.sodiumLimit,
+        potassium: requirements.potassium,
+        phosphate: requirements.phosphate,
+        purines: requirements.purines,
+        updated_at: new Date().toISOString(),
+      },
+      {
+        onConflict: "user_id",
+      }
     );
+
+    if (error) {
+      return;
+    }
+
     setSaved(true);
   }
 
@@ -172,7 +213,11 @@ export default function RequirementsPage() {
 
               <select
                 id="sodium-limit"
-                value={requirements.sodiumLimit === null ? "Any" : requirements.sodiumLimit}
+                value={
+                  requirements.sodiumLimit === null
+                    ? "Any"
+                    : requirements.sodiumLimit
+                }
                 onChange={(event) =>
                   updateRequirement(
                     "sodiumLimit",

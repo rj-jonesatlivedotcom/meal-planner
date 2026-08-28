@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 function KidneyLogo() {
   return (
@@ -31,7 +32,11 @@ function KidneyLogo() {
   );
 }
 
-function PageIcon({ type }: { type: "requirements" | "recipes" | "planner" | "shopping" }) {
+function PageIcon({
+  type,
+}: {
+  type: "requirements" | "recipes" | "planner" | "shopping";
+}) {
   const colour =
     type === "requirements"
       ? "text-purple-600"
@@ -88,8 +93,44 @@ function PageIcon({ type }: { type: "requirements" | "recipes" | "planner" | "sh
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
+  useEffect(() => {
+    const supabase = createClient();
+
+    async function checkSession() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      setLoggedIn(!!user);
+    }
+
+    checkSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setLoggedIn(!!session?.user);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  async function handleLogout() {
+    const supabase = createClient();
+
+    await supabase.auth.signOut();
+
+    setLoggedIn(false);
+    setOpen(false);
+    router.push("/");
+    router.refresh();
+  }
 
   const pageHeader: {
     icon: "requirements" | "recipes" | "planner" | "shopping";
@@ -226,19 +267,31 @@ export default function Navbar() {
               </svg>
             </span>
 
-            <Link
-              href="/login"
-              className="rounded-xl border border-slate-300 px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
-            >
-              Log in
-            </Link>
+            {loggedIn ? (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="rounded-xl border border-slate-300 px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
+              >
+                Log out
+              </button>
+            ) : (
+              <>
+                <Link
+                  href="/auth/login"
+                  className="rounded-xl border border-slate-300 px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
+                >
+                  Log in
+                </Link>
 
-            <Link
-              href="/signup"
-              className="rounded-xl bg-green-700 px-5 py-3 text-base font-bold text-white transition hover:bg-green-800"
-            >
-              Sign up
-            </Link>
+                <Link
+                  href="/signup"
+                  className="rounded-xl bg-green-700 px-5 py-3 text-base font-bold text-white transition hover:bg-green-800"
+                >
+                  Sign up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -324,21 +377,33 @@ export default function Navbar() {
             ))}
 
             <div className="mt-2 flex gap-3 border-t border-slate-200 pt-3">
-              <Link
-                href="/login"
-                onClick={() => setOpen(false)}
-                className="flex-1 rounded-xl border border-slate-300 px-4 py-3 text-center font-semibold text-slate-900"
-              >
-                Log in
-              </Link>
+              {loggedIn ? (
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="flex-1 rounded-xl border border-slate-300 px-4 py-3 text-center font-semibold text-slate-900"
+                >
+                  Log out
+                </button>
+              ) : (
+                <>
+                  <Link
+                    href="/auth/login"
+                    onClick={() => setOpen(false)}
+                    className="flex-1 rounded-xl border border-slate-300 px-4 py-3 text-center font-semibold text-slate-900"
+                  >
+                    Log in
+                  </Link>
 
-              <Link
-                href="/signup"
-                onClick={() => setOpen(false)}
-                className="flex-1 rounded-xl bg-green-700 px-4 py-3 text-center font-bold text-white"
-              >
-                Sign up
-              </Link>
+                  <Link
+                    href="/signup"
+                    onClick={() => setOpen(false)}
+                    className="flex-1 rounded-xl bg-green-700 px-4 py-3 text-center font-bold text-white"
+                  >
+                    Sign up
+                  </Link>
+                </>
+              )}
             </div>
           </nav>
         )}

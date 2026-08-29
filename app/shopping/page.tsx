@@ -479,7 +479,7 @@ const ML_ITEMS = new Set([
 function removePreparationWords(value: string): string {
   return value
     .replace(
-      /\s*,\s*(?:finely chopped|roughly chopped|diced|sliced|chopped|crushed|minced|grated|cubed|trimmed|peeled|halved|quartered|crumbled|separated|drained|cut into bite[- ]sized pieces|cut into strips|cut into thin strips|cut into wedges)\b/gi,
+      /\s*,\s*(?:finely chopped|roughly chopped|thinly sliced|diced|sliced|chopped|crushed|minced|grated|cubed|trimmed|peeled|halved|quartered|crumbled|separated|drained|cut into bite[- ]sized pieces|cut into strips|cut into thin strips|cut into wedges)\b/gi,
       ""
     )
     .replace(
@@ -557,8 +557,8 @@ function normaliseIngredient(raw: string): string {
   }
 
   if (
-    lower === "pork sausages" ||
-    lower === "light pork sausages" ||
+    lower.includes("pork sausages") ||
+    lower.includes("light pork sausages") ||
     lower === "sausages"
   ) {
     return "Sausages (low fat pork)";

@@ -12,12 +12,6 @@ export async function GET(request: Request) {
     if (!error) {
       return NextResponse.redirect(`${origin}/`);
     }
-
-    const errorMessage = encodeURIComponent(error.message);
-
-    return NextResponse.redirect(
-      `${origin}/auth/login?error=${errorMessage}`
-    );
   }
 
   return NextResponse.redirect(`${origin}/auth/login?error=auth`);

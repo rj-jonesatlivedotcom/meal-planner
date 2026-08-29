@@ -1593,10 +1593,10 @@ export default function ShoppingPage() {
   const categoryOrder = [
     "🥩 Meat & Fish",
     "🥕 Fruit & Vegetables",
-    "🧊 Chilled",
+    "🥫 Cupboard",
     "❄️ Frozen",
     "🍞 Bakery",
-    "🥫 Cupboard",
+    "🧊 Chilled",
     "🧂 Herbs & Spices",
     "Other",
   ];
@@ -1614,13 +1614,16 @@ export default function ShoppingPage() {
     }))
     .filter((group) => group.items.length > 0);
 
-  // On desktop the category cards use two independent columns so a short
+  // On desktop the category cards use three independent columns so a short
   // category does not leave a large empty area before the next card.
   const leftCategoryGroups = groupedShoppingList.filter(
-    (_, index) => index % 2 === 0
+    (_, index) => index % 3 === 0
+  );
+  const middleCategoryGroups = groupedShoppingList.filter(
+    (_, index) => index % 3 === 1
   );
   const rightCategoryGroups = groupedShoppingList.filter(
-    (_, index) => index % 2 === 1
+    (_, index) => index % 3 === 2
   );
 
   return (
@@ -1682,7 +1685,7 @@ export default function ShoppingPage() {
           </div>
         ) : (
           <>
-            <div className="space-y-6 md:grid md:grid-cols-2 md:gap-5 md:space-y-0 md:items-start">
+            <div className="space-y-6 md:grid md:grid-cols-3 md:gap-5 md:space-y-0 md:items-start">
               <div className="space-y-5">
                 {leftCategoryGroups.map((group) => (
                   <div
@@ -1746,6 +1749,68 @@ export default function ShoppingPage() {
                 ))}
               </div>
 
+              <div className="space-y-5">
+                {middleCategoryGroups.map((group) => (
+                  <div
+                    key={group.category}
+                    className="md:rounded-xl md:border md:border-slate-200 md:bg-white md:p-5"
+                  >
+                    <h3 className="text-lg font-bold mb-3 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100 text-slate-800 md:mb-4 md:px-0 md:py-0 md:rounded-none md:border-0 md:bg-transparent md:text-base md:flex md:items-center md:gap-2">
+                      {group.category}
+                    </h3>
+
+                    <ul className="space-y-3 md:space-y-2.5">
+                      {group.items.map((item, itemIndex) => {
+                        const checked = checkedItems.includes(item.item);
+
+                        return (
+                          <li
+                            key={`${group.category}-${item.item}-${itemIndex}`}
+                            className="flex items-center justify-between border-b pb-2 md:border-b-0 md:pb-0 md:min-h-[30px]"
+                          >
+                            <label className="flex items-center gap-3 cursor-pointer flex-1 md:gap-3">
+                              <input
+                                type="checkbox"
+                                checked={checked}
+                                onChange={() => {
+                                  setCheckedItems((current) =>
+                                    checked
+                                      ? current.filter(
+                                          (name) => name !== item.item
+                                        )
+                                      : [...current, item.item]
+                                  );
+                                }}
+                                className="md:h-4 md:w-4 md:accent-orange-500"
+                              />
+
+                              <span
+                                className={
+                                  checked
+                                    ? "line-through text-slate-400"
+                                    : "text-slate-700"
+                                }
+                              >
+                                {item.item}
+                              </span>
+                            </label>
+
+                            <span
+                              className={
+                                checked
+                                  ? "font-medium line-through text-slate-400"
+                                  : "font-medium text-slate-700"
+                              }
+                            >
+                              {item.quantity}
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
               <div className="space-y-5">
                 {rightCategoryGroups.map((group) => (
                   <div

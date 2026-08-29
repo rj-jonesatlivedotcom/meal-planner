@@ -10,6 +10,8 @@ type Requirements = {
   potassium: RequirementLevel;
   phosphate: RequirementLevel;
   purines: RequirementLevel;
+  carbohydrateMin: number | null;
+  carbohydrateMax: number | null;
 };
 
 const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
@@ -19,6 +21,8 @@ const defaultRequirements: Requirements = {
   potassium: "Any",
   phosphate: "Any",
   purines: "Any",
+  carbohydrateMin: null,
+  carbohydrateMax: null,
 };
 
 function syncRequirementsToLocalStorage(
@@ -60,7 +64,9 @@ export default function RequirementsPage() {
 
       const { data, error } = await supabase
         .from("user_requirements")
-        .select("sodium_limit, potassium, phosphate, purines")
+        .select(
+          "sodium_limit, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max"
+        )
         .eq("user_id", user.id)
         .maybeSingle();
 
@@ -73,6 +79,8 @@ export default function RequirementsPage() {
         potassium: data.potassium as RequirementLevel,
         phosphate: data.phosphate as RequirementLevel,
         purines: data.purines as RequirementLevel,
+        carbohydrateMin: data.carbohydrate_min,
+        carbohydrateMax: data.carbohydrate_max,
       };
 
       setRequirements(loadedRequirements);
@@ -112,6 +120,8 @@ export default function RequirementsPage() {
           potassium: nextRequirements.potassium,
           phosphate: nextRequirements.phosphate,
           purines: nextRequirements.purines,
+          carbohydrate_min: nextRequirements.carbohydrateMin,
+          carbohydrate_max: nextRequirements.carbohydrateMax,
           updated_at: new Date().toISOString(),
         },
         {
@@ -159,22 +169,12 @@ export default function RequirementsPage() {
     <main className="min-h-screen bg-purple-50 px-4 py-5 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1400px] px-4">
         <section className="max-w-4xl rounded-3xl bg-purple-50/80 p-5 shadow-sm sm:p-7">
-          <div className="max-w-2xl">
-            <p className="text-sm font-bold uppercase tracking-wide text-green-700">
-              Personalise your planner
-            </p>
+          <p className="text-sm leading-6 text-slate-600 sm:text-base">
+            Set your dietary requirements and Meal Planner will use them
+            when selecting suitable recipes.
+          </p>
 
-            <h1 className="mt-1 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-              My Requirements
-            </h1>
-
-            <p className="mt-2 text-sm leading-6 text-slate-600 sm:text-base">
-              Set your dietary requirements and Meal Planner will use them
-              when selecting suitable recipes.
-            </p>
-          </div>
-
-          <div className="mt-3 min-h-5">
+          <div className="mt-5 min-h-5">
             {saveStatus === "saving" && (
               <span className="text-sm font-semibold text-slate-500">
                 Saving…
@@ -317,6 +317,98 @@ export default function RequirementsPage() {
                 <option>Low</option>
                 <option>Moderate</option>
               </select>
+            </div>
+
+            <div className="rounded-2xl border border-purple-100 bg-purple-100/40 p-4 md:col-span-2">
+              <div>
+                <label className="block text-base font-extrabold text-slate-900">
+                  Carbohydrate per meal
+                </label>
+
+                <p className="mt-1 text-xs leading-5 text-slate-600">
+                  Set the carbohydrate range you want Meal Planner to use
+                  when selecting recipes.
+                </p>
+              </div>
+
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="carbohydrate-min"
+                    className="block text-sm font-semibold text-slate-900"
+                  >
+                    Minimum
+                  </label>
+
+                  <div className="mt-1 flex items-center gap-2">
+                    <input
+                      id="carbohydrate-min"
+                      type="number"
+                      min="0"
+                      step="1"
+                      value={
+                        requirements.carbohydrateMin === null
+                          ? ""
+                          : requirements.carbohydrateMin
+                      }
+                      onChange={(event) =>
+                        updateRequirement(
+                          "carbohydrateMin",
+                          event.target.value === ""
+                            ? null
+                            : Number(event.target.value)
+                        )
+                      }
+                      placeholder="No minimum"
+                      className="min-h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    />
+                    <span className="text-sm font-semibold text-slate-600">
+                      g
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="carbohydrate-max"
+                    className="block text-sm font-semibold text-slate-900"
+                  >
+                    Maximum
+                  </label>
+
+                  <div className="mt-1 flex items-center gap-2">
+                    <input
+                      id="carbohydrate-max"
+                      type="number"
+                      min="0"
+                      step="1"
+                      value={
+                        requirements.carbohydrateMax === null
+                          ? ""
+                          : requirements.carbohydrateMax
+                      }
+                      onChange={(event) =>
+                        updateRequirement(
+                          "carbohydrateMax",
+                          event.target.value === ""
+                            ? null
+                            : Number(event.target.value)
+                        )
+                      }
+                      placeholder="No maximum"
+                      className="min-h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    />
+                    <span className="text-sm font-semibold text-slate-600">
+                      g
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <p className="mt-3 text-xs leading-5 text-slate-500">
+                Your carbohydrate target should reflect the guidance you
+                have received from your healthcare or dietetic team.
+              </p>
             </div>
           </div>
 

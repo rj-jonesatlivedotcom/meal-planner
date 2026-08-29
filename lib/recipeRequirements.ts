@@ -7,6 +7,8 @@ export type Requirements = {
   potassium: RequirementLevel;
   phosphate: RequirementLevel;
   purines: RequirementLevel;
+  carbohydrateMin: number | null;
+  carbohydrateMax: number | null;
 };
 
 export const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
@@ -16,6 +18,8 @@ export const defaultRequirements: Requirements = {
   potassium: "Any",
   phosphate: "Any",
   purines: "Any",
+  carbohydrateMin: null,
+  carbohydrateMax: null,
 };
 
 const levelRank: Record<"Low" | "Moderate" | "High", number> = {
@@ -25,6 +29,11 @@ const levelRank: Record<"Low" | "Moderate" | "High", number> = {
 };
 
 function getSodiumNumber(value: string) {
+  const match = value.match(/-?\d+(?:\.\d+)?/);
+  return match ? Number(match[0]) : 0;
+}
+
+function getCarbohydrateNumber(value: string) {
   const match = value.match(/-?\d+(?:\.\d+)?/);
   return match ? Number(match[0]) : 0;
 }
@@ -51,12 +60,25 @@ export function recipeMatchesRequirements(
       : requirements.sodiumLimit / 3;
 
   const sodium = getSodiumNumber(recipe.nutrition.sodium);
+  const carbohydrates = getCarbohydrateNumber(
+    recipe.nutrition.carbohydrates
+  );
+
+  const matchesCarbohydrateMinimum =
+    requirements.carbohydrateMin === null ||
+    carbohydrates >= requirements.carbohydrateMin;
+
+  const matchesCarbohydrateMaximum =
+    requirements.carbohydrateMax === null ||
+    carbohydrates <= requirements.carbohydrateMax;
 
   return (
     (mealSodiumGuide === null || sodium <= mealSodiumGuide) &&
     matchesLevel(recipe.potassium, requirements.potassium) &&
     matchesLevel(recipe.phosphate, requirements.phosphate) &&
-    matchesLevel(recipe.purines, requirements.purines)
+    matchesLevel(recipe.purines, requirements.purines) &&
+    matchesCarbohydrateMinimum &&
+    matchesCarbohydrateMaximum
   );
 }
 

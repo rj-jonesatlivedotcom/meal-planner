@@ -350,7 +350,10 @@ function normaliseUnit(unit: string): string {
 function parseQuantity(
   quantity: string
 ): { amount: number; unit: string } | null {
-  const q = cleanText(quantity).replace(/\s*\(optional\)/gi, "").trim();
+  const q = cleanText(quantity)
+    .replace(/\s*\([^)]*\)/g, "")
+    .replace(/\s*\(optional\)/gi, "")
+    .trim();
 
   if (!q) return null;
 
@@ -540,7 +543,7 @@ function normaliseIngredient(raw: string): string {
     return "Lemon";
   }
 
-  if (/^lettuce leaves?$/.test(lower) || lower === "lettuce") {
+  if (/^lettuce(?:\s+(?:leaf|leaves))?$/.test(lower)) {
     return "Lettuce";
   }
 

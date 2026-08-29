@@ -166,9 +166,9 @@ export default function RequirementsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-purple-50 px-4 py-5 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1400px] px-4">
-        <section className="max-w-4xl rounded-3xl bg-purple-50/80 p-5 shadow-sm sm:p-7">
+    <main className="min-h-screen bg-purple-50 px-4 py-5 sm:px-6 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl md:max-w-[1400px]">
+        <section className="max-w-[1400px] rounded-3xl bg-purple-50/80 p-5 shadow-sm sm:p-7">
           <p className="text-sm leading-6 text-slate-600 sm:text-base">
             Set your dietary requirements and Meal Planner will use them
             when selecting suitable recipes.

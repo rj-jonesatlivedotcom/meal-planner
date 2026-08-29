@@ -434,271 +434,271 @@ export default function RecipesPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
-      <div className="mx-auto max-w-7xl px-4 py-5 md:max-w-[1280px] md:px-6 md:py-6">
+    <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 px-4 py-5 md:px-6 md:py-6">
+      <div className="mx-auto max-w-7xl md:max-w-[1400px]">
 
-      {/* Search and filters */}
-      <div className="mb-4">
+        {/* Search and filters */}
+        <div className="mb-4">
 
-        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-4">
 
-          {/* Search & Sort */}
-          <div
-            ref={filterRef}
-            className="relative"
-          >
-
-            <button
-              type="button"
-              onClick={() =>
-                setShowFilters((current) => !current)
-              }
-              className="rounded-lg border border-gray-300 bg-white px-5 py-3 font-semibold shadow-sm hover:bg-gray-50 transition flex items-center justify-center gap-2"
+            {/* Search & Sort */}
+            <div
+              ref={filterRef}
+              className="relative"
             >
-              🔎 Search & Sort
 
-              <span className="text-sm">
-                {showFilters ? "▲" : "▼"}
-              </span>
-            </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setShowFilters((current) => !current)
+                }
+                className="rounded-lg border border-gray-300 bg-white px-5 py-3 font-semibold shadow-sm hover:bg-gray-50 transition flex items-center justify-center gap-2"
+              >
+                🔎 Search & Sort
 
-            {showFilters && (
-              <div className="relative mt-4 md:absolute md:left-0 md:top-full md:z-20 md:mt-4 md:w-[min(900px,calc(100vw-3rem))] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
+                <span className="text-sm">
+                  {showFilters ? "▲" : "▼"}
+                </span>
+              </button>
 
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {showFilters && (
+                <div className="relative mt-4 md:absolute md:left-0 md:top-full md:z-20 md:mt-4 md:w-[min(900px,calc(100vw-3rem))] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
 
-                  {/* Search */}
-                  <div>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 
-                    <label className="block mb-2 font-semibold text-gray-800">
-                      Search
-                    </label>
+                    {/* Search */}
+                    <div>
 
-                    <input
-                      type="text"
-                      placeholder="Meals or ingredients..."
-                      value={searchText}
-                      onChange={(e) =>
-                        setSearchText(e.target.value)
-                      }
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+                      <label className="block mb-2 font-semibold text-gray-800">
+                        Search
+                      </label>
 
-                  </div>
+                      <input
+                        type="text"
+                        placeholder="Meals or ingredients..."
+                        value={searchText}
+                        onChange={(e) =>
+                          setSearchText(e.target.value)
+                        }
+                        className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
 
-                  {/* Meal type */}
-                  <div>
+                    </div>
 
-                    <label className="block mb-2 font-semibold text-gray-800">
-                      Meal type
-                    </label>
+                    {/* Meal type */}
+                    <div>
 
-                    <select
-                      value={selectedMealType}
-                      onChange={(e) =>
-                        setSelectedMealType(e.target.value)
-                      }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      {mealTypes.map((mealType) => (
-                        <option
-                          key={mealType}
-                          value={mealType}
-                        >
-                          {mealTypeIcons[mealType]} {mealType}
+                      <label className="block mb-2 font-semibold text-gray-800">
+                        Meal type
+                      </label>
+
+                      <select
+                        value={selectedMealType}
+                        onChange={(e) =>
+                          setSelectedMealType(e.target.value)
+                        }
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        {mealTypes.map((mealType) => (
+                          <option
+                            key={mealType}
+                            value={mealType}
+                          >
+                            {mealTypeIcons[mealType]} {mealType}
+                          </option>
+                        ))}
+                      </select>
+
+                    </div>
+
+                    {/* Protein */}
+                    <div>
+
+                      <label className="block mb-2 font-semibold text-gray-800">
+                        Protein
+                      </label>
+
+                      <select
+                        value={selectedProtein}
+                        onChange={(e) =>
+                          setSelectedProtein(e.target.value)
+                        }
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        {proteins.map((protein) => (
+                          <option
+                            key={protein}
+                            value={protein}
+                          >
+                            {proteinIcons[protein]} {protein}
+                          </option>
+                        ))}
+                      </select>
+
+                    </div>
+
+                    {/* Favourites */}
+                    <div>
+
+                      <label className="block mb-2 font-semibold text-gray-800">
+                        Show
+                      </label>
+
+                      <select
+                        value={showFavourites ? "Favourites" : "All"}
+                        onChange={(e) =>
+                          setShowFavourites(
+                            e.target.value === "Favourites"
+                          )
+                        }
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="All">
+                          🍽️ All recipes
                         </option>
-                      ))}
-                    </select>
-
-                  </div>
-
-                  {/* Protein */}
-                  <div>
-
-                    <label className="block mb-2 font-semibold text-gray-800">
-                      Protein
-                    </label>
-
-                    <select
-                      value={selectedProtein}
-                      onChange={(e) =>
-                        setSelectedProtein(e.target.value)
-                      }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      {proteins.map((protein) => (
-                        <option
-                          key={protein}
-                          value={protein}
-                        >
-                          {proteinIcons[protein]} {protein}
+                        <option value="Favourites">
+                          ⭐ Favourites
                         </option>
-                      ))}
-                    </select>
+                      </select>
+
+                    </div>
+
+                    {/* Sort */}
+                    <div className="md:col-span-2">
+
+                      <label className="block mb-2 font-semibold text-gray-800">
+                        Sort by
+                      </label>
+
+                      <select
+                        value={sortBy}
+                        onChange={(e) =>
+                          setSortBy(e.target.value)
+                        }
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="default">
+                          Default order
+                        </option>
+
+                        <option value="time-asc">
+                          ⏱️ Cooking time — shortest first
+                        </option>
+
+                        <option value="time-desc">
+                          ⏱️ Cooking time — longest first
+                        </option>
+
+                        <option value="calories-asc">
+                          🔥 Calories — lowest first
+                        </option>
+
+                        <option value="calories-desc">
+                          🔥 Calories — highest first
+                        </option>
+
+                        <option value="potassium-asc">
+                          🥔 Potassium — lowest first
+                        </option>
+
+                        <option value="phosphate-asc">
+                          🧀 Phosphate — lowest first
+                        </option>
+
+                        <option value="purines-asc">
+                          🍖 Purines — lowest first
+                        </option>
+                      </select>
+
+                    </div>
 
                   </div>
 
-                  {/* Favourites */}
-                  <div>
+                  <div className="mt-4 flex items-center justify-between">
 
-                    <label className="block mb-2 font-semibold text-gray-800">
-                      Show
-                    </label>
+                    {(searchText ||
+                      selectedMealType !== "All" ||
+                      selectedProtein !== "All" ||
+                      showFavourites ||
+                      sortBy !== "default") ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSearchText("");
+                          setSelectedMealType("All");
+                          setSelectedProtein("All");
+                          setShowFavourites(false);
+                          setSortBy("default");
 
-                    <select
-                      value={showFavourites ? "Favourites" : "All"}
-                      onChange={(e) =>
-                        setShowFavourites(
-                          e.target.value === "Favourites"
-                        )
-                      }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      <option value="All">
-                        🍽️ All recipes
-                      </option>
-                      <option value="Favourites">
-                        ⭐ Favourites
-                      </option>
-                    </select>
+                          try {
+                            sessionStorage.removeItem(
+                              "recipes-filters"
+                            );
+                          } catch {
+                            // Ignore storage errors.
+                          }
+                        }}
+                        className="text-sm font-semibold text-blue-600 hover:text-blue-800"
+                      >
+                        Clear filters
+                      </button>
+                    ) : (
+                      <div />
+                    )}
 
-                  </div>
-
-                  {/* Sort */}
-                  <div className="md:col-span-2">
-
-                    <label className="block mb-2 font-semibold text-gray-800">
-                      Sort by
-                    </label>
-
-                    <select
-                      value={sortBy}
-                      onChange={(e) =>
-                        setSortBy(e.target.value)
-                      }
-                      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      <option value="default">
-                        Default order
-                      </option>
-
-                      <option value="time-asc">
-                        ⏱️ Cooking time — shortest first
-                      </option>
-
-                      <option value="time-desc">
-                        ⏱️ Cooking time — longest first
-                      </option>
-
-                      <option value="calories-asc">
-                        🔥 Calories — lowest first
-                      </option>
-
-                      <option value="calories-desc">
-                        🔥 Calories — highest first
-                      </option>
-
-                      <option value="potassium-asc">
-                        🥔 Potassium — lowest first
-                      </option>
-
-                      <option value="phosphate-asc">
-                        🧀 Phosphate — lowest first
-                      </option>
-
-                      <option value="purines-asc">
-                        🍖 Purines — lowest first
-                      </option>
-                    </select>
-
-                  </div>
-
-                </div>
-
-                <div className="mt-4 flex items-center justify-between">
-
-                  {(searchText ||
-                    selectedMealType !== "All" ||
-                    selectedProtein !== "All" ||
-                    showFavourites ||
-                    sortBy !== "default") ? (
                     <button
                       type="button"
-                      onClick={() => {
-                        setSearchText("");
-                        setSelectedMealType("All");
-                        setSelectedProtein("All");
-                        setShowFavourites(false);
-                        setSortBy("default");
-
-                        try {
-                          sessionStorage.removeItem(
-                            "recipes-filters"
-                          );
-                        } catch {
-                          // Ignore storage errors.
-                        }
-                      }}
-                      className="text-sm font-semibold text-blue-600 hover:text-blue-800"
+                      onClick={() => setShowFilters(false)}
+                      className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
                     >
-                      Clear filters
+                      Done
                     </button>
-                  ) : (
-                    <div />
-                  )}
 
-                  <button
-                    type="button"
-                    onClick={() => setShowFilters(false)}
-                    className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
-                  >
-                    Done
-                  </button>
+                  </div>
 
                 </div>
+              )}
 
-              </div>
-            )}
+            </div>
 
           </div>
 
-        </div>
-
-        <p className="mt-4 text-sm text-slate-500">
-          {helperText}
-        </p>
-
-      </div>
-
-      {/* Recipes */}
-      {filteredRecipes.length > 0 ? (
-        <div className="grid gap-4 lg:grid-cols-3 xl:grid-cols-4">
-
-          {filteredRecipes.map((recipe) => (
-            <RecipeCard
-              key={recipe.id}
-              recipe={recipe}
-            />
-          ))}
-
-        </div>
-      ) : (
-        <div className="py-16 text-center">
-
-          <div className="text-5xl mb-4">
-            😕
-          </div>
-
-          <h2 className="text-2xl font-bold text-slate-900">
-            No recipes found
-          </h2>
-
-          <p className="mt-3 text-slate-500">
-            Try changing your search or filters.
+          <p className="mt-4 text-sm text-slate-500">
+            {helperText}
           </p>
 
         </div>
-      )}
+
+        {/* Recipes */}
+        {filteredRecipes.length > 0 ? (
+          <div className="grid gap-4 lg:grid-cols-3 xl:grid-cols-4">
+
+            {filteredRecipes.map((recipe) => (
+              <RecipeCard
+                key={recipe.id}
+                recipe={recipe}
+              />
+            ))}
+
+          </div>
+        ) : (
+          <div className="py-16 text-center">
+
+            <div className="text-5xl mb-4">
+              😕
+            </div>
+
+            <h2 className="text-2xl font-bold text-slate-900">
+              No recipes found
+            </h2>
+
+            <p className="mt-3 text-slate-500">
+              Try changing your search or filters.
+            </p>
+
+          </div>
+        )}
 
       </div>
     </main>

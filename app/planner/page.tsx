@@ -1227,7 +1227,7 @@ if (total <= limit * 0.75) {
   return (
     <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 px-4 py-5 md:px-6 md:py-6">
 
-      <div className="mx-auto max-w-7xl md:max-w-[1280px]">
+      <div className="mx-auto max-w-7xl md:max-w-[1400px]">
 
         {/* MOBILE DAY SELECTOR */}
 

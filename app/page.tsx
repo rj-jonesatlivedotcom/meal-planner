@@ -286,6 +286,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ABOUT LINK */}
+      <div className="mx-auto max-w-[1320px] px-4 pb-4 text-right sm:px-8 md:px-10 lg:px-12">
+        <Link
+          href="/about"
+          className="text-sm font-semibold text-green-700 hover:text-green-800"
+        >
+          About Meal Planner
+        </Link>
+      </div>
+
     </main>
   );
 }

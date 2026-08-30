@@ -5,7 +5,7 @@ export default function About() {
     <main className="min-h-screen bg-white text-slate-900">
 
       <section className="bg-gradient-to-b from-white to-green-50 px-5 py-12 sm:px-8">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-[1320px]">
 
           {/* BACK LINK */}
           <Link
@@ -79,6 +79,12 @@ export default function About() {
               Back to Meal Planner
             </Link>
 
+          </div>
+
+
+          {/* VERSION */}
+          <div className="mt-6 text-right text-sm text-slate-500">
+            Version 2.0.0
           </div>
 
         </div>

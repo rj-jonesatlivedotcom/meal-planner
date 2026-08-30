@@ -4768,7 +4768,7 @@ export const recipes: Recipe[] = [
     protein: "29 g",
     equipment: "Roasting tin, saucepan, colander, grill or oven, knife",
     ingredients: [
-      { item: "Boneless leg of lamb", shoppingItem: "Lamb", quantity: "95 g" },
+      { item: "Boneless leg of lamb", shoppingItem: "Boneless leg of lamb", quantity: "95 g" },
       { item: "Fresh rosemary", shoppingItem: "Rosemary", quantity: "sprig" },
       { item: "Garlic", shoppingItem: "Garlic", quantity: "¼ clove" },
       { item: "Onion", shoppingItem: "Onion", quantity: "¼" },
@@ -4821,7 +4821,7 @@ export const recipes: Recipe[] = [
     equipment: "Saucepan, frying pan, ovenproof dish, grill, knife",
     ingredients: [
       { item: "White potatoes", shoppingItem: "Potatoes", quantity: "100 g" },
-      { item: "Diced lamb leg steak", shoppingItem: "Lamb", quantity: "125 g" },
+      { item: "Diced lamb leg steak", shoppingItem: "Diced lamb leg steak", quantity: "125 g" },
       { item: "Oil", shoppingItem: "Sunflower oil", quantity: "¾ tsp" },
       { item: "Leek", shoppingItem: "Leek", quantity: "¼" },
       { item: "Fresh rosemary", shoppingItem: "Rosemary", quantity: "½ sprig" },
@@ -4868,7 +4868,7 @@ export const recipes: Recipe[] = [
     protein: "22 g",
     equipment: "Wok or frying pan, saucepan, bowls, knife",
     ingredients: [
-      { item: "Pork chop or pork mince", shoppingItem: "Pork", quantity: "100 g" },
+      { item: "Pork chop", shoppingItem: "Pork chop", quantity: "100 g" },
       { item: "Celery", shoppingItem: "Celery", quantity: "50 g" },
       { item: "Onion", shoppingItem: "Onion", quantity: "½" },
       { item: "Carrot", shoppingItem: "Carrot", quantity: "½" },

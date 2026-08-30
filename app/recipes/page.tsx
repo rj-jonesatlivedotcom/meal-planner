@@ -31,6 +31,7 @@ export default function RecipesPage() {
     "Chicken",
     "Beef",
     "Pork",
+    "Lamb",
     "Fish",
     "Vegetarian",
   ];
@@ -47,6 +48,7 @@ export default function RecipesPage() {
     Chicken: "🍗",
     Beef: "🥩",
     Pork: "🐷",
+    Lamb: "🐑",
     Fish: "🐟",
     Vegetarian: "🥕",
   };
@@ -252,6 +254,50 @@ export default function RecipesPage() {
     return "Other";
   }
 
+  function getProteinType(recipe: (typeof recipes)[number]) {
+    const category = recipe.category?.toLowerCase() ?? "";
+    const ingredientText = recipe.ingredients
+      .map((ingredient) => ingredient.item.toLowerCase())
+      .join(" ");
+
+    if (category === "lamb" || ingredientText.includes("lamb")) {
+      return "Lamb";
+    }
+
+    if (
+      category === "fish" ||
+      ingredientText.includes("salmon") ||
+      ingredientText.includes("tuna") ||
+      ingredientText.includes("cod") ||
+      ingredientText.includes("haddock") ||
+      ingredientText.includes("mackerel") ||
+      ingredientText.includes("trout")
+    ) {
+      return "Fish";
+    }
+
+    if (category === "pork" || ingredientText.includes("pork")) {
+      return "Pork";
+    }
+
+    if (category === "beef" || ingredientText.includes("beef")) {
+      return "Beef";
+    }
+
+    if (
+      category === "chicken" ||
+      ingredientText.includes("chicken")
+    ) {
+      return "Chicken";
+    }
+
+    if (category === "vegetarian") {
+      return "Vegetarian";
+    }
+
+    return category;
+  }
+
   const searchWords = searchText
     .toLowerCase()
     .trim()
@@ -284,7 +330,7 @@ export default function RecipesPage() {
 
       const matchesProtein =
         selectedProtein === "All" ||
-        recipe.category === selectedProtein;
+        getProteinType(recipe) === selectedProtein;
 
       let matchesFavourite = true;
 

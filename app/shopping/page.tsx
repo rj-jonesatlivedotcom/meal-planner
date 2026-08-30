@@ -341,6 +341,8 @@ function normaliseUnit(unit: string): string {
     teaspoons: "tsp",
     tablespoon: "tbsp",
     tablespoons: "tbsp",
+    sprig: "sprig",
+    sprigs: "sprig",
     cloves: "clove",
   };
 
@@ -421,6 +423,10 @@ function formatQuantity(amount: number, unit: string): string {
   if (u === "clove") {
     const wholeCloves = Math.ceil(n);
     return `${wholeCloves} clove${wholeCloves === 1 ? "" : "s"}`;
+  }
+
+  if (u === "sprig") {
+    return `${a} sprig${n === 1 ? "" : "s"}`;
   }
 
   if (u === "lemon") {
@@ -547,6 +553,17 @@ function normaliseIngredient(raw: string): string {
     return "Lettuce";
   }
 
+  // Fresh tomatoes are combined under one shopping item.
+  if (/^tomatoes?$/.test(lower)) {
+    return "Tomato";
+  }
+
+  // Chopped tomatoes are a separate purchased product from fresh tomatoes.
+  // Treat both singular/plural and tinned/non-tinned wording consistently.
+  if (/^(?:tinned\s+)?chopped tomatoes?$/.test(lower)) {
+    return "Tinned chopped tomatoes";
+  }
+
   if (/^breakfast muffins?$/.test(lower)) {
     return "Breakfast muffins";
   }
@@ -559,6 +576,10 @@ function normaliseIngredient(raw: string): string {
     return "Lamb";
   }
 
+  if (lower === "salmon" || lower === "salmon fillet" || lower === "salmon fillets") {
+    return "Salmon fillet";
+  }
+
   if (
     lower.includes("pork sausages") ||
     lower.includes("light pork sausages") ||
@@ -569,6 +590,19 @@ function normaliseIngredient(raw: string): string {
 
   if (lower === "tinned tuna" || lower === "tuna") {
     return "Tinned Tuna";
+  }
+
+  if (
+    lower === "beef mince" ||
+    lower === "beef mince (5%)" ||
+    lower === "beef mince 5%" ||
+    lower === "beef mince 5% fat" ||
+    lower === "lean beef mince" ||
+    lower === "lean beef mince 5%" ||
+    lower === "lean beef mince (5%)" ||
+    lower === "lean beef mince (5% fat)"
+  ) {
+    return "Beef mince (5% fat)";
   }
 
   if (lower === "pepper") {
@@ -636,6 +670,14 @@ function normaliseIngredient(raw: string): string {
 
   if (lower === "fresh chives" || lower === "fresh chives chopped" || lower === "chives") {
     return "Chives";
+  }
+
+  if (lower === "coriander" || lower === "fresh coriander") {
+    return "Fresh coriander";
+  }
+
+  if (lower === "dried coriander") {
+    return "Dried coriander";
   }
 
   return value;
@@ -859,6 +901,11 @@ function normaliseShoppingQuantity(
     return decimalToFraction(parsed.amount);
   }
 
+  if (lower === "fresh coriander") {
+    if (parsed.unit === "tsp") return formatQuantity(parsed.amount, "sprig");
+    if (parsed.unit === "tbsp") return formatQuantity(parsed.amount * 3, "sprig");
+  }
+
   if (lower === "natural yoghurt") {
     let tsp = 0;
 
@@ -992,6 +1039,12 @@ function combineQuantity(
     return decimalToFraction(a.amount + b.amount);
   }
 
+  if (lower === "fresh coriander") {
+    if (a.unit === "sprig" && b.unit === "sprig") {
+      return formatQuantity(a.amount + b.amount, "sprig");
+    }
+  }
+
   if (lower === "lemon") {
     // Juice and zest from the same physical lemon can be shared.
     return decimalToFraction(Math.max(a.amount, b.amount));
@@ -1089,6 +1142,14 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
     return {
       item: name,
       quantity: `${decimalToFraction(rounded)} tsp`,
+    };
+  }
+
+  if (lower === "fresh coriander" && parsed.unit === "sprig") {
+    const rounded = Math.max(0.25, Math.round(parsed.amount * 4) / 4);
+    return {
+      item: "Fresh coriander",
+      quantity: formatQuantity(rounded, "sprig"),
     };
   }
 
@@ -1195,6 +1256,12 @@ function getCategory(item: string): string {
     lower === "white pepper"
   ) {
     return "🧂 Herbs & Spices";
+  }
+
+  // Tinned chopped tomatoes are a cupboard item regardless of the
+  // "tomato" keyword also matching the fresh-produce category.
+  if (lower === "tinned chopped tomatoes") {
+    return "🥫 Cupboard";
   }
 
   // Stock and gravy are cupboard items regardless of the meat/fish named
@@ -1633,7 +1700,7 @@ export default function ShoppingPage() {
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-sky-50 px-4 py-5 md:px-6 md:py-6">
       <div className="mx-auto md:max-w-[1400px]">
       <div className="bg-white rounded-xl shadow p-6 md:rounded-2xl md:border md:border-slate-200 md:shadow-sm md:p-7">
-        <div className="flex flex-nowrap items-center justify-between gap-4 mb-6 md:mb-7">
+        <div className="flex flex-col items-stretch gap-4 mb-6 md:mb-7 md:flex-row md:flex-nowrap md:items-center md:justify-between md:gap-4">
           <div>
             <h2 className="text-xl font-semibold whitespace-nowrap text-slate-900 md:text-lg">
               Cooking for:
@@ -1655,10 +1722,10 @@ export default function ShoppingPage() {
           </div>
 
           {selectedRecipes.length > 0 && (
-            <div className="flex min-w-0 flex-col items-end text-sm text-slate-500 text-right">
+            <div className="flex min-w-0 flex-col items-stretch text-sm text-slate-500 text-left sm:items-end sm:text-right">
               <button
                 onClick={uncheckAll}
-                className="whitespace-nowrap rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-600"
+                className="w-full whitespace-nowrap rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-600 sm:w-auto"
               >
                 Clear Checked
                 <span className="ml-2">→</span>

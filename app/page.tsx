@@ -6,9 +6,9 @@ const steps = [
     title: "My Requirements",
     description: (
       <>
-        Tell us what you need to manage.
+        Tell us about your dietary
         <br />
-        You choose what matters to you.
+        restrictions.
       </>
     ),
     href: "/requirements",
@@ -33,7 +33,7 @@ const steps = [
       <>
         Browse kidney-friendly recipes that match your requirements
         <br className="hidden xl:block" />
-        {" "}or discover ideas.
+        {" "}
       </>
     ),
     href: "/recipes",
@@ -72,7 +72,7 @@ const steps = [
     title: "Weekly Planner",
     description: (
       <>
-        Choose your meals, plan your week and check how they fit
+        Plan your week's meal to fit
         <br className="hidden xl:block" />
         {" "}your nutritional goals.
       </>
@@ -116,9 +116,9 @@ const steps = [
     title: "Shopping List",
     description: (
       <>
-        Get your shopping list automatically from the meals you’ve
+        Your shopping list is automatically generated.
         <br className="hidden xl:block" />
-        {" "}planned.
+        {" "}
       </>
     ),
     href: "/shopping",

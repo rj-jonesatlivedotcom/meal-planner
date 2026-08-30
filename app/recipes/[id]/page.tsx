@@ -31,6 +31,33 @@ type PendingSlot = {
   meal: string;
 };
 
+type RecipeSource = {
+  name?: string;
+  url?: string;
+  logo?: string;
+  description?: string;
+  linkText?: string;
+};
+
+function getRecipeSource(recipe: typeof recipes[number]): RecipeSource | null {
+  const source = (recipe as typeof recipe & {
+    source?: RecipeSource;
+  }).source;
+
+  if (!source) {
+    return null;
+  }
+
+  if (source.name?.toLowerCase().startsWith("kidney care uk")) {
+    return {
+      ...source,
+      logo: "/images/kidneycareuk.svg",
+    };
+  }
+
+  return source;
+}
+
 function getDefaultMealType(code: string) {
   const firstLetter =
     code?.charAt(0).toUpperCase();
@@ -788,6 +815,64 @@ export default function RecipeDetailPage() {
 
         </section>
 
+        {/* Source */}
+        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
+            Source
+          </h2>
+
+          {getRecipeSource(recipe)?.url ? (
+            <a
+              href={getRecipeSource(recipe)?.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-5 rounded-xl bg-slate-50 p-5 transition hover:bg-slate-100"
+            >
+              {getRecipeSource(recipe)?.name?.toLowerCase().startsWith("kidney planner original") ? (
+                <span
+                  aria-label="GOV.UK"
+                  className="flex h-14 w-[120px] shrink-0 items-center justify-center bg-slate-900 px-3 text-2xl font-bold tracking-tight text-white"
+                >
+                  GOV.UK
+                </span>
+              ) : getRecipeSource(recipe)?.logo ? (
+                <Image
+                  src={getRecipeSource(recipe)?.logo ?? ""}
+                  alt={`${getRecipeSource(recipe)?.name ?? "Source"} logo`}
+                  width={120}
+                  height={60}
+                  className="h-14 w-auto object-contain"
+                />
+              ) : null}
+
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-slate-500">
+                  Recipe source
+                </p>
+                <p className="mt-1 text-base font-bold text-slate-900 group-hover:text-orange-600">
+                  {getRecipeSource(recipe)?.name ?? "View source recipe"}
+                </p>
+                <p className="mt-1 text-sm text-slate-600">
+                  {getRecipeSource(recipe)?.description ??
+                    "View the original recipe on the source website"}{" "}
+                  {getRecipeSource(recipe)?.linkText
+                    ? `• ${getRecipeSource(recipe)?.linkText}`
+                    : "↗"}
+                </p>
+              </div>
+            </a>
+          ) : (
+            <div className="rounded-xl bg-slate-50 p-5">
+              <p className="text-base font-semibold text-slate-900">
+                Source reference to be added
+              </p>
+              <p className="mt-1 text-sm leading-6 text-slate-600">
+                The source information for this recipe will be added when available.
+              </p>
+            </div>
+          )}
+        </section>
+
       </div>
 
       <div className="lg:hidden">
@@ -1028,6 +1113,62 @@ export default function RecipeDetailPage() {
         )}
 
       </div>
+
+      {/* Source */}
+      <h2 className="mb-2 mt-8 text-xl font-bold">
+        Source
+      </h2>
+
+      {getRecipeSource(recipe)?.url ? (
+        <a
+          href={getRecipeSource(recipe)?.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-4 rounded-lg border p-4 transition hover:bg-slate-50"
+        >
+          {getRecipeSource(recipe)?.name?.toLowerCase().startsWith("kidney planner original") ? (
+            <span
+              aria-label="GOV.UK"
+              className="flex h-12 w-[100px] shrink-0 items-center justify-center bg-slate-900 px-2 text-xl font-bold tracking-tight text-white"
+            >
+              GOV.UK
+            </span>
+          ) : getRecipeSource(recipe)?.logo ? (
+            <Image
+              src={getRecipeSource(recipe)?.logo ?? ""}
+              alt={`${getRecipeSource(recipe)?.name ?? "Source"} logo`}
+              width={100}
+              height={50}
+              className="h-12 w-auto object-contain"
+            />
+          ) : null}
+
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-slate-500">
+              Recipe source
+            </p>
+            <p className="mt-1 text-base font-bold text-slate-900">
+              {getRecipeSource(recipe)?.name ?? "View source recipe"} ↗
+            </p>
+            <p className="mt-1 text-sm text-slate-600">
+              {getRecipeSource(recipe)?.description ??
+                "View the original recipe on the source website"}
+              {getRecipeSource(recipe)?.linkText
+                ? ` • ${getRecipeSource(recipe)?.linkText}`
+                : ""}
+            </p>
+          </div>
+        </a>
+      ) : (
+        <div className="rounded-lg border p-4">
+          <p className="font-semibold text-slate-900">
+            Source reference to be added
+          </p>
+          <p className="mt-1 text-sm text-slate-600">
+            The source information for this recipe will be added when available.
+          </p>
+        </div>
+      )}
 
       {/* Back to Recipes */}
       <div className="mt-8">

@@ -33,6 +33,13 @@ export type Recipe = {
   purines: "Low" | "Moderate" | "High";
   dietaryNote?: string;
   servings: number;
+  source?: {
+  name: string;
+  url: string;
+  logo: string;
+  description?: string;
+  linkText?: string;
+};
 };
 
 export const recipes: Recipe[] = [
@@ -40,7 +47,14 @@ export const recipes: Recipe[] = [
     id: "chicken-sandwich",
     code: "L001",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥪",
     image: "/images/recipes/chicken-sandwich.png",
     name: "Chicken Sandwich",
@@ -83,7 +97,14 @@ export const recipes: Recipe[] = [
     id: "tuna-sweetcorn-sandwich",
     code: "L002",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥪",
     image: "/images/recipes/tuna-sweetcorn-sandwich.png",
     name: "Tuna & Sweetcorn Sandwich",
@@ -127,7 +148,14 @@ export const recipes: Recipe[] = [
     id: "chicken-tikka-sandwich",
     code: "L003",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥪",
     image: "/images/recipes/chicken-tikka-sandwich.png",
     name: "Chicken Tikka Sandwich",
@@ -176,7 +204,14 @@ export const recipes: Recipe[] = [
     id: "beef-sandwich",
     code: "L004",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥪",
     image: "/images/recipes/beef-sandwich.png",
     name: "Beef Sandwich",
@@ -219,7 +254,14 @@ export const recipes: Recipe[] = [
     id: "ham-cheese-sandwich",
     code: "L005",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥪",
     image: "/images/recipes/ham-cheese-sandwich.png",
     name: "Ham & Cheese Sandwich",
@@ -263,7 +305,14 @@ export const recipes: Recipe[] = [
     id: "jacket-potato-tuna",
     code: "L006",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥔",
     image: "/images/recipes/jacket-potato-tuna.png",
     name: "Jacket Potato with Tuna",
@@ -308,7 +357,14 @@ export const recipes: Recipe[] = [
     id: "jacket-potato-beef",
     code: "L007",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥔",
     image: "/images/recipes/jacket-potato-beef.png",
     name: "Jacket Potato with Beef",
@@ -353,7 +409,14 @@ export const recipes: Recipe[] = [
     id: "jacket-potato-beef-chilli",
     code: "L008",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥔",
     image: "/images/recipes/jacket-potato-beef-chilli.png",
     name: "Jacket Potato with Beef Chilli",
@@ -406,7 +469,14 @@ export const recipes: Recipe[] = [
     id: "beef-chilli-rice",
     code: "L009",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🌶️",
     image: "/images/recipes/beef-chilli-rice.png",
     name: "Beef Chilli with Rice",
@@ -456,7 +526,14 @@ export const recipes: Recipe[] = [
     id: "chicken-pasta-salad",
     code: "L010",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥗",
     image: "/images/recipes/chicken-pasta-salad.png",
     name: "Chicken Pasta Salad",
@@ -504,7 +581,14 @@ export const recipes: Recipe[] = [
     id: "cheese-on-toast",
     code: "L011",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🧀",
     image: "/images/recipes/cheese-on-toast.png",
     name: "Cheese on Toast",
@@ -546,7 +630,14 @@ export const recipes: Recipe[] = [
     id: "beans-on-toast",
     code: "L012",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🍞",
     image: "/images/recipes/beans-on-toast.png",
     name: "Beans on Toast",
@@ -588,7 +679,14 @@ export const recipes: Recipe[] = [
     id: "tuna-melt",
     code: "L013",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🐟",
     image: "/images/recipes/tuna-melt.png",
     name: "Tuna Melt",
@@ -632,7 +730,14 @@ export const recipes: Recipe[] = [
     id: "bacon-on-toast",
     code: "L014",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥓",
     image: "/images/recipes/bacon-on-toast.png",
     name: "Bacon on Toast",
@@ -674,7 +779,14 @@ export const recipes: Recipe[] = [
     id: "egg-on-toast",
     code: "L015",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🍳",
     image: "/images/recipes/egg-on-toast.png",
     name: "Egg on Toast",
@@ -716,7 +828,14 @@ export const recipes: Recipe[] = [
     id: "cheese-and-beans-on-toast",
     code: "L016",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🧀",
     image: "/images/recipes/cheese-and-beans-on-toast.png",
     name: "Cheese & Beans on Toast",
@@ -760,7 +879,14 @@ export const recipes: Recipe[] = [
     id: "ham-and-cheese-toastie",
     code: "L017",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🥪",
     image: "/images/recipes/ham-and-cheese-toastie.png",
     name: "Ham & Cheese Toastie",
@@ -802,7 +928,14 @@ export const recipes: Recipe[] = [
     id: "plain-omelette",
     code: "L018",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🍳",
     image: "/images/recipes/plain-omelette.png",
     name: "Plain Omelette",
@@ -844,7 +977,14 @@ export const recipes: Recipe[] = [
     id: "cheese-and-ham-omelette",
     code: "L019",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🧀",
     image: "/images/recipes/cheese-and-ham-omelette.png",
     name: "Cheese & Ham Omelette",
@@ -888,7 +1028,14 @@ export const recipes: Recipe[] = [
     id: "egg-and-chips",
     code: "L020",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🍳",
     image: "/images/recipes/egg-and-chips.png",
     name: "Egg & Chips",
@@ -930,7 +1077,14 @@ export const recipes: Recipe[] = [
     id: "chicken-curry",
     code: "D001",
     servings: 1,
-    category: "Chicken",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Chicken",
     emoji: "🍛",
     image: "/images/recipes/chicken-curry.png",
     name: "Chicken Curry",
@@ -974,15 +1128,15 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Tomato purée",
-        quantity: "1½ tsp",
+        shoppingItem: "Tomato purée", quantity: "1½ tsp",
       },
       {
         item: "Passata",
-        quantity: "100 g",
+        shoppingItem: "Passata", quantity: "100 g",
       },
       {
         item: "Reduced-salt chicken stock",
-        quantity: "50 ml",
+        shoppingItem: "Reduced-salt chicken stock", quantity: "50 ml",
       },
       {
         item: "Green beans, trimmed and cut into bite-sized pieces",
@@ -991,15 +1145,15 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Dry basmati rice",
-        quantity: "75 g",
+        shoppingItem: "Basmati rice", quantity: "75 g",
       },
       {
         item: "Olive oil",
-        quantity: "1½ tsp",
+        shoppingItem: "Olive oil", quantity: "1½ tsp",
       },
       {
         item: "Freshly ground black pepper",
-        quantity: "To taste",
+        shoppingItem: "Black pepper", quantity: "To taste",
       },
     ],
 
@@ -1035,6 +1189,11 @@ export const recipes: Recipe[] = [
     id: "cottage-pie",
     code: "D002",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Hearty cottage pie",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/hearty-cottage-pie/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Beef",
     emoji: "🥧",
     image: "/images/recipes/cottage-pie.png",
@@ -1134,14 +1293,21 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Moderate",
   purines: "Moderate",
-  dietaryNote: "Potato, beef and peas make this a more moderate renal-diet choice.",
+  dietaryNote: "Potato, beef and peas make this a more moderate renal-diet choice. Source audit: Kidney Care UK — Hearty cottage pie is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
   },
 
 {
     id: "chicken-arrabbiata",
     code: "D003",
     servings: 1,
-    category: "Chicken",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Chicken",
     emoji: "🍝",
     image: "/images/recipes/chicken-arrabbiata.png",
     name: "Chicken Arrabbiata Pasta",
@@ -1190,23 +1356,23 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Passata",
-        quantity: "100 g",
+        shoppingItem: "Passata", quantity: "100 g",
       },
       {
         item: "Reduced-salt chicken stock",
-        quantity: "50 ml",
+        shoppingItem: "Reduced-salt chicken stock", quantity: "50 ml",
       },
       {
         item: "Dried chilli flakes",
-        quantity: "¼ tsp",
+        shoppingItem: "Dried chilli flakes", quantity: "¼ tsp",
       },
       {
         item: "Olive oil",
-        quantity: "1½ tsp",
+        shoppingItem: "Olive oil", quantity: "1½ tsp",
       },
       {
         item: "Freshly ground black pepper",
-        quantity: "To taste",
+        shoppingItem: "Black pepper", quantity: "To taste",
       },
     ],
 
@@ -1241,7 +1407,12 @@ export const recipes: Recipe[] = [
   id: "spaghetti-bolognese",
   code: "D004",
     servings: 1,
-  category: "Beef",
+
+    source: {
+      name: "Kidney Care UK — Pasta Bolognese",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/pasta-bolognese/",
+      logo: "/images/kidneycareuk.svg",
+    },  category: "Beef",
   emoji: "🍝",
   image: "/images/recipes/spaghetti-bolognese.png",
   name: "Spaghetti Bolognese",
@@ -1261,11 +1432,11 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Lean beef mince (5% fat)",
-      quantity: "150 g",
+      shoppingItem: "Lean beef mince", quantity: "150 g",
     },
     {
       item: "Dried spaghetti",
-      quantity: "75 g",
+      shoppingItem: "Spaghetti", quantity: "75 g",
     },
     {
       item: "Large onion, finely diced",
@@ -1284,19 +1455,19 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Tomato purée",
-      quantity: "1½ tsp",
+      shoppingItem: "Tomato purée", quantity: "1½ tsp",
     },
     {
       item: "Passata",
-      quantity: "100 g",
+      shoppingItem: "Passata", quantity: "100 g",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "½ tsp",
+      shoppingItem: "Dried mixed herbs", quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -1323,13 +1494,20 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Low",
   purines: "Moderate",
-  dietaryNote: "Beef makes this moderate in purines; the tomato base also raises potassium.",
+  dietaryNote: "Beef makes this moderate in purines; the tomato base also raises potassium. Source audit: Kidney Care UK — Pasta Bolognese is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
 },
 {
   id: "lemon-herb-chicken-tray-bake",
   code: "D005",
     servings: 1,
-  category: "Chicken",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },  category: "Chicken",
   emoji: "🍗",
   image: "/images/recipes/lemon-herb-chicken.png",
   name: "Lemon & Herb Chicken Tray Bake",
@@ -1369,7 +1547,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Olive oil",
-      quantity: "1½ tsp",
+      shoppingItem: "Olive oil", quantity: "1½ tsp",
     },
     {
       item: "Lemon juice",
@@ -1383,11 +1561,11 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Dried mixed herbs",
-      quantity: "½ tsp",
+      shoppingItem: "Dried mixed herbs", quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -1417,7 +1595,12 @@ export const recipes: Recipe[] = [
   id: "chicken-fajitas",
   code: "D006",
     servings: 1,
-  category: "Chicken",
+
+    source: {
+      name: "Kidney Care UK — Chicken fajitas",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chicken-fajitas/",
+      logo: "/images/kidneycareuk.svg",
+    },  category: "Chicken",
   emoji: "🌯",
   image: "/images/recipes/chicken-fajitas.png",
   name: "Chicken Fajitas",
@@ -1442,7 +1625,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "White Tortilla Wraps",
-      quantity: "2",
+      shoppingItem: "White Tortilla Wraps", quantity: "2",
     },
     {
       item: "Large onion, sliced",
@@ -1461,11 +1644,11 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Olive oil",
-      quantity: "1½ tsp",
+      shoppingItem: "Olive oil", quantity: "1½ tsp",
     },
     {
       item: "Ready-made mild fajita seasoning",
-      quantity: "1 tsp",
+      shoppingItem: "Ready-made mild fajita seasoning", quantity: "1 tsp",
     },
     {
       item: "Lime juice",
@@ -1474,7 +1657,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -1505,7 +1688,14 @@ export const recipes: Recipe[] = [
   id: "roast-chicken-dinner",
   code: "D007",
     servings: 1,
-  category: "Chicken",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },  category: "Chicken",
   emoji: "🍗",
   image: "/images/recipes/roast-chicken-dinner.png",
   name: "Roast Chicken Dinner",
@@ -1540,7 +1730,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Frozen peas",
-      quantity: "37.5 g",
+      shoppingItem: "Frozen peas", quantity: "37.5 g",
     },
     {
       item: "Red onion, cut into wedges",
@@ -1549,19 +1739,19 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Olive oil",
-      quantity: "1½ tsp",
+      shoppingItem: "Olive oil", quantity: "1½ tsp",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "½ tsp",
+      shoppingItem: "Dried mixed herbs", quantity: "½ tsp",
     },
     {
       item: "Reduced-salt chicken gravy",
-      quantity: "75 ml",
+      shoppingItem: "Reduced-salt chicken gravy", quantity: "75 ml",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -1592,7 +1782,14 @@ export const recipes: Recipe[] = [
   id: "honey-mustard-chicken",
   code: "D008",
     servings: 1,
-  category: "Chicken",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },  category: "Chicken",
   emoji: "🍯",
   image: "/images/recipes/honey-mustard-chicken.png",
   name: "Honey & Mustard Chicken",
@@ -1632,23 +1829,23 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Olive oil",
-      quantity: "1½ tsp",
+      shoppingItem: "Olive oil", quantity: "1½ tsp",
     },
     {
       item: "Clear honey",
-      quantity: "1 tsp",
+      shoppingItem: "Clear honey", quantity: "1 tsp",
     },
     {
       item: "Dijon mustard",
-      quantity: "1 tsp",
+      shoppingItem: "Dijon mustard", quantity: "1 tsp",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "½ tsp",
+      shoppingItem: "Dried mixed herbs", quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -1679,7 +1876,14 @@ export const recipes: Recipe[] = [
   id: "homemade-beef-burgers",
   code: "D009",
     servings: 1,
-  category: "Beef",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },  category: "Beef",
   emoji: "🍔",
   image: "/images/recipes/homemade-beef-burgers.png",
   name: "Homemade Beef Burgers",
@@ -1699,11 +1903,11 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Lean beef mince (5% fat)",
-      quantity: "150 g",
+      shoppingItem: "Lean beef mince", quantity: "150 g",
     },
     {
       item: "Small white burger bun",
-      quantity: "1",
+      shoppingItem: "white burger bun", quantity: "1",
     },
     {
       item: "Floury potatoes, cut into wedges",
@@ -1717,19 +1921,19 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Olive oil",
-      quantity: "1½ tsp",
+      shoppingItem: "Olive oil", quantity: "1½ tsp",
     },
     {
       item: "Tomato purée",
-      quantity: "1 tsp",
+      shoppingItem: "Tomato purée", quantity: "1 tsp",
     },
     {
       item: "Worcestershire sauce",
-      quantity: "½ tsp",
+      shoppingItem: "Worcestershire sauce", quantity: "½ tsp",
     },
     {
       item: "Lettuce leaf",
-      quantity: "1 leaf",
+      shoppingItem: "Lettuce", quantity: "1 leaf",
     },
     {
       item: "Tomato slices",
@@ -1738,7 +1942,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -1771,7 +1975,14 @@ export const recipes: Recipe[] = [
   id: "beef-meatballs-tomato-herb-sauce",
   code: "D010",
     servings: 1,
-  category: "Beef",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },  category: "Beef",
   emoji: "🍝",
   image: "/images/recipes/beef-meatballs.png",
   name: "Beef Meatballs in Tomato & Herb Sauce",
@@ -1791,11 +2002,11 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Lean beef mince (5% fat)",
-      quantity: "150 g",
+      shoppingItem: "Lean beef mince", quantity: "150 g",
     },
     {
       item: "Dried spaghetti",
-      quantity: "75 g",
+      shoppingItem: "Spaghetti", quantity: "75 g",
     },
     {
       item: "Large onion, finely diced",
@@ -1809,23 +2020,23 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Tomato purée",
-      quantity: "1½ tsp",
+      shoppingItem: "Tomato purée", quantity: "1½ tsp",
     },
     {
       item: "Passata",
-      quantity: "100 g",
+      shoppingItem: "Passata", quantity: "100 g",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "½ tsp",
+      shoppingItem: "Dried mixed herbs", quantity: "½ tsp",
     },
     {
       item: "Worcestershire sauce",
-      quantity: "½ tsp",
+      shoppingItem: "Worcestershire sauce", quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -1860,7 +2071,12 @@ export const recipes: Recipe[] = [
   id: "chilli-con-carne",
   code: "D011",
     servings: 1,
-  category: "Beef",
+
+    source: {
+      name: "Kidney Care UK — Chilli con carne with rice",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chilli-con-carne-with-rice/",
+      logo: "/images/kidneycareuk.svg",
+    },  category: "Beef",
   emoji: "🌶️",
   image: "/images/recipes/chilli-con-carne.png",
   name: "Chilli Con Carne",
@@ -1880,11 +2096,11 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Lean beef mince (5% fat)",
-      quantity: "150 g",
+      shoppingItem: "Lean beef mince", quantity: "150 g",
     },
     {
       item: "Dry basmati rice",
-      quantity: "75 g",
+      shoppingItem: "Basmati rice", quantity: "75 g",
     },
     {
       item: "Large onion, diced",
@@ -1903,19 +2119,19 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Tomato purée",
-      quantity: "1½ tsp",
+      shoppingItem: "Tomato purée", quantity: "1½ tsp",
     },
     {
       item: "Passata",
-      quantity: "100 g",
+      shoppingItem: "Passata", quantity: "100 g",
     },
     {
       item: "Mild chilli seasoning",
-      quantity: "1 tsp",
+      shoppingItem: "Mild chilli seasoning", quantity: "1 tsp",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -1944,12 +2160,17 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Moderate",
   purines: "Moderate",
-  dietaryNote: "Beef and tomato make this a more moderate renal-diet choice.",
+  dietaryNote: "Beef and tomato make this a more moderate renal-diet choice. Source audit: Kidney Care UK — Chilli con carne with rice is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
 },{
   id: "sausage-mash-onion-gravy",
   code: "D012",
     servings: 1,
-  category: "Pork",
+
+    source: {
+      name: "Kidney Care UK — Sausage and mash",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/sausage-and-mash/",
+      logo: "/images/kidneycareuk.svg",
+    },  category: "Pork",
   emoji: "🌭",
   image: "/images/recipes/sausage-mash-onion-gravy.png",
   name: "Sausage & Mash with Onion Gravy",
@@ -1969,7 +2190,7 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Quality pork sausages",
-      quantity: "2 (approximately 120 g total)",
+      shoppingItem: "Quality pork sausages", quantity: "2 (approximately 120 g total)",
     },
     {
       item: "Floury potatoes, peeled and chopped",
@@ -1978,11 +2199,11 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large onion, thinly sliced",
-      quantity: "¼",
+      shoppingItem: "onion", quantity: "¼",
     },
     {
       item: "Frozen peas",
-      quantity: "37.5 g",
+      shoppingItem: "Frozen peas", quantity: "37.5 g",
     },
     {
       item: "Butter", shoppingItem: "Unsalted Butter",
@@ -1990,15 +2211,15 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Semi-skimmed milk",
-      quantity: "15 ml",
+      shoppingItem: "Semi-skimmed milk", quantity: "15 ml",
     },
     {
       item: "Reduced-salt onion gravy",
-      quantity: "75 ml",
+      shoppingItem: "Reduced-salt onion gravy", quantity: "75 ml",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -2030,7 +2251,14 @@ export const recipes: Recipe[] = [
   id: "salmon-lemon-herbs",
   code: "D013",
     servings: 1,
-  category: "Fish",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },  category: "Fish",
   emoji: "🐟",
   image: "/images/recipes/salmon-lemon-herbs.png",
   name: "Salmon with Lemon & Herbs",
@@ -2050,7 +2278,7 @@ export const recipes: Recipe[] = [
   ingredients: [
     {
       item: "Salmon fillet",
-      quantity: "150 g",
+      shoppingItem: "Salmon fillet", quantity: "150 g",
     },
     {
       item: "Floury potatoes, cut into bite-sized chunks",
@@ -2064,11 +2292,11 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Red onion, cut into wedges",
-      quantity: "¼",
+      shoppingItem: "Red onion", quantity: "¼",
     },
     {
       item: "Olive oil",
-      quantity: "1½ tsp",
+      shoppingItem: "Olive oil", quantity: "1½ tsp",
     },
     {
       item: "Lemon juice",
@@ -2082,11 +2310,11 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Dried mixed herbs",
-      quantity: "½ tsp",
+      shoppingItem: "Dried mixed herbs", quantity: "½ tsp",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -2116,7 +2344,14 @@ export const recipes: Recipe[] = [
   id: "tuna-pasta-bake",
   code: "D014",
     servings: 1,
-  category: "Fish",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },  category: "Fish",
   emoji: "🐟",
   image: "/images/recipes/tuna-pasta-bake.png",
   name: "Tuna Pasta Bake",
@@ -2146,7 +2381,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Large onion, finely diced",
-      quantity: "¼",
+      shoppingItem: "onion", quantity: "¼",
     },
     {
       item: "Red pepper, diced",
@@ -2160,23 +2395,23 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Tomato purée",
-      quantity: "1½ tsp",
+      shoppingItem: "Tomato purée", quantity: "1½ tsp",
     },
     {
       item: "Passata",
-      quantity: "100 g",
+      shoppingItem: "Passata", quantity: "100 g",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "½ tsp",
+      shoppingItem: "Dried mixed herbs", quantity: "½ tsp",
     },
     {
       item: "Reduced-fat Cheddar cheese, grated",
-      quantity: "15 g",
+      shoppingItem: "Reduced-fat Cheddar cheese", quantity: "15 g",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -2211,7 +2446,14 @@ export const recipes: Recipe[] = [
   id: "mediterranean-chicken",
   code: "D015",
     servings: 1,
-  category: "Chicken",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },  category: "Chicken",
   emoji: "🍅",
   image: "/images/recipes/mediterranean-chicken.png",
   name: "Mediterranean Chicken",
@@ -2236,7 +2478,7 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Dry basmati rice",
-      quantity: "75 g",
+      shoppingItem: "Basmati rice", quantity: "75 g",
     },
     {
       item: "Large red onion, diced",
@@ -2255,23 +2497,23 @@ export const recipes: Recipe[] = [
     },
     {
       item: "Passata",
-      quantity: "100 g",
+      shoppingItem: "Passata", quantity: "100 g",
     },
     {
       item: "Tomato purée",
-      quantity: "1½ tsp",
+      shoppingItem: "Tomato purée", quantity: "1½ tsp",
     },
     {
       item: "Dried mixed herbs",
-      quantity: "½ tsp",
+      shoppingItem: "Dried mixed herbs", quantity: "½ tsp",
     },
     {
       item: "Olive oil",
-      quantity: "1½ tsp",
+      shoppingItem: "Olive oil", quantity: "1½ tsp",
     },
     {
       item: "Freshly ground black pepper",
-      quantity: "To taste",
+      shoppingItem: "Black pepper", quantity: "To taste",
     },
   ],
 
@@ -2307,7 +2549,14 @@ export const recipes: Recipe[] = [
     id: "lemon-herb-chicken-couscous",
     code: "D016",
     servings: 1,
-    category: "Chicken",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Chicken",
     emoji: "🍋",
     image: "/images/recipes/lemon-herb-chicken-couscous.png",
     name: "Lemon & Herb Chicken with Couscous",
@@ -2361,7 +2610,14 @@ export const recipes: Recipe[] = [
     id: "honey-garlic-chicken-rice",
     code: "D017",
     servings: 1,
-    category: "Chicken",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Chicken",
     emoji: "🍯",
     image: "/images/recipes/honey-garlic-chicken-rice.png",
     name: "Honey Garlic Chicken with Rice",
@@ -2418,7 +2674,12 @@ export const recipes: Recipe[] = [
     id: "chicken-tikka-rice",
     code: "D018",
     servings: 1,
-    category: "Chicken",
+
+    source: {
+      name: "Kidney Care UK — Chicken tikka pulao",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chicken-tikka-pulao/",
+      logo: "/images/kidneycareuk.svg",
+    },    category: "Chicken",
     emoji: "🍛",
     image: "/images/recipes/chicken-tikka-rice.png",
     name: "Chicken Tikka with Rice",
@@ -2470,13 +2731,20 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "Chicken and yoghurt contribute phosphate, while chicken contributes purines. White basmati rice provides the main carbohydrate without a large potassium contribution.",
+      "Chicken and yoghurt contribute phosphate, while chicken contributes purines. White basmati rice provides the main carbohydrate without a large potassium contribution. Source audit: Kidney Care UK — Chicken tikka pulao is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "chicken-pesto-pasta",
     code: "D019",
     servings: 1,
-    category: "Chicken",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Chicken",
     emoji: "🍝",
     image: "/images/recipes/chicken-pesto-pasta.png",
     name: "Chicken Pesto Pasta",
@@ -2530,7 +2798,14 @@ export const recipes: Recipe[] = [
     id: "beef-stroganoff-pasta",
     code: "D020",
     servings: 1,
-    category: "Beef",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Beef",
     emoji: "🥩",
     image: "/images/recipes/beef-stroganoff-pasta.png",
     name: "Beef Stroganoff with Pasta",
@@ -2590,7 +2865,14 @@ export const recipes: Recipe[] = [
     id: "beef-kofta-couscous",
     code: "D021",
     servings: 1,
-    category: "Beef",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Beef",
     emoji: "🥙",
     image: "/images/recipes/beef-kofta-couscous.png",
     name: "Beef Kofta with Couscous",
@@ -2646,7 +2928,14 @@ export const recipes: Recipe[] = [
     id: "steak-chips-green-beans",
     code: "D022",
     servings: 1,
-    category: "Beef",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Beef",
     emoji: "🥩",
     image: "/images/recipes/steak-chips-green-beans.png",
     name: "Steak, Chips & Green Beans",
@@ -2700,7 +2989,14 @@ export const recipes: Recipe[] = [
     id: "pork-apple-potatoes",
     code: "D023",
     servings: 1,
-    category: "Pork",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Pork",
     emoji: "🍎",
     image: "/images/recipes/pork-apple-potatoes.png",
     name: "Pork & Apple with Potatoes",
@@ -2752,7 +3048,12 @@ export const recipes: Recipe[] = [
     id: "pork-stir-fry-rice",
     code: "D024",
     servings: 1,
-    category: "Pork",
+
+    source: {
+      name: "Kidney Care UK — Double-cooked pork",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/double-cooked-pork/",
+      logo: "/images/kidneycareuk.svg",
+    },    category: "Pork",
     emoji: "🥢",
     image: "/images/recipes/pork-stir-fry-rice.png",
     name: "Pork Stir-Fry with Rice",
@@ -2805,12 +3106,17 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "Pork contributes phosphate and purines. White rice provides the main carbohydrate, while avoiding soy sauce keeps the dish lower in added salt.",
+      "Pork contributes phosphate and purines. White rice provides the main carbohydrate, while avoiding soy sauce keeps the dish lower in added salt. Source audit: Kidney Care UK — Double-cooked pork is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "sausage-tomato-pasta",
     code: "D025",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Arrabbiata pasta with sausages",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/arrabbiata-pasta-with-sausages/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Pork",
     emoji: "🌭",
     image: "/images/recipes/sausage-tomato-pasta.png",
@@ -2864,13 +3170,20 @@ export const recipes: Recipe[] = [
     phosphate: "High",
     purines: "High",
     dietaryNote:
-      "Sausages can contain considerable salt and phosphate additives, so choose a good-quality product and check the ingredient label.",
+      "Sausages can contain considerable salt and phosphate additives, so choose a good-quality product and check the ingredient label. Source audit: Kidney Care UK — Arrabbiata pasta with sausages is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "cod-herby-potatoes-green-beans",
     code: "D026",
     servings: 1,
-    category: "Fish",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Fish",
     emoji: "🐟",
     image: "/images/recipes/cod-herby-potatoes-green-beans.png",
     name: "Cod with Herby Potatoes & Green Beans",
@@ -2924,7 +3237,12 @@ export const recipes: Recipe[] = [
     id: "cod-couscous-vegetables",
     code: "D027",
     servings: 1,
-    category: "Fish",
+
+    source: {
+      name: "Kidney Care UK — Baked cod fillet, tabouli and tomato salsa",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/baked-cod-fillet-tabouli-and-tomato-salsa/",
+      logo: "/images/kidneycareuk.svg",
+    },    category: "Fish",
     emoji: "🐟",
     image: "/images/recipes/cod-couscous-vegetables.png",
     name: "Cod with Couscous & Vegetables",
@@ -2975,13 +3293,20 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "Cod contributes phosphate and purines, while the vegetables provide potassium. The recipe avoids processed sauces and stock cubes.",
+      "Cod contributes phosphate and purines, while the vegetables provide potassium. The recipe avoids processed sauces and stock cubes. Source audit: Kidney Care UK — Baked cod fillet, tabouli and tomato salsa is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "cod-tomato-rice",
     code: "D028",
     servings: 1,
-    category: "Fish",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Fish",
     emoji: "🐟",
     image: "/images/recipes/cod-tomato-rice.png",
     name: "Cod & Tomato Rice",
@@ -3040,7 +3365,14 @@ export const recipes: Recipe[] = [
     id: "vegetable-herb-couscous",
     code: "D029",
     servings: 1,
-    category: "Vegetarian",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Vegetarian",
     emoji: "🌱",
     image: "/images/recipes/vegetable-herb-couscous.png",
     name: "Vegetable & Herb Couscous",
@@ -3098,6 +3430,11 @@ export const recipes: Recipe[] = [
     id: "creamy-mushroom-garlic-pasta",
     code: "D030",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Mushroom and courgette stroganoff",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/mushroom-and-courgette-stroganoff/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Vegetarian",
     emoji: "🍄",
     image: "/images/recipes/creamy-mushroom-garlic-pasta.png",
@@ -3146,13 +3483,20 @@ export const recipes: Recipe[] = [
     phosphate: "High",
     purines: "Low",
     dietaryNote:
-      "This vegetarian recipe is relatively low in purines because it contains no meat, fish or pulses. Mushrooms contribute potassium and the crème fraîche contributes some phosphate.",
+      "This vegetarian recipe is relatively low in purines because it contains no meat, fish or pulses. Mushrooms contribute potassium and the crème fraîche contributes some phosphate. Source audit: Kidney Care UK — Mushroom and courgette stroganoff is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
   },
       {
     id: "apple-cinnamon-french-toast",
     code: "B001",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🍎",
     image: "/images/recipes/apple-cinnamon-french-toast.png",
     name: "Apple & Cinnamon French Toast",
@@ -3180,15 +3524,15 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Ground cinnamon",
-        quantity: "½ tsp",
+        shoppingItem: "Ground cinnamon", quantity: "½ tsp",
       },
       {
         item: "Olive oil",
-        quantity: "¼ tsp",
+        shoppingItem: "Olive oil", quantity: "¼ tsp",
       },
       {
         item: "Maple syrup",
-        quantity: "¼ tsp",
+        shoppingItem: "Maple syrup", quantity: "¼ tsp",
       },
     ],
     method: [
@@ -3218,6 +3562,11 @@ export const recipes: Recipe[] = [
     id: "blueberry-lemon-pancakes",
     code: "B002",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Low potassium pancakes",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/low-potassium-pancakes/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Breakfast",
     emoji: "🥞",
     image: "/images/recipes/blueberry-lemon-pancakes.png",
@@ -3232,23 +3581,23 @@ export const recipes: Recipe[] = [
     ingredients: [
       {
         item: "Plain flour",
-        quantity: "70 g",
+        shoppingItem: "Plain flour", quantity: "70 g",
       },
       {
         item: "Egg white",
-        quantity: "1",
+        shoppingItem: "Egg whites", quantity: "1",
       },
       {
         item: "Water",
-        quantity: "100 ml",
+        shoppingItem: "Water", quantity: "100 ml",
       },
       {
         item: "Baking powder",
-        quantity: "¼ tsp",
+        shoppingItem: "Baking powder", quantity: "¼ tsp",
       },
       {
         item: "Caster sugar",
-        quantity: "¼ tbsp",
+        shoppingItem: "Caster sugar", quantity: "¼ tbsp",
       },
       {
         item: "Blueberries",
@@ -3262,11 +3611,11 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Olive oil",
-        quantity: "¼ tsp",
+        shoppingItem: "Olive oil", quantity: "¼ tsp",
       },
       {
         item: "Maple syrup",
-        quantity: "¼ tsp",
+        shoppingItem: "Maple syrup", quantity: "¼ tsp",
       },
     ],
     method: [
@@ -3289,14 +3638,21 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote:
-      "The blueberry portion is deliberately modest. Choose baking powder without phosphate additives where available.",
+      "The blueberry portion is deliberately modest. Choose baking powder without phosphate additives where available. Source audit: Kidney Care UK — Low potassium pancakes is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
   },
 
   {
     id: "scrambled-egg-pepper-toast",
     code: "B003",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🍳",
     image: "/images/recipes/scrambled-egg-red-pepper-toast.png",
     name: "Scrambled Egg & Red Pepper Toast",
@@ -3310,7 +3666,7 @@ export const recipes: Recipe[] = [
     ingredients: [
       {
         item: "Egg whites",
-        quantity: "4",
+        shoppingItem: "Egg whites", quantity: "4",
       },
       {
         item: "White bread, phosphate-additive-free",
@@ -3329,11 +3685,11 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Olive oil",
-        quantity: "¼ tsp",
+        shoppingItem: "Olive oil", quantity: "¼ tsp",
       },
       {
         item: "Freshly ground black pepper",
-        quantity: "To taste",
+        shoppingItem: "Black pepper", quantity: "To taste",
       },
     ],
     method: [
@@ -3363,7 +3719,14 @@ export const recipes: Recipe[] = [
     id: "strawberry-crumpets",
     code: "B004",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🍓",
     image: "/images/recipes/strawberry-crumpets.png",
     name: "Strawberry Breakfast Crumpets",
@@ -3391,11 +3754,11 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Maple syrup",
-        quantity: "¼ tsp",
+        shoppingItem: "Maple syrup", quantity: "¼ tsp",
       },
       {
         item: "Fresh mint",
-        quantity: "handful",
+        shoppingItem: "Fresh mint", quantity: "handful",
       },
     ],
     method: [
@@ -3424,7 +3787,14 @@ export const recipes: Recipe[] = [
     id: "apple-cinnamon-rice-breakfast",
     code: "B005",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🍚",
     image: "/images/recipes/apple-cinnamon-rice-pudding.png",
     name: "Apple & Cinnamon Breakfast Rice",
@@ -3443,7 +3813,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Water",
-        quantity: "120 ml",
+        shoppingItem: "Water", quantity: "120 ml",
       },
       {
         item: "Apple, peeled and diced",
@@ -3452,15 +3822,15 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Caster sugar",
-        quantity: "¼ tbsp",
+        shoppingItem: "Caster sugar", quantity: "¼ tbsp",
       },
       {
         item: "Ground cinnamon",
-        quantity: "½ tsp",
+        shoppingItem: "Ground cinnamon", quantity: "½ tsp",
       },
       {
         item: "Vanilla extract",
-        quantity: "½ tsp",
+        shoppingItem: "Vanilla extract", quantity: "½ tsp",
       },
     ],
     method: [
@@ -3488,7 +3858,14 @@ export const recipes: Recipe[] = [
     id: "egg-herb-breakfast-sandwich",
     code: "B006",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🥪",
     image: "/images/recipes/egg-herb-sandwich.png",
     name: "Egg & Herb Breakfast Sandwich",
@@ -3507,7 +3884,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Egg whites",
-        quantity: "4",
+        shoppingItem: "Egg whites", quantity: "4",
       },
       {
         item: "Red pepper, thinly sliced",
@@ -3521,7 +3898,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Mayonnaise",
-        quantity: "¼ tbsp",
+        shoppingItem: "Mayonnaise", quantity: "¼ tbsp",
       },
       {
         item: "Fresh chives, chopped",
@@ -3530,11 +3907,11 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Olive oil",
-        quantity: "½ tsp",
+        shoppingItem: "Olive oil", quantity: "½ tsp",
       },
       {
         item: "Freshly ground black pepper",
-        quantity: "To taste",
+        shoppingItem: "Black pepper", quantity: "To taste",
       },
     ],
     method: [
@@ -3565,7 +3942,14 @@ export const recipes: Recipe[] = [
     id: "lemon-blueberry-pancake-stack",
     code: "B007",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🫐",
     image: "/images/recipes/lemon-blueberry-pancake-stack.png",
     name: "Lemon & Blueberry Pancake Stack",
@@ -3579,23 +3963,23 @@ export const recipes: Recipe[] = [
     ingredients: [
       {
         item: "Plain flour",
-        quantity: "75 g",
+        shoppingItem: "Plain flour", quantity: "75 g",
       },
       {
         item: "Egg white",
-        quantity: "1",
+        shoppingItem: "Egg whites", quantity: "1",
       },
       {
         item: "Water",
-        quantity: "110 ml",
+        shoppingItem: "Water", quantity: "110 ml",
       },
       {
         item: "Baking powder",
-        quantity: "¼ tsp",
+        shoppingItem: "Baking powder", quantity: "¼ tsp",
       },
       {
         item: "Caster sugar",
-        quantity: "¼ tbsp",
+        shoppingItem: "Caster sugar", quantity: "¼ tbsp",
       },
       {
         item: "Blueberries",
@@ -3609,11 +3993,11 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Vegetable oil",
-        quantity: "¼ tsp",
+        shoppingItem: "Sunflower oil", quantity: "¼ tsp",
       },
       {
         item: "Maple syrup",
-        quantity: "½ tsp",
+        shoppingItem: "Maple syrup", quantity: "½ tsp",
       },
     ],
     method: [
@@ -3644,7 +4028,14 @@ export const recipes: Recipe[] = [
     id: "peach-vanilla-rice-bowl",
     code: "B008",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🍑",
     image: "/images/recipes/peach-vanilla-rice.png",
     name: "Peach & Vanilla Breakfast Rice Bowl",
@@ -3668,19 +4059,19 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Caster sugar",
-        quantity: "¼ tbsp",
+        shoppingItem: "Caster sugar", quantity: "¼ tbsp",
       },
       {
         item: "Vanilla extract",
-        quantity: "½ tsp",
+        shoppingItem: "Vanilla extract", quantity: "½ tsp",
       },
       {
         item: "Ground cinnamon",
-        quantity: "¼ tsp",
+        shoppingItem: "Ground cinnamon", quantity: "¼ tsp",
       },
       {
         item: "Water",
-        quantity: "50 ml",
+        shoppingItem: "Water", quantity: "50 ml",
       },
     ],
     method: [
@@ -3709,7 +4100,14 @@ export const recipes: Recipe[] = [
     id: "savoury-egg-pepper-wrap",
     code: "B009",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🌯",
     image: "/images/recipes/egg-pepper-wrap.png",
     name: "Savoury Egg & Pepper Breakfast Wrap",
@@ -3728,7 +4126,7 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Egg whites",
-        quantity: "3",
+        shoppingItem: "Egg whites", quantity: "3",
       },
       {
         item: "Red pepper, diced",
@@ -3747,11 +4145,11 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Olive oil",
-        quantity: "¼ tsp",
+        shoppingItem: "Olive oil", quantity: "¼ tsp",
       },
       {
         item: "Freshly ground black pepper",
-        quantity: "To taste",
+        shoppingItem: "Black pepper", quantity: "To taste",
       },
     ],
     method: [
@@ -3783,7 +4181,14 @@ export const recipes: Recipe[] = [
     id: "apple-blueberry-breakfast-toast",
     code: "B010",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🍏",
     image: "/images/recipes/apple-blueberry-toast.png",
     name: "Apple & Blueberry Breakfast Toast",
@@ -3816,11 +4221,11 @@ export const recipes: Recipe[] = [
       },
       {
         item: "Maple syrup",
-        quantity: "¼ tsp",
+        shoppingItem: "Maple syrup", quantity: "¼ tsp",
       },
       {
         item: "Ground cinnamon",
-        quantity: "½ tsp",
+        shoppingItem: "Ground cinnamon", quantity: "½ tsp",
       },
     ],
     method: [
@@ -3851,7 +4256,14 @@ export const recipes: Recipe[] = [
     id: "scrambled-eggs-on-toast",
     code: "B011",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🍳",
     image: "/images/recipes/scrambled-eggs-on-toast.png",
     name: "Scrambled Eggs on Toast",
@@ -3862,7 +4274,7 @@ export const recipes: Recipe[] = [
     protein: "18 g",
     equipment: "Non-stick frying pan, bowl, toaster, spatula",
     ingredients: [
-      { item: "Eggs", quantity: "2" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "White bread, phosphate-additive-free", shoppingItem: "White bread", quantity: "2 slices" },
       { item: "Butter", shoppingItem: "Unsalted Butter", quantity: "8 g" },
       { item: "Freshly ground black pepper", shoppingItem: "Black pepper", quantity: "To taste" },
@@ -3896,7 +4308,14 @@ export const recipes: Recipe[] = [
     id: "poached-eggs-on-toast",
     code: "B012",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🥚",
     image: "/images/recipes/poached-eggs-on-toast.png",
     name: "Poached Eggs on Toast",
@@ -3942,7 +4361,14 @@ export const recipes: Recipe[] = [
     id: "egg-and-soldiers",
     code: "B013",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🥚",
     image: "/images/recipes/egg-and-soldiers.png",
     name: "Egg & Soldiers",
@@ -3985,7 +4411,14 @@ export const recipes: Recipe[] = [
     id: "sausage-and-egg-breakfast-muffin",
     code: "B014",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🌭",
     image: "/images/recipes/sausage-and-egg-breakfast-muffin.png",
     name: "Sausage & Egg Breakfast Muffin",
@@ -4033,7 +4466,14 @@ export const recipes: Recipe[] = [
     id: "bacon-and-egg-toast",
     code: "B015",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🥓",
     image: "/images/recipes/bacon-and-egg-toast.png",
     name: "Bacon & Egg Toast",
@@ -4078,7 +4518,14 @@ export const recipes: Recipe[] = [
     id: "egg-and-cheese-crumpets",
     code: "B016",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🧀",
     image: "/images/recipes/egg-and-cheese-crumpets.png",
     name: "Egg & Cheese Crumpets",
@@ -4123,7 +4570,14 @@ export const recipes: Recipe[] = [
     id: "sausage-on-toast",
     code: "B017",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🌭",
     image: "/images/recipes/sausage-on-toast.png",
     name: "Sausage on Toast",
@@ -4165,7 +4619,14 @@ export const recipes: Recipe[] = [
     id: "egg-and-ham-breakfast-bagel",
     code: "B018",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🥯",
     image: "/images/recipes/egg-and-ham-breakfast-bagel.png",
     name: "Egg & Ham Breakfast Bagel",
@@ -4211,7 +4672,14 @@ export const recipes: Recipe[] = [
     id: "egg-and-pepper-breakfast-bagel",
     code: "B019",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Breakfast",
     emoji: "🥯",
     image: "/images/recipes/egg-and-pepper-breakfast-bagel.png",
     name: "Egg & Pepper Breakfast Bagel",
@@ -4258,7 +4726,12 @@ export const recipes: Recipe[] = [
     id: "apple-cinnamon-porridge",
     code: "B020",
     servings: 1,
-    category: "Breakfast",
+
+    source: {
+      name: "Kidney Care UK — Tasty breakfast porridge",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/tasty-breakfast-porridge/",
+      logo: "/images/kidneycareuk.svg",
+    },    category: "Breakfast",
     emoji: "🥣",
     image: "/images/recipes/apple-cinnamon-porridge.png",
     name: "Apple & Cinnamon Porridge",
@@ -4296,13 +4769,18 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote:
-      "Oats provide useful fibre but contain more potassium and phosphate than refined cereals. The recipe uses water rather than milk.",
+      "Oats provide useful fibre but contain more potassium and phosphate than refined cereals. The recipe uses water rather than milk. Source audit: Kidney Care UK — Tasty breakfast porridge is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
   },
 
   {
     id: "chicken-caesar-wraps",
     code: "L021",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Chicken Caesar Wraps",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chicken-caesar-wraps/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Lunch",
     emoji: "🌯",
     image: "/images/recipes/chicken-caesar-wraps.png",
@@ -4324,10 +4802,10 @@ export const recipes: Recipe[] = [
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "To taste" },
     ],
     method: [
-      "Shred the cooked chicken and place it in a bowl with the lettuce and garlic.",
-      "Add the Parmesan, mayonnaise and Worcestershire sauce and mix gently.",
-      "Spoon the mixture onto the tortilla, fold in the sides and roll tightly.",
-      "Serve immediately.",
+      "Shred the cooked chicken into strips and add it to a bowl with the chopped lettuce and crushed garlic.",
+      "Shave the Parmesan into the bowl, then add the mayonnaise and Worcestershire sauce and stir gently to combine. Season with black pepper.",
+      "Spoon the mixture onto the bottom half of the tortilla. Fold the bottom of the tortilla up and over the filling.",
+      "Make two folds on either side and roll the tortilla up tightly. Cut in half if preferred and serve immediately.",
     ],
     nutrition: {
       calories: "323 kcal",
@@ -4348,6 +4826,11 @@ export const recipes: Recipe[] = [
     id: "asian-turkey-wrap",
     code: "L022",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Asian Turkey Wraps",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/asian-turkey-wraps/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Lunch",
     emoji: "🌯",
     image: "/images/recipes/asian-turkey-wraps.png",
@@ -4376,11 +4859,13 @@ export const recipes: Recipe[] = [
       { item: "Shredded lettuce", shoppingItem: "Lettuce", quantity: "35 g" },
     ],
     method: [
-      "Heat half the oil and soften the onion. Add turkey, garlic and chilli and cook through.",
-      "Add the carrot and cook until tender, then stir in the soy sauce, herbs and lime juice.",
-      "Cook the chickpeas with the remaining oil and cumin until lightly crisp.",
-      "Warm the tortilla and fill with the turkey mixture, chickpeas, spring onions and lettuce.",
-      "Roll up and serve.",
+      "Heat half the oil in a frying pan over a medium heat and fry the onion until soft.",
+      "Add the turkey, garlic and chilli and cook for about 10 minutes, until the turkey is cooked through.",
+      "Add the carrot and cook for a further 5 minutes. Drain away any excess liquid and remove from the heat.",
+      "Stir in the soy sauce, coriander, mint and lime juice and set aside briefly for the flavours to develop.",
+      "Heat the remaining oil in a separate pan over a high heat. Add the chickpeas and cumin seeds and cook until crispy, keeping them moving so they do not burn.",
+      "Warm the tortilla, then fill with the turkey mixture. Top with the spring onions, crispy chickpeas and lettuce.",
+      "Seal and roll up the wrap and serve.",
     ],
     nutrition: {
       calories: "462 kcal",
@@ -4401,6 +4886,11 @@ export const recipes: Recipe[] = [
     id: "mediterranean-chicken-pitta",
     code: "L023",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Mediterranean Chicken Pittas",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/mediterranean-chicken-pittas/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Lunch",
     emoji: "🥙",
     image: "/images/recipes/mediterranean-chicken-pittas.png",
@@ -4426,11 +4916,11 @@ export const recipes: Recipe[] = [
       { item: "Fresh coriander", shoppingItem: "Coriander", quantity: "handful" },
     ],
     method: [
-      "Mix the chicken, tomato, cucumber, avocado if using, lentils and onion.",
-      "Toss with the red wine vinegar.",
-      "Mix the yoghurt with lime zest and juice.",
-      "Fill the pitta with the chicken mixture, then add a little feta and yoghurt dressing.",
-      "Finish with coriander and serve.",
+      "Mix the chicken, tomato, cucumber, avocado if using, lentils and onion together in a bowl.",
+      "Toss the mixture with the red wine vinegar.",
+      "In a separate bowl, mix the yoghurt with the lime zest and lime juice.",
+      "Cut the pitta in half and open the pocket. Fill with the chicken mixture.",
+      "Sprinkle over the feta, drizzle with the yoghurt and lime dressing, then finish with coriander and serve.",
     ],
     nutrition: {
       calories: "506 kcal",
@@ -4451,6 +4941,11 @@ export const recipes: Recipe[] = [
     id: "spicy-egg-pitta-pocket",
     code: "L024",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Spicy Egg Pitta Pockets",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/spicy-egg-pitta-pockets/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Lunch",
     emoji: "🥙",
     image: "/images/recipes/spicy-egg-pitta-pockets.png",
@@ -4478,12 +4973,12 @@ export const recipes: Recipe[] = [
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "To taste" },
     ],
     method: [
-      "Whisk the eggs with black pepper.",
-      "Heat the oil and soften the onion, then add tomato and garlic paste.",
-      "Stir in the spices and cook briefly.",
-      "Add the eggs and scramble until cooked through.",
-      "Toast the pitta, open the pocket and fill with the egg mixture.",
-      "Top with sliced pepper and coriander and serve.",
+      "Crack the eggs into a bowl and whisk with black pepper. Heat the olive oil in a pan over a medium heat and fry the onion until soft.",
+      "Add the tomato and cook until pulpy. Stir in the garlic paste and cook for another minute until fragrant.",
+      "Add the turmeric, chilli powder, coriander powder, cumin powder and garam masala or curry powder. Mix well.",
+      "Gradually add the eggs, mixing them with the onion and tomato. Continue stirring until the eggs are scrambled and cooked through.",
+      "Cut the pitta in half and toast the pieces to make the pockets. Remove the eggs from the heat and stuff them into the toasted pitta pockets.",
+      "Top with the sliced pepper, sprinkle over the chopped coriander and serve.",
     ],
     nutrition: {
       calories: "516 kcal",
@@ -4504,6 +4999,11 @@ export const recipes: Recipe[] = [
     id: "tasty-tuna-pitta",
     code: "L025",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Tasty Tuna Pittas",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/tasty-tuna-pittas/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Lunch",
     emoji: "🥙",
     image: "/images/recipes/tasty-tuna-pittas.png",
@@ -4528,11 +5028,10 @@ export const recipes: Recipe[] = [
       { item: "White Pitta", shoppingItem: "White Pitta", quantity: "1" },
     ],
     method: [
-      "Mix the lettuce, pepper, cucumber and carrot with a squeeze of lemon juice.",
-      "Flake the tuna and mix with the cannellini beans, olive oil, sweetcorn and mayonnaise.",
-      "Combine the tuna mixture with the salad.",
-      "Toast the pitta if preferred, open it and fill with the mixture.",
-      "Serve immediately.",
+      "Shred the lettuce and mix with the sliced pepper, chopped cucumber, grated carrot and lemon juice.",
+      "Flake the tuna and mix with the drained cannellini beans, slightly mashing the beans with the olive oil to bring the mixture together. Add the sweetcorn and mayonnaise.",
+      "Mix the tuna mixture with the salad vegetables.",
+      "Cut open the pitta, toast if preferred, and stuff with the filling. Serve immediately.",
     ],
     nutrition: {
       calories: "542 kcal",
@@ -4553,6 +5052,11 @@ export const recipes: Recipe[] = [
     id: "salmon-rice-herb-salad",
     code: "L026",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Salmon, Rice and Herb Salad",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/salmon-rice-and-herb-salad/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Lunch",
     emoji: "🐟",
     image: "/images/recipes/salmon-rice-herb-salad.png",
@@ -4577,11 +5081,10 @@ export const recipes: Recipe[] = [
       { item: "Frozen peas", shoppingItem: "Frozen peas", quantity: "25 g" },
     ],
     method: [
-      "Rub the salmon with lemon juice and cumin and bake until cooked through.",
-      "Heat the rice according to the packet instructions and allow it to cool slightly.",
-      "Mix the rice with onion, tomatoes, cucumber, peas, herbs, lemon and olive oil.",
-      "Flake the salmon and fold it through the rice mixture.",
-      "Serve with a lemon wedge.",
+      "Preheat the oven to 170°C (140°C fan). Place the salmon fillet on a baking tray. Mix half of the lemon juice with the ground cumin and rub over the salmon. Bake for 10 minutes, then remove from the oven and allow to cool slightly.",
+      "Heat the ready-cooked rice according to the packet instructions, fluff with a fork and allow it to cool slightly.",
+      "Mix the remaining lemon juice with the lemon zest, olive oil, onion, tomatoes, cucumber, peas and herbs, then stir through the rice.",
+      "Remove the skin from the salmon and flake the fish into the rice mixture. Serve with the lemon wedge.",
     ],
     nutrition: {
       calories: "495 kcal",
@@ -4602,6 +5105,11 @@ export const recipes: Recipe[] = [
     id: "sticky-tofu-coriander-salad",
     code: "L027",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Sticky Tofu and Coriander Salad",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/sticky-tofu-and-coriander-salad/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Lunch",
     emoji: "🥗",
     image: "/images/recipes/sticky-tofu-coriander-salad.png",
@@ -4633,12 +5141,12 @@ export const recipes: Recipe[] = [
       { item: "Dried chilli powder", shoppingItem: "Dried chilli powder", quantity: "¼ tsp" },
     ],
     method: [
-      "Press the tofu and marinate it in maple syrup, vinegar and chilli powder.",
-      "Cook the rice noodles according to the packet instructions.",
-      "Combine the watercress, coriander, beansprouts, spring onion, cucumber, chilli, ginger and sesame seeds.",
-      "Mix the sweet chilli sauce with lime, water and sesame oil.",
-      "Pan-fry the tofu until golden, then add the noodles to the salad and toss with the dressing.",
-      "Top with the tofu and serve.",
+      "Press the tofu by wrapping it in a clean tea towel, placing it on a plate and weighting it for 30 minutes. Cut into slices and marinate for at least 30 minutes in the maple syrup, white wine vinegar and dried chilli powder.",
+      "Cook the rice noodles according to the packet instructions and set aside.",
+      "Pick the watercress and coriander leaves into a salad bowl. Add the beansprouts, sliced spring onions, cucumber and green chilli.",
+      "Add the pickled ginger, sesame seeds and grated lime zest. Mix the sweet chilli sauce with the water, lime zest and juice and sesame oil to make the dressing.",
+      "Heat the sunflower oil in a frying pan over a medium-high heat. Cook the tofu for about 2 minutes on each side until golden brown.",
+      "Add the drained noodles to the salad, pour over the dressing and toss together. Top with the golden tofu, garnish with coriander and serve.",
     ],
     nutrition: {
       calories: "484 kcal",
@@ -4659,7 +5167,14 @@ export const recipes: Recipe[] = [
     id: "egg-cheese-pepper-omelette-toast",
     code: "L028",
     servings: 1,
-    category: "Lunch",
+
+    source: {
+      name: "Kidney Planner Original",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.svg",
+      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      linkText: "View CoFID 2021",
+    },    category: "Lunch",
     emoji: "🍳",
     image: "/images/recipes/egg-cheese-pepper-omelette-toast.png",
     name: "Egg, Cheese & Pepper Omelette with Toast",
@@ -4704,6 +5219,11 @@ export const recipes: Recipe[] = [
     id: "turkey-curry",
     code: "D031",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Turkey Curry",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/turkey-curry/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Turkey",
     emoji: "🍛",
     image: "/images/recipes/turkey-curry.png",
@@ -4729,14 +5249,17 @@ export const recipes: Recipe[] = [
       { item: "Lemon juice", shoppingItem: "Lemon", quantity: "¾ tsp" },
       { item: "Cooked turkey", shoppingItem: "Cooked turkey", quantity: "100 g" },
       { item: "Basmati rice, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
+      { item: "Cinnamon stick", shoppingItem: "Cinnamon sticks", quantity: "¼" },
+      { item: "Whole cloves", shoppingItem: "Whole cloves", quantity: "¼ tsp" },
+      { item: "Cardamom pods", shoppingItem: "Cardamom pods", quantity: "¼ tsp" },
       { item: "Fresh coriander", shoppingItem: "Coriander", quantity: "handful" },
     ],
     method: [
-      "Rinse and soak the rice, then cook with fresh water and the spices until tender.",
-      "Soften the onion in oil and butter, then add garlic, chilli, ginger and curry powder.",
-      "Add the squash and stock and simmer until tender.",
-      "Stir in coconut milk and lemon juice, then add the turkey and heat through.",
-      "Fold in the spinach and serve with the rice and coriander.",
+      "Rinse the rice in cold water 3–4 times until the water is less cloudy. Cover with water and soak for up to 30 minutes, then drain. Put the rice into a saucepan with fresh cold water and the cinnamon, cloves and cardamom. Bring to the boil, cover tightly, reduce the heat to low and simmer for 10 minutes. Turn off the heat and leave covered for 5 minutes, then fluff with a fork and remove the spices.",
+      "Meanwhile, peel, deseed and cube the squash. Finely chop the garlic, onion and chilli. Heat the oil and butter in a large saucepan, add the onion and cook for 2–3 minutes. Add the garlic, chilli, curry powder and grated ginger and cook over a medium heat until the onion is soft, taking care not to burn the curry powder.",
+      "Add the squash and cook until it begins to stick slightly to the bottom of the pan. Add the stock, bring to the boil, then reduce the heat and simmer for 10–15 minutes until the squash is tender.",
+      "Stir in the coconut milk and lemon juice. Add the cooked turkey, fold through and simmer until heated through. Add the spinach and heat until wilted.",
+      "Serve the curry with the cooked rice and sprinkle over the chopped coriander.",
     ],
     nutrition: {
       calories: "584 kcal",
@@ -4757,6 +5280,11 @@ export const recipes: Recipe[] = [
     id: "roast-lamb",
     code: "D032",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Roast Lamb",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/roast-lamb/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Lamb",
     emoji: "🍖",
     image: "/images/recipes/roast-lamb.png",
@@ -4783,12 +5311,12 @@ export const recipes: Recipe[] = [
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "To taste" },
     ],
     method: [
-      "Roast the lamb with rosemary, garlic and onion until cooked to preference, then rest.",
-      "Parboil the potatoes, roughen the edges and roast in olive oil with rosemary.",
-      "Boil the swede until soft, drain and mash with butter and pepper.",
-      "Boil the greens or carrots and drain.",
-      "Make the gravy with the roasting juices, flour and low-salt stock.",
-      "Serve the lamb with potatoes, vegetables, mash, gravy and a little mint sauce.",
+      "Preheat the oven to 200°C (180°C fan). Make small incisions in the lamb and place the rosemary, garlic and onion around and into the meat. Season with black pepper and rub with a little olive oil. For the original joint, roast for 20 minutes at this temperature, then reduce to 180°C (160°C fan) and cook for a further 20 minutes per 500g, adjusting the cooking time to the weight of the lamb used.",
+      "Put the potatoes into a pan of cold water and bring to the boil. Cook until soft, then drain and shake the potatoes to roughen the edges. Allow them to steam dry.",
+      "Heat the remaining roasting oil in a roasting tin for 5 minutes. Add the parboiled potatoes, turn to coat and roast with the rosemary until golden and crisp, about 45 minutes.",
+      "Boil the swede until soft, drain, return to the pan and mash with the butter and black pepper. About 10 minutes before serving, boil the spring greens or carrots until cooked, then drain and discard the water.",
+      "Remove the lamb from the oven and allow it to rest for 15 minutes. Make the gravy by cooking the flour in the roasting juices, then gradually stirring in the low-salt stock until thickened. Strain the gravy.",
+      "Serve the lamb with the roast potatoes, swede mash, vegetables and gravy, with a little mint sauce.",
     ],
     nutrition: {
       calories: "506 kcal",
@@ -4809,6 +5337,11 @@ export const recipes: Recipe[] = [
     id: "quick-lamb-leek-hotpot",
     code: "D033",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Quick Lamb and Leek Hotpot",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/quick-lamb-and-leek-hotpot/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Lamb",
     emoji: "🥘",
     image: "/images/recipes/quick-lamb-leek-hotpot.png",
@@ -4831,12 +5364,13 @@ export const recipes: Recipe[] = [
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "To taste" },
     ],
     method: [
-      "Slice the potatoes and boil for 8–10 minutes, then drain.",
-      "Dry-fry the lamb until browned.",
-      "Cook the leek and rosemary in the oil until softened.",
-      "Add the gravy and simmer until the lamb is cooked, then transfer to an ovenproof dish.",
-      "Arrange the potatoes over the top, brush with butter and grill until golden.",
-      "Boil the green beans, drain and serve with the hotpot.",
+      "Fill a saucepan with water and bring to the boil. Peel and slice the potatoes about 0.5cm thick and cook for 8–10 minutes.",
+      "Meanwhile, heat a frying pan over a high heat and dry-fry the diced lamb for about 5 minutes, until browned on all sides.",
+      "Clean, trim and slice the leek and chop the rosemary. Add them to the lamb with the oil and fry for 2–3 minutes, until the leek has softened slightly.",
+      "Prepare the gravy according to its instructions, add it to the pan and simmer gently for about 20 minutes, until the lamb is thoroughly cooked. Season with black pepper and transfer to an ovenproof dish.",
+      "Preheat the grill. Drain the potato slices and allow them to cool. Arrange them overlapping in a single layer over the lamb mixture. Melt the butter and brush it over the potatoes.",
+      "Grill for about 5 minutes, until golden and bubbling. Meanwhile, cook the green beans in boiling water for 5–10 minutes until soft, then drain and discard the water.",
+      "Serve the hotpot with the green beans.",
     ],
     nutrition: {
       calories: "378 kcal",
@@ -4857,6 +5391,11 @@ export const recipes: Recipe[] = [
     id: "chinese-pork-celery-rice",
     code: "D034",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Chinese Pork with Celery and Rice",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chinese-pork-with-celery-and-rice/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Pork",
     emoji: "🥢",
     image: "/images/recipes/chinese-pork-celery-rice.png",
@@ -4885,12 +5424,11 @@ export const recipes: Recipe[] = [
       { item: "White pepper", shoppingItem: "White pepper", quantity: "Pinch" },
     ],
     method: [
-      "Marinate the pork with the specified marinade ingredients for at least one hour.",
-      "Cook the rice according to the packet instructions.",
-      "Prepare the vegetables and cornflour slurry.",
-      "Stir-fry the pork in a hot wok, then add onion, ginger and garlic.",
-      "Add the sauce and slurry, then cook the celery and carrot until tender.",
-      "Serve the pork and vegetables over the rice.",
+      "If using pork chop, slice it into strips about 5cm long and 0.5cm wide. Put the pork or mince into a bowl and mix thoroughly with the marinade ingredients. Cover and refrigerate for at least 1 hour.",
+      "Slice the celery and carrot into thin matchsticks. Prepare the cornflour slurry by mixing the cornflour with the specified water. Cook the rice according to the packet instructions.",
+      "Heat a non-stick wok over high heat and add the oil. Add the marinated pork and keep it moving. When the pork is slightly browned, add the onion, ginger and garlic and continue cooking until fragrant. Add the sauce ingredients and stir.",
+      "Stir the cornflour slurry again, pour it into the wok while stirring continuously and bring the sauce to the boil. Add the celery and carrot and cook for 3–4 minutes, until the vegetables are cooked and everything is coated in the sauce.",
+      "Serve the pork and vegetables over the cooked rice.",
     ],
     nutrition: {
       calories: "460 kcal",
@@ -4911,6 +5449,11 @@ export const recipes: Recipe[] = [
     id: "beef-stir-fry",
     code: "D035",
     servings: 1,
+    source: {
+      name: "Kidney Care UK — Beef Stir Fry",
+      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/beef-stir-fry/",
+      logo: "/images/kidneycareuk.svg",
+    },
     category: "Beef",
     emoji: "🥩",
     image: "/images/recipes/beef-stir-fry.png",
@@ -4938,12 +5481,12 @@ export const recipes: Recipe[] = [
       { item: "Basmati rice, raw", shoppingItem: "Basmati rice", quantity: "62.5 g" },
     ],
     method: [
-      "Coat the beef in paprika and chilli powder and marinate for one hour.",
-      "Cook the rice until tender, then drain and rinse with boiling water.",
-      "Slice the vegetables and stir-fry them briefly in the oil.",
-      "Add the beef and cook quickly over high heat.",
-      "Mix the stock, Worcestershire sauce, honey and vinegar and add to the wok.",
-      "Cook until the beef is coated and serve with the rice.",
+      "Cut the beef into thin 1cm strips and place in a bowl. Add the paprika and mild chilli powder and mix until evenly coated. Leave to marinate for 1 hour, stirring once after 30 minutes.",
+      "Put the rice into a saucepan with 500ml water. Bring to a rolling boil, reduce to a gentle simmer and cook for 12 minutes.",
+      "Cut the celery and peppers into strips about 5cm long and 5mm thick. Thinly slice the spring onions and set aside.",
+      "Heat the sunflower oil in a wok or large frying pan. Stir-fry the spring onions, garlic, celery and peppers for 1 minute, then add the beef and cook over high heat for 3–4 minutes.",
+      "Make the sauce by mixing the stock with the boiling water, Worcestershire sauce, honey and red wine vinegar. Add it to the wok and cook until the beef is well coated.",
+      "Drain the rice and rinse with boiling water. Serve immediately with the beef stir-fry.",
     ],
     nutrition: {
       calories: "510 kcal",

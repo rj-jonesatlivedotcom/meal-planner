@@ -77,6 +77,7 @@ const ingredientCategories: Record<string, string> = {
   celery: "🥕 Fruit & Vegetables",
   lemon: "🥕 Fruit & Vegetables",
   lime: "🥕 Fruit & Vegetables",
+  limes: "🥕 Fruit & Vegetables",
   apple: "🥕 Fruit & Vegetables",
   apples: "🥕 Fruit & Vegetables",
   blueberry: "🥕 Fruit & Vegetables",
@@ -201,6 +202,9 @@ const ingredientCategories: Record<string, string> = {
   "sweet chilli sauce": "🥫 Cupboard",
   "tinned lentils": "🥫 Cupboard",
   lentils: "🥫 Cupboard",
+  "ready-made mild fajita seasoning": "🥫 Cupboard",
+  "ready made mild fajita seasoning": "🥫 Cupboard",
+  "mild fajita seasoning": "🥫 Cupboard",
   "sesame seeds": "🧂 Herbs & Spices",
   "garlic granules": "🧂 Herbs & Spices",
 
@@ -218,8 +222,12 @@ const ingredientCategories: Record<string, string> = {
   "mixed herbs": "🧂 Herbs & Spices",
   "curry powder": "🧂 Herbs & Spices",
   "chilli flakes": "🧂 Herbs & Spices",
+  "mild chilli powder": "🧂 Herbs & Spices",
+  "mild chili powder": "🧂 Herbs & Spices",
   "mild chilli seasoning": "🧂 Herbs & Spices",
   "mild chili seasoning": "🧂 Herbs & Spices",
+  "dried chilli powder": "🧂 Herbs & Spices",
+  "dried chili powder": "🧂 Herbs & Spices",
   "red chilli powder": "🧂 Herbs & Spices",
   "chilli powder": "🧂 Herbs & Spices",
   "chilli seasoning": "🧂 Herbs & Spices",
@@ -231,7 +239,6 @@ const ingredientCategories: Record<string, string> = {
   sage: "🧂 Herbs & Spices",
   mint: "🧂 Herbs & Spices",
   "white pepper": "🧂 Herbs & Spices",
-  
   "black pepper": "🧂 Herbs & Spices",
   "freshly ground black pepper": "🧂 Herbs & Spices",
 };
@@ -433,6 +440,10 @@ function formatQuantity(amount: number, unit: string): string {
     return `${a} lemon${n === 1 ? "" : "s"}`;
   }
 
+  if (u === "lime" || u === "limes") {
+    return `${a}`;
+  }
+
   if (u === "small handful") {
     return `${a} small handful${n === 1 ? "" : "s"}`;
   }
@@ -458,6 +469,7 @@ const WHOLE_PRODUCE = new Set([
   "spring greens",
   "swede",
   "lemon",
+  "lime",
   "apple",
   "potatoes",
   "baking potatoes",
@@ -547,6 +559,10 @@ function normaliseIngredient(raw: string): string {
 
   if (/^lemon(?:s)?$/.test(lower)) {
     return "Lemon";
+  }
+
+  if (/^lime(?:s)?$/.test(lower)) {
+    return "Lime";
   }
 
   if (/^lettuce(?:\s+(?:leaf|leaves))?$/.test(lower)) {
@@ -680,6 +696,18 @@ function normaliseIngredient(raw: string): string {
     return "Dried coriander";
   }
 
+  // Consolidate all agreed chilli-powder variants.
+  if (
+    lower === "mild chilli powder" ||
+    lower === "mild chili powder" ||
+    lower === "mild chilli seasoning" ||
+    lower === "mild chili seasoning" ||
+    lower === "dried chilli powder" ||
+    lower === "dried chili powder"
+  ) {
+    return "Mild chilli powder";
+  }
+
   return value;
 }
 
@@ -761,6 +789,12 @@ function normaliseProduceAmount(
 
   if (lower === "lemon") {
     if (parsed.unit === "" || parsed.unit === "lemon") {
+      return parsed.amount;
+    }
+  }
+
+  if (lower === "lime") {
+    if (parsed.unit === "" || parsed.unit === "lime" || parsed.unit === "limes") {
       return parsed.amount;
     }
   }
@@ -897,7 +931,18 @@ function normaliseShoppingQuantity(
 
   const lower = name.toLowerCase();
 
+
   if (lower === "eggs") {
+    return decimalToFraction(parsed.amount);
+  }
+
+
+
+  if (lower === "eggs") {
+    return decimalToFraction(parsed.amount);
+  }
+
+  if (lower === "lime") {
     return decimalToFraction(parsed.amount);
   }
 
@@ -1050,6 +1095,15 @@ function combineQuantity(
     return decimalToFraction(Math.max(a.amount, b.amount));
   }
 
+  if (lower === "lime") {
+    if (
+      (a.unit === "" || a.unit === "lime" || a.unit === "limes") &&
+      (b.unit === "" || b.unit === "lime" || b.unit === "limes")
+    ) {
+      return decimalToFraction(a.amount + b.amount);
+    }
+  }
+
   if (lower === "lettuce") {
     // Only combine lettuce quantities when they use the same unit.
     if (a.unit === b.unit) {
@@ -1119,6 +1173,89 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
   const parsed = parseQuantity(item.quantity);
 
   if (!parsed) return item;
+    /*
+   * Stock is purchased as stock cubes.
+   * One cube makes up to 400 ml of finished stock.
+   *
+   * This conversion happens after all recipe quantities have been
+   * combined, so 200 ml + 250 ml becomes 450 ml -> 2 cubes,
+   * rather than rounding each recipe separately.
+   */
+  if (lower.includes("stock")) {
+    const ml = quantityToMl(parsed);
+
+    if (ml !== null) {
+      const cubes = Math.ceil(ml / 400);
+
+      let stockType = "";
+
+      if (lower.includes("chicken")) {
+        stockType = "Chicken";
+      } else if (lower.includes("beef")) {
+        stockType = "Beef";
+      } else if (lower.includes("lamb")) {
+        stockType = "Lamb";
+      } else if (lower.includes("fish")) {
+        stockType = "Fish";
+      } else if (lower.includes("vegetable")) {
+        stockType = "Vegetable";
+      } else if (lower.includes("turkey")) {
+        stockType = "Turkey";
+      } else if (lower.includes("chicken or turkey")) {
+        stockType = "Chicken or turkey";
+      }
+
+      const itemName = stockType
+        ? `${stockType} stock cube${cubes === 1 ? "" : "s"}`
+        : `Stock cube${cubes === 1 ? "" : "s"}`;
+
+      return {
+        item: itemName,
+        quantity: String(cubes),
+      };
+    }
+  }
+
+  /*
+   * Gravy is purchased as gravy granules.
+   * 20 g gravy granules makes 280 ml finished gravy.
+   *
+   * This conversion also happens after all quantities have been combined.
+   */
+  if (lower.includes("gravy")) {
+    const ml = quantityToMl(parsed);
+
+    if (ml !== null) {
+      const grams = Math.ceil((ml / 280) * 20);
+
+      let gravyType = "";
+
+      if (lower.includes("chicken or turkey")) {
+        gravyType = "Chicken or turkey";
+        } else if (lower.includes("chicken")) {
+        gravyType = "Chicken";
+      } else if (lower.includes("beef")) {
+        gravyType = "Beef";
+      } else if (lower.includes("lamb")) {
+        gravyType = "Lamb";
+      } else if (lower.includes("onion")) {
+        gravyType = "Onion";
+      } else if (lower.includes("turkey")) {
+        gravyType = "Turkey";
+      } else if (lower.includes("vegetable")) {
+        gravyType = "Vegetable";
+      }
+
+      const itemName = gravyType
+        ? `${gravyType} gravy granules`
+        : "Gravy granules";
+
+      return {
+        item: itemName,
+        quantity: `${grams} g`,
+      };
+    }
+  }
 
   /*
    * Dry herbs/spices used in very small quantities are displayed as
@@ -1199,19 +1336,28 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
   }
 
   if (
-    lower === "onion" ||
-    lower === "red pepper" ||
-    lower === "green pepper" ||
-    lower === "yellow pepper" ||
-    lower === "green chilli" ||
-    lower === "apple" ||
-    lower === "lemon"
-  ) {
-    return {
-      item: name,
-      quantity: decimalToFraction(Math.ceil(parsed.amount)),
-    };
-  }
+  lower === "onion" ||
+  lower === "red pepper" ||
+  lower === "green pepper" ||
+  lower === "yellow pepper" ||
+  lower === "green chilli" ||
+  lower === "apple" ||
+  lower === "lemon"
+) {
+  return {
+    item: name,
+    quantity: decimalToFraction(Math.ceil(parsed.amount)),
+  };
+}
+
+if (lower === "lime") {
+  const wholeLimes = Math.ceil(parsed.amount);
+
+  return {
+    item: wholeLimes === 1 ? "Lime" : "Limes",
+    quantity: String(wholeLimes),
+  };
+}
 
   if (lower === "chives" && parsed.unit === "bunch") {
     return {
@@ -1246,7 +1392,10 @@ function getCategory(item: string): string {
     lower === "low-salt soy sauce" ||
     lower === "low salt soy sauce" ||
     lower === "red wine vinegar" ||
-    lower === "white wine vinegar"
+    lower === "white wine vinegar" ||
+    lower === "ready-made mild fajita seasoning" ||
+    lower === "ready made mild fajita seasoning" ||
+    lower === "mild fajita seasoning"
   ) {
     return "🥫 Cupboard";
   }
@@ -1881,6 +2030,7 @@ export default function ShoppingPage() {
                   </div>
                 ))}
               </div>
+
               <div className="space-y-5">
                 {rightCategoryGroups.map((group) => (
                   <div

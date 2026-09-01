@@ -209,6 +209,8 @@ const ingredientCategories: Record<string, string> = {
   "garlic granules": "🧂 Herbs & Spices",
 
   // Herbs & Spices
+  "Whole cloves": "🧂 Herbs & Spices",
+  "Cardamom pods": "🧂 Herbs & Spices",
   thyme: "🧂 Herbs & Spices",
   rosemary: "🧂 Herbs & Spices",
   oregano: "🧂 Herbs & Spices",

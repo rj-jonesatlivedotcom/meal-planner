@@ -1,7 +1,12 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Meal Planner",
@@ -16,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        
+
         <Navbar />
         {children}
       </body>

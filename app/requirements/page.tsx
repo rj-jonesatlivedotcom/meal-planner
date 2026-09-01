@@ -107,9 +107,21 @@ export default function RequirementsPage() {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      setSaveStatus("error");
-      return;
+  try {
+    const saved = window.localStorage.getItem(
+      REQUIREMENTS_STORAGE_KEY
+    );
+
+    if (saved) {
+      const savedRequirements: Requirements = JSON.parse(saved);
+      setRequirements(savedRequirements);
     }
+  } catch {
+    // Keep the default requirements if local storage is unavailable or invalid.
+  }
+
+  return;
+}
 
     const { error } = await supabase
       .from("user_requirements")

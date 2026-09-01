@@ -84,7 +84,7 @@ export default function About() {
 
           {/* VERSION */}
           <div className="mt-6 text-right text-sm text-slate-500">
-            Version 2.0.0
+            Version 2.0.1
           </div>
 
         </div>

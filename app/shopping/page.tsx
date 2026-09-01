@@ -209,8 +209,8 @@ const ingredientCategories: Record<string, string> = {
   "garlic granules": "🧂 Herbs & Spices",
 
   // Herbs & Spices
-  "Whole cloves": "🧂 Herbs & Spices",
-  "Cardamom pods": "🧂 Herbs & Spices",
+  "whole cloves": "🧂 Herbs & Spices",
+  "cardamom pods": "🧂 Herbs & Spices",
   thyme: "🧂 Herbs & Spices",
   rosemary: "🧂 Herbs & Spices",
   oregano: "🧂 Herbs & Spices",
@@ -1403,11 +1403,13 @@ function getCategory(item: string): string {
   }
 
   if (
-    lower === "mint" ||
-    lower === "white pepper"
-  ) {
-    return "🧂 Herbs & Spices";
-  }
+  lower === "mint" ||
+  lower === "white pepper" ||
+  lower === "whole cloves" ||
+  lower === "cardamom pods"
+) {
+  return "🧂 Herbs & Spices";
+}
 
   // Tinned chopped tomatoes are a cupboard item regardless of the
   // "tomato" keyword also matching the fresh-produce category.

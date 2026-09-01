@@ -7,28 +7,12 @@ import { createClient } from "@/lib/supabase/client";
 
 function KidneyLogo() {
   return (
-    <svg
-      viewBox="0 0 64 76"
-      className="h-14 w-12 shrink-0 text-green-700 sm:h-16 sm:w-14"
+    <img
+      src="/icons/meal-planner-kidney-tick.png"
+      alt=""
+      className="h-14 w-12 shrink-0 object-contain sm:h-16 sm:w-14"
       aria-hidden="true"
-    >
-      <path
-        d="M39 7C25 2 11 11 9 27c-2 13 3 25 12 31 7 5 15 7 21 4 7-3 11-10 11-18 0-8-4-14-9-18-3-3-4-7-2-11 1-3 1-6-3-8Z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m20 41 7 8 17-22"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    />
   );
 }
 

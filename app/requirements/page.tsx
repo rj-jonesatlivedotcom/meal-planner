@@ -59,8 +59,21 @@ export default function RequirementsPage() {
       } = await supabase.auth.getUser();
 
       if (!user) {
-        return;
-      }
+  try {
+    const saved = window.localStorage.getItem(
+      REQUIREMENTS_STORAGE_KEY
+    );
+
+    if (saved) {
+      const savedRequirements: Requirements = JSON.parse(saved);
+      setRequirements(savedRequirements);
+    }
+  } catch {
+    // Keep the default requirements if local storage is unavailable or invalid.
+  }
+
+  return;
+}
 
       const { data, error } = await supabase
         .from("user_requirements")
@@ -107,19 +120,8 @@ export default function RequirementsPage() {
     } = await supabase.auth.getUser();
 
     if (!user) {
-  try {
-    const saved = window.localStorage.getItem(
-      REQUIREMENTS_STORAGE_KEY
-    );
-
-    if (saved) {
-      const savedRequirements: Requirements = JSON.parse(saved);
-      setRequirements(savedRequirements);
-    }
-  } catch {
-    // Keep the default requirements if local storage is unavailable or invalid.
-  }
-
+  syncRequirementsToLocalStorage(nextRequirements);
+  setSaveStatus("saved");
   return;
 }
 

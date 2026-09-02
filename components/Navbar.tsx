@@ -9,7 +9,7 @@ function KidneyLogo() {
   return (
     <img
       src="/icons/meal-planner-kidney-tick.png"
-      alt=""
+      alt="Meal Planner kidney-friendly logo"
       className="h-14 w-12 shrink-0 object-contain sm:h-16 sm:w-14"
       aria-hidden="true"
     />
@@ -19,7 +19,12 @@ function KidneyLogo() {
 function PageIcon({
   type,
 }: {
-  type: "requirements" | "recipes" | "planner" | "shopping";
+  type:
+    | "requirements"
+    | "recipes"
+    | "planner"
+    | "shopping"
+    | "nutrition";
 }) {
   const colour =
     type === "requirements"
@@ -28,7 +33,9 @@ function PageIcon({
         ? "text-green-700"
         : type === "planner"
           ? "text-orange-600"
-          : "text-blue-600";
+          : type === "nutrition"
+            ? "text-emerald-700"
+            : "text-blue-600";
 
   return (
     <svg
@@ -61,6 +68,15 @@ function PageIcon({
           <rect x="8" y="10" width="32" height="30" rx="4" />
           <path d="M15 7v7M33 7v7M8 19h32" />
           <path d="M16 25h4M28 25h4M16 32h4M28 32h4" />
+        </>
+      )}
+
+      {type === "nutrition" && (
+        <>
+          <path d="M8 39h32" />
+          <path d="M12 35V22h6v13" />
+          <path d="M21 35V13h6v22" />
+          <path d="M30 35V18h6v17" />
         </>
       )}
 
@@ -117,7 +133,12 @@ export default function Navbar() {
   }
 
   const pageHeader: {
-    icon: "requirements" | "recipes" | "planner" | "shopping";
+    icon:
+      | "requirements"
+      | "recipes"
+      | "planner"
+      | "shopping"
+      | "nutrition";
     title: string;
     subtitle: string;
   } | null =
@@ -125,7 +146,8 @@ export default function Navbar() {
       ? {
           icon: "recipes",
           title: "Recipes",
-          subtitle: "Browse delicious kidney-friendly recipes.",
+          subtitle:
+            "Browse delicious kidney-friendly recipes.",
         }
       : pathname.startsWith("/planner")
         ? {
@@ -133,22 +155,35 @@ export default function Navbar() {
             title: "Weekly Planner",
             subtitle: "Plan your meals for the week.",
           }
-        : pathname.startsWith("/shopping")
+        : pathname.startsWith("/nutrition")
           ? {
-              icon: "shopping",
-              title: "Shopping List",
-              subtitle: "Your ingredients, organised by category.",
+              icon: "nutrition",
+              title: "Nutrition",
+              subtitle:
+                "See the nutritional details of your weekly plan.",
             }
-          : pathname.startsWith("/requirements")
+          : pathname.startsWith("/shopping")
             ? {
-                icon: "requirements",
-                title: "My Requirements",
-                subtitle: "Tell us what matters to you.",
+                icon: "shopping",
+                title: "Shopping List",
+                subtitle:
+                  "Your ingredients, organised by category.",
               }
-            : null;
+            : pathname.startsWith("/requirements")
+              ? {
+                  icon: "requirements",
+                  title: "My Requirements",
+                  subtitle:
+                    "Tell us what matters to you.",
+                }
+              : null;
 
   const navItems = [
-    { href: "/", label: "Home", active: pathname === "/" },
+    {
+      href: "/",
+      label: "Home",
+      active: pathname === "/",
+    },
     {
       href: "/requirements",
       label: "My Requirements",
@@ -163,6 +198,11 @@ export default function Navbar() {
       href: "/planner",
       label: "Weekly Planner",
       active: pathname.startsWith("/planner"),
+    },
+    {
+      href: "/nutrition",
+      label: "Nutrition",
+      active: pathname.startsWith("/nutrition"),
     },
     {
       href: "/shopping",
@@ -190,6 +230,7 @@ export default function Navbar() {
                   <div className="text-2xl font-extrabold tracking-tight text-slate-900">
                     {pageHeader.title}
                   </div>
+
                   <div className="mt-1 text-base text-slate-600">
                     {pageHeader.subtitle}
                   </div>
@@ -203,6 +244,7 @@ export default function Navbar() {
                   <div className="text-2xl font-extrabold tracking-tight text-slate-900">
                     Meal Planner
                   </div>
+
                   <div className="mt-1 text-base text-slate-600">
                     Kidney-friendly meals made easier
                   </div>
@@ -241,6 +283,7 @@ export default function Navbar() {
                   stroke="currentColor"
                   strokeWidth="2"
                 />
+
                 <path
                   d="M6 27c0-6 4-10 10-10s10 4 10 10"
                   fill="none"
@@ -297,6 +340,7 @@ export default function Navbar() {
                   <div className="text-xl font-extrabold tracking-tight text-slate-900">
                     {pageHeader.title}
                   </div>
+
                   <div className="mt-1 text-sm text-slate-600">
                     {pageHeader.subtitle}
                   </div>
@@ -310,6 +354,7 @@ export default function Navbar() {
                   <div className="text-xl font-extrabold tracking-tight text-slate-900">
                     Meal Planner
                   </div>
+
                   <div className="mt-1 text-sm text-slate-600">
                     Kidney-friendly meals made easier
                   </div>
@@ -321,23 +366,31 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={
+              open ? "Close menu" : "Open menu"
+            }
             aria-expanded={open}
             className="flex h-12 w-12 shrink-0 flex-col items-center justify-center gap-1.5 rounded-xl text-green-700 transition hover:bg-green-50"
           >
             <span
               className={`block h-1 w-8 rounded-full bg-current transition ${
-                open ? "translate-y-2 rotate-45" : ""
+                open
+                  ? "translate-y-2 rotate-45"
+                  : ""
               }`}
             />
+
             <span
               className={`block h-1 w-8 rounded-full bg-current transition ${
                 open ? "opacity-0" : ""
               }`}
             />
+
             <span
               className={`block h-1 w-8 rounded-full bg-current transition ${
-                open ? "-translate-y-2 -rotate-45" : ""
+                open
+                  ? "-translate-y-2 -rotate-45"
+                  : ""
               }`}
             />
           </button>

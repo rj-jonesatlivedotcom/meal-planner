@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { recipes, type Recipe } from "@/data/recipes";
 
 const days = [
@@ -379,6 +379,66 @@ export default function NutritionPage() {
   const [selectedDay, setSelectedDay] =
     useState<Day>("Monday");
 
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
+  function handleNutritionTouchStart(
+    event: React.TouchEvent<HTMLElement>
+  ) {
+    const touch = event.touches[0];
+
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+  }
+
+  function handleNutritionTouchEnd(
+    event: React.TouchEvent<HTMLElement>
+  ) {
+    if (
+      touchStartX.current === null ||
+      touchStartY.current === null
+    ) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+    const deltaX =
+      touch.clientX - touchStartX.current;
+    const deltaY =
+      touch.clientY - touchStartY.current;
+
+    touchStartX.current = null;
+    touchStartY.current = null;
+
+    /*
+     * Only treat the gesture as a day swipe when
+     * the horizontal movement is clearly greater
+     * than the vertical movement. This keeps normal
+     * vertical page scrolling working as expected.
+     */
+    if (
+      Math.abs(deltaX) < 50 ||
+      Math.abs(deltaX) <= Math.abs(deltaY)
+    ) {
+      return;
+    }
+
+    const currentIndex =
+      days.indexOf(selectedDay);
+
+    if (deltaX < 0) {
+      // Swipe left -> next day.
+      if (currentIndex < days.length - 1) {
+        setSelectedDay(days[currentIndex + 1]);
+      }
+    } else {
+      // Swipe right -> previous day.
+      if (currentIndex > 0) {
+        setSelectedDay(days[currentIndex - 1]);
+      }
+    }
+  }
+
   function loadPlanner() {
     try {
       const saved = window.localStorage.getItem(
@@ -645,32 +705,44 @@ export default function NutritionPage() {
 
       <main className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-50 px-4 py-5 md:px-6 md:py-6">
         <div className="nutrition-print-page mx-auto max-w-7xl md:max-w-[1400px]">
-          <div className="nutrition-print-hidden mb-5 md:hidden">
-            <label
-              htmlFor="nutrition-day"
-              className="mb-2 block text-sm font-semibold text-slate-700"
+          <div className="nutrition-print-hidden mb-4 md:hidden">
+            <div
+              className="grid grid-cols-7 gap-1.5"
+              role="tablist"
+              aria-label="Choose day"
             >
-              Day
-            </label>
+              {days.map((day) => {
+                const isSelected =
+                  selectedDay === day;
 
-            <select
-              id="nutrition-day"
-              value={selectedDay}
-              onChange={(event) =>
-                setSelectedDay(event.target.value as Day)
-              }
-              className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-base font-semibold text-slate-900 shadow-sm outline-none focus:border-green-600"
-            >
-              {days.map((day) => (
-                <option key={day} value={day}>
-                  {day}
-                </option>
-              ))}
-            </select>
+                return (
+                  <button
+                    key={day}
+                    type="button"
+                    role="tab"
+                    aria-selected={isSelected}
+                    onClick={() =>
+                      setSelectedDay(day)
+                    }
+                    className={`min-w-0 rounded-xl px-1 py-2.5 text-[11px] font-bold transition ${
+                      isSelected
+                        ? "bg-orange-500 text-white shadow-sm"
+                        : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-orange-50 hover:text-orange-700"
+                    }`}
+                  >
+                    {day.slice(0, 3)}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* MOBILE NUTRITION */}
-          <section className="nutrition-print-card mb-7 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-black/5 md:hidden">
+          <section
+            className="nutrition-print-card mb-7 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-black/5 md:hidden"
+            onTouchStart={handleNutritionTouchStart}
+            onTouchEnd={handleNutritionTouchEnd}
+          >
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold text-slate-900">

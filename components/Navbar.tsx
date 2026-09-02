@@ -270,30 +270,6 @@ export default function Navbar() {
           </nav>
 
           <div className="ml-2 flex shrink-0 items-center gap-3">
-            <span
-              className="flex h-9 w-9 items-center justify-center text-slate-900"
-              aria-hidden="true"
-            >
-              <svg viewBox="0 0 32 32" className="h-7 w-7">
-                <circle
-                  cx="16"
-                  cy="10"
-                  r="5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-
-                <path
-                  d="M6 27c0-6 4-10 10-10s10 4 10 10"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </span>
-
             {loggedIn ? (
               <button
                 type="button"

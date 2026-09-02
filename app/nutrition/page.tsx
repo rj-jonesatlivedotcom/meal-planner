@@ -1433,18 +1433,8 @@ export default function NutritionPage() {
             </div>
           </section>
 
-          <div className="nutrition-print-hidden mb-7 flex justify-end">
-            <button
-              type="button"
-              onClick={() => window.print()}
-              className="inline-flex min-h-12 items-center justify-center rounded-xl bg-green-700 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-green-800"
-            >
-              🖨️ Print / Save as PDF
-            </button>
-          </div>
-
           {/* WEEKLY SUMMARY */}
-          <section className="nutrition-print-summary nutrition-print-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 md:p-7">
+          <section className="nutrition-print-summary nutrition-print-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 md:p-6">
             <div className="mb-5">
               <h2 className="text-2xl font-bold text-green-800">
                 Weekly Nutrition Summary
@@ -1456,7 +1446,7 @@ export default function NutritionPage() {
               </p>
             </div>
 
-            <div className="grid gap-6 xl:grid-cols-[minmax(0,720px)_280px] xl:justify-center">
+            <div className="grid gap-5 xl:grid-cols-[minmax(0,720px)_minmax(320px,360px)] xl:justify-start">
               <div className="overflow-x-auto">
                 <table className="w-full max-w-[720px] border-collapse text-sm">
                   <thead>
@@ -1673,23 +1663,33 @@ export default function NutritionPage() {
                 </table>
               </div>
 
-              <aside className="rounded-2xl bg-green-50 p-5">
+              <aside className="h-full rounded-2xl bg-green-50 p-4">
+                <div className="nutrition-print-hidden mb-4">
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="w-full rounded-xl bg-green-700 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-green-800"
+                  >
+                    🖨️ Print / Save as PDF
+                  </button>
+                </div>
+
                 <h3 className="font-bold text-green-900">
                   About these figures
                 </h3>
 
-                <p className="mt-2 text-sm leading-6 text-slate-700">
+                <p className="mt-2 text-sm leading-5 text-slate-700">
                   These figures are calculated from the nutritional
                   content of the recipes in your weekly plan.
                 </p>
 
-                <p className="mt-3 text-sm leading-6 text-slate-700">
+                <p className="mt-3 text-sm leading-5 text-slate-700">
                   Traffic lights use your saved Meal Planner
                   requirements where a comparable target is
                   available.
                 </p>
 
-                <div className="mt-5 space-y-3 text-sm">
+                <div className="mt-3 space-y-2 text-sm">
                   {(["green", "amber", "red"] as Status[]).map(
                     (status) => (
                       <div
@@ -1714,7 +1714,7 @@ export default function NutritionPage() {
                   )}
                 </div>
 
-                <p className="mt-5 border-t border-green-200 pt-4 text-xs leading-5 text-slate-600">
+                <p className="mt-3 border-t border-green-200 pt-3 text-xs leading-5 text-slate-600">
                   Potassium, phosphorus and purines are currently
                   stored as Low, Moderate or High recipe ratings,
                   rather than numeric amounts. Aggregate levels use

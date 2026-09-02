@@ -253,12 +253,12 @@ export default function Navbar() {
             )}
           </Link>
 
-          <nav className="ml-auto flex items-center gap-1 lg:gap-2">
+          <nav className="ml-auto flex items-center gap-0.5 lg:gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex min-h-12 items-center rounded-lg px-4 text-base font-bold transition lg:px-5 ${
+                className={`flex min-h-12 items-center whitespace-nowrap rounded-lg px-3 text-[15px] font-bold transition lg:px-3.5 ${
                   item.active
                     ? "text-green-700"
                     : "text-slate-900 hover:bg-green-50 hover:text-green-700"

@@ -34,7 +34,7 @@ function PageIcon({
         : type === "planner"
           ? "text-orange-600"
           : type === "nutrition"
-            ? "text-emerald-700"
+            ? "text-pink-600"
             : "text-blue-600";
 
   return (

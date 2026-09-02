@@ -783,7 +783,7 @@ export default function NutritionPage() {
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-pink-600 shadow-sm ring-1 ring-pink-100">
                           <MealIcon type={meal} />
                         </div>
 
@@ -1019,7 +1019,7 @@ export default function NutritionPage() {
                     >
                       <td className="px-5 py-5 align-top">
                         <div>
-                          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-pink-600 shadow-sm ring-1 ring-pink-100">
                             <MealIcon type={meal} />
                           </div>
 

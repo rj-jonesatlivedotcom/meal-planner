@@ -726,8 +726,8 @@ export default function NutritionPage() {
                     }
                     className={`min-w-0 rounded-xl px-1 py-2.5 text-[11px] font-bold transition ${
                       isSelected
-                        ? "bg-orange-500 text-white shadow-sm"
-                        : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-orange-50 hover:text-orange-700"
+                        ? "bg-pink-600 text-white shadow-sm"
+                        : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-pink-50 hover:text-pink-700"
                     }`}
                   >
                     {day.slice(0, 3)}
@@ -743,26 +743,6 @@ export default function NutritionPage() {
             onTouchStart={handleNutritionTouchStart}
             onTouchEnd={handleNutritionTouchEnd}
           >
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <h2 className="text-xl font-bold text-slate-900">
-                  {selectedDay}
-                </h2>
-                <p className="mt-1 text-sm text-slate-600">
-                  Nutritional details by meal
-                </p>
-              </div>
-
-              <span
-                className={`h-4 w-4 rounded-full ${getStatusDotClass(
-                  getDailyStatusForDay(selectedDay)
-                )}`}
-                title={getStatusText(
-                  getDailyStatusForDay(selectedDay)
-                )}
-              />
-            </div>
-
             <div className="space-y-3">
               {mealTypes.map((meal) => {
                 const recipe = getRecipe(
@@ -808,49 +788,49 @@ export default function NutritionPage() {
 
                     {recipe && (
                       <div className="mt-4 space-y-2 text-sm">
-                        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-2">
+                        <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Energy</span>
                           <strong className="text-slate-900">
                             {formatNutrient(totals.calories, "kcal")}
                           </strong>
                         </div>
 
-                        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-2">
+                        <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Protein</span>
                           <strong className="text-slate-900">
                             {formatNutrient(totals.protein, "g")}
                           </strong>
                         </div>
 
-                        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-2">
+                        <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Carbohydrate</span>
                           <strong className="text-slate-900">
                             {formatNutrient(totals.carbohydrates, "g")}
                           </strong>
                         </div>
 
-                        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-2">
+                        <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Fat</span>
                           <strong className="text-slate-900">
                             {formatNutrient(totals.fat, "g")}
                           </strong>
                         </div>
 
-                        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-2">
+                        <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Fibre</span>
                           <strong className="text-slate-900">
                             {formatNutrient(totals.fibre, "g")}
                           </strong>
                         </div>
 
-                        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-2">
+                        <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Sodium</span>
                           <strong className="text-slate-900">
                             {formatNutrient(totals.sodium, "mg")}
                           </strong>
                         </div>
 
-                        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-2">
+                        <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Potassium</span>
                           <span className="flex items-center gap-2 font-semibold text-slate-900">
                             <span
@@ -865,7 +845,7 @@ export default function NutritionPage() {
                           </span>
                         </div>
 
-                        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-2">
+                        <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Phosphorus</span>
                           <span className="flex items-center gap-2 font-semibold text-slate-900">
                             <span
@@ -913,11 +893,17 @@ export default function NutritionPage() {
                     )}`}
                     title={getStatusText(getDailyStatusForDay(selectedDay))}
                   />
-                  {formatNutrient(dayTotals[selectedDay].calories, "kcal")}
                 </span>
               </div>
 
               <div className="mt-3 space-y-2 text-sm">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-slate-600">Energy</span>
+                  <strong className="text-slate-900">
+                    {formatNutrient(dayTotals[selectedDay].calories, "kcal")}
+                  </strong>
+                </div>
+
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-slate-600">Protein</span>
                   <strong className="text-slate-900">

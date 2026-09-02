@@ -180,13 +180,18 @@ export default function RequirementsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-purple-50 px-4 py-5 sm:px-6 md:px-6 lg:px-8">
+    <main className="min-h-screen bg-white px-4 py-3 sm:px-6 md:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
-        <section className="max-w-[1400px] rounded-3xl bg-purple-50/80 p-5 shadow-sm sm:p-7">
-          <p className="text-sm leading-6 text-slate-600 sm:text-base">
-            Set your dietary requirements and Meal Planner will use them
-            when selecting suitable recipes.
-          </p>
+        <section className="max-w-[1400px] rounded-3xl border border-purple-100/60 bg-purple-50/25 p-3 shadow-sm sm:p-4">
+          <div>
+            <p className="text-lg font-extrabold text-slate-900 sm:text-xl">
+              Tell Meal Planner what matters to you
+            </p>
+            <p className="mt-0.5 max-w-3xl text-sm leading-6 text-slate-600 sm:text-base">
+              Set your dietary requirements and we'll use them when selecting
+              suitable recipes.
+            </p>
+          </div>
 
           <div className="mt-5 min-h-5">
             {saveStatus === "saving" && (
@@ -208,8 +213,8 @@ export default function RequirementsPage() {
             )}
           </div>
 
-          <div className="mt-3 grid gap-3 md:grid-cols-2">
-            <div className="rounded-2xl border border-purple-100 bg-purple-100/40 p-4">
+          <div className="mt-2.5 grid gap-2.5 md:grid-cols-2">
+            <div className="rounded-2xl border border-purple-100/50 bg-purple-50/30 p-3 sm:p-3.5">
               <label
                 htmlFor="sodium-limit"
                 className="block text-base font-extrabold text-slate-900"
@@ -246,7 +251,7 @@ export default function RequirementsPage() {
               </select>
             </div>
 
-            <div className="rounded-2xl border border-purple-100 bg-purple-100/40 p-4">
+            <div className="rounded-2xl border border-purple-100/50 bg-purple-50/30 p-3 sm:p-3.5">
               <label
                 htmlFor="potassium"
                 className="block text-base font-extrabold text-slate-900"
@@ -275,7 +280,7 @@ export default function RequirementsPage() {
               </select>
             </div>
 
-            <div className="rounded-2xl border border-purple-100 bg-purple-100/40 p-4">
+            <div className="rounded-2xl border border-purple-100/50 bg-purple-50/30 p-3 sm:p-3.5">
               <label
                 htmlFor="phosphate"
                 className="block text-base font-extrabold text-slate-900"
@@ -304,7 +309,7 @@ export default function RequirementsPage() {
               </select>
             </div>
 
-            <div className="rounded-2xl border border-purple-100 bg-purple-100/40 p-4">
+            <div className="rounded-2xl border border-purple-100/50 bg-purple-50/30 p-3 sm:p-3.5">
               <label
                 htmlFor="purines"
                 className="block text-base font-extrabold text-slate-900"
@@ -333,8 +338,8 @@ export default function RequirementsPage() {
               </select>
             </div>
 
-            <div className="rounded-2xl border border-purple-100 bg-purple-100/40 p-4 md:col-span-2">
-              <div>
+            <div className="rounded-2xl border border-purple-100/50 bg-purple-50/30 p-3 sm:p-3.5 md:col-span-2">
+              <div className="border-b border-purple-200/60 pb-3">
                 <label className="block text-base font-extrabold text-slate-900">
                   Carbohydrate per meal
                 </label>

@@ -214,7 +214,7 @@ export default function Navbar() {
   return (
     <header className="relative z-50 w-full border-b border-slate-200/80 bg-white shadow-sm">
       {/* DESKTOP NAVIGATION */}
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <div className="mx-auto flex min-h-[82px] max-w-[1500px] items-center gap-8 px-8 lg:px-10">
           <Link
             href="/"
@@ -300,7 +300,7 @@ export default function Navbar() {
       </div>
 
       {/* MOBILE NAVIGATION */}
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <div className="flex min-h-[76px] items-center justify-between px-5">
           <Link
             href="/"

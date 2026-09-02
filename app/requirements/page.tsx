@@ -184,11 +184,9 @@ export default function RequirementsPage() {
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
         <section className="max-w-[1400px] rounded-3xl border border-purple-100/60 bg-purple-50/25 p-3 shadow-sm sm:p-4">
           <div>
-            <p className="text-lg font-extrabold text-slate-900 sm:text-xl">
-              Tell Meal Planner what matters to you
-            </p>
-            <p className="mt-0.5 max-w-3xl text-sm leading-6 text-slate-600 sm:text-base">
-              Set your dietary requirements and we'll use them when selecting
+           
+            <p className="text-0.8g font-extrabold text-slate-900 sm:text-xl">
+              Set your dietary requirements and we will use them to select
               suitable recipes.
             </p>
           </div>

@@ -1742,7 +1742,7 @@ export default function NutritionPage() {
                 </p>
 
                 <p className="mt-3 text-sm leading-5 text-slate-700">
-                  Traffic lights use your saved Meal Planner
+                  Traffic lights use your saved RenalPlan
                   requirements where a comparable target is
                   available.
                 </p>
@@ -1785,7 +1785,7 @@ export default function NutritionPage() {
           </section>
 
           <p className="nutrition-print-hidden mx-auto mt-5 max-w-5xl text-center text-xs leading-5 text-slate-500">
-            Meal Planner nutrition figures are intended as a
+            RenalPlan nutrition figures are intended as a
             planning aid and should not replace advice from your
             renal or healthcare team.
           </p>

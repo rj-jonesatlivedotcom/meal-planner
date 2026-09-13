@@ -1,5 +1,5 @@
 "use client";
-
+import RenalPlan from "@/components/RenalPlan";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -9,7 +9,7 @@ function KidneyLogo() {
   return (
     <img
       src="/icons/meal-planner-kidney-tick.png"
-      alt="Meal Planner kidney-friendly logo"
+      alt="RenalPlan kidney-friendly logo"
       className="h-14 w-12 shrink-0 object-contain sm:h-16 sm:w-14"
       aria-hidden="true"
     />
@@ -242,7 +242,8 @@ export default function Navbar() {
 
                 <div className="leading-tight">
                   <div className="text-2xl font-extrabold tracking-tight text-slate-900">
-                    Meal Planner
+                    <RenalPlan />
+                  
                   </div>
 
                   <div className="mt-1 text-base text-slate-600">
@@ -328,7 +329,7 @@ export default function Navbar() {
 
                 <div className="min-w-0 leading-tight">
                   <div className="text-xl font-extrabold tracking-tight text-slate-900">
-                    Meal Planner
+                    <RenalPlan />
                   </div>
 
                   <div className="mt-1 text-sm text-slate-600">

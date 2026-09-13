@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import RenalPlan from "@/components/RenalPlan";
 const steps = [
   {
     number: "1",
@@ -214,22 +214,15 @@ export default function Home() {
         <div className="relative z-10 mx-auto flex min-h-[235px] max-w-[1400px] items-center px-5 py-1 sm:px-10 lg:min-h-[295px] lg:px-12 lg:py-6 xl:px-16">
           <div className="w-[62%] max-w-[250px] sm:w-[430px] sm:max-w-[430px] lg:w-full lg:max-w-[700px]">
             <div className="relative z-10 w-full max-w-[250px] sm:max-w-[430px] lg:max-w-[700px]">
-              <p className="text-[1.65rem] font-bold text-green-700 sm:text-3xl lg:text-3xl">
-                Welcome to
-              </p>
+              <h1 className="mt-0.5 text-[2rem] font-extrabold leading-none tracking-tight sm:text-5xl lg:text-[4.25rem]">
+  <span className="renalplan-blue">Renal</span><span className="renalplan-green">Plan</span>
+</h1>
 
-              <h1 className="mt-0.5 text-[2rem] font-extrabold leading-none tracking-tight text-slate-900 sm:text-5xl lg:text-[4.25rem]">
-                Meal Planner
-              </h1>
-
-              <div className="mt-2 max-w-[240px] sm:max-w-[400px] text-slate-800 lg:mt-4 lg:max-w-[620px]">
-                <p className="text-[1rem] leading-snug sm:text-xl lg:text-[1.1rem]">
-                  
-                </p>
-                <p className="mt-2 text-[0.95rem] leading-tight sm:text-xl lg:text-[1.1rem]">
-                  Meal Planner helps you plan your week's meals, check nutritional values and create your shopping list — all according to your dietary requirements.
-                </p>
-              </div>
+<div className="mt-2 max-w-[240px] sm:max-w-[400px] text-slate-800 lg:mt-4 lg:max-w-[620px]">
+  <p className="mt-2 text-[0.95rem] leading-tight sm:text-xl lg:text-[1.1rem]">
+    Set your dietary restrictions, plan your week's meals, check nutritional values and create your shopping list automatically.
+  </p>
+</div>
             </div>
           </div>
         </div>
@@ -336,11 +329,15 @@ export default function Home() {
       {/* ABOUT LINK */}
       <div className="mx-auto max-w-[1320px] px-4 pb-4 text-right sm:px-8 lg:px-10 xl:px-12">
         <Link
-          href="/about"
-          className="text-sm font-semibold text-green-700 hover:text-green-800"
-        >
-          About Meal Planner
-        </Link>
+  href="/about"
+  className="text-sm font-semibold text-slate-900 hover:text-slate-700"
+>
+  About{" "}
+  <span className="renalplan-brand">
+    <span className="renalplan-blue">Renal</span>
+    <span className="renalplan-green">Plan</span>
+  </span>
+</Link>
       </div>
 
     </main>

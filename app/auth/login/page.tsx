@@ -39,7 +39,7 @@ export default function LoginPage() {
       <div className="mx-auto w-full max-w-md">
         <div className="rounded-2xl bg-white p-6 shadow-sm">
           <h1 className="text-center text-2xl font-bold text-gray-900">
-            Meal Planner
+            RenalPlan
           </h1>
 
           <p className="mt-2 text-center text-gray-600">

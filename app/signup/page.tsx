@@ -47,7 +47,7 @@ export default function SignupPage() {
     <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-gray-200">
         <h1 className="text-3xl font-bold text-center text-gray-900">
-          Meal Planner
+          RenalPlan
         </h1>
 
         <p className="mt-2 text-center text-gray-600">

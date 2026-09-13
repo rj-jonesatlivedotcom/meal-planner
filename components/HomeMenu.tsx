@@ -82,7 +82,7 @@ export default function HomeMenu() {
             onClick={() => setOpen(false)}
             className="block px-6 py-4 text-lg font-semibold text-slate-900 hover:bg-green-50"
           >
-            ℹ️ About Meal Planner
+            ℹ️ About RenalPlan
           </Link>
 
         </div>

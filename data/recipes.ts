@@ -1293,7 +1293,7 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Moderate",
   purines: "Moderate",
-  dietaryNote: "Potato, beef and peas make this a more moderate renal-diet choice. Source audit: Kidney Care UK — Hearty cottage pie is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+  dietaryNote: "Potato, beef and peas make this a more moderate renal-diet choice. Source audit: Kidney Care UK — Hearty cottage pie is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
 
 {
@@ -1494,7 +1494,7 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Low",
   purines: "Moderate",
-  dietaryNote: "Beef makes this moderate in purines; the tomato base also raises potassium. Source audit: Kidney Care UK — Pasta Bolognese is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+  dietaryNote: "Beef makes this moderate in purines; the tomato base also raises potassium. Source audit: Kidney Care UK — Pasta Bolognese is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
 },
 {
   id: "lemon-herb-chicken-tray-bake",
@@ -2160,7 +2160,7 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Moderate",
   purines: "Moderate",
-  dietaryNote: "Beef and tomato make this a more moderate renal-diet choice. Source audit: Kidney Care UK — Chilli con carne with rice is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+  dietaryNote: "Beef and tomato make this a more moderate renal-diet choice. Source audit: Kidney Care UK — Chilli con carne with rice is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
 },{
   id: "sausage-mash-onion-gravy",
   code: "D012",
@@ -2731,7 +2731,7 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "Chicken and yoghurt contribute phosphate, while chicken contributes purines. White basmati rice provides the main carbohydrate without a large potassium contribution. Source audit: Kidney Care UK — Chicken tikka pulao is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+      "Chicken and yoghurt contribute phosphate, while chicken contributes purines. White basmati rice provides the main carbohydrate without a large potassium contribution. Source audit: Kidney Care UK — Chicken tikka pulao is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "chicken-pesto-pasta",
@@ -3106,7 +3106,7 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "Pork contributes phosphate and purines. White rice provides the main carbohydrate, while avoiding soy sauce keeps the dish lower in added salt. Source audit: Kidney Care UK — Double-cooked pork is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+      "Pork contributes phosphate and purines. White rice provides the main carbohydrate, while avoiding soy sauce keeps the dish lower in added salt. Source audit: Kidney Care UK — Double-cooked pork is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "sausage-tomato-pasta",
@@ -3170,7 +3170,7 @@ export const recipes: Recipe[] = [
     phosphate: "High",
     purines: "High",
     dietaryNote:
-      "Sausages can contain considerable salt and phosphate additives, so choose a good-quality product and check the ingredient label. Source audit: Kidney Care UK — Arrabbiata pasta with sausages is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+      "Sausages can contain considerable salt and phosphate additives, so choose a good-quality product and check the ingredient label. Source audit: Kidney Care UK — Arrabbiata pasta with sausages is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "cod-herby-potatoes-green-beans",
@@ -3293,7 +3293,7 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "Cod contributes phosphate and purines, while the vegetables provide potassium. The recipe avoids processed sauces and stock cubes. Source audit: Kidney Care UK — Baked cod fillet, tabouli and tomato salsa is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+      "Cod contributes phosphate and purines, while the vegetables provide potassium. The recipe avoids processed sauces and stock cubes. Source audit: Kidney Care UK — Baked cod fillet, tabouli and tomato salsa is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "cod-tomato-rice",
@@ -3483,7 +3483,7 @@ export const recipes: Recipe[] = [
     phosphate: "High",
     purines: "Low",
     dietaryNote:
-      "This vegetarian recipe is relatively low in purines because it contains no meat, fish or pulses. Mushrooms contribute potassium and the crème fraîche contributes some phosphate. Source audit: Kidney Care UK — Mushroom and courgette stroganoff is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+      "This vegetarian recipe is relatively low in purines because it contains no meat, fish or pulses. Mushrooms contribute potassium and the crème fraîche contributes some phosphate. Source audit: Kidney Care UK — Mushroom and courgette stroganoff is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
       {
     id: "apple-cinnamon-french-toast",
@@ -3638,7 +3638,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote:
-      "The blueberry portion is deliberately modest. Choose baking powder without phosphate additives where available. Source audit: Kidney Care UK — Low potassium pancakes is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+      "The blueberry portion is deliberately modest. Choose baking powder without phosphate additives where available. Source audit: Kidney Care UK — Low potassium pancakes is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
 
   {
@@ -4769,7 +4769,7 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote:
-      "Oats provide useful fibre but contain more potassium and phosphate than refined cereals. The recipe uses water rather than milk. Source audit: Kidney Care UK — Tasty breakfast porridge is a candidate match; this Meal Planner recipe is not classified as an exact/scaled source recipe.",
+      "Oats provide useful fibre but contain more potassium and phosphate than refined cereals. The recipe uses water rather than milk. Source audit: Kidney Care UK — Tasty breakfast porridge is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
 
   {

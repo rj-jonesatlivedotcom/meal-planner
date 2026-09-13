@@ -1,11 +1,11 @@
 # Fix breakfast recipe image paths in data/recipes.ts
-# Run this script from the Meal Planner project root.
+# Run this script from the RenalPlan project root.
 
 $recipeFile = Join-Path $PSScriptRoot "data\recipes.ts"
 
 if (-not (Test-Path $recipeFile)) {
     Write-Host "ERROR: Could not find data\recipes.ts" -ForegroundColor Red
-    Write-Host "Make sure this script is in your Meal Planner project root." -ForegroundColor Yellow
+    Write-Host "Make sure this script is in your RenalPlan project root." -ForegroundColor Yellow
     exit 1
 }
 
@@ -74,4 +74,4 @@ Write-Host "Backup created:" -ForegroundColor Yellow
 Write-Host $backupFile -ForegroundColor White
 
 Write-Host ""
-Write-Host "Now refresh your Meal Planner and test Pick for Me several times." -ForegroundColor Cyan
+Write-Host "Now refresh your RenalPlan and test Pick for Me several times." -ForegroundColor Cyan

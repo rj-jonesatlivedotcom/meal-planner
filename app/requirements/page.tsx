@@ -343,7 +343,7 @@ export default function RequirementsPage() {
                 </label>
 
                 <p className="mt-1 text-xs leading-5 text-slate-600">
-                  Set the carbohydrate range you want Meal Planner to use
+                  Set the carbohydrate range you want RenalPlan to use
                   when selecting recipes.
                 </p>
               </div>
@@ -430,7 +430,7 @@ export default function RequirementsPage() {
           </div>
 
           <p className="mt-5 rounded-2xl bg-slate-100 p-3 text-xs leading-5 text-slate-500">
-            These settings help Meal Planner select recipes based on the
+            These settings help RenalPlan select recipes based on the
             nutrition information stored for each meal. They are a planning
             aid and do not replace advice from your renal dietitian or
             healthcare team.

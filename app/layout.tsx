@@ -9,8 +9,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Meal Planner",
-  description: "Meal Planner",
+  title: "RenalPlan",
+  description: "RenalPlan",
 };
 
 export default function RootLayout({

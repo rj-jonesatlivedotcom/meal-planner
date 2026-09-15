@@ -147,7 +147,7 @@ export default function Navbar() {
           icon: "recipes",
           title: "Recipes",
           subtitle:
-            "Browse delicious kidney-friendly recipes.",
+            "Browse kidney-friendly recipes.",
         }
       : pathname.startsWith("/planner")
         ? {
@@ -160,14 +160,14 @@ export default function Navbar() {
               icon: "nutrition",
               title: "Nutrition",
               subtitle:
-                "See the nutritional details of your weekly plan.",
+                "Nutritional details of your plan.",
             }
           : pathname.startsWith("/shopping")
             ? {
                 icon: "shopping",
                 title: "Shopping List",
                 subtitle:
-                  "Your ingredients, organised by category.",
+                  "Your ingredients",
               }
             : pathname.startsWith("/requirements")
               ? {

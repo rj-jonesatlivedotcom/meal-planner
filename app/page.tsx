@@ -3,7 +3,7 @@ import RenalPlan from "@/components/RenalPlan";
 const steps = [
   {
     number: "1",
-    title: "My Requirements",
+    title: "My Diet",
     description: (
       <>
         Tell us about your dietary

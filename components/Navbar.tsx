@@ -172,7 +172,7 @@ export default function Navbar() {
             : pathname.startsWith("/requirements")
               ? {
                   icon: "requirements",
-                  title: "My Requirements",
+                  title: "My Diet",
                   subtitle:
                     "Tell us what matters to you.",
                 }
@@ -186,7 +186,7 @@ export default function Navbar() {
     },
     {
       href: "/requirements",
-      label: "My Requirements",
+      label: "My Diet",
       active: pathname.startsWith("/requirements"),
     },
     {

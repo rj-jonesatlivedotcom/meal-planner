@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { recipes } from "@/data/recipes";
+import { recipes } from "@/data/recipe-data";
 
 type ShoppingItem = {
   item: string;
@@ -2131,3 +2131,7 @@ export default function ShoppingPage() {
     </main>
   );
 }
+
+
+
+

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { recipes } from "@/data/recipes";
+import { recipes } from "@/data/recipe-data";
 import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
 
 const days = [
@@ -2561,3 +2561,7 @@ if (total <= limit * 0.75) {
     </main>
   );
 }
+
+
+
+

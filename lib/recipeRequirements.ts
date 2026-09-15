@@ -1,4 +1,4 @@
-import type { Recipe } from "@/data/recipes";
+import type { Recipe } from "@/data/recipe-data";
 
 export type RequirementLevel = "Any" | "Low" | "Moderate";
 
@@ -106,3 +106,7 @@ export function getStoredRequirements(): Requirements | null {
     return null;
   }
 }
+
+
+
+

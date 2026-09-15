@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
-import { recipes } from "../../data/recipes";
+import { recipes } from "../../data/recipe-data";
 import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
 
 export default function RecipesPage() {
@@ -750,3 +750,7 @@ export default function RecipesPage() {
     </main>
   );
 }
+
+
+
+

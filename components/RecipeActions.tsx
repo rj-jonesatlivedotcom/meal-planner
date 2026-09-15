@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { recipes } from "@/data/recipes";
+import { recipes } from "@/data/recipe-data";
 
 type Props = {
   recipeId: string;
@@ -622,3 +622,7 @@ export default function RecipeActions({
     </>
   );
 }
+
+
+
+

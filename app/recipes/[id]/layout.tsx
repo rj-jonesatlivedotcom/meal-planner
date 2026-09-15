@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { recipes } from "@/data/recipes";
+import { recipes } from "@/data/recipe-data";
 
 type RecipeLayoutProps = {
   children: React.ReactNode;
@@ -155,3 +155,6 @@ export default async function RecipeLayout({
     </>
   );
 }
+
+
+

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { recipes, type Recipe } from "@/data/recipes";
+import { recipes, type Recipe } from "@/data/recipe-data";
 
 const days = [
   "Monday",
@@ -1799,3 +1799,7 @@ export default function NutritionPage() {
     </>
   );
 }
+
+
+
+

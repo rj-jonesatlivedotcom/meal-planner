@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { recipes } from "@/data/recipes";
+import { recipes } from "@/data/recipe-data";
 
 const days = [
   "Monday",
@@ -1419,3 +1419,6 @@ export default function RecipeDetailPage() {
     </main>
   );
 }
+
+
+

@@ -567,6 +567,10 @@ function normaliseIngredient(raw: string): string {
     return "Lime";
   }
 
+    if (/^apple(?:s)?$/.test(lower)) {
+    return "Apple";
+  }
+  
   if (/^lettuce(?:\s+(?:leaf|leaves))?$/.test(lower)) {
     return "Lettuce";
   }

@@ -49,10 +49,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥪",
@@ -99,10 +99,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥪",
@@ -150,10 +150,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥪",
@@ -206,10 +206,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥪",
@@ -256,10 +256,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥪",
@@ -307,10 +307,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥔",
@@ -359,10 +359,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥔",
@@ -411,10 +411,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥔",
@@ -471,10 +471,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🌶️",
@@ -528,10 +528,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥗",
@@ -583,10 +583,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🧀",
@@ -632,10 +632,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🍞",
@@ -681,10 +681,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🐟",
@@ -732,10 +732,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥓",
@@ -781,10 +781,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🍳",
@@ -830,10 +830,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🧀",
@@ -881,10 +881,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🥪",
@@ -930,10 +930,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🍳",
@@ -979,10 +979,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🧀",
@@ -1030,10 +1030,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🍳",
@@ -1079,10 +1079,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Chicken",
     emoji: "🍛",
@@ -1190,9 +1190,9 @@ export const recipes: Recipe[] = [
     code: "D002",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Hearty cottage pie",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/hearty-cottage-pie/",
-      logo: "/images/kidneycareuk.svg",
+      name: "cottage pie",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Beef",
     emoji: "🥧",
@@ -1293,7 +1293,7 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Moderate",
   purines: "Moderate",
-  dietaryNote: "Potato, beef and peas make this a more moderate renal-diet choice. Source audit: Kidney Care UK — Hearty cottage pie is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+  dietaryNote: "Potato, beef and peas make this a more moderate renal-diet choice. Source audit: RenalPlan Original — Hearty cottage pie is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
 
 {
@@ -1302,10 +1302,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Chicken",
     emoji: "🍝",
@@ -1409,9 +1409,9 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Care UK — Pasta Bolognese",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/pasta-bolognese/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Pasta Bolognese",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },  category: "Beef",
   emoji: "🍝",
   image: "/images/recipes/spaghetti-bolognese.png",
@@ -1494,7 +1494,7 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Low",
   purines: "Moderate",
-  dietaryNote: "Beef makes this moderate in purines; the tomato base also raises potassium. Source audit: Kidney Care UK — Pasta Bolognese is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+  dietaryNote: "Beef makes this moderate in purines; the tomato base also raises potassium. Source audit: RenalPlan Original — Pasta Bolognese is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
 },
 {
   id: "lemon-herb-chicken-tray-bake",
@@ -1502,10 +1502,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },  category: "Chicken",
   emoji: "🍗",
@@ -1597,9 +1597,9 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Care UK — Chicken fajitas",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chicken-fajitas/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Chicken fajitas",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },  category: "Chicken",
   emoji: "🌯",
   image: "/images/recipes/chicken-fajitas.png",
@@ -1690,10 +1690,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },  category: "Chicken",
   emoji: "🍗",
@@ -1784,10 +1784,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },  category: "Chicken",
   emoji: "🍯",
@@ -1878,10 +1878,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },  category: "Beef",
   emoji: "🍔",
@@ -1977,10 +1977,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },  category: "Beef",
   emoji: "🍝",
@@ -2073,9 +2073,9 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Care UK — Chilli con carne with rice",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chilli-con-carne-with-rice/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Chilli con carne with rice",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },  category: "Beef",
   emoji: "🌶️",
   image: "/images/recipes/chilli-con-carne.png",
@@ -2160,16 +2160,16 @@ export const recipes: Recipe[] = [
   potassium: "Moderate",
   phosphate: "Moderate",
   purines: "Moderate",
-  dietaryNote: "Beef and tomato make this a more moderate renal-diet choice. Source audit: Kidney Care UK — Chilli con carne with rice is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+  dietaryNote: "Beef and tomato make this a more moderate renal-diet choice. Source audit: RenalPlan Original — Chilli con carne with rice is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
 },{
   id: "sausage-mash-onion-gravy",
   code: "D012",
     servings: 1,
 
     source: {
-      name: "Kidney Care UK — Sausage and mash",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/sausage-and-mash/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Sausage and mash",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },  category: "Pork",
   emoji: "🌭",
   image: "/images/recipes/sausage-mash-onion-gravy.png",
@@ -2253,10 +2253,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },  category: "Fish",
   emoji: "🐟",
@@ -2346,10 +2346,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },  category: "Fish",
   emoji: "🐟",
@@ -2448,10 +2448,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },  category: "Chicken",
   emoji: "🍅",
@@ -2551,10 +2551,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Chicken",
     emoji: "🍋",
@@ -2612,10 +2612,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Chicken",
     emoji: "🍯",
@@ -2676,9 +2676,9 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Care UK — Chicken tikka pulao",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chicken-tikka-pulao/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Chicken tikka pulao",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },    category: "Chicken",
     emoji: "🍛",
     image: "/images/recipes/chicken-tikka-rice.png",
@@ -2731,7 +2731,7 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "Chicken and yoghurt contribute phosphate, while chicken contributes purines. White basmati rice provides the main carbohydrate without a large potassium contribution. Source audit: Kidney Care UK — Chicken tikka pulao is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+      "Chicken and yoghurt contribute phosphate, while chicken contributes purines. White basmati rice provides the main carbohydrate without a large potassium contribution. Source audit: RenalPlan Original — Chicken tikka pulao is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "chicken-pesto-pasta",
@@ -2739,10 +2739,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Chicken",
     emoji: "🍝",
@@ -2800,10 +2800,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Beef",
     emoji: "🥩",
@@ -2867,10 +2867,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Beef",
     emoji: "🥙",
@@ -2930,10 +2930,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Beef",
     emoji: "🥩",
@@ -2991,10 +2991,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Pork",
     emoji: "🍎",
@@ -3050,9 +3050,9 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Care UK — Double-cooked pork",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/double-cooked-pork/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Double-cooked pork",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },    category: "Pork",
     emoji: "🥢",
     image: "/images/recipes/pork-stir-fry-rice.png",
@@ -3106,16 +3106,16 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "Pork contributes phosphate and purines. White rice provides the main carbohydrate, while avoiding soy sauce keeps the dish lower in added salt. Source audit: Kidney Care UK — Double-cooked pork is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+      "Pork contributes phosphate and purines. White rice provides the main carbohydrate, while avoiding soy sauce keeps the dish lower in added salt. Source audit: RenalPlan Original — Double-cooked pork is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "sausage-tomato-pasta",
     code: "D025",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Arrabbiata pasta with sausages",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/arrabbiata-pasta-with-sausages/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Arrabbiata pasta with sausages",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Pork",
     emoji: "🌭",
@@ -3170,7 +3170,7 @@ export const recipes: Recipe[] = [
     phosphate: "High",
     purines: "High",
     dietaryNote:
-      "Sausages can contain considerable salt and phosphate additives, so choose a good-quality product and check the ingredient label. Source audit: Kidney Care UK — Arrabbiata pasta with sausages is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+      "Sausages can contain considerable salt and phosphate additives, so choose a good-quality product and check the ingredient label. Source audit: RenalPlan Original — Arrabbiata pasta with sausages is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "cod-herby-potatoes-green-beans",
@@ -3178,10 +3178,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Fish",
     emoji: "🐟",
@@ -3239,9 +3239,9 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Care UK — Baked cod fillet, tabouli and tomato salsa",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/baked-cod-fillet-tabouli-and-tomato-salsa/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Baked cod fillet, tabouli and tomato salsa",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },    category: "Fish",
     emoji: "🐟",
     image: "/images/recipes/cod-couscous-vegetables.png",
@@ -3293,7 +3293,7 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Moderate",
     dietaryNote:
-      "Cod contributes phosphate and purines, while the vegetables provide potassium. The recipe avoids processed sauces and stock cubes. Source audit: Kidney Care UK — Baked cod fillet, tabouli and tomato salsa is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+      "Cod contributes phosphate and purines, while the vegetables provide potassium. The recipe avoids processed sauces and stock cubes. Source audit: RenalPlan Original — Baked cod fillet, tabouli and tomato salsa is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
   {
     id: "cod-tomato-rice",
@@ -3301,10 +3301,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Fish",
     emoji: "🐟",
@@ -3367,10 +3367,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Vegetarian",
     emoji: "🌱",
@@ -3431,9 +3431,9 @@ export const recipes: Recipe[] = [
     code: "D030",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Mushroom and courgette stroganoff",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/mushroom-and-courgette-stroganoff/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Mushroom and courgette stroganoff",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Vegetarian",
     emoji: "🍄",
@@ -3483,7 +3483,7 @@ export const recipes: Recipe[] = [
     phosphate: "High",
     purines: "Low",
     dietaryNote:
-      "This vegetarian recipe is relatively low in purines because it contains no meat, fish or pulses. Mushrooms contribute potassium and the crème fraîche contributes some phosphate. Source audit: Kidney Care UK — Mushroom and courgette stroganoff is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+      "This vegetarian recipe is relatively low in purines because it contains no meat, fish or pulses. Mushrooms contribute potassium and the crème fraîche contributes some phosphate. Source audit: RenalPlan Original — Mushroom and courgette stroganoff is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
       {
     id: "apple-cinnamon-french-toast",
@@ -3491,10 +3491,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🍎",
@@ -3563,9 +3563,9 @@ export const recipes: Recipe[] = [
     code: "B002",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Low potassium pancakes",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/low-potassium-pancakes/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Low potassium pancakes",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Breakfast",
     emoji: "🥞",
@@ -3638,7 +3638,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote:
-      "The blueberry portion is deliberately modest. Choose baking powder without phosphate additives where available. Source audit: Kidney Care UK — Low potassium pancakes is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+      "The blueberry portion is deliberately modest. Choose baking powder without phosphate additives where available. Source audit: RenalPlan Original — Low potassium pancakes is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
 
   {
@@ -3647,10 +3647,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🍳",
@@ -3721,10 +3721,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🍓",
@@ -3789,10 +3789,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🍚",
@@ -3860,10 +3860,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🥪",
@@ -3944,10 +3944,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🫐",
@@ -4030,10 +4030,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🍑",
@@ -4102,10 +4102,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🌯",
@@ -4183,10 +4183,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🍏",
@@ -4258,10 +4258,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🍳",
@@ -4310,10 +4310,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🥚",
@@ -4363,10 +4363,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🥚",
@@ -4413,10 +4413,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🌭",
@@ -4468,10 +4468,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🥓",
@@ -4520,10 +4520,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🧀",
@@ -4572,10 +4572,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🌭",
@@ -4621,10 +4621,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🥯",
@@ -4674,10 +4674,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Breakfast",
     emoji: "🥯",
@@ -4728,9 +4728,9 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Care UK — Tasty breakfast porridge",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/tasty-breakfast-porridge/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Tasty breakfast porridge",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },    category: "Breakfast",
     emoji: "🥣",
     image: "/images/recipes/apple-cinnamon-porridge.png",
@@ -4769,7 +4769,7 @@ export const recipes: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote:
-      "Oats provide useful fibre but contain more potassium and phosphate than refined cereals. The recipe uses water rather than milk. Source audit: Kidney Care UK — Tasty breakfast porridge is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
+      "Oats provide useful fibre but contain more potassium and phosphate than refined cereals. The recipe uses water rather than milk. Source audit: RenalPlan Original — Tasty breakfast porridge is a candidate match; this RenalPlan recipe is not classified as an exact/scaled source recipe.",
   },
 
   {
@@ -4777,9 +4777,9 @@ export const recipes: Recipe[] = [
     code: "L021",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Chicken Caesar Wraps",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chicken-caesar-wraps/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Chicken Caesar Wraps",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Lunch",
     emoji: "🌯",
@@ -4819,7 +4819,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one serving from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -4827,9 +4827,9 @@ export const recipes: Recipe[] = [
     code: "L022",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Asian Turkey Wraps",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/asian-turkey-wraps/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Asian Turkey Wraps",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Lunch",
     emoji: "🌯",
@@ -4879,7 +4879,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one serving from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -4887,9 +4887,9 @@ export const recipes: Recipe[] = [
     code: "L023",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Mediterranean Chicken Pittas",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/mediterranean-chicken-pittas/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Mediterranean Chicken Pittas",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Lunch",
     emoji: "🥙",
@@ -4934,7 +4934,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one adult portion from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -4942,9 +4942,9 @@ export const recipes: Recipe[] = [
     code: "L024",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Spicy Egg Pitta Pockets",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/spicy-egg-pitta-pockets/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Spicy Egg Pitta Pockets",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Lunch",
     emoji: "🥙",
@@ -4992,7 +4992,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote:
-      "Scaled to one serving from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -5000,9 +5000,9 @@ export const recipes: Recipe[] = [
     code: "L025",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Tasty Tuna Pittas",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/tasty-tuna-pittas/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Tasty Tuna Pittas",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Lunch",
     emoji: "🥙",
@@ -5045,7 +5045,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one adult portion from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -5053,9 +5053,9 @@ export const recipes: Recipe[] = [
     code: "L026",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Salmon, Rice and Herb Salad",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/salmon-rice-and-herb-salad/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Salmon, Rice and Herb Salad",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Lunch",
     emoji: "🐟",
@@ -5098,7 +5098,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one serving from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -5106,9 +5106,9 @@ export const recipes: Recipe[] = [
     code: "L027",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Sticky Tofu and Coriander Salad",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/sticky-tofu-and-coriander-salad/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Sticky Tofu and Coriander Salad",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Lunch",
     emoji: "🥗",
@@ -5160,7 +5160,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one serving from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -5169,10 +5169,10 @@ export const recipes: Recipe[] = [
     servings: 1,
 
     source: {
-      name: "Kidney Planner Original",
+      name: "RenalPlan Original",
       url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
-      logo: "/images/govuk.svg",
-      description: "Developed specifically for Kidney Planner. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
+      logo: "/images/govuk.png",
+      description: "Developed specifically for RenalPlan. Nutritional values calculated using McCance and Widdowson’s Composition of Foods Integrated Dataset (CoFID) 2021.",
       linkText: "View CoFID 2021",
     },    category: "Lunch",
     emoji: "🍳",
@@ -5220,9 +5220,9 @@ export const recipes: Recipe[] = [
     code: "D031",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Turkey Curry",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/turkey-curry/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Turkey Curry",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Turkey",
     emoji: "🍛",
@@ -5273,7 +5273,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one serving from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -5281,9 +5281,9 @@ export const recipes: Recipe[] = [
     code: "D032",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Roast Lamb",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/roast-lamb/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Roast Lamb",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Lamb",
     emoji: "🍖",
@@ -5330,7 +5330,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one adult portion from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -5338,9 +5338,9 @@ export const recipes: Recipe[] = [
     code: "D033",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Quick Lamb and Leek Hotpot",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/quick-lamb-and-leek-hotpot/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Quick Lamb and Leek Hotpot",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Lamb",
     emoji: "🥘",
@@ -5384,7 +5384,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one serving from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate; it is not classified as low salt.",
+      "low potassium and low phosphate; not low salt.",
   },
 
   {
@@ -5392,9 +5392,9 @@ export const recipes: Recipe[] = [
     code: "D034",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Chinese Pork with Celery and Rice",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/chinese-pork-with-celery-and-rice/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Chinese Pork with Celery and Rice",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Pork",
     emoji: "🥢",
@@ -5442,7 +5442,7 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one serving from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 
   {
@@ -5450,9 +5450,9 @@ export const recipes: Recipe[] = [
     code: "D035",
     servings: 1,
     source: {
-      name: "Kidney Care UK — Beef Stir Fry",
-      url: "https://kidneycareuk.org/get-support/healthy-diet-support/kidney-kitchen/recipe-index/beef-stir-fry/",
-      logo: "/images/kidneycareuk.svg",
+      name: "RenalPlan Original — Beef Stir Fry",
+      url: "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/971021/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+      logo: "/images/govuk.png",
     },
     category: "Beef",
     emoji: "🥩",
@@ -5500,6 +5500,6 @@ export const recipes: Recipe[] = [
     phosphate: "Low",
     purines: "Moderate",
     dietaryNote:
-      "Scaled to one serving from the Kidney Care UK recipe. The source classifies the specified portion as low potassium and low phosphate.",
+      "low potassium and low phosphate.",
   },
 ]

@@ -73,6 +73,24 @@ function getDefaultMealType(code: string) {
   return "Dinner";
 }
 
+function formatSalt(sodiumValue: string | undefined) {
+  if (!sodiumValue) {
+    return "—";
+  }
+
+  const sodiumMg = parseFloat(
+    sodiumValue.replace(/[^0-9.]/g, "")
+  );
+
+  if (!Number.isFinite(sodiumMg)) {
+    return "—";
+  }
+
+  const saltGrams = (sodiumMg * 2.5) / 1000;
+
+  return `${saltGrams.toFixed(2).replace(/\.00$/, "")} g`;
+}
+
 export default function RecipeDetailPage() {
   const params = useParams();
 
@@ -688,8 +706,8 @@ export default function RecipeDetailPage() {
                   </div>
 
                   <div className="px-3 py-4 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Sodium</div>
-                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.nutrition.sodium}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Salt (g)</div>
+                    <div className="mt-1 text-sm font-bold text-slate-900">{formatSalt(recipe.nutrition.sodium)}</div>
                   </div>
 
                   <div className="px-3 py-4 text-center">
@@ -788,7 +806,7 @@ export default function RecipeDetailPage() {
               <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Carbohydrates</span><strong>{recipe.nutrition.carbohydrates}</strong></div>
               <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Fat</span><strong>{recipe.nutrition.fat}</strong></div>
               <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Fibre</span><strong>{recipe.nutrition.fibre}</strong></div>
-              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Sodium</span><strong>{recipe.nutrition.sodium}</strong></div>
+              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Salt (g)</span><strong>{formatSalt(recipe.nutrition.sodium)}</strong></div>
             </div>
           </div>
 
@@ -980,13 +998,21 @@ export default function RecipeDetailPage() {
             🧂
           </div>
 
-          <strong className="block text-[11px] leading-tight sm:text-base">
-            Sodium
-          </strong>
+          <div className="rounded-lg border p-2 text-center sm:p-4">
 
-          <p className="mt-1 text-xs sm:text-base">
-            {recipe.nutrition.sodium}
-          </p>
+  <div className="text-lg sm:text-2xl">
+    🧂
+  </div>
+
+  <strong className="block text-[11px] leading-tight sm:text-base">
+    Salt (g)
+  </strong>
+
+  <p className="mt-1 text-xs sm:text-base">
+    {formatSalt(recipe.nutrition.sodium)}
+  </p>
+
+</div>
 
         </div>
 
@@ -1069,8 +1095,8 @@ export default function RecipeDetailPage() {
         </p>
 
         <p>
-          Sodium:{" "}
-          {recipe.nutrition.sodium}
+          Salt:{" "}
+          {formatSalt(recipe.nutrition.sodium)}
         </p>
 
       </div>

@@ -70,6 +70,25 @@ function getMealTypeLabel(code: string) {
   return "Dinner";
 }
 
+function formatSalt(sodiumMg: string | undefined) {
+  if (!sodiumMg) {
+    return "—";
+  }
+
+  const sodiumNumber = parseFloat(
+    sodiumMg.replace(/[^0-9.]/g, "")
+  );
+
+  if (!Number.isFinite(sodiumNumber)) {
+    return "—";
+  }
+
+  const saltGrams =
+    (sodiumNumber * 2.5) / 1000;
+
+  return `${saltGrams.toFixed(2).replace(/\.00$/, "")} g salt`;
+}
+
 type Placement = {
   day: string;
   meal: string;
@@ -889,7 +908,7 @@ export default function RecipeCard({
                 text-blue-700
               "
             >
-              🧂 {recipe.nutrition?.sodium ?? "—"}
+              🧂 {formatSalt(recipe.nutrition?.sodium)}
             </span>
 
           </div>

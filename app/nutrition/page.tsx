@@ -315,6 +315,11 @@ function getMatrixLevelText(
   return level === "Moderate" ? "Mod" : level;
 }
 
+function formatSalt(sodiumMg: number): string {
+  const saltGrams = (sodiumMg * 2.5) / 1000;
+  return `${saltGrams.toFixed(1)} g`;
+}
+
 function formatNumber(value: number): string {
   return Math.round(value).toLocaleString("en-GB");
 }
@@ -824,9 +829,9 @@ export default function NutritionPage() {
                         </div>
 
                         <div className="flex items-center justify-between gap-3">
-                          <span className="text-slate-500">Sodium</span>
+                          <span className="text-slate-500">Salt (g)</span>
                           <strong className="text-slate-900">
-                            {formatNutrient(totals.sodium, "mg")}
+                            {formatSalt(totals.sodium)}
                           </strong>
                         </div>
 
@@ -933,9 +938,9 @@ export default function NutritionPage() {
                 </div>
 
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Sodium</span>
+                  <span className="text-slate-600">Salt (g)</span>
                   <strong className="text-slate-900">
-                    {formatNutrient(dayTotals[selectedDay].sodium, "mg")}
+                    {formatSalt(dayTotals[selectedDay].sodium)}
                   </strong>
                 </div>
 
@@ -1066,9 +1071,9 @@ export default function NutritionPage() {
                                 </div>
 
                                 <div className="flex items-center justify-between gap-2">
-                                  <span className="text-slate-500">Sodium</span>
+                                  <span className="text-slate-500">Salt (g)</span>
                                   <strong className="text-slate-900">
-                                    {formatNutrient(totals.sodium, "mg")}
+                                    {formatSalt(totals.sodium)}
                                   </strong>
                                 </div>
 
@@ -1175,9 +1180,9 @@ export default function NutritionPage() {
                                 </div>
 
                                 <div className="flex items-center justify-between gap-2">
-                                  <span className="text-slate-500">Sodium</span>
+                                  <span className="text-slate-500">Salt (g)</span>
                                   <strong className="text-slate-900">
-                                    {formatNutrient(average.sodium, "mg")}
+                                    {formatSalt(average.sodium)}
                                   </strong>
                                 </div>
 
@@ -1315,9 +1320,9 @@ export default function NutritionPage() {
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Sodium</span>
+                                    <span className="text-slate-500">Salt (g)</span>
                                     <strong className="text-slate-900">
-                                      {formatNutrient(dayTotals[day].sodium, "mg")}
+                                      {formatSalt(dayTotals[day].sodium)}
                                     </strong>
                                   </div>
 
@@ -1427,9 +1432,9 @@ export default function NutritionPage() {
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Sodium</span>
+                                <span className="text-slate-500">Salt (g)</span>
                                 <strong className="text-slate-900">
-                                  {formatNutrient(dailyAverage.sodium, "mg")}
+                                  {formatSalt(dailyAverage.sodium)}
                                 </strong>
                               </div>
 
@@ -1605,19 +1610,19 @@ export default function NutritionPage() {
                         status: "green" as Status,
                       },
                       {
-                        label: "Sodium (mg)",
-                        total: formatNumber(
+                        label: "Salt (g)",
+                        total: formatSalt(
                           weeklyTotals.sodium
                         ),
-                        average: formatNumber(
+                        average: formatSalt(
                           dailyAverage.sodium
                         ),
                         requirement:
                           requirements.sodiumLimit !== null &&
                           requirements.sodiumLimit !== undefined
-                            ? `≤ ${formatNumber(
+                            ? `≤ ${formatSalt(
                                 requirements.sodiumLimit
-                              )} mg/day`
+                              )} g/day`
                             : "No limit set",
                         status:
                           requirements.sodiumLimit === null ||

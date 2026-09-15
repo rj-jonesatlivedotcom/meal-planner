@@ -768,6 +768,11 @@ export default function WeeklyPlannerPage() {
     return match ? Number(match[0]) : 0;
   }
 
+  function formatSalt(sodiumMg: number): string {
+  const saltGrams = (sodiumMg * 2.5) / 1000;
+  return `${saltGrams.toFixed(1)} g`;
+}
+
   function getDayMealRecipes(day: string) {
     return {
       Breakfast: getRecipe(
@@ -1025,8 +1030,8 @@ if (total <= limit * 0.75) {
             style={{
               background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 118deg, #ffffff 118deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 242deg, ${dinnerColour} 242deg 358deg, #ffffff 358deg 360deg)`,
             }}
-            aria-label={`${day} Sodium: daily total ${getDailySodiumTotal(day) ?? "no meals"} mg, ${mobileStatus.toLowerCase()}`}
-            title={`${day} Sodium: daily total ${getDailySodiumTotal(day) ?? "no meals"} mg, ${mobileStatus.toLowerCase()}`}
+            aria-label={`${day} Salt: daily total ${getDailySodiumTotal(day) !== null ? formatSalt(getDailySodiumTotal(day)!) : "no meals"}, ${mobileStatus.toLowerCase()}`}
+            title={`${day} Salt: daily total ${getDailySodiumTotal(day) !== null ? formatSalt(getDailySodiumTotal(day)!) : "no meals"}, ${mobileStatus.toLowerCase()}`}
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[7px] font-extrabold uppercase leading-none shadow-inner" style={{ color: mobileStatusColour }}>
               {mobileStatus === "No limit" ? "—" : mobileStatus}
@@ -1111,12 +1116,12 @@ if (total <= limit * 0.75) {
         className="flex flex-col items-center justify-center"
         aria-label={
           nutritionView === "Sodium"
-            ? `${day} Sodium: daily total ${getDailySodiumTotal(day) ?? "no meals"} mg, ${overallStatus.toLowerCase()}`
+            ? `${day} Salt: daily total ${getDailySodiumTotal(day) !== null ? formatSalt(getDailySodiumTotal(day)!) : "no meals"}, ${overallStatus.toLowerCase()}`
             : `${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`
         }
         title={
           nutritionView === "Sodium"
-            ? `${day} Sodium: daily total ${getDailySodiumTotal(day) ?? "no meals"} mg, ${overallStatus.toLowerCase()}`
+            ? `${day} Salt: daily total ${getDailySodiumTotal(day) !== null ? formatSalt(getDailySodiumTotal(day)!) : "no meals"}, ${overallStatus.toLowerCase()}`
             : `${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`
         }
       >
@@ -1141,7 +1146,7 @@ if (total <= limit * 0.75) {
             {nutritionView === "Sodium" &&
               getDailySodiumTotal(day) !== null && (
                 <span className="mt-0.5 text-[8px] font-semibold text-slate-400">
-                  {getDailySodiumTotal(day)!.toLocaleString()} mg
+                  {formatSalt(getDailySodiumTotal(day)!)}
                 </span>
               )}
           </div>
@@ -1610,7 +1615,7 @@ if (total <= limit * 0.75) {
                     Protein
                   </option>
                   <option value="Sodium">
-                    Sodium
+                    Salt
                   </option>
                   <option value="Potassium">
                     Potassium
@@ -2123,7 +2128,7 @@ if (total <= limit * 0.75) {
                       Protein
                     </option>
                     <option value="Sodium">
-                      Sodium
+                      Salt
                     </option>
                     <option value="Potassium">
                       Potassium

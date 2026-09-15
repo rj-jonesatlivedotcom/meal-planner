@@ -214,10 +214,10 @@ export default function RequirementsPage() {
           <div className="mt-2.5 grid gap-2.5 md:grid-cols-2">
             <div className="rounded-2xl border border-purple-100/50 bg-purple-50/30 p-3 sm:p-3.5">
               <label
-                htmlFor="sodium-limit"
+                htmlFor="salt-limit"
                 className="block text-base font-extrabold text-slate-900"
               >
-                Daily sodium limit
+                Daily salt limit
               </label>
 
               <p className="mt-1 text-xs leading-5 text-slate-600">
@@ -225,7 +225,7 @@ export default function RequirementsPage() {
               </p>
 
               <select
-                id="sodium-limit"
+                id="salt-limit"
                 value={
                   requirements.sodiumLimit === null
                     ? "Any"
@@ -242,10 +242,10 @@ export default function RequirementsPage() {
                 className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
               >
                 <option value="Any">Any</option>
-                <option value={1500}>1,500 mg per day</option>
-                <option value={1800}>1,800 mg per day</option>
-                <option value={2000}>2,000 mg per day</option>
-                <option value={2300}>2,300 mg per day</option>
+                <option value={1200}>3 g per day</option>
+                <option value={1600}>4 g per day</option>
+                <option value={2000}>5 g per day</option>
+                <option value={2400}>6 g per day</option>
               </select>
             </div>
 

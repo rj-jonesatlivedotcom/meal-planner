@@ -273,8 +273,8 @@ export default function RequirementsPage() {
                 className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
               >
                 <option>Any</option>
-                <option>Low</option>
-                <option>Moderate</option>
+                <option value="Low">Low — under 400 mg per meal</option>
+                <option value="Moderate">Moderate — 400–650 mg per meal</option>
               </select>
             </div>
 

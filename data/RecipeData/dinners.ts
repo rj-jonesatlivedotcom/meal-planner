@@ -31,7 +31,7 @@ export const dinners: Recipe[] = [
       },
       {
         item: "Onions, boiled in unsalted water",
-        shoppingItem: "Onion",
+        shoppingItem: "Onions",
         quantity: "50 g"
       },
       {
@@ -41,7 +41,7 @@ export const dinners: Recipe[] = [
       },
       {
         item: "Lemon juice, fresh",
-        shoppingItem: "Lemon",
+        shoppingItem: "Lemon juice",
         quantity: "1 tbsp"
       },
       {
@@ -68,8 +68,8 @@ export const dinners: Recipe[] = [
       potassium: "660 mg",
       phosphate: "342 mg"
     },
-    potassium: "Moderate",
-    phosphate: "Low",
+    potassium: "High",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "The meal uses a modest chicken portion with rice and lower-potassium vegetables. Chicken contributes protein and phosphate.",
     servings: 1
@@ -137,7 +137,7 @@ export const dinners: Recipe[] = [
       phosphate: "352 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "Turkey provides concentrated protein while rice and the vegetable portions provide the main carbohydrate and fibre. Turkey contributes protein and phosphate.",
     servings: 1
@@ -204,8 +204,8 @@ export const dinners: Recipe[] = [
       potassium: "687 mg",
       phosphate: "339 mg"
     },
-    potassium: "Moderate",
-    phosphate: "Low",
+    potassium: "High",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Lean pork provides useful protein. Pork contributes phosphate and purines, while the rice and vegetables form the lower-potassium carbohydrate base.",
     servings: 1
@@ -240,7 +240,7 @@ export const dinners: Recipe[] = [
       },
       {
         item: "Onions, boiled in unsalted water",
-        shoppingItem: "Onion",
+        shoppingItem: "Onions",
         quantity: "50 g"
       },
       {
@@ -250,7 +250,7 @@ export const dinners: Recipe[] = [
       },
       {
         item: "Lemon juice, fresh",
-        shoppingItem: "Lemon",
+        shoppingItem: "Lemon juice",
         quantity: "1 tbsp"
       },
       {
@@ -278,8 +278,8 @@ export const dinners: Recipe[] = [
       potassium: "713 mg",
       phosphate: "324 mg"
     },
-    potassium: "Moderate",
-    phosphate: "Low",
+    potassium: "High",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "Cod provides useful protein with a relatively lean fat profile. Fish contributes phosphate and purines, while rice and cabbage provide the main carbohydrate and fibre.",
     servings: 1
@@ -314,7 +314,7 @@ export const dinners: Recipe[] = [
       },
       {
         item: "Onions, boiled in unsalted water",
-        shoppingItem: "Onion",
+        shoppingItem: "Onions",
         quantity: "50 g"
       },
       {
@@ -324,7 +324,7 @@ export const dinners: Recipe[] = [
       },
       {
         item: "Lemon juice, fresh",
-        shoppingItem: "Lemon",
+        shoppingItem: "Lemon juice",
         quantity: "1 tbsp"
       }
     ],
@@ -348,7 +348,7 @@ export const dinners: Recipe[] = [
       phosphate: "341 mg"
     },
     potassium: "Moderate",
-    phosphate: "Low",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Salmon provides useful protein and fat but is an oily fish and therefore classified as higher in purines. The rice and cabbage keep the meal centred on lower-potassium foods.",
     servings: 1
@@ -383,7 +383,7 @@ export const dinners: Recipe[] = [
       },
       {
         item: "Onions, boiled in unsalted water",
-        shoppingItem: "Onion",
+        shoppingItem: "Onions",
         quantity: "50 g"
       },
       {
@@ -416,7 +416,7 @@ export const dinners: Recipe[] = [
       phosphate: "304 mg"
     },
     potassium: "Moderate",
-    phosphate: "Low",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Extra-lean beef keeps the fat content controlled while providing substantial protein. Beef contributes protein and phosphate.",
     servings: 1
@@ -485,7 +485,7 @@ export const dinners: Recipe[] = [
       phosphate: "473 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "Eggs provide a low-purine protein source. Cheddar contributes a substantial amount of phosphate, so the cheese portion is deliberately modest.",
     servings: 1
@@ -515,12 +515,12 @@ export const dinners: Recipe[] = [
       },
       {
         item: "Peppers, capsicum, green, raw",
-        shoppingItem: "Green pepper",
+        shoppingItem: "Green peppers",
         quantity: "50 g"
       },
       {
         item: "Onions, boiled in unsalted water",
-        shoppingItem: "Onion",
+        shoppingItem: "Onions",
         quantity: "50 g"
       },
       {
@@ -554,7 +554,7 @@ export const dinners: Recipe[] = [
       phosphate: "332 mg"
     },
     potassium: "Moderate",
-    phosphate: "Low",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Chicken provides useful protein while the rice provides the main carbohydrate. The meal avoids salty sauces and uses a modest vegetable portion.",
     servings: 1
@@ -622,8 +622,8 @@ export const dinners: Recipe[] = [
       potassium: "743 mg",
       phosphate: "397 mg"
     },
-    potassium: "Moderate",
-    phosphate: "Moderate",
+    potassium: "High",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "Lean pork provides substantial protein. Pork contributes phosphate and purines, while the pasta and cabbage provide the main carbohydrate and fibre.",
     servings: 1
@@ -691,8 +691,8 @@ export const dinners: Recipe[] = [
       potassium: "492 mg",
       phosphate: "458 mg"
     },
-    potassium: "Low",
-    phosphate: "Moderate",
+    potassium: "Moderate",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "Eggs are a low-purine protein source. The cheddar adds phosphate, so the cheese portion is kept modest. The recipe uses rice and a controlled cauliflower portion as the main accompaniments.",
     servings: 1
@@ -733,7 +733,7 @@ export const dinners: Recipe[] = [
       fibre: "5.0 g", sodium: "82 mg", salt: "0.21 g", potassium: "640 mg", phosphate: "390 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Tender chicken and mushrooms create a rich, savoury dinner without relying on a salty sauce.",
     servings: 1,
@@ -784,7 +784,7 @@ export const dinners: Recipe[] = [
       phosphate: "405 mg",
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "A lean turkey pasta dish with moderate potassium and phosphate. The measured turkey portion provides substantial protein without adding salt.",
     servings: 1,
@@ -834,8 +834,8 @@ export const dinners: Recipe[] = [
       potassium: "664 mg",
       phosphate: "343 mg",
     },
-    potassium: "Moderate",
-    phosphate: "Low",
+    potassium: "High",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Cod provides a lean source of protein, while pasta and the measured vegetables provide the carbohydrate and fibre base. No added salt is used.",
     servings: 1,
@@ -886,9 +886,9 @@ export const dinners: Recipe[] = [
       phosphate: "337 mg",
     },
     potassium: "Moderate",
-    phosphate: "Low",
+    phosphate: "High",
     purines: "Moderate",
-    dietaryNote: "A straightforward chicken and rice meal with moderate potassium and low phosphate within the recipe-planning bands.",
+    dietaryNote: "A straightforward chicken and rice meal with moderate potassium and high phosphate within the recipe-planning bands.",
     servings: 1,
   },
 
@@ -937,8 +937,8 @@ export const dinners: Recipe[] = [
       potassium: "663 mg",
       phosphate: "361 mg",
     },
-    potassium: "Moderate",
-    phosphate: "Moderate",
+    potassium: "High",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Lean turkey is paired with rice and measured lower-potassium vegetables. The recipe contains no added salt.",
     servings: 1,
@@ -989,8 +989,8 @@ export const dinners: Recipe[] = [
       potassium: "701 mg",
       phosphate: "349 mg",
     },
-    potassium: "Moderate",
-    phosphate: "Low",
+    potassium: "High",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "A balanced pork and rice dish with fruit for sweetness instead of added sugar. Pork provides protein as part of the meal.",
     servings: 1,
@@ -1040,8 +1040,8 @@ export const dinners: Recipe[] = [
       potassium: "666 mg",
       phosphate: "374 mg",
     },
-    potassium: "Moderate",
-    phosphate: "Low",
+    potassium: "High",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "A creamy but simply seasoned chicken pasta. Cabbage adds volume while keeping the ingredient list straightforward.",
     servings: 1,
@@ -1092,7 +1092,7 @@ export const dinners: Recipe[] = [
       phosphate: "326 mg",
     },
     potassium: "Moderate",
-    phosphate: "Low",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "Cod provides lean protein while rice supplies the main carbohydrate source. The measured vegetables add volume without added salt.",
     servings: 1,
@@ -1143,8 +1143,8 @@ export const dinners: Recipe[] = [
       potassium: "507 mg",
       phosphate: "424 mg",
     },
-    potassium: "Low",
-    phosphate: "Moderate",
+    potassium: "Moderate",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "Eggs provide a lower-purine protein source. Cheaper, simple ingredients make this a useful meat-free dinner option.",
     servings: 1,
@@ -1196,7 +1196,7 @@ export const dinners: Recipe[] = [
       phosphate: "332 mg",
     },
     potassium: "Moderate",
-    phosphate: "Low",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "A simple chicken and rice dinner with apple for natural sweetness. The recipe uses herbs, lemon and pepper instead of added salt.",
     servings: 1,
@@ -1209,7 +1209,7 @@ export const dinners: Recipe[] = [
     ],
     method: ["00:00 — Cook the rice according to the packet instructions, then drain.", "05:00 — Dice the chicken and onion.", "10:00 — Heat the olive oil and cook the onion for 3 minutes.", "13:00 — Add the chicken and thyme and cook until thoroughly cooked.", "25:00 — Stir in the sweetcorn and cook for 2 minutes.", "27:00 — Fold through the cooked rice and season with black pepper.", "30:00 — Serve hot."],
     nutrition: { calories: "612 kcal", protein: "32.5 g", carbohydrates: "91.0 g", fat: "13.0 g", fibre: "4.5 g", sodium: "70 mg", salt: "0.18 g", potassium: "620 mg", phosphate: "350 mg" },
-    potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "A protein-rich rice dinner with vegetables and no added salt.", servings: 1
+    potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "A protein-rich rice dinner with vegetables and no added salt.", servings: 1
   },
   {
     id: "D022", code: "D022", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
@@ -1219,17 +1219,17 @@ export const dinners: Recipe[] = [
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, then drain.", "05:00 — Finely chop the onion and pepper.", "08:00 — Heat the olive oil and cook the onion and pepper for 4 minutes.", "12:00 — Add the beef mince and cook, breaking it up with a wooden spoon.", "20:00 — Stir in the oregano and black pepper.", "22:00 — Add the cooked pasta and toss together.", "25:00 — Serve hot."],
     nutrition: { calories: "648 kcal", protein: "34.0 g", carbohydrates: "79.0 g", fat: "20.0 g", fibre: "4.0 g", sodium: "82 mg", salt: "0.21 g", potassium: "610 mg", phosphate: "360 mg" },
-    potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "Lean beef provides protein while pepper and onion add flavour without relying on added salt.", servings: 1
+    potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "Lean beef provides protein while pepper and onion add flavour without relying on added salt.", servings: 1
   },
   {
     id: "D023", code: "D023", category: "Dinner", emoji: "🐟", image: "/images/recipes/D023.png",
     name: "Herb Cod with Potatoes & Cabbage", description: "Baked cod served with boiled potatoes and tender cabbage with lemon and herbs.", cookingTime: "35 minutes", calories: "578 kcal", protein: "31.5 g", equipment: "Baking tray, saucepan, steamer or second saucepan, knife, chopping board",
     ingredients: [
-      { item: "Cod fillet", shoppingItem: "Cod fillets", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "100 g" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemons", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "100 g" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Heat the oven to 200°C.", "03:00 — Peel and cut the potatoes into even pieces.", "05:00 — Boil the potatoes until tender.", "08:00 — Place the cod on a baking tray with half the butter, lemon juice and parsley.", "10:00 — Bake until the cod is opaque and cooked through.", "15:00 — Cook the cabbage in unsalted water until tender.", "28:00 — Drain the potatoes and cabbage.", "30:00 — Toss the potatoes with the remaining butter and black pepper.", "35:00 — Serve."],
     nutrition: { calories: "578 kcal", protein: "31.5 g", carbohydrates: "68.0 g", fat: "19.0 g", fibre: "5.0 g", sodium: "145 mg", salt: "0.36 g", potassium: "760 mg", phosphate: "320 mg" },
-    potassium: "High", phosphate: "Moderate", purines: "Low", dietaryNote: "A simple fish dinner with cabbage and potatoes. Potassium is influenced by the potato portion.", servings: 1
+    potassium: "High", phosphate: "High", purines: "Low", dietaryNote: "A simple fish dinner with cabbage and potatoes. Potassium is influenced by the potato portion.", servings: 1
   },
   {
     id: "D024", code: "D024", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
@@ -1239,7 +1239,7 @@ export const dinners: Recipe[] = [
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, reserving a little cooking water before draining.", "05:00 — Finely chop the onion and cook gently in the olive oil for 4 minutes.", "09:00 — Beat the egg with the milk and grated Cheddar.", "12:00 — Add the drained pasta to the onion pan and remove from the heat.", "14:00 — Stir in the egg mixture and parsley, using a splash of pasta water to loosen the sauce.", "17:00 — Return to very low heat and stir until the egg mixture is cooked through.", "20:00 — Season with black pepper and serve."],
     nutrition: { calories: "625 kcal", protein: "29.0 g", carbohydrates: "78.0 g", fat: "22.0 g", fibre: "3.0 g", sodium: "330 mg", salt: "0.83 g", potassium: "540 mg", phosphate: "450 mg" },
-    potassium: "Moderate", phosphate: "Moderate", purines: "Low", dietaryNote: "Egg and cheese provide protein and richness without meat or fish.", servings: 1
+    potassium: "Moderate", phosphate: "High", purines: "Low", dietaryNote: "Egg and cheese provide protein and richness without meat or fish.", servings: 1
   },
   {
     id: "D025", code: "D025", category: "Dinner", emoji: "🍖", image: "/images/recipes/D025.png",
@@ -1249,7 +1249,7 @@ export const dinners: Recipe[] = [
     ],
     method: ["00:00 — Core and slice the apple and shred the cabbage.", "05:00 — Heat the grill pan and cook the pork with rosemary until thoroughly cooked.", "12:00 — Cook the cabbage in unsalted water until tender, then drain.", "18:00 — Heat the butter and gently cook the apple until softened.", "24:00 — Add the cabbage and toss together.", "27:00 — Season with black pepper.", "30:00 — Serve."],
     nutrition: { calories: "590 kcal", protein: "35.0 g", carbohydrates: "61.0 g", fat: "22.0 g", fibre: "6.0 g", sodium: "75 mg", salt: "0.19 g", potassium: "650 mg", phosphate: "330 mg" },
-    potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "Apple adds natural sweetness to pork and cabbage without a salty sauce.", servings: 1
+    potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "Apple adds natural sweetness to pork and cabbage without a salty sauce.", servings: 1
   },
   {
     id: "D026", code: "D026", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
@@ -1259,27 +1259,27 @@ export const dinners: Recipe[] = [
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, then drain.", "05:00 — Dice the chicken, pepper and onion.", "08:00 — Heat the olive oil and cook the onion and pepper for 4 minutes.", "12:00 — Add the chicken and thyme and cook until thoroughly cooked.", "20:00 — Stir in the cream and heat gently for 2 minutes.", "22:00 — Add the pasta and toss through the sauce.", "25:00 — Season with black pepper and serve."],
     nutrition: { calories: "635 kcal", protein: "34.0 g", carbohydrates: "76.0 g", fat: "21.0 g", fibre: "4.0 g", sodium: "92 mg", salt: "0.23 g", potassium: "610 mg", phosphate: "390 mg" },
-    potassium: "Moderate", phosphate: "Moderate", purines: "High", dietaryNote: "A creamy pasta dinner using chicken, pepper and onion for flavour.", servings: 1
+    potassium: "Moderate", phosphate: "High", purines: "High", dietaryNote: "A creamy pasta dinner using chicken, pepper and onion for flavour.", servings: 1
   },
   {
     id: "D027", code: "D027", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
     name: "Cod, Sweetcorn & Herb Pasta", description: "Flaked cod with pasta and sweetcorn in a fresh lemon and herb dressing.", cookingTime: "25 minutes", calories: "610 kcal", protein: "33.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife",
     ingredients: [
-      { item: "Cod fillet", shoppingItem: "Cod fillets", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "40 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Lemon juice", shoppingItem: "Lemons", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "40 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions.", "05:00 — Cook the cod in a covered frying pan with a splash of water until it flakes easily.", "12:00 — Flake the cooked cod into large pieces.", "14:00 — Cook the onion gently in the olive oil until softened.", "18:00 — Drain the pasta and add it to the pan with the sweetcorn.", "20:00 — Fold through the cod, lemon juice and parsley.", "25:00 — Season with black pepper and serve."],
     nutrition: { calories: "610 kcal", protein: "33.0 g", carbohydrates: "82.0 g", fat: "15.0 g", fibre: "4.0 g", sodium: "145 mg", salt: "0.36 g", potassium: "650 mg", phosphate: "350 mg" },
-    potassium: "Moderate", phosphate: "Moderate", purines: "Low", dietaryNote: "Cod and pasta make a filling meal with lemon and herbs instead of a salty sauce.", servings: 1
+    potassium: "Moderate", phosphate: "High", purines: "Low", dietaryNote: "Cod and pasta make a filling meal with lemon and herbs instead of a salty sauce.", servings: 1
   },
   {
     id: "D028", code: "D028", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
     name: "Egg, Cabbage & Sweetcorn Rice", description: "Fluffy rice stir-fried with egg, cabbage, sweetcorn and onion.", cookingTime: "25 minutes", calories: "575 kcal", protein: "20.0 g", equipment: "Saucepan, large frying pan, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Egg", shoppingItem: "Eggs", quantity: "2" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "100 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "50 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Eggs", shoppingItem: "Eggs", quantity: "2" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "100 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "50 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Cook the rice according to the packet instructions, then drain well.", "08:00 — Shred the cabbage and finely chop the onion.", "10:00 — Heat the olive oil and cook the onion and cabbage until softened.", "15:00 — Add the sweetcorn and cook for 2 minutes.", "17:00 — Push the vegetables aside and scramble the eggs until cooked.", "20:00 — Stir in the rice and combine thoroughly.", "25:00 — Season with black pepper and serve."],
     nutrition: { calories: "575 kcal", protein: "20.0 g", carbohydrates: "89.0 g", fat: "15.0 g", fibre: "5.0 g", sodium: "305 mg", salt: "0.76 g", potassium: "520 mg", phosphate: "410 mg" },
-    potassium: "Moderate", phosphate: "Moderate", purines: "Low", dietaryNote: "An egg-based dinner with rice and vegetables, with no added salt.", servings: 1
+    potassium: "Moderate", phosphate: "High", purines: "Low", dietaryNote: "An egg-based dinner with rice and vegetables, with no added salt.", servings: 1
   },
   {
     id: "D029", code: "D029", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
@@ -1289,7 +1289,7 @@ export const dinners: Recipe[] = [
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, then drain.", "05:00 — Slice the pork into thin strips and chop the pepper and onion.", "08:00 — Heat the olive oil and cook the onion and pepper for 4 minutes.", "12:00 — Add the pork and rosemary and cook until thoroughly cooked.", "20:00 — Add the drained pasta and toss together.", "23:00 — Season with black pepper.", "25:00 — Serve hot."],
     nutrition: { calories: "645 kcal", protein: "36.0 g", carbohydrates: "76.0 g", fat: "21.0 g", fibre: "4.0 g", sodium: "76 mg", salt: "0.19 g", potassium: "600 mg", phosphate: "360 mg" },
-    potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "Lean pork and pasta provide a substantial protein-rich meal with herbs for flavour.", servings: 1
+    potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "Lean pork and pasta provide a substantial protein-rich meal with herbs for flavour.", servings: 1
   },
   {
     id: "d030-pork-apple-cabbage-skillet",
@@ -1326,7 +1326,7 @@ export const dinners: Recipe[] = [
       fibre: "6.0 g", sodium: "76 mg", salt: "0.19 g", potassium: "650 mg", phosphate: "335 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Apple brings a gentle sweetness to the savoury pork and cabbage, while rosemary adds a warm aromatic finish.",
     servings: 1,
@@ -1349,7 +1349,7 @@ export const dinners: Recipe[] = [
       { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
       { item: "Green pepper", shoppingItem: "Green peppers", quantity: "60 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
-      { item: "Lemon juice", shoppingItem: "Lemons", quantity: "1 tbsp" },
+      { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
@@ -1367,7 +1367,7 @@ export const dinners: Recipe[] = [
       fibre: "4.0 g", sodium: "75 mg", salt: "0.19 g", potassium: "600 mg", phosphate: "390 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Chicken and pasta provide protein and energy, with lemon and herbs used instead of added salt.",
     servings: 1
@@ -1385,12 +1385,12 @@ export const dinners: Recipe[] = [
     protein: "32.0 g",
     equipment: "Saucepan, frying pan, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Cod fillet", shoppingItem: "Cod fillets", quantity: "140 g" },
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" },
       { item: "Green pepper", shoppingItem: "Green peppers", quantity: "80 g" },
       { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
-      { item: "Lemon juice", shoppingItem: "Lemons", quantity: "1 tbsp" },
+      { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
       { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
@@ -1409,7 +1409,7 @@ export const dinners: Recipe[] = [
       fibre: "3.5 g", sodium: "150 mg", salt: "0.38 g", potassium: "650 mg", phosphate: "330 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Cod, rice and peppers make a straightforward dinner with fresh lemon flavour.",
     servings: 1
@@ -1449,7 +1449,7 @@ export const dinners: Recipe[] = [
       fibre: "5.0 g", sodium: "80 mg", salt: "0.20 g", potassium: "590 mg", phosphate: "340 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Lean beef is combined with rice and cabbage for a filling one-pan-style dinner.",
     servings: 1
@@ -1468,7 +1468,7 @@ export const dinners: Recipe[] = [
     equipment: "Saucepan, large frying pan, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" },
-      { item: "Egg", shoppingItem: "Eggs", quantity: "2" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "Cheddar cheese", shoppingItem: "Cheddar cheese", quantity: "20 g" },
       { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" },
       { item: "Green pepper", shoppingItem: "Green peppers", quantity: "60 g" },
@@ -1490,7 +1490,7 @@ export const dinners: Recipe[] = [
       fibre: "4.0 g", sodium: "310 mg", salt: "0.78 g", potassium: "500 mg", phosphate: "430 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "An egg-based rice dinner with vegetables and a modest amount of Cheddar for flavour.",
     servings: 1
@@ -1530,7 +1530,7 @@ export const dinners: Recipe[] = [
       fibre: "5.0 g", sodium: "70 mg", salt: "0.18 g", potassium: "610 mg", phosphate: "345 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Chicken and rice are paired with cabbage and herbs for a simple, lightly seasoned dinner.",
     servings: 1
@@ -1548,12 +1548,12 @@ export const dinners: Recipe[] = [
     protein: "33.0 g",
     equipment: "Large saucepan, frying pan, colander, wooden spoon, knife",
     ingredients: [
-      { item: "Cod fillet", shoppingItem: "Cod fillets", quantity: "130 g" },
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" },
       { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" },
       { item: "Cabbage", shoppingItem: "Cabbage", quantity: "100 g" },
       { item: "Onion", shoppingItem: "Onions", quantity: "40 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
-      { item: "Lemon juice", shoppingItem: "Lemons", quantity: "1 tbsp" },
+      { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
@@ -1571,7 +1571,7 @@ export const dinners: Recipe[] = [
       fibre: "5.0 g", sodium: "145 mg", salt: "0.36 g", potassium: "610 mg", phosphate: "320 mg"
     },
     potassium: "Moderate",
-    phosphate: "Low",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "Cod and pasta provide protein and energy, while cabbage and lemon add flavour and texture.",
     servings: 1
@@ -1611,7 +1611,7 @@ export const dinners: Recipe[] = [
       fibre: "4.0 g", sodium: "82 mg", salt: "0.21 g", potassium: "570 mg", phosphate: "330 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "High",
     dietaryNote: "Lean beef with rice and peppers makes a substantial dinner without a salty sauce.",
     servings: 1
@@ -1651,7 +1651,7 @@ export const dinners: Recipe[] = [
       fibre: "5.0 g", sodium: "78 mg", salt: "0.20 g", potassium: "610 mg", phosphate: "350 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Moderate",
     dietaryNote: "Apple adds sweetness to pork and pasta, with rosemary providing extra flavour.",
     servings: 1
@@ -1670,7 +1670,7 @@ export const dinners: Recipe[] = [
     equipment: "Large saucepan, frying pan, colander, mixing bowl, wooden spoon",
     ingredients: [
       { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" },
-      { item: "Egg", shoppingItem: "Eggs", quantity: "2" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "Cauliflower", shoppingItem: "Cauliflower", quantity: "100 g" },
       { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
@@ -1692,7 +1692,7 @@ export const dinners: Recipe[] = [
       fibre: "5.0 g", sodium: "310 mg", salt: "0.78 g", potassium: "570 mg", phosphate: "400 mg"
     },
     potassium: "Moderate",
-    phosphate: "Moderate",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "An egg-based pasta dinner with cauliflower and herbs instead of meat or fish.",
     servings: 1
@@ -1734,109 +1734,109 @@ export const dinners: Recipe[] = [
       calories: "610 kcal", protein: "34.0 g", carbohydrates: "64.0 g", fat: "24.0 g",
       fibre: "5.0 g", sodium: "150 mg", salt: "0.38 g", potassium: "680 mg", phosphate: "345 mg"
     },
-    potassium: "Moderate",
-    phosphate: "Moderate",
+    potassium: "High",
+    phosphate: "High",
     purines: "Low",
     dietaryNote: "Flaky cod, tender potato and sweetcorn make a comforting baked dinner with gentle seasoning and no added salt.",
     servings: 1,
   },
 
-  { id: "chicken-leek-couscous-lemon", code: "D041", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.png", name: "Chicken & Leek Couscous with Lemon", description: "Chicken & Leek Couscous with Lemon — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "560 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "chicken-leek-couscous-lemon", code: "D041", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.png", name: "Chicken & Leek Couscous with Lemon", description: "Tender chicken with fluffy couscous, softened leek and carrot, finished with fresh lemon and parsley.", cookingTime: "30 minutes", calories: "560 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
       { item: "Couscous", shoppingItem: "Couscous", quantity: "80 g" },
       { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
       { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
-      { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" },
+      { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
-    ], method: ["Cook the couscous using unsalted water.", "Cook the chicken until completely cooked through.", "Boil the leek and carrot until tender and drain well.", "Combine the couscous and vegetables, top with sliced chicken and finish with lemon and parsley."], nutrition: { calories: "560 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "turkey-meatballs-herb-rice", code: "D042", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Turkey Meatballs with Herb Rice — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "575 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Prepare the couscous using unsalted water according to the packet instructions.", "05:00 — Slice the chicken and cook in half the olive oil until completely cooked through.", "12:00 — Boil the leek and carrot in unsalted water until tender, then drain well.", "18:00 — Fluff the couscous and stir through the vegetables.", "22:00 — Top with the sliced chicken and finish with the remaining olive oil, lemon juice and parsley.", "30:00 — Serve immediately."], nutrition: { calories: "560 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "turkey-meatballs-herb-rice", code: "D042", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Herb-seasoned turkey meatballs served with basmati rice, tender cabbage and onion.", cookingTime: "30 minutes", calories: "575 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Turkey mince, lean", shoppingItem: "Turkey mince", quantity: "70 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "85 g" },
       { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "30 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "30 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
       { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "¼ tsp" }
-    ], method: ["Cook the rice using unsalted water.", "Mix turkey with rosemary and form into small meatballs.", "Cook the meatballs in olive oil until browned and cooked through.", "Boil cabbage and onion until tender and drain.", "Serve the meatballs with rice and vegetables."], nutrition: { calories: "575 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "365 mg", phosphate: "255 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "cod-herby-noodles-cucumber", code: "D043", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Cod with Herby Noodles & Cucumber — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "545 kcal", protein: "27 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Mix the turkey mince with rosemary and form into small meatballs.", "08:00 — Heat the olive oil in a frying pan and cook the meatballs, turning regularly, until browned and completely cooked through.", "18:00 — Boil the cabbage and onion in unsalted water until tender, then drain well.", "25:00 — Check the rice is tender and drain if required.", "30:00 — Serve the meatballs with the rice and vegetables."], nutrition: { calories: "575 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "365 mg", phosphate: "255 mg" }, potassium: "Low", phosphate: "Moderate", purines: "Low", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "cod-herby-noodles-cucumber", code: "D043", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Baked cod with plain noodles, tender cabbage and cucumber, finished with lemon, parsley and olive oil.", cookingTime: "30 minutes", calories: "545 kcal", protein: "27 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "70 g" },
       { item: "Plain noodles", shoppingItem: "Plain noodles", quantity: "80 g" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "50 g" },
       { item: "Cabbage", shoppingItem: "Cabbage", quantity: "60 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
-      { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" },
+      { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
-    ], method: ["Bake the cod until cooked through.", "Cook the noodles in unsalted water and drain thoroughly.", "Boil the cabbage until tender and drain.", "Toss noodles and cabbage with olive oil, lemon and parsley.", "Flake the cod over the noodles and serve."], nutrition: { calories: "545 kcal", protein: "27 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "350 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "pork-apple-leek-rice", code: "D044", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Pork Medallions with Apple & Leek — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "590 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Heat the oven to 200°C and bake the cod until opaque and cooked through.", "05:00 — Cook the noodles in unsalted water according to the packet instructions, then drain thoroughly.", "12:00 — Boil the cabbage in unsalted water until tender, then drain well.", "18:00 — Prepare the cucumber and combine it with the noodles and cabbage.", "22:00 — Add the olive oil, lemon juice and parsley and toss gently.", "25:00 — Flake the cod over the noodles and serve."], nutrition: { calories: "545 kcal", protein: "27 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "350 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "pork-apple-leek-rice", code: "D044", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Lean pork medallions with basmati rice, softened leek and warm apple finished with thyme.", cookingTime: "30 minutes", calories: "590 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "65 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "80 g" },
       { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
-      { item: "Apple", shoppingItem: "Apple", quantity: "50 g" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "50 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
       { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "¼ tsp" }
-    ], method: ["Cook the rice using unsalted water.", "Cook the pork in olive oil until completely cooked through.", "Soften the leek in the pan.", "Add diced apple and cook gently until softened.", "Serve the pork with rice and the apple and leek mixture."], nutrition: { calories: "590 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "375 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "chicken-carrot-noodle-stir-fry", code: "D045", category: "Dinner", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken & Carrot Noodle Stir-Fry — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "555 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Slice the pork into medallions and heat the olive oil in a frying pan.", "08:00 — Cook the pork until completely cooked through, turning regularly.", "18:00 — Add the sliced leek and cook until softened.", "22:00 — Add the diced apple and cook gently until just softened.", "30:00 — Serve the pork with the rice and apple and leek mixture."], nutrition: { calories: "590 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "375 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "chicken-carrot-noodle-stir-fry", code: "D045", category: "Dinner", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "555 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
       { item: "Plain noodles", shoppingItem: "Plain noodles", quantity: "80 g" },
       { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
       { item: "Cabbage", shoppingItem: "Cabbage", quantity: "60 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
       { item: "Ground ginger", shoppingItem: "Ground ginger", quantity: "¼ tsp" }
-    ], method: ["Cook the noodles and drain thoroughly.", "Cook the chicken in olive oil until completely cooked through.", "Add carrot and cabbage and stir-fry gently until tender.", "Add ginger and noodles and toss together.", "Serve immediately."], nutrition: { calories: "555 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "beef-meatballs-couscous-peppers", code: "D046", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Beef Meatballs with Couscous & Peppers — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "585 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Cook the noodles in unsalted water according to the packet instructions, then drain thoroughly.", "05:00 — Cook the chicken in the olive oil until completely cooked through.", "15:00 — Add the boiled carrot and cabbage and cook gently until tender.", "22:00 — Add the ground ginger and drained noodles and toss together.", "30:00 — Serve immediately."], nutrition: { calories: "555 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "beef-meatballs-couscous-peppers", code: "D046", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Lean beef meatballs with couscous, softened green pepper and onion, gently seasoned with paprika.", cookingTime: "30 minutes", calories: "585 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "65 g" },
       { item: "Couscous", shoppingItem: "Couscous", quantity: "80 g" },
-      { item: "Green pepper", shoppingItem: "Green pepper", quantity: "30 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "30 g" },
+      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "30 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "30 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
       { item: "Paprika", shoppingItem: "Paprika", quantity: "¼ tsp" }
-    ], method: ["Prepare the couscous with unsalted water.", "Mix beef with paprika and form small meatballs.", "Cook in olive oil until browned and cooked through.", "Soften the pepper and onion in the same pan.", "Serve with couscous."], nutrition: { calories: "585 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "380 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "haddock-lemon-rice-leeks", code: "D047", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.png", name: "Haddock with Lemon Rice & Leeks", description: "Haddock with Lemon Rice & Leeks — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "550 kcal", protein: "27 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Prepare the couscous using unsalted water according to the packet instructions.", "05:00 — Mix the beef mince with paprika and form into small meatballs.", "08:00 — Cook the meatballs in the olive oil, turning regularly, until browned and completely cooked through.", "18:00 — Add the green pepper and onion and cook until softened.", "25:00 — Fluff the couscous and serve with the meatballs and vegetables.", "30:00 — Serve immediately."], nutrition: { calories: "585 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "380 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "haddock-lemon-rice-leeks", code: "D047", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.png", name: "Haddock with Lemon Rice & Leeks", description: "Baked haddock with lemon basmati rice, softened leek and boiled carrot.", cookingTime: "30 minutes", calories: "550 kcal", protein: "27 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Haddock fillet", shoppingItem: "Haddock fillet", quantity: "70 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "85 g" },
       { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
       { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
-      { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" }
-    ], method: ["Bake the haddock until opaque and cooked through.", "Cook the rice using unsalted water.", "Boil the leek and carrot until tender and drain.", "Toss vegetables with olive oil and lemon.", "Serve with rice and haddock."], nutrition: { calories: "550 kcal", protein: "27 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "350 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "chicken-pear-rice-bowl", code: "D048", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken & Pear Rice Bowl — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "560 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "1 tbsp" }
+    ], method: ["00:00 — Heat the oven to 200°C and bake the haddock until opaque and completely cooked through.", "05:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "12:00 — Boil the leek and carrot in unsalted water until tender, then drain well.", "22:00 — Toss the vegetables with the olive oil and lemon juice.", "25:00 — Check the rice is tender and drain if required.", "30:00 — Serve the haddock with the rice and vegetables."], nutrition: { calories: "550 kcal", protein: "27 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "350 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "chicken-pear-rice-bowl", code: "D048", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken and basmati rice with warm pear and tender cabbage, finished with rosemary.", cookingTime: "30 minutes", calories: "560 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "80 g" },
       { item: "Pear", shoppingItem: "Pear", quantity: "50 g" },
       { item: "Cabbage", shoppingItem: "Cabbage", quantity: "60 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
       { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "¼ tsp" }
-    ], method: ["Cook the rice using unsalted water.", "Cook the chicken in olive oil until completely cooked through.", "Boil the cabbage until tender and drain.", "Dice the pear and warm gently with the cabbage and rosemary.", "Serve the chicken with rice and the pear and cabbage mixture."], nutrition: { calories: "560 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "350 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "pork-carrot-couscous-skillet", code: "D049", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Pork & Carrot Couscous Skillet — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "575 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Cook the chicken in the olive oil until completely cooked through.", "15:00 — Boil the cabbage in unsalted water until tender, then drain well.", "22:00 — Dice the pear and warm gently with the cabbage and rosemary.", "27:00 — Check the rice is tender and drain if required.", "30:00 — Serve the chicken with the rice and pear and cabbage mixture."], nutrition: { calories: "560 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "350 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "pork-carrot-couscous-skillet", code: "D049", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Lean pork with couscous, boiled carrot and softened leek, finished with thyme.", cookingTime: "30 minutes", calories: "575 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "65 g" },
       { item: "Couscous", shoppingItem: "Couscous", quantity: "80 g" },
       { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
       { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
       { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "¼ tsp" }
-    ], method: ["Prepare the couscous using unsalted water.", "Slice the pork and cook in olive oil until cooked through.", "Boil the carrot and leek until tender and drain.", "Add vegetables and thyme to the pork pan.", "Serve over the couscous."], nutrition: { calories: "575 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "365 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "cod-leek-pasta-bake", code: "D050", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Cod & Leek Pasta Bake — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "560 kcal", protein: "28 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Prepare the couscous using unsalted water according to the packet instructions.", "05:00 — Slice the pork and cook in the olive oil until completely cooked through.", "15:00 — Boil the carrot and leek in unsalted water until tender, then drain well.", "22:00 — Add the vegetables and thyme to the pork pan and warm through.", "27:00 — Fluff the couscous and spoon the pork and vegetables over it.", "30:00 — Serve immediately."], nutrition: { calories: "575 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "365 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "cod-leek-pasta-bake", code: "D050", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Flaked cod and white pasta baked with softened leek and cabbage, finished with parsley and olive oil.", cookingTime: "30 minutes", calories: "560 kcal", protein: "28 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "70 g" },
       { item: "White pasta", shoppingItem: "White pasta", quantity: "75 g" },
       { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
       { item: "Cabbage", shoppingItem: "Cabbage", quantity: "60 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
-    ], method: ["Cook the pasta and drain thoroughly.", "Bake the cod until cooked through and flake it.", "Boil the leek and cabbage until tender and drain.", "Combine pasta, vegetables and cod with olive oil and parsley.", "Transfer to a baking dish and bake until hot throughout."], nutrition: { calories: "560 kcal", protein: "28 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "turkey-apple-noodle-bowl", code: "D051", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey & Apple Noodle Bowl — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "555 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Heat the oven to 200°C.", "02:00 — Cook the pasta in unsalted water according to the packet instructions, then drain thoroughly.", "10:00 — Bake the cod until opaque and completely cooked through, then flake into large pieces.", "15:00 — Boil the leek and cabbage in unsalted water until tender, then drain well.", "20:00 — Combine the pasta, vegetables and cod with the olive oil and parsley in a baking dish.", "25:00 — Bake until hot throughout.", "30:00 — Serve immediately."], nutrition: { calories: "560 kcal", protein: "28 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "turkey-apple-noodle-bowl", code: "D051", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey and plain noodles with apple and cucumber, finished with ginger and olive oil.", cookingTime: "30 minutes", calories: "555 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Turkey breast", shoppingItem: "Turkey breast", quantity: "60 g (raw)" },
       { item: "Plain noodles", shoppingItem: "Plain noodles", quantity: "80 g" },
-      { item: "Apple", shoppingItem: "Apple", quantity: "50 g" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "50 g" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
       { item: "Ground ginger", shoppingItem: "Ground ginger", quantity: "¼ tsp" }
-    ], method: ["Cook the noodles and drain thoroughly.", "Cook sliced turkey in olive oil until completely cooked through.", "Add diced apple and cook gently.", "Toss through the noodles with cucumber and ginger.", "Serve immediately."], nutrition: { calories: "555 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "340 mg", phosphate: "240 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
-  { id: "chicken-herb-meatballs-rice", code: "D052", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken Herb Meatballs with Rice — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "565 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+    ], method: ["00:00 — Cook the noodles in unsalted water according to the packet instructions, then drain thoroughly.", "05:00 — Slice the turkey and cook in the olive oil until completely cooked through.", "18:00 — Add the diced apple and cook gently until just softened.", "23:00 — Toss the turkey and apple through the noodles with the cucumber and ground ginger.", "30:00 — Serve immediately."], nutrition: { calories: "555 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "340 mg", phosphate: "240 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 },
+  { id: "chicken-herb-meatballs-rice", code: "D052", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken herb meatballs with basmati rice, tender cabbage and carrot, finished with parsley.", cookingTime: "30 minutes", calories: "565 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "85 g" },
       { item: "Cabbage", shoppingItem: "Cabbage", quantity: "70 g" },
       { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
-    ], method: ["Cook the rice using unsalted water.", "Finely mince the chicken and form into small meatballs with parsley.", "Cook the meatballs in olive oil until completely cooked through.", "Boil cabbage and carrot until tender and drain.", "Serve the meatballs with rice and vegetables."], nutrition: { calories: "565 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 }
+    ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Finely mince the chicken and mix with the parsley. Form into small meatballs.", "08:00 — Cook the meatballs in the olive oil, turning regularly, until completely cooked through.", "18:00 — Boil the cabbage and carrot in unsalted water until tender, then drain well.", "25:00 — Check the rice is tender and drain if required.", "30:00 — Serve the meatballs with the rice and vegetables."], nutrition: { calories: "565 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "No added salt is used. Fresh protein and controlled portions of the listed vegetables and carbohydrate are used; check packaged ingredient labels for phosphate additives where relevant.", servings: 1 }
 ];

@@ -958,6 +958,14 @@ function normaliseShoppingQuantity(
     return decimalToFraction(parsed.amount);
   }
 
+  if (lower === "eggs" && parsed.unit === "") {
+    return decimalToFraction(parsed.amount);
+  }
+
+  if (lower === "cod fillet" && parsed.unit === "") {
+    return decimalToFraction(parsed.amount);
+  }
+
   if (lower === "fresh coriander") {
     if (parsed.unit === "tsp") return formatQuantity(parsed.amount, "sprig");
     if (parsed.unit === "tbsp") return formatQuantity(parsed.amount * 3, "sprig");
@@ -1356,9 +1364,12 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
   lower === "apple" ||
   lower === "lemon"
 ) {
+  const wholeCount = Math.ceil(parsed.amount);
   return {
-    item: name,
-    quantity: decimalToFraction(Math.ceil(parsed.amount)),
+    item: lower === "lemon"
+      ? wholeCount === 1 ? "Lemon" : "Lemons"
+      : name,
+    quantity: decimalToFraction(wholeCount),
   };
 }
 
@@ -1368,6 +1379,22 @@ if (lower === "lime") {
   return {
     item: wholeLimes === 1 ? "Lime" : "Limes",
     quantity: String(wholeLimes),
+  };
+}
+
+if (lower === "eggs" && parsed.unit === "") {
+  const eggCount = Math.ceil(parsed.amount);
+  return {
+    item: eggCount === 1 ? "Egg" : "Eggs",
+    quantity: String(eggCount),
+  };
+}
+
+if (lower === "cod fillet" && parsed.unit === "") {
+  const filletCount = Math.ceil(parsed.amount);
+  return {
+    item: filletCount === 1 ? "Cod fillet" : "Cod fillets",
+    quantity: String(filletCount),
   };
 }
 

@@ -118,7 +118,7 @@ export default function About() {
                 <div className="text-2xl">🟢</div>
                 <h3 className="mt-2 font-bold">Lower</h3>
                 <p className="mt-1 text-sm text-slate-600">
-                  Up to 310 mg per serving
+                  Less than 400 mg per serving
                 </p>
               </div>
 
@@ -126,7 +126,7 @@ export default function About() {
                 <div className="text-2xl">🟡</div>
                 <h3 className="mt-2 font-bold">Moderate</h3>
                 <p className="mt-1 text-sm text-slate-600">
-                  311–470 mg per serving
+                  400–650 mg per serving
                 </p>
               </div>
 
@@ -134,7 +134,7 @@ export default function About() {
                 <div className="text-2xl">🔴</div>
                 <h3 className="mt-2 font-bold">Higher</h3>
                 <p className="mt-1 text-sm text-slate-600">
-                  More than 470 mg per serving
+                  More than 650 mg per serving
                 </p>
               </div>
             </div>

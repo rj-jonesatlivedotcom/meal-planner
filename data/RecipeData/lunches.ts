@@ -22,7 +22,7 @@ export const lunches: Recipe[] = [
     method: [
       "00:00 — Wash and prepare the salad vegetables. Cut the chicken breast into thin strips.",
       "02:00 — Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Remove from the pan and allow to rest briefly.",
-      "10:00 — Spread the measured mayonnaise or cream cheese evenly over the bread.",
+      "10:00 — Spread the measured mayonnaise evenly over the bread.",
       "12:00 — Arrange the cooked chicken and prepared vegetables over the bread.",
       "15:00 — Close the sandwich, cut in half if desired and serve immediately."
     ],
@@ -37,10 +37,10 @@ export const lunches: Recipe[] = [
       potassium: "546 mg",
       phosphate: "257 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "Moderate",
     purines: "Moderate",
-    dietaryNote: "High in potassium. If you have been advised to restrict potassium, check that this portion fits your individual plan. The chicken also gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium. If you have been advised to restrict potassium, check that this portion fits your individual plan. The chicken also gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -57,7 +57,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Butter knife, Saucepan",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "¼ lettuce" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" },
     ],
@@ -149,7 +149,7 @@ export const lunches: Recipe[] = [
     method: [
       "00:00 — Wash and prepare the salad vegetables. Cut the chicken breast into thin strips.",
       "02:00 — Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Remove from the pan and allow to rest briefly.",
-      "10:00 — Spread the measured mayonnaise or cream cheese evenly over the bread.",
+      "10:00 — Spread the measured mayonnaise evenly over the bread.",
       "12:00 — Arrange the cooked chicken and prepared vegetables over the bread.",
       "15:00 — Close the sandwich, cut in half if desired and serve immediately."
     ],
@@ -184,7 +184,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Butter knife, Saucepan",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "25 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
     ],
@@ -228,13 +228,13 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "30 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
     method: [
       "00:00 — Wash and prepare the salad vegetables. Cut the chicken breast into thin strips.",
       "02:00 — Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Remove from the pan and allow to rest briefly.",
-      "10:00 — Spread the measured mayonnaise or cream cheese evenly over the bread.",
+      "10:00 — Spread the measured mayonnaise evenly over the bread.",
       "12:00 — Arrange the cooked chicken and prepared vegetables over the bread.",
       "15:00 — Close the sandwich, cut in half if desired and serve immediately."
     ],
@@ -271,7 +271,7 @@ export const lunches: Recipe[] = [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
       { item: "Lean cooked ham", shoppingItem: "Lean cooked ham", quantity: "45 g" },
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "¼ lettuce" },
-      { item: "Butter, unsalted", shoppingItem: "Butter, unsalted", quantity: "10 g" },
+      { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "10 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "10 g" },
     ],
     method: [
@@ -319,7 +319,7 @@ export const lunches: Recipe[] = [
     method: [
       "00:00 — Wash and prepare the salad vegetables. Cut the chicken breast into thin strips.",
       "02:00 — Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Remove from the pan and allow to rest briefly.",
-      "10:00 — Spread the measured mayonnaise or cream cheese evenly over the bread.",
+      "10:00 — Spread the measured cream cheese evenly over the bread.",
       "12:00 — Arrange the cooked chicken and prepared vegetables over the bread.",
       "15:00 — Close the sandwich, cut in half if desired and serve immediately."
     ],
@@ -337,7 +337,7 @@ export const lunches: Recipe[] = [
     potassium: "Moderate",
     phosphate: "Moderate",
     purines: "Moderate",
-    dietaryNote: "Moderate in potassium and phosphate. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and moderate in phosphate. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -360,7 +360,7 @@ export const lunches: Recipe[] = [
     ],
     method: [
       "00:00 — Prepare the chicken and salad ingredients.",
-      "02:00 — Spread the measured mayonnaise or cream cheese over the tortilla.",
+      "02:00 — Spread the measured mayonnaise over the tortilla.",
       "04:00 — Add the chicken and prepared vegetables down the centre.",
       "07:00 — Fold in the sides and roll the tortilla tightly.",
       "15:00 — Close the sandwich, cut in half if desired and serve immediately."
@@ -376,10 +376,10 @@ export const lunches: Recipe[] = [
       potassium: "509 mg",
       phosphate: "306 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "High",
     purines: "Moderate",
-    dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and high in phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -419,10 +419,10 @@ export const lunches: Recipe[] = [
       potassium: "388 mg",
       phosphate: "255 mg",
     },
-    potassium: "Moderate",
+    potassium: "Low",
     phosphate: "Moderate",
     purines: "Low",
-    dietaryNote: "Moderate in potassium and phosphate. The tuna is canned in brine, so sodium is relatively higher; drain the tuna thoroughly.",
+    dietaryNote: "Low in potassium and moderate in phosphate. The tuna is canned in brine, so sodium is relatively higher; drain the tuna thoroughly.",
     servings: 1,
   },
   {
@@ -439,7 +439,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Butter knife, Saucepan",
     ingredients: [
       { item: "White tortilla wrap", shoppingItem: "White Tortilla Wraps", quantity: "60 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "¼ lettuce" },
@@ -490,7 +490,7 @@ export const lunches: Recipe[] = [
     ],
     method: [
       "00:00 — Prepare the chicken and salad ingredients.",
-      "02:00 — Spread the measured mayonnaise or cream cheese over the tortilla.",
+      "02:00 — Spread the measured mayonnaise over the tortilla.",
       "04:00 — Add the chicken and prepared vegetables down the centre.",
       "07:00 — Fold in the sides and roll the tortilla tightly.",
       "15:00 — Close the sandwich, cut in half if desired and serve immediately."
@@ -509,7 +509,7 @@ export const lunches: Recipe[] = [
     potassium: "Moderate",
     phosphate: "Moderate",
     purines: "Moderate",
-    dietaryNote: "Moderate in potassium and phosphate. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and moderate in phosphate. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -527,8 +527,8 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "30 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "30 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "30 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
@@ -552,10 +552,10 @@ export const lunches: Recipe[] = [
       potassium: "538 mg",
       phosphate: "303 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "High",
     purines: "Moderate",
-    dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and high in phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -574,7 +574,7 @@ export const lunches: Recipe[] = [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
       { item: "Cream cheese", shoppingItem: "Cream cheese", quantity: "30 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "25 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "25 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
@@ -598,10 +598,10 @@ export const lunches: Recipe[] = [
       potassium: "499 mg",
       phosphate: "322 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "High",
     purines: "Moderate",
-    dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and high in phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -619,7 +619,7 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "60 g" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "30 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
     ],
@@ -642,10 +642,10 @@ export const lunches: Recipe[] = [
       potassium: "385 mg",
       phosphate: "247 mg",
     },
-    potassium: "Moderate",
+    potassium: "Low",
     phosphate: "Low",
     purines: "Moderate",
-    dietaryNote: "Moderate in potassium and low in phosphate. The tuna is canned in brine, so drain it thoroughly; tuna is classified as moderate purine.",
+    dietaryNote: "Low in potassium and low in phosphate. The tuna is canned in brine, so drain it thoroughly; tuna is classified as moderate purine.",
     servings: 1,
   },
   {
@@ -662,7 +662,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Saucepan, Frying pan",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "50 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "1" },
       { item: "Cream cheese", shoppingItem: "Cream cheese", quantity: "30 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "5 g" },
@@ -707,7 +707,7 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "75 g (raw)" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "40 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "40 g" },
       { item: "Cream cheese", shoppingItem: "Cream cheese", quantity: "25 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
@@ -732,10 +732,10 @@ export const lunches: Recipe[] = [
       potassium: "533 mg",
       phosphate: "332 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "High",
     purines: "Moderate",
-    dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and high in phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -778,10 +778,10 @@ export const lunches: Recipe[] = [
       potassium: "610 mg",
       phosphate: "349 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "High",
     purines: "Moderate",
-    dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and high in phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -822,10 +822,10 @@ export const lunches: Recipe[] = [
       potassium: "347 mg",
       phosphate: "262 mg",
     },
-    potassium: "Moderate",
+    potassium: "Low",
     phosphate: "Moderate",
     purines: "Moderate",
-    dietaryNote: "Moderate in potassium and phosphate. The tuna is canned in brine, so drain it thoroughly; tuna is classified as moderate purine.",
+    dietaryNote: "Low in potassium and moderate in phosphate. The tuna is canned in brine, so drain it thoroughly; tuna is classified as moderate purine.",
     servings: 1,
   },
   {
@@ -843,9 +843,9 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "50 g" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "25 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "30 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "1" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "25 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "30 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
@@ -870,7 +870,7 @@ export const lunches: Recipe[] = [
       potassium: "479 mg",
       phosphate: "328 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "High",
     purines: "Moderate",
     dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
@@ -890,9 +890,9 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Saucepan, Frying pan",
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "30 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "25 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "25 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
@@ -937,8 +937,8 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "75 g (raw)" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "40 g" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "20 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "40 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "20 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
@@ -965,7 +965,7 @@ export const lunches: Recipe[] = [
     potassium: "Moderate",
     phosphate: "Moderate",
     purines: "Moderate",
-    dietaryNote: "Moderate in potassium and phosphate. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and moderate in phosphate. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -983,7 +983,7 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "50 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "50 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "1" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" },
     ],
@@ -1029,7 +1029,7 @@ export const lunches: Recipe[] = [
       { item: "Egg noodles", shoppingItem: "Egg noodles", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "25 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "25 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
@@ -1055,7 +1055,7 @@ export const lunches: Recipe[] = [
     potassium: "High",
     phosphate: "High",
     purines: "Moderate",
-    dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "High in potassium and high in phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -1081,8 +1081,8 @@ export const lunches: Recipe[] = [
       "02:00 — Microwave the potato until tender, turning halfway through according to your microwave instructions.",
       "14:00 — While the potato cooks, prepare the filling and wash the lettuce.",
       "18:00 — Slice the raw chicken breast and cook in a non-stick frying pan over medium heat for 6–8 minutes, turning regularly, until completely cooked through.",
-      "26:00 — Mix the cooked chicken with the cream cheese.",
       "20:00 — Finish the potato in a hot oven or air fryer until the skin is crisp.",
+      "26:00 — Mix the cooked chicken with the cream cheese.",
       "27:00 — Cut a cross in the top of the potato and gently open it.",
       "29:00 — Fill with the chicken and cream cheese mixture and serve with the lettuce."
     ],
@@ -1160,7 +1160,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Saucepan, Microwave, Oven or air fryer",
     ingredients: [
       { item: "Baking potato", shoppingItem: "Baking potato", quantity: "200 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
     ],
@@ -1205,8 +1205,8 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "Potatoes, peeled", shoppingItem: "Potatoes, peeled", quantity: "180 g" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "40 g" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "25 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "40 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "25 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "15 g" },
     ],
     method: [
@@ -1217,7 +1217,7 @@ export const lunches: Recipe[] = [
       "17:00 — Heat the oil in a frying pan over medium heat.",
       "18:00 — Cook the onion and pepper until softened.",
       "22:00 — Add the drained potato and cook for 3 minutes.",
-      "25:00 — Add the raw chicken where specified and cook for 5–7 minutes until completely cooked through. Add the cooked egg where specified.",
+      "25:00 — Add the chicken and cook for 5–7 minutes, turning regularly, until completely cooked through.",
       "32:00 — Heat everything through and serve immediately."
     ],
     nutrition: {
@@ -1251,9 +1251,9 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Saucepan, Frying pan",
     ingredients: [
       { item: "Potatoes, peeled", shoppingItem: "Potatoes, peeled", quantity: "180 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "40 g" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "20 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "40 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "20 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "15 g" },
     ],
     method: [
@@ -1264,7 +1264,7 @@ export const lunches: Recipe[] = [
       "17:00 — Heat the oil in a frying pan over medium heat.",
       "18:00 — Cook the onion and pepper until softened.",
       "22:00 — Add the drained potato and cook for 3 minutes.",
-      "25:00 — Add the raw chicken where specified and cook for 5–7 minutes until completely cooked through. Add the cooked egg where specified.",
+      "25:00 — Add the chopped cooked egg and toss gently with the potato and vegetables.",
       "32:00 — Heat everything through and serve immediately."
     ],
     nutrition: {
@@ -1341,10 +1341,10 @@ export const lunches: Recipe[] = [
     protein: "33.8 g",
     equipment: "Knife, Chopping board, Frying pan",
     ingredients: [
-      { item: "Egg", shoppingItem: "Egg", quantity: "150 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "3" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "30 g" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "25 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "25 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
@@ -1368,7 +1368,7 @@ export const lunches: Recipe[] = [
       potassium: "539 mg",
       phosphate: "413 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "High",
     purines: "Moderate",
     dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
@@ -1387,10 +1387,10 @@ export const lunches: Recipe[] = [
     protein: "22.5 g",
     equipment: "Knife, Chopping board, Frying pan",
     ingredients: [
-      { item: "Egg", shoppingItem: "Egg", quantity: "150 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "3" },
       { item: "Mushrooms", shoppingItem: "Mushrooms", quantity: "40 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
-      { item: "Butter, unsalted", shoppingItem: "Butter, unsalted", quantity: "10 g" },
+      { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "10 g" },
       { item: "White bread", shoppingItem: "White bread", quantity: "35 g" },
     ],
     method: [
@@ -1433,10 +1433,10 @@ export const lunches: Recipe[] = [
     protein: "19.0 g",
     equipment: "Knife, Chopping board, Saucepan",
     ingredients: [
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "30 g" },
-      { item: "Butter, unsalted", shoppingItem: "Butter, unsalted", quantity: "10 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
+      { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "10 g" },
     ],
     method: [
       "00:00 — Put the bread into the toaster.",
@@ -1479,9 +1479,9 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
-      { item: "Red pepper", shoppingItem: "Red pepper", quantity: "30 g" },
+      { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
       { item: "Cream cheese", shoppingItem: "Cream cheese", quantity: "25 g" },
-      { item: "Butter, unsalted", shoppingItem: "Butter, unsalted", quantity: "5 g" },
+      { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
       "00:00 — Spread the cream cheese over the bread.",
@@ -1506,7 +1506,7 @@ export const lunches: Recipe[] = [
     potassium: "Moderate",
     phosphate: "Moderate",
     purines: "Moderate",
-    dietaryNote: "Moderate in potassium and phosphate. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and moderate in phosphate. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -1526,7 +1526,7 @@ export const lunches: Recipe[] = [
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "60 g" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
-      { item: "Butter, unsalted", shoppingItem: "Butter, unsalted", quantity: "5 g" },
+      { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
       "00:00 — Drain the tuna thoroughly and mix with the mayonnaise.",
@@ -1550,7 +1550,7 @@ export const lunches: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Low in potassium and phosphate. The tuna is canned in brine, so drain it thoroughly. This meal also contains a relatively higher amount of sodium.",
+    dietaryNote: "Low in potassium and low in phosphate. The tuna is canned in brine, so drain it thoroughly. This meal also contains a relatively higher amount of sodium.",
     servings: 1,
   },
   {
@@ -1568,14 +1568,14 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
-      { item: "Apple", shoppingItem: "Apple", quantity: "50 g" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "50 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "¼ lettuce" },
     ],
     method: [
       "00:00 — Wash and prepare the salad vegetables. Cut the chicken breast into thin strips.",
       "02:00 — Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Remove from the pan and allow to rest briefly.",
-      "10:00 — Spread the measured mayonnaise or cream cheese evenly over the bread.",
+      "10:00 — Spread the measured mayonnaise evenly over the bread.",
       "12:00 — Arrange the cooked chicken and prepared vegetables over the bread.",
       "15:00 — Close the sandwich, cut in half if desired and serve immediately."
     ],
@@ -1590,10 +1590,10 @@ export const lunches: Recipe[] = [
       potassium: "577 mg",
       phosphate: "250 mg",
     },
-    potassium: "High",
-    phosphate: "Moderate",
+    potassium: "Moderate",
+    phosphate: "Low",
     purines: "Moderate",
-    dietaryNote: "High in potassium and moderate in phosphate. If you have been advised to restrict potassium, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and low in phosphate. If you have been advised to restrict potassium, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -1610,7 +1610,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Butter knife, Saucepan",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "50 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
@@ -1634,7 +1634,7 @@ export const lunches: Recipe[] = [
       potassium: "320 mg",
       phosphate: "259 mg",
     },
-    potassium: "Moderate",
+    potassium: "Low",
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote: "Moderate in potassium and phosphate. Egg is classified as low purine.",
@@ -1661,7 +1661,7 @@ export const lunches: Recipe[] = [
     ],
     method: [
       "00:00 — Prepare the chicken and salad ingredients.",
-      "02:00 — Spread the measured mayonnaise or cream cheese over the tortilla.",
+      "02:00 — Spread the measured cream cheese over the tortilla.",
       "04:00 — Add the chicken and prepared vegetables down the centre.",
       "07:00 — Fold in the sides and roll the tortilla tightly.",
       "15:00 — Close the sandwich, cut in half if desired and serve immediately."
@@ -1677,10 +1677,10 @@ export const lunches: Recipe[] = [
       potassium: "616 mg",
       phosphate: "339 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "High",
     purines: "Moderate",
-    dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and high in phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
   {
@@ -1719,10 +1719,10 @@ export const lunches: Recipe[] = [
       potassium: "321 mg",
       phosphate: "264 mg",
     },
-    potassium: "Moderate",
+    potassium: "Low",
     phosphate: "Moderate",
     purines: "Low",
-    dietaryNote: "Moderate in potassium and phosphate. The tuna is canned in brine, so drain it thoroughly. This meal also contains a relatively higher amount of sodium.",
+    dietaryNote: "Low in potassium and moderate in phosphate. The tuna is canned in brine, so drain it thoroughly. This meal also contains a relatively higher amount of sodium.",
     servings: 1,
   },
   {
@@ -1740,7 +1740,7 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
-      { item: "Onion", shoppingItem: "Onion", quantity: "30 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "30 g" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
@@ -1748,8 +1748,9 @@ export const lunches: Recipe[] = [
       "00:00 — Bring a saucepan of water to a boil and cook the measured dry pasta according to the packet instructions.",
       "02:00 — While the pasta cooks, finely dice the onion and cucumber.",
       "10:00 — Drain the pasta thoroughly and allow it to cool for a few minutes.",
-      "13:00 — Stir the chicken, onion and cucumber through the pasta.",
-      "16:00 — Add the mayonnaise and mix until evenly coated.",
+      "13:00 — Cook the chicken in a non-stick frying pan over medium heat for 6–8 minutes, turning regularly, until completely cooked through. Allow it to rest briefly, then slice.",
+      "16:00 — Stir the cooked chicken, onion and cucumber through the pasta.",
+      "18:00 — Add the mayonnaise and mix until evenly coated.",
       "20:00 — Serve warm or chill before serving."
     ],
     nutrition: {
@@ -1763,19 +1764,19 @@ export const lunches: Recipe[] = [
       potassium: "538 mg",
       phosphate: "306 mg",
     },
-    potassium: "High",
+    potassium: "Moderate",
     phosphate: "High",
     purines: "Moderate",
-    dietaryNote: "High in potassium and phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and high in phosphate. If you have been advised to restrict either nutrient, check this portion against your individual plan. The chicken gives this meal a moderate purine classification.",
     servings: 1,
   },
 
-  { id: "chicken-leek-couscous-bowl", code: "L041", category: "Lunch", emoji: "🥗", image: "/images/recipes/L041.png", name: "Chicken & Leek Couscous Bowl", description: "Tender chicken with fluffy couscous, soft leek and carrot, finished with lemon and parsley.", cookingTime: "25 minutes", calories: "465 kcal", protein: "23.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [ { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" }, { item: "Couscous", shoppingItem: "Couscous", quantity: "75 g" }, { item: "Leek", shoppingItem: "Leek", quantity: "40 g" }, { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [ "00:00 — Prepare the couscous according to the packet instructions using unsalted water.", "05:00 — Slice the chicken and cook in half the olive oil until completely cooked through.", "12:00 — Boil the leek and carrot in unsalted water until tender, then drain well.", "18:00 — Fluff the couscous and combine with the vegetables.", "22:00 — Top with the chicken and finish with the remaining olive oil, lemon juice and parsley.", "25:00 — Serve immediately." ], nutrition: { calories: "465 kcal", protein: "23.0 g", carbohydrates: "62 g", fat: "14 g", fibre: "4 g", sodium: "55 mg", salt: "0.14 g", potassium: "330 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed around a modest fresh chicken portion and lower-potassium carbohydrate and vegetables. Chicken contributes protein, phosphate and purines.", servings: 1 },
+  { id: "chicken-leek-couscous-bowl", code: "L041", category: "Lunch", emoji: "🥗", image: "/images/recipes/L041.png", name: "Chicken & Leek Couscous Bowl", description: "Tender chicken with fluffy couscous, soft leek and carrot, finished with lemon and parsley.", cookingTime: "25 minutes", calories: "465 kcal", protein: "23.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [ { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" }, { item: "Couscous", shoppingItem: "Couscous", quantity: "75 g" }, { item: "Leek", shoppingItem: "Leek", quantity: "40 g" }, { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [ "00:00 — Prepare the couscous according to the packet instructions using unsalted water.", "05:00 — Slice the chicken and cook in half the olive oil until completely cooked through.", "12:00 — Boil the leek and carrot in unsalted water until tender, then drain well.", "18:00 — Fluff the couscous and combine with the vegetables.", "22:00 — Top with the chicken and finish with the remaining olive oil, lemon juice and parsley.", "25:00 — Serve immediately." ], nutrition: { calories: "465 kcal", protein: "23.0 g", carbohydrates: "62 g", fat: "14 g", fibre: "4 g", sodium: "55 mg", salt: "0.14 g", potassium: "330 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed around a modest fresh chicken portion and lower-potassium carbohydrate and vegetables. Chicken contributes protein, phosphate and purines.", servings: 1 },
   { id: "turkey-cucumber-pitta", code: "L042", category: "Lunch", emoji: "🥙", image: "/images/recipes/L042.png", name: "Turkey & Cucumber Pitta", description: "Fresh turkey with crisp cucumber and iceberg lettuce in a soft white pitta with mayonnaise and herbs.", cookingTime: "12 minutes", calories: "410 kcal", protein: "22.0 g", equipment: "Knife, chopping board, frying pan", ingredients: [ { item: "Turkey breast", shoppingItem: "Turkey breast", quantity: "60 g (raw)" }, { item: "White pitta bread", shoppingItem: "White pitta bread", quantity: "60 g" }, { item: "Cucumber", shoppingItem: "Cucumber", quantity: "50 g" }, { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "¼ lettuce" }, { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [ "00:00 — Cook the turkey in a non-stick frying pan until completely cooked through.", "06:00 — Slice the turkey and prepare the cucumber and lettuce.", "08:00 — Warm the pitta briefly and split it open.", "10:00 — Spread with mayonnaise and add the turkey and salad.", "12:00 — Finish with parsley and serve." ], nutrition: { calories: "410 kcal", protein: "22.0 g", carbohydrates: "43 g", fat: "16 g", fibre: "4 g", sodium: "390 mg", salt: "0.98 g", potassium: "290 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Fresh turkey is used instead of processed meat. The measured salad and white pitta keep the meal centred on lower-potassium ingredients.", servings: 1 },
   { id: "tuna-sweetcorn-pasta-salad", code: "L043", category: "Lunch", emoji: "🍝", image: "/images/recipes/L043.png", name: "Tuna & Sweetcorn Pasta Salad", description: "White pasta with drained tuna, a measured portion of sweetcorn, cucumber and a light mayonnaise dressing.", cookingTime: "20 minutes", calories: "475 kcal", protein: "23.0 g", equipment: "Saucepan, colander, bowl, knife", ingredients: [ { item: "White pasta", shoppingItem: "White pasta", quantity: "75 g" }, { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "50 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "30 g" }, { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" }, { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" } ], method: [ "00:00 — Cook the pasta in unsalted water according to the packet instructions.", "10:00 — Drain the pasta thoroughly and allow it to cool.", "12:00 — Drain the tuna very thoroughly and prepare the cucumber.", "15:00 — Mix the pasta, tuna, sweetcorn and cucumber.", "18:00 — Stir through the mayonnaise.", "20:00 — Serve warm or chilled." ], nutrition: { calories: "475 kcal", protein: "23.0 g", carbohydrates: "60 g", fat: "16 g", fibre: "4 g", sodium: "360 mg", salt: "0.90 g", potassium: "335 mg", phosphate: "230 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "The tuna is thoroughly drained and the sweetcorn portion is controlled. Tuna contributes phosphate and purines.", servings: 1 },
-  { id: "egg-leek-rice-bowl", code: "L044", category: "Lunch", emoji: "🍳", image: "/images/recipes/L044.png", name: "Egg & Leek Rice Bowl", description: "Fluffy white rice with softly cooked egg, leek and onion, finished with fresh herbs.", cookingTime: "25 minutes", calories: "445 kcal", protein: "14.0 g", equipment: "Saucepan, frying pan, colander, knife", ingredients: [ { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" }, { item: "Egg", shoppingItem: "Egg", quantity: "50 g" }, { item: "Leek", shoppingItem: "Leek", quantity: "40 g" }, { item: "Onion", shoppingItem: "Onion", quantity: "30 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [ "00:00 — Cook the rice according to the packet instructions using unsalted water.", "12:00 — Slice the leek and onion and cook gently in half the oil until soft.", "17:00 — Beat the egg and cook gently in the pan until fully set.", "21:00 — Add the cooked rice and remaining oil and stir through.", "24:00 — Finish with fresh chives.", "25:00 — Serve immediately." ], nutrition: { calories: "445 kcal", protein: "14.0 g", carbohydrates: "55 g", fat: "20 g", fibre: "2 g", sodium: "85 mg", salt: "0.21 g", potassium: "300 mg", phosphate: "230 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "A meat-free lunch using white rice and modest egg and vegetable portions. Egg is classified as low purine.", servings: 1 },
-  { id: "chicken-carrot-noodle-salad", code: "L045", category: "Lunch", emoji: "🍜", image: "/images/recipes/L045.png", name: "Chicken & Carrot Noodle Salad", description: "Plain noodles with sliced chicken, boiled carrot and cucumber in a fresh lemon and herb dressing.", cookingTime: "20 minutes", calories: "455 kcal", protein: "22.0 g", equipment: "Saucepan, colander, frying pan, knife", ingredients: [ { item: "Plain noodles", shoppingItem: "Plain noodles", quantity: "75 g" }, { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" }, { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" }, { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" }, { item: "Ground ginger", shoppingItem: "Ground ginger", quantity: "¼ tsp" } ], method: [ "00:00 — Cook the noodles according to the packet instructions using unsalted water.", "03:00 — Cook the chicken in a non-stick frying pan until completely cooked through.", "10:00 — Boil the carrot until tender and drain well.", "14:00 — Drain the noodles thoroughly and rinse briefly if serving chilled.", "17:00 — Toss the noodles with carrot, cucumber, chicken, oil, lemon and ginger.", "20:00 — Serve." ], nutrition: { calories: "455 kcal", protein: "22.0 g", carbohydrates: "59 g", fat: "14 g", fibre: "3 g", sodium: "50 mg", salt: "0.13 g", potassium: "325 mg", phosphate: "240 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Uses plain noodles and controlled vegetable portions. Chicken contributes protein, phosphate and purines.", servings: 1 },
-  { id: "turkey-apple-couscous-salad", code: "L046", category: "Lunch", emoji: "🍎", image: "/images/recipes/L046.png", name: "Turkey & Apple Couscous Salad", description: "Couscous with fresh turkey, crisp apple and cucumber, dressed with lemon and parsley.", cookingTime: "20 minutes", calories: "430 kcal", protein: "21.0 g", equipment: "Saucepan, frying pan, knife, bowl", ingredients: [ { item: "Turkey breast", shoppingItem: "Turkey breast", quantity: "60 g (raw)" }, { item: "Couscous", shoppingItem: "Couscous", quantity: "70 g" }, { item: "Apple", shoppingItem: "Apple", quantity: "50 g" }, { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" }, { item: "Fresh parsley", shoppingItem: "Fresh parsley", quantity: "1 sprig" } ], method: [ "00:00 — Prepare the couscous according to the packet instructions using unsalted water.", "05:00 — Cook the turkey in a non-stick pan until completely cooked through.", "10:00 — Dice the apple and cucumber.", "14:00 — Fluff the couscous and stir through the apple and cucumber.", "17:00 — Slice the turkey and add to the couscous.", "20:00 — Finish with olive oil, lemon and parsley and serve." ], nutrition: { calories: "430 kcal", protein: "21.0 g", carbohydrates: "58 g", fat: "13 g", fibre: "4 g", sodium: "45 mg", salt: "0.11 g", potassium: "315 mg", phosphate: "235 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Fresh turkey is paired with couscous and controlled portions of apple and cucumber. No processed meat or dairy is used.", servings: 1 },
-  { id: "cod-cucumber-pasta-salad", code: "L047", category: "Lunch", emoji: "🐟", image: "/images/recipes/L047.png", name: "Cod & Cucumber Pasta Salad", description: "Flaked baked cod with white pasta, cucumber and iceberg lettuce in a lemon and herb dressing.", cookingTime: "25 minutes", calories: "445 kcal", protein: "25.0 g", equipment: "Oven, baking tray, saucepan, colander, knife", ingredients: [ { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "70 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "70 g" }, { item: "Cucumber", shoppingItem: "Cucumber", quantity: "50 g" }, { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "¼ lettuce" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [ "00:00 — Heat the oven to 200°C (180°C fan) and bake the cod until cooked through.", "05:00 — Cook the pasta in unsalted water according to the packet instructions.", "15:00 — Drain the pasta thoroughly and allow to cool slightly.", "18:00 — Flake the cod and combine with the pasta, cucumber and lettuce.", "22:00 — Add the olive oil, lemon juice and parsley.", "25:00 — Serve." ], nutrition: { calories: "445 kcal", protein: "25.0 g", carbohydrates: "54 g", fat: "14 g", fibre: "3 g", sodium: "75 mg", salt: "0.19 g", potassium: "340 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Cod is used in a modest portion and paired with white pasta and lower-potassium salad vegetables.", servings: 1 },
+  { id: "egg-leek-rice-bowl", code: "L044", category: "Lunch", emoji: "🍳", image: "/images/recipes/L044.png", name: "Egg & Leek Rice Bowl", description: "Fluffy white rice with softly cooked egg, leek and onion, finished with fresh herbs.", cookingTime: "25 minutes", calories: "445 kcal", protein: "14.0 g", equipment: "Saucepan, frying pan, colander, knife", ingredients: [ { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" }, { item: "Egg", shoppingItem: "Egg", quantity: "1" }, { item: "Leek", shoppingItem: "Leek", quantity: "40 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "30 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [ "00:00 — Cook the rice according to the packet instructions using unsalted water.", "12:00 — Slice the leek and onion and cook gently in half the oil until soft.", "17:00 — Beat the egg and cook gently in the pan until fully set.", "21:00 — Add the cooked rice and remaining oil and stir through.", "24:00 — Finish with fresh chives.", "25:00 — Serve immediately." ], nutrition: { calories: "445 kcal", protein: "14.0 g", carbohydrates: "55 g", fat: "20 g", fibre: "2 g", sodium: "85 mg", salt: "0.21 g", potassium: "300 mg", phosphate: "230 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "A meat-free lunch using white rice and modest egg and vegetable portions. Egg is classified as low purine.", servings: 1 },
+  { id: "chicken-carrot-noodle-salad", code: "L045", category: "Lunch", emoji: "🍜", image: "/images/recipes/L045.png", name: "Chicken & Carrot Noodle Salad", description: "Plain noodles with sliced chicken, boiled carrot and cucumber in a fresh lemon and herb dressing.", cookingTime: "20 minutes", calories: "455 kcal", protein: "22.0 g", equipment: "Saucepan, colander, frying pan, knife", ingredients: [ { item: "Plain noodles", shoppingItem: "Plain noodles", quantity: "75 g" }, { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" }, { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" }, { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Ground ginger", shoppingItem: "Ground ginger", quantity: "¼ tsp" } ], method: [ "00:00 — Cook the noodles according to the packet instructions using unsalted water.", "03:00 — Cook the chicken in a non-stick frying pan until completely cooked through.", "10:00 — Boil the carrot until tender and drain well.", "14:00 — Drain the noodles thoroughly and rinse briefly if serving chilled.", "17:00 — Toss the noodles with carrot, cucumber, chicken, oil, lemon and ginger.", "20:00 — Serve." ], nutrition: { calories: "455 kcal", protein: "22.0 g", carbohydrates: "59 g", fat: "14 g", fibre: "3 g", sodium: "50 mg", salt: "0.13 g", potassium: "325 mg", phosphate: "240 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Uses plain noodles and controlled vegetable portions. Chicken contributes protein, phosphate and purines.", servings: 1 },
+  { id: "turkey-apple-couscous-salad", code: "L046", category: "Lunch", emoji: "🍎", image: "/images/recipes/L046.png", name: "Turkey & Apple Couscous Salad", description: "Couscous with fresh turkey, crisp apple and cucumber, dressed with lemon and parsley.", cookingTime: "20 minutes", calories: "430 kcal", protein: "21.0 g", equipment: "Saucepan, frying pan, knife, bowl", ingredients: [ { item: "Turkey breast", shoppingItem: "Turkey breast", quantity: "60 g (raw)" }, { item: "Couscous", shoppingItem: "Couscous", quantity: "70 g" }, { item: "Apple", shoppingItem: "Apples", quantity: "50 g" }, { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Fresh parsley", shoppingItem: "Fresh parsley", quantity: "1 sprig" } ], method: [ "00:00 — Prepare the couscous according to the packet instructions using unsalted water.", "05:00 — Cook the turkey in a non-stick pan until completely cooked through.", "10:00 — Dice the apple and cucumber.", "14:00 — Fluff the couscous and stir through the apple and cucumber.", "17:00 — Slice the turkey and add to the couscous.", "20:00 — Finish with olive oil, lemon and parsley and serve." ], nutrition: { calories: "430 kcal", protein: "21.0 g", carbohydrates: "58 g", fat: "13 g", fibre: "4 g", sodium: "45 mg", salt: "0.11 g", potassium: "315 mg", phosphate: "235 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Fresh turkey is paired with couscous and controlled portions of apple and cucumber. No processed meat or dairy is used.", servings: 1 },
+  { id: "cod-cucumber-pasta-salad", code: "L047", category: "Lunch", emoji: "🐟", image: "/images/recipes/L047.png", name: "Cod & Cucumber Pasta Salad", description: "Flaked baked cod with white pasta, cucumber and iceberg lettuce in a lemon and herb dressing.", cookingTime: "25 minutes", calories: "445 kcal", protein: "25.0 g", equipment: "Oven, baking tray, saucepan, colander, knife", ingredients: [ { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "70 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "70 g" }, { item: "Cucumber", shoppingItem: "Cucumber", quantity: "50 g" }, { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "¼ lettuce" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [ "00:00 — Heat the oven to 200°C (180°C fan) and bake the cod until cooked through.", "05:00 — Cook the pasta in unsalted water according to the packet instructions.", "15:00 — Drain the pasta thoroughly and allow to cool slightly.", "18:00 — Flake the cod and combine with the pasta, cucumber and lettuce.", "22:00 — Add the olive oil, lemon juice and parsley.", "25:00 — Serve." ], nutrition: { calories: "445 kcal", protein: "25.0 g", carbohydrates: "54 g", fat: "14 g", fibre: "3 g", sodium: "75 mg", salt: "0.19 g", potassium: "340 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Cod is used in a modest portion and paired with white pasta and lower-potassium salad vegetables.", servings: 1 },
   { id: "chicken-leek-toasted-pitta", code: "L048", category: "Lunch", emoji: "🥙", image: "/images/recipes/L048.png", name: "Chicken & Leek Toasted Pitta", description: "Warm chicken and softened leek with a light herb mayonnaise filling in a toasted white pitta.", cookingTime: "18 minutes", calories: "440 kcal", protein: "23.0 g", equipment: "Frying pan, knife, chopping board, toaster", ingredients: [ { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" }, { item: "White pitta bread", shoppingItem: "White pitta bread", quantity: "60 g" }, { item: "Leek", shoppingItem: "Leek", quantity: "40 g" }, { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" }, { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [ "00:00 — Slice the chicken and leek.", "03:00 — Cook the chicken in a non-stick pan until completely cooked through.", "09:00 — Add the leek and cook until soft.", "13:00 — Warm the pitta and mix the filling with mayonnaise and chives.", "16:00 — Fill the pitta.", "18:00 — Serve immediately." ], nutrition: { calories: "440 kcal", protein: "23.0 g", carbohydrates: "45 g", fat: "17 g", fibre: "3 g", sodium: "390 mg", salt: "0.98 g", potassium: "315 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Fresh chicken and a controlled leek portion are used with white pitta. No processed meat or cheese is included.", servings: 1 }
 ];

@@ -1739,5 +1739,104 @@ export const dinners: Recipe[] = [
     purines: "Low",
     dietaryNote: "Flaky cod, tender potato and sweetcorn make a comforting baked dinner with gentle seasoning and no added salt.",
     servings: 1,
-  }
+  },
+
+  { id: "chicken-leek-couscous-lemon", code: "D041", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.png", name: "Chicken & Leek Couscous with Lemon", description: "Chicken & Leek Couscous with Lemon — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "560 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
+      { item: "Couscous", shoppingItem: "Couscous", quantity: "80 g" },
+      { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
+      { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" },
+      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
+    ], method: ["Cook the couscous using unsalted water.", "Cook the chicken until completely cooked through.", "Boil the leek and carrot until tender and drain well.", "Combine the couscous and vegetables, top with sliced chicken and finish with lemon and parsley."], nutrition: { calories: "560 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "turkey-meatballs-herb-rice", code: "D042", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Turkey Meatballs with Herb Rice — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "575 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Turkey mince, lean", shoppingItem: "Turkey mince", quantity: "70 g" },
+      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "85 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
+      { item: "Onion", shoppingItem: "Onion", quantity: "30 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "¼ tsp" }
+    ], method: ["Cook the rice using unsalted water.", "Mix turkey with rosemary and form into small meatballs.", "Cook the meatballs in olive oil until browned and cooked through.", "Boil cabbage and onion until tender and drain.", "Serve the meatballs with rice and vegetables."], nutrition: { calories: "575 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "365 mg", phosphate: "255 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "cod-herby-noodles-cucumber", code: "D043", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Cod with Herby Noodles & Cucumber — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "545 kcal", protein: "27 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "70 g" },
+      { item: "Plain noodles", shoppingItem: "Plain noodles", quantity: "80 g" },
+      { item: "Cucumber", shoppingItem: "Cucumber", quantity: "50 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "60 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" },
+      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
+    ], method: ["Bake the cod until cooked through.", "Cook the noodles in unsalted water and drain thoroughly.", "Boil the cabbage until tender and drain.", "Toss noodles and cabbage with olive oil, lemon and parsley.", "Flake the cod over the noodles and serve."], nutrition: { calories: "545 kcal", protein: "27 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "350 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "pork-apple-leek-rice", code: "D044", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Pork Medallions with Apple & Leek — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "590 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "65 g" },
+      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "80 g" },
+      { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
+      { item: "Apple", shoppingItem: "Apple", quantity: "50 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "¼ tsp" }
+    ], method: ["Cook the rice using unsalted water.", "Cook the pork in olive oil until completely cooked through.", "Soften the leek in the pan.", "Add diced apple and cook gently until softened.", "Serve the pork with rice and the apple and leek mixture."], nutrition: { calories: "590 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "375 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "chicken-carrot-noodle-stir-fry", code: "D045", category: "Dinner", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken & Carrot Noodle Stir-Fry — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "555 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
+      { item: "Plain noodles", shoppingItem: "Plain noodles", quantity: "80 g" },
+      { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "60 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Ground ginger", shoppingItem: "Ground ginger", quantity: "¼ tsp" }
+    ], method: ["Cook the noodles and drain thoroughly.", "Cook the chicken in olive oil until completely cooked through.", "Add carrot and cabbage and stir-fry gently until tender.", "Add ginger and noodles and toss together.", "Serve immediately."], nutrition: { calories: "555 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "beef-meatballs-couscous-peppers", code: "D046", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Beef Meatballs with Couscous & Peppers — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "585 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "65 g" },
+      { item: "Couscous", shoppingItem: "Couscous", quantity: "80 g" },
+      { item: "Green pepper", shoppingItem: "Green pepper", quantity: "30 g" },
+      { item: "Onion", shoppingItem: "Onion", quantity: "30 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Paprika", shoppingItem: "Paprika", quantity: "¼ tsp" }
+    ], method: ["Prepare the couscous with unsalted water.", "Mix beef with paprika and form small meatballs.", "Cook in olive oil until browned and cooked through.", "Soften the pepper and onion in the same pan.", "Serve with couscous."], nutrition: { calories: "585 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "380 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "haddock-lemon-rice-leeks", code: "D047", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.png", name: "Haddock with Lemon Rice & Leeks", description: "Haddock with Lemon Rice & Leeks — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "550 kcal", protein: "27 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Haddock fillet", shoppingItem: "Haddock fillet", quantity: "70 g" },
+      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "85 g" },
+      { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
+      { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Lemon juice, fresh", shoppingItem: "Lemon", quantity: "1 tbsp" }
+    ], method: ["Bake the haddock until opaque and cooked through.", "Cook the rice using unsalted water.", "Boil the leek and carrot until tender and drain.", "Toss vegetables with olive oil and lemon.", "Serve with rice and haddock."], nutrition: { calories: "550 kcal", protein: "27 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "350 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "chicken-pear-rice-bowl", code: "D048", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken & Pear Rice Bowl — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "560 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
+      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "80 g" },
+      { item: "Pear", shoppingItem: "Pear", quantity: "50 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "60 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "¼ tsp" }
+    ], method: ["Cook the rice using unsalted water.", "Cook the chicken in olive oil until completely cooked through.", "Boil the cabbage until tender and drain.", "Dice the pear and warm gently with the cabbage and rosemary.", "Serve the chicken with rice and the pear and cabbage mixture."], nutrition: { calories: "560 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "350 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "pork-carrot-couscous-skillet", code: "D049", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Pork & Carrot Couscous Skillet — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "575 kcal", protein: "25 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "65 g" },
+      { item: "Couscous", shoppingItem: "Couscous", quantity: "80 g" },
+      { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
+      { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "¼ tsp" }
+    ], method: ["Prepare the couscous using unsalted water.", "Slice the pork and cook in olive oil until cooked through.", "Boil the carrot and leek until tender and drain.", "Add vegetables and thyme to the pork pan.", "Serve over the couscous."], nutrition: { calories: "575 kcal", protein: "25 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "365 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "cod-leek-pasta-bake", code: "D050", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Cod & Leek Pasta Bake — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "560 kcal", protein: "28 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "70 g" },
+      { item: "White pasta", shoppingItem: "White pasta", quantity: "75 g" },
+      { item: "Leek", shoppingItem: "Leek", quantity: "40 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "60 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "10 g" },
+      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
+    ], method: ["Cook the pasta and drain thoroughly.", "Bake the cod until cooked through and flake it.", "Boil the leek and cabbage until tender and drain.", "Combine pasta, vegetables and cod with olive oil and parsley.", "Transfer to a baking dish and bake until hot throughout."], nutrition: { calories: "560 kcal", protein: "28 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "250 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "turkey-apple-noodle-bowl", code: "D051", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey & Apple Noodle Bowl — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "555 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Turkey breast", shoppingItem: "Turkey breast", quantity: "60 g (raw)" },
+      { item: "Plain noodles", shoppingItem: "Plain noodles", quantity: "80 g" },
+      { item: "Apple", shoppingItem: "Apple", quantity: "50 g" },
+      { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Ground ginger", shoppingItem: "Ground ginger", quantity: "¼ tsp" }
+    ], method: ["Cook the noodles and drain thoroughly.", "Cook sliced turkey in olive oil until completely cooked through.", "Add diced apple and cook gently.", "Toss through the noodles with cucumber and ginger.", "Serve immediately."], nutrition: { calories: "555 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "340 mg", phosphate: "240 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 },
+  { id: "chicken-herb-meatballs-rice", code: "D052", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken Herb Meatballs with Rice — a one-serving renal-friendly dinner built around a measured portion of fresh protein and lower-potassium accompaniments.", cookingTime: "30 minutes", calories: "565 kcal", protein: "24 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
+      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "85 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "70 g" },
+      { item: "Carrots, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
+      { item: "Olive oil", shoppingItem: "Olive oil", quantity: "15 g" },
+      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
+    ], method: ["Cook the rice using unsalted water.", "Finely mince the chicken and form into small meatballs with parsley.", "Cook the meatballs in olive oil until completely cooked through.", "Boil cabbage and carrot until tender and drain.", "Serve the meatballs with rice and vegetables."], nutrition: { calories: "565 kcal", protein: "24 g", carbohydrates: "78 g", fat: "16 g", fibre: "4 g", sodium: "80 mg", salt: "0.20 g", potassium: "360 mg", phosphate: "245 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "Designed with a modest fresh protein portion, white rice/pasta/noodles/couscous and controlled lower-potassium vegetables. Final nutrient values should be verified against the RenalPlan CoFID methodology before publication.", servings: 1 }
 ];

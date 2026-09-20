@@ -813,7 +813,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Moderate",
     phosphate: "Moderate",
     purines: "Low",
-    dietaryNote: "Higher in potassium and moderate in phosphate within the RenalPlan recipe-planning bands. Strawberries and milk contribute potassium, while milk and egg contribute phosphate. Consider this when planning meals if you have been advised to restrict either nutrient.",
+    dietaryNote: "Moderate in potassium and moderate in phosphate within the RenalPlan recipe-planning bands. Strawberries and milk contribute potassium, while milk and egg contribute phosphate. Consider this when planning meals if you have been advised to restrict either nutrient.",
     servings: 1,
   },
   {
@@ -1534,7 +1534,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Moderate",
     phosphate: "Moderate",
     purines: "Low",
-    dietaryNote: "Higher in potassium and moderate in phosphate within the RenalPlan recipe-planning bands. Strawberries and apple contribute potassium, while milk and egg contribute phosphate. Consider this when planning meals if you have been advised to restrict either nutrient.",
+    dietaryNote: "Moderate in potassium and moderate in phosphate within the RenalPlan recipe-planning bands. Strawberries and apple contribute potassium, while milk and egg contribute phosphate. Consider this when planning meals if you have been advised to restrict either nutrient.",
     servings: 1,
   },
   {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { recipes } from "@/data/recipe-data";
+import { recipes } from "@/data/RecipeData";
 
 type ShoppingItem = {
   item: string;
@@ -96,6 +96,9 @@ const ingredientCategories: Record<string, string> = {
   swede: "🥕 Fruit & Vegetables",
   "green chilli": "🥕 Fruit & Vegetables",
   beansprouts: "🥕 Fruit & Vegetables",
+  cabbage: "🥕 Fruit & Vegetables",
+  "white cabbage": "🥕 Fruit & Vegetables",
+  cauliflower: "🥕 Fruit & Vegetables",
 
   // Chilled
   egg: "🧊 Chilled",
@@ -205,6 +208,9 @@ const ingredientCategories: Record<string, string> = {
   "ready-made mild fajita seasoning": "🥫 Cupboard",
   "ready made mild fajita seasoning": "🥫 Cupboard",
   "mild fajita seasoning": "🥫 Cupboard",
+  cornflakes: "🥫 Cupboard",
+  jam: "🥫 Cupboard",
+  marmalade: "🥫 Cupboard",
   "sesame seeds": "🧂 Herbs & Spices",
   "garlic granules": "🧂 Herbs & Spices",
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { recipes, type Recipe } from "@/data/recipe-data";
+import { recipes, type Recipe } from "@/data/RecipeData";
 
 const days = [
   "Monday",

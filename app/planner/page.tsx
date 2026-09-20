@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { recipes } from "@/data/recipe-data";
+import { recipes } from "@/data/RecipeData";
 import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
 
 const days = [

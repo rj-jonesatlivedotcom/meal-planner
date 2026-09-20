@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { recipes } from "@/data/recipe-data";
+import { recipes } from "@/data/RecipeData";
 
 const days = [
   "Monday",
@@ -31,31 +31,36 @@ type PendingSlot = {
   meal: string;
 };
 
-type RecipeSource = {
-  name?: string;
-  url?: string;
-  logo?: string;
-  description?: string;
-  linkText?: string;
-};
+function getTrafficLightStyle(value: string | undefined) {
+  const normalized = value?.trim().toLowerCase();
 
-function getRecipeSource(recipe: typeof recipes[number]): RecipeSource | null {
-  const source = (recipe as typeof recipe & {
-    source?: RecipeSource;
-  }).source;
-
-  if (!source) {
-    return null;
+  if (normalized === "low") {
+    return { background: "#16a34a" };
   }
 
-  if (source.name?.toLowerCase().startsWith("kidney care uk")) {
+  if (normalized === "moderate") {
+    return { background: "#F4C542" };
+  }
+
+  if (normalized === "high") {
+    return { background: "#dc2626" };
+  }
+
+  if (normalized === "low-moderate" || normalized === "low/moderate") {
     return {
-      ...source,
-      logo: "/images/kidneycareuk.svg",
+      background:
+        "linear-gradient(90deg, #16a34a 0 50%, #F4C542 50% 100%)",
     };
   }
 
-  return source;
+  if (normalized === "moderate-high" || normalized === "moderate/high") {
+    return {
+      background:
+        "linear-gradient(90deg, #F4C542 0 50%, #dc2626 50% 100%)",
+    };
+  }
+
+  return { background: "#cbd5e1" };
 }
 
 function getDefaultMealType(code: string) {
@@ -99,6 +104,10 @@ export default function RecipeDetailPage() {
   const recipe = recipes.find(
     (item) => item.id === id
   );
+
+  const hasRecipeImage =
+    typeof recipe?.image === "string" &&
+    recipe.image.trim().length > 0;
 
   const [showPlanner, setShowPlanner] =
     useState(false);
@@ -646,14 +655,23 @@ export default function RecipeDetailPage() {
           <div className="grid grid-cols-[1.05fr_0.95fr]">
 
             <div className="relative min-h-[470px]">
-              <Image
-                src={recipe.image}
-                alt={recipe.name}
-                fill
-                priority
-                sizes="(min-width: 1024px) 52vw, 100vw"
-                className="object-cover"
-              />
+              {hasRecipeImage ? (
+                <Image
+                  src={recipe.image}
+                  alt={recipe.name}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 52vw, 100vw"
+                  className="object-cover"
+                />
+              ) : (
+                <div
+                  className="flex h-full min-h-[470px] items-center justify-center bg-slate-100"
+                  aria-label="Recipe image coming soon"
+                >
+                  <span className="text-6xl" aria-hidden="true">🍽️</span>
+                </div>
+              )}
             </div>
 
             <div className="flex flex-col p-10">
@@ -687,46 +705,21 @@ export default function RecipeDetailPage() {
                 {recipe.description}
               </p>
 
-              <div className="mt-7 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
-                <div className="grid grid-cols-3 divide-x divide-y divide-slate-200">
+               <div className="mt-7 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+                 <div className="grid grid-cols-2 divide-x divide-slate-200">
 
-                  <div className="px-3 py-4 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Time</div>
-                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.cookingTime}</div>
-                  </div>
+                   <div className="px-4 py-5 text-center">
+                     <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Time</div>
+                     <div className="mt-1 text-base font-bold text-slate-900">{recipe.cookingTime}</div>
+                   </div>
 
-                  <div className="px-3 py-4 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Calories</div>
-                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.nutrition.calories}</div>
-                  </div>
+                   <div className="px-4 py-5 text-center">
+                     <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Calories</div>
+                     <div className="mt-1 text-base font-bold text-slate-900">{recipe.nutrition.calories}</div>
+                   </div>
 
-                  <div className="px-3 py-4 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Protein</div>
-                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.nutrition.protein}</div>
-                  </div>
-
-                  <div className="px-3 py-4 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Salt (g)</div>
-                    <div className="mt-1 text-sm font-bold text-slate-900">{formatSalt(recipe.nutrition.sodium)}</div>
-                  </div>
-
-                  <div className="px-3 py-4 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Potassium</div>
-                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.potassium}</div>
-                  </div>
-
-                  <div className="px-3 py-4 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Phosphate</div>
-                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.phosphate}</div>
-                  </div>
-
-                  <div className="px-3 py-4 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Purines</div>
-                    <div className="mt-1 text-sm font-bold text-slate-900">{recipe.purines}</div>
-                  </div>
-
-                </div>
-              </div>
+                 </div>
+               </div>
 
               <button
                 type="button"
@@ -816,79 +809,35 @@ export default function RecipeDetailPage() {
             </h2>
 
             <div className="space-y-3">
-              <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
-                🥔 <strong>Potassium:</strong> {recipe.potassium}
-              </p>
-              <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
-                🧀 <strong>Phosphate:</strong> {recipe.phosphate}
-              </p>
-              <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+              <div className="flex items-center justify-between gap-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+                <span>🥔 <strong>Potassium:</strong> {recipe.nutrition.potassium}</span>
+                <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-slate-700">
+                  <span aria-hidden="true" className="h-4 w-4 rounded-full border border-white shadow-sm" style={getTrafficLightStyle(recipe.potassium)} />
+                  {recipe.potassium}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between gap-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+                <span>🧀 <strong>Phosphate:</strong> {recipe.nutrition.phosphate}</span>
+                <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-slate-700">
+                  <span aria-hidden="true" className="h-4 w-4 rounded-full border border-white shadow-sm" style={getTrafficLightStyle(recipe.phosphate)} />
+                  {recipe.phosphate}
+                </span>
+              </div>
+
+              <div className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
                 🍖 <strong>Purines:</strong> {recipe.purines}
-              </p>
+              </div>
+
               {recipe.dietaryNote && (
-                <p className="text-sm leading-6 text-slate-600">{recipe.dietaryNote}</p>
+                <div className="rounded-xl bg-orange-50 p-4 text-sm leading-6 text-slate-700">
+                  <strong className="text-slate-900">Dietary guidance</strong>
+                  <p className="mt-1">{recipe.dietaryNote}</p>
+                </div>
               )}
             </div>
           </div>
 
-        </section>
-
-        {/* Source */}
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
-            Source
-          </h2>
-
-          {getRecipeSource(recipe)?.url ? (
-            <a
-              href={getRecipeSource(recipe)?.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-5 rounded-xl bg-slate-50 p-5 transition hover:bg-slate-100"
-            >
-              {getRecipeSource(recipe)?.name?.toLowerCase().startsWith("kidney planner original") ? (
-                <span
-                  aria-label="GOV.UK"
-                  className="flex h-14 w-[120px] shrink-0 items-center justify-center bg-slate-900 px-3 text-2xl font-bold tracking-tight text-white"
-                >
-                  GOV.UK
-                </span>
-              ) : getRecipeSource(recipe)?.logo ? (
-                <Image
-                  src={getRecipeSource(recipe)?.logo ?? ""}
-                  alt={`${getRecipeSource(recipe)?.name ?? "Source"} logo`}
-                  width={120}
-                  height={60}
-                  className="h-14 w-auto object-contain"
-                />
-              ) : null}
-
-              <div className="min-w-0">
-                <p className="text-sm font-semibold text-slate-500">
-                  Recipe source
-                </p>
-                <p className="mt-1 text-base font-bold text-slate-900 group-hover:text-orange-600">
-                  {getRecipeSource(recipe)?.name ?? "View source recipe"}
-                </p>
-                <p className="mt-1 text-sm text-slate-600">
-                  {getRecipeSource(recipe)?.description ??
-                    "View the original recipe on the source website"}{" "}
-                  {getRecipeSource(recipe)?.linkText
-                    ? `• ${getRecipeSource(recipe)?.linkText}`
-                    : "↗"}
-                </p>
-              </div>
-            </a>
-          ) : (
-            <div className="rounded-xl bg-slate-50 p-5">
-              <p className="text-base font-semibold text-slate-900">
-                Source reference to be added
-              </p>
-              <p className="mt-1 text-sm leading-6 text-slate-600">
-                The source information for this recipe will be added when available.
-              </p>
-            </div>
-          )}
         </section>
 
       </div>
@@ -908,13 +857,22 @@ export default function RecipeDetailPage() {
       </div>
 
       {/* Recipe image */}
-      <Image
-        src={recipe.image}
-        alt={recipe.name}
-        width={1200}
-        height={700}
-        className="mb-4 h-44 w-full rounded-xl object-cover sm:mb-6 sm:h-80"
-      />
+      {hasRecipeImage ? (
+        <Image
+          src={recipe.image}
+          alt={recipe.name}
+          width={1200}
+          height={700}
+          className="mb-4 h-44 w-full rounded-xl object-cover sm:mb-6 sm:h-80"
+        />
+      ) : (
+        <div
+          className="mb-4 flex h-44 w-full items-center justify-center rounded-xl bg-slate-100 sm:mb-6 sm:h-80"
+          aria-label="Recipe image coming soon"
+        >
+          <span className="text-5xl sm:text-6xl" aria-hidden="true">🍽️</span>
+        </div>
+      )}
 
       {/* Title */}
       <h1 className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl">
@@ -942,78 +900,18 @@ export default function RecipeDetailPage() {
       </p>
 
       {/* Recipe summary */}
-      <div className="mb-6 grid grid-cols-3 gap-2 sm:mb-8 sm:gap-4">
+      <div className="mb-6 grid grid-cols-2 gap-2 sm:mb-8 sm:gap-4">
 
-        <div className="rounded-lg border p-2 text-center sm:p-4">
-
-          <div className="text-lg sm:text-2xl">
-            ⏱️
-          </div>
-
-          <strong className="block text-[11px] leading-tight sm:text-base">
-            Cooking Time
-          </strong>
-
-          <p className="mt-1 text-xs sm:text-base">
-            {recipe.cookingTime}
-          </p>
-
+        <div className="rounded-lg border p-3 text-center sm:p-4">
+          <div className="text-lg sm:text-2xl">⏱️</div>
+          <strong className="block text-[11px] leading-tight sm:text-base">Cooking Time</strong>
+          <p className="mt-1 text-xs sm:text-base">{recipe.cookingTime}</p>
         </div>
 
-        <div className="rounded-lg border p-2 text-center sm:p-4">
-
-          <div className="text-lg sm:text-2xl">
-            🔥
-          </div>
-
-          <strong className="block text-[11px] leading-tight sm:text-base">
-            Calories
-          </strong>
-
-          <p className="mt-1 text-xs sm:text-base">
-            {recipe.calories}
-          </p>
-
-        </div>
-
-        <div className="rounded-lg border p-2 text-center sm:p-4">
-
-          <div className="text-lg sm:text-2xl">
-            💪
-          </div>
-
-          <strong className="block text-[11px] leading-tight sm:text-base">
-            Protein
-          </strong>
-
-          <p className="mt-1 text-xs sm:text-base">
-            {recipe.protein}
-          </p>
-
-        </div>
-
-        <div className="rounded-lg border p-2 text-center sm:p-4">
-
-          <div className="text-lg sm:text-2xl">
-            🧂
-          </div>
-
-          <div className="rounded-lg border p-2 text-center sm:p-4">
-
-  <div className="text-lg sm:text-2xl">
-    🧂
-  </div>
-
-  <strong className="block text-[11px] leading-tight sm:text-base">
-    Salt (g)
-  </strong>
-
-  <p className="mt-1 text-xs sm:text-base">
-    {formatSalt(recipe.nutrition.sodium)}
-  </p>
-
-</div>
-
+        <div className="rounded-lg border p-3 text-center sm:p-4">
+          <div className="text-lg sm:text-2xl">🔥</div>
+          <strong className="block text-[11px] leading-tight sm:text-base">Calories</strong>
+          <p className="mt-1 text-xs sm:text-base">{recipe.nutrition.calories}</p>
         </div>
 
       </div>
@@ -1068,37 +966,12 @@ export default function RecipeDetailPage() {
       </h2>
 
       <div className="rounded-lg border p-4">
-
-        <p>
-          Calories:{" "}
-          {recipe.nutrition.calories}
-        </p>
-
-        <p>
-          Protein:{" "}
-          {recipe.nutrition.protein}
-        </p>
-
-        <p>
-          Carbohydrates:{" "}
-          {recipe.nutrition.carbohydrates}
-        </p>
-
-        <p>
-          Fat:{" "}
-          {recipe.nutrition.fat}
-        </p>
-
-        <p>
-          Fibre:{" "}
-          {recipe.nutrition.fibre}
-        </p>
-
-        <p>
-          Salt:{" "}
-          {formatSalt(recipe.nutrition.sodium)}
-        </p>
-
+        <p>Calories: {recipe.nutrition.calories}</p>
+        <p>Protein: {recipe.nutrition.protein}</p>
+        <p>Carbohydrates: {recipe.nutrition.carbohydrates}</p>
+        <p>Fat: {recipe.nutrition.fat}</p>
+        <p>Fibre: {recipe.nutrition.fibre}</p>
+        <p>Salt: {formatSalt(recipe.nutrition.sodium)}</p>
       </div>
 
       {/* Dietary Guide */}
@@ -1108,93 +981,34 @@ export default function RecipeDetailPage() {
 
       <div className="space-y-2 rounded-lg border p-4">
 
-        <p>
-          🥔{" "}
-          <strong>
-            Potassium:
-          </strong>{" "}
-          {recipe.potassium}
-        </p>
+        <div className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 p-3 text-sm">
+          <span>🥔 <strong>Potassium:</strong> {recipe.nutrition.potassium}</span>
+          <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-slate-700">
+            <span aria-hidden="true" className="h-4 w-4 rounded-full border border-white shadow-sm" style={getTrafficLightStyle(recipe.potassium)} />
+            {recipe.potassium}
+          </span>
+        </div>
 
-        <p>
-          🧀{" "}
-          <strong>
-            Phosphate:
-          </strong>{" "}
-          {recipe.phosphate}
-        </p>
+        <div className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 p-3 text-sm">
+          <span>🧀 <strong>Phosphate:</strong> {recipe.nutrition.phosphate}</span>
+          <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-slate-700">
+            <span aria-hidden="true" className="h-4 w-4 rounded-full border border-white shadow-sm" style={getTrafficLightStyle(recipe.phosphate)} />
+            {recipe.phosphate}
+          </span>
+        </div>
 
-        <p>
-          🍖{" "}
-          <strong>
-            Purines:
-          </strong>{" "}
-          {recipe.purines}
+        <p className="rounded-lg bg-slate-50 p-3 text-sm">
+          🍖 <strong>Purines:</strong> {recipe.purines}
         </p>
 
         {recipe.dietaryNote && (
-          <p className="mt-3 text-sm text-gray-600">
-            {recipe.dietaryNote}
-          </p>
+          <div className="rounded-lg bg-orange-50 p-3 text-sm leading-6 text-slate-700">
+            <strong className="text-slate-900">Dietary guidance</strong>
+            <p className="mt-1">{recipe.dietaryNote}</p>
+          </div>
         )}
 
       </div>
-
-      {/* Source */}
-      <h2 className="mb-2 mt-8 text-xl font-bold">
-        Source
-      </h2>
-
-      {getRecipeSource(recipe)?.url ? (
-        <a
-          href={getRecipeSource(recipe)?.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-4 rounded-lg border p-4 transition hover:bg-slate-50"
-        >
-          {getRecipeSource(recipe)?.name?.toLowerCase().startsWith("kidney planner original") ? (
-            <span
-              aria-label="GOV.UK"
-              className="flex h-12 w-[100px] shrink-0 items-center justify-center bg-slate-900 px-2 text-xl font-bold tracking-tight text-white"
-            >
-              GOV.UK
-            </span>
-          ) : getRecipeSource(recipe)?.logo ? (
-            <Image
-              src={getRecipeSource(recipe)?.logo ?? ""}
-              alt={`${getRecipeSource(recipe)?.name ?? "Source"} logo`}
-              width={100}
-              height={50}
-              className="h-12 w-auto object-contain"
-            />
-          ) : null}
-
-          <div className="min-w-0">
-            <p className="text-sm font-semibold text-slate-500">
-              Recipe source
-            </p>
-            <p className="mt-1 text-base font-bold text-slate-900">
-              {getRecipeSource(recipe)?.name ?? "View source recipe"} ↗
-            </p>
-            <p className="mt-1 text-sm text-slate-600">
-              {getRecipeSource(recipe)?.description ??
-                "View the original recipe on the source website"}
-              {getRecipeSource(recipe)?.linkText
-                ? ` • ${getRecipeSource(recipe)?.linkText}`
-                : ""}
-            </p>
-          </div>
-        </a>
-      ) : (
-        <div className="rounded-lg border p-4">
-          <p className="font-semibold text-slate-900">
-            Source reference to be added
-          </p>
-          <p className="mt-1 text-sm text-slate-600">
-            The source information for this recipe will be added when available.
-          </p>
-        </div>
-      )}
 
       {/* Back to Recipes */}
       <div className="mt-8">

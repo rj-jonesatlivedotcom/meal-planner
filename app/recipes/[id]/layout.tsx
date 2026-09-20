@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { recipes } from "@/data/recipe-data";
+import { recipes } from "@/data/RecipeData";
 
 type RecipeLayoutProps = {
   children: React.ReactNode;
@@ -51,12 +51,16 @@ export async function generateMetadata({
       siteName: "RenalPlan",
       locale: "en_GB",
       type: "article",
-      images: [
-        {
-          url: recipe.image,
-          alt: recipe.name,
-        },
-      ],
+      ...(recipe.image?.trim()
+        ? {
+            images: [
+              {
+                url: `https://renalplan.com${recipe.image}`,
+                alt: recipe.name,
+              },
+            ],
+          }
+        : {}),
     },
 
     robots: {
@@ -78,7 +82,9 @@ export default async function RecipeLayout({
   }
 
   const recipeUrl = `https://renalplan.com/recipes/${recipe.id}`;
-  const recipeImage = `https://renalplan.com${recipe.image}`;
+  const recipeImage = recipe.image?.trim()
+    ? `https://renalplan.com${recipe.image}`
+    : undefined;
   const totalTime = toIsoDuration(recipe.cookingTime);
 
   const recipeSchema = {
@@ -89,7 +95,11 @@ export default async function RecipeLayout({
 
     description: recipe.description,
 
-    image: [recipeImage],
+    ...(recipeImage
+      ? {
+          image: [recipeImage],
+        }
+      : {}),
 
     url: recipeUrl,
 

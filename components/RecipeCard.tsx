@@ -682,6 +682,9 @@ export default function RecipeCard({
   }
 
   const mealType = getMealTypeLabel(recipe.code);
+  const hasRecipeImage =
+    typeof recipe.image === "string" &&
+    recipe.image.trim().length > 0;
 
   return (
     <article
@@ -724,12 +727,13 @@ export default function RecipeCard({
           md:w-full
         "
       >
-        <Image
-          src={recipe.image}
-          alt={recipe.name}
-          width={600}
-          height={420}
-          sizes="
+        {hasRecipeImage ? (
+          <Image
+            src={recipe.image}
+            alt={recipe.name}
+            width={600}
+            height={420}
+            sizes="
             (max-width: 639px) 100vw,
             (max-width: 1023px) 112px,
             50vw
@@ -751,7 +755,15 @@ export default function RecipeCard({
             md:rounded-l-none
             md:rounded-t-2xl
           "
-        />
+          />
+        ) : (
+          <div
+            className="flex h-52 w-full items-center justify-center rounded-t-2xl bg-slate-100 sm:h-full sm:min-h-[150px] sm:w-28 sm:rounded-l-2xl sm:rounded-t-none md:h-48 md:w-full md:rounded-l-none md:rounded-t-2xl"
+            aria-label="Recipe image coming soon"
+          >
+            <span className="text-4xl" aria-hidden="true">🍽️</span>
+          </div>
+        )}
       </Link>
 
       {/* ===================================================
@@ -990,29 +1002,7 @@ export default function RecipeCard({
             📅 Add to Planner
           </button>
 
-          {/* View Recipe — desktop only */}
-          <Link
-            href={`/recipes/${recipe.id}`}
-            className="
-              hidden
-              h-9
-              min-w-0
-              shrink
-              items-center
-              justify-center
-              whitespace-nowrap
-              px-2
-              text-sm
-              font-semibold
-              text-orange-600
-              transition
-              hover:text-orange-700
 
-              sm:inline-flex
-            "
-          >
-            View Recipe →
-          </Link>
 
         </div>
 

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { recipes } from "@/data/recipe-data";
+import { recipes } from "@/data/RecipeData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://renalplan.com";

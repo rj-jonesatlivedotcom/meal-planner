@@ -1,4 +1,4 @@
-import type { Recipe } from "@/data/recipe-data";
+import type { Recipe } from "@/data/RecipeData";
 
 export type RequirementLevel = "Any" | "Low" | "Moderate";
 

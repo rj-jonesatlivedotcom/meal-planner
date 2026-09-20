@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { recipes } from "@/data/recipe-data";
+import { recipes } from "@/data/RecipeData";
 
 type Props = {
   recipeId: string;

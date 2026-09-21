@@ -49,6 +49,7 @@ const ingredientCategories: Record<string, string> = {
   tofu: "🥩 Meat & Fish",
   lamb: "🥩 Meat & Fish",
   "cooked turkey": "🥩 Meat & Fish",
+  "haddock fillet": "🥩 Meat & Fish",
   turkey: "🥩 Meat & Fish",
 
   // Fruit & Vegetables
@@ -99,6 +100,7 @@ const ingredientCategories: Record<string, string> = {
   cabbage: "🥕 Fruit & Vegetables",
   "white cabbage": "🥕 Fruit & Vegetables",
   cauliflower: "🥕 Fruit & Vegetables",
+  pear: "🥕 Fruit & Vegetables",
 
   // Chilled
   egg: "🧊 Chilled",

@@ -96,7 +96,9 @@ type NutrientKey =
   | "carbohydrates"
   | "fat"
   | "fibre"
-  | "sodium";
+  | "sodium"
+  | "potassium"
+  | "phosphate";
 
 type NutrientTotals = Record<NutrientKey, number>;
 
@@ -120,6 +122,8 @@ const emptyTotals = (): NutrientTotals => ({
   fat: 0,
   fibre: 0,
   sodium: 0,
+  potassium: 0,
+  phosphate: 0,
 });
 
 const levelRank: Record<"Low" | "Moderate" | "High", number> = {
@@ -166,6 +170,8 @@ function getDayTotals(
     totals.fat += getNutritionNumber(recipe.nutrition.fat);
     totals.fibre += getNutritionNumber(recipe.nutrition.fibre);
     totals.sodium += getNutritionNumber(recipe.nutrition.sodium);
+    totals.potassium += getNutritionNumber(recipe.nutrition.potassium);
+    totals.phosphate += getNutritionNumber(recipe.nutrition.phosphate);
   });
 
   return totals;
@@ -184,6 +190,8 @@ function getMealTotals(recipe: Recipe | null): NutrientTotals {
   totals.fat = getNutritionNumber(recipe.nutrition.fat);
   totals.fibre = getNutritionNumber(recipe.nutrition.fibre);
   totals.sodium = getNutritionNumber(recipe.nutrition.sodium);
+  totals.potassium = getNutritionNumber(recipe.nutrition.potassium);
+  totals.phosphate = getNutritionNumber(recipe.nutrition.phosphate);
 
   return totals;
 }
@@ -302,8 +310,12 @@ function getStatusDotClass(status: Status): string {
 }
 
 function getLevelDotStatus(
-  level: "Low" | "Moderate" | "High", _requirement?: RequirementLevel
+  level: "Low" | "Moderate" | "High" | number,
+  _requirement?: RequirementLevel
 ): Status {
+  // When passed a numeric average (e.g. average.potassium) we don't have
+  // a mapped level, so default to green. String levels map to colours.
+  if (typeof level === "number") return "green";
   if (level === "Low") return "green";
   if (level === "Moderate") return "amber";
   return "red";
@@ -580,21 +592,8 @@ export default function NutritionPage() {
     return result;
   }, [plannerMeals]);
 
-  const weeklyLevels = useMemo(
-    () => ({
-      potassium: averageRecipeLevel(
-        allPlannedRecipes,
-        "potassium"
-      ),
-      phosphate: averageRecipeLevel(
-        allPlannedRecipes,
-        "phosphate"
-      ),
-      purines: averageRecipeLevel(
-        allPlannedRecipes,
-        "purines"
-      ),
-    }),
+  const weeklyPurineLevel = useMemo(
+    () => averageRecipeLevel(allPlannedRecipes, "purines"),
     [allPlannedRecipes]
   );
 
@@ -846,7 +845,7 @@ export default function NutritionPage() {
                                 levelStatus(recipe.potassium, requirements.potassium)
                               )}
                             />
-                            {getMatrixLevelText(recipe.potassium)}
+                            {formatNutrient(getNutritionNumber(recipe.nutrition.potassium), "mg")}
                           </span>
                         </div>
 
@@ -861,7 +860,7 @@ export default function NutritionPage() {
                                 levelStatus(recipe.phosphate, requirements.phosphate)
                               )}
                             />
-                            {getMatrixLevelText(recipe.phosphate)}
+                            {formatNutrient(getNutritionNumber(recipe.nutrition.phosphate), "mg")}
                           </span>
                         </div>
 
@@ -944,35 +943,64 @@ export default function NutritionPage() {
                   </strong>
                 </div>
 
-                {([
-                  ["Potassium", "potassium"],
-                  ["Phosphorus", "phosphate"],
-                  ["Purines", "purines"],
-                ] as const).map(([label, key]) => {
-                  const dayRecipes = mealTypes
-                    .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
-                    .filter((recipe): recipe is Recipe => Boolean(recipe));
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-slate-600">Potassium</span>
+                  <span className="flex items-center gap-2 font-semibold text-slate-900">
+                    <span
+                      className={`h-3 w-3 rounded-full ${getStatusDotClass(
+                        worstStatus(
+                          mealTypes
+                            .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
+                            .filter((recipe): recipe is Recipe => Boolean(recipe))
+                            .map((recipe) => levelStatus(recipe.potassium, requirements.potassium))
+                        )
+                      )}`}
+                    />
+                    {formatNutrient(dayTotals[selectedDay].potassium, "mg")}
+                  </span>
+                </div>
 
-                  const level = averageRecipeLevel(dayRecipes, key);
-                  const status = level ? getLevelDotStatus(level) : "green";
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-slate-600">Phosphorus</span>
+                  <span className="flex items-center gap-2 font-semibold text-slate-900">
+                    <span
+                      className={`h-3 w-3 rounded-full ${getStatusDotClass(
+                        worstStatus(
+                          mealTypes
+                            .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
+                            .filter((recipe): recipe is Recipe => Boolean(recipe))
+                            .map((recipe) => levelStatus(recipe.phosphate, requirements.phosphate))
+                        )
+                      )}`}
+                    />
+                    {formatNutrient(dayTotals[selectedDay].phosphate, "mg")}
+                  </span>
+                </div>
 
-                  return (
-                    <div
-                      key={key}
-                      className="flex items-center justify-between gap-3"
-                    >
-                      <span className="text-slate-600">{label}</span>
-
-                      <span className="flex items-center gap-2 font-semibold text-slate-900">
-                        <span
-                          className={`h-3 w-3 rounded-full ${getStatusDotClass(status)}`}
-                          title={getStatusText(status)}
-                        />
-                        {level ? getMatrixLevelText(level) : "—"}
-                      </span>
-                    </div>
-                  );
-                })}
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-slate-600">Purines</span>
+                  <span className="flex items-center gap-2 font-semibold text-slate-900">
+                    <span
+                      className={`h-3 w-3 rounded-full ${getStatusDotClass(
+                        worstStatus(
+                          mealTypes
+                            .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
+                            .filter((recipe): recipe is Recipe => Boolean(recipe))
+                            .map((recipe) => levelStatus(recipe.purines, requirements.purines))
+                        )
+                      )}`}
+                    />
+                    {(() => {
+                      const level = averageRecipeLevel(
+                        mealTypes
+                          .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
+                          .filter((recipe): recipe is Recipe => Boolean(recipe)),
+                        "purines"
+                      );
+                      return level ? getMatrixLevelText(level) : "—";
+                    })()}
+                  </span>
+                </div>
               </div>
             </div>
           </section>
@@ -1083,7 +1111,7 @@ export default function NutritionPage() {
                                     <span
                                       className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(getLevelDotStatus(recipe.potassium))}`}
                                     />
-                                    {getMatrixLevelText(recipe.potassium)}
+                                    {formatNutrient(getNutritionNumber(recipe.nutrition.potassium), "mg")}
                                   </span>
                                 </div>
 
@@ -1093,7 +1121,7 @@ export default function NutritionPage() {
                                     <span
                                       className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(getLevelDotStatus(recipe.phosphate))}`}
                                     />
-                                    {getMatrixLevelText(recipe.phosphate)}
+                                    {formatNutrient(getNutritionNumber(recipe.nutrition.phosphate), "mg")}
                                   </span>
                                 </div>
 
@@ -1138,8 +1166,6 @@ export default function NutritionPage() {
                               average[key] /= 7;
                             });
 
-                            const potassium = averageRecipeLevel(mealRecipes, "potassium");
-                            const phosphate = averageRecipeLevel(mealRecipes, "phosphate");
                             const purines = averageRecipeLevel(mealRecipes, "purines");
 
                             return (
@@ -1191,15 +1217,15 @@ export default function NutritionPage() {
                                   <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                     <span
                                       className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                        potassium
+                                        average.potassium
                                           ? getLevelDotStatus(
-                                              potassium,
+                                              average.potassium,
                                               requirements.potassium
                                             )
                                           : "green"
                                       )}`}
                                     />
-                                    {potassium ? getMatrixLevelText(potassium) : "—"}
+                                    {formatNutrient(average.potassium, "mg")}
                                   </span>
                                 </div>
 
@@ -1208,15 +1234,15 @@ export default function NutritionPage() {
                                   <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                     <span
                                       className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                        phosphate
+                                        average.phosphate
                                           ? getLevelDotStatus(
-                                              phosphate,
+                                              average.phosphate,
                                               requirements.phosphate
                                             )
                                           : "green"
                                       )}`}
                                     />
-                                    {phosphate ? getMatrixLevelText(phosphate) : "—"}
+                                    {formatNutrient(average.phosphate, "mg")}
                                   </span>
                                 </div>
 
@@ -1266,14 +1292,6 @@ export default function NutritionPage() {
                                 .map((meal) => getRecipe(plannerMeals, day, meal))
                                 .filter((recipe): recipe is Recipe => Boolean(recipe));
 
-                              const potassium = averageRecipeLevel(
-                                dayRecipes,
-                                "potassium"
-                              );
-                              const phosphate = averageRecipeLevel(
-                                dayRecipes,
-                                "phosphate"
-                              );
                               const purines = averageRecipeLevel(
                                 dayRecipes,
                                 "purines"
@@ -1331,15 +1349,14 @@ export default function NutritionPage() {
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
                                         className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          potassium
-                                            ? getLevelDotStatus(
-                                                potassium,
-                                                requirements.potassium
-                                              )
-                                            : "green"
+                                          worstStatus(
+                                            dayRecipes.map((recipe) =>
+                                              levelStatus(recipe.potassium, requirements.potassium)
+                                            )
+                                          )
                                         )}`}
                                       />
-                                      {potassium ? getMatrixLevelText(potassium) : "—"}
+                                      {formatNutrient(dayTotals[day].potassium, "mg")}
                                     </span>
                                   </div>
 
@@ -1348,15 +1365,14 @@ export default function NutritionPage() {
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
                                         className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          phosphate
-                                            ? getLevelDotStatus(
-                                                phosphate,
-                                                requirements.phosphate
-                                              )
-                                            : "green"
+                                          worstStatus(
+                                            dayRecipes.map((recipe) =>
+                                              levelStatus(recipe.phosphate, requirements.phosphate)
+                                            )
+                                          )
                                         )}`}
                                       />
-                                      {phosphate ? getMatrixLevelText(phosphate) : "—"}
+                                      {formatNutrient(dayTotals[day].phosphate, "mg")}
                                     </span>
                                   </div>
 
@@ -1387,9 +1403,7 @@ export default function NutritionPage() {
                     <td className="border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
                       <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                         {(() => {
-                          const potassium = weeklyLevels.potassium;
-                          const phosphate = weeklyLevels.phosphate;
-                          const purines = weeklyLevels.purines;
+                          const purines = weeklyPurineLevel;
 
                           return (
                             <>
@@ -1443,14 +1457,14 @@ export default function NutritionPage() {
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
                                     className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      potassium
-                                        ? getLevelDotStatus(
-                                            potassium
-                                          )
-                                        : "green"
+                                      worstStatus(
+                                        allPlannedRecipes.map((recipe) =>
+                                          levelStatus(recipe.potassium, requirements.potassium)
+                                        )
+                                      )
                                     )}`}
                                   />
-                                  {potassium ? getMatrixLevelText(potassium) : "—"}
+                                  {formatNutrient(dailyAverage.potassium, "mg")}
                                 </span>
                               </div>
 
@@ -1459,14 +1473,14 @@ export default function NutritionPage() {
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
                                     className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      phosphate
-                                        ? getLevelDotStatus(
-                                            phosphate
-                                          )
-                                        : "green"
+                                      worstStatus(
+                                        allPlannedRecipes.map((recipe) =>
+                                          levelStatus(recipe.phosphate, requirements.phosphate)
+                                        )
+                                      )
                                     )}`}
                                   />
-                                  {phosphate ? getMatrixLevelText(phosphate) : "—"}
+                                  {formatNutrient(dailyAverage.phosphate, "mg")}
                                 </span>
                               </div>
 
@@ -1639,56 +1653,34 @@ export default function NutritionPage() {
                       },
                       {
                         label: "Potassium",
-                        total:
-                          weeklyLevels.potassium
-                            ? `Average: ${weeklyLevels.potassium}`
-                            : "—",
-                        average: weeklyLevels.potassium
-                          ? getMatrixLevelText(weeklyLevels.potassium)
-                          : "—",
-                        requirement:
-                          requirementLevelText(
-                            requirements.potassium
-                          ),
+                        total: formatNumber(weeklyTotals.potassium) + " mg",
+                        average: formatNumber(dailyAverage.potassium) + " mg",
+                        requirement: requirementLevelText(requirements.potassium),
                         status: worstStatus(
                           allPlannedRecipes.map((recipe) =>
-                            levelStatus(
-                              recipe.potassium,
-                              requirements.potassium
-                            )
+                            levelStatus(recipe.potassium, requirements.potassium)
                           )
                         ),
                       },
                       {
                         label: "Phosphorus",
-                        total:
-                          weeklyLevels.phosphate
-                            ? `Average: ${weeklyLevels.phosphate}`
-                            : "—",
-                        average: weeklyLevels.phosphate
-                          ? getMatrixLevelText(weeklyLevels.phosphate)
-                          : "—",
-                        requirement:
-                          requirementLevelText(
-                            requirements.phosphate
-                          ),
+                        total: formatNumber(weeklyTotals.phosphate) + " mg",
+                        average: formatNumber(dailyAverage.phosphate) + " mg",
+                        requirement: requirementLevelText(requirements.phosphate),
                         status: worstStatus(
                           allPlannedRecipes.map((recipe) =>
-                            levelStatus(
-                              recipe.phosphate,
-                              requirements.phosphate
-                            )
+                            levelStatus(recipe.phosphate, requirements.phosphate)
                           )
                         ),
                       },
                       {
                         label: "Purines",
                         total:
-                          weeklyLevels.purines
-                            ? `Average: ${weeklyLevels.purines}`
+                          weeklyPurineLevel
+                            ? `Average: ${weeklyPurineLevel}`
                             : "—",
-                        average: weeklyLevels.purines
-                          ? getMatrixLevelText(weeklyLevels.purines)
+                        average: weeklyPurineLevel
+                          ? getMatrixLevelText(weeklyPurineLevel)
                           : "—",
                         requirement:
                           requirementLevelText(
@@ -1778,12 +1770,13 @@ export default function NutritionPage() {
                 </div>
 
                 <p className="mt-3 border-t border-green-200 pt-3 text-xs leading-5 text-slate-600">
-                  Potassium, phosphorus and purines are currently
-                  stored as Low, Moderate or High recipe ratings,
-                  rather than numeric amounts. Aggregate levels use
-                  Low = 1, Moderate = 2 and High = 3 points, averaged
-                  across the planned meals and rounded to the nearest
-                  whole level.
+                  Potassium and phosphorus are shown as actual amounts
+                  in milligrams (mg). This gives you a clearer picture
+                  of how much of each nutrient is in your planned meals.
+                  Purines are shown as Low, Moderate or High because
+                  the recipe data uses a classification rather than a
+                  numeric purine value. Weekly totals and daily averages
+                  are calculated from the meals currently in your planner.
                 </p>
               </aside>
             </div>

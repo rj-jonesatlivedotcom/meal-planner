@@ -1,5 +1,6 @@
 "use client";
 
+import { createClient } from "@/lib/supabase/client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { recipes, type Recipe } from "@/data/RecipeData";
 
@@ -395,6 +396,9 @@ export default function NutritionPage() {
     useState<Requirements>(defaultRequirements);
   const [selectedDay, setSelectedDay] =
     useState<Day>("Monday");
+  const [authChecked, setAuthChecked] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
@@ -494,6 +498,27 @@ export default function NutritionPage() {
       setRequirements(defaultRequirements);
     }
   }
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function checkAuth() {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!mounted) return;
+      setIsLoggedIn(Boolean(user));
+      setAuthChecked(true);
+    }
+
+    void checkAuth();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     loadPlanner();
@@ -641,8 +666,80 @@ export default function NutritionPage() {
     );
   }
 
+  const showLoginOverlay = authChecked && !isLoggedIn;
+
+  if (!authChecked) {
+    return (
+      <main className="min-h-screen bg-white">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white px-4">
+          <section className="w-full max-w-lg rounded-3xl border border-blue-100 bg-blue-50 p-8 text-center shadow-xl sm:p-10">
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-700">
+              <span className="text-3xl">🔒</span>
+            </div>
+            <h1 className="text-2xl font-extrabold text-slate-900 sm:text-3xl">Checking your account…</h1>
+            <p className="mt-3 text-slate-600">Please wait while we check your RenalPlan account.</p>
+          </section>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <>
+      {showLoginOverlay && (
+        <div className="fixed inset-x-0 bottom-0 top-[80px] z-[40] flex items-center justify-center bg-white/10 px-4 backdrop-blur-[2px]">
+          <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div className="pointer-events-none select-none blur-[2px] opacity-55" aria-hidden="true">
+              <div className="p-4 sm:p-6">
+                <div className="h-8 w-56 rounded bg-slate-200" />
+                <div className="mt-3 h-4 w-80 max-w-full rounded bg-slate-100" />
+                <div className="mt-8 grid gap-5 md:grid-cols-2">
+                  <div className="h-56 rounded-2xl bg-rose-50" />
+                  <div className="h-56 rounded-2xl bg-rose-50" />
+                  <div className="h-56 rounded-2xl bg-rose-50" />
+                  <div className="h-56 rounded-2xl bg-rose-50" />
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute inset-0 flex items-center justify-center bg-white/20 p-4">
+              <div className="w-full max-w-md rounded-3xl bg-white/95 p-7 text-center shadow-2xl ring-1 ring-slate-200">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-2xl">
+                  🔒
+                </div>
+
+                <h1 className="mt-4 text-2xl font-extrabold text-slate-900">
+                  Log in to view your Nutrition Report
+                </h1>
+
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  Your personalised weekly nutrition report is available when you are logged into your RenalPlan account. Sign in to view your report and create a printable or PDF copy to share with your nutritionist or renal consultant.
+                </p>
+
+                <div className="mt-6 grid grid-cols-2 gap-3">
+                  <a
+                    href="/auth/login"
+                    className="rounded-2xl bg-[#0B3B75] px-4 py-3 text-center font-bold text-white transition hover:bg-[#082E5C]"
+                  >
+                    Log in
+                  </a>
+                  <a
+                    href="/signup"
+                    className="rounded-2xl bg-orange-500 px-4 py-3 text-center font-bold text-white transition hover:bg-orange-600"
+                  >
+                    Create account
+                  </a>
+                </div>
+
+                <p className="mt-4 text-xs text-slate-500">
+                  Your personalised report is saved to your account.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
+
       <style jsx global>{`
         @media print {
           body {
@@ -1719,15 +1816,17 @@ export default function NutritionPage() {
               </div>
 
               <aside className="h-full rounded-2xl bg-green-50 p-4">
+                {!showLoginOverlay && (
                 <div className="nutrition-print-hidden mb-4">
                   <button
                     type="button"
                     onClick={() => window.print()}
-                    className="w-full rounded-xl bg-green-700 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-green-800"
+                    className="w-full rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-orange-600"
                   >
                     🖨️ Print / Save as PDF
                   </button>
                 </div>
+                )}
 
                 <h3 className="font-bold text-green-900">
                   About these figures

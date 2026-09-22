@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/RecipeData";
 import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
+import { createClient } from "@/lib/supabase/client";
 
 export default function RecipesPage() {
   const [selectedMealType, setSelectedMealType] = useState("All");
@@ -15,6 +16,10 @@ export default function RecipesPage() {
   const [filtersLoaded, setFiltersLoaded] = useState(false);
   const [requirements, setRequirements] =
     useState<Requirements | null>(null);
+  const [favouriteRecipeIds, setFavouriteRecipeIds] = useState<string[]>([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [favouritesLoaded, setFavouritesLoaded] = useState(false);
 
   const filterRef = useRef<HTMLDivElement>(null);
   const plannerFilterRef = useRef(false);
@@ -65,9 +70,39 @@ export default function RecipesPage() {
     ];
 
     try {
-      const plannerMeal = new URLSearchParams(
-        window.location.search
-      ).get("meal");
+      const params = new URLSearchParams(window.location.search);
+      const plannerMeal = params.get("meal");
+      const favouritesParam = params.get("favourites");
+      const favouritesViewParam = params.get("view");
+
+      // My Account opens this page with /recipes?view=favourites.
+      // Keep support for the older /recipes?favourites=true link as well.
+      let openFavourites =
+        favouritesViewParam === "favourites" ||
+        favouritesParam === "true";
+
+      try {
+        if (sessionStorage.getItem("open-my-favourites") === "true") {
+          openFavourites = true;
+          sessionStorage.removeItem("open-my-favourites");
+        }
+      } catch {
+        // Ignore storage errors.
+      }
+
+      if (openFavourites) {
+        plannerFilterRef.current = false;
+        setSelectedMealType("All");
+        setSelectedProtein("All");
+        setShowFavourites(true);
+        setSearchText("");
+        setSortBy("default");
+
+        // Leave ?view=favourites in the URL. This is the explicit
+        // navigation state from My Account and must survive refreshes.
+        setFiltersLoaded(true);
+        return;
+      }
 
       if (
         plannerMeal &&
@@ -171,42 +206,66 @@ export default function RecipesPage() {
   }, []);
 
   useEffect(() => {
-    function loadFavouriteFilter() {
-      try {
-        const saved =
-          localStorage.getItem(
-            "meal-planner-favourites"
-          );
+    const supabase = createClient();
 
-        if (!saved) {
-          setShowFavourites(false);
-        }
-      } catch {
+    async function loadUserFavourites() {
+      setFavouritesLoaded(false);
+
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        setIsLoggedIn(false);
+        setUserId(null);
+        setFavouriteRecipeIds([]);
         setShowFavourites(false);
+        setFavouritesLoaded(true);
+        return;
       }
+
+      setIsLoggedIn(true);
+      setUserId(user.id);
+
+      const { data, error } = await supabase
+        .from("user_favourites")
+        .select("recipe_id")
+        .eq("user_id", user.id);
+
+      if (error) {
+        console.error("Unable to load favourites:", error);
+        setFavouriteRecipeIds([]);
+      } else {
+        setFavouriteRecipeIds(
+          (data ?? []).map((row) => row.recipe_id)
+        );
+      }
+
+      setFavouritesLoaded(true);
     }
 
-    loadFavouriteFilter();
+    loadUserFavourites();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(() => {
+      loadUserFavourites();
+    });
+
+    function handleFavouritesUpdated() {
+      loadUserFavourites();
+    }
 
     window.addEventListener(
       "meal-planner-favourites-updated",
-      loadFavouriteFilter
-    );
-
-    window.addEventListener(
-      "storage",
-      loadFavouriteFilter
+      handleFavouritesUpdated
     );
 
     return () => {
+      subscription.unsubscribe();
       window.removeEventListener(
         "meal-planner-favourites-updated",
-        loadFavouriteFilter
-      );
-
-      window.removeEventListener(
-        "storage",
-        loadFavouriteFilter
+        handleFavouritesUpdated
       );
     };
   }, []);
@@ -332,26 +391,8 @@ export default function RecipesPage() {
         selectedProtein === "All" ||
         getProteinType(recipe) === selectedProtein;
 
-      let matchesFavourite = true;
-
-      if (showFavourites) {
-        try {
-          const saved =
-            localStorage.getItem(
-              "meal-planner-favourites"
-            );
-
-          const favourites = saved
-            ? JSON.parse(saved)
-            : [];
-
-          matchesFavourite =
-            Array.isArray(favourites) &&
-            favourites.includes(recipe.id);
-        } catch {
-          matchesFavourite = false;
-        }
-      }
+      const matchesFavourite =
+        !showFavourites || favouriteRecipeIds.includes(recipe.id);
 
       const matchesRequirements =
         recipeMatchesRequirements(
@@ -442,6 +483,18 @@ export default function RecipesPage() {
       }
     });
 
+  function handleFavouriteChange(recipeId: string, isFavourite: boolean) {
+    setFavouriteRecipeIds((current) => {
+      if (isFavourite) {
+        return current.includes(recipeId)
+          ? current
+          : [...current, recipeId];
+      }
+
+      return current.filter((id) => id !== recipeId);
+    });
+  }
+
   const searchDisplay = searchText.trim();
 
   let helperText = "";
@@ -489,10 +542,11 @@ export default function RecipesPage() {
           <div className="flex items-center justify-between gap-4">
 
             {/* Search & Sort */}
-            <div
-              ref={filterRef}
-              className="relative"
-            >
+            <div className="flex items-center gap-3">
+              <div
+                ref={filterRef}
+                className="relative"
+              >
 
               <button
                 type="button"
@@ -593,11 +647,13 @@ export default function RecipesPage() {
 
                       <select
                         value={showFavourites ? "Favourites" : "All"}
-                        onChange={(e) =>
+                        onChange={(e) => {
+                          if (!isLoggedIn) return;
                           setShowFavourites(
                             e.target.value === "Favourites"
-                          )
-                        }
+                          );
+                        }}
+                        disabled={!isLoggedIn || !favouritesLoaded}
                         className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >
                         <option value="All">
@@ -706,6 +762,31 @@ export default function RecipesPage() {
                 </div>
               )}
 
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  if (!isLoggedIn) return;
+                  setShowFavourites((current) => !current);
+                  setSelectedMealType("All");
+                  setSelectedProtein("All");
+                  setSearchText("");
+                  setSortBy("default");
+                }}
+                disabled={!isLoggedIn || !favouritesLoaded}
+                className={`rounded-lg border px-5 py-3 font-semibold shadow-sm transition flex items-center justify-center gap-2 ${
+                  showFavourites
+                    ? "border-orange-500 bg-orange-500 text-white hover:bg-orange-600"
+                    : "border-orange-300 bg-orange-50 text-orange-600 hover:bg-orange-100"
+                } ${
+                  !isLoggedIn || !favouritesLoaded
+                    ? "cursor-not-allowed opacity-60"
+                    : ""
+                }`}
+              >
+                ⭐ My Favourites
+              </button>
             </div>
 
           </div>
@@ -724,6 +805,9 @@ export default function RecipesPage() {
               <RecipeCard
                 key={recipe.id}
                 recipe={recipe}
+                favouriteRecipeIds={favouriteRecipeIds}
+                userId={userId}
+                onFavouriteChange={handleFavouriteChange}
               />
             ))}
 

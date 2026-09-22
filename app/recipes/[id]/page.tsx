@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
+import { createClient } from "@/lib/supabase/client";
 
 const days = [
   "Monday",
@@ -129,77 +130,102 @@ export default function RecipeDetailPage() {
   const [isFavourite, setIsFavourite] =
     useState(false);
 
-  function loadFavouriteStatus() {
+  const [showLoginMessage, setShowLoginMessage] =
+    useState(false);
+
+  async function loadFavouriteStatus() {
     if (!recipe) {
       setIsFavourite(false);
       return;
     }
 
-    try {
-      const saved =
-        localStorage.getItem(
-          "meal-planner-favourites"
-        );
+    const supabase = createClient();
 
-      if (!saved) {
-        setIsFavourite(false);
-        return;
-      }
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-      const favourites =
-        JSON.parse(saved);
-
-      setIsFavourite(
-        Array.isArray(favourites) &&
-          favourites.includes(recipe.id)
-      );
-    } catch {
+    if (!user) {
       setIsFavourite(false);
+      return;
     }
+
+    const { data, error } = await supabase
+      .from("user_favourites")
+      .select("id")
+      .eq("user_id", user.id)
+      .eq("recipe_id", recipe.id)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Unable to load favourite status:", error);
+      setIsFavourite(false);
+      return;
+    }
+
+    setIsFavourite(Boolean(data));
   }
 
-  function toggleFavourite() {
+  async function toggleFavourite() {
     if (!recipe) {
       return;
     }
 
-    try {
-      const saved =
-        localStorage.getItem(
-          "meal-planner-favourites"
-        );
+    /*
+     * Change the button immediately.
+     * We deliberately do this before waiting for Supabase
+     * so the user gets instant visual feedback.
+     */
+    const nextFavourite = !isFavourite;
+    setIsFavourite(nextFavourite);
 
-      const favourites = saved
-        ? JSON.parse(saved)
-        : [];
+    const supabase = createClient();
 
-      const currentFavourites =
-        Array.isArray(favourites)
-          ? favourites
-          : [];
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-      const nextFavourites =
-        currentFavourites.includes(recipe.id)
-          ? currentFavourites.filter(
-              (id: string) => id !== recipe.id
-            )
-          : [...currentFavourites, recipe.id];
+    if (!user) {
+      setIsFavourite(!nextFavourite);
+      setShowLoginMessage(true);
 
-      localStorage.setItem(
-        "meal-planner-favourites",
-        JSON.stringify(nextFavourites)
-      );
+      window.setTimeout(() => {
+        setShowLoginMessage(false);
+      }, 3000);
 
-      setIsFavourite(
-        nextFavourites.includes(recipe.id)
-      );
-
-      window.dispatchEvent(
-        new Event("meal-planner-favourites-updated")
-      );
-    } catch {
-      // Ignore storage errors.
+      return;
     }
+
+    if (nextFavourite) {
+      const { error } = await supabase
+        .from("user_favourites")
+        .insert({
+          user_id: user.id,
+          recipe_id: recipe.id,
+        });
+
+      if (error) {
+        console.error("Unable to save favourite:", error);
+        setIsFavourite(!nextFavourite);
+        return;
+      }
+    } else {
+      const { error } = await supabase
+        .from("user_favourites")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("recipe_id", recipe.id);
+
+      if (error) {
+        console.error("Unable to remove favourite:", error);
+        setIsFavourite(!nextFavourite);
+        return;
+      }
+    }
+
+    window.dispatchEvent(
+      new Event("meal-planner-favourites-updated")
+    );
   }
 
   /*
@@ -684,10 +710,10 @@ export default function RecipeDetailPage() {
                   type="button"
                   onClick={toggleFavourite}
                   aria-pressed={isFavourite}
-                  className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
+                  className={`rounded-xl px-4 py-2 text-sm font-semibold shadow-sm transition ${
                     isFavourite
-                      ? "bg-amber-100 text-amber-800 hover:bg-amber-200"
-                      : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+                      ? "bg-orange-500 text-white hover:bg-orange-600"
+                      : "border border-orange-300 bg-orange-50 text-orange-700 hover:bg-orange-100"
                   }`}
                 >
                   {isFavourite
@@ -696,6 +722,15 @@ export default function RecipeDetailPage() {
                 </button>
 
               </div>
+
+              {showLoginMessage && (
+                <div
+                  role="status"
+                  className="mb-4 rounded-xl bg-[#0B3B75] px-4 py-3 text-sm font-semibold text-white"
+                >
+                  🔒 Please log in to save favourite recipes.
+                </div>
+              )}
 
               <h1 className="max-w-xl text-4xl font-extrabold leading-tight tracking-tight text-slate-900">
                 {recipe.name}
@@ -883,16 +918,25 @@ export default function RecipeDetailPage() {
         type="button"
         onClick={toggleFavourite}
         aria-pressed={isFavourite}
-        className={`mb-4 rounded-xl px-4 py-2 text-sm font-semibold transition ${
+        className={`mb-4 rounded-xl px-4 py-2 text-sm font-semibold shadow-sm transition ${
           isFavourite
-            ? "bg-amber-100 text-amber-800 hover:bg-amber-200"
-            : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+            ? "bg-orange-500 text-white hover:bg-orange-600"
+            : "border border-orange-300 bg-orange-50 text-orange-700 hover:bg-orange-100"
         }`}
       >
         {isFavourite
           ? "★ Favourite"
           : "☆ Favourite"}
       </button>
+
+      {showLoginMessage && (
+        <div
+          role="status"
+          className="mb-4 rounded-xl bg-[#0B3B75] px-4 py-3 text-sm font-semibold text-white"
+        >
+          🔒 Please log in to save favourite recipes.
+        </div>
+      )}
 
       {/* Description */}
       <p className="mb-4 text-base leading-snug sm:mb-6 sm:text-lg sm:leading-normal">

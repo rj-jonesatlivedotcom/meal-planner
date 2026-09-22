@@ -50,6 +50,9 @@ export default function RequirementsPage() {
     "idle" | "saving" | "saved" | "error"
   >("idle");
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+
   useEffect(() => {
     async function loadRequirements() {
       const supabase = createClient();
@@ -58,22 +61,25 @@ export default function RequirementsPage() {
         data: { user },
       } = await supabase.auth.getUser();
 
+      setIsLoggedIn(Boolean(user));
+      setAuthChecked(true);
+
       if (!user) {
-  try {
-    const saved = window.localStorage.getItem(
-      REQUIREMENTS_STORAGE_KEY
-    );
+        try {
+          const saved = window.localStorage.getItem(
+            REQUIREMENTS_STORAGE_KEY
+          );
 
-    if (saved) {
-      const savedRequirements: Requirements = JSON.parse(saved);
-      setRequirements(savedRequirements);
-    }
-  } catch {
-    // Keep the default requirements if local storage is unavailable or invalid.
-  }
+          if (saved) {
+            const savedRequirements: Requirements = JSON.parse(saved);
+            setRequirements(savedRequirements);
+          }
+        } catch {
+          // Keep the default requirements if local storage is unavailable or invalid.
+        }
 
-  return;
-}
+        return;
+      }
 
       const { data, error } = await supabase
         .from("user_requirements")
@@ -111,6 +117,10 @@ export default function RequirementsPage() {
   async function saveRequirements(
     nextRequirements: Requirements
   ) {
+    if (!isLoggedIn) {
+      return;
+    }
+
     setSaveStatus("saving");
 
     const supabase = createClient();
@@ -177,6 +187,79 @@ export default function RequirementsPage() {
     );
 
     void saveRequirements(nextRequirements);
+  }
+
+  if (!authChecked) {
+    return (
+      <main className="min-h-screen bg-white px-4 py-3 sm:px-6 md:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl md:max-w-[1400px]">
+          <div className="min-h-[70vh] flex items-center justify-center">
+            <div className="text-sm font-semibold text-slate-500">
+              Loading…
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <main className="min-h-screen bg-white px-4 py-3 sm:px-6 md:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl md:max-w-[1400px]">
+          <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div className="pointer-events-none select-none blur-[2px] opacity-55" aria-hidden="true">
+              <div className="p-4 sm:p-6">
+                <div className="h-8 w-56 rounded bg-slate-200" />
+                <div className="mt-3 h-4 w-80 max-w-full rounded bg-slate-100" />
+                <div className="mt-8 grid gap-5 md:grid-cols-2">
+                  <div className="h-56 rounded-2xl bg-purple-50" />
+                  <div className="h-56 rounded-2xl bg-purple-50" />
+                  <div className="h-56 rounded-2xl bg-purple-50" />
+                  <div className="h-56 rounded-2xl bg-purple-50" />
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute inset-0 flex items-center justify-center bg-white/20 p-4">
+              <div className="w-full max-w-md rounded-3xl bg-white/95 p-7 text-center shadow-2xl ring-1 ring-slate-200">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-2xl">
+                  🔒
+                </div>
+
+                <h1 className="mt-4 text-2xl font-extrabold text-slate-900">
+                  My Diet is a Premium feature
+                </h1>
+
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  Log in to your RenalPlan account to set your dietary requirements
+                  and get personalised recipes and nutrition information.
+                </p>
+
+                <div className="mt-6 grid grid-cols-2 gap-3">
+                  <a
+                    href="/login"
+                    className="rounded-2xl bg-[#0B3B75] px-4 py-3 text-center font-bold text-white transition hover:bg-[#082E5C]"
+                  >
+                    Log in
+                  </a>
+                  <a
+                    href="/signup"
+                    className="rounded-2xl bg-orange-500 px-4 py-3 text-center font-bold text-white transition hover:bg-orange-600"
+                  >
+                    Create account
+                  </a>
+                </div>
+
+                <p className="mt-4 text-xs text-slate-500">
+                  Your personalised settings are saved to your account.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    );
   }
 
   return (

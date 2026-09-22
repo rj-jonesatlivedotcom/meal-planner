@@ -268,6 +268,19 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+
+            {loggedIn && (
+              <Link
+                href="/account"
+                className={`flex min-h-12 items-center whitespace-nowrap rounded-lg px-3 text-[15px] font-bold transition lg:px-3.5 ${
+                  pathname.startsWith("/account")
+                    ? "text-green-700"
+                    : "text-slate-900 hover:bg-green-50 hover:text-green-700"
+                }`}
+              >
+                My Account
+              </Link>
+            )}
           </nav>
 
           <div className="ml-2 flex shrink-0 items-center gap-3">
@@ -389,6 +402,20 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+
+            {loggedIn && (
+              <Link
+                href="/account"
+                onClick={() => setOpen(false)}
+                className={`block rounded-xl px-4 py-3 text-lg font-semibold ${
+                  pathname.startsWith("/account")
+                    ? "bg-green-50 text-green-700"
+                    : "text-slate-900 hover:bg-slate-50"
+                }`}
+              >
+                My Account
+              </Link>
+            )}
 
             <div className="mt-2 flex gap-3 border-t border-slate-200 pt-3">
               {loggedIn ? (

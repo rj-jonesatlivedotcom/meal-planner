@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { recipes } from "@/data/RecipeData";
+import { createClient } from "@/lib/supabase/client";
 import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
 
 const days = [
@@ -280,8 +281,35 @@ export default function WeeklyPlannerPage() {
   const [requirements, setRequirements] =
     useState<Requirements | null>(null);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [premiumPrompt, setPremiumPrompt] =
+    useState<"pick" | "people" | null>(null);
+
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function checkAuth() {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!mounted) return;
+
+      setIsLoggedIn(Boolean(user));
+      setAuthChecked(true);
+    }
+
+    void checkAuth();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   function handlePlannerTouchStart(
     event: React.TouchEvent<HTMLDivElement>
@@ -654,10 +682,15 @@ export default function WeeklyPlannerPage() {
   }
 
   function startPickForMe() {
+    if (!authChecked || !isLoggedIn) {
+      setPremiumPrompt("pick");
+      return;
+    }
+
     if (
-    plannerMeals === null ||
-    mealPeople === null
-  ) {
+      plannerMeals === null ||
+      mealPeople === null
+    ) {
       return;
     }
 
@@ -1305,13 +1338,18 @@ if (total <= limit * 0.75) {
 
                     <button
                       type="button"
-                      onClick={() =>
+                      onClick={() => {
+                        if (!authChecked || !isLoggedIn) {
+                          setPremiumPrompt("people");
+                          return;
+                        }
+
                         setPeoplePicker({
                           day: selectedDay,
                           meal: "Breakfast",
-                        })
-                      }
-                      className="shrink-0 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                        });
+                      }}
+                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                     >
                       {getPeopleForMeal(
                         selectedDay,
@@ -1403,13 +1441,18 @@ if (total <= limit * 0.75) {
 
                     <button
                       type="button"
-                      onClick={() =>
+                      onClick={() => {
+                        if (!authChecked || !isLoggedIn) {
+                          setPremiumPrompt("people");
+                          return;
+                        }
+
                         setPeoplePicker({
                           day: selectedDay,
                           meal: "Lunch",
-                        })
-                      }
-                      className="shrink-0 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                        });
+                      }}
+                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                     >
                       {getPeopleForMeal(
                         selectedDay,
@@ -1501,13 +1544,18 @@ if (total <= limit * 0.75) {
 
                     <button
                       type="button"
-                      onClick={() =>
+                      onClick={() => {
+                        if (!authChecked || !isLoggedIn) {
+                          setPremiumPrompt("people");
+                          return;
+                        }
+
                         setPeoplePicker({
                           day: selectedDay,
                           meal: "Dinner",
-                        })
-                      }
-                      className="shrink-0 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                        });
+                      }}
+                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                     >
                       {getPeopleForMeal(
                         selectedDay,
@@ -1756,13 +1804,18 @@ if (total <= limit * 0.75) {
 
                         <button
                           type="button"
-                          onClick={() =>
+                          onClick={() => {
+                            if (!authChecked || !isLoggedIn) {
+                              setPremiumPrompt("people");
+                              return;
+                            }
+
                             setPeoplePicker({
                               day,
                               meal: "Breakfast",
-                            })
-                          }
-                          className="mx-auto mt-1 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                            });
+                          }}
+                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                         >
                           {getPeopleForMeal(
                             day,
@@ -1898,13 +1951,18 @@ if (total <= limit * 0.75) {
 
                         <button
                           type="button"
-                          onClick={() =>
+                          onClick={() => {
+                            if (!authChecked || !isLoggedIn) {
+                              setPremiumPrompt("people");
+                              return;
+                            }
+
                             setPeoplePicker({
                               day,
                               meal: "Lunch",
-                            })
-                          }
-                          className="mx-auto mt-1 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                            });
+                          }}
+                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                         >
                           {getPeopleForMeal(
                             day,
@@ -2039,13 +2097,18 @@ if (total <= limit * 0.75) {
 
                         <button
                           type="button"
-                          onClick={() =>
+                          onClick={() => {
+                            if (!authChecked || !isLoggedIn) {
+                              setPremiumPrompt("people");
+                              return;
+                            }
+
                             setPeoplePicker({
                               day,
                               meal: "Dinner",
-                            })
-                          }
-                          className="mx-auto mt-1 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                            });
+                          }}
+                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
                         >
                           {getPeopleForMeal(
                             day,
@@ -2294,6 +2357,51 @@ if (total <= limit * 0.75) {
 
         </div>
 
+      )}
+
+      {/* PREMIUM LOGIN PROMPT */}
+      {premiumPrompt && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-xl">
+              {premiumPrompt === "pick" ? "🎲" : "👥"}
+            </div>
+
+            <h2 className="mt-4 text-xl font-bold text-slate-900">
+              {premiumPrompt === "pick"
+                ? "Pick for Me is a Premium feature"
+                : "Choose the number of people"}
+            </h2>
+
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Log in to your RenalPlan account to use this Premium feature.
+            </p>
+
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setPremiumPrompt(null)}
+                className="rounded-2xl bg-slate-100 px-4 py-3 font-bold text-slate-700 transition hover:bg-slate-200"
+              >
+                Cancel
+              </button>
+
+              <a
+                href="/login"
+                className="rounded-2xl bg-blue-600 px-4 py-3 text-center font-bold text-white transition hover:bg-blue-700"
+              >
+                Log in
+              </a>
+            </div>
+
+            <a
+              href="/signup"
+              className="mt-3 block text-sm font-bold text-blue-600 hover:text-blue-700"
+            >
+              Create an account
+            </a>
+          </div>
+        </div>
       )}
 
       {/* PICK FOR ME CONFIRMATION */}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 type RecipeCardProps = {
   recipe: {
@@ -22,6 +23,9 @@ type RecipeCardProps = {
       carbohydrates?: string;
     };
   };
+  favouriteRecipeIds?: string[];
+  userId?: string | null;
+  onFavouriteChange?: (recipeId: string, isFavourite: boolean) => void;
 };
 
 const days = [
@@ -101,6 +105,9 @@ type PendingSlot = {
 
 export default function RecipeCard({
   recipe,
+  favouriteRecipeIds = [],
+  userId = null,
+  onFavouriteChange,
 }: RecipeCardProps) {
   const router = useRouter();
 
@@ -124,69 +131,64 @@ export default function RecipeCard({
     );
 
   const [isFavourite, setIsFavourite] =
+    useState(favouriteRecipeIds.includes(recipe.id));
+
+  const [showLoginMessage, setShowLoginMessage] =
     useState(false);
 
-  function loadFavouriteStatus() {
-    try {
-      const saved =
-        localStorage.getItem(
-          "meal-planner-favourites"
-        );
+  useEffect(() => {
+    if (!showLoginMessage) return;
 
-      if (!saved) {
-        setIsFavourite(false);
-        return;
-      }
+    const timer = window.setTimeout(() => {
+      setShowLoginMessage(false);
+    }, 3000);
 
-      const favourites =
-        JSON.parse(saved);
+    return () => window.clearTimeout(timer);
+  }, [showLoginMessage]);
 
-      setIsFavourite(
-        Array.isArray(favourites) &&
-          favourites.includes(recipe.id)
-      );
-    } catch {
-      setIsFavourite(false);
+  useEffect(() => {
+    setIsFavourite(favouriteRecipeIds.includes(recipe.id));
+  }, [favouriteRecipeIds, recipe.id]);
+
+  async function toggleFavourite() {
+    if (!userId) {
+      setShowLoginMessage(true);
+      return;
     }
-  }
 
-  function toggleFavourite() {
-    try {
-      const saved =
-        localStorage.getItem(
-          "meal-planner-favourites"
-        );
+    const nextFavourite = !isFavourite;
 
-      const favourites = saved
-        ? JSON.parse(saved)
-        : [];
+    // Update the UI and the Recipes-page filter immediately.
+    setIsFavourite(nextFavourite);
+    onFavouriteChange?.(recipe.id, nextFavourite);
 
-      const currentFavourites =
-        Array.isArray(favourites)
-          ? favourites
-          : [];
+    const supabase = createClient();
 
-      const nextFavourites =
-        currentFavourites.includes(recipe.id)
-          ? currentFavourites.filter(
-              (id: string) => id !== recipe.id
-            )
-          : [...currentFavourites, recipe.id];
+    if (nextFavourite) {
+      const { error } = await supabase
+        .from("user_favourites")
+        .insert({
+          user_id: userId,
+          recipe_id: recipe.id,
+        });
 
-      localStorage.setItem(
-        "meal-planner-favourites",
-        JSON.stringify(nextFavourites)
-      );
+      if (error) {
+        console.error("Unable to save favourite:", error);
+        setIsFavourite(false);
+        onFavouriteChange?.(recipe.id, false);
+      }
+    } else {
+      const { error } = await supabase
+        .from("user_favourites")
+        .delete()
+        .eq("user_id", userId)
+        .eq("recipe_id", recipe.id);
 
-      setIsFavourite(
-        nextFavourites.includes(recipe.id)
-      );
-
-      window.dispatchEvent(
-        new Event("meal-planner-favourites-updated")
-      );
-    } catch {
-      // Ignore storage errors.
+      if (error) {
+        console.error("Unable to remove favourite:", error);
+        setIsFavourite(true);
+        onFavouriteChange?.(recipe.id, true);
+      }
     }
   }
 
@@ -288,7 +290,6 @@ export default function RecipeCard({
 
   useEffect(() => {
     loadPlannerStatus();
-    loadFavouriteStatus();
 
     window.addEventListener(
       "weekly-planner-updated",
@@ -296,18 +297,8 @@ export default function RecipeCard({
     );
 
     window.addEventListener(
-      "meal-planner-favourites-updated",
-      loadFavouriteStatus
-    );
-
-    window.addEventListener(
       "storage",
       loadPlannerStatus
-    );
-
-    window.addEventListener(
-      "storage",
-      loadFavouriteStatus
     );
 
     return () => {
@@ -317,18 +308,8 @@ export default function RecipeCard({
       );
 
       window.removeEventListener(
-        "meal-planner-favourites-updated",
-        loadFavouriteStatus
-      );
-
-      window.removeEventListener(
         "storage",
         loadPlannerStatus
-      );
-
-      window.removeEventListener(
-        "storage",
-        loadFavouriteStatus
       );
     };
   }, [recipe.id]);
@@ -947,6 +928,32 @@ export default function RecipeCard({
             md:pt-5
           "
         >
+          {showLoginMessage && (
+            <div
+              role="status"
+              className="
+                absolute
+                bottom-16
+                left-1/2
+                z-20
+                w-max
+                max-w-[calc(100%-2rem)]
+                -translate-x-1/2
+                rounded-xl
+                bg-[#0B3B75]
+                px-4
+                py-3
+                text-center
+                text-sm
+                font-semibold
+                text-white
+                shadow-lg
+              "
+            >
+              🔒 Please log in to save favourite recipes.
+            </div>
+          )}
+
 
           {/* Favourite */}
           <button
@@ -967,8 +974,8 @@ export default function RecipeCard({
               transition
               ${
                 isFavourite
-                  ? "bg-amber-100 text-amber-800 hover:bg-amber-200"
-                  : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+                  ? "bg-orange-500 text-white hover:bg-orange-600"
+                  : "border border-orange-300 bg-orange-50 text-orange-700 hover:bg-orange-100"
               }
             `}
           >
@@ -1001,8 +1008,6 @@ export default function RecipeCard({
           >
             📅 Add to Planner
           </button>
-
-
 
         </div>
 
@@ -1344,7 +1349,3 @@ export default function RecipeCard({
     </article>
   );
 }
-
-
-
-

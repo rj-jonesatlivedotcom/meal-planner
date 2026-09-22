@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { recipes } from "@/data/RecipeData";
+import { createClient } from "@/lib/supabase/client";
 
 type ShoppingItem = {
   item: string;
@@ -1484,6 +1485,8 @@ export default function ShoppingPage() {
   const [plannerRecipes, setPlannerRecipes] = useState<string[]>([]);
   const [plannerCounts, setPlannerCounts] = useState<Record<string, number>>({});
   const [loaded, setLoaded] = useState(false);
+  const [accountSyncReady, setAccountSyncReady] = useState(false);
+  const [accountUserId, setAccountUserId] = useState<string | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("shopping-data");
@@ -1512,6 +1515,156 @@ export default function ShoppingPage() {
 
     setLoaded(true);
   }, []);
+
+  useEffect(() => {
+    if (!loaded) return;
+
+    let cancelled = false;
+
+    async function syncAccountShoppingData() {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (cancelled) return;
+
+      if (!user) {
+        setAccountUserId(null);
+        setAccountSyncReady(true);
+        return;
+      }
+
+      setAccountUserId(user.id);
+
+      const { data, error } = await supabase
+        .from("user_meal_plans")
+        .select("planner, meal_people, household_people, checked_items")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (cancelled) return;
+
+      if (error) {
+        console.error("Unable to load saved account shopping data:", error);
+        setAccountSyncReady(true);
+        return;
+      }
+
+      if (data) {
+        const remotePlanner = data.planner ?? {};
+        const remoteMealPeople = data.meal_people ?? {};
+        const remotePeople =
+          typeof data.household_people === "number" && data.household_people > 0
+            ? data.household_people
+            : 1;
+        const remoteCheckedItems = Array.isArray(data.checked_items)
+          ? data.checked_items
+          : [];
+
+        const remotePlannerCounts: Record<string, number> = {};
+        const remoteDays = [
+          "Monday", "Tuesday", "Wednesday", "Thursday",
+          "Friday", "Saturday", "Sunday",
+        ];
+        const remoteMealTypes = ["Breakfast", "Lunch", "Dinner"];
+
+        remoteDays.forEach((day) => {
+          remoteMealTypes.forEach((meal) => {
+            const recipeId = remotePlanner?.[day]?.[meal];
+            if (!recipeId) return;
+
+            const override = remoteMealPeople?.[day]?.[meal];
+            const mealCount =
+              typeof override === "number" && override > 0
+                ? override
+                : remotePeople;
+
+            remotePlannerCounts[recipeId] =
+              (remotePlannerCounts[recipeId] ?? 0) + mealCount;
+          });
+        });
+
+        const remotePlannerRecipes = Object.keys(remotePlannerCounts);
+
+        setSelectedRecipes(remotePlannerRecipes);
+        setPlannerRecipes(remotePlannerRecipes);
+        setPlannerCounts(remotePlannerCounts);
+        setPeople(remotePeople);
+        setCheckedItems(remoteCheckedItems);
+
+        localStorage.setItem(
+          "weekly-planner",
+          JSON.stringify({ ...remotePlanner, mealPeople: remoteMealPeople })
+        );
+
+        const currentShopping = localStorage.getItem("shopping-data");
+        let shoppingData: ShoppingData = {
+          selectedRecipes: remotePlannerRecipes,
+          shoppingList: [],
+          checkedItems: remoteCheckedItems,
+          people: remotePeople,
+          plannerRecipes: remotePlannerRecipes,
+          plannerCounts: remotePlannerCounts,
+        };
+
+        if (currentShopping) {
+          try {
+            shoppingData = { ...shoppingData, ...JSON.parse(currentShopping) };
+          } catch {
+            // Keep remote defaults.
+          }
+        }
+
+        localStorage.setItem(
+          "shopping-data",
+          JSON.stringify({
+            ...shoppingData,
+            selectedRecipes: remotePlannerRecipes,
+            checkedItems: remoteCheckedItems,
+            people: remotePeople,
+            plannerRecipes: remotePlannerRecipes,
+            plannerCounts: remotePlannerCounts,
+          })
+        );
+      } else {
+        const savedPlanner = localStorage.getItem("weekly-planner");
+        let planner: Record<string, any> = {};
+        let mealPeople: Record<string, any> = {};
+
+        if (savedPlanner) {
+          try {
+            const parsed = JSON.parse(savedPlanner);
+            planner = parsed ?? {};
+            mealPeople = parsed?.mealPeople ?? {};
+          } catch {
+            // Keep empty defaults.
+          }
+        }
+
+        const currentPeople = people;
+        const { error: saveError } = await supabase
+          .from("user_meal_plans")
+          .upsert({
+            user_id: user.id,
+            planner,
+            meal_people: mealPeople,
+            household_people: currentPeople,
+            checked_items: checkedItems,
+          }, { onConflict: "user_id" });
+
+        if (saveError) {
+          console.error("Unable to create saved account shopping data:", saveError);
+        }
+      }
+
+      setAccountSyncReady(true);
+    }
+
+    void syncAccountShoppingData();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [loaded]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -1775,6 +1928,39 @@ export default function ShoppingPage() {
         plannerCounts,
       })
     );
+
+    if (accountSyncReady && accountUserId) {
+      let planner: Record<string, any> = {};
+      let mealPeople: Record<string, any> = {};
+
+      try {
+        const savedPlanner = localStorage.getItem("weekly-planner");
+        if (savedPlanner) {
+          const parsed = JSON.parse(savedPlanner);
+          planner = parsed ?? {};
+          mealPeople = parsed?.mealPeople ?? {};
+        }
+      } catch {
+        // Keep empty defaults if local planner data is invalid.
+      }
+
+      const supabase = createClient();
+
+      void supabase
+        .from("user_meal_plans")
+        .upsert({
+          user_id: accountUserId,
+          planner,
+          meal_people: mealPeople,
+          household_people: people,
+          checked_items: checkedItems,
+        }, { onConflict: "user_id" })
+        .then(({ error }) => {
+          if (error) {
+            console.error("Unable to save shopping data:", error);
+          }
+        });
+    }
   }, [
     loaded,
     selectedRecipes,
@@ -1783,6 +1969,8 @@ export default function ShoppingPage() {
     people,
     plannerRecipes,
     plannerCounts,
+    accountSyncReady,
+    accountUserId,
   ]);
 
   function updateHouseholdPeople(newPeople: number) {

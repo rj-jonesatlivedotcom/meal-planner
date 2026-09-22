@@ -231,11 +231,11 @@ export default function Home() {
       {/* =========================================================
           HERO
       ========================================================= */}
-      <section className="relative min-h-[360px] overflow-hidden bg-white sm:min-h-[380px] lg:min-h-[390px]">
+      <section className="relative min-h-[450px] overflow-hidden bg-white sm:min-h-[380px] lg:min-h-[390px]">
 
         {/* Clean full-width hero photograph */}
         <div
-          className="absolute inset-0 bg-cover bg-[72%_center] bg-no-repeat sm:bg-[74%_center] lg:bg-[78%_center]"
+          className="absolute inset-0 bg-cover bg-[66%_88%] bg-no-repeat sm:bg-[74%_center] lg:bg-[78%_center]"
           style={{
             backgroundImage: "url('/images/hero-background.png')",
           }}
@@ -245,11 +245,11 @@ export default function Home() {
             The previous version was too white and washed out the photograph. */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/25 via-[38%] to-transparent lg:via-[46%]" />
 
-        <div className="relative mx-auto flex min-h-[360px] max-w-[1600px] items-center px-5 py-7 sm:min-h-[380px] sm:px-10 lg:min-h-[390px] lg:px-16 xl:px-24">
+        <div className="relative mx-auto flex min-h-[450px] max-w-[1600px] items-start px-5 py-7 sm:min-h-[380px] sm:items-center sm:px-10 sm:py-7 lg:min-h-[390px] lg:px-16 xl:px-24">
 
           <div className="w-full max-w-[720px]">
 
-            <h1 className="text-[2.55rem] font-extrabold leading-[0.98] tracking-[-0.04em] text-[#12396b] sm:text-5xl lg:text-[3.65rem] xl:text-[3.9rem]">
+            <h1 className="max-w-[350px] text-[2.25rem] font-extrabold leading-[1.0] tracking-[-0.04em] text-[#12396b] sm:max-w-none sm:text-5xl lg:text-[3.65rem] xl:text-[3.9rem]">
               <span className="block">
                 Plan kidney-friendly
               </span>
@@ -262,7 +262,7 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="mt-5 max-w-[590px] text-base leading-[1.5] text-[#17385f] sm:text-lg lg:text-[1.08rem]">
+            <p className="mt-5 max-w-[340px] text-[0.98rem] leading-[1.55] text-[#17385f] sm:max-w-[590px] sm:text-lg lg:text-[1.08rem]">
               Choose meals that fit your dietary requirements,
               <br className="hidden sm:block" />
               see your weekly nutrition at a glance, and get your
@@ -270,10 +270,10 @@ export default function Home() {
               shopping list automatically.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex w-full max-w-[350px] flex-col gap-3 sm:max-w-none sm:flex-row">
               <Link
                 href="/requirements"
-                className="inline-flex items-center justify-center gap-3 rounded-xl bg-[#078f43] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#067b3a] hover:shadow-lg sm:px-8"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#078f43] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#067b3a] hover:shadow-lg sm:w-auto sm:px-8"
               >
                 Get Started!
                 <span className="text-lg">→</span>
@@ -281,13 +281,13 @@ export default function Home() {
 
               <Link
                 href="/recipes"
-                className="inline-flex items-center justify-center rounded-xl border-2 border-[#a9c9e8] bg-white/95 px-7 py-3.5 text-sm font-bold text-[#12396b] transition hover:bg-white sm:px-8"
+                className="inline-flex w-full items-center justify-center rounded-xl border-2 border-[#a9c9e8] bg-white/95 px-6 py-3.5 text-sm font-bold text-[#12396b] transition hover:bg-white sm:w-auto sm:px-8"
               >
                 Explore Recipes
               </Link>
             </div>
 
-            <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium text-slate-700 sm:text-sm">
+            <div className="mt-5 grid max-w-[350px] grid-cols-2 gap-x-4 gap-y-2 text-xs font-medium text-slate-700 sm:flex sm:max-w-none sm:flex-wrap sm:gap-x-6 sm:text-sm">
               <span className="flex items-center gap-2">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[11px] font-bold text-white">
                   ✓
@@ -302,7 +302,7 @@ export default function Home() {
                 Renal diet focused
               </span>
 
-              <span className="flex items-center gap-2">
+              <span className="col-span-2 flex items-center gap-2 sm:col-span-1">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[11px] font-bold text-white">
                   ✓
                 </span>
@@ -421,21 +421,21 @@ export default function Home() {
       {/* =========================================================
           PERSONALISE RENALPLAN
       ========================================================= */}
-      <section className="bg-white px-5 py-8 sm:px-8 lg:px-10 lg:py-9">
+      <section className="bg-white px-4 py-7 sm:px-8 lg:px-10 lg:py-9">
         <div className="mx-auto max-w-[1400px]">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-[#12396b] sm:text-4xl lg:text-[3rem]">
+            <h2 className="text-[2rem] leading-tight font-extrabold tracking-tight text-[#12396b] sm:text-4xl lg:text-[3rem]">
               Make <span className="text-[#12396b]">Renal</span><span className="text-[#079447]">Plan</span> personal to you
             </h2>
-            <p className="mt-2 text-base text-[#17385f] sm:text-lg">
+            <p className="mx-auto mt-3 max-w-[340px] text-[0.98rem] leading-relaxed text-[#17385f] sm:max-w-none sm:text-lg">
               RenalPlan is free to explore. Create an account and unlock a smarter, more personalised way to plan your week.
             </p>
           </div>
 
-          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+          <div className="mt-5 grid gap-4 lg:mt-6 lg:grid-cols-2">
             {/* Explore for free */}
-            <div className="relative overflow-hidden rounded-3xl border border-green-100 bg-gradient-to-br from-[#eefbf3] to-[#f7fcf8] px-6 py-6 sm:px-7 sm:py-7">
-              <div className="relative z-10 max-w-[52%] sm:max-w-[48%]">
+            <div className="relative overflow-hidden rounded-3xl border border-green-100 bg-gradient-to-br from-[#eefbf3] to-[#f7fcf8] px-5 py-5 sm:px-7 sm:py-7">
+              <div className="relative z-10 max-w-full sm:max-w-[48%]">
                 <h3 className="text-2xl font-extrabold tracking-tight text-[#079447] sm:text-3xl">
                   Explore for free
                 </h3>
@@ -447,7 +447,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/recipes"
-                  className="mt-5 inline-flex items-center gap-3 rounded-xl bg-[#078f43] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#067b3a] hover:shadow-lg"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#078f43] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#067b3a] hover:shadow-lg sm:w-auto"
                 >
                   Explore now
                   <span className="text-lg">→</span>
@@ -486,8 +486,8 @@ export default function Home() {
             </div>
 
             {/* RenalPlan starts working around you */}
-            <div className="relative overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-[#eef7ff] to-[#f7fbff] px-6 py-6 sm:px-7 sm:py-7">
-              <div className="relative z-10 max-w-[56%] sm:max-w-[54%]">
+            <div className="relative overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-[#eef7ff] to-[#f7fbff] px-5 py-5 sm:px-7 sm:py-7">
+              <div className="relative z-10 max-w-full sm:max-w-[54%]">
                 <h3 className="text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl">
                   Then <span className="text-[#12396b]">Renal</span><span className="text-[#079447]">Plan</span> starts working around you.
                 </h3>
@@ -496,7 +496,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/signup"
-                  className="mt-5 inline-flex items-center gap-3 rounded-xl bg-[#12396b] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#12396b] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg sm:w-auto"
                 >
                   Create your free account
                   <span className="text-lg">→</span>
@@ -539,53 +539,53 @@ export default function Home() {
           </div>
 
           {/* Account feature showcase */}
-          <h2 className="mt-8 text-center text-2xl font-extrabold tracking-tight text-[#12396b] sm:text-3xl lg:text-[2.15rem]">
+          <h2 className="mx-auto mt-7 max-w-[340px] text-center text-[1.65rem] leading-tight font-extrabold tracking-tight text-[#12396b] sm:max-w-none sm:text-3xl lg:text-[2.15rem]">
             What you get with your <span className="text-[#12396b]">Renal</span><span className="text-[#079447]">Plan</span> account
           </h2>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="flex gap-4 rounded-2xl border border-blue-100 bg-blue-50/70 p-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-2xl text-blue-600">🎯</div>
+          <div className="mt-4 grid gap-3 sm:mt-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="flex gap-3 rounded-2xl border border-blue-100 bg-blue-50/70 p-4 sm:gap-4 sm:p-5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xl text-blue-600 sm:h-12 sm:w-12 sm:text-2xl">🎯</div>
               <div>
                 <h3 className="font-bold text-[#12396b]">Set your requirements</h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">Tell RenalPlan about your dietary requirements so your meal planning can be tailored to you.</p>
               </div>
             </div>
 
-            <div className="flex gap-4 rounded-2xl border border-green-100 bg-green-50/70 p-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-green-100 text-2xl text-green-600">🍴</div>
+            <div className="flex gap-3 rounded-2xl border border-green-100 bg-green-50/70 p-4 sm:gap-4 sm:p-5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-xl text-green-600 sm:h-12 sm:w-12 sm:text-2xl">🍴</div>
               <div>
                 <h3 className="font-bold text-[#12396b]">Find meals that fit</h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">See recipes that match your requirements, so you don&apos;t have to work through everything yourself.</p>
               </div>
             </div>
 
-            <div className="flex gap-4 rounded-2xl border border-pink-100 bg-pink-50/70 p-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-pink-100 text-2xl text-pink-500">♡</div>
+            <div className="flex gap-3 rounded-2xl border border-pink-100 bg-pink-50/70 p-4 sm:gap-4 sm:p-5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pink-100 text-xl text-pink-500 sm:h-12 sm:w-12 sm:text-2xl">♡</div>
               <div>
                 <h3 className="font-bold text-[#12396b]">Save your favourites</h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">Keep track of the meals you love and build your own collection of go-to meals.</p>
               </div>
             </div>
 
-            <div className="flex gap-4 rounded-2xl border border-orange-100 bg-orange-50/70 p-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-500">👥</div>
+            <div className="flex gap-3 rounded-2xl border border-orange-100 bg-orange-50/70 p-4 sm:gap-4 sm:p-5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-100 text-xl text-orange-500 sm:h-12 sm:w-12 sm:text-2xl">👥</div>
               <div>
                 <h3 className="font-bold text-[#12396b]">Plan for your household</h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">Set the number of people you&apos;re cooking for and make your meal planning work for your household.</p>
               </div>
             </div>
 
-            <div className="flex gap-4 rounded-2xl border border-violet-100 bg-violet-50/70 p-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-violet-100 text-2xl text-violet-600">◇</div>
+            <div className="flex gap-3 rounded-2xl border border-violet-100 bg-violet-50/70 p-4 sm:gap-4 sm:p-5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-violet-100 text-xl text-violet-600 sm:h-12 sm:w-12 sm:text-2xl">◇</div>
               <div>
                 <h3 className="font-bold text-[#12396b]">Pick for Me</h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">Let RenalPlan help take the guesswork out of planning your week.</p>
               </div>
             </div>
 
-            <div className="flex gap-4 rounded-2xl border border-blue-100 bg-blue-50/70 p-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-2xl text-blue-600">▥</div>
+            <div className="flex gap-3 rounded-2xl border border-blue-100 bg-blue-50/70 p-4 sm:gap-4 sm:p-5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xl text-blue-600 sm:h-12 sm:w-12 sm:text-2xl">▥</div>
               <div>
                 <h3 className="font-bold text-[#12396b]">Personalised Nutrition Report</h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">See the nutritional picture of your planned week, including daily totals and averages.</p>
@@ -593,7 +593,7 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4 rounded-2xl border border-pink-100 bg-pink-50/70 p-5 sm:col-span-2 lg:col-span-3">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-pink-100 text-2xl text-pink-500">▣</div>
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pink-100 text-xl text-pink-500 sm:h-12 sm:w-12 sm:text-2xl">▣</div>
               <div>
                 <h3 className="font-bold text-[#12396b]">Printable report</h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">Create a printable or PDF version of your Nutrition Report to take to your nutritionist or renal consultant.</p>
@@ -606,7 +606,7 @@ export default function Home() {
       {/* =========================================================
           PERSONAL JOURNEY CTA
       ========================================================= */}
-      <section className="border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-5 py-7 sm:px-8 lg:px-10 lg:py-8">
+      <section className="border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-7 sm:px-8 lg:px-10 lg:py-8">
         <div className="mx-auto max-w-[1400px]">
           <div className="relative flex flex-col items-center text-center">
             <div className="mb-3 hidden w-full items-center justify-between gap-5 lg:flex">
@@ -623,22 +623,22 @@ export default function Home() {
               </div>
             </div>
 
-            <h2 className="text-2xl font-extrabold tracking-tight text-[#12396b] sm:text-3xl lg:text-[2rem]">
+            <h2 className="max-w-[350px] text-[1.75rem] leading-tight font-extrabold tracking-tight text-[#12396b] sm:max-w-none sm:text-3xl lg:text-[2rem]">
               Your week. Your requirements. Your <span className="text-[#12396b]">Renal</span><span className="text-[#079447]">Plan</span>.
             </h2>
-            <p className="mt-2 text-sm text-[#17385f] sm:text-base">
+            <p className="mt-3 max-w-[350px] text-[0.95rem] leading-relaxed text-[#17385f] sm:max-w-none sm:text-base">
               Set your requirements → Choose your meals → Build your week →  Understand your nutrition → Shop 
             </p>
 
             <Link
               href="/signup"
-              className="mt-4 inline-flex items-center gap-3 rounded-xl bg-[#12396b] px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg"
+              className="mt-5 inline-flex w-full max-w-[350px] items-center justify-center gap-3 rounded-xl bg-[#12396b] px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg sm:w-auto sm:max-w-none"
             >
               Create your free account
               <span className="text-lg">→</span>
             </Link>
 
-            <div className="mt-7 grid w-full gap-4 text-sm text-[#17385f] sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-6 grid w-full gap-3 text-sm text-[#17385f] sm:grid-cols-2 lg:grid-cols-4">
               <div className="flex items-center justify-center gap-2 lg:justify-start">
                 <span className="text-xl text-[#079447]">◒</span>
                 Kidney-friendly recipes

@@ -285,6 +285,8 @@ export default function WeeklyPlannerPage() {
   const [authChecked, setAuthChecked] = useState(false);
   const [premiumPrompt, setPremiumPrompt] =
     useState<"pick" | "people" | null>(null);
+  const [accountSyncReady, setAccountSyncReady] = useState(false);
+  const [accountUserId, setAccountUserId] = useState<string | null>(null);
 
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
@@ -311,7 +313,138 @@ export default function WeeklyPlannerPage() {
     };
   }, []);
 
+  const plannerInitialisedRef = useRef(false);
+  const accountHydratedRef = useRef(false);
+
+  useEffect(() => {
+    if (!authChecked || !plannerInitialisedRef.current) return;
+
+    let cancelled = false;
+
+    async function syncAccountPlanner() {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (cancelled) return;
+
+      if (!user) {
+        setAccountUserId(null);
+        setAccountSyncReady(true);
+        accountHydratedRef.current = true;
+        return;
+      }
+
+      setAccountUserId(user.id);
+
+      const { data, error } = await supabase
+        .from("user_meal_plans")
+        .select("planner, meal_people, household_people")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (cancelled) return;
+
+      if (error) {
+        console.error("Unable to load saved meal plan:", error);
+        setAccountSyncReady(true);
+        accountHydratedRef.current = true;
+        return;
+      }
+
+      const localPlanner = plannerMeals ?? createEmptyPlanner();
+      const localMealPeople = mealPeople ?? createEmptyMealPeople();
+      const localHasMeals = days.some((day) =>
+        mealTypes.some((meal) => Boolean(localPlanner[day]?.[meal]))
+      );
+
+      if (data) {
+        const remotePlanner = (data.planner ?? createEmptyPlanner()) as PlannerMeals;
+        const remoteMealPeople = (data.meal_people ?? createEmptyMealPeople()) as MealPeople;
+        const remoteHasMeals = days.some((day) =>
+          mealTypes.some((meal) => Boolean(remotePlanner[day]?.[meal]))
+        );
+
+        const remotePeople =
+          typeof data.household_people === "number" && data.household_people > 0
+            ? data.household_people
+            : getHouseholdPeople();
+
+        // If this browser already contains a real plan and the account does not,
+        // keep the local plan and make it the account's first saved plan.
+        // Otherwise, the saved account plan is the source of truth and is restored.
+        if (localHasMeals && !remoteHasMeals) {
+          const { error: saveError } = await supabase
+            .from("user_meal_plans")
+            .upsert({
+              user_id: user.id,
+              planner: localPlanner,
+              meal_people: localMealPeople,
+              household_people: getHouseholdPeople(),
+            }, { onConflict: "user_id" });
+
+          if (saveError) {
+            console.error("Unable to save existing local meal plan:", saveError);
+          }
+        } else {
+          const shoppingSaved = localStorage.getItem("shopping-data");
+          let shoppingData: ShoppingData = {
+            selectedRecipes: [],
+            shoppingList: [],
+            checkedItems: [],
+            people: remotePeople,
+            plannerRecipes: [],
+            manualRecipes: [],
+            plannerCounts: {},
+          };
+
+          if (shoppingSaved) {
+            try {
+              shoppingData = { ...shoppingData, ...JSON.parse(shoppingSaved) };
+            } catch {
+              // Keep defaults.
+            }
+          }
+
+          localStorage.setItem(
+            "shopping-data",
+            JSON.stringify({ ...shoppingData, people: remotePeople })
+          );
+
+          setPlannerMeals(remotePlanner);
+          setMealPeople(remoteMealPeople);
+        }
+      } else {
+        // No account plan exists yet. Save the planner that was already loaded
+        // from this browser instead of saving an empty planner.
+        const { error: saveError } = await supabase
+          .from("user_meal_plans")
+          .upsert({
+            user_id: user.id,
+            planner: localPlanner,
+            meal_people: localMealPeople,
+            household_people: getHouseholdPeople(),
+          }, { onConflict: "user_id" });
+
+        if (saveError) {
+          console.error("Unable to create saved meal plan:", saveError);
+        }
+      }
+
+      if (!cancelled) {
+        accountHydratedRef.current = true;
+        setAccountSyncReady(true);
+      }
+    }
+
+    void syncAccountPlanner();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authChecked, plannerMeals, mealPeople]);
+
   function handlePlannerTouchStart(
+
     event: React.TouchEvent<HTMLDivElement>
   ) {
     const touch = event.touches[0];
@@ -459,6 +592,8 @@ export default function WeeklyPlannerPage() {
       setMealPeople(createEmptyMealPeople());
     }
 
+    plannerInitialisedRef.current = true;
+
     return () => {
       window.removeEventListener(
         "meal-planner-requirements-updated",
@@ -488,10 +623,29 @@ export default function WeeklyPlannerPage() {
       mealPeople
     );
 
+    if (accountSyncReady && accountUserId && accountHydratedRef.current) {
+      const supabase = createClient();
+      const householdPeople = getHouseholdPeople();
+
+      void supabase
+        .from("user_meal_plans")
+        .upsert({
+          user_id: accountUserId,
+          planner: plannerMeals,
+          meal_people: mealPeople,
+          household_people: householdPeople,
+        }, { onConflict: "user_id" })
+        .then(({ error }) => {
+          if (error) {
+            console.error("Unable to save meal plan:", error);
+          }
+        });
+    }
+
     window.dispatchEvent(
       new Event("weekly-planner-updated")
     );
-  }, [plannerMeals, mealPeople]);
+  }, [plannerMeals, mealPeople, accountSyncReady, accountUserId]);
 
   function getPeopleForMeal(
     day: string,

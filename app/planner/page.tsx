@@ -1388,7 +1388,7 @@ if (total <= limit * 0.75) {
 
   if (plannerMeals === null) {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 px-4 py-8">
+      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-8">
         <div className="mx-auto max-w-6xl">
 
           <h1 className="text-3xl font-bold text-slate-900">
@@ -1417,7 +1417,7 @@ if (total <= limit * 0.75) {
   );
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 px-4 py-5 md:px-6 md:py-6">
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-5 md:px-6 md:py-6">
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
 
@@ -1471,7 +1471,7 @@ if (total <= limit * 0.75) {
           onTouchEnd={handlePlannerTouchEnd}
         >
 
-          <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+          <section className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/80">
 
             <div className="space-y-3 p-3">
 
@@ -1846,11 +1846,11 @@ if (total <= limit * 0.75) {
 
         <div className="hidden md:block">
 
-          <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+          <section className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/80">
 
             {/* WEEK HEADER */}
 
-            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100 bg-slate-50/80">
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-200 bg-slate-900">
 
               <div className="flex items-center px-4 py-2">
 
@@ -1864,10 +1864,10 @@ if (total <= limit * 0.75) {
 
                 <div
                   key={day}
-                  className="flex items-center justify-center border-l border-slate-100 bg-slate-50 py-2.5"
+                  className="flex items-center justify-center border-l border-white/10 bg-slate-900 py-2.5"
                 >
 
-                  <span className="text-base font-extrabold tracking-tight text-slate-800">
+                  <span className="text-base font-extrabold tracking-tight text-white">
                     {day.slice(0, 3)}
                   </span>
 
@@ -1881,7 +1881,7 @@ if (total <= limit * 0.75) {
 
             <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
 
-              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-4">
+              <div className="flex items-start border-r border-orange-100 bg-orange-50/70 px-4 py-4">
 
                 <div>
 
@@ -1923,7 +1923,7 @@ if (total <= limit * 0.75) {
 
                     {recipe ? (
 
-                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100 transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:ring-orange-200">
 
                         <div className="relative flex justify-center pt-2">
 
@@ -1935,7 +1935,7 @@ if (total <= limit * 0.75) {
                             <img
                               src={recipe.image}
                               alt={recipe.name}
-                              className="h-[76px] w-[76px] rounded-xl object-cover shadow-sm"
+                              className="h-[82px] w-[82px] rounded-xl object-cover shadow-sm ring-1 ring-black/5"
                             />
                           </Link>
 
@@ -1981,7 +1981,7 @@ if (total <= limit * 0.75) {
                         </button>
 
 
-                        <div className="flex flex-1 items-center justify-center px-2 pb-2 pt-1 text-center">
+                        <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
 
                           <h3 className="line-clamp-2 text-sm font-bold leading-5 text-slate-900">
                             {recipe.name}
@@ -2028,7 +2028,7 @@ if (total <= limit * 0.75) {
 
             <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
 
-              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-4">
+              <div className="flex items-start border-r border-orange-100 bg-orange-50/70 px-4 py-4">
 
                 <div>
 
@@ -2070,7 +2070,7 @@ if (total <= limit * 0.75) {
 
                     {recipe ? (
 
-                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100 transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:ring-orange-200">
 
                         <div className="relative flex justify-center pt-2">
 
@@ -2082,7 +2082,7 @@ if (total <= limit * 0.75) {
                             <img
                               src={recipe.image}
                               alt={recipe.name}
-                              className="h-[76px] w-[76px] rounded-xl object-cover shadow-sm"
+                              className="h-[82px] w-[82px] rounded-xl object-cover shadow-sm ring-1 ring-black/5"
                             />
                           </Link>
 
@@ -2127,7 +2127,7 @@ if (total <= limit * 0.75) {
                           ) === 1 ? "person" : "people"}
                         </button>
 
-                        <div className="flex flex-1 items-center justify-center px-2 pb-2 pt-1 text-center">
+                        <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
 
                           <h3 className="line-clamp-2 text-sm font-bold leading-5 text-slate-900">
                             {recipe.name}
@@ -2174,7 +2174,7 @@ if (total <= limit * 0.75) {
 
             <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))]">
 
-              <div className="flex items-start bg-gradient-to-b from-orange-50 to-amber-50 px-4 py-4">
+              <div className="flex items-start border-r border-orange-100 bg-orange-50/70 px-4 py-4">
 
                 <div>
 
@@ -2216,7 +2216,7 @@ if (total <= limit * 0.75) {
 
                     {recipe ? (
 
-                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 shadow-sm ring-1 ring-orange-100 transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:ring-orange-200">
 
                         <div className="relative flex justify-center pt-2">
 
@@ -2228,7 +2228,7 @@ if (total <= limit * 0.75) {
                             <img
                               src={recipe.image}
                               alt={recipe.name}
-                              className="h-[76px] w-[76px] rounded-xl object-cover shadow-sm"
+                              className="h-[82px] w-[82px] rounded-xl object-cover shadow-sm ring-1 ring-black/5"
                             />
                           </Link>
 
@@ -2273,7 +2273,7 @@ if (total <= limit * 0.75) {
                           ) === 1 ? "person" : "people"}
                         </button>
 
-                        <div className="flex flex-1 items-center justify-center px-2 pb-2 pt-1 text-center">
+                        <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
 
                           <h3 className="line-clamp-2 text-sm font-bold leading-5 text-slate-900">
                             {recipe.name}
@@ -2318,7 +2318,7 @@ if (total <= limit * 0.75) {
 
             {/* DAILY NUTRITION ROW */}
 
-            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-100 bg-slate-50/30">
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70">
 
               <div className="flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
 
@@ -2401,11 +2401,11 @@ if (total <= limit * 0.75) {
 
         {/* SHOPPING LIST / CLEAR */}
 
-        <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-stretch">
+        <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-stretch">
 
           <Link
             href="/shopping"
-            className="group flex flex-1 items-center justify-between rounded-3xl bg-white p-4 text-left shadow-sm ring-1 ring-black/5 transition hover:bg-green-50 hover:ring-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 md:p-5"
+            className="group flex flex-1 items-center justify-between rounded-3xl bg-white p-4 text-left shadow-md ring-1 ring-slate-200/80 transition hover:-translate-y-0.5 hover:bg-green-50/70 hover:ring-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 md:p-5"
             aria-label="Go to Shopping List"
           >
 

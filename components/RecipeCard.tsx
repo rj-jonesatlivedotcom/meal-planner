@@ -74,25 +74,6 @@ function getMealTypeLabel(code: string) {
   return "Dinner";
 }
 
-function formatSalt(sodiumMg: string | undefined) {
-  if (!sodiumMg) {
-    return "—";
-  }
-
-  const sodiumNumber = parseFloat(
-    sodiumMg.replace(/[^0-9.]/g, "")
-  );
-
-  if (!Number.isFinite(sodiumNumber)) {
-    return "—";
-  }
-
-  const saltGrams =
-    (sodiumNumber * 2.5) / 1000;
-
-  return `${saltGrams.toFixed(2).replace(/\.00$/, "")} g salt`;
-}
-
 type Placement = {
   day: string;
   meal: string;
@@ -815,95 +796,52 @@ export default function RecipeCard({
             {recipe.description}
           </p>
 
+          {/* Primary recipe information */}
           <div
             className="
               mt-4
-              flex
-              flex-wrap
+              grid
+              grid-cols-2
               gap-2
             "
           >
-
-            <span
+            <div
               className="
-                inline-flex
-                items-center
-                rounded-full
-                bg-slate-50
-                px-2.5
-                py-1
-                text-xs
-                font-semibold
-                text-slate-600
-              "
-            >
-              ⏱️ {recipe.cookingTime.replace(/\bminutes\b/gi, "mins")}
-            </span>
-
-            <span
-              className="
-                inline-flex
-                items-center
-                rounded-full
-                bg-orange-50
-                px-2.5
-                py-1
-                text-xs
-                font-semibold
-                text-orange-700
-              "
-            >
-              🔥 {recipe.calories}
-            </span>
-
-            <span
-              className="
-                inline-flex
-                items-center
-                rounded-full
+                rounded-xl
+                border
+                border-green-200
                 bg-green-50
-                px-2.5
-                py-1
-                text-xs
-                font-semibold
-                text-green-700
+                px-3
+                py-2.5
               "
             >
-              💪 {recipe.protein}
-            </span>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-green-700">
+                Cooking time
+              </div>
+              <div className="mt-0.5 flex items-baseline gap-1.5 text-base font-extrabold text-green-900">
+                <span aria-hidden="true">⏱️</span>
+                <span>{recipe.cookingTime.replace(/\bminutes\b/gi, "mins")}</span>
+              </div>
+            </div>
 
-            <span
+            <div
               className="
-                inline-flex
-                items-center
-                rounded-full
-                bg-amber-50
-                px-2.5
-                py-1
-                text-xs
-                font-semibold
-                text-amber-700
+                rounded-xl
+                border
+                border-green-200
+                bg-green-50
+                px-3
+                py-2.5
               "
             >
-              🍞 {recipe.nutrition?.carbohydrates ?? "—"} carbs
-            </span>
-
-            <span
-              className="
-                inline-flex
-                items-center
-                rounded-full
-                bg-blue-50
-                px-2.5
-                py-1
-                text-xs
-                font-semibold
-                text-blue-700
-              "
-            >
-              🧂 {formatSalt(recipe.nutrition?.sodium)}
-            </span>
-
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-green-700">
+                Calories
+              </div>
+              <div className="mt-0.5 flex items-baseline gap-1.5 text-base font-extrabold text-green-900">
+                <span aria-hidden="true">🔥</span>
+                <span>{recipe.calories}</span>
+              </div>
+            </div>
           </div>
 
         </Link>
@@ -940,7 +878,7 @@ export default function RecipeCard({
                 max-w-[calc(100%-2rem)]
                 -translate-x-1/2
                 rounded-xl
-                bg-[#0B3B75]
+                bg-slate-900
                 px-4
                 py-3
                 text-center
@@ -988,25 +926,29 @@ export default function RecipeCard({
           <button
             type="button"
             onClick={openPlanner}
-            className="
+            aria-pressed={placements.length > 0}
+            className={`
               inline-flex
               h-10
               items-center
               justify-center
               whitespace-nowrap
               rounded-xl
-              bg-green-700
               px-4
               text-sm
               font-semibold
-              text-white
               shadow-sm
               transition
-              hover:bg-green-800
-              hover:shadow-md
-            "
+              ${
+                placements.length > 0
+                  ? "bg-green-700 text-white hover:bg-green-800"
+                  : "border border-green-300 bg-green-50 text-green-700 hover:bg-green-100"
+              }
+            `}
           >
-            📅 Add to Planner
+            {placements.length > 0
+              ? "✓ Added to Planner"
+              : "📅 Add to Planner"}
           </button>
 
         </div>

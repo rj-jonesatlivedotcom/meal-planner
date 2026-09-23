@@ -42,7 +42,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
+    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -177,7 +177,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
+    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -223,7 +223,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
+    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -315,7 +315,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
+    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -356,7 +356,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Low in potassium and low in phosphate. Marmalade contributes very little potassium or phosphate at this portion size.",
+    dietaryNote: "Low in potassium and low in phosphate. Marmalade contributes very little potassium or phosphate at this portion size. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -540,7 +540,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
+    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -721,7 +721,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Low in potassium. Blueberries and yoghurt contribute potassium, while yoghurt is also a phosphate source. Check the yoghurt and bread labels for phosphate additives where relevant.",
+    dietaryNote: "Low in potassium. Blueberries and yoghurt contribute potassium, while yoghurt is also a phosphate source. Check the yoghurt and bread labels for phosphate additives where relevant. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -992,7 +992,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
+    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -1079,7 +1079,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
+    dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -1259,7 +1259,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Moderate",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Moderate in potassium. Apple and yoghurt contribute potassium, while yoghurt is also a phosphate source. Check the yoghurt and bread labels for phosphate additives where relevant.",
+    dietaryNote: "Moderate in potassium. Apple and yoghurt contribute potassium, while yoghurt is also a phosphate source. Check the yoghurt and bread labels for phosphate additives where relevant. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -1362,8 +1362,8 @@ export const breakfasts: Recipe[] = [
     category: "Breakfast",
     emoji: "🥓",
     image: "/images/recipes/B031.png",
-    name: "Danish Bacon & Egg Breakfast Muffin",
-    description: "A toasted English muffin filled with a fried egg and crisp Danish bacon.",
+    name: "Back Bacon & Egg Breakfast Muffin",
+    description: "A toasted English muffin filled with a fried egg and crisp Back bacon.",
     cookingTime: "10 minutes",
     calories: "352 kcal",
     protein: "18.0 g",
@@ -1371,13 +1371,13 @@ export const breakfasts: Recipe[] = [
     ingredients: [
       { item: "English muffin", shoppingItem: "English muffins", quantity: "1" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Danish bacon", shoppingItem: "Danish bacon", quantity: "1 rasher" },
+      { item: "Back bacon", shoppingItem: "Back bacon", quantity: "1 rasher" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
       "00:00 — Split the English muffin and put it into the toaster.",
       "01:00 — Heat a non-stick frying pan over medium heat.",
-      "02:00 — Cook the Danish bacon until cooked through and lightly crisp. Transfer to a plate.",
+      "02:00 — Cook the Back bacon until cooked through and lightly crisp. Transfer to a plate.",
       "05:00 — Melt the butter in the pan and crack in the egg.",
       "06:00 — Cook until the white is fully set and the yolk is cooked to your preference.",
       "08:00 — Remove the toasted muffin from the toaster.",
@@ -1397,7 +1397,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Contains Danish bacon, which contributes a significant amount of sodium. Keep to the stated portion and check the product label, as sodium content varies between brands.",
+    dietaryNote: "Contains Back bacon, which contributes a significant amount of sodium. Keep to the stated portion and check the product label, as sodium content varies between brands.",
     servings: 1,
   },
   {
@@ -1578,7 +1578,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Cream cheese and processed bread can vary in phosphate content between brands. Check the ingredient list for added phosphates where relevant.",
+    dietaryNote: "Cream cheese and processed bread can vary in phosphate content between brands. Check the ingredient list for added phosphates where relevant. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -1587,26 +1587,26 @@ export const breakfasts: Recipe[] = [
     category: "Breakfast",
     emoji: "🥓",
     image: "/images/recipes/B036.png",
-    name: "Danish Bacon & Tomato Toast",
-    description: "Crisp white toast topped with Danish bacon and warm sliced tomato.",
+    name: "Back Bacon & Tomato Toast",
+    description: "Crisp white toast topped with Back bacon and warm sliced tomato.",
     cookingTime: "9 minutes",
     calories: "255 kcal",
     protein: "13.5 g",
     equipment: "Frying pan, toaster, spatula, knife",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices" },
-      { item: "Danish bacon", shoppingItem: "Danish bacon", quantity: "1 rasher" },
+      { item: "Back bacon", shoppingItem: "Back bacon", quantity: "1 rasher" },
       { item: "Tomato", shoppingItem: "Tomatoes", quantity: "50 g" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
       "00:00 — Slice the tomato and put the bread into the toaster.",
       "02:00 — Heat a non-stick frying pan over medium heat.",
-      "03:00 — Cook the Danish bacon until cooked through and lightly crisp.",
+      "03:00 — Cook the Back bacon until cooked through and lightly crisp.",
       "05:00 — Transfer the bacon to a plate and add the tomato to the pan.",
       "06:00 — Cook the tomato for 1–2 minutes until warmed through.",
       "07:00 — Remove the toast from the toaster and spread the measured butter over it.",
-      "08:00 — Top the toast with the warm tomato and Danish bacon.",
+      "08:00 — Top the toast with the warm tomato and Back bacon.",
       "09:00 — Serve immediately."
     ],
     nutrition: {
@@ -1623,7 +1623,7 @@ export const breakfasts: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Contains Danish bacon, which contributes a significant amount of sodium. Keep to the stated portion and check the product label, as sodium content varies between brands.",
+    dietaryNote: "Contains Back bacon, which contributes a significant amount of sodium. Keep to the stated portion and check the product label, as sodium content varies between brands. Buttering bread/toast is optional.",
     servings: 1,
   },
   {

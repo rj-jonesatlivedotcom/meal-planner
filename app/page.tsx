@@ -231,11 +231,11 @@ export default function Home() {
       {/* =========================================================
           HERO
       ========================================================= */}
-      <section className="relative min-h-[450px] overflow-hidden bg-white sm:min-h-[380px] lg:min-h-[390px]">
+      <section className="relative h-[300px] min-h-0 overflow-hidden bg-white sm:h-auto sm:min-h-[380px] lg:min-h-[390px]">
 
         {/* Clean full-width hero photograph */}
         <div
-          className="absolute inset-0 bg-cover bg-[66%_88%] bg-no-repeat sm:bg-[74%_center] lg:bg-[78%_center]"
+          className="absolute inset-0 bg-[length:auto_300px] bg-[66%_top] bg-no-repeat sm:bg-cover sm:bg-[74%_center] lg:bg-[78%_center]"
           style={{
             backgroundImage: "url('/images/hero-background.png')",
           }}
@@ -245,7 +245,7 @@ export default function Home() {
             The previous version was too white and washed out the photograph. */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/25 via-[38%] to-transparent lg:via-[46%]" />
 
-        <div className="relative mx-auto flex min-h-[450px] max-w-[1600px] items-start px-5 py-7 sm:min-h-[380px] sm:items-center sm:px-10 sm:py-7 lg:min-h-[390px] lg:px-16 xl:px-24">
+        <div className="relative mx-auto flex h-full min-h-0 max-w-[1600px] items-start px-5 py-7 sm:h-auto sm:min-h-[380px] sm:items-center sm:px-10 sm:py-7 lg:min-h-[390px] lg:px-16 xl:px-24">
 
           <div className="w-full max-w-[720px]">
 
@@ -262,7 +262,8 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="mt-5 max-w-[340px] text-[0.98rem] leading-[1.55] text-[#17385f] sm:max-w-[590px] sm:text-lg lg:text-[1.08rem]">
+            {/* Desktop/tablet blurb — retained above the buttons */}
+            <p className="mt-5 hidden max-w-[340px] text-[0.98rem] leading-[1.55] text-[#17385f] sm:block sm:max-w-[590px] sm:text-lg lg:text-[1.08rem]">
               Choose meals that fit your dietary requirements,
               <br className="hidden sm:block" />
               see your weekly nutrition at a glance, and get your
@@ -270,39 +271,64 @@ export default function Home() {
               shopping list automatically.
             </p>
 
-            <div className="mt-6 flex w-full max-w-[350px] flex-col gap-3 sm:max-w-none sm:flex-row">
+            <div className="hidden sm:mt-6 sm:flex sm:w-full sm:max-w-none sm:flex-row sm:gap-3">
               <Link
-                href="/requirements"
+                href="#signup"
                 className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#078f43] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#067b3a] hover:shadow-lg sm:w-auto sm:px-8"
               >
-                Get Started!
-                <span className="text-lg">→</span>
+                Sign up
+                <span className="text-lg"></span>
               </Link>
 
               <Link
                 href="/recipes"
-                className="inline-flex w-full items-center justify-center rounded-xl border-2 border-[#a9c9e8] bg-white/95 px-6 py-3.5 text-sm font-bold text-[#12396b] transition hover:bg-white sm:w-auto sm:px-8"
+                className="inline-flex w-full items-center justify-center rounded-xl border-2 border-[#078f43] bg-[#078f43] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#067b3a] sm:w-auto sm:border-[#078f43] sm:bg-white/95 sm:text-[#078f43] sm:hover:bg-green-50 sm:px-8"
               >
                 Explore Recipes
               </Link>
             </div>
 
-            <div className="mt-5 grid max-w-[350px] grid-cols-2 gap-x-4 gap-y-2 text-xs font-medium text-slate-700 sm:flex sm:max-w-none sm:flex-wrap sm:gap-x-6 sm:text-sm">
-              <span className="flex items-center gap-2">
+            {/* Mobile-only benefits beside the bowl */}
+            <div className="absolute bottom-5 left-3 z-10 flex w-[190px] flex-col items-start gap-1.5 sm:hidden">
+              <span className="flex items-center gap-2 whitespace-nowrap rounded-full bg-white/90 px-2.5 py-1.5 text-[0.72rem] font-medium text-[#17385f] shadow-sm">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-500 text-[10px] font-bold text-white">
+                  ✓
+                </span>
+                Easy to use
+              </span>
+
+              <span className="flex items-center gap-2 whitespace-nowrap rounded-full bg-white/90 px-2.5 py-1.5 text-[0.72rem] font-medium text-[#17385f] shadow-sm">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-500 text-[10px] font-bold text-white">
+                  ✓
+                </span>
+                Renal diet focused
+              </span>
+
+              <span className="flex items-center gap-2 whitespace-nowrap rounded-full bg-white/90 px-2.5 py-1.5 text-[0.72rem] font-medium text-[#17385f] shadow-sm">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-500 text-[10px] font-bold text-white">
+                  ✓
+                </span>
+                Save time
+              </span>
+            </div>
+
+            {/* Desktop/tablet benefits — mobile version is positioned under the heading above */}
+            <div className="mt-5 hidden w-full max-w-[700px] grid-cols-3 items-center gap-x-8 text-sm font-medium text-slate-700 sm:grid">
+              <span className="flex items-center gap-2 whitespace-nowrap">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[11px] font-bold text-white">
                   ✓
                 </span>
                 Easy to use
               </span>
 
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 whitespace-nowrap">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[11px] font-bold text-white">
                   ✓
                 </span>
                 Renal diet focused
               </span>
 
-              <span className="col-span-2 flex items-center gap-2 sm:col-span-1">
+              <span className="flex items-center gap-2 whitespace-nowrap">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[11px] font-bold text-white">
                   ✓
                 </span>
@@ -603,10 +629,11 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="hidden sm:block">
       {/* =========================================================
           PERSONAL JOURNEY CTA
       ========================================================= */}
-      <section className="border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-7 sm:px-8 lg:px-10 lg:py-8">
+      <section id="signup" className="border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-7 sm:px-8 lg:px-10 lg:py-8">
         <div className="mx-auto max-w-[1400px]">
           <div className="relative flex flex-col items-center text-center">
             <div className="mb-3 hidden w-full items-center justify-between gap-5 lg:flex">
@@ -659,6 +686,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      </div>
 
       {/* =========================================================
           ABOUT

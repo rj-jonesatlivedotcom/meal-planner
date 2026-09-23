@@ -57,7 +57,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Butter knife, Saucepan",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "2" },
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "¼ lettuce" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" },
     ],
@@ -184,7 +184,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Butter knife, Saucepan",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "2" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "25 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
     ],
@@ -295,7 +295,7 @@ export const lunches: Recipe[] = [
     potassium: "Moderate",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Moderate in potassium. This meal contains a relatively higher amount of sodium because it includes ham, bread and mayonnaise; ham is classified as low purine.",
+    dietaryNote: "Moderate in potassium. This meal contains a relatively higher amount of sodium because it includes ham, bread and mayonnaise; ham is classified as low purine. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -439,7 +439,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Butter knife, Saucepan",
     ingredients: [
       { item: "White tortilla wrap", shoppingItem: "White Tortilla Wraps", quantity: "60 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "2" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "¼ lettuce" },
@@ -662,7 +662,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Saucepan, Frying pan",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "50 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "1" },
       { item: "Cream cheese", shoppingItem: "Cream cheese", quantity: "30 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "5 g" },
@@ -843,7 +843,7 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "50 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "1" },
       { item: "Red pepper", shoppingItem: "Red peppers", quantity: "25 g" },
       { item: "Onion", shoppingItem: "Onions", quantity: "30 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
@@ -890,7 +890,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Saucepan, Frying pan",
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "2" },
       { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
       { item: "Onion", shoppingItem: "Onions", quantity: "25 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
@@ -983,7 +983,7 @@ export const lunches: Recipe[] = [
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "50 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "50 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "1" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "40 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" },
     ],
@@ -1160,7 +1160,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Saucepan, Microwave, Oven or air fryer",
     ingredients: [
       { item: "Baking potato", shoppingItem: "Baking potato", quantity: "200 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "2" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
     ],
@@ -1251,7 +1251,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Saucepan, Frying pan",
     ingredients: [
       { item: "Potatoes, peeled", shoppingItem: "Potatoes, peeled", quantity: "180 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "2" },
       { item: "Onion", shoppingItem: "Onions", quantity: "40 g" },
       { item: "Red pepper", shoppingItem: "Red peppers", quantity: "20 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "15 g" },
@@ -1341,7 +1341,7 @@ export const lunches: Recipe[] = [
     protein: "33.8 g",
     equipment: "Knife, Chopping board, Frying pan",
     ingredients: [
-      { item: "Egg", shoppingItem: "Egg", quantity: "150 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "3" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
       { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
       { item: "Onion", shoppingItem: "Onions", quantity: "25 g" },
@@ -1387,7 +1387,7 @@ export const lunches: Recipe[] = [
     protein: "22.5 g",
     equipment: "Knife, Chopping board, Frying pan",
     ingredients: [
-      { item: "Egg", shoppingItem: "Egg", quantity: "150 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "3" },
       { item: "Mushrooms", shoppingItem: "Mushrooms", quantity: "40 g" },
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
       { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "10 g" },
@@ -1433,7 +1433,7 @@ export const lunches: Recipe[] = [
     protein: "19.0 g",
     equipment: "Knife, Chopping board, Saucepan",
     ingredients: [
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "2" },
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
       { item: "Red pepper", shoppingItem: "Red peppers", quantity: "30 g" },
       { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "10 g" },
@@ -1506,7 +1506,7 @@ export const lunches: Recipe[] = [
     potassium: "Moderate",
     phosphate: "Moderate",
     purines: "Moderate",
-    dietaryNote: "Moderate in potassium and phosphate. The chicken gives this meal a moderate purine classification.",
+    dietaryNote: "Moderate in potassium and phosphate. The chicken gives this meal a moderate purine classification. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -1550,7 +1550,7 @@ export const lunches: Recipe[] = [
     potassium: "Low",
     phosphate: "Low",
     purines: "Low",
-    dietaryNote: "Low in potassium and phosphate. The tuna is canned in brine, so drain it thoroughly. This meal also contains a relatively higher amount of sodium.",
+    dietaryNote: "Low in potassium and phosphate. The tuna is canned in brine, so drain it thoroughly. This meal also contains a relatively higher amount of sodium. Buttering bread/toast is optional.",
     servings: 1,
   },
   {
@@ -1610,7 +1610,7 @@ export const lunches: Recipe[] = [
     equipment: "Knife, Chopping board, Butter knife, Saucepan",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "70 g" },
-      { item: "Egg", shoppingItem: "Egg", quantity: "100 g" },
+      { item: "Egg", shoppingItem: "Egg", quantity: "2" },
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "50 g" },
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
@@ -1774,7 +1774,7 @@ export const lunches: Recipe[] = [
   { id: "chicken-leek-couscous-bowl", code: "L041", category: "Lunch", emoji: "🥗", image: "/images/recipes/L041.png", name: "Chicken & Leek Couscous Bowl", description: "Tender chicken with fluffy couscous, soft leek and carrot, finished with lemon and parsley.", cookingTime: "25 minutes", calories: "409 kcal", protein: "16.8 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "20 g" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "20 g" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [ "00:00 — Prepare the couscous according to the packet instructions using unsalted water.", "05:00 — Slice the chicken and cook in half the olive oil until completely cooked through.", "12:00 — Boil the leek and carrot in unsalted water until tender, then drain well.", "18:00 — Fluff the couscous and combine with the vegetables.", "22:00 — Top with the chicken and finish with the remaining olive oil, lemon juice and parsley.", "25:00 — Serve immediately." ], nutrition: { calories: "409 kcal", protein: "16.8 g", carbohydrates: "51.7 g", fat: "16.7 g", fibre: "1.6 g", sodium: "43 mg", salt: "0.11 g", potassium: "Low", phosphate: "159 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "turkey-cucumber-pitta", code: "L042", category: "Lunch", emoji: "🥙", image: "/images/recipes/L042.png", name: "Turkey & Cucumber Pitta", description: "Fresh turkey with crisp cucumber and iceberg lettuce in a soft white pitta with mayonnaise and herbs.", cookingTime: "12 minutes", calories: "385 kcal", protein: "18.6 g", equipment: "Knife, chopping board, frying pan", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "50 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "60 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "40 g" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "15 g" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [ "00:00 — Cook the turkey in a non-stick frying pan until completely cooked through.", "06:00 — Slice the turkey and prepare the cucumber and lettuce.", "08:00 — Warm the pitta briefly and split it open.", "10:00 — Spread with mayonnaise and add the turkey and salad.", "12:00 — Finish with parsley and serve." ], nutrition: { calories: "385 kcal", protein: "18.6 g", carbohydrates: "34.4 g", fat: "20.2 g", fibre: "1.9 g", sodium: "301 mg", salt: "0.75 g", potassium: "Low", phosphate: "189 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "tuna-sweetcorn-pasta-salad", code: "L043", category: "Lunch", emoji: "🍝", image: "/images/recipes/L043.png", name: "Tuna & Sweetcorn Pasta Salad", description: "White pasta with drained tuna, a measured portion of sweetcorn, cucumber and a light mayonnaise dressing.", cookingTime: "20 minutes", calories: "409 kcal", protein: "16.9 g", equipment: "Saucepan, colander, bowl, knife", ingredients: [ { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "50 g" }, { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "40 g" }, { item: "Sweetcorn kernels, canned in water, drained", shoppingItem: "Sweetcorn kernels", quantity: "20 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "30 g" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "20 g" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" } ], method: [ "00:00 — Cook the pasta in unsalted water according to the packet instructions.", "10:00 — Drain the pasta thoroughly and allow it to cool.", "12:00 — Drain the tuna very thoroughly and prepare the cucumber.", "15:00 — Mix the pasta, tuna, sweetcorn and cucumber.", "18:00 — Stir through the mayonnaise.", "20:00 — Serve warm or chilled." ], nutrition: { calories: "409 kcal", protein: "16.9 g", carbohydrates: "41.8 g", fat: "20.4 g", fibre: "1.1 g", sodium: "154 mg", salt: "0.39 g", potassium: "Low", phosphate: "181 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
-  { id: "egg-leek-rice-bowl", code: "L044", category: "Lunch", emoji: "🍳", image: "/images/recipes/L044.png", name: "Egg & Leek Rice Bowl", description: "Fluffy white rice with softly cooked egg, leek and onion, finished with fresh herbs.", cookingTime: "25 minutes", calories: "421 kcal", protein: "11.7 g", equipment: "Saucepan, frying pan, colander, knife", ingredients: [ { item: "Rice, white, basmati, raw", shoppingItem: "White rice", quantity: "60 g (dry)" }, { item: "Eggs, chicken, whole, raw", shoppingItem: "Egg", quantity: "50 g" }, { item: "Leeks, raw", shoppingItem: "Leek", quantity: "20 g" }, { item: "Onions, raw", shoppingItem: "Onions", quantity: "20 g" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [ "00:00 — Cook the rice according to the packet instructions using unsalted water.", "12:00 — Slice the leek and onion and cook gently in half the oil until soft.", "17:00 — Beat the egg and cook gently in the pan until fully set.", "21:00 — Add the cooked rice and remaining oil and stir through.", "24:00 — Finish with fresh chives.", "25:00 — Serve immediately." ], nutrition: { calories: "421 kcal", protein: "11.7 g", carbohydrates: "52.7 g", fat: "19.9 g", fibre: "1.7 g", sodium: "78 mg", salt: "0.20 g", potassium: "Low", phosphate: "160 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
+  { id: "egg-leek-rice-bowl", code: "L044", category: "Lunch", emoji: "🍳", image: "/images/recipes/L044.png", name: "Egg & Leek Rice Bowl", description: "Fluffy white rice with softly cooked egg, leek and onion, finished with fresh herbs.", cookingTime: "25 minutes", calories: "421 kcal", protein: "11.7 g", equipment: "Saucepan, frying pan, colander, knife", ingredients: [ { item: "Rice, white, basmati, raw", shoppingItem: "White rice", quantity: "60 g (dry)" }, { item: "Eggs, chicken, whole, raw", shoppingItem: "Egg", quantity: "1" }, { item: "Leeks, raw", shoppingItem: "Leek", quantity: "20 g" }, { item: "Onions, raw", shoppingItem: "Onions", quantity: "20 g" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [ "00:00 — Cook the rice according to the packet instructions using unsalted water.", "12:00 — Slice the leek and onion and cook gently in half the oil until soft.", "17:00 — Beat the egg and cook gently in the pan until fully set.", "21:00 — Add the cooked rice and remaining oil and stir through.", "24:00 — Finish with fresh chives.", "25:00 — Serve immediately." ], nutrition: { calories: "421 kcal", protein: "11.7 g", carbohydrates: "52.7 g", fat: "19.9 g", fibre: "1.7 g", sodium: "78 mg", salt: "0.20 g", potassium: "Low", phosphate: "160 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "chicken-carrot-noodle-salad", code: "L045", category: "Lunch", emoji: "🍜", image: "/images/recipes/L045.png", name: "Chicken & Carrot Noodle Salad", description: "rice rice noodles with sliced chicken, boiled carrot and cucumber in a fresh lemon and herb dressing.", cookingTime: "20 minutes", calories: "379 kcal", protein: "14.5 g", equipment: "Saucepan, colander, frying pan, knife", ingredients: [ { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice rice noodles", quantity: "150 g (cooked)" }, { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "30 g" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" } ], method: [ "00:00 — Cook the rice rice noodles according to the packet instructions using unsalted water.", "03:00 — Cook the chicken in a non-stick frying pan until completely cooked through.", "10:00 — Boil the carrot until tender and drain well.", "14:00 — Drain the rice rice noodles thoroughly and rinse briefly if serving chilled.", "17:00 — Toss the rice rice noodles with carrot, cucumber, chicken, oil, lemon and ginger.", "20:00 — Serve." ], nutrition: { calories: "379 kcal", protein: "14.5 g", carbohydrates: "34.4 g", fat: "21.7 g", fibre: "2.7 g", sodium: "55 mg", salt: "0.14 g", potassium: "Low", phosphate: "122 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "turkey-apple-couscous-salad", code: "L046", category: "Lunch", emoji: "🍎", image: "/images/recipes/L046.png", name: "Turkey & Apple Couscous Salad", description: "Couscous with fresh turkey, crisp apple and cucumber, dressed with lemon and parsley.", cookingTime: "20 minutes", calories: "377 kcal", protein: "16.9 g", equipment: "Saucepan, frying pan, knife, bowl", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "50 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apples", quantity: "30 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "30 g" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, fresh", shoppingItem: "Fresh parsley", quantity: "1 sprig" } ], method: [ "00:00 — Prepare the couscous according to the packet instructions using unsalted water.", "05:00 — Cook the turkey in a non-stick pan until completely cooked through.", "10:00 — Dice the apple and cucumber.", "14:00 — Fluff the couscous and stir through the apple and cucumber.", "17:00 — Slice the turkey and add to the couscous.", "20:00 — Finish with olive oil, lemon and parsley and serve." ], nutrition: { calories: "377 kcal", protein: "16.9 g", carbohydrates: "31.7 g", fat: "21.5 g", fibre: "1.9 g", sodium: "28 mg", salt: "0.07 g", potassium: "Low", phosphate: "209 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "cod-cucumber-pasta-salad", code: "L047", category: "Lunch", emoji: "🐟", image: "/images/recipes/L047.png", name: "Cod & Cucumber Pasta Salad", description: "Flaked baked cod with white pasta, cucumber and iceberg lettuce in a lemon and herb dressing.", cookingTime: "25 minutes", calories: "370 kcal", protein: "17.0 g", equipment: "Oven, baking tray, saucepan, colander, knife", ingredients: [ { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "50 g" }, { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "40 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "20 g" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "20 g" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [ "00:00 — Heat the oven to 200°C (180°C fan) and bake the cod until cooked through.", "05:00 — Cook the pasta in unsalted water according to the packet instructions.", "15:00 — Drain the pasta thoroughly and allow to cool slightly.", "18:00 — Flake the cod and combine with the pasta, cucumber and lettuce.", "22:00 — Add the olive oil, lemon juice and parsley.", "25:00 — Serve." ], nutrition: { calories: "370 kcal", protein: "17.0 g", carbohydrates: "31.0 g", fat: "21.0 g", fibre: "0.4 g", sodium: "49 mg", salt: "0.12 g", potassium: "Low", phosphate: "177 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },

@@ -1850,11 +1850,11 @@ if (total <= limit * 0.75) {
 
             {/* WEEK HEADER */}
 
-            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-200 bg-slate-900">
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-green-700 bg-green-600">
 
-              <div className="flex items-center px-4 py-2">
+              <div className="flex items-center bg-green-600 px-4 py-2">
 
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-white/80">
                   Meals
                 </span>
 
@@ -1864,7 +1864,7 @@ if (total <= limit * 0.75) {
 
                 <div
                   key={day}
-                  className="flex items-center justify-center border-l border-white/10 bg-slate-900 py-2.5"
+                  className="flex items-center justify-center border-l border-white/20 bg-green-600 py-2.5"
                 >
 
                   <span className="text-base font-extrabold tracking-tight text-white">

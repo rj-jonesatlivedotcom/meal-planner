@@ -43,7 +43,7 @@ export default function AccountPage() {
   if (loading) {
     return (
       <main className="min-h-screen bg-slate-50 px-5 py-8 sm:py-9">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-7xl">
           <div className="rounded-2xl bg-white p-6 shadow-sm">
             <p className="text-slate-600">Loading your account...</p>
           </div>
@@ -54,7 +54,7 @@ export default function AccountPage() {
 
   return (
     <main className="min-h-screen bg-slate-50 px-5 py-8 sm:py-9">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
 
         {/* TWO-COLUMN ACCOUNT LAYOUT */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
@@ -62,7 +62,7 @@ export default function AccountPage() {
           {/* LEFT COLUMN — ACCOUNT */}
           <section>
             <div className="mb-3">
-              <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl lg:text-[1.75rem]">
+              <h1 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
                 My Account
               </h1>
 
@@ -77,18 +77,18 @@ export default function AccountPage() {
               <div className="px-5 py-5 sm:px-6">
                 <div className="flex items-end justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-slate-500">
+                    <p className="text-sm text-slate-500">
                       Email address
                     </p>
 
-                    <p className="mt-1 break-all text-base font-bold text-slate-900 sm:text-lg">
+                    <p className="mt-1 break-all text-base text-slate-900 sm:text-lg">
                       {email}
                     </p>
                   </div>
 
                   <button
                     type="button"
-                    className="shrink-0 text-sm font-bold text-[#174A7E] sm:text-base"
+                    className="shrink-0 text-sm text-[#0B3B75] sm:text-base"
                   >
                     Edit
                   </button>
@@ -100,7 +100,7 @@ export default function AccountPage() {
                 href="/auth/reset-password"
                 className="group flex items-center gap-4 border-t border-slate-200 px-5 py-4 transition hover:bg-slate-50 sm:px-6"
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#174A7E]">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#0B3B75]">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -124,7 +124,7 @@ export default function AccountPage() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <p className="text-base font-extrabold text-[#174A7E] sm:text-lg">
+                  <p className="text-base text-[#0B3B75] sm:text-lg">
                     Change password
                   </p>
 
@@ -133,7 +133,7 @@ export default function AccountPage() {
                   </p>
                 </div>
 
-                <span className="shrink-0 text-2xl font-light text-[#174A7E] transition-transform group-hover:translate-x-1">
+                <span className="shrink-0 text-2xl font-light text-[#0B3B75] transition-transform group-hover:translate-x-1">
                   ›
                 </span>
               </Link>
@@ -143,7 +143,7 @@ export default function AccountPage() {
                 href="/privacy"
                 className="group flex items-center gap-4 border-t border-slate-200 px-5 py-4 transition hover:bg-slate-50 sm:px-6"
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#174A7E]">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#0B3B75]">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -160,7 +160,7 @@ export default function AccountPage() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <p className="text-base font-extrabold text-[#174A7E] sm:text-lg">
+                  <p className="text-base text-[#0B3B75] sm:text-lg">
                     Security &amp; Data Protection
                   </p>
 
@@ -170,7 +170,7 @@ export default function AccountPage() {
                   </p>
                 </div>
 
-                <span className="shrink-0 text-2xl font-light text-[#174A7E] transition-transform group-hover:translate-x-1">
+                <span className="shrink-0 text-2xl font-light text-[#0B3B75] transition-transform group-hover:translate-x-1">
                   ›
                 </span>
               </Link>
@@ -205,7 +205,7 @@ export default function AccountPage() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <p className="text-base font-extrabold text-red-600 sm:text-lg">
+                  <p className="text-base text-red-600 sm:text-lg">
                     Delete account
                   </p>
 
@@ -225,7 +225,7 @@ export default function AccountPage() {
           {/* RIGHT COLUMN — MY RENALPLAN */}
           <section>
             <div className="mb-3">
-              <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl lg:text-[1.75rem]">
+              <h1 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
                 My RenalPlan
               </h1>
 
@@ -258,7 +258,7 @@ export default function AccountPage() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-base font-extrabold text-green-700 sm:text-lg">
+                  <h3 className="text-base text-green-700 sm:text-lg">
                     My Diet
                   </h3>
 
@@ -293,7 +293,7 @@ export default function AccountPage() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-base font-extrabold text-orange-600 sm:text-lg">
+                  <h3 className="text-base text-orange-600 sm:text-lg">
                     My Favourites
                   </h3>
 
@@ -328,7 +328,7 @@ export default function AccountPage() {
                   </div>
 
                   <div className="min-w-0">
-                    <h3 className="text-base font-extrabold text-orange-600 sm:text-lg">
+                    <h3 className="text-base text-orange-600 sm:text-lg">
                       Premium coming soon
                     </h3>
 
@@ -358,7 +358,7 @@ export default function AccountPage() {
             className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-white px-5 py-4 text-left shadow-sm transition hover:border-blue-300 hover:bg-slate-50"
           >
             <div>
-              <p className="text-base font-extrabold text-[#174A7E]">
+              <p className="text-base text-[#0B3B75]">
                 Log out
               </p>
 
@@ -367,7 +367,7 @@ export default function AccountPage() {
               </p>
             </div>
 
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#174A7E]">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#0B3B75]">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"

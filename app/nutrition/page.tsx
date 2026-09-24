@@ -688,8 +688,8 @@ export default function NutritionPage() {
     <>
       {showLoginOverlay && (
         <div className="fixed inset-x-0 bottom-0 top-[80px] z-[40] flex items-center justify-center bg-white/10 px-4 backdrop-blur-[2px]">
-          <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-            <div className="pointer-events-none select-none blur-[2px] opacity-55" aria-hidden="true">
+          <section className="relative h-full w-full overflow-hidden">
+            <div className="pointer-events-none absolute inset-0 select-none blur-[2px] opacity-55" aria-hidden="true">
               <div className="p-4 sm:p-6">
                 <div className="h-8 w-56 rounded bg-slate-200" />
                 <div className="mt-3 h-4 w-80 max-w-full rounded bg-slate-100" />

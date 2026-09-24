@@ -1850,11 +1850,11 @@ if (total <= limit * 0.75) {
 
             {/* WEEK HEADER */}
 
-            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-green-700 bg-green-600">
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-emerald-100 bg-emerald-50">
 
-              <div className="flex items-center bg-green-600 px-4 py-2">
+              <div className="flex items-center bg-emerald-50 px-4 py-2">
 
-                <span className="text-[11px] font-bold uppercase tracking-wider text-white/80">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-green-700">
                   Meals
                 </span>
 
@@ -1864,10 +1864,10 @@ if (total <= limit * 0.75) {
 
                 <div
                   key={day}
-                  className="flex items-center justify-center border-l border-white/20 bg-green-600 py-2.5"
+                  className="flex items-center justify-center border-l border-emerald-100 bg-emerald-50 py-2"
                 >
 
-                  <span className="text-base font-extrabold tracking-tight text-white">
+                  <span className="text-sm font-extrabold tracking-[0.08em] text-green-700">
                     {day.slice(0, 3)}
                   </span>
 
@@ -1881,7 +1881,7 @@ if (total <= limit * 0.75) {
 
             <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
 
-              <div className="flex items-start border-r border-orange-100 bg-orange-50/70 px-4 py-4">
+              <div className="flex items-start border-r border-emerald-100 bg-emerald-50 px-4 py-4">
 
                 <div>
 
@@ -1925,36 +1925,34 @@ if (total <= limit * 0.75) {
 
                       <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:ring-orange-200">
 
-                        <div className="relative flex justify-center pt-2">
+                        <div className="relative px-2 pt-2">
+  <Link
+    href={`/recipes/${recipe.id}`}
+    className="block w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+    aria-label={`View ${recipe.name} recipe`}
+  >
+    <img
+      src={recipe.image}
+      alt={recipe.name}
+      className="h-[88px] w-full rounded-xl object-cover shadow-sm ring-1 ring-black/5"
+    />
+  </Link>
 
-                          <Link
-                            href={`/recipes/${recipe.id}`}
-                            className="rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-                            aria-label={`View ${recipe.name} recipe`}
-                          >
-                            <img
-                              src={recipe.image}
-                              alt={recipe.name}
-                              className="h-[82px] w-[82px] rounded-xl object-cover shadow-sm ring-1 ring-black/5"
-                            />
-                          </Link>
-
-                          <button
-                            type="button"
-                            onClick={() =>
-                              removeRecipe(
-                                day,
-                                "Breakfast"
-                              )
-                            }
-                            className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
-                            aria-label={`Remove ${recipe.name}`}
-                            title={`Remove ${recipe.name}`}
-                          >
-                            ×
-                          </button>
-
-                        </div>
+  <button
+    type="button"
+    onClick={() =>
+      removeRecipe(
+        day,
+        "Breakfast"
+      )
+    }
+    className="absolute bottom-1.5 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
+    aria-label={`Remove ${recipe.name}`}
+    title={`Remove ${recipe.name}`}
+  >
+    ×
+  </button>
+</div>
 
                         <button
                           type="button"
@@ -1983,7 +1981,7 @@ if (total <= limit * 0.75) {
 
                         <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
 
-                          <h3 className="line-clamp-2 text-sm font-bold leading-5 text-slate-900">
+                          <h3 className="line-clamp-2 pr-8 text-sm font-bold leading-5 text-slate-900">
                             {recipe.name}
                           </h3>
 
@@ -2028,7 +2026,7 @@ if (total <= limit * 0.75) {
 
             <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
 
-              <div className="flex items-start border-r border-orange-100 bg-orange-50/70 px-4 py-4">
+              <div className="flex items-start border-r border-emerald-100 bg-emerald-50 px-4 py-4">
 
                 <div>
 
@@ -2072,7 +2070,7 @@ if (total <= limit * 0.75) {
 
                       <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:ring-orange-200">
 
-                        <div className="relative flex justify-center pt-2">
+                        <div className="relative flex justify-center px-2 pt-2">
 
                           <Link
                             href={`/recipes/${recipe.id}`}
@@ -2082,7 +2080,7 @@ if (total <= limit * 0.75) {
                             <img
                               src={recipe.image}
                               alt={recipe.name}
-                              className="h-[82px] w-[82px] rounded-xl object-cover shadow-sm ring-1 ring-black/5"
+                              className="h-[100px] w-full rounded-xl object-cover shadow-sm ring-1 ring-black/5"
                             />
                           </Link>
 
@@ -2094,7 +2092,7 @@ if (total <= limit * 0.75) {
                                 "Lunch"
                               )
                             }
-                            className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
+                            className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -2129,7 +2127,7 @@ if (total <= limit * 0.75) {
 
                         <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
 
-                          <h3 className="line-clamp-2 text-sm font-bold leading-5 text-slate-900">
+                          <h3 className="line-clamp-2 pr-8 text-sm font-bold leading-5 text-slate-900">
                             {recipe.name}
                           </h3>
 
@@ -2174,7 +2172,7 @@ if (total <= limit * 0.75) {
 
             <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))]">
 
-              <div className="flex items-start border-r border-orange-100 bg-orange-50/70 px-4 py-4">
+              <div className="flex items-start border-r border-emerald-100 bg-emerald-50 px-4 py-4">
 
                 <div>
 
@@ -2218,7 +2216,7 @@ if (total <= limit * 0.75) {
 
                       <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:ring-orange-200">
 
-                        <div className="relative flex justify-center pt-2">
+                        <div className="relative flex justify-center px-2 pt-2">
 
                           <Link
                             href={`/recipes/${recipe.id}`}
@@ -2228,7 +2226,7 @@ if (total <= limit * 0.75) {
                             <img
                               src={recipe.image}
                               alt={recipe.name}
-                              className="h-[82px] w-[82px] rounded-xl object-cover shadow-sm ring-1 ring-black/5"
+                              className="h-[100px] w-full rounded-xl object-cover shadow-sm ring-1 ring-black/5"
                             />
                           </Link>
 
@@ -2240,7 +2238,7 @@ if (total <= limit * 0.75) {
                                 "Dinner"
                               )
                             }
-                            className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
+                            className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -2275,7 +2273,7 @@ if (total <= limit * 0.75) {
 
                         <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
 
-                          <h3 className="line-clamp-2 text-sm font-bold leading-5 text-slate-900">
+                          <h3 className="line-clamp-2 pr-8 text-sm font-bold leading-5 text-slate-900">
                             {recipe.name}
                           </h3>
 

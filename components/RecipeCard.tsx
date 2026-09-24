@@ -20,8 +20,13 @@ type RecipeCardProps = {
     equipment: string;
     nutrition?: {
       sodium?: string;
+      salt?: string;
+      potassium?: string;
+      phosphate?: string;
       carbohydrates?: string;
     };
+    potassium?: string;
+    phosphate?: string;
   };
   favouriteRecipeIds?: string[];
   userId?: string | null;
@@ -74,6 +79,54 @@ function getMealTypeLabel(code: string) {
   return "Dinner";
 }
 
+function formatSalt(
+  saltValue: string | undefined,
+  sodiumMg: string | undefined
+) {
+  if (saltValue) {
+    return saltValue;
+  }
+
+  if (!sodiumMg) {
+    return "—";
+  }
+
+  const sodiumNumber = parseFloat(
+    sodiumMg.replace(/[^0-9.]/g, "")
+  );
+
+  if (!Number.isFinite(sodiumNumber)) {
+    return "—";
+  }
+
+  const saltGrams =
+    (sodiumNumber * 2.5) / 1000;
+
+  return `${saltGrams.toFixed(2).replace(/\.00$/, "")} g`;
+}
+
+function getTrafficClasses(level: string | undefined) {
+  switch (level?.toLowerCase()) {
+    case "high":
+      return "border-red-200 bg-red-50 text-red-700";
+    case "moderate":
+      return "border-amber-200 bg-amber-50 text-amber-700";
+    default:
+      return "border-green-200 bg-green-50 text-green-700";
+  }
+}
+
+function getTrafficDot(level: string | undefined) {
+  switch (level?.toLowerCase()) {
+    case "high":
+      return "bg-red-500";
+    case "moderate":
+      return "bg-amber-400";
+    default:
+      return "bg-green-500";
+  }
+}
+
 type Placement = {
   day: string;
   meal: string;
@@ -114,26 +167,12 @@ export default function RecipeCard({
   const [isFavourite, setIsFavourite] =
     useState(favouriteRecipeIds.includes(recipe.id));
 
-  const [showLoginMessage, setShowLoginMessage] =
-    useState(false);
-
-  useEffect(() => {
-    if (!showLoginMessage) return;
-
-    const timer = window.setTimeout(() => {
-      setShowLoginMessage(false);
-    }, 3000);
-
-    return () => window.clearTimeout(timer);
-  }, [showLoginMessage]);
-
   useEffect(() => {
     setIsFavourite(favouriteRecipeIds.includes(recipe.id));
   }, [favouriteRecipeIds, recipe.id]);
 
   async function toggleFavourite() {
     if (!userId) {
-      setShowLoginMessage(true);
       return;
     }
 
@@ -677,6 +716,25 @@ export default function RecipeCard({
           RECIPE IMAGE
           =================================================== */}
 
+      <button
+        type="button"
+        onClick={toggleFavourite}
+        aria-label={
+          isFavourite
+            ? `Remove ${recipe.name} from favourites`
+            : `Add ${recipe.name} to favourites`
+        }
+        aria-pressed={isFavourite}
+        disabled={!userId}
+        className={`absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border bg-white/95 text-2xl shadow-md backdrop-blur-sm transition ${
+          isFavourite
+            ? "border-red-200 text-red-500"
+            : "border-slate-200 text-slate-500 hover:border-red-200 hover:text-red-400"
+        } ${!userId ? "cursor-not-allowed opacity-70" : ""}`}
+      >
+        {isFavourite ? "♥" : "♡"}
+      </button>
+
       <Link
         href={`/recipes/${recipe.id}`}
         className="
@@ -796,50 +854,42 @@ export default function RecipeCard({
             {recipe.description}
           </p>
 
-          {/* Primary recipe information */}
           <div
             className="
               mt-4
               grid
               grid-cols-2
               gap-2
+              sm:grid-cols-4
             "
           >
-            <div
-              className="
-                rounded-xl
-                border
-                border-green-200
-                bg-green-50
-                px-3
-                py-2.5
-              "
-            >
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-green-700">
-                Cooking time
-              </div>
-              <div className="mt-0.5 flex items-baseline gap-1.5 text-base font-extrabold text-green-900">
-                <span aria-hidden="true">⏱️</span>
-                <span>{recipe.cookingTime.replace(/\bminutes\b/gi, "mins")}</span>
+            <div className="rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-2">
+              <div className="text-[11px] font-medium text-slate-500">Cooking time</div>
+              <div className="mt-0.5 text-sm font-bold text-slate-900">
+                ⏱️ {recipe.cookingTime.replace(/\bminutes\b/gi, "mins")}
               </div>
             </div>
 
-            <div
-              className="
-                rounded-xl
-                border
-                border-green-200
-                bg-green-50
-                px-3
-                py-2.5
-              "
-            >
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-green-700">
-                Calories
+            <div className="rounded-xl border border-green-200 bg-green-50 px-2.5 py-2">
+              <div className="text-[11px] font-medium text-green-700">Salt</div>
+              <div className="mt-0.5 text-sm font-bold text-slate-900">
+                {formatSalt(recipe.nutrition?.salt, recipe.nutrition?.sodium)}
               </div>
-              <div className="mt-0.5 flex items-baseline gap-1.5 text-base font-extrabold text-green-900">
-                <span aria-hidden="true">🔥</span>
-                <span>{recipe.calories}</span>
+            </div>
+
+            <div className={`rounded-xl border px-2.5 py-2 ${getTrafficClasses(recipe.potassium)}`}>
+              <div className="text-[11px] font-medium">Potassium</div>
+              <div className="mt-0.5 flex items-center gap-1.5 text-sm font-bold text-slate-900">
+                <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${getTrafficDot(recipe.potassium)}`} aria-hidden="true" />
+                {recipe.nutrition?.potassium ?? recipe.potassium ?? "—"}
+              </div>
+            </div>
+
+            <div className={`rounded-xl border px-2.5 py-2 ${getTrafficClasses(recipe.phosphate)}`}>
+              <div className="text-[11px] font-medium">Phosphate</div>
+              <div className="mt-0.5 flex items-center gap-1.5 text-sm font-bold text-slate-900">
+                <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${getTrafficDot(recipe.phosphate)}`} aria-hidden="true" />
+                {recipe.nutrition?.phosphate ?? recipe.phosphate ?? "—"}
               </div>
             </div>
           </div>
@@ -856,7 +906,7 @@ export default function RecipeCard({
             flex
             flex-wrap
             items-center
-            justify-between
+            justify-end
             gap-2
 
             sm:mt-auto
@@ -866,89 +916,30 @@ export default function RecipeCard({
             md:pt-5
           "
         >
-          {showLoginMessage && (
-            <div
-              role="status"
-              className="
-                absolute
-                bottom-16
-                left-1/2
-                z-20
-                w-max
-                max-w-[calc(100%-2rem)]
-                -translate-x-1/2
-                rounded-xl
-                bg-slate-900
-                px-4
-                py-3
-                text-center
-                text-sm
-                font-semibold
-                text-white
-                shadow-lg
-              "
-            >
-              🔒 Please log in to save favourite recipes.
-            </div>
-          )}
-
-
-          {/* Favourite */}
-          <button
-            type="button"
-            onClick={toggleFavourite}
-            aria-pressed={isFavourite}
-            className={`
-              inline-flex
-              h-10
-              items-center
-              justify-center
-              whitespace-nowrap
-              rounded-xl
-              px-4
-              text-sm
-              font-semibold
-              shadow-sm
-              transition
-              ${
-                isFavourite
-                  ? "bg-orange-500 text-white hover:bg-orange-600"
-                  : "border border-orange-300 bg-orange-50 text-orange-700 hover:bg-orange-100"
-              }
-            `}
-          >
-            {isFavourite
-              ? "★ Favourite"
-              : "☆ Favourite"}
-          </button>
 
           {/* Add to Planner */}
           <button
             type="button"
             onClick={openPlanner}
-            aria-pressed={placements.length > 0}
-            className={`
+            className="
               inline-flex
               h-10
               items-center
               justify-center
               whitespace-nowrap
               rounded-xl
+              bg-green-700
               px-4
               text-sm
               font-semibold
+              text-white
               shadow-sm
               transition
-              ${
-                placements.length > 0
-                  ? "bg-green-700 text-white hover:bg-green-800"
-                  : "border border-green-300 bg-green-50 text-green-700 hover:bg-green-100"
-              }
-            `}
+              hover:bg-green-800
+              hover:shadow-md
+            "
           >
-            {placements.length > 0
-              ? "✓ Added to Planner"
-              : "📅 Add to Planner"}
+            📅 Add to Planner
           </button>
 
         </div>

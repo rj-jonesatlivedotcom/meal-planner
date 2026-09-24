@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { recipes } from "@/data/RecipeData";
 
 type RequirementLevel = "Any" | "Low" | "Moderate";
 
@@ -24,6 +25,32 @@ const defaultRequirements: Requirements = {
   carbohydrateMin: null,
   carbohydrateMax: null,
 };
+
+const levelRank: Record<"Low" | "Moderate" | "High", number> = {
+  Low: 1,
+  Moderate: 2,
+  High: 3,
+};
+
+function matchesLevel(
+  recipeLevel: "Low" | "Moderate" | "High",
+  requirement: RequirementLevel
+) {
+  if (requirement === "Any") {
+    return true;
+  }
+
+  return levelRank[recipeLevel] <= levelRank[requirement];
+}
+
+function getNutritionNumber(value: string | undefined): number {
+  if (!value) {
+    return 0;
+  }
+
+  const match = value.match(/-?\d+(?:\.\d+)?/);
+  return match ? Number(match[0]) : 0;
+}
 
 function syncRequirementsToLocalStorage(
   requirements: Requirements
@@ -71,11 +98,14 @@ export default function RequirementsPage() {
           );
 
           if (saved) {
-            const savedRequirements: Requirements = JSON.parse(saved);
+            const savedRequirements: Requirements =
+              JSON.parse(saved);
+
             setRequirements(savedRequirements);
           }
         } catch {
-          // Keep the default requirements if local storage is unavailable or invalid.
+          // Keep the default requirements if local storage
+          // is unavailable or invalid.
         }
 
         return;
@@ -104,8 +134,6 @@ export default function RequirementsPage() {
 
       setRequirements(loadedRequirements);
 
-      // Keep the existing Recipes and Weekly Planner
-      // requirement system in sync with Supabase.
       syncRequirementsToLocalStorage(
         loadedRequirements
       );
@@ -133,7 +161,9 @@ export default function RequirementsPage() {
     syncRequirementsToLocalStorage(nextRequirements);
   }
 
-  async function saveRequirements(nextRequirements: Requirements) {
+  async function saveRequirements(
+    nextRequirements: Requirements
+  ) {
     setSaveStatus("saving");
 
     try {
@@ -144,33 +174,124 @@ export default function RequirementsPage() {
       } = await supabase.auth.getUser();
 
       if (!user) {
-        syncRequirementsToLocalStorage(nextRequirements);
+        syncRequirementsToLocalStorage(
+          nextRequirements
+        );
+
         setSaveStatus("saved");
         return;
       }
 
-      const { error } = await supabase.from("user_requirements").upsert(
-        {
-          user_id: user.id,
-          sodium_limit: nextRequirements.sodiumLimit,
-          potassium: nextRequirements.potassium,
-          phosphate: nextRequirements.phosphate,
-          purines: nextRequirements.purines,
-          carbohydrate_min: nextRequirements.carbohydrateMin,
-          carbohydrate_max: nextRequirements.carbohydrateMax,
-        },
-        { onConflict: "user_id" }
-      );
+      const { error } = await supabase
+        .from("user_requirements")
+        .upsert(
+          {
+            user_id: user.id,
+            sodium_limit: nextRequirements.sodiumLimit,
+            potassium: nextRequirements.potassium,
+            phosphate: nextRequirements.phosphate,
+            purines: nextRequirements.purines,
+            carbohydrate_min:
+              nextRequirements.carbohydrateMin,
+            carbohydrate_max:
+              nextRequirements.carbohydrateMax,
+          },
+          {
+            onConflict: "user_id",
+          }
+        );
 
       if (error) {
         throw error;
       }
 
-      syncRequirementsToLocalStorage(nextRequirements);
+      syncRequirementsToLocalStorage(
+        nextRequirements
+      );
+
       setSaveStatus("saved");
     } catch {
       setSaveStatus("error");
     }
+  }
+
+  /*
+   * Work out which recipes currently match ALL selected
+   * requirements.
+   *
+   * Salt:
+   * The stored sodiumLimit represents the user's DAILY
+   * salt-derived sodium limit. For recipe matching we use
+   * one third of that daily limit as a practical per-meal
+   * guide.
+   *
+   * Potassium, phosphate and purines:
+   * These use the existing RenalPlan Low / Moderate / High
+   * recipe classifications.
+   *
+   * Carbohydrate:
+   * This is explicitly a PER-MEAL target because each recipe
+   * represents one adult serving.
+   */
+  const matchingRecipes = useMemo(() => {
+    const mealSodiumGuide =
+      requirements.sodiumLimit === null
+        ? null
+        : requirements.sodiumLimit / 3;
+
+    return recipes.filter(
+      (recipe: (typeof recipes)[number]) => {
+        const sodium = getNutritionNumber(
+          recipe.nutrition.sodium
+        );
+
+      const carbohydrates = getNutritionNumber(
+        recipe.nutrition.carbohydrates
+      );
+
+      const sodiumMatches =
+        mealSodiumGuide === null ||
+        sodium <= mealSodiumGuide;
+
+      const potassiumMatches = matchesLevel(
+        recipe.potassium,
+        requirements.potassium
+      );
+
+      const phosphateMatches = matchesLevel(
+        recipe.phosphate,
+        requirements.phosphate
+      );
+
+      const purinesMatches = matchesLevel(
+        recipe.purines,
+        requirements.purines
+      );
+
+      const carbohydrateMinMatches =
+        requirements.carbohydrateMin === null ||
+        carbohydrates >= requirements.carbohydrateMin;
+
+      const carbohydrateMaxMatches =
+        requirements.carbohydrateMax === null ||
+        carbohydrates <= requirements.carbohydrateMax;
+
+      return (
+        sodiumMatches &&
+        potassiumMatches &&
+        phosphateMatches &&
+        purinesMatches &&
+        carbohydrateMinMatches &&
+        carbohydrateMaxMatches
+      );
+    });
+  }, [requirements]);
+
+  const matchingRecipeCount =
+    matchingRecipes.length;
+
+  if (!authChecked) {
+    return null;
   }
 
   return (
@@ -178,36 +299,78 @@ export default function RequirementsPage() {
       <main className="min-h-screen bg-white px-4 py-3 sm:px-6 md:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl md:max-w-[1400px]">
           <section className="max-w-[1400px] rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm sm:p-6">
+
             <div className="border-b border-slate-200/80 pb-5">
               <p className="text-lg font-extrabold leading-7 text-slate-900 sm:text-xl">
                 Set your dietary requirements and we will use them to select
                 suitable recipes.
               </p>
 
-              <div className="mt-4">
-                {saveStatus === "saving" && (
-                  <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-sm font-semibold text-[#0B3B75]">
-                    Saving…
-                  </span>
-                )}
+              {/* LIVE RECIPE MATCH COUNT */}
+              <div
+                className={`sticky top-2 z-20 mt-4 rounded-2xl border px-4 py-3 ${
+                  matchingRecipeCount > 0
+                    ? "border-green-200 bg-green-50"
+                    : "border-red-200 bg-red-50"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
+                      matchingRecipeCount > 0
+                        ? "bg-green-100 text-green-700"
+                        : "bg-red-100 text-red-600"
+                    }`}
+                  >
+                    {matchingRecipeCount > 0 ? "✓" : "!"}
+                  </div>
 
-                {saveStatus === "saved" && (
-                  <span className="inline-flex items-center rounded-full bg-green-50 px-3 py-1.5 text-sm font-semibold text-green-700">
-                    ✓ Your preferences are saved
-                  </span>
-                )}
+                  <div className="min-w-0 flex-1">
+                    {matchingRecipeCount > 0 ? (
+                      <p className="text-sm font-extrabold text-green-800 sm:text-base">
+                        {matchingRecipeCount}{" "}
+                        {matchingRecipeCount === 1
+                          ? "recipe matches"
+                          : "recipes match"}{" "}
+                        your requirements
+                      </p>
+                    ) : (
+                      <p className="text-sm font-extrabold text-red-700 sm:text-base">
+                        No recipes currently match your requirements
+                      </p>
+                    )}
 
-                {saveStatus === "error" && (
-                  <span className="inline-flex items-center rounded-full bg-red-50 px-3 py-1.5 text-sm font-semibold text-red-600">
-                    Unable to save your requirements. Please try again.
-                  </span>
-                )}
+                    {saveStatus === "error" ? (
+                      <p
+                        className={`mt-1 text-xs font-semibold ${
+                          matchingRecipeCount > 0
+                            ? "text-red-600"
+                            : "text-red-600"
+                        }`}
+                      >
+                        Unable to save your requirements. Please try again.
+                      </p>
+                    ) : (
+                      <p
+                        className={`mt-1 text-xs leading-5 ${
+                          matchingRecipeCount > 0
+                            ? "text-green-700"
+                            : "text-red-600"
+                        }`}
+                      >
+                        {matchingRecipeCount > 0
+                          ? "This number updates automatically when you change your dietary requirements."
+                          : "Try relaxing one or more of your selected limits."}
+                      </p>
+                    )}
 
-                {saveStatus === "idle" && (
-                  <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-600">
-                    Your preferences
-                  </span>
-                )}
+                    {saveStatus === "saving" && (
+                      <p className="mt-1 text-xs font-semibold text-[#0B3B75]">
+                        Saving your preferences…
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -224,6 +387,8 @@ export default function RequirementsPage() {
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
+
+                {/* SALT */}
                 <div className="rounded-2xl border border-blue-100 bg-blue-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -235,8 +400,8 @@ export default function RequirementsPage() {
                       </label>
 
                       <p className="mt-1 text-xs leading-5 text-slate-600">
-                        Choose the daily limit you want the planner to work
-                        with.
+                        Choose the maximum amount of salt you want to work with
+                        each day.
                       </p>
                     </div>
 
@@ -268,8 +433,14 @@ export default function RequirementsPage() {
                     <option value={2000}>5 g per day</option>
                     <option value={2400}>6 g per day</option>
                   </select>
+
+                  <p className="mt-2 text-xs leading-5 text-slate-500">
+                    RenalPlan uses one third of your daily limit as a practical
+                    guide when matching individual meals.
+                  </p>
                 </div>
 
+                {/* POTASSIUM */}
                 <div className="rounded-2xl border border-green-100 bg-green-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -302,13 +473,16 @@ export default function RequirementsPage() {
                     className="mt-4 min-h-11 w-full rounded-xl border border-green-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
                   >
                     <option>Any</option>
-                    <option value="Low">Low — under 400 mg per meal</option>
+                    <option value="Low">
+                      Low — under 400 mg per meal
+                    </option>
                     <option value="Moderate">
                       Moderate — 400–650 mg per meal
                     </option>
                   </select>
                 </div>
 
+                {/* PHOSPHATE */}
                 <div className="rounded-2xl border border-purple-100 bg-purple-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -341,11 +515,20 @@ export default function RequirementsPage() {
                     className="mt-4 min-h-11 w-full rounded-xl border border-purple-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100"
                   >
                     <option>Any</option>
-                    <option>Low</option>
-                    <option>Moderate</option>
+                    <option value="Low">
+                      Low — up to 250 mg per meal
+                    </option>
+                    <option value="Moderate">
+                      Moderate — 251–300 mg per meal
+                    </option>
                   </select>
+
+                  <p className="mt-2 text-xs leading-5 text-slate-500">
+                    Recipes above the Moderate band are classified as High.
+                  </p>
                 </div>
 
+                {/* PURINES */}
                 <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -385,25 +568,28 @@ export default function RequirementsPage() {
               </div>
             </div>
 
+            {/* CARBOHYDRATE */}
             <div className="mt-7">
               <div className="mb-4">
                 <h2 className="text-xl font-extrabold text-slate-900">
-                  Carbohydrate target
+                  Carbohydrate per meal
                 </h2>
 
                 <p className="mt-1 text-sm leading-6 text-slate-600">
-                  Set the range RenalPlan should use when selecting recipes.
+                  Set the carbohydrate range RenalPlan should use when selecting
+                  recipes. Each recipe represents one adult serving.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-blue-100 bg-blue-50/30 p-4 sm:p-5">
                 <div className="grid gap-4 sm:grid-cols-2">
+
                   <div>
                     <label
                       htmlFor="carbohydrate-min"
                       className="block text-sm font-bold text-slate-900"
                     >
-                      Minimum
+                      Minimum per meal
                     </label>
 
                     <div className="mt-2 flex items-center gap-2">
@@ -440,7 +626,7 @@ export default function RequirementsPage() {
                       htmlFor="carbohydrate-max"
                       className="block text-sm font-bold text-slate-900"
                     >
-                      Maximum
+                      Maximum per meal
                     </label>
 
                     <div className="mt-2 flex items-center gap-2">
@@ -471,6 +657,7 @@ export default function RequirementsPage() {
                       </span>
                     </div>
                   </div>
+
                 </div>
 
                 <div className="mt-5 rounded-xl border border-blue-100 bg-white/70 px-4 py-3">
@@ -482,6 +669,7 @@ export default function RequirementsPage() {
               </div>
             </div>
 
+            {/* DISCLAIMER */}
             <div className="mt-6 flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
               <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green-100 text-sm font-bold text-green-700">
                 ✓
@@ -494,6 +682,7 @@ export default function RequirementsPage() {
                 dietitian or healthcare team.
               </p>
             </div>
+
           </section>
         </div>
       </main>
@@ -501,12 +690,15 @@ export default function RequirementsPage() {
       {!isLoggedIn && (
         <div className="fixed inset-0 z-[40] flex items-center justify-center bg-white/10 px-4 backdrop-blur-[2px]">
           <section className="relative w-full max-w-7xl overflow-hidden rounded-3xl border border-slate-200 bg-transparent shadow-sm md:max-w-[1400px]">
+
             <div
               className="pointer-events-none select-none blur-[2px] opacity-55"
               aria-hidden="true"
             >
               <div className="p-4 sm:p-6">
+
                 <div className="h-8 w-56 rounded bg-slate-200" />
+
                 <div className="mt-3 h-4 w-80 max-w-full rounded bg-slate-100" />
 
                 <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -515,11 +707,14 @@ export default function RequirementsPage() {
                   <div className="h-56 rounded-2xl bg-purple-50" />
                   <div className="h-56 rounded-2xl bg-purple-50" />
                 </div>
+
               </div>
             </div>
 
             <div className="absolute inset-0 flex items-center justify-center bg-white/20 p-4">
+
               <div className="w-full max-w-md rounded-3xl bg-white/95 p-7 text-center shadow-2xl ring-1 ring-slate-200">
+
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-2xl">
                   🔒
                 </div>
@@ -535,6 +730,7 @@ export default function RequirementsPage() {
                 </p>
 
                 <div className="mt-6 grid grid-cols-2 gap-3">
+
                   <a
                     href="/auth/login"
                     className="rounded-2xl bg-[#0B3B75] px-4 py-3 text-center font-bold text-white transition hover:bg-[#082E5C]"
@@ -548,12 +744,15 @@ export default function RequirementsPage() {
                   >
                     Create account
                   </a>
+
                 </div>
 
                 <p className="mt-4 text-xs text-slate-500">
                   Your personalised settings are saved to your account.
                 </p>
+
               </div>
+
             </div>
           </section>
         </div>

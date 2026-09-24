@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/RecipeData";
-import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
+import {
+  getStoredRequirements,
+  recipeMatchesRequirements,
+  type Requirements,
+} from "@/lib/recipeRequirements";
 import { createClient } from "@/lib/supabase/client";
 
 export default function RecipesPage() {
@@ -98,8 +102,6 @@ export default function RecipesPage() {
         setSearchText("");
         setSortBy("default");
 
-        // Leave ?view=favourites in the URL. This is the explicit
-        // navigation state from My Account and must survive refreshes.
         setFiltersLoaded(true);
         return;
       }
@@ -315,6 +317,7 @@ export default function RecipesPage() {
 
   function getProteinType(recipe: (typeof recipes)[number]) {
     const category = recipe.category?.toLowerCase() ?? "";
+
     const ingredientText = recipe.ingredients
       .map((ingredient) => ingredient.item.toLowerCase())
       .join(" ");
@@ -335,11 +338,17 @@ export default function RecipesPage() {
       return "Fish";
     }
 
-    if (category === "pork" || ingredientText.includes("pork")) {
+    if (
+      category === "pork" ||
+      ingredientText.includes("pork")
+    ) {
       return "Pork";
     }
 
-    if (category === "beef" || ingredientText.includes("beef")) {
+    if (
+      category === "beef" ||
+      ingredientText.includes("beef")
+    ) {
       return "Beef";
     }
 
@@ -392,7 +401,8 @@ export default function RecipesPage() {
         getProteinType(recipe) === selectedProtein;
 
       const matchesFavourite =
-        !showFavourites || favouriteRecipeIds.includes(recipe.id);
+        !showFavourites ||
+        favouriteRecipeIds.includes(recipe.id);
 
       const matchesRequirements =
         recipeMatchesRequirements(
@@ -466,8 +476,6 @@ export default function RecipesPage() {
           );
 
         default: {
-          // Keep the recipe data order untouched, but make the
-          // default browse order feel natural: Breakfast → Lunch → Dinner.
           const mealOrder: Record<string, number> = {
             Breakfast: 1,
             Lunch: 2,
@@ -483,7 +491,10 @@ export default function RecipesPage() {
       }
     });
 
-  function handleFavouriteChange(recipeId: string, isFavourite: boolean) {
+  function handleFavouriteChange(
+    recipeId: string,
+    isFavourite: boolean
+  ) {
     setFavouriteRecipeIds((current) => {
       if (isFavourite) {
         return current.includes(recipeId)
@@ -497,80 +508,346 @@ export default function RecipesPage() {
 
   const searchDisplay = searchText.trim();
 
+  // Live count of recipes that match the user's My Diet requirements.
+  // This deliberately ignores search/filter controls so the green bar
+  // always tells the user how many recipes are available for their diet.
+  const requirementsMatchedRecipes = recipes.filter((recipe) =>
+    recipeMatchesRequirements(recipe, requirements)
+  );
+
+  const requirementsMatchCount =
+    requirementsMatchedRecipes.length;
+
+  const mealTypeCounts = {
+    All: requirementsMatchCount,
+    Breakfast: requirementsMatchedRecipes.filter(
+      (recipe) => getMealType(recipe) === "Breakfast"
+    ).length,
+    Lunch: requirementsMatchedRecipes.filter(
+      (recipe) => getMealType(recipe) === "Lunch"
+    ).length,
+    Dinner: requirementsMatchedRecipes.filter(
+      (recipe) => getMealType(recipe) === "Dinner"
+    ).length,
+  };
+
   let helperText = "";
-
-  const requirementsText =
-    requirements
-      ? " • Requirements applied"
-      : "";
-
-  const favouritesText =
-    showFavourites
-      ? " • Favourites"
-      : "";
 
   if (searchDisplay) {
     helperText = `${filteredRecipes.length} recipe${
       filteredRecipes.length === 1 ? "" : "s"
-    } matching "${searchDisplay}"${requirementsText}${favouritesText}`;
-  } else if (
-    selectedMealType !== "All" &&
-    selectedProtein !== "All"
-  ) {
-    helperText = `${filteredRecipes.length} ${selectedMealType.toLowerCase()} ${
-      selectedProtein.toLowerCase()
-    } recipe${filteredRecipes.length === 1 ? "" : "s"}${requirementsText}${favouritesText}`;
-  } else if (selectedMealType !== "All") {
-    helperText = `${filteredRecipes.length} ${selectedMealType.toLowerCase()} recipe${
-      filteredRecipes.length === 1 ? "" : "s"
-    }${requirementsText}${favouritesText}`;
+    } matching "${searchDisplay}"`;
   } else if (selectedProtein !== "All") {
     helperText = `${filteredRecipes.length} ${selectedProtein.toLowerCase()} recipe${
       filteredRecipes.length === 1 ? "" : "s"
-    }${requirementsText}${favouritesText}`;
+    }`;
   } else {
-    helperText = `${filteredRecipes.length} recipes${requirementsText}${favouritesText}`;
+    helperText = `${filteredRecipes.length} recipe${
+      filteredRecipes.length === 1 ? "" : "s"
+    }`;
+  }
+
+  function handleMealTypeChange(mealType: string) {
+    setSelectedMealType(mealType);
+    setShowFavourites(false);
+  }
+
+  function handleFavouriteToggle() {
+    if (!isLoggedIn) return;
+
+    setShowFavourites((current) => !current);
+    setSelectedMealType("All");
+    setSelectedProtein("All");
+    setSearchText("");
+    setSortBy("default");
   }
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 px-4 py-5 md:px-6 md:py-6">
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
 
-        {/* Search and filters */}
-        <div className="mb-4">
+        {/* =====================================================
+            DESKTOP SEARCH / FILTER CONTROLS
+            ===================================================== */}
+        <div className="mb-4 hidden md:block">
+          <div className="flex flex-row items-center gap-3">
 
-          <div className="flex items-center justify-between gap-4">
-
-            {/* Search & Sort */}
-            <div className="flex items-center gap-3">
-              <div
-                ref={filterRef}
-                className="relative"
+            {/* Expanded search */}
+            <div className="relative min-w-0 flex-1">
+              <span
+                className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-slate-700"
+                aria-hidden="true"
               >
+                ⌕
+              </span>
 
+              <input
+                type="text"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="Search recipes..."
+                aria-label="Search recipes"
+                className="h-14 w-full rounded-xl border border-blue-200 bg-white pl-12 pr-4 text-base text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+              />
+            </div>
+
+            {/* Filters & Sort */}
+            <div ref={filterRef} className="relative shrink-0">
               <button
                 type="button"
                 onClick={() =>
                   setShowFilters((current) => !current)
                 }
-                className="rounded-lg border border-gray-300 bg-white px-5 py-3 font-semibold shadow-sm hover:bg-gray-50 transition flex items-center justify-center gap-2"
+                className="flex h-14 w-[210px] items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-5 font-semibold text-slate-900 shadow-sm transition hover:bg-blue-50"
               >
-                🔎 Search & Sort
+                <span aria-hidden="true">☷</span>
+                Filters &amp; Sort
+                <span
+                  className="text-sm"
+                  aria-hidden="true"
+                >
+                  {showFilters ? "▲" : "▼"}
+                </span>
+              </button>
 
+              {showFilters && (
+                <div className="absolute left-0 top-full z-30 mt-3 w-[min(900px,calc(100vw-2rem))] rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+
+                    {/* Meal type */}
+                    <div>
+                      <label className="mb-2 block font-semibold text-slate-800">
+                        Meal type
+                      </label>
+
+                      <select
+                        value={selectedMealType}
+                        onChange={(e) =>
+                          setSelectedMealType(e.target.value)
+                        }
+                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                      >
+                        {mealTypes.map((mealType) => (
+                          <option
+                            key={mealType}
+                            value={mealType}
+                          >
+                            {mealTypeIcons[mealType]} {mealType}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Protein */}
+                    <div>
+                      <label className="mb-2 block font-semibold text-slate-800">
+                        Protein
+                      </label>
+
+                      <select
+                        value={selectedProtein}
+                        onChange={(e) =>
+                          setSelectedProtein(e.target.value)
+                        }
+                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                      >
+                        {proteins.map((protein) => (
+                          <option
+                            key={protein}
+                            value={protein}
+                          >
+                            {proteinIcons[protein]} {protein}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Favourites */}
+                    <div>
+                      <label className="mb-2 block font-semibold text-slate-800">
+                        Show
+                      </label>
+
+                      <select
+                        value={
+                          showFavourites
+                            ? "Favourites"
+                            : "All"
+                        }
+                        onChange={(e) => {
+                          if (!isLoggedIn) return;
+
+                          setShowFavourites(
+                            e.target.value === "Favourites"
+                          );
+                        }}
+                        disabled={
+                          !isLoggedIn || !favouritesLoaded
+                        }
+                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        <option value="All">
+                          All recipes
+                        </option>
+
+                        <option value="Favourites">
+                          My favourites
+                        </option>
+                      </select>
+                    </div>
+
+                    {/* Sort */}
+                    <div className="md:col-span-3">
+                      <label className="mb-2 block font-semibold text-slate-800">
+                        Sort by
+                      </label>
+
+                      <select
+                        value={sortBy}
+                        onChange={(e) =>
+                          setSortBy(e.target.value)
+                        }
+                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                      >
+                        <option value="default">
+                          Recommended
+                        </option>
+
+                        <option value="time-asc">
+                          Cooking time — shortest first
+                        </option>
+
+                        <option value="time-desc">
+                          Cooking time — longest first
+                        </option>
+
+                        <option value="calories-asc">
+                          Calories — lowest first
+                        </option>
+
+                        <option value="calories-desc">
+                          Calories — highest first
+                        </option>
+
+                        <option value="potassium-asc">
+                          Potassium — lowest first
+                        </option>
+
+                        <option value="phosphate-asc">
+                          Phosphate — lowest first
+                        </option>
+
+                        <option value="purines-asc">
+                          Purines — lowest first
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-between">
+                    {(
+                      searchText ||
+                      selectedMealType !== "All" ||
+                      selectedProtein !== "All" ||
+                      showFavourites ||
+                      sortBy !== "default"
+                    ) ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSearchText("");
+                          setSelectedMealType("All");
+                          setSelectedProtein("All");
+                          setShowFavourites(false);
+                          setSortBy("default");
+
+                          try {
+                            sessionStorage.removeItem(
+                              "recipes-filters"
+                            );
+                          } catch {
+                            // Ignore storage errors.
+                          }
+                        }}
+                        className="text-sm font-semibold text-blue-600 hover:text-blue-800"
+                      >
+                        Clear filters
+                      </button>
+                    ) : (
+                      <div />
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowFilters(false)
+                      }
+                      className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-200"
+                    >
+                      Done
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* My Favourites */}
+            <button
+              type="button"
+              onClick={handleFavouriteToggle}
+              disabled={
+                !isLoggedIn || !favouritesLoaded
+              }
+              className={`flex h-14 w-[215px] shrink-0 items-center justify-center gap-2 rounded-xl border px-5 font-semibold shadow-sm transition ${
+                showFavourites
+                  ? "border-red-500 bg-red-500 text-white"
+                  : "border-orange-300 bg-white text-orange-600 hover:bg-orange-50"
+              } ${
+                !isLoggedIn || !favouritesLoaded
+                  ? "cursor-not-allowed opacity-60"
+                  : ""
+              }`}
+            >
+              <span className="text-2xl leading-none">
+                ♥
+              </span>
+              My Favourites
+            </button>
+          </div>
+        </div>
+
+        {/* =====================================================
+            MOBILE SEARCH / FILTER CONTROLS
+            RESTORED TO THE PREVIOUS MOBILE LAYOUT
+            ===================================================== */}
+        <div className="mb-4 md:hidden">
+          <div className="flex items-center gap-3">
+
+            <div
+              ref={filterRef}
+              className="relative shrink-0"
+            >
+              <button
+                type="button"
+                onClick={() =>
+                  setShowFilters((current) => !current)
+                }
+                className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-3 font-semibold shadow-sm transition hover:bg-gray-50"
+              >
+                🔎 Search &amp; Sort
                 <span className="text-sm">
                   {showFilters ? "▲" : "▼"}
                 </span>
               </button>
 
               {showFilters && (
-                <div className="relative mt-4 md:absolute md:left-0 md:top-full md:z-20 md:mt-4 md:w-[min(900px,calc(100vw-3rem))] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
+                <div className="absolute left-0 top-full z-30 mt-4 w-[calc(100vw-2rem)] max-w-[500px] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
 
-                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-4">
 
                     {/* Search */}
                     <div>
-
-                      <label className="block mb-2 font-semibold text-gray-800">
+                      <label className="mb-2 block font-semibold text-gray-800">
                         Search
                       </label>
 
@@ -583,13 +860,11 @@ export default function RecipesPage() {
                         }
                         className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
-
                     </div>
 
                     {/* Meal type */}
                     <div>
-
-                      <label className="block mb-2 font-semibold text-gray-800">
+                      <label className="mb-2 block font-semibold text-gray-800">
                         Meal type
                       </label>
 
@@ -609,13 +884,11 @@ export default function RecipesPage() {
                           </option>
                         ))}
                       </select>
-
                     </div>
 
                     {/* Protein */}
                     <div>
-
-                      <label className="block mb-2 font-semibold text-gray-800">
+                      <label className="mb-2 block font-semibold text-gray-800">
                         Protein
                       </label>
 
@@ -635,41 +908,47 @@ export default function RecipesPage() {
                           </option>
                         ))}
                       </select>
-
                     </div>
 
                     {/* Favourites */}
                     <div>
-
-                      <label className="block mb-2 font-semibold text-gray-800">
+                      <label className="mb-2 block font-semibold text-gray-800">
                         Show
                       </label>
 
                       <select
-                        value={showFavourites ? "Favourites" : "All"}
+                        value={
+                          showFavourites
+                            ? "Favourites"
+                            : "All"
+                        }
                         onChange={(e) => {
                           if (!isLoggedIn) return;
+
                           setShowFavourites(
-                            e.target.value === "Favourites"
+                            e.target.value ===
+                              "Favourites"
                           );
                         }}
-                        disabled={!isLoggedIn || !favouritesLoaded}
-                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        disabled={
+                          !isLoggedIn ||
+                          !favouritesLoaded
+                        }
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         <option value="All">
                           🍽️ All recipes
                         </option>
-                        <option value="Favourites">
-                          ⭐ Favourites
-                        </option>
-                      </select>
 
+                        <option value="Favourites">
+  ♥ Favourites
+</option>
+                      </select>
                     </div>
 
                     {/* Sort */}
-                    <div className="md:col-span-2">
-
-                      <label className="block mb-2 font-semibold text-gray-800">
+                    <div>
+                      <label className="mb-2 block font-semibold text-gray-800">
                         Sort by
                       </label>
 
@@ -712,18 +991,18 @@ export default function RecipesPage() {
                           🍖 Purines — lowest first
                         </option>
                       </select>
-
                     </div>
-
                   </div>
 
                   <div className="mt-4 flex items-center justify-between">
 
-                    {(searchText ||
+                    {(
+                      searchText ||
                       selectedMealType !== "All" ||
                       selectedProtein !== "All" ||
                       showFavourites ||
-                      sortBy !== "default") ? (
+                      sortBy !== "default"
+                    ) ? (
                       <button
                         type="button"
                         onClick={() => {
@@ -751,56 +1030,108 @@ export default function RecipesPage() {
 
                     <button
                       type="button"
-                      onClick={() => setShowFilters(false)}
-                      className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-lg text-sm text-black"
+                      onClick={() =>
+                        setShowFilters(false)
+                      }
+                      className="rounded-lg bg-gray-300 px-4 py-2 text-sm text-black hover:bg-gray-400"
                     >
                       Done
                     </button>
-
                   </div>
-
                 </div>
               )}
-
-              </div>
-
-              <button
-                type="button"
-                onClick={() => {
-                  if (!isLoggedIn) return;
-                  setShowFavourites((current) => !current);
-                  setSelectedMealType("All");
-                  setSelectedProtein("All");
-                  setSearchText("");
-                  setSortBy("default");
-                }}
-                disabled={!isLoggedIn || !favouritesLoaded}
-                className={`rounded-lg border px-5 py-3 font-semibold shadow-sm transition flex items-center justify-center gap-2 ${
-                  showFavourites
-                    ? "border-orange-500 bg-orange-500 text-white hover:bg-orange-600"
-                    : "border-orange-300 bg-orange-50 text-orange-600 hover:bg-orange-100"
-                } ${
-                  !isLoggedIn || !favouritesLoaded
-                    ? "cursor-not-allowed opacity-60"
-                    : ""
-                }`}
-              >
-                ⭐ My Favourites
-              </button>
             </div>
 
+            {/* Mobile favourites */}
+            <button
+              type="button"
+              onClick={handleFavouriteToggle}
+              disabled={
+                !isLoggedIn || !favouritesLoaded
+              }
+              aria-label={showFavourites ? "Show all recipes" : "Show my favourites"}
+              title={showFavourites ? "Show all recipes" : "Show my favourites"}
+              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border text-xl shadow-sm transition ${
+                showFavourites
+                  ? "border-red-500 bg-red-500 text-white"
+                  : "border-orange-300 bg-orange-50 text-orange-600 hover:bg-orange-100"
+              } ${
+                !isLoggedIn || !favouritesLoaded
+                  ? "cursor-not-allowed opacity-60"
+                  : ""
+              }`}
+            >
+              <span className="leading-none" aria-hidden="true">
+                {showFavourites ? "♥" : "♡"}
+              </span>
+            </button>
           </div>
 
+          {/* Mobile helper text */}
           <p className="mt-4 text-sm text-slate-500">
             {helperText}
           </p>
-
         </div>
 
-        {/* Recipes */}
-        {filteredRecipes.length > 0 ? (
-          <div className="grid gap-4 lg:grid-cols-3 xl:grid-cols-4">
+        {/* =====================================================
+            DESKTOP REQUIREMENTS BAR
+            ===================================================== */}
+        <div className="mb-4 hidden rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 md:flex md:items-center md:justify-between md:gap-4 md:px-5">
 
+          {/* Requirement count */}
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-green-600 text-2xl font-bold text-white shadow-sm">
+              ✓
+            </div>
+
+            <div className="min-w-0">
+              <div className="font-bold text-green-700">
+                {requirementsMatchCount} recipes match your requirements
+              </div>
+
+              <div className="text-sm text-slate-500">
+                Showing recipes based on your My Diet settings. Adjust your requirements to see more recipes.
+              </div>
+            </div>
+          </div>
+
+          {/* Meal type quick filters */}
+          <div className="flex shrink-0 items-center gap-2">
+            {mealTypes.map((mealType) => {
+              const active =
+                selectedMealType === mealType;
+
+              return (
+                <button
+                  key={mealType}
+                  type="button"
+                  onClick={() =>
+                    handleMealTypeChange(mealType)
+                  }
+                  className={`rounded-xl border px-4 py-2.5 text-sm font-semibold whitespace-nowrap transition ${
+                    active
+                      ? "border-green-700 bg-green-700 text-white shadow-sm"
+                      : "border-blue-200 bg-white text-slate-800 hover:bg-blue-50"
+                  }`}
+                >
+                  {mealType} (
+                  {
+                    mealTypeCounts[
+                      mealType as keyof typeof mealTypeCounts
+                    ]
+                  }
+                  )
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* =====================================================
+            RECIPES
+            ===================================================== */}
+        {filteredRecipes.length > 0 ? (
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {filteredRecipes.map((recipe) => (
               <RecipeCard
                 key={recipe.id}
@@ -810,12 +1141,10 @@ export default function RecipesPage() {
                 onFavouriteChange={handleFavouriteChange}
               />
             ))}
-
           </div>
         ) : (
           <div className="py-16 text-center">
-
-            <div className="text-5xl mb-4">
+            <div className="mb-4 text-5xl">
               😕
             </div>
 
@@ -826,15 +1155,9 @@ export default function RecipesPage() {
             <p className="mt-3 text-slate-500">
               Try changing your search or filters.
             </p>
-
           </div>
         )}
-
       </div>
     </main>
   );
 }
-
-
-
-

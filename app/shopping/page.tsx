@@ -2122,6 +2122,29 @@ export default function ShoppingPage() {
     (_, index) => index % 3 === 2
   );
 
+  function CategoryIcon({ category }: { category: string }) {
+    const iconClass = "text-xl leading-none shrink-0";
+
+    switch (category) {
+      case "🥩 Meat & Fish":
+        return <span className={iconClass} aria-hidden="true">🥩</span>;
+      case "🥕 Fruit & Vegetables":
+        return <span className={iconClass} aria-hidden="true">🥕</span>;
+      case "🥫 Cupboard":
+        return <span className={iconClass} aria-hidden="true">🥫</span>;
+      case "❄️ Frozen":
+        return <span className={iconClass} aria-hidden="true">❄️</span>;
+      case "🍞 Bakery":
+        return <span className={iconClass} aria-hidden="true">🍞</span>;
+      case "🧊 Chilled":
+        return <span className={iconClass} aria-hidden="true">🧊</span>;
+      case "🧂 Herbs & Spices":
+        return <span className={iconClass} aria-hidden="true">🧂</span>;
+      default:
+        return <span className={iconClass} aria-hidden="true">📦</span>;
+    }
+  }
+
   function renderCategoryGroup(group: {
     category: string;
     items: ShoppingItem[];
@@ -2138,7 +2161,7 @@ export default function ShoppingPage() {
           className={`flex items-center justify-between border-b px-4 py-3 ${styles.header}`}
         >
           <h3 className="flex items-center gap-2 text-base font-bold text-slate-900">
-            <span>{group.category.split(" ")[0]}</span>
+            <CategoryIcon category={group.category} />
             <span>{categoryName}</span>
           </h3>
           <span
@@ -2200,10 +2223,10 @@ export default function ShoppingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-sky-50 px-3 py-5 sm:px-4 md:px-6 md:py-6">
+    <main className="min-h-screen bg-white px-2.5 py-3 sm:px-4 sm:py-5 md:px-6 md:py-6">
       <div className="mx-auto max-w-[1500px]">
         <div className="overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-sm md:rounded-3xl">
-          <div className="border-b border-emerald-100 bg-gradient-to-r from-emerald-50 via-white to-emerald-50 px-4 py-4 sm:px-6 md:px-8 md:py-5">
+          <div className="border-b border-emerald-100 bg-gradient-to-r from-emerald-50 via-white to-emerald-50 px-3 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5">
             {shoppingList.length === 0 ? (
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="text-sm text-slate-600">
@@ -2226,47 +2249,58 @@ export default function ShoppingPage() {
               </div>
             ) : (
               <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-                <div className="grid w-full grid-cols-3 items-stretch gap-0 rounded-2xl border border-emerald-100 bg-white/80 px-1 py-2 shadow-sm sm:flex sm:w-auto sm:px-3">
-                  <div className="flex min-w-0 items-center justify-center gap-2 px-1 py-1 sm:min-w-[120px] sm:justify-start sm:gap-3 sm:px-3">
-                    <span className="text-2xl" aria-hidden="true">🛒</span>
-                    <div className="min-w-0 whitespace-nowrap">
-                      <div className="text-2xl font-bold leading-none text-slate-900">{shoppingList.length}</div>
-                      <div className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">items</div>
+                <div className="grid w-full grid-cols-3 items-stretch rounded-2xl border border-emerald-100 bg-white/90 px-1 py-2.5 shadow-sm sm:flex sm:w-auto sm:px-3 sm:py-2">
+                  <div className="flex min-w-0 flex-col items-center justify-center gap-1 border-r border-emerald-100 px-1 py-1 sm:min-w-[120px] sm:flex-row sm:justify-start sm:gap-3 sm:border-r-0 sm:px-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-emerald-600 sm:h-7 sm:w-7" aria-hidden="true">
+                      <path d="M3 5h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6" />
+                      <circle cx="10" cy="20" r="1" />
+                      <circle cx="18" cy="20" r="1" />
+                    </svg>
+                    <div className="min-w-0 text-center whitespace-nowrap sm:text-left">
+                      <div className="text-xl font-bold leading-none text-slate-900 sm:text-2xl">{shoppingList.length}</div>
+                      <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500 sm:mt-1 sm:text-xs">items</div>
                     </div>
                   </div>
 
-                  <div className="hidden h-10 w-px bg-emerald-100 sm:block" />
-
-                  <div className="flex min-w-0 items-center justify-center gap-2 px-1 py-1 sm:min-w-[120px] sm:justify-start sm:gap-3 sm:px-3">
-                    <span className="text-2xl" aria-hidden="true">🍴</span>
-                    <div className="min-w-0 whitespace-nowrap">
-                      <div className="text-2xl font-bold leading-none text-slate-900">{selectedRecipes.length}</div>
-                      <div className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">meals</div>
+                  <div className="flex min-w-0 flex-col items-center justify-center gap-1 border-r border-emerald-100 px-1 py-1 sm:min-w-[120px] sm:flex-row sm:justify-start sm:gap-3 sm:border-r-0 sm:px-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-emerald-600 sm:h-7 sm:w-7" aria-hidden="true">
+                      <path d="M7 3v7" />
+                      <path d="M4 3v4a3 3 0 0 0 6 0V3" />
+                      <path d="M7 10v11" />
+                      <path d="M15 3v18" />
+                      <path d="M15 3c3 2 4 4.3 4 7h-4" />
+                    </svg>
+                    <div className="min-w-0 text-center whitespace-nowrap sm:text-left">
+                      <div className="text-xl font-bold leading-none text-slate-900 sm:text-2xl">{selectedRecipes.length}</div>
+                      <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500 sm:mt-1 sm:text-xs">meals</div>
                     </div>
                   </div>
 
-                  <div className="hidden h-10 w-px bg-emerald-100 sm:block" />
-
-                  <div className="flex min-w-0 items-center justify-center gap-2 px-1 py-1 sm:min-w-[120px] sm:justify-start sm:gap-3 sm:px-3">
-                    <span className="text-2xl" aria-hidden="true">👥</span>
-                    <div className="min-w-0 whitespace-nowrap">
-                      <div className="text-2xl font-bold leading-none text-slate-900">{people}</div>
-                      <div className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">
+                  <div className="flex min-w-0 flex-col items-center justify-center gap-1 px-1 py-1 sm:min-w-[120px] sm:flex-row sm:justify-start sm:gap-3 sm:px-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-blue-600 sm:h-7 sm:w-7" aria-hidden="true">
+                      <circle cx="9" cy="8" r="3" />
+                      <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                      <circle cx="17" cy="9" r="2.5" />
+                      <path d="M15.5 14.5A5.5 5.5 0 0 1 21 20" />
+                    </svg>
+                    <div className="min-w-0 text-center whitespace-nowrap sm:text-left">
+                      <div className="text-xl font-bold leading-none text-slate-900 sm:text-2xl">{people}</div>
+                      <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500 sm:mt-1 sm:text-xs">
                         {people === 1 ? "person" : "people"}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
-                  <div className="flex items-center gap-3">
+                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-end">
+                  <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-start">
                     <label className="whitespace-nowrap text-sm font-semibold text-slate-700">
                       Cooking for:
                     </label>
                     <select
                       value={people}
                       onChange={(e) => updateHouseholdPeople(Number(e.target.value))}
-                      className="min-w-[145px] rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-slate-700 shadow-sm outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+                      className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-slate-700 shadow-sm outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 sm:min-w-[145px] sm:flex-none"
                     >
                       {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                         <option key={n} value={n}>
@@ -2278,9 +2312,16 @@ export default function ShoppingPage() {
 
                   <button
                     onClick={uncheckAll}
-                    className="whitespace-nowrap rounded-xl border-2 border-orange-500 bg-white px-5 py-2.5 text-sm font-bold text-orange-600 shadow-sm transition hover:bg-orange-50 active:scale-[0.99]"
+                    className="w-full whitespace-nowrap rounded-xl border-2 border-orange-500 bg-white px-5 py-3 text-sm font-bold text-orange-600 shadow-sm transition hover:bg-orange-50 active:scale-[0.99] sm:w-auto sm:py-2.5"
                   >
-                    🗑️ Clear Checked
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5 inline-block h-5 w-5 align-[-4px]" aria-hidden="true">
+                      <path d="M4 7h16" />
+                      <path d="M10 11v6" />
+                      <path d="M14 11v6" />
+                      <path d="M6 7l1 13h10l1-13" />
+                      <path d="M9 7V4h6v3" />
+                    </svg>
+                    Clear Checked
                   </button>
                 </div>
               </div>
@@ -2289,7 +2330,13 @@ export default function ShoppingPage() {
 
           {shoppingList.length === 0 ? (
             <div className="px-6 py-16 text-center">
-              <div className="mb-4 text-5xl">🛒</div>
+              <div className="mb-4 flex justify-center text-emerald-600">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-14 w-14" aria-hidden="true">
+                  <path d="M3 5h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6" />
+                  <circle cx="10" cy="20" r="1" />
+                  <circle cx="18" cy="20" r="1" />
+                </svg>
+              </div>
               <h2 className="text-xl font-semibold text-slate-900">
                 Your shopping list is empty
               </h2>

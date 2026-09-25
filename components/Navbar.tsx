@@ -24,7 +24,8 @@ function PageIcon({
     | "recipes"
     | "planner"
     | "shopping"
-    | "nutrition";
+    | "nutrition"
+    | "foodcheck";
 }) {
   const colour =
     type === "requirements"
@@ -77,6 +78,14 @@ function PageIcon({
           <path d="M12 35V22h6v13" />
           <path d="M21 35V13h6v22" />
           <path d="M30 35V18h6v17" />
+        </>
+      )}
+
+      {type === "foodcheck" && (
+        <>
+          <circle cx="21" cy="21" r="10" />
+          <path d="m28.5 28.5 9 9" />
+          <path d="M17 21h8M21 17v8" />
         </>
       )}
 
@@ -138,7 +147,8 @@ export default function Navbar() {
       | "recipes"
       | "planner"
       | "shopping"
-      | "nutrition";
+      | "nutrition"
+    | "foodcheck";
     title: string;
     subtitle: string;
   } | null =
@@ -162,6 +172,13 @@ export default function Navbar() {
               subtitle:
                 "Nutritional details of your plan.",
             }
+          : pathname.startsWith("/FoodCheck")
+            ? {
+                icon: "foodcheck",
+                title: "Food Check",
+                subtitle:
+                  "Check nutritional information.",
+              }
           : pathname.startsWith("/shopping")
             ? {
                 icon: "shopping",
@@ -203,6 +220,11 @@ export default function Navbar() {
       href: "/nutrition",
       label: "Nutrition",
       active: pathname.startsWith("/nutrition"),
+    },
+    {
+      href: "/FoodCheck",
+      label: "Food Check",
+      active: pathname.startsWith("/FoodCheck"),
     },
     {
       href: "/shopping",

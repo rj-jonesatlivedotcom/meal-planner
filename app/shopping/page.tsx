@@ -362,6 +362,45 @@ function normaliseUnit(unit: string): string {
     sprig: "sprig",
     sprigs: "sprig",
     cloves: "clove",
+
+    // Practical whole-produce units.  These are normalised to the
+    // singular ingredient name so the quantity is displayed on its own
+    // (e.g. "1½", not "1½ green peppers") because the item name is
+    // already shown in the shopping-list item column.
+    onion: "onion",
+    onions: "onion",
+    cabbage: "cabbage",
+    cabbages: "cabbage",
+    carrot: "carrot",
+    carrots: "carrot",
+    tomato: "tomato",
+    tomatoes: "tomato",
+    leek: "leek",
+    leeks: "leek",
+    mushroom: "mushroom",
+    mushrooms: "mushroom",
+    courgette: "courgette",
+    courgettes: "courgette",
+    cucumber: "cucumber",
+    cucumbers: "cucumber",
+    apple: "apple",
+    apples: "apple",
+    pear: "pear",
+    pears: "pear",
+    "green pepper": "green pepper",
+    "green peppers": "green pepper",
+    "red pepper": "red pepper",
+    "red peppers": "red pepper",
+    "yellow pepper": "yellow pepper",
+    "yellow peppers": "yellow pepper",
+    "red onion": "red onion",
+    "red onions": "red onion",
+    "green chilli": "green chilli",
+    "green chillies": "green chilli",
+    "red chilli": "red chilli",
+    "red chillies": "red chilli",
+    potato: "potato",
+    potatoes: "potato",
   };
 
   return map[u] ?? u;
@@ -1146,6 +1185,13 @@ function normaliseShoppingQuantity(
   }
 
   if (ML_ITEMS.has(lower) || lower.includes("oil") || lower.includes("syrup")) {
+    // Oils are stored in the recipe data as weight for nutrition, but the
+    // shopping list should present them as a liquid volume. For olive oil
+    // (and other oils handled here), keep the shopping display in ml.
+    if (parsed.unit === "g") {
+      return formatQuantity(parsed.amount, "ml");
+    }
+
     const ml = quantityToMl(parsed);
     if (ml !== null) return formatQuantity(ml, "ml");
   }

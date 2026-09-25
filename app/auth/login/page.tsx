@@ -15,7 +15,6 @@ export default function LoginPage() {
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     setError("");
     setLoading(true);
 
@@ -38,23 +37,14 @@ export default function LoginPage() {
     <main className="min-h-screen bg-gray-50 px-4 py-8">
       <div className="mx-auto w-full max-w-md">
         <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <h1 className="text-center text-2xl font-bold text-gray-900">
-            RenalPlan
-          </h1>
-
-          <p className="mt-2 text-center text-gray-600">
-            Log in to your account
-          </p>
+          <h1 className="text-center text-2xl font-bold text-gray-900">RenalPlan</h1>
+          <p className="mt-2 text-center text-gray-600">Log in to your account</p>
 
           <form onSubmit={handleLogin} className="mt-8 space-y-5">
             <div>
-              <label
-                htmlFor="email"
-                className="mb-2 block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
                 Email
               </label>
-
               <input
                 id="email"
                 name="email"
@@ -69,12 +59,18 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label
-                htmlFor="password"
-                className="mb-2 block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label>
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <button
+                  type="button"
+                  onClick={() => router.push("/forgot-password")}
+                  className="text-sm font-semibold text-orange-600 hover:text-orange-700"
+                >
+                  Forgot password?
+                </button>
+              </div>
 
               <input
                 id="password"
@@ -90,9 +86,7 @@ export default function LoginPage() {
             </div>
 
             {error && (
-              <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
-                {error}
-              </div>
+              <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>
             )}
 
             <button
@@ -105,10 +99,7 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
-              Don't have an account?
-            </p>
-
+            <p className="text-sm text-gray-600">Don't have an account?</p>
             <button
               type="button"
               onClick={() => router.push("/signup")}
@@ -122,7 +113,3 @@ export default function LoginPage() {
     </main>
   );
 }
-
-
-
-

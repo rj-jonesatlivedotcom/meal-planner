@@ -10,6 +10,8 @@ export default function AccountPage() {
 
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(true);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
 
   useEffect(() => {
     const supabase = createClient();
@@ -38,6 +40,75 @@ export default function AccountPage() {
 
     router.push("/");
     router.refresh();
+  }
+
+  async function handleDeleteAccount() {
+    if (deleting) return;
+
+    setDeleteError("");
+
+    const confirmed = window.confirm(
+      "Are you sure you want to permanently delete your RenalPlan account?\n\nYour account and associated personal data will be deleted. This cannot be undone."
+    );
+
+    if (!confirmed) return;
+
+    const finalConfirmed = window.confirm(
+      "This is your final confirmation.\n\nDelete your RenalPlan account permanently?"
+    );
+
+    if (!finalConfirmed) return;
+
+    setDeleting(true);
+
+    try {
+      const supabase = createClient();
+
+      // Get the current authenticated session.
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession();
+
+      if (sessionError || !session?.access_token) {
+        throw new Error(
+          "You must be signed in to delete your account."
+        );
+      }
+
+      // Send the user's access token to the server.
+      const response = await fetch("/api/account/delete", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          result?.error || "Unable to delete your account."
+        );
+      }
+
+      // Account has been deleted successfully.
+      await supabase.auth.signOut();
+
+      router.replace("/");
+      router.refresh();
+    } catch (error) {
+      console.error("Account deletion error:", error);
+
+      setDeleteError(
+        error instanceof Error
+          ? error.message
+          : "Unable to delete your account. Please try again."
+      );
+
+      setDeleting(false);
+    }
   }
 
   if (loading) {
@@ -111,13 +182,7 @@ export default function AccountPage() {
                     className="h-6 w-6"
                     aria-hidden="true"
                   >
-                    <rect
-                      x="5"
-                      y="10"
-                      width="14"
-                      height="10"
-                      rx="2"
-                    />
+                    <rect x="5" y="10" width="14" height="10" rx="2" />
                     <path d="M8 10V7a4 4 0 0 1 8 0v3" />
                     <path d="M12 14v2" />
                   </svg>
@@ -178,12 +243,9 @@ export default function AccountPage() {
               {/* DELETE ACCOUNT */}
               <button
                 type="button"
-                onClick={() => {
-                  alert(
-                    "Account deletion will be available here once the secure account deletion process has been connected."
-                  );
-                }}
-                className="group flex w-full items-center gap-4 border-t border-slate-200 px-5 py-4 text-left transition hover:bg-red-50 sm:px-6"
+                onClick={handleDeleteAccount}
+                disabled={deleting}
+                className="group flex w-full items-center gap-4 border-t border-slate-200 px-5 py-4 text-left transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60 sm:px-6"
               >
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600">
                   <svg
@@ -206,7 +268,7 @@ export default function AccountPage() {
 
                 <div className="min-w-0 flex-1">
                   <p className="text-base text-red-600 sm:text-lg">
-                    Delete account
+                    {deleting ? "Deleting account..." : "Delete account"}
                   </p>
 
                   <p className="mt-0.5 text-sm leading-5 text-slate-600 sm:text-base">
@@ -220,6 +282,12 @@ export default function AccountPage() {
                 </span>
               </button>
             </div>
+
+            {deleteError && (
+              <div className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                {deleteError}
+              </div>
+            )}
           </section>
 
           {/* RIGHT COLUMN — MY RENALPLAN */}

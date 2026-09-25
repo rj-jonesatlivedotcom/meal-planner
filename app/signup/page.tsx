@@ -6,66 +6,74 @@ import { createClient } from "@/lib/supabase/client";
 
 export default function SignupPage() {
   const router = useRouter();
+  const supabase = createClient();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [existingAccount, setExistingAccount] = useState(false);
   const [loading, setLoading] = useState(false);
 
   async function handleSignup(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     setError("");
     setMessage("");
+    setExistingAccount(false);
     setLoading(true);
-
-    const supabase = createClient();
 
     const redirectUrl = `${window.location.origin}/auth/callback`;
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        emailRedirectTo: redirectUrl,
-      },
+      options: { emailRedirectTo: redirectUrl },
     });
 
     if (error) {
-      setError(error.message);
+      const text = error.message.toLowerCase();
+
+      if (
+        text.includes("already registered") ||
+        text.includes("already exists") ||
+        text.includes("user already")
+      ) {
+        setExistingAccount(true);
+        setError("An account already exists with this email address.");
+      } else {
+        setError(error.message);
+      }
+
       setLoading(false);
       return;
     }
 
-    setMessage(
-      "Account created. Please check your email to confirm your account."
-    );
+    // Supabase can return a successful signUp response for an existing
+    // confirmed email while returning a user with no identities.
+    if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+      setExistingAccount(true);
+      setError("An account already exists with this email address.");
+      setLoading(false);
+      return;
+    }
+
+    setMessage("Account created. Please check your email to confirm your account.");
     setLoading(false);
   }
 
   return (
     <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-gray-200">
-        <h1 className="text-3xl font-bold text-center text-gray-900">
-          RenalPlan
-        </h1>
-
-        <p className="mt-2 text-center text-gray-600">
-          Create your account
-        </p>
+        <h1 className="text-3xl font-bold text-center text-gray-900">RenalPlan</h1>
+        <p className="mt-2 text-center text-gray-600">Create your account</p>
 
         <form onSubmit={handleSignup} className="mt-8 space-y-5">
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email
-            </label>
-
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
               id="email"
               type="email"
+              autoComplete="email"
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -75,16 +83,11 @@ export default function SignupPage() {
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
-
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
             <input
               id="password"
               type="password"
+              autoComplete="new-password"
               required
               minLength={6}
               value={password}
@@ -95,15 +98,22 @@ export default function SignupPage() {
           </div>
 
           {error && (
-            <div className="rounded-lg bg-red-50 p-3 text-sm text-red-700">
-              {error}
+            <div className="rounded-lg bg-red-50 p-4 text-sm text-red-700">
+              <p>{error}</p>
+              {existingAccount && (
+                <button
+                  type="button"
+                  onClick={() => router.push("/forgot-password")}
+                  className="mt-2 font-semibold text-orange-700 underline underline-offset-2 hover:text-orange-800"
+                >
+                  Forgot your password? Reset it here.
+                </button>
+              )}
             </div>
           )}
 
           {message && (
-            <div className="rounded-lg bg-green-50 p-3 text-sm text-green-700">
-              {message}
-            </div>
+            <div className="rounded-lg bg-green-50 p-3 text-sm text-green-700">{message}</div>
           )}
 
           <button
@@ -129,7 +139,3 @@ export default function SignupPage() {
     </main>
   );
 }
-
-
-
-

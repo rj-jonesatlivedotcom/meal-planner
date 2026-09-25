@@ -494,7 +494,7 @@ export default function Home() {
             {/* =====================================================
                 RENALPLAN STARTS WORKING AROUND YOU
             ===================================================== */}
-            <div className="relative min-h-[360px] overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-[#eef7ff] to-[#f7fbff] px-5 py-5 sm:min-h-[380px] sm:px-7 sm:py-7">
+            <div className="relative overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-[#eef7ff] to-[#f7fbff] px-5 py-5 sm:min-h-[380px] sm:px-7 sm:py-7">
 
               <div className="relative z-20 max-w-full sm:max-w-[52%]">
 

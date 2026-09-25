@@ -468,6 +468,11 @@ function formatQuantity(amount: number, unit: string): string {
 
 const WHOLE_PRODUCE = new Set([
   "courgette",
+  "tomato",
+  "leek",
+  "cabbage",
+  "carrot",
+  "mushroom",
   "onion",
   "red onion",
   "red pepper",
@@ -482,6 +487,7 @@ const WHOLE_PRODUCE = new Set([
   "lemon",
   "lime",
   "apple",
+  "pear",
   "potatoes",
   "baking potatoes",
 ]);
@@ -731,15 +737,21 @@ function normaliseIngredient(raw: string): string {
  * ============================================================ */
 
 /*
- * Dinner recipes in the current library are written as family-sized
- * recipes. plannerCounts contains the total number of people eating each
- * planned recipe across the week, so each meal can have its own people count.
+ * Recipe quantities are scaled from the recipe's own serving count.
+ * plannerCounts contains the total number of people eating each planned
+ * recipe across the week, so each meal can have its own people count.
  *
- * This replaces the old lexicographical recipe.code >= "D016" test,
- * which was the source of the inconsistent scaling seen in the last test.
+ * We must not infer serving size from the meal category: the current
+ * RenalPlan recipe library contains one-serving dinner recipes as well as
+ * recipes that explicitly carry their own `servings` value.
  */
 function recipeServings(recipe: any): number {
-  return recipe.category === "Dinner" ? 4 : 1;
+  // RecipeData is the source of truth for serving size.
+  // The current RenalPlan recipes are written as one serving, including
+  // the dinner recipes. If a future recipe is explicitly family-sized,
+  // its own `servings` value is used instead of guessing from its category.
+  const servings = Number(recipe?.servings);
+  return Number.isFinite(servings) && servings > 0 ? servings : 1;
 }
 
 /* ============================================================
@@ -814,9 +826,42 @@ function normaliseProduceAmount(
     }
   }
 
-  if (lower === "apple") {
-    if (["", "apple", "small", "medium", "large"].includes(parsed.unit)) {
-      return parsed.amount;
+  /*
+   * Fruit/vegetable recipes may use either whole-item quantities or grams.
+   * Convert gram-based portions into whole shopping units only at the end.
+   * The gram equivalents below match the one-serving recipe portions used
+   * throughout the current RenalPlan recipe library:
+   *   apple 80 g, pear 30 g, onion 40 g, peppers 50 g.
+   * A unitless value is treated as a whole item when it is a normal count
+   * (1–4); larger unitless values are treated as grams so values such as
+   * 43 g onion or 180 g apple can never become 43 or 180 whole items.
+   */
+  const PRODUCE_GRAMS_PER_ITEM: Record<string, number> = {
+    apple: 80,
+    pear: 30,
+    onion: 40,
+    "red onion": 40,
+    "red pepper": 50,
+    "green pepper": 50,
+    "yellow pepper": 50,
+  };
+
+  if (PRODUCE_GRAMS_PER_ITEM[lower]) {
+    const gramsPerItem = PRODUCE_GRAMS_PER_ITEM[lower];
+
+    if (parsed.unit === "g") {
+      return parsed.amount / gramsPerItem;
+    }
+
+    if (["", lower, "small", "medium", "large"].includes(parsed.unit)) {
+      // A normal whole-item count is already a shopping quantity.
+      if (parsed.unit === "" && parsed.amount > 4) {
+        return parsed.amount / gramsPerItem;
+      }
+      const sizeFactor =
+        parsed.unit === "small" ? 0.5 :
+        parsed.unit === "large" ? 1.5 : 1;
+      return parsed.amount * sizeFactor;
     }
   }
 
@@ -974,6 +1019,23 @@ function normaliseShoppingQuantity(
     if (parsed.unit === "tbsp") return formatQuantity(parsed.amount * 3, "sprig");
   }
 
+  if (lower === "white bread") {
+    // RenalPlan recipes use either slices, grams, or an unqualified whole
+    // slice for white bread. Treat 35 g as one slice so all forms combine.
+    if (parsed.unit === "g") {
+      const slices = parsed.amount / 35;
+      return `${decimalToFraction(slices)} slice${Math.abs(slices - 1) < 0.0001 ? "" : "s"}`;
+    }
+
+    if (parsed.unit === "slice" || parsed.unit === "slices") {
+      return `${decimalToFraction(parsed.amount)} slice${Math.abs(parsed.amount - 1) < 0.0001 ? "" : "s"}`;
+    }
+
+    if (parsed.unit === "") {
+      return `${decimalToFraction(parsed.amount)} slice${Math.abs(parsed.amount - 1) < 0.0001 ? "" : "s"}`;
+    }
+  }
+
   if (lower === "natural yoghurt") {
     let tsp = 0;
 
@@ -1053,6 +1115,31 @@ function normaliseShoppingQuantity(
     }
   }
 
+  /*
+   * Human-readable recipe quantities now carry the cooking unit first, with
+   * the precise nutritional weight in brackets, e.g. "1 tomato (50 g)" or
+   * "½ leek (20 g)". parseQuantity() deliberately strips the bracketed
+   * weight, so the shopping list works from the practical unit rather than
+   * trying to reverse-engineer grams into produce.
+   *
+   * These items are bought as whole physical units. Fractions may be used
+   * while combining recipe requirements, but the final shopping quantity is
+   * rounded up to a whole item.
+   */
+  const PRACTICAL_WHOLE_PRODUCE = new Set([
+    "tomato",
+    "leek",
+    "cabbage",
+    "carrot",
+    "mushroom",
+  ]);
+
+  if (PRACTICAL_WHOLE_PRODUCE.has(lower)) {
+    if (["", lower, "small", "medium", "large"].includes(parsed.unit)) {
+      return decimalToFraction(parsed.amount);
+    }
+  }
+
   if (WHOLE_PRODUCE.has(lower)) {
     const converted = normaliseProduceAmount(name, parsed);
     if (converted !== null) return decimalToFraction(converted);
@@ -1103,6 +1190,14 @@ function combineQuantity(
 
   const lower = name.toLowerCase();
 
+  if (lower === "white bread") {
+    if ((a.unit === "slice" || a.unit === "slices") &&
+        (b.unit === "slice" || b.unit === "slices")) {
+      const total = a.amount + b.amount;
+      return `${decimalToFraction(total)} slice${Math.abs(total - 1) < 0.0001 ? "" : "s"}`;
+    }
+  }
+
   if (lower === "eggs") {
     return decimalToFraction(a.amount + b.amount);
   }
@@ -1150,6 +1245,19 @@ function combineQuantity(
   }
 
   if (
+    lower === "tomato" ||
+    lower === "leek" ||
+    lower === "cabbage" ||
+    lower === "carrot" ||
+    lower === "mushroom"
+  ) {
+    if (a.unit === b.unit) {
+      return decimalToFraction(a.amount + b.amount);
+    }
+    return current;
+  }
+
+  if (
     lower === "courgette" ||
     lower === "onion" ||
     lower === "red onion" ||
@@ -1158,10 +1266,39 @@ function combineQuantity(
     lower === "yellow pepper" ||
     lower === "green chilli" ||
     lower === "cucumber" ||
-    lower === "apple"
+    lower === "apple" ||
+    lower === "pear"
   ) {
-    // Only combine produce quantities when they use the same unit.
-    // For example, ¼ red onion must not be added to 15 g red onion.
+    const gramBasedProduce: Record<string, number> = {
+      apple: 80,
+      pear: 30,
+      onion: 40,
+      "red onion": 40,
+      "red pepper": 50,
+      "green pepper": 50,
+      "yellow pepper": 50,
+    };
+
+    if (gramBasedProduce[lower]) {
+      const grams = (q: { amount: number; unit: string }): number | null => {
+        if (q.unit === "g") return q.amount;
+        if (q.unit === "") {
+          return q.amount > 4 ? q.amount : q.amount * gramBasedProduce[lower];
+        }
+        if (["small", "medium", "large", lower].includes(q.unit)) {
+          const factor = q.unit === "small" ? 0.5 : q.unit === "large" ? 1.5 : 1;
+          return q.amount * gramBasedProduce[lower] * factor;
+        }
+        return null;
+      };
+
+      const ag = grams(a);
+      const bg = grams(b);
+      if (ag !== null && bg !== null) {
+        return decimalToFraction((ag + bg) / gramBasedProduce[lower]);
+      }
+    }
+
     if (a.unit === b.unit) {
       return decimalToFraction(a.amount + b.amount);
     }
@@ -1320,6 +1457,24 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
     };
   }
 
+  /*
+   * Practical produce from the updated recipe files. The recipe itself now
+   * says things such as "½ tomato (50 g)" or "½ leek (20 g)". The bracketed
+   * weight is retained for nutrition elsewhere; shopping uses the physical
+   * item and rounds up only at the end.
+   */
+  if (
+    ["tomato", "leek", "cabbage", "carrot", "mushroom"].includes(lower) &&
+    ["", lower, "small", "medium", "large"].includes(parsed.unit)
+  ) {
+    const sizeFactor = parsed.unit === "small" ? 0.5 : parsed.unit === "large" ? 1.5 : 1;
+    const wholeCount = Math.ceil(parsed.amount * sizeFactor);
+    return {
+      item: name,
+      quantity: decimalToFraction(Math.max(1, wholeCount)),
+    };
+  }
+
   if (lower === "potatoes" && parsed.unit === "g") {
     const kg = parsed.amount / 1000;
     return {
@@ -1359,22 +1514,74 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
   }
 
   if (
-  lower === "onion" ||
-  lower === "red pepper" ||
-  lower === "green pepper" ||
-  lower === "yellow pepper" ||
-  lower === "green chilli" ||
-  lower === "apple" ||
-  lower === "lemon"
-) {
-  const wholeCount = Math.ceil(parsed.amount);
-  return {
-    item: lower === "lemon"
-      ? wholeCount === 1 ? "Lemon" : "Lemons"
-      : name,
-    quantity: decimalToFraction(wholeCount),
-  };
-}
+    lower === "onion" ||
+    lower === "red onion" ||
+    lower === "red pepper" ||
+    lower === "green pepper" ||
+    lower === "yellow pepper" ||
+    lower === "green chilli" ||
+    lower === "apple" ||
+    lower === "pear" ||
+    lower === "lemon"
+  ) {
+    const gramBasedProduce: Record<string, number> = {
+      apple: 80,
+      pear: 30,
+      onion: 40,
+      "red onion": 40,
+      "red pepper": 50,
+      "green pepper": 50,
+      "yellow pepper": 50,
+    };
+
+    if (gramBasedProduce[lower]) {
+      /*
+       * Produce quantities have already been combined into purchase units by
+       * combineQuantity(). At this stage a unitless quantity ALWAYS means a
+       * number of whole items.
+       *
+       * Do not use a >4 heuristic here. That was the source of the major bug
+       * where a genuine total such as 4.875 apples was treated as 4.875 g
+       * and then converted back to 1 apple.
+       *
+       * Gram quantities are handled before this point and are converted to
+       * whole produce units by the aggregation logic.
+       */
+      if (["", "small", "medium", "large", lower].includes(parsed.unit)) {
+        const sizeFactor =
+          parsed.unit === "small" ? 0.5 :
+          parsed.unit === "large" ? 1.5 : 1;
+        const wholeCount = Math.ceil(parsed.amount * sizeFactor);
+        return {
+          item: name,
+          quantity: decimalToFraction(Math.max(1, wholeCount)),
+        };
+      }
+
+      return item;
+    }
+
+    const countUnits = new Set([
+      "",
+      "small",
+      "medium",
+      "large",
+      lower,
+      lower === "lemon" ? "lemons" : "",
+    ]);
+
+    if (countUnits.has(parsed.unit)) {
+      const wholeCount = Math.ceil(parsed.amount);
+      return {
+        item: lower === "lemon"
+          ? wholeCount === 1 ? "Lemon" : "Lemons"
+          : name,
+        quantity: decimalToFraction(wholeCount),
+      };
+    }
+
+    return item;
+  }
 
 if (lower === "lime") {
   const wholeLimes = Math.ceil(parsed.amount);
@@ -2123,26 +2330,162 @@ export default function ShoppingPage() {
   );
 
   function CategoryIcon({ category }: { category: string }) {
-    const iconClass = "text-xl leading-none shrink-0";
+    const iconClass = "h-6 w-6 shrink-0";
 
-    switch (category) {
-      case "🥩 Meat & Fish":
-        return <span className={iconClass} aria-hidden="true">🥩</span>;
-      case "🥕 Fruit & Vegetables":
-        return <span className={iconClass} aria-hidden="true">🥕</span>;
-      case "🥫 Cupboard":
-        return <span className={iconClass} aria-hidden="true">🥫</span>;
-      case "❄️ Frozen":
-        return <span className={iconClass} aria-hidden="true">❄️</span>;
-      case "🍞 Bakery":
-        return <span className={iconClass} aria-hidden="true">🍞</span>;
-      case "🧊 Chilled":
-        return <span className={iconClass} aria-hidden="true">🧊</span>;
-      case "🧂 Herbs & Spices":
-        return <span className={iconClass} aria-hidden="true">🧂</span>;
-      default:
-        return <span className={iconClass} aria-hidden="true">📦</span>;
+    if (category.includes("Meat & Fish")) {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`${iconClass} text-rose-500`}
+          aria-hidden="true"
+        >
+          <path d="M20.5 4.5c-2.5-2.5-6.5-2.2-8.7.2l-1.1 1.2-2.2-.1c-1.8-.1-3.5.6-4.6 1.9-1.5 1.8-1.3 4.5.4 6.1 1.7 1.7 4.4 1.8 6.2.4 1.3-1.1 2-2.8 1.9-4.6l-.1-2.2 1.2-1.1c2.4-2.2 6.2-2.4 8.5-.2l.5.5c.7.7 1.7-.3 1-1l-3-3Z" />
+          <circle cx="7.5" cy="11.5" r="1.2" />
+        </svg>
+      );
     }
+
+    if (category.includes("Fruit & Vegetables")) {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`${iconClass} text-emerald-500`}
+          aria-hidden="true"
+        >
+          <path d="M6 15.5 14.5 7l3.5 3.5L9.5 19Z" />
+          <path d="m14.5 7 2-2" />
+          <path d="M16.5 5c1.2-1.2 3.2-1.2 4.4 0-1.2 1.2-3.2 1.2-4.4 0Z" />
+          <path d="M8 17.5 5 20" />
+          <path d="M6.5 12.5 11 17" />
+        </svg>
+      );
+    }
+
+    if (category.includes("Cupboard")) {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`${iconClass} text-amber-500`}
+          aria-hidden="true"
+        >
+          <path d="M7 5h10v14H7z" />
+          <path d="M8.5 3.5h7" />
+          <path d="M6 7h12" />
+          <path d="M9 10h6" />
+          <path d="M9 13h6" />
+          <path d="M9 16h6" />
+        </svg>
+      );
+    }
+
+    if (category.includes("Frozen")) {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`${iconClass} text-violet-500`}
+          aria-hidden="true"
+        >
+          <path d="M12 3v18" />
+          <path d="m5.6 6.5 12.8 11" />
+          <path d="m18.4 6.5-12.8 11" />
+          <path d="M8.5 5 12 7.5 15.5 5" />
+          <path d="M8.5 19 12 16.5 15.5 19" />
+        </svg>
+      );
+    }
+
+    if (category.includes("Bakery")) {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`${iconClass} text-sky-500`}
+          aria-hidden="true"
+        >
+          <path d="M6 8.5c0-2.2 1.8-4 4-4h4c2.2 0 4 1.8 4 4v9.5H6Z" />
+          <path d="M6 8.5c1.7 1 3.4 1.4 6 1.4s4.3-.4 6-1.4" />
+          <path d="M8 18h8" />
+        </svg>
+      );
+    }
+
+    if (category.includes("Chilled")) {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`${iconClass} text-cyan-500`}
+          aria-hidden="true"
+        >
+          <path d="M9 4h6" />
+          <path d="M10 4v3l-2 3v8.5A1.5 1.5 0 0 0 9.5 20h5a1.5 1.5 0 0 0 1.5-1.5V10l-2-3V4" />
+          <path d="M9 12h7" />
+        </svg>
+      );
+    }
+
+    if (category.includes("Herbs & Spices")) {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`${iconClass} text-slate-700`}
+          aria-hidden="true"
+        >
+          <path d="M19.5 4.5C12 4.8 7 8.2 6.2 14.2c-.4 3 1.6 5.3 4.6 4.9 6-.8 9.4-5.8 9.7-13.3Z" />
+          <path d="M5 20c3.2-4.1 6.1-6.5 10.5-9" />
+        </svg>
+      );
+    }
+
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={`${iconClass} text-slate-500`}
+        aria-hidden="true"
+      >
+        <path d="M4 7h16" />
+        <path d="M6 7v12h12V7" />
+        <path d="M9 7V4h6v3" />
+      </svg>
+    );
   }
 
   function renderCategoryGroup(group: {
@@ -2150,7 +2493,7 @@ export default function ShoppingPage() {
     items: ShoppingItem[];
   }) {
     const styles = categoryStyles[group.category] ?? categoryStyles.Other;
-    const categoryName = group.category.replace(/^\S+\s+/, "");
+    const categoryName = group.category;
 
     return (
       <div
@@ -2161,7 +2504,6 @@ export default function ShoppingPage() {
           className={`flex items-center justify-between border-b px-4 py-3 ${styles.header}`}
         >
           <h3 className="flex items-center gap-2 text-base font-bold text-slate-900">
-            <CategoryIcon category={group.category} />
             <span>{categoryName}</span>
           </h3>
           <span

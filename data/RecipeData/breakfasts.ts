@@ -105,7 +105,7 @@ export const breakfasts: Recipe[] = [
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Tomato", shoppingItem: "Tomatoes", quantity: "about ¾ tomato (80 g)" },
+      { item: "Tomato", shoppingItem: "Tomatoes", quantity: "¾ tomato (80 g)" },
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (30 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
     ],
@@ -287,7 +287,7 @@ export const breakfasts: Recipe[] = [
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Tomato", shoppingItem: "Tomatoes", quantity: "about ½ tomato (60 g)" },
+      { item: "Tomato", shoppingItem: "Tomatoes", quantity: "½ tomato (60 g)" },
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
@@ -374,7 +374,7 @@ export const breakfasts: Recipe[] = [
     ingredients: [
       { item: "Porridge oats", shoppingItem: "Porridge oats", quantity: "45 g" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Tomato", shoppingItem: "Tomatoes", quantity: "about ½ tomato (60 g)" },
+      { item: "Tomato", shoppingItem: "Tomatoes", quantity: "½ tomato (60 g)" },
       { item: "Red pepper", shoppingItem: "Red peppers", quantity: "½ red pepper (40 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
       { item: "White bread", shoppingItem: "White bread", quantity: "1 slice (35 g)" },
@@ -422,7 +422,7 @@ export const breakfasts: Recipe[] = [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "100 ml" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "about ⅓ apple (60 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "⅓ apple (60 g)" },
       { item: "Honey", shoppingItem: "Honey", quantity: "2 tsp" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
@@ -469,7 +469,7 @@ export const breakfasts: Recipe[] = [
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Cream cheese", shoppingItem: "Cream cheese", quantity: "30 g" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "about ⅓ apple (60 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "⅓ apple (60 g)" },
       { item: "Blueberries", shoppingItem: "Blueberries", quantity: "50 g" },
       { item: "Honey", shoppingItem: "Honey", quantity: "1 tsp" },
     ],
@@ -558,7 +558,7 @@ export const breakfasts: Recipe[] = [
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Cream cheese", shoppingItem: "Cream cheese", quantity: "30 g" },
-      { item: "Strawberries", shoppingItem: "Strawberries", quantity: "about 6 strawberries (100 g)" },
+      { item: "Strawberries", shoppingItem: "Strawberries", quantity: "6 strawberries (100 g)" },
       { item: "Honey", shoppingItem: "Honey", quantity: "2 tsp" },
     ],
     method: [
@@ -786,7 +786,7 @@ export const breakfasts: Recipe[] = [
       { item: "Plain flour", shoppingItem: "Plain flour", quantity: "50 g" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "75 ml" },
-      { item: "Strawberries", shoppingItem: "Strawberries", quantity: "about 6 strawberries (100 g)" },
+      { item: "Strawberries", shoppingItem: "Strawberries", quantity: "6 strawberries (100 g)" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" },
       { item: "Maple syrup", shoppingItem: "Maple syrup", quantity: "2 tsp" },
     ],
@@ -875,7 +875,7 @@ export const breakfasts: Recipe[] = [
       { item: "White Tortilla Wraps", shoppingItem: "White Tortilla Wraps", quantity: "1" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
       { item: "Cream cheese", shoppingItem: "Cream cheese", quantity: "25 g" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "about ⅓ apple (60 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "⅓ apple (60 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
       { item: "Ground cinnamon", shoppingItem: "Ground cinnamon", quantity: "¼ tsp" },
     ],
@@ -922,7 +922,7 @@ export const breakfasts: Recipe[] = [
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Mushrooms", shoppingItem: "Mushrooms", quantity: "about 4 mushrooms (60 g)" },
+      { item: "Mushrooms", shoppingItem: "Mushrooms", quantity: "4 mushrooms (60 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
@@ -1140,7 +1140,7 @@ export const breakfasts: Recipe[] = [
     ingredients: [
       { item: "English muffin", shoppingItem: "English muffins", quantity: "1" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Mushrooms", shoppingItem: "Mushrooms", quantity: "about 4 mushrooms (60 g)" },
+      { item: "Mushrooms", shoppingItem: "Mushrooms", quantity: "4 mushrooms (60 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
@@ -1186,8 +1186,8 @@ export const breakfasts: Recipe[] = [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "75 ml" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Strawberries", shoppingItem: "Strawberries", quantity: "about 5 strawberries (75 g)" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "about ⅓ apple (50 g)" },
+      { item: "Strawberries", shoppingItem: "Strawberries", quantity: "5 strawberries (75 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "⅓ apple (50 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
       { item: "Honey", shoppingItem: "Honey", quantity: "1 tsp" },
     ],
@@ -1277,7 +1277,7 @@ export const breakfasts: Recipe[] = [
     ingredients: [
       { item: "English muffin", shoppingItem: "English muffins", quantity: "1" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Tomato", shoppingItem: "Tomatoes", quantity: "about ½ tomato (60 g)" },
+      { item: "Tomato", shoppingItem: "Tomatoes", quantity: "½ tomato (60 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
@@ -1323,7 +1323,7 @@ export const breakfasts: Recipe[] = [
       { item: "Plain flour", shoppingItem: "Plain flour", quantity: "50 g" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "75 ml" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "about ⅓ apple (60 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "⅓ apple (60 g)" },
       { item: "Blueberries", shoppingItem: "Blueberries", quantity: "50 g" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" },
       { item: "Maple syrup", shoppingItem: "Maple syrup", quantity: "2 tsp" },
@@ -1505,8 +1505,8 @@ export const breakfasts: Recipe[] = [
       { item: "Plain flour", shoppingItem: "Plain flour", quantity: "50 g" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "75 ml" },
-      { item: "Strawberries", shoppingItem: "Strawberries", quantity: "about 5 strawberries (75 g)" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "about ⅓ apple (50 g)" },
+      { item: "Strawberries", shoppingItem: "Strawberries", quantity: "5 strawberries (75 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "⅓ apple (50 g)" },
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" },
       { item: "Maple syrup", shoppingItem: "Maple syrup", quantity: "2 tsp" },
     ],
@@ -1777,7 +1777,7 @@ export const breakfasts: Recipe[] = [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "75 ml" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "about ⅓ apple (60 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "⅓ apple (60 g)" },
       { item: "Blueberries", shoppingItem: "Blueberries", quantity: "50 g" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
       { item: "Maple syrup", shoppingItem: "Maple syrup", quantity: "2 tsp" },

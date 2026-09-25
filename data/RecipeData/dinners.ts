@@ -27,12 +27,12 @@ export const dinners: Recipe[] = [
       {
         item: "Cabbage, white, boiled in unsalted water",
         shoppingItem: "Cabbage",
-        quantity: "100 g"
+        quantity: "¼ cabbage (100 g)"
       },
       {
         item: "Onions, boiled in unsalted water",
         shoppingItem: "Onions",
-        quantity: "50 g"
+        quantity: "½ onion (50 g)"
       },
       {
         item: "Oil, olive",
@@ -100,12 +100,12 @@ export const dinners: Recipe[] = [
       {
         item: "Cabbage, white, boiled in unsalted water",
         shoppingItem: "Cabbage",
-        quantity: "75 g"
+        quantity: "¼ cabbage (75 g)"
       },
       {
         item: "Carrots, old, boiled in unsalted water",
         shoppingItem: "Carrots",
-        quantity: "50 g"
+        quantity: "1 carrot (50 g)"
       },
       {
         item: "Oil, olive",
@@ -168,12 +168,12 @@ export const dinners: Recipe[] = [
       {
         item: "Carrots, old, boiled in unsalted water",
         shoppingItem: "Carrots",
-        quantity: "50 g"
+        quantity: "1 carrot (50 g)"
       },
       {
         item: "Cabbage, white, boiled in unsalted water",
         shoppingItem: "Cabbage",
-        quantity: "100 g"
+        quantity: "¼ cabbage (100 g)"
       },
       {
         item: "Oil, olive",
@@ -236,12 +236,12 @@ export const dinners: Recipe[] = [
       {
         item: "Cabbage, white, boiled in unsalted water",
         shoppingItem: "Cabbage",
-        quantity: "100 g"
+        quantity: "¼ cabbage (100 g)"
       },
       {
         item: "Onions, boiled in unsalted water",
         shoppingItem: "Onions",
-        quantity: "50 g"
+        quantity: "½ onion (50 g)"
       },
       {
         item: "Oil, olive",
@@ -310,12 +310,12 @@ export const dinners: Recipe[] = [
       {
         item: "Cabbage, white, boiled in unsalted water",
         shoppingItem: "Cabbage",
-        quantity: "100 g"
+        quantity: "¼ cabbage (100 g)"
       },
       {
         item: "Onions, boiled in unsalted water",
         shoppingItem: "Onions",
-        quantity: "50 g"
+        quantity: "½ onion (50 g)"
       },
       {
         item: "Oil, olive",
@@ -379,12 +379,12 @@ export const dinners: Recipe[] = [
       {
         item: "Cabbage, white, boiled in unsalted water",
         shoppingItem: "Cabbage",
-        quantity: "100 g"
+        quantity: "¼ cabbage (100 g)"
       },
       {
         item: "Onions, boiled in unsalted water",
         shoppingItem: "Onions",
-        quantity: "50 g"
+        quantity: "½ onion (50 g)"
       },
       {
         item: "Oil, olive",
@@ -447,7 +447,7 @@ export const dinners: Recipe[] = [
       {
         item: "Cabbage, white, boiled in unsalted water",
         shoppingItem: "Cabbage",
-        quantity: "100 g"
+        quantity: "¼ cabbage (100 g)"
       },
       {
         item: "Butter, unsalted",
@@ -516,12 +516,12 @@ export const dinners: Recipe[] = [
       {
         item: "Peppers, capsicum, green, raw",
         shoppingItem: "Green peppers",
-        quantity: "50 g"
+        quantity: "1 green pepper (50 g)"
       },
       {
         item: "Onions, boiled in unsalted water",
         shoppingItem: "Onions",
-        quantity: "50 g"
+        quantity: "½ onion (50 g)"
       },
       {
         item: "Oil, olive",
@@ -585,7 +585,7 @@ export const dinners: Recipe[] = [
       {
         item: "Cabbage, white, boiled in unsalted water",
         shoppingItem: "Cabbage",
-        quantity: "100 g"
+        quantity: "¼ cabbage (100 g)"
       },
       {
         item: "Oil, olive",
@@ -712,8 +712,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "85 g" },
-      { item: "Mushrooms", shoppingItem: "Mushrooms", quantity: "80 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
+      { item: "Mushrooms", shoppingItem: "Mushrooms", quantity: "4 mushrooms (80 g)" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
       { item: "Single cream", shoppingItem: "Single cream", quantity: "40 ml" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "¼ tsp" },
@@ -754,7 +754,7 @@ export const dinners: Recipe[] = [
       { item: "Turkey breast", shoppingItem: "Turkey breast", quantity: "100 g" },
       { item: "White pasta", shoppingItem: "White pasta", quantity: "75 g" },
       { item: "Sweetcorn", shoppingItem: "Sweetcorn kernels", quantity: "60 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
       { item: "Single cream", shoppingItem: "Single cream", quantity: "40 ml" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" },
@@ -805,8 +805,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "120 g" },
       { item: "White pasta", shoppingItem: "White pasta", quantity: "75 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
-      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "60 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
+      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1 green pepper (60 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" },
@@ -856,7 +856,7 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "80 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
       { item: "Sweetcorn", shoppingItem: "Sweetcorn kernels", quantity: "50 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
@@ -907,8 +907,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Turkey breast", shoppingItem: "Turkey breast", quantity: "100 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "80 g" },
-      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "70 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
+      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "¼ tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
@@ -959,8 +959,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "100 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "80 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "80 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (80 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "¼ tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
@@ -1011,7 +1011,7 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" },
       { item: "White pasta", shoppingItem: "White pasta", quantity: "75 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "100 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" },
       { item: "Single cream", shoppingItem: "Single cream", quantity: "40 ml" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
@@ -1062,7 +1062,7 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "120 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "80 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
       { item: "Sweetcorn", shoppingItem: "Sweetcorn kernels", quantity: "50 g" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
@@ -1113,9 +1113,9 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "White pasta", shoppingItem: "White pasta", quantity: "75 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
       { item: "Sweetcorn", shoppingItem: "Sweetcorn kernels", quantity: "50 g" },
-      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "50 g" },
+      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1 green pepper (50 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" },
@@ -1165,8 +1165,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "80 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "80 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (80 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
@@ -1205,7 +1205,7 @@ export const dinners: Recipe[] = [
     id: "D021", code: "D021", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.png",
     name: "Chicken, Herb & Sweetcorn Rice", description: "Tender chicken with fluffy basmati rice, sweetcorn and herbs.", cookingTime: "30 minutes", calories: "612 kcal", protein: "32.5 g", equipment: "Large saucepan, frying pan, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "50 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Cook the rice according to the packet instructions, then drain.", "05:00 — Dice the chicken and onion.", "10:00 — Heat the olive oil and cook the onion for 3 minutes.", "13:00 — Add the chicken and thyme and cook until thoroughly cooked.", "25:00 — Stir in the sweetcorn and cook for 2 minutes.", "27:00 — Fold through the cooked rice and season with black pepper.", "30:00 — Serve hot."],
     nutrition: { calories: "612 kcal", protein: "32.5 g", carbohydrates: "91.0 g", fat: "13.0 g", fibre: "4.5 g", sodium: "70 mg", salt: "0.18 g", potassium: "620 mg", phosphate: "350 mg" },
@@ -1215,7 +1215,7 @@ export const dinners: Recipe[] = [
     id: "D022", code: "D022", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
     name: "Beef & Pepper Pasta", description: "Lean beef mince with pasta, peppers and onion in a light herb sauce.", cookingTime: "25 minutes", calories: "648 kcal", protein: "34.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "120 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "70 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "50 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "120 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, then drain.", "05:00 — Finely chop the onion and pepper.", "08:00 — Heat the olive oil and cook the onion and pepper for 4 minutes.", "12:00 — Add the beef mince and cook, breaking it up with a wooden spoon.", "20:00 — Stir in the oregano and black pepper.", "22:00 — Add the cooked pasta and toss together.", "25:00 — Serve hot."],
     nutrition: { calories: "648 kcal", protein: "34.0 g", carbohydrates: "79.0 g", fat: "20.0 g", fibre: "4.0 g", sodium: "82 mg", salt: "0.21 g", potassium: "610 mg", phosphate: "360 mg" },
@@ -1225,7 +1225,7 @@ export const dinners: Recipe[] = [
     id: "D023", code: "D023", category: "Dinner", emoji: "🐟", image: "/images/recipes/D023.png",
     name: "Herb Cod with Potatoes & Cabbage", description: "Baked cod served with boiled potatoes and tender cabbage with lemon and herbs.", cookingTime: "35 minutes", calories: "578 kcal", protein: "31.5 g", equipment: "Baking tray, saucepan, steamer or second saucepan, knife, chopping board, Oven",
     ingredients: [
-      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "100 g" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Heat the oven to 200°C.", "03:00 — Peel and cut the potatoes into even pieces.", "05:00 — Boil the potatoes until tender.", "08:00 — Place the cod on a baking tray with half the butter, lemon juice and parsley.", "10:00 — Bake until the cod is opaque and cooked through.", "15:00 — Cook the cabbage in unsalted water until tender.", "28:00 — Drain the potatoes and cabbage.", "30:00 — Toss the potatoes with the remaining butter and black pepper.", "35:00 — Serve."],
     nutrition: { calories: "578 kcal", protein: "31.5 g", carbohydrates: "68.0 g", fat: "19.0 g", fibre: "5.0 g", sodium: "145 mg", salt: "0.36 g", potassium: "760 mg", phosphate: "320 mg" },
@@ -1235,7 +1235,7 @@ export const dinners: Recipe[] = [
     id: "D024", code: "D024", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
     name: "Creamy Cheese & Egg Pasta", description: "Pasta coated in a creamy egg and Cheddar sauce with onion and herbs.", cookingTime: "20 minutes", calories: "625 kcal", protein: "29.0 g", equipment: "Large saucepan, frying pan, mixing bowl, colander, wooden spoon",
     ingredients: [
-      { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" }, { item: "Egg", shoppingItem: "Egg", quantity: "1" }, { item: "Cheddar cheese", shoppingItem: "Cheddar cheese", quantity: "25 g" }, { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "100 ml" }, { item: "Onion", shoppingItem: "Onions", quantity: "40 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" }, { item: "Egg", shoppingItem: "Egg", quantity: "1" }, { item: "Cheddar cheese", shoppingItem: "Cheddar cheese", quantity: "25 g" }, { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "100 ml" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, reserving a little cooking water before draining.", "05:00 — Finely chop the onion and cook gently in the olive oil for 4 minutes.", "09:00 — Beat the egg with the milk and grated Cheddar.", "12:00 — Add the drained pasta to the onion pan and remove from the heat.", "14:00 — Stir in the egg mixture and parsley, using a splash of pasta water to loosen the sauce.", "17:00 — Return to very low heat and stir until the egg mixture is cooked through.", "20:00 — Season with black pepper and serve."],
     nutrition: { calories: "625 kcal", protein: "29.0 g", carbohydrates: "78.0 g", fat: "22.0 g", fibre: "3.0 g", sodium: "330 mg", salt: "0.83 g", potassium: "540 mg", phosphate: "450 mg" },
@@ -1245,7 +1245,7 @@ export const dinners: Recipe[] = [
     id: "D025", code: "D025", category: "Dinner", emoji: "🍖", image: "/images/recipes/D025.png",
     name: "Pork, Apple & Cabbage", description: "Grilled pork with warm apple and tender cabbage, finished with herbs.", cookingTime: "30 minutes", calories: "590 kcal", protein: "35.0 g", equipment: "Grill pan, saucepan, frying pan, knife, chopping board",
     ingredients: [
-      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "140 g" }, { item: "Apple", shoppingItem: "Apples", quantity: "100 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "120 g" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "140 g" }, { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (100 g)" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Core and slice the apple and shred the cabbage.", "05:00 — Heat the grill pan and cook the pork with rosemary until thoroughly cooked.", "12:00 — Cook the cabbage in unsalted water until tender, then drain.", "18:00 — Heat the butter and gently cook the apple until softened.", "24:00 — Add the cabbage and toss together.", "27:00 — Season with black pepper.", "30:00 — Serve."],
     nutrition: { calories: "590 kcal", protein: "35.0 g", carbohydrates: "61.0 g", fat: "22.0 g", fibre: "6.0 g", sodium: "75 mg", salt: "0.19 g", potassium: "650 mg", phosphate: "330 mg" },
@@ -1255,7 +1255,7 @@ export const dinners: Recipe[] = [
     id: "D026", code: "D026", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
     name: "Creamy Chicken & Pepper Pasta", description: "Chicken and peppers folded through pasta with a light creamy sauce.", cookingTime: "25 minutes", calories: "635 kcal", protein: "34.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "70 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "40 g" }, { item: "Single cream", shoppingItem: "Single cream", quantity: "50 ml" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Single cream", shoppingItem: "Single cream", quantity: "50 ml" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, then drain.", "05:00 — Dice the chicken, pepper and onion.", "08:00 — Heat the olive oil and cook the onion and pepper for 4 minutes.", "12:00 — Add the chicken and thyme and cook until thoroughly cooked.", "20:00 — Stir in the cream and heat gently for 2 minutes.", "22:00 — Add the pasta and toss through the sauce.", "25:00 — Season with black pepper and serve."],
     nutrition: { calories: "635 kcal", protein: "34.0 g", carbohydrates: "76.0 g", fat: "21.0 g", fibre: "4.0 g", sodium: "92 mg", salt: "0.23 g", potassium: "610 mg", phosphate: "390 mg" },
@@ -1265,7 +1265,7 @@ export const dinners: Recipe[] = [
     id: "D027", code: "D027", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
     name: "Cod, Sweetcorn & Herb Pasta", description: "Flaked cod with pasta and sweetcorn in a fresh lemon and herb dressing.", cookingTime: "25 minutes", calories: "610 kcal", protein: "33.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife",
     ingredients: [
-      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "40 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions.", "05:00 — Cook the cod in a covered frying pan with a splash of water until it flakes easily.", "12:00 — Flake the cooked cod into large pieces.", "14:00 — Cook the onion gently in the olive oil until softened.", "18:00 — Drain the pasta and add it to the pan with the sweetcorn.", "20:00 — Fold through the cod, lemon juice and parsley.", "25:00 — Season with black pepper and serve."],
     nutrition: { calories: "610 kcal", protein: "33.0 g", carbohydrates: "82.0 g", fat: "15.0 g", fibre: "4.0 g", sodium: "145 mg", salt: "0.36 g", potassium: "650 mg", phosphate: "350 mg" },
@@ -1275,7 +1275,7 @@ export const dinners: Recipe[] = [
     id: "D028", code: "D028", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
     name: "Egg, Cabbage & Sweetcorn Rice", description: "Fluffy rice stir-fried with egg, cabbage, sweetcorn and onion.", cookingTime: "25 minutes", calories: "575 kcal", protein: "20.0 g", equipment: "Saucepan, large frying pan, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Eggs", shoppingItem: "Eggs", quantity: "2" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "100 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "50 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Eggs", shoppingItem: "Eggs", quantity: "2" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Cook the rice according to the packet instructions, then drain well.", "08:00 — Shred the cabbage and finely chop the onion.", "10:00 — Heat the olive oil and cook the onion and cabbage until softened.", "15:00 — Add the sweetcorn and cook for 2 minutes.", "17:00 — Push the vegetables aside and scramble the eggs until cooked.", "20:00 — Stir in the rice and combine thoroughly.", "25:00 — Season with black pepper and serve."],
     nutrition: { calories: "575 kcal", protein: "20.0 g", carbohydrates: "89.0 g", fat: "15.0 g", fibre: "5.0 g", sodium: "305 mg", salt: "0.76 g", potassium: "520 mg", phosphate: "410 mg" },
@@ -1285,7 +1285,7 @@ export const dinners: Recipe[] = [
     id: "D029", code: "D029", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
     name: "Pork & Pepper Pasta", description: "Tender pork with pasta, green pepper and onion in a light herb dressing.", cookingTime: "25 minutes", calories: "645 kcal", protein: "36.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "70 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "40 g" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, then drain.", "05:00 — Slice the pork into thin strips and chop the pepper and onion.", "08:00 — Heat the olive oil and cook the onion and pepper for 4 minutes.", "12:00 — Add the pork and rosemary and cook until thoroughly cooked.", "20:00 — Add the drained pasta and toss together.", "23:00 — Season with black pepper.", "25:00 — Serve hot."],
     nutrition: { calories: "645 kcal", protein: "36.0 g", carbohydrates: "76.0 g", fat: "21.0 g", fibre: "4.0 g", sodium: "76 mg", salt: "0.19 g", potassium: "600 mg", phosphate: "360 mg" },
@@ -1305,8 +1305,8 @@ export const dinners: Recipe[] = [
     equipment: "Large frying pan, saucepan, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "130 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "120 g" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "100 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (100 g)" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "60 g" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "10 g" },
       { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" },
@@ -1346,8 +1346,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" },
       { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" },
-      { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
-      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "60 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
+      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1 green pepper (60 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" },
@@ -1387,8 +1387,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" },
-      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "80 g" },
-      { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
+      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (80 g)" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
       { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" },
@@ -1429,8 +1429,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "120 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "120 g" },
-      { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
@@ -1471,8 +1471,8 @@ export const dinners: Recipe[] = [
       { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "Cheddar cheese", shoppingItem: "Cheddar cheese", quantity: "20 g" },
       { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" },
-      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "60 g" },
-      { item: "Onion", shoppingItem: "Onions", quantity: "40 g" },
+      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1 green pepper (60 g)" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
     ],
@@ -1510,8 +1510,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "120 g" },
-      { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "10 g" },
       { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
@@ -1550,8 +1550,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" },
       { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "100 g" },
-      { item: "Onion", shoppingItem: "Onions", quantity: "40 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" },
@@ -1591,8 +1591,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "120 g" },
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" },
-      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "80 g" },
-      { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
+      { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (80 g)" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "1/2 tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
@@ -1631,8 +1631,8 @@ export const dinners: Recipe[] = [
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "130 g" },
       { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" },
-      { item: "Apple", shoppingItem: "Apples", quantity: "80 g" },
-      { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
+      { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (80 g)" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "10 g" },
       { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
@@ -1672,7 +1672,7 @@ export const dinners: Recipe[] = [
       { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" },
       { item: "Eggs", shoppingItem: "Eggs", quantity: "2" },
       { item: "Cauliflower", shoppingItem: "Cauliflower", quantity: "100 g" },
-      { item: "Onion", shoppingItem: "Onions", quantity: "50 g" },
+      { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
@@ -1715,7 +1715,7 @@ export const dinners: Recipe[] = [
       { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "50 g" },
       { item: "Single cream", shoppingItem: "Single cream", quantity: "40 ml" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "10 g" },
-      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "80 g" },
+      { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (80 g)" },
       { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "¼ tsp" },
       { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
@@ -1744,8 +1744,8 @@ export const dinners: Recipe[] = [
   { id: "chicken-leek-couscous-lemon", code: "D041", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.png", name: "Chicken & Leek Couscous with Lemon", description: "Tender chicken with fluffy couscous, softened leek and carrot, finished with fresh lemon and parsley.", cookingTime: "30 minutes", calories: "371 kcal", protein: "15.8 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" },
-      { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "20 g" },
-      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "20 g" },
+      { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
+      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" },
       { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
@@ -1753,16 +1753,16 @@ export const dinners: Recipe[] = [
   { id: "turkey-meatballs-herb-rice", code: "D042", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Herb-seasoned turkey meatballs served with basmati rice, tender cabbage and onion.", cookingTime: "30 minutes", calories: "505 kcal", protein: "20.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Turkey, meat, average, raw", shoppingItem: "Turkey mince (lean)", quantity: "60 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "70 g" },
-      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "50 g" },
-      { item: "Onions, raw", shoppingItem: "Onion", quantity: "20 g" },
+      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (50 g)" },
+      { item: "Onions, raw", shoppingItem: "Onion", quantity: "¼ onion (20 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Rosemary, dried", shoppingItem: "Dried rosemary", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Mix the turkey mince with rosemary and form into small meatballs.", "08:00 — Heat the olive oil in a frying pan and cook the meatballs, turning regularly, until browned and completely cooked through.", "18:00 — Boil the cabbage and onion in unsalted water until tender, then drain well.", "25:00 — Check the rice is tender and drain if required.", "30:00 — Serve the meatballs with the rice and vegetables."], nutrition: { calories: "505 kcal", protein: "20.0 g", carbohydrates: "61.7 g", fat: "21.4 g", fibre: "2.4 g", sodium: "45 mg", salt: "0.11 g", potassium: "366 mg", phosphate: "216 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "cod-herby-noodles-cucumber", code: "D043", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Baked cod with plain noodles, tender cabbage and cucumber, finished with lemon, parsley and olive oil.", cookingTime: "30 minutes", calories: "377 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "50 g" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
-      { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "30 g" },
-      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "50 g" },
+      { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "¼ cucumber (30 g)" },
+      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (50 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" },
       { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
@@ -1770,72 +1770,72 @@ export const dinners: Recipe[] = [
   { id: "pork-apple-leek-rice", code: "D044", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Lean pork medallions with basmati rice, softened leek and warm apple finished with thyme.", cookingTime: "30 minutes", calories: "421 kcal", protein: "14.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "50 g" },
-      { item: "Leeks, raw", shoppingItem: "Leek", quantity: "15 g" },
-      { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apple", quantity: "30 g" },
+      { item: "Leeks, raw", shoppingItem: "Leek", quantity: "½ leek (15 g)" },
+      { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apple", quantity: "⅜ apple (30 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Thyme, dried, ground", shoppingItem: "Dried thyme", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Slice the pork into medallions and heat the olive oil in a frying pan.", "08:00 — Cook the pork until completely cooked through, turning regularly.", "18:00 — Add the sliced leek and cook until softened.", "22:00 — Add the diced apple and cook gently until just softened.", "30:00 — Serve the pork with the rice and apple and leek mixture."], nutrition: { calories: "421 kcal", protein: "14.4 g", carbohydrates: "46.1 g", fat: "21.2 g", fibre: "1.4 g", sodium: "17 mg", salt: "0.04 g", potassium: "267 mg", phosphate: "144 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "chicken-carrot-noodle-stir-fry", code: "D045", category: "Dinner", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "385 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
-      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "30 g" },
-      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "50 g" },
+      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (30 g)" },
+      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (50 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the noodles in unsalted water according to the packet instructions, then drain thoroughly.", "05:00 — Cook the chicken in the olive oil until completely cooked through.", "15:00 — Add the boiled carrot and cabbage and cook gently until tender.", "22:00 — Add the ground ginger and drained noodles and toss together.", "30:00 — Serve immediately."], nutrition: { calories: "385 kcal", protein: "14.7 g", carbohydrates: "35.3 g", fat: "21.6 g", fibre: "3.6 g", sodium: "56 mg", salt: "0.14 g", potassium: "326 mg", phosphate: "123 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "beef-meatballs-couscous-peppers", code: "D046", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Lean beef meatballs with couscous, softened green pepper and onion, gently seasoned with paprika.", cookingTime: "30 minutes", calories: "415 kcal", protein: "18.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Beef, mince, raw, extra lean", shoppingItem: "Beef mince (5% fat)", quantity: "60 g" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "40 g" },
-      { item: "Peppers, capsicum, green, raw", shoppingItem: "Green pepper", quantity: "30 g" },
-      { item: "Onions, raw", shoppingItem: "Onion", quantity: "20 g" },
+      { item: "Peppers, capsicum, green, raw", shoppingItem: "Green pepper", quantity: "½ green pepper (30 g)" },
+      { item: "Onions, raw", shoppingItem: "Onion", quantity: "¼ onion (20 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Paprika", shoppingItem: "Paprika", quantity: "¼ tsp" }
     ], method: ["00:00 — Prepare the couscous using unsalted water according to the packet instructions.", "05:00 — Mix the beef mince with paprika and form into small meatballs.", "08:00 — Cook the meatballs in the olive oil, turning regularly, until browned and completely cooked through.", "18:00 — Add the green pepper and onion and cook until softened.", "25:00 — Fluff the couscous and serve with the meatballs and vegetables.", "30:00 — Serve immediately."], nutrition: { calories: "415 kcal", protein: "18.4 g", carbohydrates: "34.1 g", fat: "23.5 g", fibre: "0.0 g", sodium: "58 mg", salt: "0.14 g", potassium: "353 mg", phosphate: "213 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "haddock-lemon-rice-leeks", code: "D047", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.png", name: "Haddock with Lemon Rice & Leeks", description: "Baked haddock with lemon basmati rice, softened leek and boiled carrot.", cookingTime: "30 minutes", calories: "447 kcal", protein: "16.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Haddock, flesh only, raw", shoppingItem: "Haddock fillet", quantity: "60 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
-      { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "20 g" },
-      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "20 g" },
+      { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
+      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }
     ], method: ["00:00 — Heat the oven to 200°C and bake the haddock until opaque and completely cooked through.", "05:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "12:00 — Boil the leek and carrot in unsalted water until tender, then drain well.", "22:00 — Toss the vegetables with the olive oil and lemon juice.", "25:00 — Check the rice is tender and drain if required.", "30:00 — Serve the haddock with the rice and vegetables."], nutrition: { calories: "447 kcal", protein: "16.0 g", carbohydrates: "52.4 g", fat: "20.7 g", fibre: "1.8 g", sodium: "47 mg", salt: "0.12 g", potassium: "319 mg", phosphate: "165 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "chicken-pear-rice-bowl", code: "D048", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken and basmati rice with warm pear and tender cabbage, finished with rosemary.", cookingTime: "30 minutes", calories: "467 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
-      { item: "Pears, average, raw, flesh only", shoppingItem: "Pear", quantity: "30 g" },
-      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "50 g" },
+      { item: "Pears, average, raw, flesh only", shoppingItem: "Pear", quantity: "½ pear (30 g)" },
+      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (50 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Rosemary, dried", shoppingItem: "Dried rosemary", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Cook the chicken in the olive oil until completely cooked through.", "15:00 — Boil the cabbage in unsalted water until tender, then drain well.", "22:00 — Dice the pear and warm gently with the cabbage and rosemary.", "27:00 — Check the rice is tender and drain if required.", "30:00 — Serve the chicken with the rice and pear and cabbage mixture."], nutrition: { calories: "467 kcal", protein: "16.7 g", carbohydrates: "55.1 g", fat: "21.5 g", fibre: "2.7 g", sodium: "42 mg", salt: "0.11 g", potassium: "349 mg", phosphate: "152 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "pork-carrot-couscous-skillet", code: "D049", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Lean pork with couscous, boiled carrot and softened leek, finished with thyme.", cookingTime: "30 minutes", calories: "383 kcal", protein: "15.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "40 g" },
-      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "20 g" },
-      { item: "Leeks, raw", shoppingItem: "Leek", quantity: "20 g" },
+      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" },
+      { item: "Leeks, raw", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Thyme, dried, ground", shoppingItem: "Dried thyme", quantity: "¼ tsp" }
     ], method: ["00:00 — Prepare the couscous using unsalted water according to the packet instructions.", "05:00 — Slice the pork and cook in the olive oil until completely cooked through.", "15:00 — Boil the carrot and leek in unsalted water until tender, then drain well.", "22:00 — Add the vegetables and thyme to the pork pan and warm through.", "27:00 — Fluff the couscous and spoon the pork and vegetables over it.", "30:00 — Serve immediately."], nutrition: { calories: "383 kcal", protein: "15.1 g", carbohydrates: "33.8 g", fat: "21.7 g", fibre: "2.7 g", sodium: "24 mg", salt: "0.06 g", potassium: "359 mg", phosphate: "191 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "cod-leek-pasta-bake", code: "D050", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Flaked cod and white pasta baked with softened leek and cabbage, finished with parsley and olive oil.", cookingTime: "30 minutes", calories: "374 kcal", protein: "16.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking dish", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "45 g" },
       { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "40 g" },
-      { item: "Leeks, raw", shoppingItem: "Leek", quantity: "20 g" },
-      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "40 g" },
+      { item: "Leeks, raw", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
+      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (40 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
     ], method: ["00:00 — Heat the oven to 200°C.", "02:00 — Cook the pasta in unsalted water according to the packet instructions, then drain thoroughly.", "10:00 — Bake the cod until opaque and completely cooked through, then flake into large pieces.", "15:00 — Boil the leek and cabbage in unsalted water until tender, then drain well.", "20:00 — Combine the pasta, vegetables and cod with the olive oil and parsley in a baking dish.", "25:00 — Bake until hot throughout.", "30:00 — Serve immediately."], nutrition: { calories: "374 kcal", protein: "16.1 g", carbohydrates: "32.2 g", fat: "21.0 g", fibre: "1.4 g", sodium: "44 mg", salt: "0.11 g", potassium: "368 mg", phosphate: "169 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "turkey-apple-noodle-bowl", code: "D051", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey and plain noodles with apple and cucumber, finished with ginger and olive oil.", cookingTime: "30 minutes", calories: "386 kcal", protein: "15.5 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "50 g (raw)" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
-      { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apple", quantity: "30 g" },
-      { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "30 g" },
+      { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apple", quantity: "⅜ apple (30 g)" },
+      { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "¼ cucumber (30 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the noodles in unsalted water according to the packet instructions, then drain thoroughly.", "05:00 — Slice the turkey and cook in the olive oil until completely cooked through.", "18:00 — Add the diced apple and cook gently until just softened.", "23:00 — Toss the turkey and apple through the noodles with the cucumber and ground ginger.", "30:00 — Serve immediately."], nutrition: { calories: "386 kcal", protein: "15.5 g", carbohydrates: "35.9 g", fat: "21.0 g", fibre: "2.3 g", sodium: "33 mg", salt: "0.08 g", potassium: "252 mg", phosphate: "148 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 },
   { id: "chicken-herb-meatballs-rice", code: "D052", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken herb meatballs with basmati rice, tender cabbage and carrot, finished with parsley.", cookingTime: "30 minutes", calories: "459 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
-      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "50 g" },
-      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "20 g" },
+      { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (50 g)" },
+      { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" },
       { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" },
       { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Finely mince the chicken and mix with the parsley. Form into small meatballs.", "08:00 — Cook the meatballs in the olive oil, turning regularly, until completely cooked through.", "18:00 — Boil the cabbage and carrot in unsalted water until tender, then drain well.", "25:00 — Check the rice is tender and drain if required.", "30:00 — Serve the meatballs with the rice and vegetables."], nutrition: { calories: "459 kcal", protein: "16.7 g", carbohydrates: "52.9 g", fat: "21.5 g", fibre: "2.3 g", sodium: "48 mg", salt: "0.12 g", potassium: "350 mg", phosphate: "152 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", servings: 1 }

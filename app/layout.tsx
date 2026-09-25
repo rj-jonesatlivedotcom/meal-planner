@@ -1,6 +1,6 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 
 export const viewport: Viewport = {
@@ -49,6 +49,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         {children}
+        <Analytics />
       </body>
     </html>
   );

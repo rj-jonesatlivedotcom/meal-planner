@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -16,7 +16,16 @@ export default function ResetPasswordPage() {
   const [checking, setChecking] = useState(true);
   const [ready, setReady] = useState(false);
 
+  // Prevent the recovery code from being processed more than once.
+  const recoveryStarted = useRef(false);
+
   useEffect(() => {
+    if (recoveryStarted.current) {
+      return;
+    }
+
+    recoveryStarted.current = true;
+
     let cancelled = false;
 
     async function prepareResetSession() {
@@ -29,9 +38,12 @@ export default function ResetPasswordPage() {
          * 1. PKCE recovery flow
          * ------------------------------------------------------------
          *
-         * If Supabase gives us a ?code=... parameter, exchange it
-         * for a Supabase session.
+         * Supabase password-reset links normally arrive with a
+         * ?code=... parameter.
+         *
+         * The code is single-use, so it must only be exchanged once.
          */
+
         if (code) {
           const { error: exchangeError } =
             await supabase.auth.exchangeCodeForSession(code);
@@ -53,6 +65,10 @@ export default function ResetPasswordPage() {
             return;
           }
 
+          /*
+           * Remove the one-time code from the browser URL after
+           * successful exchange.
+           */
           if (!cancelled) {
             window.history.replaceState(
               {},
@@ -67,14 +83,15 @@ export default function ResetPasswordPage() {
          * 2. Hash-token recovery flow
          * ------------------------------------------------------------
          *
-         * Some Supabase recovery links arrive with:
+         * Some Supabase recovery links may arrive with:
          *
          * #access_token=...
          * &refresh_token=...
          * &type=recovery
          *
-         * Handle those explicitly.
+         * Handle those explicitly as well.
          */
+
         const hashParams = new URLSearchParams(
           window.location.hash.substring(1)
         );
@@ -83,7 +100,11 @@ export default function ResetPasswordPage() {
         const refreshToken = hashParams.get("refresh_token");
         const recoveryType = hashParams.get("type");
 
-        if (accessToken && refreshToken && recoveryType === "recovery") {
+        if (
+          accessToken &&
+          refreshToken &&
+          recoveryType === "recovery"
+        ) {
           const { error: sessionError } =
             await supabase.auth.setSession({
               access_token: accessToken,
@@ -121,6 +142,7 @@ export default function ResetPasswordPage() {
          * 3. Check for an existing Supabase session
          * ------------------------------------------------------------
          */
+
         const {
           data: { session },
         } = await supabase.auth.getSession();
@@ -137,9 +159,10 @@ export default function ResetPasswordPage() {
 
         /*
          * ------------------------------------------------------------
-         * 4. Listen for Supabase to finish processing the recovery
+         * 4. Listen for Supabase to finish processing recovery
          * ------------------------------------------------------------
          */
+
         const {
           data: { subscription },
         } = supabase.auth.onAuthStateChange((event, session) => {
@@ -162,6 +185,7 @@ export default function ResetPasswordPage() {
          * Give Supabase a short amount of time to finish processing
          * the recovery session.
          */
+
         window.setTimeout(async () => {
           if (cancelled) {
             return;

@@ -13,6 +13,7 @@ export default function ResetPasswordPage() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [checking, setChecking] = useState(true);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -21,8 +22,9 @@ export default function ResetPasswordPage() {
     async function prepareResetSession() {
       try {
         /*
-         * Supabase PKCE password-reset links return an auth code
-         * to the redirect URL. Exchange that code for a session.
+         * Supabase PKCE recovery links are completed by the
+         * Supabase client. If a code is present in the URL,
+         * exchange it for a session first.
          */
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
@@ -41,6 +43,7 @@ export default function ResetPasswordPage() {
               setError(
                 "This password reset link is invalid or has expired. Please request a new one."
               );
+              setChecking(false);
               setReady(false);
             }
 
@@ -48,8 +51,7 @@ export default function ResetPasswordPage() {
           }
 
           /*
-           * Remove the one-time code from the browser address bar
-           * after it has been exchanged successfully.
+           * Remove the one-time code from the address bar.
            */
           window.history.replaceState(
             {},
@@ -58,12 +60,52 @@ export default function ResetPasswordPage() {
           );
         }
 
+        /*
+         * Check whether Supabase now has a recovery session.
+         */
         const {
           data: { session },
         } = await supabase.auth.getSession();
 
-        if (!cancelled) {
-          if (session) {
+        if (cancelled) return;
+
+        if (session) {
+          setReady(true);
+          setChecking(false);
+          return;
+        }
+
+        /*
+         * If there isn't a session, wait briefly for Supabase's
+         * auth state to finish processing the recovery link.
+         */
+        const {
+          data: { subscription },
+        } = supabase.auth.onAuthStateChange((event, session) => {
+          if (cancelled) return;
+
+          if (
+            event === "PASSWORD_RECOVERY" ||
+            event === "SIGNED_IN"
+          ) {
+            if (session) {
+              setReady(true);
+              setChecking(false);
+              subscription.unsubscribe();
+            }
+          }
+        });
+
+        window.setTimeout(async () => {
+          if (cancelled) return;
+
+          const {
+            data: { session: latestSession },
+          } = await supabase.auth.getSession();
+
+          if (cancelled) return;
+
+          if (latestSession) {
             setReady(true);
           } else {
             setError(
@@ -71,7 +113,10 @@ export default function ResetPasswordPage() {
             );
             setReady(false);
           }
-        }
+
+          setChecking(false);
+          subscription.unsubscribe();
+        }, 2000);
       } catch (err) {
         console.error("Password reset session error:", err);
 
@@ -80,6 +125,7 @@ export default function ResetPasswordPage() {
             "We couldn't verify this password reset link. Please request a new one."
           );
           setReady(false);
+          setChecking(false);
         }
       }
     }
@@ -129,6 +175,26 @@ export default function ResetPasswordPage() {
     }, 1500);
   }
 
+  if (checking) {
+    return (
+      <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-gray-200">
+          <h1 className="text-3xl font-bold text-center text-gray-900">
+            RenalPlan
+          </h1>
+
+          <p className="mt-2 text-center text-gray-600">
+            Reset your password
+          </p>
+
+          <p className="mt-6 text-center text-gray-600">
+            Checking your password reset link...
+          </p>
+        </div>
+      </main>
+    );
+  }
+
   if (!ready) {
     return (
       <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -141,27 +207,17 @@ export default function ResetPasswordPage() {
             Reset your password
           </p>
 
-          {!error && (
-            <p className="mt-6 text-center text-gray-600">
-              Checking your password reset link...
-            </p>
-          )}
+          <div className="mt-6 rounded-lg bg-red-50 px-4 py-3 text-sm leading-6 text-red-700">
+            {error}
+          </div>
 
-          {error && (
-            <div className="mt-6 rounded-lg bg-red-50 px-4 py-3 text-sm leading-6 text-red-700">
-              {error}
-            </div>
-          )}
-
-          {error && (
-            <button
-              type="button"
-              onClick={() => router.push("/forgot-password")}
-              className="mt-6 w-full rounded-lg bg-orange-500 px-4 py-3 font-semibold text-white transition hover:bg-orange-600"
-            >
-              Request a new reset link
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => router.push("/forgot-password")}
+            className="mt-6 w-full rounded-lg bg-orange-500 px-4 py-3 font-semibold text-white transition hover:bg-orange-600"
+          >
+            Request a new reset link
+          </button>
         </div>
       </main>
     );

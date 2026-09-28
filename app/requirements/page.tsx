@@ -18,7 +18,7 @@ type Requirements = {
 const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
 
 const defaultRequirements: Requirements = {
-  sodiumLimit: 1500,
+  sodiumLimit: null,
   potassium: "Any",
   phosphate: "Any",
   purines: "Any",

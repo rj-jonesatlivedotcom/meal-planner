@@ -1539,7 +1539,7 @@ if (total <= limit * 0.75) {
                         <img
                           src={mobileBreakfast.image}
                           alt={mobileBreakfast.name}
-                          className="h-20 w-20 rounded-xl object-cover shadow-sm"
+                          className="h-25 w-40 rounded-xl object-cover shadow-sm"
                         />
                       </Link>
 
@@ -1642,7 +1642,7 @@ if (total <= limit * 0.75) {
                         <img
                           src={mobileLunch.image}
                           alt={mobileLunch.name}
-                          className="h-20 w-20 rounded-xl object-cover shadow-sm"
+                          className="h-25 w-40 rounded-xl object-cover shadow-sm"
                         />
                       </Link>
 
@@ -1745,7 +1745,7 @@ if (total <= limit * 0.75) {
                         <img
                           src={mobileDinner.image}
                           alt={mobileDinner.name}
-                          className="h-20 w-20 rounded-xl object-cover shadow-sm"
+                          className="h-25 w-40 rounded-xl object-cover shadow-sm"
                         />
                       </Link>
 

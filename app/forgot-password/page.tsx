@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -13,15 +13,22 @@ export default function ForgotPasswordPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleResetRequest(event: FormEvent<HTMLFormElement>) {
+  async function handleResetRequest(event: React.FormEvent) {
     event.preventDefault();
+
     setError("");
     setMessage("");
     setLoading(true);
 
-    const redirectTo = "https://www.renalplan.com/auth/reset-password";
+    const redirectTo =
+      "https://www.renalplan.com/auth/reset-password";
 
-    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+    const { error } = await supabase.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo,
+      }
+    );
 
     if (error) {
       setError(error.message);
@@ -32,22 +39,38 @@ export default function ForgotPasswordPage() {
     setMessage(
       "If an account exists for this email address, we've sent you a password reset link. Please check your inbox."
     );
+
     setLoading(false);
   }
 
   return (
     <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-gray-200">
-        <h1 className="text-3xl font-bold text-center text-gray-900">RenalPlan</h1>
-        <p className="mt-2 text-center text-gray-600">Reset your password</p>
+        <h1 className="text-3xl font-bold text-center text-gray-900">
+          RenalPlan
+        </h1>
 
-        <p className="mt-6 text-sm leading-6 text-gray-600">
-          Enter the email address you use for RenalPlan and we'll send you a link to choose a new password.
+        <p className="mt-2 text-center text-gray-600">
+          Reset your password
         </p>
 
-        <form onSubmit={handleResetRequest} className="mt-6 space-y-5">
+        <p className="mt-6 text-sm leading-6 text-gray-600">
+          Enter the email address you use for RenalPlan and we'll send you a
+          link to choose a new password.
+        </p>
+
+        <form
+          onSubmit={handleResetRequest}
+          className="mt-6 space-y-5"
+        >
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email
+            </label>
+
             <input
               id="email"
               name="email"
@@ -61,9 +84,17 @@ export default function ForgotPasswordPage() {
             />
           </div>
 
-          {error && <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}
+          {error && (
+            <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+              {error}
+            </div>
+          )}
 
-          {message && <div className="rounded-lg bg-green-50 px-4 py-3 text-sm leading-6 text-green-700">{message}</div>}
+          {message && (
+            <div className="rounded-lg bg-green-50 px-4 py-3 text-sm leading-6 text-green-700">
+              {message}
+            </div>
+          )}
 
           <button
             type="submit"

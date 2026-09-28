@@ -437,7 +437,9 @@ export default function FoodCheckPage() {
         imageUrl: product.image_front_url || product.image_url || undefined,
       };
 
-      setSelectedFood(food);
+      // Use the same selection handler as a normal search result so that
+      // mobile automatically scrolls to the nutrition result.
+      selectFood(food);
     } catch (lookupError) {
       console.error("Barcode lookup failed:", lookupError);
       setError(

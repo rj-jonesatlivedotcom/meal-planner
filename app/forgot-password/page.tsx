@@ -19,7 +19,7 @@ export default function ForgotPasswordPage() {
     setMessage("");
     setLoading(true);
 
-    const redirectTo = "https://renalplan.com/auth/reset-password";
+    const redirectTo = "https://www.renalplan.com/auth/reset-password";
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
 

@@ -30,5 +30,12 @@ export async function GET(request: Request) {
     );
   }
 
+  // Password recovery emails must go to the
+  // password reset page after the recovery session is created.
+  if (type === "recovery") {
+    return NextResponse.redirect(`${origin}/auth/reset-password`);
+  }
+
+  // Normal email confirmation goes to the homepage.
   return NextResponse.redirect(`${origin}/`);
 }

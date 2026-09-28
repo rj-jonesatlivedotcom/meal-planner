@@ -18,21 +18,84 @@ export default function ResetPasswordPage() {
   useEffect(() => {
     let cancelled = false;
 
-    async function checkSession() {
-      const { data: { session } } = await supabase.auth.getSession();
+    async function prepareResetSession() {
+      try {
+        /*
+         * Supabase PKCE password-reset links return an auth code
+         * to the redirect URL. Exchange that code for a session.
+         */
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code");
 
-      if (!cancelled) setReady(Boolean(session));
+        if (code) {
+          const { error: exchangeError } =
+            await supabase.auth.exchangeCodeForSession(code);
+
+          if (exchangeError) {
+            console.error(
+              "Password reset code exchange error:",
+              exchangeError
+            );
+
+            if (!cancelled) {
+              setError(
+                "This password reset link is invalid or has expired. Please request a new one."
+              );
+              setReady(false);
+            }
+
+            return;
+          }
+
+          /*
+           * Remove the one-time code from the browser address bar
+           * after it has been exchanged successfully.
+           */
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+        }
+
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+
+        if (!cancelled) {
+          if (session) {
+            setReady(true);
+          } else {
+            setError(
+              "We couldn't verify this password reset link. Please request a new one."
+            );
+            setReady(false);
+          }
+        }
+      } catch (err) {
+        console.error("Password reset session error:", err);
+
+        if (!cancelled) {
+          setError(
+            "We couldn't verify this password reset link. Please request a new one."
+          );
+          setReady(false);
+        }
+      }
     }
 
-    void checkSession();
+    void prepareResetSession();
 
     return () => {
       cancelled = true;
     };
   }, [supabase]);
 
-  async function handleUpdatePassword(event: FormEvent<HTMLFormElement>) {
+  async function handleUpdatePassword(
+    event: FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
+
     setError("");
     setMessage("");
 
@@ -48,7 +111,9 @@ export default function ResetPasswordPage() {
 
     setLoading(true);
 
-    const { error } = await supabase.auth.updateUser({ password });
+    const { error } = await supabase.auth.updateUser({
+      password,
+    });
 
     if (error) {
       setError(error.message);
@@ -59,14 +124,44 @@ export default function ResetPasswordPage() {
     setMessage("Your password has been changed successfully.");
     setLoading(false);
 
-    window.setTimeout(() => router.push("/auth/login"), 1500);
+    window.setTimeout(() => {
+      router.push("/auth/login");
+    }, 1500);
   }
 
   if (!ready) {
     return (
       <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-        <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-200">
-          <p className="text-gray-600">Checking your password reset link...</p>
+        <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-gray-200">
+          <h1 className="text-3xl font-bold text-center text-gray-900">
+            RenalPlan
+          </h1>
+
+          <p className="mt-2 text-center text-gray-600">
+            Reset your password
+          </p>
+
+          {!error && (
+            <p className="mt-6 text-center text-gray-600">
+              Checking your password reset link...
+            </p>
+          )}
+
+          {error && (
+            <div className="mt-6 rounded-lg bg-red-50 px-4 py-3 text-sm leading-6 text-red-700">
+              {error}
+            </div>
+          )}
+
+          {error && (
+            <button
+              type="button"
+              onClick={() => router.push("/forgot-password")}
+              className="mt-6 w-full rounded-lg bg-orange-500 px-4 py-3 font-semibold text-white transition hover:bg-orange-600"
+            >
+              Request a new reset link
+            </button>
+          )}
         </div>
       </main>
     );
@@ -75,12 +170,26 @@ export default function ResetPasswordPage() {
   return (
     <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-gray-200">
-        <h1 className="text-3xl font-bold text-center text-gray-900">RenalPlan</h1>
-        <p className="mt-2 text-center text-gray-600">Choose a new password</p>
+        <h1 className="text-3xl font-bold text-center text-gray-900">
+          RenalPlan
+        </h1>
 
-        <form onSubmit={handleUpdatePassword} className="mt-8 space-y-5">
+        <p className="mt-2 text-center text-gray-600">
+          Choose a new password
+        </p>
+
+        <form
+          onSubmit={handleUpdatePassword}
+          className="mt-8 space-y-5"
+        >
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">New password</label>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              New password
+            </label>
+
             <input
               id="password"
               type="password"
@@ -95,7 +204,13 @@ export default function ResetPasswordPage() {
           </div>
 
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm new password</label>
+            <label
+              htmlFor="confirmPassword"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Confirm new password
+            </label>
+
             <input
               id="confirmPassword"
               type="password"
@@ -103,14 +218,25 @@ export default function ResetPasswordPage() {
               required
               minLength={6}
               value={confirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
+              onChange={(event) =>
+                setConfirmPassword(event.target.value)
+              }
               placeholder="Enter the password again"
               className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
             />
           </div>
 
-          {error && <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}
-          {message && <div className="rounded-lg bg-green-50 px-4 py-3 text-sm leading-6 text-green-700">{message}</div>}
+          {error && (
+            <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+              {error}
+            </div>
+          )}
+
+          {message && (
+            <div className="rounded-lg bg-green-50 px-4 py-3 text-sm leading-6 text-green-700">
+              {message}
+            </div>
+          )}
 
           <button
             type="submit"

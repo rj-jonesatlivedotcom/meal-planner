@@ -21,14 +21,17 @@ export default function ResetPasswordPage() {
 
     async function prepareResetSession() {
       try {
-        /*
-         * Supabase PKCE recovery links are completed by the
-         * Supabase client. If a code is present in the URL,
-         * exchange it for a session first.
-         */
-        const params = new URLSearchParams(window.location.search);
-        const code = params.get("code");
+        const url = new URL(window.location.href);
+        const code = url.searchParams.get("code");
 
+        /*
+         * ------------------------------------------------------------
+         * 1. PKCE recovery flow
+         * ------------------------------------------------------------
+         *
+         * If Supabase gives us a ?code=... parameter, exchange it
+         * for a Supabase session.
+         */
         if (code) {
           const { error: exchangeError } =
             await supabase.auth.exchangeCodeForSession(code);
@@ -50,24 +53,81 @@ export default function ResetPasswordPage() {
             return;
           }
 
-          /*
-           * Remove the one-time code from the address bar.
-           */
-          window.history.replaceState(
-            {},
-            document.title,
-            window.location.pathname
-          );
+          if (!cancelled) {
+            window.history.replaceState(
+              {},
+              document.title,
+              window.location.pathname
+            );
+          }
         }
 
         /*
-         * Check whether Supabase now has a recovery session.
+         * ------------------------------------------------------------
+         * 2. Hash-token recovery flow
+         * ------------------------------------------------------------
+         *
+         * Some Supabase recovery links arrive with:
+         *
+         * #access_token=...
+         * &refresh_token=...
+         * &type=recovery
+         *
+         * Handle those explicitly.
+         */
+        const hashParams = new URLSearchParams(
+          window.location.hash.substring(1)
+        );
+
+        const accessToken = hashParams.get("access_token");
+        const refreshToken = hashParams.get("refresh_token");
+        const recoveryType = hashParams.get("type");
+
+        if (accessToken && refreshToken && recoveryType === "recovery") {
+          const { error: sessionError } =
+            await supabase.auth.setSession({
+              access_token: accessToken,
+              refresh_token: refreshToken,
+            });
+
+          if (sessionError) {
+            console.error(
+              "Password reset session error:",
+              sessionError
+            );
+
+            if (!cancelled) {
+              setError(
+                "This password reset link is invalid or has expired. Please request a new one."
+              );
+              setChecking(false);
+              setReady(false);
+            }
+
+            return;
+          }
+
+          if (!cancelled) {
+            window.history.replaceState(
+              {},
+              document.title,
+              window.location.pathname
+            );
+          }
+        }
+
+        /*
+         * ------------------------------------------------------------
+         * 3. Check for an existing Supabase session
+         * ------------------------------------------------------------
          */
         const {
           data: { session },
         } = await supabase.auth.getSession();
 
-        if (cancelled) return;
+        if (cancelled) {
+          return;
+        }
 
         if (session) {
           setReady(true);
@@ -76,34 +136,44 @@ export default function ResetPasswordPage() {
         }
 
         /*
-         * If there isn't a session, wait briefly for Supabase's
-         * auth state to finish processing the recovery link.
+         * ------------------------------------------------------------
+         * 4. Listen for Supabase to finish processing the recovery
+         * ------------------------------------------------------------
          */
         const {
           data: { subscription },
         } = supabase.auth.onAuthStateChange((event, session) => {
-          if (cancelled) return;
+          if (cancelled) {
+            return;
+          }
 
           if (
-            event === "PASSWORD_RECOVERY" ||
-            event === "SIGNED_IN"
+            (event === "PASSWORD_RECOVERY" ||
+              event === "SIGNED_IN") &&
+            session
           ) {
-            if (session) {
-              setReady(true);
-              setChecking(false);
-              subscription.unsubscribe();
-            }
+            setReady(true);
+            setChecking(false);
+            subscription.unsubscribe();
           }
         });
 
+        /*
+         * Give Supabase a short amount of time to finish processing
+         * the recovery session.
+         */
         window.setTimeout(async () => {
-          if (cancelled) return;
+          if (cancelled) {
+            return;
+          }
 
           const {
             data: { session: latestSession },
           } = await supabase.auth.getSession();
 
-          if (cancelled) return;
+          if (cancelled) {
+            return;
+          }
 
           if (latestSession) {
             setReady(true);

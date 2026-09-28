@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -13,7 +13,7 @@ export default function ForgotPasswordPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleResetRequest(event: React.FormEvent) {
+  async function handleResetRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setError("");
@@ -21,14 +21,11 @@ export default function ForgotPasswordPage() {
     setLoading(true);
 
     const redirectTo =
-      "https://www.renalplan.com/auth/reset-password";
+      "https://www.renalplan.com/auth/callback?next=/auth/reset-password";
 
-    const { error } = await supabase.auth.resetPasswordForEmail(
-      email,
-      {
-        redirectTo,
-      }
-    );
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo,
+    });
 
     if (error) {
       setError(error.message);
@@ -59,10 +56,7 @@ export default function ForgotPasswordPage() {
           link to choose a new password.
         </p>
 
-        <form
-          onSubmit={handleResetRequest}
-          className="mt-6 space-y-5"
-        >
+        <form onSubmit={handleResetRequest} className="mt-6 space-y-5">
           <div>
             <label
               htmlFor="email"

@@ -16,7 +16,7 @@ export default function ResetPasswordPage() {
   const [checking, setChecking] = useState(true);
   const [ready, setReady] = useState(false);
 
-  // Prevent the recovery code from being processed more than once.
+  // Prevent the one-time recovery code being processed more than once.
   const recoveryStarted = useRef(false);
 
   useEffect(() => {
@@ -38,10 +38,11 @@ export default function ResetPasswordPage() {
          * 1. PKCE recovery flow
          * ------------------------------------------------------------
          *
-         * Supabase password-reset links normally arrive with a
-         * ?code=... parameter.
+         * Supabase password-reset links can arrive with:
          *
-         * The code is single-use, so it must only be exchanged once.
+         * ?code=...
+         *
+         * The code is single-use, so we must only exchange it once.
          */
 
         if (code) {
@@ -66,9 +67,11 @@ export default function ResetPasswordPage() {
           }
 
           /*
-           * Remove the one-time code from the browser URL after
-           * successful exchange.
+           * The code has now been exchanged successfully.
+           * Remove it from the address bar so it cannot be
+           * accidentally processed again.
            */
+
           if (!cancelled) {
             window.history.replaceState(
               {},
@@ -83,13 +86,8 @@ export default function ResetPasswordPage() {
          * 2. Hash-token recovery flow
          * ------------------------------------------------------------
          *
-         * Some Supabase recovery links may arrive with:
-         *
-         * #access_token=...
-         * &refresh_token=...
-         * &type=recovery
-         *
-         * Handle those explicitly as well.
+         * Also support older/implicit Supabase recovery links that
+         * contain access_token and refresh_token in the URL hash.
          */
 
         const hashParams = new URLSearchParams(
@@ -128,6 +126,10 @@ export default function ResetPasswordPage() {
             return;
           }
 
+          /*
+           * Remove the recovery tokens from the address bar.
+           */
+
           if (!cancelled) {
             window.history.replaceState(
               {},
@@ -139,7 +141,7 @@ export default function ResetPasswordPage() {
 
         /*
          * ------------------------------------------------------------
-         * 3. Check for an existing Supabase session
+         * 3. Check for an active Supabase session
          * ------------------------------------------------------------
          */
 
@@ -159,7 +161,7 @@ export default function ResetPasswordPage() {
 
         /*
          * ------------------------------------------------------------
-         * 4. Listen for Supabase to finish processing recovery
+         * 4. Listen for Supabase recovery events
          * ------------------------------------------------------------
          */
 
@@ -171,13 +173,14 @@ export default function ResetPasswordPage() {
           }
 
           if (
-            (event === "PASSWORD_RECOVERY" ||
-              event === "SIGNED_IN") &&
-            session
+            event === "PASSWORD_RECOVERY" ||
+            event === "SIGNED_IN"
           ) {
-            setReady(true);
-            setChecking(false);
-            subscription.unsubscribe();
+            if (session) {
+              setReady(true);
+              setChecking(false);
+              subscription.unsubscribe();
+            }
           }
         });
 
@@ -240,7 +243,9 @@ export default function ResetPasswordPage() {
     setMessage("");
 
     if (password.length < 6) {
-      setError("Your password must be at least 6 characters long.");
+      setError(
+        "Your password must be at least 6 characters long."
+      );
       return;
     }
 
@@ -269,6 +274,12 @@ export default function ResetPasswordPage() {
     }, 1500);
   }
 
+  /*
+   * ------------------------------------------------------------
+   * Checking reset link
+   * ------------------------------------------------------------
+   */
+
   if (checking) {
     return (
       <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -288,6 +299,12 @@ export default function ResetPasswordPage() {
       </main>
     );
   }
+
+  /*
+   * ------------------------------------------------------------
+   * Invalid / expired reset link
+   * ------------------------------------------------------------
+   */
 
   if (!ready) {
     return (
@@ -316,6 +333,12 @@ export default function ResetPasswordPage() {
       </main>
     );
   }
+
+  /*
+   * ------------------------------------------------------------
+   * Set new password
+   * ------------------------------------------------------------
+   */
 
   return (
     <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -347,7 +370,9 @@ export default function ResetPasswordPage() {
               required
               minLength={6}
               value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={(event) =>
+                setPassword(event.target.value)
+              }
               placeholder="Enter a new password"
               className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
             />
@@ -393,7 +418,9 @@ export default function ResetPasswordPage() {
             disabled={loading}
             className="w-full rounded-lg bg-orange-500 px-4 py-3 font-semibold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {loading ? "Updating password..." : "Set new password"}
+            {loading
+              ? "Updating password..."
+              : "Set new password"}
           </button>
         </form>
 

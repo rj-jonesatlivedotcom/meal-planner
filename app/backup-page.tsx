@@ -140,237 +140,6 @@ const meals = [
   ["Thursday", "Porridge", "Chicken wrap", "Sausage & mash"],
 ];
 
-function RenalPlanDemo() {
-  const [step, setStep] = useState(0);
-  const [rolling, setRolling] = useState(false);
-
-  useEffect(() => {
-    const sequence = [
-      { at: 0, step: 0 },
-      { at: 3000, step: 1 },
-      { at: 5600, step: 2 },
-      { at: 7900, step: 3 },
-      { at: 11200, step: 4 },
-      { at: 14500, step: 0 },
-    ];
-
-    let timers: ReturnType<typeof setTimeout>[] = [];
-
-    const run = () => {
-      timers.forEach(clearTimeout);
-      timers = sequence.map(({ at, step: nextStep }) =>
-        setTimeout(() => {
-          setStep(nextStep);
-          setRolling(nextStep === 2);
-        }, at),
-      );
-    };
-
-    run();
-    const loop = setInterval(run, 14500);
-
-    return () => {
-      timers.forEach(clearTimeout);
-      clearInterval(loop);
-    };
-  }, []);
-
-  const status = useMemo(() => {
-    if (step === 0) return "Set your dietary requirement";
-    if (step === 1) return "Choose your meals — or let RenalPlan pick them for you";
-    if (step === 2) return "RenalPlan is choosing appropriate meals…";
-    if (step === 3) return "Your personalised week is ready";
-    return "Your nutrition and shopping are ready too";
-  }, [step]);
-
-  return (
-    <section className="px-4 py-7 sm:px-8 lg:px-10 lg:py-9">
-      <div className="mx-auto max-w-[1450px] overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-[0_18px_60px_rgba(18,57,107,0.10)]">
-        <div className="bg-gradient-to-r from-[#f1f9ff] via-white to-[#f3fbf6] px-5 py-7 text-center sm:px-8 lg:py-9">
-          <span className="inline-flex rounded-full bg-[#d9ecff] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#1266c3]">
-            SEE RENALPLAN IN ACTION
-          </span>
-          <h2 className="mx-auto mt-3 max-w-3xl text-2xl font-extrabold tracking-tight text-[#12396b] sm:text-3xl lg:text-4xl">
-            From your requirements to a personalised week
-          </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-            Tell RenalPlan what you need, then let it do the planning for you.
-          </p>
-        </div>
-
-        <div className="px-3 pb-5 sm:px-6 sm:pb-7 lg:px-10 lg:pb-9">
-          <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-inner">
-            <div className="flex h-9 items-center gap-2 border-b border-slate-200 bg-white px-4">
-              <span className="h-2.5 w-2.5 rounded-full bg-red-300" />
-              <span className="h-2.5 w-2.5 rounded-full bg-yellow-300" />
-              <span className="h-2.5 w-2.5 rounded-full bg-green-300" />
-              <div className="ml-3 h-5 flex-1 rounded-full bg-slate-100" />
-            </div>
-
-            <div className="relative min-h-[360px] bg-gradient-to-br from-slate-50 via-white to-blue-50/50 p-4 sm:min-h-[390px] sm:p-6">
-              {step === 0 && (
-                <DietScene />
-              )}
-
-              {(step === 1 || step === 2 || step === 3) && (
-                <PlannerScene rolling={rolling} populated={step >= 3} />
-              )}
-
-              {step === 4 && <OutcomeScene />}
-            </div>
-          </div>
-
-          <div className="mt-5 text-center">
-            <p className="min-h-[28px] text-sm font-semibold text-[#12396b] transition-all duration-500 sm:text-base">
-              {status}
-            </p>
-            <div className="mt-3 flex justify-center gap-2" aria-hidden="true">
-              {[0, 1, 2, 3, 4].map((item) => (
-                <span
-                  key={item}
-                  className={`h-2 rounded-full transition-all duration-500 ${
-                    item === step ? "w-7 bg-[#078f43]" : "w-2 bg-slate-200"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DietScene() {
-  return (
-    <div className="mx-auto max-w-4xl animate-[renalDemoFade_.6s_ease-out]">
-      <div className="rounded-2xl bg-white p-5 shadow-sm sm:p-7">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-[#078f43]">My Diet</p>
-            <h3 className="mt-1 text-xl font-extrabold text-[#12396b] sm:text-2xl">Your dietary requirements</h3>
-          </div>
-          <div className="rounded-xl bg-[#eef8f2] px-3 py-2 text-xs font-bold text-[#078f43]">Personalised</div>
-        </div>
-
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          <div className="rounded-xl border-2 border-[#078f43] bg-[#effbf5] p-4 shadow-sm animate-[renalDemoPulse_.9s_ease-out]">
-            <div className="flex items-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#078f43] text-sm font-bold text-white">✓</span>
-              <div>
-                <p className="font-bold text-[#12396b]">Low potassium</p>
-                <p className="text-xs text-slate-500">RenalPlan will use this when planning meals.</p>
-              </div>
-            </div>
-          </div>
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 opacity-55">
-            <div className="flex items-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-slate-300 text-sm text-slate-300">✓</span>
-              <p className="font-semibold text-slate-400">Other dietary requirements</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-5 flex justify-end">
-          <span className="rounded-lg bg-[#078f43] px-5 py-2.5 text-xs font-bold text-white shadow-sm">Save requirements</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PlannerScene({ rolling, populated }: { rolling: boolean; populated: boolean }) {
-  return (
-    <div className="mx-auto max-w-5xl animate-[renalDemoFade_.6s_ease-out]">
-      <div className="rounded-2xl bg-white p-4 shadow-sm sm:p-5">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-[#078f43]">Weekly Planner</p>
-            <h3 className="mt-1 text-xl font-extrabold text-[#12396b]">Your week</h3>
-          </div>
-          <div className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all duration-300 ${rolling ? "bg-orange-100 text-orange-600 shadow-[0_0_24px_rgba(249,115,22,0.22)]" : "bg-[#eef8f2] text-[#078f43]"}`}>
-            <span className={rolling ? "animate-[renalDiceRoll_.85s_linear_infinite] text-xl" : "text-xl"}>🎲</span>
-            {rolling ? "Picking for you…" : "Pick for Me"}
-          </div>
-        </div>
-
-        <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {meals.map(([day, breakfast, lunch, dinner], index) => (
-            <div key={day} className={`rounded-xl border bg-slate-50 p-2.5 transition-all duration-500 ${populated ? "border-green-200 bg-green-50/40" : "border-slate-200"}`}>
-              <p className="mb-2 text-xs font-extrabold text-[#12396b]">{day}</p>
-              <MealSlot label="Breakfast" meal={populated ? breakfast : ""} delay={index * 120} />
-              <MealSlot label="Lunch" meal={populated ? lunch : ""} delay={index * 120 + 80} />
-              <MealSlot label="Dinner" meal={populated ? dinner : ""} delay={index * 120 + 160} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MealSlot({ label, meal, delay }: { label: string; meal: string; delay: number }) {
-  return (
-    <div
-      className="mb-1.5 min-h-[44px] rounded-lg border border-white bg-white p-2 shadow-sm"
-      style={meal ? { animation: `renalMealIn .45s ease-out ${delay}ms both` } : undefined}
-    >
-      <p className="text-[9px] font-bold uppercase tracking-wide text-slate-400">{label}</p>
-      {meal ? (
-        <p className="mt-0.5 text-[11px] font-semibold leading-tight text-[#12396b]">{meal}</p>
-      ) : (
-        <div className="mt-1 h-2 w-16 rounded-full bg-slate-100" />
-      )}
-    </div>
-  );
-}
-
-function OutcomeScene() {
-  return (
-    <div className="mx-auto max-w-5xl animate-[renalDemoFade_.6s_ease-out]">
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="rounded-2xl bg-white p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-[#078f43]">Nutrition</p>
-              <h3 className="mt-1 text-lg font-extrabold text-[#12396b]">Your weekly summary</h3>
-            </div>
-            <span className="rounded-full bg-[#eef8f2] px-3 py-1 text-[10px] font-bold text-[#078f43]">Ready</span>
-          </div>
-          <div className="mt-5 grid grid-cols-3 gap-2">
-            {[["Potassium", "Low"], ["Phosphate", "Good"], ["Salt", "On track"]].map(([label, value]) => (
-              <div key={label} className="rounded-xl bg-slate-50 p-3 text-center">
-                <div className="mx-auto h-9 w-9 rounded-full bg-[#078f43]/15" />
-                <p className="mt-2 text-[10px] font-bold text-slate-400">{label}</p>
-                <p className="mt-0.5 text-xs font-extrabold text-[#12396b]">{value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-2xl bg-white p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-[#078f43]">Shopping List</p>
-              <h3 className="mt-1 text-lg font-extrabold text-[#12396b]">Ready for the shop</h3>
-            </div>
-            <span className="text-xl">🛒</span>
-          </div>
-          <div className="mt-5 space-y-2">
-            {["Chicken breast", "White rice", "Iceberg lettuce", "Low-fat sausages"].map((item, index) => (
-              <div key={item} className="flex items-center gap-3 rounded-lg bg-slate-50 px-3 py-2" style={{ animation: `renalMealIn .4s ease-out ${index * 90}ms both` }}>
-                <span className="h-2.5 w-2.5 rounded-full bg-[#078f43]" />
-                <span className="text-xs font-semibold text-[#12396b]">{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-white text-slate-900">
@@ -442,30 +211,6 @@ export default function Home() {
 
         .renal-pulse {
           animation: renalPulse 2.8s ease-in-out infinite;
-        }
-
-        @keyframes renalDemoFade {
-          from { opacity: 0; transform: translateY(14px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes renalDemoPulse {
-          0% { transform: scale(1); }
-          45% { transform: scale(1.025); }
-          100% { transform: scale(1); }
-        }
-
-        @keyframes renalDiceRoll {
-          0% { transform: rotate(0deg) scale(1); }
-          25% { transform: rotate(95deg) scale(1.12); }
-          50% { transform: rotate(190deg) scale(0.94); }
-          75% { transform: rotate(285deg) scale(1.10); }
-          100% { transform: rotate(360deg) scale(1); }
-        }
-
-        @keyframes renalMealIn {
-          from { opacity: 0; transform: translateY(8px) scale(0.98); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -599,7 +344,34 @@ export default function Home() {
         </div>
       </section>
 
-      <RenalPlanDemo />
+      {/* REAL RENALPLAN DEMO VIDEO */}
+      <section className="px-4 py-3 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1450px] overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-[0_18px_60px_rgba(18,57,107,0.10)]">
+          <div className="bg-gradient-to-r from-[#f1f9ff] via-white to-[#f3fbf6] px-5 py-5 text-center sm:px-8 lg:py-6">
+            <span className="inline-flex rounded-full bg-[#d9ecff] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#1266c3]">
+              SEE RENALPLAN IN ACTION
+            </span>
+            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+              Tell RenalPlan what you need, then let it do the planning for you.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 px-3 pb-3 sm:px-6 sm:pb-6 lg:px-10 lg:pb-8">
+            <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-slate-200 bg-black shadow-lg">
+              <video
+                className="block h-auto w-full"
+                src="/renalplan-demo.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                preload="metadata"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ACCOUNT / PREMIUM FEATURES */}
       <section className="px-4 py-3 sm:px-8 lg:px-10">

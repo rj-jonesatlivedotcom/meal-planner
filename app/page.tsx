@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
 
 const freeSteps = [
   {
@@ -13,7 +12,7 @@ const freeSteps = [
     numberClass: "bg-emerald-400",
     iconClass: "bg-green-50 text-emerald-600",
     icon: (
-      <svg viewBox="0 0 64 64" className="h-8 w-8" aria-hidden="true">
+      <svg viewBox="0 0 64 64" className="h-9 w-9" aria-hidden="true">
         <path d="M8 14c10-3 18-1 24 5v34c-6-6-14-8-24-5V14Z" fill="white" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" />
         <path d="M56 14c-10-3-18-1-24 5v34c6-6 14-8 24-5V14Z" fill="white" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" />
         <path d="M32 19v34" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
@@ -29,7 +28,7 @@ const freeSteps = [
     numberClass: "bg-orange-400",
     iconClass: "bg-orange-50 text-orange-500",
     icon: (
-      <svg viewBox="0 0 64 64" className="h-8 w-8" aria-hidden="true">
+      <svg viewBox="0 0 64 64" className="h-9 w-9" aria-hidden="true">
         <rect x="10" y="14" width="44" height="40" rx="5" fill="none" stroke="currentColor" strokeWidth="4" />
         <path d="M20 9v11M44 9v11M10 26h44" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
         <path d="M21 34h6M37 34h6M21 44h6M37 44h6" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
@@ -45,7 +44,7 @@ const freeSteps = [
     numberClass: "bg-blue-400",
     iconClass: "bg-blue-50 text-blue-600",
     icon: (
-      <svg viewBox="0 0 64 64" className="h-8 w-8" aria-hidden="true">
+      <svg viewBox="0 0 64 64" className="h-9 w-9" aria-hidden="true">
         <path d="M13 18h7l4 28h27l6-21H22" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
         <circle cx="29" cy="54" r="4" fill="currentColor" />
         <circle cx="48" cy="54" r="4" fill="currentColor" />
@@ -131,13 +130,6 @@ const accountFeatures = [
       </svg>
     ),
   },
-];
-
-const meals = [
-  ["Monday", "Porridge", "Chicken salad", "Beef pasta"],
-  ["Tuesday", "Scrambled eggs", "Tuna wrap", "Chicken curry"],
-  ["Wednesday", "Toast & eggs", "Ham sandwich", "Fish & chips"],
-  ["Thursday", "Porridge", "Chicken wrap", "Sausage & mash"],
 ];
 
 export default function Home() {
@@ -235,24 +227,24 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/55 via-[42%] to-transparent lg:via-[47%]" />
 
-        <div className="relative mx-auto flex min-h-[350px] max-w-[1600px] items-center px-6 py-8 sm:px-10 lg:min-h-[370px] lg:px-16 xl:px-24">
+        <div className="relative mx-auto flex min-h-[390px] max-w-[1600px] items-center px-6 py-12 sm:px-10 lg:min-h-[420px] lg:px-16 xl:px-24">
           <div className="w-full max-w-[720px] renal-fade-up">
-            <h1 className="max-w-[760px] text-[2.45rem] font-extrabold leading-[0.98] tracking-[-0.045em] text-[#12396b] sm:text-5xl lg:text-[3.65rem]">
+            <h1 className="max-w-[760px] text-[2.65rem] font-extrabold leading-[0.98] tracking-[-0.045em] text-[#12396b] sm:text-5xl lg:text-[4.05rem]">
               <span className="block">Plan kidney-friendly</span>
               <span className="block">
                 meals <span className="text-[#079447]">with confidence.</span>
               </span>
             </h1>
 
-            <p className="mt-4 max-w-[620px] text-base leading-[1.45] text-[#17385f] sm:text-lg lg:text-[1.08rem]">
+            <p className="mt-6 max-w-[620px] text-base leading-[1.5] text-[#17385f] sm:text-lg lg:text-[1.18rem]">
               Choose meals that fit your dietary requirements, see your weekly
               nutrition at a glance, and get your shopping list automatically.
             </p>
 
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/recipes"
-                className="renal-fade-up inline-flex items-center justify-center gap-3 rounded-xl bg-[#078f43] px-7 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#067b3a] hover:shadow-lg"
+                className="renal-fade-up inline-flex items-center justify-center gap-3 rounded-xl bg-[#078f43] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#067b3a] hover:shadow-lg"
               >
                 Explore recipes
                 <span className="text-lg">→</span>
@@ -260,7 +252,7 @@ export default function Home() {
 
               <Link
                 href="/signup"
-                className="renal-fade-up inline-flex items-center justify-center gap-3 rounded-xl bg-[#12396b] px-7 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg"
+                className="renal-fade-up inline-flex items-center justify-center gap-3 rounded-xl bg-[#12396b] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg"
               >
                 Create free account
                 <span className="text-lg">→</span>
@@ -269,7 +261,7 @@ export default function Home() {
           </div>
 
           <div
-            className="renal-float absolute right-5 top-6 hidden w-[205px] rotate-[-4deg] rounded-[28%_20%_25%_18%] bg-[#dff5e6] px-4 py-3 text-center text-[1.2rem] font-semibold leading-[1.02] text-[#12396b] shadow-sm lg:block xl:right-16"
+            className="renal-float absolute right-5 top-8 hidden w-[225px] rotate-[-4deg] rounded-[28%_20%_25%_18%] bg-[#dff5e6] px-5 py-4 text-center text-[1.35rem] font-semibold leading-[1.02] text-[#12396b] shadow-sm lg:block xl:right-16"
             style={{
               fontFamily:
                 '"Segoe Print", "Bradley Hand", "Comic Sans MS", cursive',
@@ -283,17 +275,17 @@ export default function Home() {
       </section>
 
       {/* FREE JOURNEY */}
-      <section className="px-4 py-3 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-r from-[#effbf5] to-[#f8fcfa] px-5 py-5 shadow-sm sm:px-7 lg:px-8 lg:py-5">
-          <div className="grid gap-4 lg:grid-cols-[0.95fr_2fr] lg:items-center">
+      <section className="px-4 py-4 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-r from-[#effbf5] to-[#f8fcfa] px-5 py-6 shadow-sm sm:px-7 lg:px-8 lg:py-7">
+          <div className="grid gap-6 lg:grid-cols-[0.95fr_2fr] lg:items-center">
             <div>
               <span className="inline-flex rounded-full bg-[#d5f5e5] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#078f43]">
                 FREE FOR EVERYONE
               </span>
-              <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-[#12396b] sm:text-3xl">
+              <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-[#12396b] sm:text-3xl">
                 Your journey in 3 simple steps
               </h2>
-              <p className="mt-1 text-sm leading-relaxed text-[#17385f] sm:text-base">
+              <p className="mt-2 text-sm leading-relaxed text-[#17385f] sm:text-base">
                 Explore RenalPlan for free. No account needed.
               </p>
             </div>
@@ -307,7 +299,7 @@ export default function Home() {
                 >
                   <Link
                     href={step.href}
-                    className={`group block min-h-[128px] rounded-2xl border p-3.5 shadow-sm transition hover:-translate-y-1 hover:shadow-md ${step.cardClass}`}
+                    className={`group block min-h-[150px] rounded-2xl border p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md ${step.cardClass}`}
                   >
                     <div className="flex items-start justify-between">
                       <span
@@ -316,15 +308,15 @@ export default function Home() {
                         {step.number}
                       </span>
                       <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-full ${step.iconClass}`}
+                        className={`flex h-12 w-12 items-center justify-center rounded-full ${step.iconClass}`}
                       >
                         {step.icon}
                       </div>
                     </div>
-                    <h3 className="mt-2 font-bold text-[#12396b]">
+                    <h3 className="mt-3 font-bold text-[#12396b]">
                       {step.title}
                     </h3>
-                    <p className="mt-1 text-[11px] leading-snug text-slate-700">
+                    <p className="mt-1 text-xs leading-snug text-slate-700">
                       {step.description}
                     </p>
                   </Link>
@@ -344,57 +336,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* REAL RENALPLAN DEMO VIDEO */}
-      <section className="px-4 py-3 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-[1450px] overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-[0_18px_60px_rgba(18,57,107,0.10)]">
-          <div className="bg-gradient-to-r from-[#f1f9ff] via-white to-[#f3fbf6] px-5 py-5 text-center sm:px-8 lg:py-6">
-            <span className="inline-flex rounded-full bg-[#d9ecff] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#1266c3]">
-              SEE RENALPLAN IN ACTION
-            </span>
-            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              Tell RenalPlan what you need, then let it do the planning for you.
-            </p>
-          </div>
-
-          <div className="bg-slate-50 px-3 pb-3 sm:px-6 sm:pb-6 lg:px-10 lg:pb-8">
-            <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-slate-200 bg-black shadow-lg">
-              <video
-                className="block h-auto w-full"
-                src="/renalplan-demo.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                preload="metadata"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ACCOUNT / PREMIUM FEATURES */}
-      <section className="px-4 py-3 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-br from-[#eef7ff] to-[#f8fbff] px-5 py-5 shadow-sm sm:px-7 lg:px-8 lg:py-6">
-          <div className="grid gap-4 lg:grid-cols-[0.9fr_2fr] lg:items-center">
+      <section className="px-4 py-4 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-br from-[#eef7ff] to-[#f8fbff] px-5 py-6 shadow-sm sm:px-7 lg:px-8 lg:py-8">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_2fr] lg:items-center">
             <div>
               <span className="inline-flex rounded-full bg-[#d9ecff] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#1266c3]">
                 WITH A RENALPLAN ACCOUNT
               </span>
 
-              <h2 className="mt-2 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl lg:text-[2.05rem]">
+              <h2 className="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl lg:text-[2.25rem]">
                 Unlock more with your free{" "}
                 <span className="text-[#079447]">RenalPlan</span> account
               </h2>
 
-              <p className="mt-2 max-w-[430px] text-sm leading-relaxed text-slate-700 sm:text-base">
+              <p className="mt-3 max-w-[430px] text-sm leading-relaxed text-slate-700 sm:text-base">
                 Create a free account to personalise your experience and
                 unlock extra features that make meal planning even easier.
               </p>
 
               <Link
                 href="/signup"
-                className="mt-4 inline-flex items-center justify-center gap-3 rounded-xl bg-[#12396b] px-7 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg"
+                className="mt-5 inline-flex items-center justify-center gap-3 rounded-xl bg-[#12396b] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg"
               >
                 Create free account
                 <span className="text-lg">→</span>
@@ -407,11 +370,11 @@ export default function Home() {
                   key={feature.title}
                   style={{ animationDelay: `${index * 110 + 120}ms` }}
                   href={feature.href}
-                  className="renal-fade-up group rounded-2xl border border-white/80 bg-white/75 p-3.5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md sm:p-4"
+                  className="renal-fade-up group rounded-2xl border border-white/80 bg-white/75 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md sm:p-5"
                 >
                   <div className="flex items-start gap-3">
                     <div
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${feature.iconClass}`}
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${feature.iconClass}`}
                     >
                       {feature.icon}
                     </div>
@@ -429,7 +392,7 @@ export default function Home() {
                         )}
                       </div>
 
-                      <p className="mt-1 text-[11px] leading-relaxed text-slate-600 sm:text-xs">
+                      <p className="mt-1 text-xs leading-relaxed text-slate-600 sm:text-sm">
                         {feature.text}
                       </p>
                     </div>
@@ -441,8 +404,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* RENALPLAN SHOWCASE VIDEO */}
+      <section
+        className="px-4 py-6 sm:px-8 lg:px-10 lg:py-8"
+        aria-label="See RenalPlan in action"
+      >
+        <div className="mx-auto max-w-[1450px] overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
+          <video
+            className="block h-auto w-full"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+          >
+            <source
+              src="/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video element.
+          </video>
+        </div>
+      </section>
+
       {/* CLOSING CTA */}
-      <section className="border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-7 sm:px-8 lg:px-10 lg:py-8">
+      <section className="border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-10 sm:px-8 lg:px-10 lg:py-12">
         <div className="renal-fade-up mx-auto max-w-[1400px] text-center">
           <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-4xl">
             Plan <span className="text-[#079447]">→</span> Shop{" "}
@@ -454,7 +441,7 @@ export default function Home() {
 
           <Link
             href="/signup"
-            className="mt-4 inline-flex items-center justify-center gap-3 rounded-xl bg-[#12396b] px-8 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg"
+            className="mt-6 inline-flex items-center justify-center gap-3 rounded-xl bg-[#12396b] px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#0d2f59] hover:shadow-lg"
           >
             Create free account
             <span className="text-lg">→</span>
@@ -463,7 +450,7 @@ export default function Home() {
       </section>
 
       {/* CONTACT / FOOTER */}
-      <footer className="border-t border-slate-100 bg-white px-5 py-5 sm:px-8 lg:px-12">
+      <footer className="border-t border-slate-100 bg-white px-5 py-7 sm:px-8 lg:px-12">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
           <div>
             <div className="text-lg font-bold">

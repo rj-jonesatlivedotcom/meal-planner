@@ -454,6 +454,19 @@ export default function AccountPage() {
           </button>
         </section>
 
+        {/* CONTACT */}
+        <div className="pt-2 pb-5 text-right">
+          <p className="text-sm text-slate-500">
+            Do you have any questions or need help?{" "}
+            <a
+              href="mailto:hello@renalplan.com"
+              className="font-medium text-[#078f43] transition hover:underline"
+            >
+              Contact us
+            </a>
+          </p>
+        </div>
+
       </div>
     </main>
   );

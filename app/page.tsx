@@ -716,22 +716,32 @@ export default function Home() {
       {/* =========================================================
           ABOUT
       ========================================================= */}
-      <div className="mx-auto max-w-[1400px] px-5 pb-4 text-right sm:px-8 lg:px-12">
-        <Link
-          href="/about"
-          className="text-2xl font-semibold text-slate-700 transition hover:text-[#078f43]"
-        >
-          About{" "}
-          <span className="font-bold">
-            <span className="text-[#12396b]">
-              Renal
-            </span>
-            <span className="text-[#078f43]">
-              Plan
-            </span>
-          </span>
-        </Link>
-      </div>
+      <div className="mx-auto max-w-[1400px] px-5 pb-5 text-right sm:px-8 lg:px-12">
+  <Link
+    href="/about"
+    className="text-2xl font-semibold text-slate-700 transition hover:text-[#078f43]"
+  >
+    About{" "}
+    <span className="font-bold">
+      <span className="text-[#12396b]">
+        Renal
+      </span>
+      <span className="text-[#078f43]">
+        Plan
+      </span>
+    </span>
+  </Link>
+
+  <p className="mt-2 text-sm text-slate-500">
+    Do you have any questions or need help?{" "}
+    <a
+      href="mailto:hello@renalplan.com"
+      className="font-medium text-[#078f43] transition hover:underline"
+    >
+      Contact us
+    </a>
+  </p>
+</div>
 
     </main>
   );

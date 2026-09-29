@@ -200,36 +200,43 @@ export default function Navbar() {
       href: "/",
       label: "Home",
       active: pathname === "/",
-    },
-    {
-      href: "/requirements",
-      label: "My Diet",
-      active: pathname.startsWith("/requirements"),
+      premium: false,
     },
     {
       href: "/recipes",
       label: "Recipes",
       active: pathname.startsWith("/recipes"),
+      premium: false,
     },
     {
       href: "/planner",
       label: "Weekly Planner",
       active: pathname.startsWith("/planner"),
-    },
-    {
-      href: "/nutrition",
-      label: "Nutrition",
-      active: pathname.startsWith("/nutrition"),
-    },
-    {
-      href: "/FoodCheck",
-      label: "Food Check",
-      active: pathname.startsWith("/FoodCheck"),
+      premium: false,
     },
     {
       href: "/shopping",
       label: "Shopping List",
       active: pathname.startsWith("/shopping"),
+      premium: false,
+    },
+    {
+      href: "/requirements",
+      label: "My Diet",
+      active: pathname.startsWith("/requirements"),
+      premium: true,
+    },
+    {
+      href: "/nutrition",
+      label: "Nutrition",
+      active: pathname.startsWith("/nutrition"),
+      premium: true,
+    },
+    {
+      href: "/FoodCheck",
+      label: "Food Check",
+      active: pathname.startsWith("/FoodCheck"),
+      premium: true,
     },
   ];
 
@@ -287,20 +294,41 @@ export default function Navbar() {
                     : "text-slate-900 hover:bg-green-50 hover:text-green-700"
                 }`}
               >
-                {item.label}
+                <span className="flex flex-col items-center justify-center leading-none">
+                  <span>{item.label}</span>
+                  {item.premium && (
+                    <span className="mt-1 rounded-full bg-orange-300 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wide text-white">
+                      Premium
+                    </span>
+                  )}
+                </span>
               </Link>
             ))}
 
             {loggedIn && (
               <Link
                 href="/account"
-                className={`flex min-h-12 items-center whitespace-nowrap rounded-lg px-3 text-[15px] font-bold transition lg:px-3.5 ${
+                aria-label="My Account"
+                className={`flex min-h-12 items-center gap-2 whitespace-nowrap rounded-lg px-3 text-[15px] font-bold transition lg:px-3.5 ${
                   pathname.startsWith("/account")
                     ? "text-green-700"
                     : "text-slate-900 hover:bg-green-50 hover:text-green-700"
                 }`}
               >
-                My Account
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7" />
+                </svg>
+                <span>My Account</span>
               </Link>
             )}
           </nav>
@@ -421,7 +449,14 @@ export default function Navbar() {
                     : "text-slate-900 hover:bg-slate-50"
                 }`}
               >
-                {item.label}
+                <span className="flex items-center justify-between gap-3">
+                  <span>{item.label}</span>
+                  {item.premium && (
+                    <span className="rounded-full bg-orange-300 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide text-white">
+                      Premium
+                    </span>
+                  )}
+                </span>
               </Link>
             ))}
 
@@ -429,13 +464,26 @@ export default function Navbar() {
               <Link
                 href="/account"
                 onClick={() => setOpen(false)}
-                className={`block rounded-xl px-4 py-3 text-lg font-semibold ${
+                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-lg font-semibold ${
                   pathname.startsWith("/account")
                     ? "bg-green-50 text-green-700"
                     : "text-slate-900 hover:bg-slate-50"
                 }`}
               >
-                My Account
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7" />
+                </svg>
+                <span>My Account</span>
               </Link>
             )}
 

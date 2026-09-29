@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
 
 const freeSteps = [
   {
@@ -133,12 +132,25 @@ const accountFeatures = [
   },
 ];
 
-const meals = [
-  ["Monday", "Porridge", "Chicken salad", "Beef pasta"],
-  ["Tuesday", "Scrambled eggs", "Tuna wrap", "Chicken curry"],
-  ["Wednesday", "Toast & eggs", "Ham sandwich", "Fish & chips"],
-  ["Thursday", "Porridge", "Chicken wrap", "Sausage & mash"],
-];
+function RenalPlanDemo() {
+  return (
+    <section className="px-4 py-4 sm:px-8 lg:px-10 lg:py-6">
+      <div className="mx-auto max-w-[1450px] overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-[0_18px_60px_rgba(18,57,107,0.10)]">
+        <video
+          className="block w-full bg-white"
+          src="/videos/renalplan-homepage-demo.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-label="RenalPlan demonstration"
+        />
+      </div>
+    </section>
+  );
+}
+
 
 export default function Home() {
   return (
@@ -212,6 +224,7 @@ export default function Home() {
         .renal-pulse {
           animation: renalPulse 2.8s ease-in-out infinite;
         }
+
 
         @media (prefers-reduced-motion: reduce) {
           .renal-fade-up,
@@ -344,35 +357,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* REAL RENALPLAN DEMO VIDEO */}
-      <section className="px-4 py-3 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-[1450px] overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-[0_18px_60px_rgba(18,57,107,0.10)]">
-          <div className="bg-gradient-to-r from-[#f1f9ff] via-white to-[#f3fbf6] px-5 py-5 text-center sm:px-8 lg:py-6">
-            <span className="inline-flex rounded-full bg-[#d9ecff] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#1266c3]">
-              SEE RENALPLAN IN ACTION
-            </span>
-            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              Tell RenalPlan what you need, then let it do the planning for you.
-            </p>
-          </div>
-
-          <div className="bg-slate-50 px-3 pb-3 sm:px-6 sm:pb-6 lg:px-10 lg:pb-8">
-            <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-slate-200 bg-black shadow-lg">
-              <video
-                className="block h-auto w-full"
-                src="/renalplan-demo.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                preload="metadata"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ACCOUNT / PREMIUM FEATURES */}
       <section className="px-4 py-3 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-br from-[#eef7ff] to-[#f8fbff] px-5 py-5 shadow-sm sm:px-7 lg:px-8 lg:py-6">
@@ -440,6 +424,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <RenalPlanDemo />
 
       {/* CLOSING CTA */}
       <section className="border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-7 sm:px-8 lg:px-10 lg:py-8">

@@ -277,8 +277,6 @@ export default function WeeklyPlannerPage() {
 
   const [showPickConfirm, setShowPickConfirm] =
     useState(false);
-  const [isDiceRolling, setIsDiceRolling] =
-    useState(false);
 
   const [requirements, setRequirements] =
     useState<Requirements | null>(null);
@@ -837,18 +835,6 @@ export default function WeeklyPlannerPage() {
     setShowPickConfirm(false);
   }
 
-  function animatePickForMe(replaceAll = false) {
-    if (isDiceRolling) return;
-
-    setShowPickConfirm(false);
-    setIsDiceRolling(true);
-
-    window.setTimeout(() => {
-      pickForMe(replaceAll);
-      setIsDiceRolling(false);
-    }, 1200);
-  }
-
   function startPickForMe() {
     if (!authChecked || !isLoggedIn) {
       setPremiumPrompt("pick");
@@ -875,7 +861,7 @@ export default function WeeklyPlannerPage() {
       return;
     }
 
-    animatePickForMe();
+    pickForMe();
   }
 
   function clearWeek() {
@@ -2455,27 +2441,10 @@ if (total <= limit * 0.75) {
             <button
               type="button"
               onClick={startPickForMe}
-              disabled={isDiceRolling}
-              className={`group flex-1 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-orange-600 md:flex-none md:px-5 md:py-3 md:text-sm ${
-                isDiceRolling
-                  ? "cursor-wait bg-orange-400 shadow-lg ring-4 ring-orange-200/70"
-                  : "hover:-translate-y-0.5"
-              }`}
-              aria-label={isDiceRolling ? "Picking meals for you" : "Pick for Me"}
+              className="flex-1 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-orange-600 md:flex-none md:px-5 md:py-3 md:text-sm"
             >
-              <span
-                className={`inline-flex text-xl leading-none transition-transform md:text-2xl ${
-                  isDiceRolling
-                    ? "animate-spin scale-125"
-                    : "group-hover:rotate-12"
-                }`}
-                aria-hidden="true"
-              >
-                🎲
-              </span>
-              <span className="ml-1.5">
-                {isDiceRolling ? "Picking..." : "Pick for Me"}
-              </span>
+              <span className="text-xl leading-none md:text-2xl" aria-hidden="true">🎲</span>
+              <span>Pick for Me</span>
             </button>
 
             <button
@@ -2622,22 +2591,11 @@ if (total <= limit * 0.75) {
               <button
                 type="button"
                 onClick={() =>
-                  animatePickForMe(true)
+                  pickForMe(true)
                 }
-                disabled={isDiceRolling}
-                className={`rounded-2xl bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600 ${
-                  isDiceRolling ? "cursor-wait opacity-80" : ""
-                }`}
+                className="rounded-2xl bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600"
               >
-                <span
-                  className={`mr-2 inline-block ${
-                    isDiceRolling ? "animate-spin" : ""
-                  }`}
-                  aria-hidden="true"
-                >
-                  🎲
-                </span>
-                {isDiceRolling ? "Picking..." : "Pick for Me"}
+                Pick for Me
               </button>
 
             </div>

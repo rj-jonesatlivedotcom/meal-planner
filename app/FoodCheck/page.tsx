@@ -298,22 +298,178 @@ export default function FoodCheckPage() {
 
     setSearching(true);
 
-    const { data, error } = await supabase
-      .from("cofid_foods")
-      .select("*")
-      .ilike(
-        "food_name",
-        `%${term}%`
+    /*
+     * Search each word independently rather than requiring the exact
+     * phrase to appear in the database in the same order.
+     *
+     * For example:
+     *   "chicken curry"
+     * will find:
+     *   "Curry, chicken"
+     *
+     * We then keep only foods containing every search word and rank
+     * the closest matches first.
+     */
+    const searchTerms = Array.from(
+      new Set(
+        term
+          .toLowerCase()
+          .split(/[^a-z0-9]+/)
+          .map((word) => word.trim())
+          .filter(Boolean)
       )
-      .order("food_name", {
-        ascending: true,
-      })
-      .limit(50);
+    );
 
-    if (error) {
+    try {
+      const queries = await Promise.all(
+        searchTerms.map((searchTerm) =>
+          supabase
+            .from("cofid_foods")
+            .select("*")
+            .ilike(
+              "food_name",
+              `%${searchTerm}%`
+            )
+            .limit(200)
+        )
+      );
+
+      const failedQuery = queries.find(
+        (queryResult) => queryResult.error
+      );
+
+      if (failedQuery?.error) {
+        console.error(
+          "CoFID search failed:",
+          failedQuery.error
+        );
+
+        setError(
+          "We couldn't search the food database. Please try again."
+        );
+
+        setResults([]);
+        return;
+      }
+
+      /*
+       * Combine the results from all word searches. A food must contain
+       * every search term, but the terms can appear in any order.
+       */
+      const rowsById = new Map<string, CofidRow>();
+
+      for (const queryResult of queries) {
+        for (const row of queryResult.data ?? []) {
+          const code = textValue(
+            row,
+            "food_code",
+            "code"
+          );
+
+          const id =
+            code ||
+            textValue(
+              row,
+              "food_name",
+              "name"
+            );
+
+          if (id && !rowsById.has(id)) {
+            rowsById.set(id, row);
+          }
+        }
+      }
+
+      const matchingRows = Array.from(
+        rowsById.values()
+      ).filter((row) => {
+        const foodName = textValue(
+          row,
+          "food_name",
+          "name"
+        ).toLowerCase();
+
+        return searchTerms.every((searchTerm) =>
+          foodName.includes(searchTerm)
+        );
+      });
+
+      /*
+       * Rank the matches so the most natural results appear first:
+       * 1. Exact phrase match
+       * 2. Name starts with the full search
+       * 3. All words present, with fewer extra characters preferred
+       * 4. Alphabetical order
+       */
+      const normalisedTerm = term
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+
+      matchingRows.sort((a, b) => {
+        const nameA = textValue(
+          a,
+          "food_name",
+          "name"
+        ).toLowerCase();
+
+        const nameB = textValue(
+          b,
+          "food_name",
+          "name"
+        ).toLowerCase();
+
+        const normalisedA = nameA
+          .replace(/[^a-z0-9]+/g, " ")
+          .trim();
+
+        const normalisedB = nameB
+          .replace(/[^a-z0-9]+/g, " ")
+          .trim();
+
+        const score = (name: string, normalisedName: string) => {
+          let value = 0;
+
+          if (normalisedName === normalisedTerm) {
+            value += 1000;
+          }
+
+          if (normalisedName.startsWith(normalisedTerm)) {
+            value += 500;
+          }
+
+          if (name.includes(term.toLowerCase())) {
+            value += 250;
+          }
+
+          value -= Math.max(
+            0,
+            normalisedName.length - normalisedTerm.length
+          );
+
+          return value;
+        };
+
+        const scoreDifference =
+          score(nameB, normalisedB) -
+          score(nameA, normalisedA);
+
+        if (scoreDifference !== 0) {
+          return scoreDifference;
+        }
+
+        return nameA.localeCompare(nameB);
+      });
+
+      setResults(
+        matchingRows
+          .slice(0, 50)
+          .map(mapFood)
+      );
+    } catch (searchError) {
       console.error(
         "CoFID search failed:",
-        error
+        searchError
       );
 
       setError(
@@ -321,13 +477,9 @@ export default function FoodCheckPage() {
       );
 
       setResults([]);
-    } else {
-      setResults(
-        (data ?? []).map(mapFood)
-      );
+    } finally {
+      setSearching(false);
     }
-
-    setSearching(false);
   }
 
   /*
@@ -1413,16 +1565,16 @@ function NutritionRow({
 }) {
   const emphasisClasses = {
     red:
-      "bg-red-50 border-red-100 text-red-700",
+      "border-slate-100 bg-white text-blue-950",
 
     blue:
-      "bg-blue-50 border-blue-100 text-blue-800",
+      "border-slate-100 bg-white text-blue-950",
 
     green:
-      "bg-green-50 border-green-100 text-green-700",
+      "border-slate-100 bg-white text-blue-950",
 
     orange:
-      "bg-orange-50 border-orange-100 text-orange-700",
+      "border-slate-100 bg-white text-blue-950",
   };
 
   return (

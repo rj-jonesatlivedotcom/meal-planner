@@ -946,3 +946,8 @@ html[data-theme="dark"] .renal-homepage .renal-home-step-number {
   border: 1px solid #526575;
   box-shadow: none !important;
 }
+
+
+/* Footer About label: dark text in light mode, white text in dark mode. */
+.renal-homepage .renal-home-about-label { color: #111827 !important; }
+html[data-theme="dark"] .renal-homepage .renal-home-about-label { color: #ffffff !important; }

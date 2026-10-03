@@ -631,7 +631,7 @@ export default function Home() {
             </span>
 
             <Link href="/about" className="font-semibold transition hover:opacity-80">
-              <span className="text-white">About </span><span className="text-[#12396b]">Renal</span>
+              <span className="renal-home-about-label">About </span><span className="text-[#12396b]">Renal</span>
               <span className="text-[#079447]">Plan</span>
             </Link>
           </div>

@@ -10,21 +10,18 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://renalplan.com"),
+  metadataBase: new URL("https://www.renalplan.com"),
   title: {
     default: "RenalPlan | Renal-Friendly Meal Planner & Recipes",
     template: "%s | RenalPlan",
   },
   description:
     "RenalPlan helps you plan renal-friendly meals, discover kidney-friendly recipes, check nutritional values and create your shopping list.",
-  alternates: {
-    canonical: "https://renalplan.com",
-  },
   openGraph: {
     title: "RenalPlan | Renal-Friendly Meal Planner & Recipes",
     description:
       "Plan renal-friendly meals, discover kidney-friendly recipes, check nutritional values and create your shopping list.",
-    url: "https://renalplan.com",
+    url: "https://www.renalplan.com",
     siteName: "RenalPlan",
     locale: "en_GB",
     type: "website",
@@ -34,7 +31,6 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{

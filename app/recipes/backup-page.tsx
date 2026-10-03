@@ -25,11 +25,7 @@ export default function RecipesPage() {
   const [userId, setUserId] = useState<string | null>(null);
   const [favouritesLoaded, setFavouritesLoaded] = useState(false);
 
-  // Desktop and mobile controls are both mounted in the DOM; keep their
-  // refs separate so the hidden layout cannot make visible-panel clicks look
-  // like outside clicks.
-  const desktopFilterRef = useRef<HTMLDivElement>(null);
-  const mobileFilterRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
   const plannerFilterRef = useRef(false);
 
   const mealTypes = [
@@ -278,13 +274,10 @@ export default function RecipesPage() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      const target = event.target as Node;
-      const clickedInsideDesktop =
-        desktopFilterRef.current?.contains(target) ?? false;
-      const clickedInsideMobile =
-        mobileFilterRef.current?.contains(target) ?? false;
-
-      if (!clickedInsideDesktop && !clickedInsideMobile) {
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
+      ) {
         setShowFilters(false);
       }
     }
@@ -417,46 +410,16 @@ export default function RecipesPage() {
           requirements
         );
 
-      const searchableText = [
-        recipe.name,
-        recipe.description,
-        recipe.equipment,
-        recipe.category,
-        ...recipe.ingredients.map((ingredient) => ingredient.item),
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, " ")
-        .replace(/\\s+/g, " ")
-        .trim();
-
       const matchesSearch =
         searchWords.length === 0 ||
         searchWords.every((word) => {
-          const normalizedWord = word
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, " ")
-            .trim();
-
-          if (!normalizedWord) return true;
-
-          // Allow simple singular/plural variation (e.g. wrap/wraps,
-          // tomato/tomatoes) while still requiring each meaningful term.
-          const variants = [normalizedWord];
-          if (normalizedWord.endsWith("ies") && normalizedWord.length > 4) {
-            variants.push(`${normalizedWord.slice(0, -3)}y`);
-          } else if (
-            normalizedWord.endsWith("s") &&
-            normalizedWord.length > 3
-          ) {
-            variants.push(normalizedWord.slice(0, -1));
-          } else {
-            variants.push(`${normalizedWord}s`);
-          }
-
-          return variants.some((variant) =>
-            searchableText.includes(variant)
+          return (
+            recipe.name.toLowerCase().includes(word) ||
+            recipe.description.toLowerCase().includes(word) ||
+            recipe.equipment.toLowerCase().includes(word) ||
+            recipe.ingredients.some((ingredient) =>
+              ingredient.item.toLowerCase().includes(word)
+            )
           );
         });
 
@@ -629,7 +592,7 @@ export default function RecipesPage() {
             </div>
 
             {/* Filters & Sort */}
-            <div ref={desktopFilterRef} className="relative shrink-0">
+            <div ref={filterRef} className="relative shrink-0">
               <button
                 type="button"
                 onClick={() =>
@@ -648,7 +611,7 @@ export default function RecipesPage() {
               </button>
 
               {showFilters && (
-                <div className="absolute right-0 top-full z-30 mt-3 w-[min(900px,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
+                <div className="absolute left-0 top-full z-30 mt-3 w-[min(900px,calc(100vw-2rem))] rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 
                     {/* Meal type */}
@@ -861,7 +824,7 @@ export default function RecipesPage() {
           <div className="flex items-center gap-3">
 
             <div
-              ref={mobileFilterRef}
+              ref={filterRef}
               className="relative shrink-0"
             >
               <button
@@ -878,7 +841,7 @@ export default function RecipesPage() {
               </button>
 
               {showFilters && (
-                <div className="absolute right-0 top-full z-30 mt-4 w-[min(500px,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
+                <div className="absolute left-0 top-full z-30 mt-4 w-[calc(100vw-2rem)] max-w-[500px] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
 
                   <div className="grid grid-cols-1 gap-4">
 

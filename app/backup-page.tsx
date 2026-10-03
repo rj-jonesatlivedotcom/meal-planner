@@ -196,7 +196,7 @@ const benefits = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-white text-slate-900">
+    <main className="renal-homepage min-h-screen overflow-hidden bg-white text-slate-900">
       <style jsx global>{`
         @keyframes renalFadeUp {
           from {
@@ -288,7 +288,7 @@ export default function Home() {
       {/* =========================================================
           HERO
       ========================================================= */}
-      <section className="relative overflow-hidden bg-white">
+      <section className="renal-home-hero relative overflow-hidden bg-white">
         <div
           className="absolute inset-0 bg-cover bg-[72%_center] bg-no-repeat lg:bg-[76%_center]"
           style={{
@@ -296,11 +296,11 @@ export default function Home() {
           }}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/55 via-[42%] to-transparent lg:via-[47%]" />
+        <div className="renal-home-hero-overlay absolute inset-0 bg-gradient-to-r from-white/90 via-white/55 via-[42%] to-transparent lg:via-[47%]" />
 
         <div className="relative mx-auto flex min-h-[560px] max-w-[1600px] items-center px-5 py-10 sm:min-h-[500px] sm:px-10 sm:py-12 lg:min-h-[420px] lg:px-16 xl:px-24">
           <div className="w-full max-w-[720px] renal-fade-up">
-            <h1 className="max-w-[760px] text-[2.7rem] font-extrabold leading-[0.96] tracking-[-0.045em] text-[#12396b] sm:text-5xl lg:text-[4.05rem]">
+            <h1 className="renal-home-hero-title max-w-[760px] text-[2.7rem] font-extrabold leading-[0.96] tracking-[-0.045em] text-[#12396b] sm:text-5xl lg:text-[4.05rem]">
               <span className="block">Plan kidney-friendly</span>
               <span className="block">
                 meals{" "}
@@ -310,7 +310,7 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="mt-5 max-w-[620px] text-base leading-[1.48] text-[#17385f] sm:mt-6 sm:text-lg lg:text-[1.18rem]">
+            <p className="renal-home-hero-copy mt-5 max-w-[620px] text-base leading-[1.48] text-[#17385f] sm:mt-6 sm:text-lg lg:text-[1.18rem]">
               Browse kidney-friendly recipes, or create a free account to
               personalise RenalPlan to your dietary requirements.
             </p>
@@ -337,7 +337,7 @@ export default function Home() {
               {benefits.map((benefit) => (
                 <div
                   key={benefit}
-                  className="flex items-start gap-1.5 text-left text-[11px] font-semibold leading-tight text-[#17385f] sm:items-center sm:gap-2 sm:text-sm"
+                  className="renal-home-benefit flex items-start gap-1.5 text-left text-[11px] font-semibold leading-tight text-[#17385f] sm:items-center sm:gap-2 sm:text-sm"
                 >
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#079447] text-[11px] font-extrabold text-white sm:h-6 sm:w-6">
                     ✓
@@ -374,7 +374,7 @@ export default function Home() {
       >
         <div className="mx-auto w-full max-w-[760px]">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
+            <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
               See Renal<span className="text-[#079447]">Plan</span> in action
             </h2>
 
@@ -410,19 +410,19 @@ export default function Home() {
       {/* =========================================================
           FREE JOURNEY
       ========================================================= */}
-      <section className="px-4 py-4 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-r from-[#effbf5] to-[#f8fcfa] px-5 py-6 shadow-sm sm:px-7 lg:px-8 lg:py-7">
+      <section className="renal-home-free-section px-4 py-4 sm:px-8 lg:px-10">
+        <div className="renal-home-free-panel mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-r from-[#effbf5] to-[#f8fcfa] px-5 py-6 shadow-sm sm:px-7 lg:px-8 lg:py-7">
           <div className="grid gap-6 lg:grid-cols-[0.95fr_2fr] lg:items-center">
             <div>
               <span className="inline-flex rounded-full bg-[#d5f5e5] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#078f43]">
                 FREE FOR EVERYONE
               </span>
 
-              <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-[#12396b] sm:text-3xl">
+              <h2 className="renal-home-section-title mt-3 text-2xl font-extrabold tracking-tight text-[#12396b] sm:text-3xl">
                 Your journey in 3 simple steps
               </h2>
 
-              <p className="mt-2 text-sm leading-relaxed text-[#17385f] sm:text-base">
+              <p className="renal-home-section-copy mt-2 text-sm leading-relaxed text-[#17385f] sm:text-base">
                 Explore RenalPlan for free. No account needed.
               </p>
             </div>
@@ -443,11 +443,11 @@ export default function Home() {
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex min-w-0 items-center gap-3">
                         <span
-                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white sm:h-9 sm:w-9 sm:text-sm ${step.numberClass}`}
+                          className={`renal-home-step-number flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white sm:h-9 sm:w-9 sm:text-sm ${step.numberClass}`}
                         >
                           {step.number}
                         </span>
-                        <h3 className="text-sm font-bold leading-tight text-[#12396b] sm:text-base">
+                        <h3 className="renal-home-card-title text-sm font-bold leading-tight text-[#12396b] sm:text-base">
                           {step.title}
                         </h3>
                       </div>
@@ -459,7 +459,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <p className="mt-1 hidden text-xs leading-snug text-slate-700 sm:block">
+                    <p className="renal-home-card-copy mt-1 hidden text-xs leading-snug text-slate-700 sm:block">
                       {step.description}
                     </p>
                   </Link>
@@ -482,20 +482,20 @@ export default function Home() {
       {/* =========================================================
           ACCOUNT / PREMIUM FEATURES
       ========================================================= */}
-      <section className="px-4 py-4 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-br from-[#eef7ff] to-[#f8fbff] px-5 py-6 shadow-sm sm:px-7 lg:px-8 lg:py-8">
+      <section className="renal-home-account-section px-4 py-4 sm:px-8 lg:px-10">
+        <div className="renal-home-account-panel mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-br from-[#eef7ff] to-[#f8fbff] px-5 py-6 shadow-sm sm:px-7 lg:px-8 lg:py-8">
           <div className="grid gap-6 lg:grid-cols-[0.9fr_2fr] lg:items-center">
             <div>
               <span className="inline-flex rounded-full bg-[#d9ecff] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#1266c3]">
                 WITH A RENALPLAN ACCOUNT
               </span>
 
-              <h2 className="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl lg:text-[2.25rem]">
+              <h2 className="renal-home-section-title mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl lg:text-[2.25rem]">
                 Get more with a free{" "}
-                <span className="text-[#079447]">RenalPlan</span> account
+                <span><span className="text-[#1266c3]">Renal</span><span className="text-[#079447]">Plan</span></span> account
               </h2>
 
-              <p className="mt-3 max-w-[430px] text-sm leading-relaxed text-slate-700 sm:text-base">
+              <p className="renal-home-section-copy mt-3 max-w-[430px] text-sm leading-relaxed text-slate-700 sm:text-base">
                 Personalise RenalPlan to your needs and unlock extra features
                 that make meal planning even easier.
               </p>
@@ -509,7 +509,7 @@ export default function Home() {
                     animationDelay: `${index * 110 + 120}ms`,
                   }}
                   href={feature.href}
-                  className="renal-fade-up group rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md sm:p-5"
+                  className="renal-home-feature-card renal-fade-up group rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md sm:p-5"
                 >
                   <div className="flex items-start gap-3">
                     <div
@@ -520,7 +520,7 @@ export default function Home() {
 
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="font-bold text-[#12396b]">
+                        <h3 className="renal-home-card-title font-bold text-[#12396b]">
                           {feature.title}
                         </h3>
 
@@ -531,7 +531,7 @@ export default function Home() {
                         )}
                       </div>
 
-                      <p className="mt-1 text-xs leading-relaxed text-slate-600 sm:text-sm">
+                      <p className="renal-home-card-copy mt-1 text-xs leading-relaxed text-slate-600 sm:text-sm">
                         {feature.text}
                       </p>
                     </div>
@@ -553,14 +553,14 @@ export default function Home() {
       >
         <div className="mx-auto max-w-[1450px]">
           <div className="mb-5 text-center">
-            <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
+            <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
               See Renal<span className="text-[#079447]">Plan</span> in action
             </h2>
-            <p className="mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f] sm:text-base">
+            <p className="renal-home-section-copy mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f] sm:text-base">
               From your dietary requirements to your weekly shop — all in one place.
             </p>
           </div>
-          <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
+          <div className="renal-home-video-frame overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
           <video
             className="block h-auto w-full"
             autoPlay
@@ -583,9 +583,9 @@ export default function Home() {
       {/* =========================================================
           CLOSING CTA
       ========================================================= */}
-      <section className="border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-10 sm:px-8 lg:px-10 lg:py-12">
+      <section className="renal-home-cta border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-10 sm:px-8 lg:px-10 lg:py-12">
         <div className="renal-fade-up mx-auto max-w-[1400px] text-center">
-          <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-4xl">
+          <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-4xl">
             Plan <span className="text-[#079447]">→</span> Shop{" "}
             <span className="text-[#079447]">→</span> Cook
             <br />
@@ -606,7 +606,7 @@ export default function Home() {
       {/* =========================================================
           FOOTER
       ========================================================= */}
-      <footer className="border-t border-slate-100 bg-white px-5 py-7 sm:px-8 lg:px-12">
+      <footer className="renal-home-footer border-t border-slate-100 bg-white px-5 py-7 sm:px-8 lg:px-12">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
           <div>
             <div className="text-lg font-bold">
@@ -619,15 +619,23 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="text-sm text-slate-600">
-            <span>Do you have any questions or need help? </span>
-
-            <a
-              href="mailto:hello@renalplan.com"
-              className="font-semibold text-[#079447] transition hover:text-[#067b3a]"
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-slate-600 sm:justify-end">
+            <Link
+              href="/about"
+              className="font-semibold text-[#12396b] transition hover:text-[#079447]"
             >
-              Contact us
-            </a>
+              About RenalPlan
+            </Link>
+
+            <span>
+              <span>Do you have any questions or need help? </span>
+              <a
+                href="mailto:hello@renalplan.com"
+                className="font-semibold text-[#079447] transition hover:text-[#067b3a]"
+              >
+                Contact us
+              </a>
+            </span>
           </div>
         </div>
       </footer>

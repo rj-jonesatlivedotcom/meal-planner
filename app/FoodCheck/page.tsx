@@ -905,7 +905,7 @@ export default function FoodCheckPage() {
 
             {/* SEARCH CARD */}
 
-            <section className="relative overflow-hidden rounded-[28px] border border-green-100 bg-white shadow-sm">
+            <section className="food-check-search-card relative overflow-hidden rounded-[28px] border border-green-100 bg-white shadow-sm">
 
               {/* Background image */}
 
@@ -969,7 +969,7 @@ export default function FoodCheckPage() {
                 {/* BARCODE TOOLS */}
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm">
+                  <div className="food-check-barcode-card rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm">
                     <div className="flex min-w-0 items-start gap-3">
                       <div className="shrink-0 text-2xl">▥</div>
                       <div className="min-w-0 flex-1">
@@ -988,7 +988,7 @@ export default function FoodCheckPage() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm">
+                  <div className="food-check-barcode-card rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm">
                     <div className="flex min-w-0 items-start gap-3">
                       <div className="shrink-0 text-2xl">⌨</div>
                       <div className="min-w-0 flex-1">
@@ -1066,7 +1066,7 @@ export default function FoodCheckPage() {
                 DIRECTLY UNDER BARCODE BUTTONS
                 ================================================= */}
 
-            <section className="mt-5 overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
+            <section className="food-check-results-card mt-5 overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
 
               <div className="border-b border-slate-200 px-6 py-5">
 
@@ -1252,7 +1252,7 @@ export default function FoodCheckPage() {
             className="min-w-0 scroll-mt-6"
           >
 
-            <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
+            <div className="food-check-nutrition-card overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
 
               {!selectedFood ? (
 

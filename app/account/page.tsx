@@ -12,6 +12,9 @@ export default function AccountPage() {
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState("");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [savingTheme, setSavingTheme] = useState(false);
+  const [themeMessage, setThemeMessage] = useState("");
 
   useEffect(() => {
     const supabase = createClient();
@@ -27,11 +30,39 @@ export default function AccountPage() {
       }
 
       setEmail(user.email ?? "");
+      const savedTheme = user.user_metadata?.renalplan_theme === "dark" ? "dark" : "light";
+      setTheme(savedTheme);
+      document.documentElement.dataset.theme = savedTheme;
+      try { localStorage.setItem("renalplan-theme", savedTheme); } catch {}
       setLoading(false);
     }
 
     loadAccount();
   }, [router]);
+
+  async function handleThemeChange(nextTheme: "light" | "dark") {
+    setTheme(nextTheme);
+    setThemeMessage("");
+    document.documentElement.dataset.theme = nextTheme;
+    try {
+      localStorage.setItem("renalplan-theme", nextTheme);
+    } catch {
+      // Continue; Supabase is the cross-device source of truth.
+    }
+
+    setSavingTheme(true);
+    const supabase = createClient();
+    const { error } = await supabase.auth.updateUser({
+      data: { renalplan_theme: nextTheme },
+    });
+    setSavingTheme(false);
+
+    if (error) {
+      setThemeMessage("Your choice could not be saved to your account. Please try again.");
+      return;
+    }
+    setThemeMessage("Appearance preference saved to your account.");
+  }
 
   async function handleLogout() {
     const supabase = createClient();
@@ -143,6 +174,32 @@ export default function AccountPage() {
             </div>
 
             <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
+
+              {/* APPEARANCE */}
+              <div className="border-b border-slate-200 px-5 py-5 sm:px-6">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-base font-semibold text-slate-900 sm:text-lg">Appearance</p>
+                    <p className="mt-1 text-sm leading-5 text-slate-600 sm:text-base">
+                      Choose a light or dark look for RenalPlan.
+                    </p>
+                  </div>
+                  <div className="inline-flex w-fit rounded-xl border border-slate-300 bg-slate-100 p-1" role="group" aria-label="Website appearance">
+                    <button type="button" onClick={() => handleThemeChange("light")} disabled={savingTheme}
+                      aria-pressed={theme === "light"}
+                      className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${theme === "light" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600 hover:text-slate-900"}`}>
+                      ☀️ Light
+                    </button>
+                    <button type="button" onClick={() => handleThemeChange("dark")} disabled={savingTheme}
+                      aria-pressed={theme === "dark"}
+                      className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${theme === "dark" ? "bg-slate-800 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}>
+                      🌙 Dark
+                    </button>
+                  </div>
+                </div>
+                {savingTheme && <p className="mt-3 text-sm text-slate-600">Saving preference…</p>}
+                {themeMessage && <p role="status" className="mt-3 text-sm text-slate-600">{themeMessage}</p>}
+              </div>
 
               {/* EMAIL */}
               <div className="px-5 py-5 sm:px-6">

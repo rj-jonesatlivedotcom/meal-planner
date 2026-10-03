@@ -2544,16 +2544,16 @@ export default function ShoppingPage() {
     return (
       <div
         key={group.category}
-        className={`shopping-list-category-card overflow-hidden rounded-2xl border shadow-sm ${group.category === "🍞 Bakery" || group.category === "🧂 Herbs & Spices" ? "shopping-list-light-item-card" : "shopping-list-dark-item-card"} ${styles.card}`}
+        className={`overflow-hidden rounded-2xl border shadow-sm ${styles.card}`}
       >
         <div
-          className={`shopping-list-category-header flex items-center justify-between border-b px-4 py-3 ${styles.header}`}
+          className={`flex items-center justify-between border-b px-4 py-3 ${styles.header}`}
         >
-          <h3 className="shopping-list-category-title flex items-center gap-2 text-base font-bold text-slate-900">
+          <h3 className="flex items-center gap-2 text-base font-bold text-slate-900">
             <span>{categoryName}</span>
           </h3>
           <span
-            className={`shopping-list-category-badge rounded-full px-3 py-1 text-xs font-semibold ${styles.badge}`}
+            className={`rounded-full px-3 py-1 text-xs font-semibold ${styles.badge}`}
           >
             {group.items.length} {group.items.length === 1 ? "item" : "items"}
           </span>
@@ -2566,9 +2566,9 @@ export default function ShoppingPage() {
             return (
               <li
                 key={`${group.category}-${item.item}-${itemIndex}`}
-                className="shopping-list-item flex min-h-[42px] items-center justify-between gap-3 py-2"
+                className="flex min-h-[42px] items-center justify-between gap-3 py-2"
               >
-                <label className="shopping-list-item-label flex min-w-0 flex-1 cursor-pointer items-center gap-3">
+                <label className="flex min-w-0 flex-1 cursor-pointer items-center gap-3">
                   <input
                     type="checkbox"
                     checked={checked}
@@ -2583,14 +2583,22 @@ export default function ShoppingPage() {
                   />
 
                   <span
-                    className={`shopping-list-item-name truncate ${checked ? "line-through" : ""}`}
+                    className={
+                      checked
+                        ? "truncate text-slate-400 line-through"
+                        : "truncate text-slate-800"
+                    }
                   >
                     {item.item}
                   </span>
                 </label>
 
                 <span
-                  className={`shopping-list-item-quantity shrink-0 font-semibold ${checked ? "line-through" : ""}`}
+                  className={
+                    checked
+                      ? "shrink-0 font-medium text-slate-400 line-through"
+                      : "shrink-0 font-semibold text-slate-800"
+                  }
                 >
                   {item.quantity}
                 </span>
@@ -2629,7 +2637,7 @@ export default function ShoppingPage() {
               </div>
             ) : (
               <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-                <div className="shopping-list-summary grid w-full grid-cols-3 items-stretch rounded-2xl border border-emerald-100 bg-white/90 px-1 py-2.5 shadow-sm sm:flex sm:w-auto sm:px-3 sm:py-2">
+                <div className="grid w-full grid-cols-3 items-stretch rounded-2xl border border-emerald-100 bg-white/90 px-1 py-2.5 shadow-sm sm:flex sm:w-auto sm:px-3 sm:py-2">
                   <div className="flex min-w-0 flex-col items-center justify-center gap-1 border-r border-emerald-100 px-1 py-1 sm:min-w-[120px] sm:flex-row sm:justify-start sm:gap-3 sm:border-r-0 sm:px-3">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-emerald-600 sm:h-7 sm:w-7" aria-hidden="true">
                       <path d="M3 5h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6" />

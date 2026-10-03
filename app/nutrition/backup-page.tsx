@@ -982,7 +982,7 @@ export default function NutritionPage() {
               })}
             </div>
 
-            <div className="nutrition-mobile-daily-total mt-4 rounded-2xl bg-pink-50 p-4">
+            <div className="mt-4 rounded-2xl bg-pink-50 p-4">
               <div className="flex items-center justify-between gap-3">
                 <span className="font-bold text-slate-900">
                   Daily total
@@ -1121,7 +1121,7 @@ export default function NutritionPage() {
                       </th>
                     ))}
 
-                    <th className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-3 py-4 text-center text-sm font-bold text-blue-900">
+                    <th className="border-l-2 border-blue-200 bg-blue-50 px-3 py-4 text-center text-sm font-bold text-blue-900">
                       Daily average
                     </th>
                   </tr>
@@ -1241,7 +1241,7 @@ export default function NutritionPage() {
                         );
                       })}
 
-                      <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
+                      <td className="border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
                         <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                           {(() => {
                             const mealRecipes = days
@@ -1497,7 +1497,7 @@ export default function NutritionPage() {
                       );
                     })}
 
-                    <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
+                    <td className="border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
                       <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                         {(() => {
                           const purines = weeklyPurineLevel;

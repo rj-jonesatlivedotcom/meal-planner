@@ -1,5 +1,6 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import ThemeSync from "@/components/ThemeSync";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 
@@ -10,19 +11,15 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://renalplan.com"),
-
   title: {
     default: "RenalPlan | Renal-Friendly Meal Planner & Recipes",
     template: "%s | RenalPlan",
   },
-
   description:
     "RenalPlan helps you plan renal-friendly meals, discover kidney-friendly recipes, check nutritional values and create your shopping list.",
-
   alternates: {
     canonical: "https://renalplan.com",
   },
-
   openGraph: {
     title: "RenalPlan | Renal-Friendly Meal Planner & Recipes",
     description:
@@ -32,7 +29,6 @@ export const metadata: Metadata = {
     locale: "en_GB",
     type: "website",
   },
-
   robots: {
     index: true,
     follow: true,
@@ -45,8 +41,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
+        <ThemeSync />
         <Navbar />
         {children}
         <Analytics />
@@ -54,7 +51,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-
-
-

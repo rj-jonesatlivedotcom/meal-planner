@@ -2362,13 +2362,13 @@ if (total <= limit * 0.75) {
 
             {/* DAILY NUTRITION ROW */}
 
-            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70">
+            <div className="planner-nutrition-row grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70">
 
-              <div className="flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
+              <div className="planner-nutrition-label flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
 
                 <div className="flex flex-col items-center gap-1.5">
 
-                  <h2 className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500 text-center">
+                  <h2 className="planner-nutrition-heading text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500 text-center">
                     Daily Nutrition
                   </h2>
 
@@ -2379,7 +2379,7 @@ if (total <= limit * 0.75) {
                         event.target.value as NutritionView
                       )
                     }
-                    className="w-full rounded-xl border border-slate-200 bg-white px-2 py-1.5 text-[10px] font-bold text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                    className="planner-nutrition-select w-full rounded-xl border border-slate-200 bg-white px-2 py-1.5 text-[10px] font-bold text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                     aria-label="Choose daily nutrition"
                   >
                     <option value="Calories">
@@ -2402,7 +2402,7 @@ if (total <= limit * 0.75) {
                     </option>
                   </select>
 
-                  <div className="mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
+                  <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
                     <span className="flex items-center gap-1.5">
                       <span className="h-2 w-2 rounded-full bg-green-500" />
                       Low
@@ -2427,7 +2427,7 @@ if (total <= limit * 0.75) {
 
                 <div
                   key={`nutrition-${day}-${nutritionView}`}
-                  className="flex min-h-[118px] items-center justify-center border-l border-slate-100 px-1 py-3"
+                  className="planner-nutrition-cell flex min-h-[118px] items-center justify-center border-l border-slate-100 px-1 py-3"
                 >
                   <Tricirculus
                     day={day}

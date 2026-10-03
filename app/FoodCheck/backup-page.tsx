@@ -1565,16 +1565,16 @@ function NutritionRow({
 }) {
   const emphasisClasses = {
     red:
-      "bg-red-50 border-red-100 text-red-700",
+      "border-slate-100 bg-white text-blue-950",
 
     blue:
-      "bg-blue-50 border-blue-100 text-blue-800",
+      "border-slate-100 bg-white text-blue-950",
 
     green:
-      "bg-green-50 border-green-100 text-green-700",
+      "border-slate-100 bg-white text-blue-950",
 
     orange:
-      "bg-orange-50 border-orange-100 text-orange-700",
+      "border-slate-100 bg-white text-blue-950",
   };
 
   return (

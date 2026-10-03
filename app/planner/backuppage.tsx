@@ -331,6 +331,7 @@ export default function WeeklyPlannerPage() {
 
       if (!user) {
         setAccountUserId(null);
+        localStorage.removeItem("planner-recipe-add-pending");
         setAccountSyncReady(true);
         accountHydratedRef.current = true;
         return;
@@ -358,6 +359,37 @@ export default function WeeklyPlannerPage() {
       const localHasMeals = days.some((day) =>
         mealTypes.some((meal) => Boolean(localPlanner[day]?.[meal]))
       );
+
+      // Recipe cards and recipe-detail pages save the chosen slot locally before
+      // navigating here. Treat that explicit change as newer than the saved account
+      // plan, otherwise account hydration can immediately overwrite the new meal.
+      const recipeAddPending =
+        localStorage.getItem("planner-recipe-add-pending") === "true";
+
+      if (recipeAddPending) {
+        const { error: saveError } = await supabase
+          .from("user_meal_plans")
+          .upsert({
+            user_id: user.id,
+            planner: localPlanner,
+            meal_people: localMealPeople,
+            household_people: getHouseholdPeople(),
+          }, { onConflict: "user_id" });
+
+        if (saveError) {
+          console.error("Unable to save recipe added from recipe page:", saveError);
+          // Keep the marker so a later Planner load can retry rather than
+          // silently reverting the user's explicit recipe selection.
+        } else {
+          localStorage.removeItem("planner-recipe-add-pending");
+        }
+
+        if (!cancelled) {
+          accountHydratedRef.current = true;
+          setAccountSyncReady(true);
+        }
+        return;
+      }
 
       if (data) {
         const remotePlanner = (data.planner ?? createEmptyPlanner()) as PlannerMeals;

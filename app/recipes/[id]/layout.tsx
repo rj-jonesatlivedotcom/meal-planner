@@ -41,13 +41,13 @@ export async function generateMetadata({
     description: recipe.description,
 
     alternates: {
-      canonical: `https://renalplan.com/recipes/${recipe.id}`,
+      canonical: `https://www.renalplan.com/recipes/${recipe.id}`,
     },
 
     openGraph: {
       title: `${recipe.name} | RenalPlan`,
       description: recipe.description,
-      url: `https://renalplan.com/recipes/${recipe.id}`,
+      url: `https://www.renalplan.com/recipes/${recipe.id}`,
       siteName: "RenalPlan",
       locale: "en_GB",
       type: "article",
@@ -55,7 +55,7 @@ export async function generateMetadata({
         ? {
             images: [
               {
-                url: `https://renalplan.com${recipe.image}`,
+                url: `https://www.renalplan.com${recipe.image}`,
                 alt: recipe.name,
               },
             ],
@@ -81,9 +81,9 @@ export default async function RecipeLayout({
     return children;
   }
 
-  const recipeUrl = `https://renalplan.com/recipes/${recipe.id}`;
+  const recipeUrl = `https://www.renalplan.com/recipes/${recipe.id}`;
   const recipeImage = recipe.image?.trim()
-    ? `https://renalplan.com${recipe.image}`
+    ? `https://www.renalplan.com${recipe.image}`
     : undefined;
   const totalTime = toIsoDuration(recipe.cookingTime);
 
@@ -106,13 +106,13 @@ export default async function RecipeLayout({
     author: {
       "@type": "Organization",
       name: "RenalPlan",
-      url: "https://renalplan.com",
+      url: "https://www.renalplan.com",
     },
 
     publisher: {
       "@type": "Organization",
       name: "RenalPlan",
-      url: "https://renalplan.com",
+      url: "https://www.renalplan.com",
     },
 
     recipeCategory: recipe.category,

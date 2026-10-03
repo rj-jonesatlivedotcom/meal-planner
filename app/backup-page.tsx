@@ -12,7 +12,7 @@ const freeSteps = [
     numberClass: "bg-emerald-500",
     iconClass: "bg-green-50 text-emerald-600",
     icon: (
-      <svg viewBox="0 0 64 64" className="h-7 w-7 sm:h-9 sm:w-9" aria-hidden="true">
+      <svg viewBox="0 0 64 64" className="h-5 w-5 sm:h-9 sm:w-9" aria-hidden="true">
         <path
           d="M8 14c10-3 18-1 24 5v34c-6-6-14-8-24-5V14Z"
           fill="white"
@@ -46,7 +46,7 @@ const freeSteps = [
     numberClass: "bg-orange-500",
     iconClass: "bg-orange-50 text-orange-500",
     icon: (
-      <svg viewBox="0 0 64 64" className="h-7 w-7 sm:h-9 sm:w-9" aria-hidden="true">
+      <svg viewBox="0 0 64 64" className="h-5 w-5 sm:h-9 sm:w-9" aria-hidden="true">
         <rect
           x="10"
           y="14"
@@ -83,7 +83,7 @@ const freeSteps = [
     numberClass: "bg-blue-500",
     iconClass: "bg-blue-50 text-blue-600",
     icon: (
-      <svg viewBox="0 0 64 64" className="h-7 w-7 sm:h-9 sm:w-9" aria-hidden="true">
+      <svg viewBox="0 0 64 64" className="h-5 w-5 sm:h-9 sm:w-9" aria-hidden="true">
         <path
           d="M13 18h7l4 28h27l6-21H22"
           fill="none"
@@ -438,28 +438,28 @@ export default function Home() {
                 >
                   <Link
                     href={step.href}
-                    className={`group block min-h-[150px] rounded-2xl border p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md ${step.cardClass}`}
+                    className={`group block min-h-0 rounded-2xl border p-2 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:min-h-[150px] sm:p-4 ${step.cardClass}`}
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex min-w-0 items-center gap-3">
                         <span
-                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${step.numberClass}`}
+                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white sm:h-9 sm:w-9 sm:text-sm ${step.numberClass}`}
                         >
                           {step.number}
                         </span>
-                        <h3 className="font-bold leading-tight text-[#12396b]">
+                        <h3 className="text-sm font-bold leading-tight text-[#12396b] sm:text-base">
                           {step.title}
                         </h3>
                       </div>
 
                       <div
-                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-12 sm:w-12 ${step.iconClass}`}
+                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full sm:h-12 sm:w-12 ${step.iconClass}`}
                       >
                         {step.icon}
                       </div>
                     </div>
 
-                    <p className="mt-1 text-[11px] leading-snug text-slate-700 sm:text-xs">
+                    <p className="mt-1 hidden text-xs leading-snug text-slate-700 sm:block">
                       {step.description}
                     </p>
                   </Link>
@@ -551,7 +551,16 @@ export default function Home() {
         className="hidden px-4 py-6 sm:px-8 lg:block lg:px-10 lg:py-8"
         aria-label="See RenalPlan in action"
       >
-        <div className="mx-auto max-w-[1450px] overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
+        <div className="mx-auto max-w-[1450px]">
+          <div className="mb-5 text-center">
+            <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
+              See Renal<span className="text-[#079447]">Plan</span> in action
+            </h2>
+            <p className="mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f] sm:text-base">
+              From your dietary requirements to your weekly shop — all in one place.
+            </p>
+          </div>
+          <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
           <video
             className="block h-auto w-full"
             autoPlay
@@ -567,6 +576,7 @@ export default function Home() {
             />
             Your browser does not support the video element.
           </video>
+          </div>
         </div>
       </section>
 

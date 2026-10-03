@@ -619,15 +619,23 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="text-sm text-slate-600">
-            <span>Do you have any questions or need help? </span>
-
-            <a
-              href="mailto:hello@renalplan.com"
-              className="font-semibold text-[#079447] transition hover:text-[#067b3a]"
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-slate-600 sm:justify-end">
+            <Link
+              href="/about"
+              className="font-semibold text-[#12396b] transition hover:text-[#079447]"
             >
-              Contact us
-            </a>
+              About RenalPlan
+            </Link>
+
+            <span>
+              <span>Do you have any questions or need help? </span>
+              <a
+                href="mailto:hello@renalplan.com"
+                className="font-semibold text-[#079447] transition hover:text-[#067b3a]"
+              >
+                Contact us
+              </a>
+            </span>
           </div>
         </div>
       </footer>

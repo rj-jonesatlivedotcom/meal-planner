@@ -428,9 +428,6 @@ export default function RecipeCard({
       )
     );
 
-    // Tell the Planner to preserve this recipe-card change during account hydration.
-    localStorage.setItem("planner-recipe-add-pending", "true");
-
     /*
      * Clear temporary slot.
      */
@@ -578,9 +575,6 @@ export default function RecipeCard({
         planner
       )
     );
-
-    // Tell the Planner to preserve this recipe-card change during account hydration.
-    localStorage.setItem("planner-recipe-add-pending", "true");
 
     /*
      * Refresh displayed locations.

@@ -444,9 +444,6 @@ export default function RecipeDetailPage() {
       )
     );
 
-    // Tell the Planner to preserve this recipe-page change during account hydration.
-    localStorage.setItem("planner-recipe-add-pending", "true");
-
     localStorage.removeItem(
       "planner-pending-slot"
     );
@@ -557,9 +554,6 @@ export default function RecipeDetailPage() {
         planner
       )
     );
-
-    // Tell the Planner to preserve this recipe-page change during account hydration.
-    localStorage.setItem("planner-recipe-add-pending", "true");
 
     setPlacements(
       getRecipePlacements()

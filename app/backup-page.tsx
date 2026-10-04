@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 const freeSteps = [
   {
@@ -111,7 +112,7 @@ const accountFeatures = [
     title: "My Diet",
     badge: "Premium",
     text: "Set your dietary requirements so RenalPlan can personalise your meals.",
-    href: "/requirements",
+    href: "/promotional-material/my-diet",
     iconClass: "bg-blue-100 text-blue-600",
     icon: (
       <svg viewBox="0 0 48 48" className="h-7 w-7" aria-hidden="true">
@@ -127,7 +128,7 @@ const accountFeatures = [
     title: "Nutrition",
     badge: "Premium",
     text: "See your weekly nutrition summary with totals, averages and a printable report.",
-    href: "/nutrition",
+    href: "/promotional-material/nutrition",
     iconClass: "bg-blue-100 text-blue-600",
     icon: (
       <svg viewBox="0 0 48 48" className="h-7 w-7" aria-hidden="true">
@@ -150,7 +151,7 @@ const accountFeatures = [
     title: "Food Check",
     badge: "Premium",
     text: "Check the nutritional information for individual foods quickly and easily.",
-    href: "/food-check",
+    href: "/promotional-material/food-check",
     iconClass: "bg-blue-100 text-blue-600",
     icon: (
       <svg viewBox="0 0 48 48" className="h-7 w-7" aria-hidden="true">
@@ -175,7 +176,7 @@ const accountFeatures = [
   {
     title: "Favourites",
     text: "Save your favourite recipes and access them whenever you want.",
-    href: "/favourites",
+    href: "/promotional-material/favourites",
     iconClass: "bg-rose-100 text-rose-500",
     icon: (
       <svg viewBox="0 0 48 48" className="h-7 w-7" aria-hidden="true">
@@ -188,6 +189,56 @@ const accountFeatures = [
   },
 ];
 
+const featureDetails: Record<
+  string,
+  { eyebrow: string; heading: string; description: string; bullets: string[] }
+> = {
+  "My Diet": {
+    eyebrow: "PERSONALISE YOUR EXPERIENCE",
+    heading: "Your diet. Your requirements.",
+    description:
+      "Tell RenalPlan about your dietary requirements and goals, so your meal-planning experience can be tailored around what matters to you.",
+    bullets: [
+      "Keep your dietary requirements together in one place.",
+      "Set the nutrition goals that matter to your plan.",
+      "Help guide meal choices around your personal needs.",
+    ],
+  },
+  Nutrition: {
+    eyebrow: "UNDERSTAND YOUR WEEK",
+    heading: "See the bigger nutritional picture.",
+    description:
+      "Review your planned meals with a weekly nutrition summary that helps you understand totals, daily averages and how your plan compares with your goals.",
+    bullets: [
+      "Review weekly totals and daily averages.",
+      "See key nutrients in an easy-to-read summary.",
+      "Print a weekly nutrition report for reference.",
+    ],
+  },
+  "Food Check": {
+    eyebrow: "MAKE INFORMED FOOD CHOICES",
+    heading: "Check a food before it goes in your basket.",
+    description:
+      "Look up nutritional information for individual foods and make more informed choices when planning meals or shopping.",
+    bullets: [
+      "Check nutritional information for individual foods.",
+      "Use the information to help compare options.",
+      "Make food choices with your dietary needs in mind.",
+    ],
+  },
+  Favourites: {
+    eyebrow: "SAVE TIME NEXT TIME",
+    heading: "Keep your go-to meals close.",
+    description:
+      "Save recipes you love, so you can find them again without having to search through the full recipe collection.",
+    bullets: [
+      "Save recipes you want to make again.",
+      "Build a personal collection of go-to meals.",
+      "Make future meal planning quicker and easier.",
+    ],
+  },
+};
+
 const benefits = [
   "Kidney-friendly recipes",
   "Easy meal planning",
@@ -195,6 +246,8 @@ const benefits = [
 ];
 
 export default function Home() {
+  const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
+
   return (
     <main className="renal-homepage min-h-screen overflow-hidden bg-white text-slate-900">
       <style jsx global>{`
@@ -333,7 +386,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-6 grid grid-cols-3 gap-2 sm:mt-7 sm:max-w-[650px] sm:gap-4">
+            <div className="mt-6 flex flex-wrap items-start gap-x-4 gap-y-2 sm:mt-7 sm:max-w-[650px] sm:gap-x-5">
               {benefits.map((benefit) => (
                 <div
                   key={benefit}
@@ -503,13 +556,15 @@ export default function Home() {
 
             <div className="grid gap-3 sm:grid-cols-2">
               {accountFeatures.map((feature, index) => (
-                <Link
+                <button
                   key={feature.title}
+                  type="button"
                   style={{
                     animationDelay: `${index * 110 + 120}ms`,
                   }}
-                  href={feature.href}
-                  className="renal-home-feature-card renal-fade-up group rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md sm:p-5"
+                  onClick={() => setSelectedFeature(feature.title)}
+                  aria-haspopup="dialog"
+                  className="renal-home-feature-card renal-fade-up group w-full rounded-2xl border border-white/80 bg-white/80 p-4 text-left shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1266c3] focus-visible:ring-offset-2 sm:p-5"
                 >
                   <div className="flex items-start gap-3">
                     <div
@@ -518,7 +573,7 @@ export default function Home() {
                       {feature.icon}
                     </div>
 
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
                         <h3 className="renal-home-card-title font-bold text-[#12396b]">
                           {feature.title}
@@ -529,6 +584,9 @@ export default function Home() {
                             {feature.badge}
                           </span>
                         )}
+                        <span className="ml-auto text-lg text-[#1266c3] transition group-hover:translate-x-0.5" aria-hidden="true">
+                          →
+                        </span>
                       </div>
 
                       <p className="renal-home-card-copy mt-1 text-xs leading-relaxed text-slate-600 sm:text-sm">
@@ -536,7 +594,7 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                </Link>
+                </button>
               ))}
             </div>
           </div>
@@ -619,14 +677,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-slate-600 sm:justify-end">
-            <Link
-              href="/about"
-              className="font-semibold text-[#12396b] transition hover:text-[#079447]"
-            >
-              About RenalPlan
-            </Link>
-
+          <div className="flex flex-col items-center gap-2 text-sm text-slate-600 sm:items-end sm:text-right">
             <span>
               <span>Do you have any questions or need help? </span>
               <a
@@ -636,9 +687,88 @@ export default function Home() {
                 Contact us
               </a>
             </span>
+
+            <Link href="/about" className="font-semibold transition hover:opacity-80">
+              <span className="renal-home-about-label">About </span><span className="text-[#12396b]">Renal</span>
+              <span className="text-[#079447]">Plan</span>
+            </Link>
           </div>
         </div>
       </footer>
+
+      {selectedFeature && featureDetails[selectedFeature] && (
+        <div
+          className="fixed inset-0 z-[100] flex items-end justify-center bg-[#071a30]/65 p-0 backdrop-blur-sm sm:items-center sm:p-5"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setSelectedFeature(null);
+          }}
+        >
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="renal-feature-modal-title"
+            aria-describedby="renal-feature-modal-description"
+            className="relative max-h-[90dvh] w-full max-w-xl overflow-y-auto rounded-t-3xl bg-white p-6 pb-7 shadow-2xl sm:rounded-3xl sm:p-8"
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedFeature(null)}
+              aria-label="Close feature information"
+              className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-2xl leading-none text-slate-600 transition hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1266c3]"
+            >
+              ×
+            </button>
+
+            <div className="pr-10">
+              <p className="text-xs font-extrabold tracking-[0.14em] text-[#078f43]">
+                {featureDetails[selectedFeature].eyebrow}
+              </p>
+              <h2
+                id="renal-feature-modal-title"
+                className="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl"
+              >
+                {featureDetails[selectedFeature].heading}
+              </h2>
+            </div>
+
+            <p
+              id="renal-feature-modal-description"
+              className="mt-4 text-sm leading-relaxed text-slate-700 sm:text-base"
+            >
+              {featureDetails[selectedFeature].description}
+            </p>
+
+            <ul className="mt-5 space-y-3">
+              {featureDetails[selectedFeature].bullets.map((bullet) => (
+                <li key={bullet} className="flex items-start gap-3 text-sm leading-relaxed text-slate-700">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#dff5e8] text-xs font-extrabold text-[#078f43]" aria-hidden="true">
+                    ✓
+                  </span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              <Link
+                href="/signup"
+                className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#078f43] px-5 py-3 text-center text-sm font-bold text-white shadow-sm transition hover:bg-[#067b3a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#078f43] focus-visible:ring-offset-2"
+              >
+                Create Your Free Account
+              </Link>
+              <Link
+                href="/login"
+                className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#12396b]/20 bg-white px-5 py-3 text-center text-sm font-bold text-[#12396b] transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1266c3] focus-visible:ring-offset-2"
+              >
+                Sign In
+              </Link>
+            </div>
+            <p className="mt-4 text-center text-xs text-slate-500">
+              Close this window to keep exploring the homepage.
+            </p>
+          </section>
+        </div>
+      )}
     </main>
   );
 }

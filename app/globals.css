@@ -215,31 +215,31 @@ html[data-theme="dark"] .opacity-70 {
   opacity: 1 !important;
 }
 
-/* The desktop header gets two clear rows: branding/actions above, navigation below. */
+/* Desktop navbar: keep branding, navigation and account actions on one row. */
 @media (min-width: 1024px) {
   header .max-w-\[1500px\] {
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     column-gap: 1rem !important;
     row-gap: 0 !important;
-    padding-top: 0.55rem;
-    padding-bottom: 0.45rem;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   header .max-w-\[1500px\] > a:first-child {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
   }
 
   header .max-w-\[1500px\] > nav {
-    order: 3;
-    width: 100%;
-    margin-left: 0 !important;
+    order: initial;
+    width: auto;
+    margin-left: auto !important;
     justify-content: center;
-    border-top: 1px solid var(--border);
-    padding-top: 0.3rem;
+    border-top: 0;
+    padding-top: 0;
   }
 
   header .max-w-\[1500px\] > div:last-child {
-    margin-left: auto !important;
+    margin-left: 0 !important;
   }
 }
 

@@ -1159,6 +1159,30 @@ export default function NutritionPage() {
                 </div>
               </div>
             </div>
+
+            {/* MOBILE FLUID INTAKE: follows the selected day, like the meal and daily-total cards above. */}
+            <section className="nutrition-mobile-fluid mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-pink-700">Fluid intake</p>
+                  <p className="mt-1 text-sm text-slate-500">Drinks recorded</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xl font-extrabold text-slate-900">
+                    {fluidEntries
+                      .filter((entry) => entry.date === getCurrentWeekDate(days.indexOf(selectedDay)))
+                      .reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0)
+                      .toLocaleString()} ml
+                  </p>
+                  <p className="mt-1 text-xs text-slate-500">{selectedDay}</p>
+                </div>
+              </div>
+              {fluidAllowanceMl !== null && (
+                <p className="mt-3 border-t border-slate-200 pt-3 text-xs leading-5 text-slate-500">
+                  Personal allowance saved in My Diet: {fluidAllowanceMl.toLocaleString()} ml/day.
+                </p>
+              )}
+            </section>
           </section>
 
           {/* DESKTOP WEEKLY GRID */}
@@ -1675,17 +1699,17 @@ export default function NutritionPage() {
             </div>
           </section>
 
-          <section className="nutrition-print-fluid nutrition-print-card mb-6 w-full rounded-2xl border border-slate-600 bg-slate-800 p-5 shadow-sm">
+          <section className="nutrition-print-fluid nutrition-print-card mb-6 hidden w-full rounded-2xl border border-slate-600 bg-slate-800 p-5 shadow-sm md:block">
             <div className="mb-3">
               <h2 className="text-lg font-extrabold text-slate-100">Fluid intake</h2>
               <p className="mt-1 text-sm text-slate-300">This shows the drinks you record; it does not estimate fluid from planned meals.</p>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[1500px] table-fixed border-collapse">
+              <table className="w-full table-fixed border-collapse">
                 <colgroup>
-                  <col style={{ width: "160px" }} />
+                  <col style={{ width: "150px" }} />
                   {days.map((day) => <col key={day} />)}
-                  <col style={{ width: "200px" }} />
+                  <col />
                 </colgroup>
                 <thead>
                   <tr className="border-b border-slate-600">

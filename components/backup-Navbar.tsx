@@ -103,29 +103,8 @@ function PageIcon({
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
   const pathname = usePathname();
   const router = useRouter();
-
-  useEffect(() => {
-    const currentTheme = document.documentElement.dataset.theme;
-    if (currentTheme === "dark" || currentTheme === "light") {
-      setTheme(currentTheme);
-    }
-
-    const observer = new MutationObserver(() => {
-      const nextTheme = document.documentElement.dataset.theme;
-      if (nextTheme === "dark" || nextTheme === "light") {
-        setTheme(nextTheme);
-      }
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const supabase = createClient();
@@ -160,54 +139,6 @@ export default function Navbar() {
     setOpen(false);
     router.push("/");
     router.refresh();
-  }
-
-  async function toggleTheme() {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    document.documentElement.dataset.theme = nextTheme;
-
-    try {
-      localStorage.setItem("renalplan-theme", nextTheme);
-    } catch {
-      // The current page theme still changes if localStorage is unavailable.
-    }
-
-    const supabase = createClient();
-    const { data } = await supabase.auth.getUser();
-    if (data.user) {
-      const { error } = await supabase.auth.updateUser({
-        data: { renalplan_theme: nextTheme },
-      });
-      if (error) {
-        console.error("Could not save RenalPlan theme preference:", error.message);
-      }
-    }
-  }
-
-  function ThemeToggle({ mobile = false }: { mobile?: boolean }) {
-    return (
-      <button
-        type="button"
-        onClick={() => void toggleTheme()}
-        aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        className={`flex shrink-0 items-center justify-center rounded-xl border border-slate-300 text-slate-900 transition hover:bg-slate-100 ${
-          mobile ? "h-12 w-12" : "h-12 w-12"
-        }`}
-      >
-        {theme === "dark" ? (
-          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
-          </svg>
-        ) : (
-          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M20.9 13A8.5 8.5 0 0 1 11 3.1 8.5 8.5 0 1 0 20.9 13Z" />
-          </svg>
-        )}
-      </button>
-    );
   }
 
   const pageHeader: {
@@ -403,7 +334,6 @@ export default function Navbar() {
           </nav>
 
           <div className="ml-2 flex shrink-0 items-center gap-3">
-            <ThemeToggle />
             {loggedIn ? (
               <button
                 type="button"
@@ -557,9 +487,7 @@ export default function Navbar() {
               </Link>
             )}
 
-            <div className="mt-2 flex items-center justify-between gap-3 border-t border-slate-200 pt-3">
-              <span className="text-sm font-semibold text-slate-600">{theme === "dark" ? "Dark mode" : "Light mode"}</span>
-              <ThemeToggle mobile />
+            <div className="mt-2 flex gap-3 border-t border-slate-200 pt-3">
               {loggedIn ? (
                 <button
                   type="button"

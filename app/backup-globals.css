@@ -964,3 +964,31 @@ html[data-theme="dark"] main button.bg-emerald-400:focus-visible {
 html[data-theme="dark"] main button.bg-emerald-400 span {
   color: #000000 !important;
 }
+
+/* Planner Nutrition link: force the card background itself to stay dark in dark theme. */
+html[data-theme="dark"] a[href="/nutrition"] {
+  background-color: #1e2d38 !important;
+  color: #f1f5f9 !important;
+  border-color: #526575 !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"] h2 {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"] p {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"] > div > span,
+html[data-theme="dark"] a[href="/nutrition"] > span {
+  background-color: #334155 !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"] > span {
+  color: #bae6fd !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"]:hover {
+  background-color: #334155 !important;
+}

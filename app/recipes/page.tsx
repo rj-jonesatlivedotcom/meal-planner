@@ -366,7 +366,13 @@ export default function RecipesPage() {
       return "Chicken";
     }
 
-    if (category === "vegetarian") {
+    // Treat a recipe as vegetarian when its ingredients contain no meat
+    // or fish. This includes meat-free breakfasts, egg dishes, dairy dishes,
+    // and vegetable-based meals even when their category is not labelled
+    // exactly "vegetarian".
+    const nonVegetarianIngredients = /\b(chicken|turkey|duck|beef|pork|lamb|mutton|bacon|ham|sausage|salami|pepperoni|prosciutto|meat|fish|salmon|tuna|cod|haddock|mackerel|trout|sardine|anchovy|herring|pollock|tilapia|seafood|prawn|shrimp|crab|lobster|mussel|clam|oyster|scallop|squid|octopus)\b/i;
+
+    if (!nonVegetarianIngredients.test(ingredientText)) {
       return "Vegetarian";
     }
 
@@ -545,18 +551,53 @@ export default function RecipesPage() {
 
   const searchDisplay = searchText.trim();
 
-  // Live count of recipes that match the user's My Diet requirements.
-  // This deliberately ignores search/filter controls so the green bar
-  // always tells the user how many recipes are available for their diet.
-  const requirementsMatchedRecipes = recipes.filter((recipe) =>
-    recipeMatchesRequirements(recipe, requirements)
-  );
+  // Keep the green results count in sync with the recipes currently shown,
+  // including search text, meal type, protein, favourites, and My Diet.
+  const requirementsMatchCount = filteredRecipes.length;
 
-  const requirementsMatchCount =
-    requirementsMatchedRecipes.length;
+  // Meal-type button counts reflect the current search/protein/favourites
+  // selection as well, but do not depend on the currently selected meal type.
+  const requirementsMatchedRecipes = recipes.filter((recipe) => {
+    const matchesProtein =
+      selectedProtein === "All" ||
+      getProteinType(recipe) === selectedProtein;
+    const matchesFavourite =
+      !showFavourites || favouriteRecipeIds.includes(recipe.id);
+    const matchesRequirements = recipeMatchesRequirements(recipe, requirements);
+    const searchableText = [
+      recipe.name,
+      recipe.description,
+      recipe.equipment,
+      recipe.category,
+      ...recipe.ingredients.map((ingredient) => ingredient.item),
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const matchesSearch =
+      searchWords.length === 0 ||
+      searchWords.every((word) => {
+        const normalizedWord = word.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+        if (!normalizedWord) return true;
+        const variants = [normalizedWord];
+        if (normalizedWord.endsWith("ies") && normalizedWord.length > 4) {
+          variants.push(`${normalizedWord.slice(0, -3)}y`);
+        } else if (normalizedWord.endsWith("s") && normalizedWord.length > 3) {
+          variants.push(normalizedWord.slice(0, -1));
+        } else {
+          variants.push(`${normalizedWord}s`);
+        }
+        return variants.some((variant) => searchableText.includes(variant));
+      });
+
+    return matchesProtein && matchesFavourite && matchesRequirements && matchesSearch;
+  });
 
   const mealTypeCounts = {
-    All: requirementsMatchCount,
+    All: requirementsMatchedRecipes.length,
     Breakfast: requirementsMatchedRecipes.filter(
       (recipe) => getMealType(recipe) === "Breakfast"
     ).length,
@@ -878,7 +919,7 @@ export default function RecipesPage() {
               </button>
 
               {showFilters && (
-                <div className="absolute right-0 top-full z-30 mt-4 w-[min(500px,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
+                <div className="absolute left-0 top-full z-30 mt-4 w-[calc(100vw-60px)] max-w-[calc(100vw-60px)] rounded-xl border border-gray-200 bg-white p-5 shadow-lg">
 
                   <div className="grid grid-cols-1 gap-4">
 
@@ -1123,11 +1164,11 @@ export default function RecipesPage() {
 
             <div className="min-w-0">
               <div className="font-bold text-green-700">
-                {requirementsMatchCount} recipes match your requirements
+                {requirementsMatchCount} {requirementsMatchCount === 1 ? "recipe" : "recipes"} found with your current filters
               </div>
 
               <div className="text-sm text-slate-500">
-                Showing recipes based on your My Diet settings. Adjust your requirements to see more recipes.
+                Results update as you search or change filters. Recipes are still matched against your My Diet settings.
               </div>
             </div>
           </div>

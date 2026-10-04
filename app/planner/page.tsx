@@ -433,6 +433,27 @@ export default function WeeklyPlannerPage() {
     return fluidEntries.filter((entry) => entry.date === date).reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0);
   }
 
+  // Count the recipe-level fluid estimate for the meals planned on a given day.
+  // Recipe fluidMl values are per serving, so account for the planned meal portions.
+  function plannedMealFluidForDay(day: string) {
+    return mealTypes.reduce((total, meal) => {
+      const recipe = getRecipe(plannerMeals?.[day]?.[meal] ?? null);
+      if (!recipe) return total;
+      const recipeFluid = Number((recipe as typeof recipe & { fluidMl?: number }).fluidMl ?? 0);
+      const people = Number(mealPeople?.[day]?.[meal] ?? getHouseholdPeople());
+      return total + (Number.isFinite(recipeFluid) ? recipeFluid : 0) * (Number.isFinite(people) && people > 0 ? people : 1);
+    }, 0);
+  }
+
+  function plannedMealFluidForDate(date: string) {
+    const day = days.find((candidate) => getDateForPlannerDay(candidate) === date);
+    return day ? plannedMealFluidForDay(day) : 0;
+  }
+
+  function totalFluidForPlannerDay(day: string) {
+    return plannedMealFluidForDay(day) + fluidTotalForDate(getDateForPlannerDay(day));
+  }
+
 
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
@@ -1055,18 +1076,29 @@ export default function WeeklyPlannerPage() {
   }
 
   function clearWeek() {
-    setPlannerMeals(
-      createEmptyPlanner()
+    // Clear drinks logged for the current Monday–Sunday planner week as well
+    // as the planned meals. saveFluidEntries also syncs removed log entries
+    // to Supabase for signed-in users.
+    const today = new Date();
+    const monday = new Date(today);
+    const mondayOffset = (today.getDay() + 6) % 7;
+    monday.setDate(today.getDate() - mondayOffset);
+
+    const currentWeekDates = new Set(
+      days.map((_, index) => {
+        const date = new Date(monday);
+        date.setDate(monday.getDate() + index);
+        return getLocalDateKey(date);
+      })
     );
 
-    setMealPeople(
-      createEmptyMealPeople()
+    saveFluidEntries(
+      fluidEntries.filter((entry) => !currentWeekDates.has(entry.date))
     );
 
-    localStorage.removeItem(
-      "planner-pending-slot"
-    );
-
+    setPlannerMeals(createEmptyPlanner());
+    setMealPeople(createEmptyMealPeople());
+    localStorage.removeItem("planner-pending-slot");
     setShowClearConfirm(false);
   }
 
@@ -1324,17 +1356,19 @@ if (total <= limit * 0.75) {
   }) {
     if (nutritionView === "Fluid") {
       const date = getDateForPlannerDay(day);
-      const total = fluidTotalForDate(date);
+      const total = totalFluidForPlannerDay(day);
+      const planned = plannedMealFluidForDay(day);
+      const drinks = fluidTotalForDate(date);
       return (
         <button type="button"
           onMouseDown={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
           onPointerDown={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
           onTouchStart={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
           onClick={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
-          className="relative z-[999] pointer-events-auto isolate min-w-[82px] cursor-pointer rounded-2xl border border-sky-400/70 bg-gradient-to-br from-slate-800 to-slate-900 px-3 py-3 text-sm font-extrabold !text-white shadow-md shadow-slate-950/20 hover:border-sky-300 hover:from-slate-700 hover:to-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
-          aria-label={`${day}: ${total} ml recorded fluid. Open fluid tracker`} title={`${day}: ${total} ml recorded. Click to manage drinks`}>
+          className="relative z-0 pointer-events-auto isolate min-w-[82px] cursor-pointer rounded-2xl border border-sky-400/70 bg-gradient-to-br from-slate-800 to-slate-900 px-3 py-3 text-sm font-extrabold !text-white shadow-md shadow-slate-950/20 hover:border-sky-300 hover:from-slate-700 hover:to-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
+          aria-label={`${day}: ${total} ml estimated from planned meals and recorded drinks. Open fluid tracker`} title={`${day}: ${planned} ml from planned meals + ${drinks} ml drinks recorded`}>
           {total.toLocaleString()} ml
-          <span className="mt-1 block text-[10px] font-bold tracking-wide text-sky-300">＋ LOG DRINKS</span>
+          <span className="mt-1 block text-[10px] font-bold tracking-wide text-sky-300">MEALS + DRINKS</span>
         </button>
       );
     }
@@ -2741,7 +2775,7 @@ if (total <= limit * 0.75) {
             </h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              This will remove all meals from your Weekly Planner and update your Shopping List.
+              This will remove all meals from your Weekly Planner, clear drinks logged for this Monday–Sunday week, and update your Shopping List. Older fluid records will be kept.
             </p>
 
             <div className="mt-6 grid grid-cols-2 gap-3">
@@ -3091,7 +3125,7 @@ if (total <= limit * 0.75) {
       )}
 
       {fluidModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/50 p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="fluid-tracker-title">
+        <div className="fixed inset-0 z-[10000] flex items-end justify-center bg-slate-950/60 p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="fluid-tracker-title">
           <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl sm:rounded-3xl sm:p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -3104,10 +3138,21 @@ if (total <= limit * 0.75) {
               <input type="date" value={fluidDate} onChange={(event) => setFluidDate(event.target.value)} className="mt-1 block w-full rounded-xl border border-slate-200 px-3 py-2.5 text-slate-900" />
             </label>
             <div className="mt-4 rounded-2xl bg-slate-800 p-4 ring-1 ring-slate-700">
-              <p className="text-sm font-semibold !text-slate-100">Actual drinks recorded</p>
-              <p className="mt-1 text-3xl font-extrabold !text-white">{fluidTotalForDate(fluidDate).toLocaleString()} <span className="text-base !text-slate-200">ml</span></p>
-              {fluidAllowanceMl !== null && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString()} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, fluidTotalForDate(fluidDate) / fluidAllowanceMl * 100) : fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
-              <p className="mt-2 text-xs leading-5 !text-slate-300">This is a record of intake, not a recommendation to drink more. Follow your renal team's fluid guidance.</p>
+              <p className="text-sm font-semibold !text-slate-100">Fluid estimate for this day</p>
+              <div className="mt-2 grid grid-cols-2 gap-3">
+                <div className="rounded-xl bg-slate-700/70 p-3">
+                  <p className="text-xs font-semibold !text-slate-200">Planned meals</p>
+                  <p className="mt-1 text-xl font-extrabold !text-white">{plannedMealFluidForDate(fluidDate).toLocaleString()} <span className="text-sm !text-slate-200">ml</span></p>
+                </div>
+                <div className="rounded-xl bg-slate-700/70 p-3">
+                  <p className="text-xs font-semibold !text-slate-200">Drinks recorded</p>
+                  <p className="mt-1 text-xl font-extrabold !text-white">{fluidTotalForDate(fluidDate).toLocaleString()} <span className="text-sm !text-slate-200">ml</span></p>
+                </div>
+              </div>
+              <p className="mt-3 text-sm font-semibold !text-slate-100">Combined estimate</p>
+              <p className="mt-1 text-3xl font-extrabold !text-white">{(plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)).toLocaleString()} <span className="text-base !text-slate-200">ml</span></p>
+              {fluidAllowanceMl !== null && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString()} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, (plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)) / fluidAllowanceMl * 100) : plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
+              <p className="mt-2 text-xs leading-5 !text-slate-300">Meal fluid is an estimate from recipe ingredients. Drinks are recorded separately. Follow your renal team's fluid guidance; this is not a recommendation to drink more.</p>
             </div>
             <h3 className="mt-5 text-sm font-extrabold text-slate-800">Add a drink</h3>
             <div className="mt-2 grid grid-cols-2 gap-3">

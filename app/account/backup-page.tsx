@@ -12,6 +12,9 @@ export default function AccountPage() {
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState("");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [savingTheme, setSavingTheme] = useState(false);
+  const [themeMessage, setThemeMessage] = useState("");
 
   useEffect(() => {
     const supabase = createClient();
@@ -27,12 +30,39 @@ export default function AccountPage() {
       }
 
       setEmail(user.email ?? "");
+      const savedTheme = user.user_metadata?.renalplan_theme === "dark" ? "dark" : "light";
+      setTheme(savedTheme);
+      document.documentElement.dataset.theme = savedTheme;
+      try { localStorage.setItem("renalplan-theme", savedTheme); } catch {}
       setLoading(false);
     }
 
     loadAccount();
   }, [router]);
 
+  async function handleThemeChange(nextTheme: "light" | "dark") {
+    setTheme(nextTheme);
+    setThemeMessage("");
+    document.documentElement.dataset.theme = nextTheme;
+    try {
+      localStorage.setItem("renalplan-theme", nextTheme);
+    } catch {
+      // Continue; Supabase is the cross-device source of truth.
+    }
+
+    setSavingTheme(true);
+    const supabase = createClient();
+    const { error } = await supabase.auth.updateUser({
+      data: { renalplan_theme: nextTheme },
+    });
+    setSavingTheme(false);
+
+    if (error) {
+      setThemeMessage("Your choice could not be saved to your account. Please try again.");
+      return;
+    }
+    setThemeMessage("Appearance preference saved to your account.");
+  }
 
   async function handleLogout() {
     const supabase = createClient();
@@ -144,6 +174,32 @@ export default function AccountPage() {
             </div>
 
             <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
+
+              {/* APPEARANCE */}
+              <div className="border-b border-slate-200 px-5 py-5 sm:px-6">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-base font-semibold text-slate-900 sm:text-lg">Appearance</p>
+                    <p className="mt-1 text-sm leading-5 text-slate-600 sm:text-base">
+                      Choose a light or dark look for RenalPlan.
+                    </p>
+                  </div>
+                  <div className="inline-flex w-fit rounded-xl border border-slate-300 bg-slate-100 p-1" role="group" aria-label="Website appearance">
+                    <button type="button" onClick={() => handleThemeChange("light")} disabled={savingTheme}
+                      aria-pressed={theme === "light"}
+                      className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${theme === "light" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600 hover:text-slate-900"}`}>
+                      ☀️ Light
+                    </button>
+                    <button type="button" onClick={() => handleThemeChange("dark")} disabled={savingTheme}
+                      aria-pressed={theme === "dark"}
+                      className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${theme === "dark" ? "bg-slate-800 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}>
+                      🌙 Dark
+                    </button>
+                  </div>
+                </div>
+                {savingTheme && <p className="mt-3 text-sm text-slate-600">Saving preference…</p>}
+                {themeMessage && <p role="status" className="mt-3 text-sm text-slate-600">{themeMessage}</p>}
+              </div>
 
               {/* EMAIL */}
               <div className="px-5 py-5 sm:px-6">
@@ -375,6 +431,45 @@ export default function AccountPage() {
                   ›
                 </span>
               </Link>
+
+              {/* PREMIUM INFORMATION */}
+              <div className="rounded-2xl border border-orange-300 bg-orange-50/60 px-5 py-5 sm:px-6">
+                <div className="flex items-start gap-4">
+
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-orange-600">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-7 w-7"
+                      aria-hidden="true"
+                    >
+                      <path d="M3 8l3 3 3-6 3 6 3-6 3 6 3-3-2 11H5L3 8z" />
+                      <path d="M5 19h14" />
+                    </svg>
+                  </div>
+
+                  <div className="min-w-0">
+                    <h3 className="text-base text-orange-600 sm:text-lg">
+                      Premium coming soon
+                    </h3>
+
+                    <p className="mt-1 text-sm leading-6 text-slate-600 sm:text-base">
+                      RenalPlan Premium will be introduced in the future.
+                      When Premium launches, a subscription will be required
+                      to continue using RenalPlan&apos;s personal account
+                      features.
+                    </p>
+
+                    <p className="mt-2 text-sm leading-6 text-slate-600 sm:text-base">
+                      We&apos;ll let you know when it&apos;s available.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
             </div>
           </section>

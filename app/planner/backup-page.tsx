@@ -110,6 +110,17 @@ type FluidEntry = {
 
 const FLUID_LOG_STORAGE_KEY = "renalplan-fluid-log-v1";
 
+// Keep desktop Planner labels concise while preserving the full recipe name
+// everywhere else in RenalPlan. For long names with a side/serving description,
+// show the main dish descriptor in the compact weekly grid.
+function getPlannerDisplayName(name: string): string {
+  if (name.length > 25 && /\swith\s/i.test(name)) {
+    return name.split(/\swith\s/i)[0].trim();
+  }
+
+  return name;
+}
+
 function getLocalDateKey(date = new Date()): string {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -327,6 +338,28 @@ export default function WeeklyPlannerPage() {
   const [fluidCustomDrink, setFluidCustomDrink] = useState("");
   const [fluidAmount, setFluidAmount] = useState("200");
   const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    const currentTheme = document.documentElement.dataset.theme;
+    if (currentTheme === "dark" || currentTheme === "light") {
+      setTheme(currentTheme);
+    }
+
+    const observer = new MutationObserver(() => {
+      const nextTheme = document.documentElement.dataset.theme;
+      if (nextTheme === "dark" || nextTheme === "light") {
+        setTheme(nextTheme);
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     setFluidEntries(readFluidLog());
@@ -431,6 +464,27 @@ export default function WeeklyPlannerPage() {
 
   function fluidTotalForDate(date: string) {
     return fluidEntries.filter((entry) => entry.date === date).reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0);
+  }
+
+  // Count the recipe-level fluid estimate for the meals planned on a given day.
+  // Recipe fluidMl values are per serving, so account for the planned meal portions.
+  function plannedMealFluidForDay(day: string) {
+    return mealTypes.reduce((total, meal) => {
+      const recipe = getRecipe(plannerMeals?.[day]?.[meal] ?? null);
+      if (!recipe) return total;
+      const recipeFluid = Number((recipe as typeof recipe & { fluidMl?: number }).fluidMl ?? 0);
+      const people = Number(mealPeople?.[day]?.[meal] ?? getHouseholdPeople());
+      return total + (Number.isFinite(recipeFluid) ? recipeFluid : 0) * (Number.isFinite(people) && people > 0 ? people : 1);
+    }, 0);
+  }
+
+  function plannedMealFluidForDate(date: string) {
+    const day = days.find((candidate) => getDateForPlannerDay(candidate) === date);
+    return day ? plannedMealFluidForDay(day) : 0;
+  }
+
+  function totalFluidForPlannerDay(day: string) {
+    return plannedMealFluidForDay(day) + fluidTotalForDate(getDateForPlannerDay(day));
   }
 
 
@@ -1055,18 +1109,29 @@ export default function WeeklyPlannerPage() {
   }
 
   function clearWeek() {
-    setPlannerMeals(
-      createEmptyPlanner()
+    // Clear drinks logged for the current Monday–Sunday planner week as well
+    // as the planned meals. saveFluidEntries also syncs removed log entries
+    // to Supabase for signed-in users.
+    const today = new Date();
+    const monday = new Date(today);
+    const mondayOffset = (today.getDay() + 6) % 7;
+    monday.setDate(today.getDate() - mondayOffset);
+
+    const currentWeekDates = new Set(
+      days.map((_, index) => {
+        const date = new Date(monday);
+        date.setDate(monday.getDate() + index);
+        return getLocalDateKey(date);
+      })
     );
 
-    setMealPeople(
-      createEmptyMealPeople()
+    saveFluidEntries(
+      fluidEntries.filter((entry) => !currentWeekDates.has(entry.date))
     );
 
-    localStorage.removeItem(
-      "planner-pending-slot"
-    );
-
+    setPlannerMeals(createEmptyPlanner());
+    setMealPeople(createEmptyMealPeople());
+    localStorage.removeItem("planner-pending-slot");
     setShowClearConfirm(false);
   }
 
@@ -1137,7 +1202,7 @@ export default function WeeklyPlannerPage() {
     | "Fluid";
 
   const [nutritionView, setNutritionView] =
-    useState<NutritionView>("Potassium");
+    useState<NutritionView>("Fluid");
 
   function getNutritionNumber(
     value: string
@@ -1324,17 +1389,30 @@ if (total <= limit * 0.75) {
   }) {
     if (nutritionView === "Fluid") {
       const date = getDateForPlannerDay(day);
-      const total = fluidTotalForDate(date);
+      const total = totalFluidForPlannerDay(day);
+      const planned = plannedMealFluidForDay(day);
+      const drinks = fluidTotalForDate(date);
+      const shortDay = day.slice(0, 3).toUpperCase();
       return (
-        <button type="button"
-          onMouseDown={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
-          onPointerDown={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
-          onTouchStart={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
-          onClick={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
-          className="relative z-[999] pointer-events-auto isolate min-w-[82px] cursor-pointer rounded-2xl border border-sky-400/70 bg-gradient-to-br from-slate-800 to-slate-900 px-3 py-3 text-sm font-extrabold !text-white shadow-md shadow-slate-950/20 hover:border-sky-300 hover:from-slate-700 hover:to-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
-          aria-label={`${day}: ${total} ml recorded fluid. Open fluid tracker`} title={`${day}: ${total} ml recorded. Click to manage drinks`}>
-          {total.toLocaleString()} ml
-          <span className="mt-1 block text-[10px] font-bold tracking-wide text-sky-300">＋ LOG DRINKS</span>
+        <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            setFluidDate(date);
+            setFluidModalOpen(true);
+          }}
+          className={`planner-fluid-card relative z-20 isolate flex min-h-[112px] w-full min-w-[82px] cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border px-2 py-3 text-center font-extrabold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${desktop ? "sm:min-h-[124px] sm:px-2.5" : ""}`}
+          aria-label={`${day}: ${total} ml estimated from planned meals and recorded drinks. Open fluid tracker`}
+          title={`${day}: ${planned} ml from planned meals + ${drinks} ml drinks recorded. Click to view or edit.`}
+        >
+          <span className="planner-fluid-card-day pointer-events-none text-[10px] uppercase tracking-[0.16em]">{shortDay}</span>
+          <svg viewBox="0 0 24 24" fill="none" className="planner-fluid-card-icon pointer-events-none h-5 w-5" aria-hidden="true">
+            <path d="M12 3.25S5.5 10.15 5.5 14.25a6.5 6.5 0 0 0 13 0C18.5 10.15 12 3.25 12 3.25Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M9 15.2a3.1 3.1 0 0 0 3.1 3.1" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+          <span className="planner-fluid-card-total pointer-events-none text-lg leading-none tracking-tight sm:text-xl">{total.toLocaleString()} <span className="planner-fluid-card-unit text-xs">ml</span></span>
+          <span className="planner-fluid-card-meter pointer-events-none mt-0.5 h-1 w-10 rounded-full" aria-hidden="true" />
+          <span className="planner-fluid-card-action pointer-events-none text-[9px] uppercase tracking-[0.12em] sm:text-[10px]">View / edit <span aria-hidden="true">›</span></span>
         </button>
       );
     }
@@ -1768,7 +1846,7 @@ if (total <= limit * 0.75) {
                         />
                       </Link>
 
-                      <h3 className="min-w-0 flex-1 text-left text-lg font-bold leading-6 text-slate-900">
+                      <h3 className="min-w-0 flex-1 text-base font-medium leading-5 text-slate-900">
                         {mobileBreakfast.name}
                       </h3>
 
@@ -1871,7 +1949,7 @@ if (total <= limit * 0.75) {
                         />
                       </Link>
 
-                      <h3 className="min-w-0 flex-1 text-left text-lg font-bold leading-6 text-slate-900">
+                      <h3 className="min-w-0 flex-1 text-base font-medium leading-5 text-slate-900">
                         {mobileLunch.name}
                       </h3>
 
@@ -1974,7 +2052,7 @@ if (total <= limit * 0.75) {
                         />
                       </Link>
 
-                      <h3 className="min-w-0 flex-1 text-left text-lg font-bold leading-6 text-slate-900">
+                      <h3 className="min-w-0 flex-1 text-base font-medium leading-5 text-slate-900">
                         {mobileDinner.name}
                       </h3>
 
@@ -2205,8 +2283,8 @@ if (total <= limit * 0.75) {
 
                         <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
 
-                          <h3 className="line-clamp-2 pr-8 text-sm font-bold leading-5 text-slate-900">
-                            {recipe.name}
+                          <h3 title={recipe.name} className="line-clamp-2 w-full text-center text-xs font-medium leading-4 text-slate-900">
+                            {getPlannerDisplayName(recipe.name)}
                           </h3>
 
                         </div>
@@ -2351,8 +2429,8 @@ if (total <= limit * 0.75) {
 
                         <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
 
-                          <h3 className="line-clamp-2 pr-8 text-sm font-bold leading-5 text-slate-900">
-                            {recipe.name}
+                          <h3 title={recipe.name} className="line-clamp-2 w-full text-center text-xs font-medium leading-4 text-slate-900">
+                            {getPlannerDisplayName(recipe.name)}
                           </h3>
 
                         </div>
@@ -2497,8 +2575,8 @@ if (total <= limit * 0.75) {
 
                         <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
 
-                          <h3 className="line-clamp-2 pr-8 text-sm font-bold leading-5 text-slate-900">
-                            {recipe.name}
+                          <h3 title={recipe.name} className="line-clamp-2 w-full text-center text-xs font-medium leading-4 text-slate-900">
+                            {getPlannerDisplayName(recipe.name)}
                           </h3>
 
                         </div>
@@ -2634,11 +2712,15 @@ if (total <= limit * 0.75) {
               type="button"
               onClick={startPickForMe}
               disabled={isDiceRolling}
-              style={{ backgroundColor: "#ff6b00", color: "#000000", borderColor: "#ff6b00" }}
-              className={`group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-orange-500 !bg-orange-500 px-3 py-4 text-sm font-bold !text-black shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:!bg-orange-500 hover:!text-black hover:shadow-lg md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base ${
+              style={{
+                backgroundColor: theme === "dark" ? "#7c2d12" : "#ff6b00",
+                color: theme === "dark" ? "#fff7ed" : "#000000",
+                borderColor: theme === "dark" ? "#9a3412" : "#ff6b00",
+              }}
+              className={`group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-orange-500 bg-orange-500 px-3 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base ${
                 isDiceRolling
-                  ? "cursor-wait !bg-orange-500 !text-black shadow-lg ring-4 ring-orange-200/70"
-                  : "hover:-translate-y-0.5"
+                  ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
+                  : ""
               }`}
               aria-label={isDiceRolling ? "Picking meals for you" : "Pick for Me"}
             >
@@ -2660,7 +2742,13 @@ if (total <= limit * 0.75) {
             <button
               type="button"
               onClick={() => setShowClearConfirm(true)}
-              className="flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-emerald-500 bg-emerald-400 px-2 py-4 text-sm font-bold text-black shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-600 hover:bg-emerald-400 hover:text-black hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 dark:border-slate-400 dark:bg-slate-800 dark:text-white dark:hover:border-slate-300 dark:hover:bg-slate-800 dark:hover:text-white md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base"
+              aria-label="Clear Week"
+              style={{
+                backgroundColor: theme === "dark" ? "#202e3a" : "#34d399",
+                color: theme === "dark" ? "#f8fafc" : "#000000",
+                borderColor: theme === "dark" ? "#9a6b24" : "#10b981",
+              }}
+              className="planner-clear-week-button flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-2 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base"
             >
               <span className="inline-flex text-xl leading-none md:text-2xl" aria-hidden="true">🗑️</span>
               <span className="whitespace-nowrap">Clear Week</span>
@@ -2741,7 +2829,7 @@ if (total <= limit * 0.75) {
             </h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              This will remove all meals from your Weekly Planner and update your Shopping List.
+              This will remove all meals from your Weekly Planner, clear drinks logged for this Monday–Sunday week, and update your Shopping List. Older fluid records will be kept.
             </p>
 
             <div className="mt-6 grid grid-cols-2 gap-3">
@@ -3091,7 +3179,7 @@ if (total <= limit * 0.75) {
       )}
 
       {fluidModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/50 p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="fluid-tracker-title">
+        <div className="fixed inset-0 z-[10000] flex items-end justify-center bg-slate-950/60 p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="fluid-tracker-title">
           <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl sm:rounded-3xl sm:p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -3104,10 +3192,21 @@ if (total <= limit * 0.75) {
               <input type="date" value={fluidDate} onChange={(event) => setFluidDate(event.target.value)} className="mt-1 block w-full rounded-xl border border-slate-200 px-3 py-2.5 text-slate-900" />
             </label>
             <div className="mt-4 rounded-2xl bg-slate-800 p-4 ring-1 ring-slate-700">
-              <p className="text-sm font-semibold !text-slate-100">Actual drinks recorded</p>
-              <p className="mt-1 text-3xl font-extrabold !text-white">{fluidTotalForDate(fluidDate).toLocaleString()} <span className="text-base !text-slate-200">ml</span></p>
-              {fluidAllowanceMl !== null && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString()} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, fluidTotalForDate(fluidDate) / fluidAllowanceMl * 100) : fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
-              <p className="mt-2 text-xs leading-5 !text-slate-300">This is a record of intake, not a recommendation to drink more. Follow your renal team's fluid guidance.</p>
+              <p className="text-sm font-semibold !text-slate-100">Fluid estimate for this day</p>
+              <div className="mt-2 grid grid-cols-2 gap-3">
+                <div className="rounded-xl bg-slate-700/70 p-3">
+                  <p className="text-xs font-semibold !text-slate-200">Planned meals</p>
+                  <p className="mt-1 text-xl font-extrabold !text-white">{plannedMealFluidForDate(fluidDate).toLocaleString()} <span className="text-sm !text-slate-200">ml</span></p>
+                </div>
+                <div className="rounded-xl bg-slate-700/70 p-3">
+                  <p className="text-xs font-semibold !text-slate-200">Drinks recorded</p>
+                  <p className="mt-1 text-xl font-extrabold !text-white">{fluidTotalForDate(fluidDate).toLocaleString()} <span className="text-sm !text-slate-200">ml</span></p>
+                </div>
+              </div>
+              <p className="mt-3 text-sm font-semibold !text-slate-100">Combined estimate</p>
+              <p className="mt-1 text-3xl font-extrabold !text-white">{(plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)).toLocaleString()} <span className="text-base !text-slate-200">ml</span></p>
+              {fluidAllowanceMl !== null && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString()} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, (plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)) / fluidAllowanceMl * 100) : plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
+              <p className="mt-2 text-xs leading-5 !text-slate-300">Meal fluid is an estimate from recipe ingredients. Drinks are recorded separately. Follow your renal team's fluid guidance; this is not a recommendation to drink more.</p>
             </div>
             <h3 className="mt-5 text-sm font-extrabold text-slate-800">Add a drink</h3>
             <div className="mt-2 grid grid-cols-2 gap-3">

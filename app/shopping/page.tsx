@@ -2293,6 +2293,78 @@ export default function ShoppingPage() {
     setCheckedItems([]);
   }
 
+  function downloadOfflineChecklist() {
+    if (shoppingList.length === 0) return;
+
+    const escapeHtml = (value: string) =>
+      value.replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
+    const groups = categoryOrder
+      .map((category) => ({
+        category,
+        items: shoppingList
+          .filter((item) => getCategory(item.item) === category)
+          .sort((a, b) => a.item.localeCompare(b.item, "en-GB", { sensitivity: "base" })),
+      }))
+      .filter((group) => group.items.length > 0);
+
+    const checklistHtml = groups.map((group, groupIndex) => `
+      <section class="category">
+        <h2>${escapeHtml(group.category)}</h2>
+        ${group.items.map((item, itemIndex) => {
+          const id = `item-${groupIndex}-${itemIndex}`;
+          const checked = checkedItems.includes(item.item) ? " checked" : "";
+          return `<label class="item" for="${id}">
+            <input id="${id}" type="checkbox"${checked}>
+            <span class="name">${escapeHtml(item.item)}</span>
+            <span class="quantity">${escapeHtml(item.quantity)}</span>
+          </label>`;
+        }).join("")}
+      </section>
+    `).join("");
+
+    const checklistFingerprint = shoppingList
+      .map((item) => `${item.item}:${item.quantity}`)
+      .join("|");
+    let checklistHash = 0;
+    for (let index = 0; index < checklistFingerprint.length; index += 1) {
+      checklistHash = (checklistHash * 31 + checklistFingerprint.charCodeAt(index)) | 0;
+    }
+    const storageKey = `renalplan-offline-checklist-${Math.abs(checklistHash)}`;
+
+    const html = `<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RenalPlan Offline Shopping Checklist</title>
+<style>
+:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f3f8f5;color:#17352a;font:16px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:900px;margin:0 auto;padding:20px 14px 48px}header{background:#087f5b;color:#fff;padding:22px;border-radius:18px;margin-bottom:18px}h1{font-size:1.55rem;margin:0 0 6px}header p{margin:0;color:#e7fff4}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:16px 0 20px}.progress{font-weight:700;margin-right:auto}button{border:0;border-radius:10px;padding:11px 15px;font:inherit;font-weight:700;cursor:pointer;background:#087f5b;color:white}button.secondary{background:#fff;color:#17513d;border:1px solid #b9d7c8}.category{background:#fff;border:1px solid #d8e8df;border-radius:15px;overflow:hidden;margin:14px 0;box-shadow:0 2px 8px #163c2b0b}.category h2{font-size:1.05rem;background:#e6f4ec;margin:0;padding:13px 15px}.item{display:flex;align-items:center;gap:12px;padding:13px 14px;border-top:1px solid #edf2ee;min-height:54px;cursor:pointer}.item input{width:23px;height:23px;flex-shrink:0;accent-color:#087f5b}.name{flex:1;overflow-wrap:anywhere}.quantity{font-weight:700;white-space:nowrap}.item:has(input:checked) .name,.item:has(input:checked) .quantity{text-decoration:line-through;color:#718078}.note{font-size:.88rem;color:#52675c;margin-top:20px}@media(min-width:700px){.wrap{padding-top:30px}.category{margin:18px 0}}@media print{body{background:white}.controls{display:none}.category{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body><main class="wrap"><header><h1>RenalPlan Shopping Checklist</h1><p>Saved from your RenalPlan shopping list · Works offline</p></header>
+<div class="controls"><div class="progress" id="progress" aria-live="polite">0 of ${shoppingList.length} items checked</div><button class="secondary" id="reset" type="button">Reset checklist</button><button id="print" type="button">Print checklist</button></div>
+${checklistHtml}
+<p class="note">Your checklist is included in this file, so it works without an internet connection. Tick marks are saved in this browser where local storage is available. Keep this original download if you want a fresh copy for another shop.</p>
+</main><script>
+(function(){const boxes=Array.from(document.querySelectorAll('input[type="checkbox"]'));const key='${storageKey}';function update(){const count=boxes.filter(b=>b.checked).length;document.getElementById('progress').textContent=count+' of '+boxes.length+' items checked';try{localStorage.setItem(key,JSON.stringify(boxes.map(b=>b.checked)))}catch(e){}}try{const saved=JSON.parse(localStorage.getItem(key)||'null');if(Array.isArray(saved)&&saved.length===boxes.length)boxes.forEach((b,i)=>b.checked=!!saved[i])}catch(e){}boxes.forEach(b=>b.addEventListener('change',update));document.getElementById('reset').addEventListener('click',()=>{boxes.forEach(b=>b.checked=false);update()});document.getElementById('print').addEventListener('click',()=>window.print());update()})();
+</script></body></html>`;
+
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "RenalPlan-Offline-Shopping-Checklist.html";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
   const categoryOrder = [
     "🥩 Meat & Fish",
     "🥕 Fruit & Vegetables",
@@ -2689,6 +2761,19 @@ export default function ShoppingPage() {
                       ))}
                     </select>
                   </div>
+
+                  <button
+                    onClick={downloadOfflineChecklist}
+                    className="w-full whitespace-nowrap rounded-xl border-2 border-emerald-600 bg-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700 active:scale-[0.99] sm:w-auto sm:py-2.5"
+                    title="Download a shopping checklist that works without internet"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5 inline-block h-5 w-5 align-[-4px]" aria-hidden="true">
+                      <path d="M12 3v12" />
+                      <path d="m7 10 5 5 5-5" />
+                      <path d="M5 20h14" />
+                    </svg>
+                    Download Offline Checklist
+                  </button>
 
                   <button
                     onClick={uncheckAll}

@@ -775,16 +775,6 @@ html[data-theme="dark"] .bg-neutral-300 * {
 }
 
 
-/* My Diet carbohydrate guidance bar: explicitly keep its text dark on the pale surface in dark mode.
-   Scoped to this exact bar so other My Diet panels and light mode are unaffected. */
-html[data-theme="dark"] .carbohydrate-guidance-bar {
-  background-color: #f1f5f9 !important;
-}
-html[data-theme="dark"] .carbohydrate-guidance-bar .carbohydrate-guidance-text {
-  color: #263238 !important;
-}
-
-
 /* Nutrition page dark mode: explicit overrides for the weekly average column and mobile Daily total card. */
 html[data-theme="dark"] .nutrition-weekly-average,
 html[data-theme="dark"] th.nutrition-weekly-average,
@@ -966,29 +956,450 @@ html[data-theme="dark"] main button.bg-emerald-400 span {
 }
 
 /* Planner Nutrition link: force the card background itself to stay dark in dark theme. */
-html[data-theme="dark"] a[href="/nutrition"] {
+html[data-theme="dark"] main a[href="/nutrition"] {
   background-color: #1e2d38 !important;
   color: #f1f5f9 !important;
   border-color: #526575 !important;
 }
 
-html[data-theme="dark"] a[href="/nutrition"] h2 {
+html[data-theme="dark"] main a[href="/nutrition"] h2 {
   color: #f1f5f9 !important;
 }
 
-html[data-theme="dark"] a[href="/nutrition"] p {
+html[data-theme="dark"] main a[href="/nutrition"] p {
   color: #cbd5e1 !important;
 }
 
-html[data-theme="dark"] a[href="/nutrition"] > div > span,
-html[data-theme="dark"] a[href="/nutrition"] > span {
+html[data-theme="dark"] main a[href="/nutrition"] > div > span,
+html[data-theme="dark"] main a[href="/nutrition"] > span {
   background-color: #334155 !important;
 }
 
-html[data-theme="dark"] a[href="/nutrition"] > span {
+html[data-theme="dark"] main a[href="/nutrition"] > span {
   color: #bae6fd !important;
 }
 
-html[data-theme="dark"] a[href="/nutrition"]:hover {
+html[data-theme="dark"] main a[href="/nutrition"]:hover {
   background-color: #334155 !important;
+}
+
+/* My Diet dark-mode polish — keep the pastel colour coding in light mode,
+   while giving the requirement cards a consistent dark surface in dark mode. */
+html[data-theme="dark"] main:has(#salt-limit) > div > section {
+  background-color: #18232d !important;
+  border-color: #3a4a58 !important;
+  color: #edf2f7 !important;
+}
+
+html[data-theme="dark"] main:has(#salt-limit) > div > section .border-blue-50,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .border-blue-100,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .border-cyan-100,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .border-green-100,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .border-purple-100,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .border-orange-100 {
+  border-color: #405363 !important;
+}
+
+html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-blue-50\/40,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-blue-50\/30,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-cyan-50\/40,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-green-50\/40,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-purple-50\/40,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-orange-50\/40,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-slate-50 {
+  background-color: #202e3a !important;
+  background-image: none !important;
+}
+
+html[data-theme="dark"] main:has(#salt-limit) > div > section h1,
+html[data-theme="dark"] main:has(#salt-limit) > div > section h2,
+html[data-theme="dark"] main:has(#salt-limit) > div > section h3,
+html[data-theme="dark"] main:has(#salt-limit) > div > section label,
+html[data-theme="dark"] main:has(#salt-limit) > div > section p,
+html[data-theme="dark"] main:has(#salt-limit) > div > section span:not(.text-green-500):not(.text-green-600):not(.text-red-500):not(.text-red-600) {
+  color: #edf2f7;
+}
+
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-slate-900,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-slate-800,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-slate-700,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-slate-600,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-slate-500 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] main:has(#salt-limit) > div > section label.text-slate-900,
+html[data-theme="dark"] main:has(#salt-limit) > div > section h2.text-slate-900,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-slate-900 {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] main:has(#salt-limit) > div > section select,
+html[data-theme="dark"] main:has(#salt-limit) > div > section input {
+  background-color: #17232d !important;
+  border-color: #526575 !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] main:has(#salt-limit) > div > section select option {
+  background-color: #17232d !important;
+  color: #f1f5f9 !important;
+}
+
+/* Preserve a clear green/red distinction in the live recipe-match panel. */
+html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-green-50 {
+  background-color: #173629 !important;
+  border-color: #286344 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-red-50 {
+  background-color: #3a2028 !important;
+  border-color: #713341 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-green-800,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-green-700 {
+  color: #86efac !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-red-700,
+html[data-theme="dark"] main:has(#salt-limit) > div > section .text-red-600 {
+  color: #fda4af !important;
+}
+
+/* My Diet page dark-mode polish (2026-10-04).
+   Scope every rule to the page containing #salt-limit so other pages are untouched. */
+html[data-theme="dark"] main:has(#salt-limit) {
+  background: #101b24 !important;
+  color: #edf2f7 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) > div > section {
+  background: #182936 !important;
+  border-color: #344958 !important;
+  color: #edf2f7 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) .border-b {
+  border-color: #344958 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) .text-slate-900,
+html[data-theme="dark"] main:has(#salt-limit) .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) .text-slate-700,
+html[data-theme="dark"] main:has(#salt-limit) .text-slate-600,
+html[data-theme="dark"] main:has(#salt-limit) .text-slate-500 {
+  color: #c4d0da !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) .border-blue-100,
+html[data-theme="dark"] main:has(#salt-limit) .border-cyan-100,
+html[data-theme="dark"] main:has(#salt-limit) .border-green-100,
+html[data-theme="dark"] main:has(#salt-limit) .border-purple-100,
+html[data-theme="dark"] main:has(#salt-limit) .border-orange-100 {
+  border-color: #405363 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) .bg-blue-50\/40,
+html[data-theme="dark"] main:has(#salt-limit) .bg-blue-50\/30,
+html[data-theme="dark"] main:has(#salt-limit) .bg-cyan-50\/40,
+html[data-theme="dark"] main:has(#salt-limit) .bg-green-50\/40,
+html[data-theme="dark"] main:has(#salt-limit) .bg-purple-50\/40,
+html[data-theme="dark"] main:has(#salt-limit) .bg-orange-50\/40 {
+  background: #202f3b !important;
+  background-color: #202f3b !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) input,
+html[data-theme="dark"] main:has(#salt-limit) select,
+html[data-theme="dark"] main:has(#salt-limit) textarea {
+  background-color: #101b24 !important;
+  border-color: #405363 !important;
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) input::placeholder,
+html[data-theme="dark"] main:has(#salt-limit) textarea::placeholder {
+  color: #aab8c5 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) option {
+  background: #182936 !important;
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) .bg-slate-50 {
+  background-color: #202f3b !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) .border-slate-200,
+html[data-theme="dark"] main:has(#salt-limit) .border-slate-200\/80 {
+  border-color: #405363 !important;
+}
+
+/* My Diet: readable text inside the Fluid and Renal pills in dark mode.
+   These selectors target the exact badge classes used by the requirements page. */
+html[data-theme="dark"] main:has(#salt-limit) span.rounded-full.bg-cyan-100 {
+  color: #164e63 !important;
+  background-color: #cffafe !important;
+}
+html[data-theme="dark"] main:has(#salt-limit) span.rounded-full.bg-green-100 {
+  color: #14532d !important;
+  background-color: #dcfce7 !important;
+}
+
+/* Food Check dark-mode correction: target the remaining pale-blue guidance panels
+   and nested information blocks that sit outside the main card selectors. */
+html[data-theme="dark"] main:has(.food-check-search-card) {
+  background-color: #101b24 !important;
+  color: #edf2f7 !important;
+}
+
+html[data-theme="dark"] main:has(.food-check-search-card) .bg-blue-50,
+html[data-theme="dark"] main:has(.food-check-search-card) .bg-blue-50\/30,
+html[data-theme="dark"] main:has(.food-check-search-card) .bg-blue-50\/40,
+html[data-theme="dark"] main:has(.food-check-search-card) .bg-blue-50\/50,
+html[data-theme="dark"] main:has(.food-check-search-card) .bg-blue-50\/90,
+html[data-theme="dark"] main:has(.food-check-search-card) .from-green-50,
+html[data-theme="dark"] main:has(.food-check-search-card) .via-white,
+html[data-theme="dark"] main:has(.food-check-search-card) .to-blue-50 {
+  background-color: #263746 !important;
+  background-image: none !important;
+  border-color: #405363 !important;
+}
+
+html[data-theme="dark"] main:has(.food-check-search-card) .text-blue-950,
+html[data-theme="dark"] main:has(.food-check-search-card) .text-blue-900,
+html[data-theme="dark"] main:has(.food-check-search-card) .text-slate-900,
+html[data-theme="dark"] main:has(.food-check-search-card) .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] main:has(.food-check-search-card) .text-slate-700,
+html[data-theme="dark"] main:has(.food-check-search-card) .text-slate-600,
+html[data-theme="dark"] main:has(.food-check-search-card) .text-slate-500,
+html[data-theme="dark"] main:has(.food-check-search-card) .text-blue-800,
+html[data-theme="dark"] main:has(.food-check-search-card) .text-blue-700 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] main:has(.food-check-search-card) .food-check-search-card > div.absolute {
+  display: none !important;
+}
+
+html[data-theme="dark"] main:has(.food-check-search-card) input,
+html[data-theme="dark"] main:has(.food-check-search-card) select,
+html[data-theme="dark"] main:has(.food-check-search-card) textarea {
+  background-color: #17232d !important;
+  border-color: #526575 !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] main:has(.food-check-search-card) input::placeholder,
+html[data-theme="dark"] main:has(.food-check-search-card) textarea::placeholder {
+  color: #aab8c5 !important;
+}
+
+html[data-theme="dark"] main:has(.food-check-search-card) .bg-white,
+html[data-theme="dark"] main:has(.food-check-search-card) .bg-white\/95 {
+  background-color: #202e3a !important;
+  background-image: none !important;
+}
+
+html[data-theme="dark"] main:has(.food-check-search-card) .bg-green-50 {
+  background-color: #173629 !important;
+}
+
+html[data-theme="dark"] main:has(.food-check-search-card) .bg-green-100 {
+  background-color: #204735 !important;
+}
+
+/* Nutrition page: make the actual Weekly Nutrition Summary heading light in dark mode.
+   Scope directly to the summary section; do not depend on the responsive weekly-average column existing. */
+html[data-theme="dark"] .nutrition-print-summary h2 {
+  color: #f1f5f9 !important;
+}
+
+/* My Diet mobile dark-mode final override.
+   The page uses translucent Tailwind backgrounds (for example bg-blue-50/40)
+   which can remain pale on some mobile browsers. Scope these fixes only to My Diet. */
+@media (max-width: 767px) {
+  html[data-theme="dark"] main:has(#salt-limit) > div > section,
+  html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-white,
+  html[data-theme="dark"] main:has(#salt-limit) > div > section .bg-white\/70,
+  html[data-theme="dark"] main:has(#salt-limit) > div > section [class*="bg-blue-50"],
+  html[data-theme="dark"] main:has(#salt-limit) > div > section [class*="bg-cyan-50"],
+  html[data-theme="dark"] main:has(#salt-limit) > div > section [class*="bg-green-50"],
+  html[data-theme="dark"] main:has(#salt-limit) > div > section [class*="bg-purple-50"],
+  html[data-theme="dark"] main:has(#salt-limit) > div > section [class*="bg-orange-50"],
+  html[data-theme="dark"] main:has(#salt-limit) > div > section [class*="from-blue-50"],
+  html[data-theme="dark"] main:has(#salt-limit) > div > section [class*="to-blue-50"] {
+    background-color: #202f3b !important;
+    background-image: none !important;
+    border-color: #405363 !important;
+  }
+
+  html[data-theme="dark"] main:has(#salt-limit) > div > section .carbohydrate-guidance-bar {
+    background-color: #202f3b !important;
+    border-color: #405363 !important;
+  }
+
+  html[data-theme="dark"] main:has(#salt-limit) > div > section .carbohydrate-guidance-bar .carbohydrate-guidance-text,
+  html[data-theme="dark"] main:has(#salt-limit) > div > section p,
+  html[data-theme="dark"] main:has(#salt-limit) > div > section label,
+  html[data-theme="dark"] main:has(#salt-limit) > div > section h2,
+  html[data-theme="dark"] main:has(#salt-limit) > div > section span {
+    color: #edf2f7;
+  }
+
+  /* Keep the fluid/renal pills intentionally pale with dark, legible text. */
+  html[data-theme="dark"] main:has(#salt-limit) > div > section span.rounded-full.bg-cyan-100 {
+    background-color: #cffafe !important;
+    color: #164e63 !important;
+  }
+  html[data-theme="dark"] main:has(#salt-limit) > div > section span.rounded-full.bg-green-100 {
+    background-color: #dcfce7 !important;
+    color: #14532d !important;
+  }
+}
+
+/* My Diet: force the carbohydrate guidance warning onto a dark surface.
+   These highly specific rules intentionally come last to override the
+   original bg-white/70 and text-slate-500 utility classes in dark mode. */
+html[data-theme="dark"] main .carbohydrate-guidance-bar,
+html[data-theme="dark"] main div.carbohydrate-guidance-bar {
+  background-color: #202e3a !important;
+  background-image: none !important;
+  border-color: #405363 !important;
+  color: #e5edf5 !important;
+}
+
+html[data-theme="dark"] main .carbohydrate-guidance-bar .carbohydrate-guidance-text,
+html[data-theme="dark"] main .carbohydrate-guidance-bar p {
+  color: #e5edf5 !important;
+}
+
+/* RenalPlan Planner repair — fluid cards, status legend, and Clear Week.
+   Keep these rules narrowly scoped so they cannot affect the navbar or other pages. */
+.planner-fluid-card {
+  box-sizing: border-box;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 20;
+  background: #e4f4ff !important;
+  background-image: none !important;
+  border-color: #b7ddf7 !important;
+  color: #123653 !important;
+  box-shadow: 0 2px 5px rgb(14 116 144 / 8%) !important;
+  transition: none !important;
+  transform: none !important;
+  animation: none !important;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.planner-fluid-card:hover,
+.planner-fluid-card:focus,
+.planner-fluid-card:focus-visible {
+  background: #d9efff !important;
+  background-image: none !important;
+  border-color: #7cc5f0 !important;
+  color: #123653 !important;
+  transform: none !important;
+  animation: none !important;
+}
+.planner-fluid-card:focus-visible {
+  outline: 2px solid #0284c7 !important;
+  outline-offset: 2px;
+  box-shadow: none !important;
+}
+.planner-fluid-card:active {
+  background: #c9e8fc !important;
+}
+.planner-fluid-card .planner-fluid-card-day,
+.planner-fluid-card .planner-fluid-card-total { color: #123653 !important; }
+.planner-fluid-card .planner-fluid-card-unit,
+.planner-fluid-card .planner-fluid-card-action { color: #0369a1 !important; }
+.planner-fluid-card .planner-fluid-card-icon { color: #0284c7 !important; }
+.planner-fluid-card .planner-fluid-card-meter { background: #38bdf8 !important; }
+
+html[data-theme="dark"] .planner-fluid-card,
+html[data-theme="dark"] .planner-fluid-card:hover,
+html[data-theme="dark"] .planner-fluid-card:focus,
+html[data-theme="dark"] .planner-fluid-card:focus-visible {
+  background: #172f43 !important;
+  background-image: none !important;
+  border-color: #167ca4 !important;
+  color: #f1f5f9 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  animation: none !important;
+}
+html[data-theme="dark"] .planner-fluid-card:active { background: #20445b !important; }
+html[data-theme="dark"] .planner-fluid-card:focus-visible { outline-color: #7dd3fc !important; }
+html[data-theme="dark"] .planner-fluid-card .planner-fluid-card-day,
+html[data-theme="dark"] .planner-fluid-card .planner-fluid-card-total { color: #f1f5f9 !important; }
+html[data-theme="dark"] .planner-fluid-card .planner-fluid-card-unit,
+html[data-theme="dark"] .planner-fluid-card .planner-fluid-card-action,
+html[data-theme="dark"] .planner-fluid-card .planner-fluid-card-icon { color: #67e8f9 !important; }
+html[data-theme="dark"] .planner-fluid-card .planner-fluid-card-meter { background: #22d3ee !important; }
+
+/* The Low / Moderate / High legend uses tiny Tailwind dots. Pin their actual
+   fill colours so generic dark-mode surface rules cannot wash out red or green. */
+html[data-theme="dark"] main .planner-nutrition-legend span span.bg-green-500 {
+  background-color: #4ade80 !important;
+  opacity: 1 !important;
+}
+html[data-theme="dark"] main .planner-nutrition-legend span span.bg-amber-400 {
+  background-color: #fbbf24 !important;
+  opacity: 1 !important;
+}
+html[data-theme="dark"] main .planner-nutrition-legend span span.bg-red-500 {
+  background-color: #f87171 !important;
+  opacity: 1 !important;
+}
+html[data-theme="dark"] main .planner-nutrition-legend > span > span {
+  display: inline-block !important;
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  border-radius: 9999px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Dark-mode Clear Week: match Pick for Me's subdued slate surface and amber edge. */
+html[data-theme="dark"] main .planner-clear-week-button,
+html[data-theme="dark"] main .planner-clear-week-button:hover,
+html[data-theme="dark"] main .planner-clear-week-button:focus-visible {
+  background-color: #202e3a !important;
+  background-image: none !important;
+  color: #f8fafc !important;
+  border-color: #9a6b24 !important;
+}
+html[data-theme="dark"] main .planner-clear-week-button * {
+  color: #f8fafc !important;
+}
+
+
+
+/* Targeted interaction fix: make the Daily Nutrition row and its fluid buttons
+   the top pointer-interaction layer without changing their layout. */
+html[data-theme="dark"] .planner-nutrition-row { position: relative; z-index: 30; }
+html[data-theme="dark"] .planner-nutrition-cell { position: relative; z-index: 40; }
+html[data-theme="dark"] .planner-fluid-card {
+  position: relative !important;
+  z-index: 50 !important;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  cursor: pointer !important;
+}
+html[data-theme="dark"] .planner-nutrition-legend > span > span[aria-hidden="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+}
+
+
+/* FINAL My Diet carbohydrate guidance bar dark-mode fix.
+   One source of truth: dark surface and light text only in dark mode. */
+html[data-theme="dark"] .carbohydrate-guidance-bar {
+  background: #202e3a !important;
+  background-color: #202e3a !important;
+  background-image: none !important;
+  border-color: #405363 !important;
+  color: #e5edf5 !important;
+}
+html[data-theme="dark"] .carbohydrate-guidance-bar,
+html[data-theme="dark"] .carbohydrate-guidance-bar * {
+  color: #e5edf5 !important;
+  -webkit-text-fill-color: #e5edf5 !important;
 }

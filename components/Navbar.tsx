@@ -192,7 +192,7 @@ export default function Navbar() {
         onClick={() => void toggleTheme()}
         aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
         title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        className={`flex shrink-0 items-center justify-center rounded-xl border border-slate-300 text-slate-900 transition hover:bg-slate-100 ${
+        className={`flex shrink-0 items-center justify-center rounded-lg transition ${theme === "dark" ? "text-slate-100/90 hover:bg-white/10 hover:text-green-300" : "text-slate-800 hover:bg-green-50 hover:text-green-700"} ${
           mobile ? "h-12 w-12" : "h-12 w-12"
         }`}
       >
@@ -357,16 +357,21 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex min-h-12 items-center whitespace-nowrap rounded-lg px-3 text-[15px] font-bold transition lg:px-3.5 ${
+                aria-current={item.active ? "page" : undefined}
+                className={`relative flex min-h-12 items-center whitespace-nowrap px-2.5 text-[15px] font-bold transition lg:px-3 ${
                   item.active
-                    ? "text-green-700"
-                    : "text-slate-900 hover:bg-green-50 hover:text-green-700"
+                    ? theme === "dark"
+                      ? "text-green-300 after:absolute after:inset-x-2 after:bottom-1 after:h-0.5 after:rounded-full after:bg-green-400"
+                      : "text-green-700 after:absolute after:inset-x-2 after:bottom-1 after:h-0.5 after:rounded-full after:bg-green-600"
+                    : theme === "dark"
+                      ? "text-slate-100/90 hover:text-green-300"
+                      : "text-slate-800 hover:text-green-700"
                 }`}
               >
                 <span className="flex flex-col items-center justify-center leading-none">
                   <span>{item.label}</span>
                   {item.premium && (
-                    <span className="mt-1 rounded-full bg-orange-300 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wide text-white">
+                    <span className="mt-1 rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wide text-green-800">
                       Premium
                     </span>
                   )}
@@ -378,10 +383,14 @@ export default function Navbar() {
               <Link
                 href="/account"
                 aria-label="My Account"
-                className={`flex min-h-12 items-center gap-2 whitespace-nowrap rounded-lg px-3 text-[15px] font-bold transition lg:px-3.5 ${
+                className={`relative flex min-h-12 items-center gap-2 whitespace-nowrap px-2.5 text-[15px] font-bold transition lg:px-3 ${
                   pathname.startsWith("/account")
-                    ? "text-green-700"
-                    : "text-slate-900 hover:bg-green-50 hover:text-green-700"
+                    ? theme === "dark"
+                      ? "text-green-300 after:absolute after:inset-x-2 after:bottom-1 after:h-0.5 after:rounded-full after:bg-green-400"
+                      : "text-green-700 after:absolute after:inset-x-2 after:bottom-1 after:h-0.5 after:rounded-full after:bg-green-600"
+                    : theme === "dark"
+                      ? "text-slate-100/90 hover:text-green-300"
+                      : "text-slate-800 hover:text-green-700"
                 }`}
               >
                 <svg
@@ -408,7 +417,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="rounded-xl border border-slate-300 px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
+                className={`rounded-lg px-3 py-2.5 text-sm font-semibold transition ${theme === "dark" ? "text-slate-100/90 hover:bg-white/10 hover:text-green-300" : "text-slate-800 hover:bg-green-50 hover:text-green-700"}`}
               >
                 Log out
               </button>
@@ -416,14 +425,14 @@ export default function Navbar() {
               <>
                 <Link
                   href="/auth/login"
-                  className="rounded-xl border border-slate-300 px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
+                  className={`rounded-lg px-3 py-2.5 text-sm font-semibold transition ${theme === "dark" ? "text-slate-100/90 hover:bg-white/10 hover:text-green-300" : "text-slate-800 hover:bg-green-50 hover:text-green-700"}`}
                 >
                   Log in
                 </Link>
 
                 <Link
                   href="/signup"
-                  className="rounded-xl bg-green-700 px-5 py-3 text-base font-bold text-white transition hover:bg-green-800"
+                  className="rounded-lg bg-green-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-green-500"
                 >
                   Sign up
                 </Link>
@@ -512,6 +521,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={item.active ? "page" : undefined}
                 onClick={() => setOpen(false)}
                 className={`block rounded-xl px-4 py-3 text-lg font-semibold ${
                   item.active
@@ -522,7 +532,7 @@ export default function Navbar() {
                 <span className="flex items-center justify-between gap-3">
                   <span>{item.label}</span>
                   {item.premium && (
-                    <span className="rounded-full bg-orange-300 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide text-white">
+                    <span className="rounded-full bg-green-100 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide text-green-800">
                       Premium
                     </span>
                   )}

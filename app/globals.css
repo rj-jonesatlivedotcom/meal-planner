@@ -951,3 +951,44 @@ html[data-theme="dark"] .renal-homepage .renal-home-step-number {
 /* Footer About label: dark text in light mode, white text in dark mode. */
 .renal-homepage .renal-home-about-label { color: #111827 !important; }
 html[data-theme="dark"] .renal-homepage .renal-home-about-label { color: #ffffff !important; }
+
+/* Clear Week: match the light-theme button colours in dark mode. */
+html[data-theme="dark"] main button.bg-emerald-400,
+html[data-theme="dark"] main button.bg-emerald-400:hover,
+html[data-theme="dark"] main button.bg-emerald-400:focus-visible {
+  background-color: #34d399 !important;
+  border-color: #10b981 !important;
+  color: #000000 !important;
+}
+
+html[data-theme="dark"] main button.bg-emerald-400 span {
+  color: #000000 !important;
+}
+
+/* Planner Nutrition link: force the card background itself to stay dark in dark theme. */
+html[data-theme="dark"] a[href="/nutrition"] {
+  background-color: #1e2d38 !important;
+  color: #f1f5f9 !important;
+  border-color: #526575 !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"] h2 {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"] p {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"] > div > span,
+html[data-theme="dark"] a[href="/nutrition"] > span {
+  background-color: #334155 !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"] > span {
+  color: #bae6fd !important;
+}
+
+html[data-theme="dark"] a[href="/nutrition"]:hover {
+  background-color: #334155 !important;
+}

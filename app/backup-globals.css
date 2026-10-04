@@ -886,3 +886,81 @@ html[data-theme="dark"] .food-check-nutrition-card .bg-green-50 {
   border-color: #405363 !important;
 }
 html[data-theme="dark"] .food-check-results-card button:hover { background-color: #304657 !important; }
+
+
+/* Homepage-only dark-mode palette. Light mode keeps the original design. */
+html[data-theme="dark"] .renal-homepage {
+  background: #101b24 !important;
+  color: #edf2f7;
+}
+html[data-theme="dark"] .renal-homepage .renal-home-hero { background: #101b24 !important; }
+html[data-theme="dark"] .renal-homepage .renal-home-hero-overlay {
+  background: linear-gradient(90deg, rgba(16,27,36,.96) 0%, rgba(16,27,36,.86) 42%, rgba(16,27,36,.20) 78%, rgba(16,27,36,.05) 100%) !important;
+}
+html[data-theme="dark"] .renal-homepage .renal-home-hero-title,
+html[data-theme="dark"] .renal-homepage .renal-home-section-title,
+html[data-theme="dark"] .renal-homepage .renal-home-card-title { color: #edf2f7 !important; }
+html[data-theme="dark"] .renal-homepage .renal-home-hero-copy,
+html[data-theme="dark"] .renal-homepage .renal-home-section-copy,
+html[data-theme="dark"] .renal-homepage .renal-home-card-copy { color: #c7d3de !important; }
+html[data-theme="dark"] .renal-homepage .renal-home-benefit { color: #edf2f7 !important; }
+html[data-theme="dark"] .renal-homepage .renal-home-free-panel,
+html[data-theme="dark"] .renal-homepage .renal-home-account-panel {
+  background: #182936 !important;
+  border: 1px solid #344958;
+}
+html[data-theme="dark"] .renal-homepage .renal-home-free-panel > div > div a {
+  background: #202f3b !important;
+  border-color: #405261 !important;
+}
+html[data-theme="dark"] .renal-homepage .renal-home-feature-card {
+  background: #202f3b !important;
+  border-color: #405261 !important;
+}
+html[data-theme="dark"] .renal-homepage .renal-home-feature-card:hover { background: #293b49 !important; }
+html[data-theme="dark"] .renal-homepage .renal-home-video-frame {
+  background: #182936 !important;
+  border-color: #344958 !important;
+}
+html[data-theme="dark"] .renal-homepage .renal-home-cta {
+  background: linear-gradient(180deg, #182936 0%, #101b24 100%) !important;
+  border-color: #344958 !important;
+}
+html[data-theme="dark"] .renal-homepage .renal-home-footer {
+  background: #101b24 !important;
+  border-color: #344958 !important;
+}
+html[data-theme="dark"] .renal-homepage .renal-home-footer p,
+html[data-theme="dark"] .renal-homepage .renal-home-footer a { color: #c7d3de !important; }
+html[data-theme="dark"] .renal-homepage .renal-home-footer a:hover { color: #86efac !important; }
+@media (max-width: 639px) {
+  html[data-theme="dark"] .renal-homepage .renal-home-hero-overlay {
+    background: linear-gradient(90deg, rgba(16,27,36,.94) 0%, rgba(16,27,36,.80) 65%, rgba(16,27,36,.42) 100%) !important;
+  }
+}
+
+/* Keep the three step numbers consistent in dark mode. */
+html[data-theme="dark"] .renal-homepage .renal-home-step-number {
+  background: transparent !important;
+  color: #edf2f7 !important;
+  border: 1px solid #526575;
+  box-shadow: none !important;
+}
+
+
+/* Footer About label: dark text in light mode, white text in dark mode. */
+.renal-homepage .renal-home-about-label { color: #111827 !important; }
+html[data-theme="dark"] .renal-homepage .renal-home-about-label { color: #ffffff !important; }
+
+/* Clear Week: match the light-theme button colours in dark mode. */
+html[data-theme="dark"] main button.bg-emerald-400,
+html[data-theme="dark"] main button.bg-emerald-400:hover,
+html[data-theme="dark"] main button.bg-emerald-400:focus-visible {
+  background-color: #34d399 !important;
+  border-color: #10b981 !important;
+  color: #000000 !important;
+}
+
+html[data-theme="dark"] main button.bg-emerald-400 span {
+  color: #000000 !important;
+}

@@ -1205,7 +1205,7 @@ export const dinners: Recipe[] = [
     id: "D021", code: "D021", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.png",
     name: "Chicken, Herb & Sweetcorn Rice", description: "Tender chicken with fluffy basmati rice, sweetcorn and herbs.", cookingTime: "30 minutes", calories: "612 kcal", protein: "32.5 g", equipment: "Large saucepan, frying pan, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: ["00:00 — Cook the rice according to the packet instructions, then drain.", "05:00 — Dice the chicken and onion.", "10:00 — Heat the olive oil and cook the onion for 3 minutes.", "13:00 — Add the chicken and thyme and cook until thoroughly cooked.", "25:00 — Stir in the sweetcorn and cook for 2 minutes.", "27:00 — Fold through the cooked rice and season with black pepper.", "30:00 — Serve hot."],
     nutrition: { calories: "612 kcal", protein: "32.5 g", carbohydrates: "91.0 g", fat: "13.0 g", fibre: "4.5 g", sodium: "70 mg", salt: "0.18 g", potassium: "620 mg", phosphate: "350 mg" },
@@ -1215,7 +1215,7 @@ export const dinners: Recipe[] = [
     id: "D022", code: "D022", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
     name: "Beef & Pepper Pasta", description: "Lean beef mince with pasta, peppers and onion in a light herb sauce.", cookingTime: "25 minutes", calories: "648 kcal", protein: "34.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "120 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "120 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, then drain.", "05:00 — Finely chop the onion and pepper.", "08:00 — Heat the olive oil and cook the onion and pepper for 4 minutes.", "12:00 — Add the beef mince and cook, breaking it up with a wooden spoon.", "20:00 — Stir in the oregano and black pepper.", "22:00 — Add the cooked pasta and toss together.", "25:00 — Serve hot."],
     nutrition: { calories: "648 kcal", protein: "34.0 g", carbohydrates: "79.0 g", fat: "20.0 g", fibre: "4.0 g", sodium: "82 mg", salt: "0.21 g", potassium: "610 mg", phosphate: "360 mg" },
@@ -1225,7 +1225,7 @@ export const dinners: Recipe[] = [
     id: "D023", code: "D023", category: "Dinner", emoji: "🐟", image: "/images/recipes/D023.png",
     name: "Herb Cod with Potatoes & Cabbage", description: "Baked cod served with boiled potatoes and tender cabbage with lemon and herbs.", cookingTime: "35 minutes", calories: "578 kcal", protein: "31.5 g", equipment: "Baking tray, saucepan, steamer or second saucepan, knife, chopping board, Oven",
     ingredients: [
-      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: ["00:00 — Heat the oven to 200°C.", "03:00 — Peel and cut the potatoes into even pieces.", "05:00 — Boil the potatoes until tender.", "08:00 — Place the cod on a baking tray with half the butter, lemon juice and parsley.", "10:00 — Bake until the cod is opaque and cooked through.", "15:00 — Cook the cabbage in unsalted water until tender.", "28:00 — Drain the potatoes and cabbage.", "30:00 — Toss the potatoes with the remaining butter and black pepper.", "35:00 — Serve."],
     nutrition: { calories: "578 kcal", protein: "31.5 g", carbohydrates: "68.0 g", fat: "19.0 g", fibre: "5.0 g", sodium: "145 mg", salt: "0.36 g", potassium: "760 mg", phosphate: "320 mg" },
@@ -1235,7 +1235,7 @@ export const dinners: Recipe[] = [
     id: "D024", code: "D024", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
     name: "Creamy Cheese & Egg Pasta", description: "Pasta coated in a creamy egg and Cheddar sauce with onion and herbs.", cookingTime: "20 minutes", calories: "625 kcal", protein: "29.0 g", equipment: "Large saucepan, frying pan, mixing bowl, colander, wooden spoon",
     ingredients: [
-      { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" }, { item: "Egg", shoppingItem: "Egg", quantity: "1" }, { item: "Cheddar cheese", shoppingItem: "Cheddar cheese", quantity: "25 g" }, { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "100 ml" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" }, { item: "Egg", shoppingItem: "Egg", quantity: "1" }, { item: "Cheddar cheese", shoppingItem: "Cheddar cheese", quantity: "25 g" }, { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "100 ml" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, reserving a little cooking water before draining.", "05:00 — Finely chop the onion and cook gently in the olive oil for 4 minutes.", "09:00 — Beat the egg with the milk and grated Cheddar.", "12:00 — Add the drained pasta to the onion pan and remove from the heat.", "14:00 — Stir in the egg mixture and parsley, using a splash of pasta water to loosen the sauce.", "17:00 — Return to very low heat and stir until the egg mixture is cooked through.", "20:00 — Season with black pepper and serve."],
     nutrition: { calories: "625 kcal", protein: "29.0 g", carbohydrates: "78.0 g", fat: "22.0 g", fibre: "3.0 g", sodium: "330 mg", salt: "0.83 g", potassium: "540 mg", phosphate: "450 mg" },
@@ -1245,7 +1245,7 @@ export const dinners: Recipe[] = [
     id: "D025", code: "D025", category: "Dinner", emoji: "🍖", image: "/images/recipes/D025.png",
     name: "Pork, Apple & Cabbage", description: "Grilled pork with warm apple and tender cabbage, finished with herbs.", cookingTime: "30 minutes", calories: "590 kcal", protein: "35.0 g", equipment: "Grill pan, saucepan, frying pan, knife, chopping board",
     ingredients: [
-      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "140 g" }, { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (100 g)" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "140 g" }, { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (100 g)" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: ["00:00 — Core and slice the apple and shred the cabbage.", "05:00 — Heat the grill pan and cook the pork with rosemary until thoroughly cooked.", "12:00 — Cook the cabbage in unsalted water until tender, then drain.", "18:00 — Heat the butter and gently cook the apple until softened.", "24:00 — Add the cabbage and toss together.", "27:00 — Season with black pepper.", "30:00 — Serve."],
     nutrition: { calories: "590 kcal", protein: "35.0 g", carbohydrates: "61.0 g", fat: "22.0 g", fibre: "6.0 g", sodium: "75 mg", salt: "0.19 g", potassium: "650 mg", phosphate: "330 mg" },
@@ -1255,7 +1255,7 @@ export const dinners: Recipe[] = [
     id: "D026", code: "D026", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
     name: "Creamy Chicken & Pepper Pasta", description: "Chicken and peppers folded through pasta with a light creamy sauce.", cookingTime: "25 minutes", calories: "635 kcal", protein: "34.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Single cream", shoppingItem: "Single cream", quantity: "50 ml" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Single cream", shoppingItem: "Single cream", quantity: "50 ml" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, then drain.", "05:00 — Dice the chicken, pepper and onion.", "08:00 — Heat the olive oil and cook the onion and pepper for 4 minutes.", "12:00 — Add the chicken and thyme and cook until thoroughly cooked.", "20:00 — Stir in the cream and heat gently for 2 minutes.", "22:00 — Add the pasta and toss through the sauce.", "25:00 — Season with black pepper and serve."],
     nutrition: { calories: "635 kcal", protein: "34.0 g", carbohydrates: "76.0 g", fat: "21.0 g", fibre: "4.0 g", sodium: "92 mg", salt: "0.23 g", potassium: "610 mg", phosphate: "390 mg" },
@@ -1265,7 +1265,7 @@ export const dinners: Recipe[] = [
     id: "D027", code: "D027", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
     name: "Cod, Sweetcorn & Herb Pasta", description: "Flaked cod with pasta and sweetcorn in a fresh lemon and herb dressing.", cookingTime: "25 minutes", calories: "610 kcal", protein: "33.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife",
     ingredients: [
-      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions.", "05:00 — Cook the cod in a covered frying pan with a splash of water until it flakes easily.", "12:00 — Flake the cooked cod into large pieces.", "14:00 — Cook the onion gently in the olive oil until softened.", "18:00 — Drain the pasta and add it to the pan with the sweetcorn.", "20:00 — Fold through the cod, lemon juice and parsley.", "25:00 — Season with black pepper and serve."],
     nutrition: { calories: "610 kcal", protein: "33.0 g", carbohydrates: "82.0 g", fat: "15.0 g", fibre: "4.0 g", sodium: "145 mg", salt: "0.36 g", potassium: "650 mg", phosphate: "350 mg" },
@@ -1275,7 +1275,7 @@ export const dinners: Recipe[] = [
     id: "D028", code: "D028", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
     name: "Egg, Cabbage & Sweetcorn Rice", description: "Fluffy rice stir-fried with egg, cabbage, sweetcorn and onion.", cookingTime: "25 minutes", calories: "575 kcal", protein: "20.0 g", equipment: "Saucepan, large frying pan, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Eggs", shoppingItem: "Eggs", quantity: "2" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Eggs", shoppingItem: "Eggs", quantity: "2" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: ["00:00 — Cook the rice according to the packet instructions, then drain well.", "08:00 — Shred the cabbage and finely chop the onion.", "10:00 — Heat the olive oil and cook the onion and cabbage until softened.", "15:00 — Add the sweetcorn and cook for 2 minutes.", "17:00 — Push the vegetables aside and scramble the eggs until cooked.", "20:00 — Stir in the rice and combine thoroughly.", "25:00 — Season with black pepper and serve."],
     nutrition: { calories: "575 kcal", protein: "20.0 g", carbohydrates: "89.0 g", fat: "15.0 g", fibre: "5.0 g", sodium: "305 mg", salt: "0.76 g", potassium: "520 mg", phosphate: "410 mg" },
@@ -1285,7 +1285,7 @@ export const dinners: Recipe[] = [
     id: "D029", code: "D029", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
     name: "Pork & Pepper Pasta", description: "Tender pork with pasta, green pepper and onion in a light herb dressing.", cookingTime: "25 minutes", calories: "645 kcal", protein: "36.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
-      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: ["00:00 — Cook the pasta according to the packet instructions, then drain.", "05:00 — Slice the pork into thin strips and chop the pepper and onion.", "08:00 — Heat the olive oil and cook the onion and pepper for 4 minutes.", "12:00 — Add the pork and rosemary and cook until thoroughly cooked.", "20:00 — Add the drained pasta and toss together.", "23:00 — Season with black pepper.", "25:00 — Serve hot."],
     nutrition: { calories: "645 kcal", protein: "36.0 g", carbohydrates: "76.0 g", fat: "21.0 g", fibre: "4.0 g", sodium: "76 mg", salt: "0.19 g", potassium: "600 mg", phosphate: "360 mg" },
@@ -1350,8 +1350,8 @@ export const dinners: Recipe[] = [
       { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1 green pepper (60 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
-      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" },
-      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" },
+      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: [
       "00:00 — Cook the pasta according to the packet instructions, then drain.",
@@ -1391,8 +1391,8 @@ export const dinners: Recipe[] = [
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
-      { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" },
-      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" },
+      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: [
       "00:00 — Cook the rice according to the packet instructions.",
@@ -1432,8 +1432,8 @@ export const dinners: Recipe[] = [
       { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" },
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
-      { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "1/2 tsp" },
-      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" },
+      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: [
       "00:00 — Cook the rice according to the packet instructions.",
@@ -1474,7 +1474,7 @@ export const dinners: Recipe[] = [
       { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1 green pepper (60 g)" },
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
-      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: [
       "00:00 — Cook the rice according to the packet instructions, then drain.",
@@ -1513,8 +1513,8 @@ export const dinners: Recipe[] = [
       { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" },
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "10 g" },
-      { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" },
-      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" },
+      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: [
       "00:00 — Cook the rice according to the packet instructions.",
@@ -1554,8 +1554,8 @@ export const dinners: Recipe[] = [
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
       { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" },
-      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" },
-      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" },
+      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: [
       "00:00 — Cook the pasta according to the packet instructions.",
@@ -1594,8 +1594,8 @@ export const dinners: Recipe[] = [
       { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (80 g)" },
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
-      { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "1/2 tsp" },
-      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "½ tsp" },
+      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: [
       "00:00 — Cook the rice according to the packet instructions.",
@@ -1634,8 +1634,8 @@ export const dinners: Recipe[] = [
       { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (80 g)" },
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "10 g" },
-      { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "1/2 tsp" },
-      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" },
+      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: [
       "00:00 — Cook the pasta according to the packet instructions.",
@@ -1674,8 +1674,8 @@ export const dinners: Recipe[] = [
       { item: "Cauliflower", shoppingItem: "Cauliflower", quantity: "100 g" },
       { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" },
       { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" },
-      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "1/2 tsp" },
-      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "1/4 tsp" }
+      { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" },
+      { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
     ],
     method: [
       "00:00 — Cook the pasta according to the packet instructions.",

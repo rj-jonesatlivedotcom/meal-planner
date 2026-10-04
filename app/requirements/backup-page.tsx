@@ -660,8 +660,8 @@ export default function RequirementsPage() {
 
                 </div>
 
-                <div className="mt-5 rounded-xl border border-blue-100 bg-white/70 px-4 py-3">
-                  <p className="text-xs leading-5 text-slate-500">
+                <div className="carbohydrate-guidance-bar mt-5 rounded-xl border border-blue-100 bg-white/70 px-4 py-3">
+                  <p className="carbohydrate-guidance-text text-xs leading-5 text-slate-500">
                     Your carbohydrate target should reflect the guidance you
                     have received from your healthcare or dietetic team.
                   </p>

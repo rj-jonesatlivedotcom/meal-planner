@@ -35,9 +35,9 @@ export type Recipe = {
   phosphate: "Low" | "Moderate" | "High";
   purines: "Low" | "Moderate" | "High";
   dietaryNote?: string;
-  /** Approximate countable fluid in ml from listed liquid/semi-liquid ingredients; excludes natural food moisture and drained cooking water. */
-  fluidMl?: number;
   servings: number;
+  /** Estimated fluid content per serving in ml; an estimate, not a clinical measurement. */
+  fluidMl?: number;
   source?: {
     name: string;
     url: string;

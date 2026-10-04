@@ -100,6 +100,38 @@ type ShoppingData = {
   plannerCounts?: Record<string, number>;
 };
 
+type FluidEntry = {
+  id: string;
+  date: string;
+  drink: string;
+  amountMl: number;
+  createdAt: string;
+};
+
+const FLUID_LOG_STORAGE_KEY = "renalplan-fluid-log-v1";
+
+function getLocalDateKey(date = new Date()): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function readFluidLog(): FluidEntry[] {
+  try {
+    const value = localStorage.getItem(FLUID_LOG_STORAGE_KEY);
+    if (!value) return [];
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.filter((entry) =>
+      entry && typeof entry.id === "string" && typeof entry.date === "string" &&
+      typeof entry.drink === "string" && Number.isFinite(Number(entry.amountMl))
+    ) : [];
+  } catch {
+    return [];
+  }
+}
+
+
 function createEmptyPlanner(): PlannerMeals {
   const initial: PlannerMeals = {};
 
@@ -253,7 +285,6 @@ function syncPlannerWithShoppingList(
 export default function WeeklyPlannerPage() {
   const [selectedDay, setSelectedDay] =
     useState("Monday");
-
   const [plannerMeals, setPlannerMeals] =
     useState<PlannerMeals | null>(null);
 
@@ -289,6 +320,119 @@ export default function WeeklyPlannerPage() {
     useState<"pick" | "people" | null>(null);
   const [accountSyncReady, setAccountSyncReady] = useState(false);
   const [accountUserId, setAccountUserId] = useState<string | null>(null);
+  const [fluidModalOpen, setFluidModalOpen] = useState(false);
+  const [fluidEntries, setFluidEntries] = useState<FluidEntry[]>([]);
+  const [fluidDate, setFluidDate] = useState(getLocalDateKey());
+  const [fluidDrink, setFluidDrink] = useState("Water");
+  const [fluidCustomDrink, setFluidCustomDrink] = useState("");
+  const [fluidAmount, setFluidAmount] = useState("200");
+  const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
+
+  useEffect(() => {
+    setFluidEntries(readFluidLog());
+    let cancelled = false;
+    async function loadCloudFluidLog() {
+      try {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user || cancelled) return;
+        const { data, error } = await supabase
+          .from("user_fluid_entries")
+          .select("id, consumed_on, drink, amount_ml, created_at")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: true });
+        if (error || cancelled || !data) return;
+        const cloudEntries: FluidEntry[] = data.map((row: { id: string; consumed_on: string; drink: string; amount_ml: number; created_at: string }) => ({
+          id: row.id, date: row.consumed_on, drink: row.drink, amountMl: row.amount_ml, createdAt: row.created_at,
+        }));
+        const localEntries = readFluidLog();
+        const byId = new Map<string, FluidEntry>();
+        [...cloudEntries, ...localEntries].forEach((entry) => byId.set(entry.id, entry));
+        const merged = [...byId.values()];
+        setFluidEntries(merged);
+        localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(merged));
+        const localOnly = localEntries.filter((entry) => !cloudEntries.some((cloud) => cloud.id === entry.id));
+        if (localOnly.length) {
+          await supabase.from("user_fluid_entries").upsert(localOnly.map((entry) => ({
+            id: entry.id, user_id: user.id, consumed_on: entry.date, drink: entry.drink, amount_ml: entry.amountMl, created_at: entry.createdAt,
+          })), { onConflict: "id" });
+        }
+      } catch { /* Browser storage remains available if cloud sync is unavailable. */ }
+    }
+    void loadCloudFluidLog();
+    try {
+      const saved = localStorage.getItem("meal-planner-requirements");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const allowance = Number(parsed?.fluidLimitMl);
+        setFluidAllowanceMl(parsed?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
+      }
+    } catch { /* Keep the allowance unset if saved settings are unreadable. */ }
+    const reloadFluid = () => setFluidEntries(readFluidLog());
+    const reloadRequirements = () => {
+      try {
+        const saved = localStorage.getItem("meal-planner-requirements");
+        const parsed = saved ? JSON.parse(saved) : {};
+        const allowance = Number(parsed?.fluidLimitMl);
+        setFluidAllowanceMl(parsed?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
+      } catch { setFluidAllowanceMl(null); }
+    };
+    window.addEventListener("renalplan-fluid-log-updated", reloadFluid);
+    window.addEventListener("meal-planner-requirements-updated", reloadRequirements);
+    window.addEventListener("storage", reloadFluid);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("renalplan-fluid-log-updated", reloadFluid);
+      window.removeEventListener("meal-planner-requirements-updated", reloadRequirements);
+      window.removeEventListener("storage", reloadFluid);
+    };
+  }, []);
+
+  function saveFluidEntries(nextEntries: FluidEntry[]) {
+    const previousEntries = fluidEntries;
+    setFluidEntries(nextEntries);
+    localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(nextEntries));
+    window.dispatchEvent(new Event("renalplan-fluid-log-updated"));
+    void (async () => {
+      try {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return;
+        const retainedIds = new Set(nextEntries.map((entry) => entry.id));
+        const removedIds = previousEntries.filter((entry) => !retainedIds.has(entry.id)).map((entry) => entry.id);
+        if (removedIds.length) {
+          await supabase.from("user_fluid_entries").delete().eq("user_id", user.id).in("id", removedIds);
+        }
+        if (nextEntries.length) {
+          await supabase.from("user_fluid_entries").upsert(nextEntries.map((entry) => ({
+            id: entry.id, user_id: user.id, consumed_on: entry.date, drink: entry.drink, amount_ml: entry.amountMl, created_at: entry.createdAt,
+          })), { onConflict: "id" });
+        }
+      } catch { /* Keep the local log; cloud sync can retry on a later save. */ }
+    })();
+  }
+
+  function addFluidEntry() {
+    const amount = Number(fluidAmount);
+    const drink = fluidDrink === "Other" ? fluidCustomDrink.trim() : fluidDrink;
+    if (!drink || !Number.isFinite(amount) || amount <= 0 || amount > 10000) return;
+    const entry: FluidEntry = {
+      id: typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (char) => { const random = Math.random() * 16 | 0; return (char === "x" ? random : (random & 0x3 | 0x8)).toString(16); }),
+      date: fluidDate,
+      drink,
+      amountMl: Math.round(amount),
+      createdAt: new Date().toISOString(),
+    };
+    saveFluidEntries([...fluidEntries, entry]);
+    setFluidAmount("200");
+    setFluidCustomDrink("");
+    setFluidDrink("Water");
+  }
+
+  function fluidTotalForDate(date: string) {
+    return fluidEntries.filter((entry) => entry.date === date).reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0);
+  }
+
 
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
@@ -989,10 +1133,11 @@ export default function WeeklyPlannerPage() {
     | "Sodium"
     | "Potassium"
     | "Phosphate"
-    | "Purines";
+    | "Purines"
+    | "Fluid";
 
   const [nutritionView, setNutritionView] =
-    useState<NutritionView>("Potassium");
+    useState<NutritionView>("Fluid");
 
   function getNutritionNumber(
     value: string
@@ -1018,6 +1163,16 @@ export default function WeeklyPlannerPage() {
         plannerMeals?.[day]?.Dinner ?? null
       ),
     };
+  }
+
+  function getDateForPlannerDay(day: string): string {
+    const today = new Date();
+    const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const weekday = monday.getDay();
+    monday.setDate(monday.getDate() + (weekday === 0 ? -6 : 1 - weekday));
+    const dayIndex = days.indexOf(day);
+    monday.setDate(monday.getDate() + Math.max(0, dayIndex));
+    return getLocalDateKey(monday);
   }
 
   function getDailyNutritionTotal(
@@ -1167,6 +1322,23 @@ if (total <= limit * 0.75) {
     day: string;
     desktop?: boolean;
   }) {
+    if (nutritionView === "Fluid") {
+      const date = getDateForPlannerDay(day);
+      const total = fluidTotalForDate(date);
+      return (
+        <button type="button"
+          onMouseDown={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
+          onPointerDown={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
+          onTouchStart={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
+          onClick={(event) => { event.stopPropagation(); setFluidDate(date); setFluidModalOpen(true); }}
+          className="relative z-[999] pointer-events-auto isolate min-w-[82px] cursor-pointer rounded-2xl border border-sky-400/70 bg-gradient-to-br from-slate-800 to-slate-900 px-3 py-3 text-sm font-extrabold !text-white shadow-md shadow-slate-950/20 hover:border-sky-300 hover:from-slate-700 hover:to-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300"
+          aria-label={`${day}: ${total} ml recorded fluid. Open fluid tracker`} title={`${day}: ${total} ml recorded. Click to manage drinks`}>
+          {total.toLocaleString()} ml
+          <span className="mt-1 block text-[10px] font-bold tracking-wide text-sky-300">＋ LOG DRINKS</span>
+        </button>
+      );
+    }
+
     if (
       nutritionView === "Calories" ||
       nutritionView === "Protein"
@@ -1492,13 +1664,20 @@ if (total <= limit * 0.75) {
                   onClick={() =>
                     setSelectedDay(day)
                   }
-                  className={`min-w-0 rounded-xl px-1 py-2.5 text-[11px] font-bold transition ${
+                  title={`${day}${isSelected ? " — selected planner day" : ""}`}
+                  className={`relative min-w-0 rounded-xl px-1 py-2.5 text-[11px] font-bold transition ${
                     isSelected
-                      ? "bg-orange-500 text-white shadow-sm"
-                      : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-orange-50 hover:text-orange-700"
+                      ? "bg-emerald-600 text-white ring-2 ring-emerald-300 shadow-sm"
+                      : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-emerald-50 hover:text-emerald-800"
                   }`}
                 >
                   {day.slice(0, 3)}
+                  {isSelected && (
+                    <span
+                      aria-hidden="true"
+                      className="mx-auto mt-1 block h-1 w-1 rounded-full bg-white"
+                    />
+                  )}
                 </button>
 
               );
@@ -1848,11 +2027,13 @@ if (total <= limit * 0.75) {
 
                 <select
                   value={nutritionView}
-                  onChange={(event) =>
-                    setNutritionView(
-                      event.target.value as NutritionView
-                    )
-                  }
+                  onChange={(event) => {
+                    setNutritionView(event.target.value as NutritionView);
+                    if (event.target.value === "Fluid") {
+                      setFluidDate(getLocalDateKey());
+                      setFluidModalOpen(true);
+                    }
+                  }}
                   className="mt-1.5 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-700 outline-none transition focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"
                   aria-label="Choose daily nutrition"
                 >
@@ -1874,6 +2055,7 @@ if (total <= limit * 0.75) {
                   <option value="Purines">
                     Purines
                   </option>
+                  <option value="Fluid">Fluid (tap to log drinks)</option>
                 </select>
 
               </div>
@@ -1907,18 +2089,14 @@ if (total <= limit * 0.75) {
               </div>
 
               {days.map((day) => (
-
                 <div
                   key={day}
                   className="flex items-center justify-center border-l border-emerald-100 bg-emerald-50 py-2"
                 >
-
                   <span className="text-sm font-extrabold tracking-[0.08em] text-green-700">
                     {day.slice(0, 3)}
                   </span>
-
                 </div>
-
               ))}
 
             </div>
@@ -2374,11 +2552,13 @@ if (total <= limit * 0.75) {
 
                   <select
                     value={nutritionView}
-                    onChange={(event) =>
-                      setNutritionView(
-                        event.target.value as NutritionView
-                      )
-                    }
+                    onChange={(event) => {
+                      setNutritionView(event.target.value as NutritionView);
+                      if (event.target.value === "Fluid") {
+                        setFluidDate(getLocalDateKey());
+                        setFluidModalOpen(true);
+                      }
+                    }}
                     className="planner-nutrition-select w-full rounded-xl border border-slate-200 bg-white px-2 py-1.5 text-[10px] font-bold text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                     aria-label="Choose daily nutrition"
                   >
@@ -2400,6 +2580,7 @@ if (total <= limit * 0.75) {
                     <option value="Purines">
                       Purines
                     </option>
+                    <option value="Fluid">Fluid (tap to log drinks)</option>
                   </select>
 
                   <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
@@ -2447,9 +2628,49 @@ if (total <= limit * 0.75) {
 
         <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-stretch">
 
+          <div className="order-1 flex w-full min-w-0 self-stretch items-stretch gap-3 md:order-3 md:w-auto md:flex-1 md:justify-end md:self-stretch">
+
+            <button
+              type="button"
+              onClick={startPickForMe}
+              disabled={isDiceRolling}
+              style={{ backgroundColor: "#ff6b00", color: "#000000", borderColor: "#ff6b00" }}
+              className={`group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-orange-500 !bg-orange-500 px-3 py-4 text-sm font-bold !text-black shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:!bg-orange-500 hover:!text-black hover:shadow-lg md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base ${
+                isDiceRolling
+                  ? "cursor-wait !bg-orange-500 !text-black shadow-lg ring-4 ring-orange-200/70"
+                  : "hover:-translate-y-0.5"
+              }`}
+              aria-label={isDiceRolling ? "Picking meals for you" : "Pick for Me"}
+            >
+              <span
+                className={`inline-flex text-xl leading-none transition-transform md:text-2xl ${
+                  isDiceRolling
+                    ? "animate-spin scale-125"
+                    : "group-hover:rotate-12"
+                }`}
+                aria-hidden="true"
+              >
+                🎲
+              </span>
+              <span className="ml-1.5">
+                {isDiceRolling ? "Picking..." : "Pick for Me"}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setShowClearConfirm(true)}
+              className="flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-emerald-500 bg-emerald-400 px-2 py-4 text-sm font-bold text-black shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-600 hover:bg-emerald-400 hover:text-black hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 dark:border-slate-400 dark:bg-slate-800 dark:text-white dark:hover:border-slate-300 dark:hover:bg-slate-800 dark:hover:text-white md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base"
+            >
+              <span className="inline-flex text-xl leading-none md:text-2xl" aria-hidden="true">🗑️</span>
+              <span className="whitespace-nowrap">Clear Week</span>
+            </button>
+
+          </div>
+
           <Link
             href="/shopping"
-            className="group flex flex-1 items-center justify-between rounded-3xl bg-white p-4 text-left shadow-md ring-1 ring-slate-200/80 transition hover:-translate-y-0.5 hover:bg-green-50/70 hover:ring-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 md:p-5"
+            className="group order-2 flex w-full items-center justify-between rounded-3xl bg-white p-4 text-left shadow-md ring-1 ring-slate-200/80 transition hover:-translate-y-0.5 hover:bg-green-50/70 hover:ring-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 md:order-1 md:w-[36%] md:flex-none md:p-5"
             aria-label="Go to Shopping List"
           >
 
@@ -2482,45 +2703,22 @@ if (total <= limit * 0.75) {
 
           </Link>
 
-          <div className="flex items-center gap-2 self-stretch md:self-auto">
+          <Link
+            href="/nutrition"
+            aria-label="Go to Nutrition"
+            className="group order-3 flex w-full items-center justify-between rounded-3xl bg-sky-50 p-4 text-left text-slate-900 shadow-md ring-1 ring-sky-200 transition duration-200 hover:-translate-y-0.5 hover:bg-sky-100 hover:shadow-lg hover:ring-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 dark:bg-slate-800 dark:text-slate-100 dark:ring-slate-600 dark:hover:bg-slate-700 md:order-2 md:w-[30%] md:flex-none md:p-5"
+          >
+            <div className="flex min-w-0 items-center gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-xl dark:bg-slate-700">📊</span>
+              <div className="min-w-0">
+                <h2 className="text-base font-bold text-slate-900 dark:text-slate-100 md:text-lg">Go to Nutrition</h2>
+                <p className="mt-0.5 text-xs leading-5 text-slate-700 dark:text-slate-300 md:text-sm">Review your weekly nutrition and fluid intake.</p>
+              </div>
+            </div>
+            <span className="ml-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-100 text-xl font-bold text-sky-700 transition group-hover:translate-x-1 group-hover:bg-sky-600 group-hover:text-white dark:bg-slate-700 dark:text-sky-300 dark:group-hover:bg-sky-600 dark:group-hover:text-white" aria-hidden="true">→</span>
+          </Link>
 
-            <button
-              type="button"
-              onClick={startPickForMe}
-              disabled={isDiceRolling}
-              className={`group flex-1 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-orange-600 md:flex-none md:px-5 md:py-3 md:text-sm ${
-                isDiceRolling
-                  ? "cursor-wait bg-orange-400 shadow-lg ring-4 ring-orange-200/70"
-                  : "hover:-translate-y-0.5"
-              }`}
-              aria-label={isDiceRolling ? "Picking meals for you" : "Pick for Me"}
-            >
-              <span
-                className={`inline-flex text-xl leading-none transition-transform md:text-2xl ${
-                  isDiceRolling
-                    ? "animate-spin scale-125"
-                    : "group-hover:rotate-12"
-                }`}
-                aria-hidden="true"
-              >
-                🎲
-              </span>
-              <span className="ml-1.5">
-                {isDiceRolling ? "Picking..." : "Pick for Me"}
-              </span>
-            </button>
 
-            <button
-              type="button"
-              onClick={() =>
-                setShowClearConfirm(true)
-              }
-              className="flex-1 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-600 shadow-sm ring-1 ring-black/10 transition hover:bg-red-50 hover:text-red-600 md:flex-none md:px-5 md:py-3 md:text-sm"
-            >
-              🗑️ Clear Week
-            </button>
-
-          </div>
 
         </div>
 
@@ -2890,6 +3088,47 @@ if (total <= limit * 0.75) {
 
         </div>
 
+      )}
+
+      {fluidModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/50 p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="fluid-tracker-title">
+          <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl sm:rounded-3xl sm:p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2 id="fluid-tracker-title" className="text-xl font-extrabold text-slate-900">Fluid Tracker</h2>
+                <p className="mt-1 text-sm text-slate-500">Record drinks against the date consumed.</p>
+              </div>
+              <button type="button" onClick={() => setFluidModalOpen(false)} aria-label="Close fluid tracker" className="rounded-full bg-slate-100 px-3 py-2 text-lg font-bold text-slate-600 hover:bg-slate-200">×</button>
+            </div>
+            <label className="mt-5 block text-sm font-bold text-slate-700">Date
+              <input type="date" value={fluidDate} onChange={(event) => setFluidDate(event.target.value)} className="mt-1 block w-full rounded-xl border border-slate-200 px-3 py-2.5 text-slate-900" />
+            </label>
+            <div className="mt-4 rounded-2xl bg-slate-800 p-4 ring-1 ring-slate-700">
+              <p className="text-sm font-semibold !text-slate-100">Actual drinks recorded</p>
+              <p className="mt-1 text-3xl font-extrabold !text-white">{fluidTotalForDate(fluidDate).toLocaleString()} <span className="text-base !text-slate-200">ml</span></p>
+              {fluidAllowanceMl !== null && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString()} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, fluidTotalForDate(fluidDate) / fluidAllowanceMl * 100) : fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
+              <p className="mt-2 text-xs leading-5 !text-slate-300">This is a record of intake, not a recommendation to drink more. Follow your renal team's fluid guidance.</p>
+            </div>
+            <h3 className="mt-5 text-sm font-extrabold text-slate-800">Add a drink</h3>
+            <div className="mt-2 grid grid-cols-2 gap-3">
+              <label className="text-sm font-semibold text-slate-700">Drink
+                <select value={fluidDrink} onChange={(event) => setFluidDrink(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900">
+                  <option>Water</option><option>Tea</option><option>Coffee</option><option>Milk</option><option>Juice</option><option>Soft drink</option><option>Soup</option><option>Other</option>
+                </select>
+              </label>
+              <label className="text-sm font-semibold text-slate-700">Amount (ml)
+                <input type="number" min="1" max="10000" step="1" inputMode="numeric" value={fluidAmount} onChange={(event) => setFluidAmount(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-slate-900" />
+              </label>
+            </div>
+            {fluidDrink === "Other" && <label className="mt-3 block text-sm font-semibold text-slate-700">Description<input value={fluidCustomDrink} onChange={(event) => setFluidCustomDrink(event.target.value)} placeholder="Describe the drink" className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-slate-900" /></label>}
+            <button type="button" onClick={addFluidEntry} disabled={!Number.isFinite(Number(fluidAmount)) || Number(fluidAmount) <= 0 || Number(fluidAmount) > 10000 || (fluidDrink === "Other" && !fluidCustomDrink.trim())} className="mt-3 w-full rounded-xl bg-sky-700 px-4 py-3 font-bold text-white hover:bg-sky-800 disabled:cursor-not-allowed disabled:opacity-50">+ Add drink</button>
+            <h3 className="mt-6 text-sm font-extrabold text-slate-800">Drinks on {fluidDate}</h3>
+            <div className="mt-2 divide-y divide-slate-100 rounded-xl border border-slate-100">
+              {fluidEntries.filter((entry) => entry.date === fluidDate).length === 0 ? <p className="p-4 text-sm text-slate-500">No drinks recorded for this date yet.</p> : fluidEntries.filter((entry) => entry.date === fluidDate).map((entry) => <div key={entry.id} className="flex items-center justify-between gap-3 p-3"><div><p className="font-bold text-slate-800">{entry.drink}</p><p className="text-xs text-slate-500">{new Date(entry.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p></div><div className="flex items-center gap-3"><span className="text-sm font-bold text-slate-800">{entry.amountMl} ml</span><button type="button" onClick={() => saveFluidEntries(fluidEntries.filter((item) => item.id !== entry.id))} className="rounded-lg px-2 py-1 text-sm font-bold text-rose-600 hover:bg-rose-50" aria-label={`Remove ${entry.drink}, ${entry.amountMl} ml`}>Remove</button></div></div>)}
+            </div>
+            <button type="button" onClick={() => setFluidModalOpen(false)} className="mt-5 w-full rounded-xl border border-slate-200 px-4 py-3 font-bold text-slate-700 hover:bg-slate-50">Done</button>
+          </div>
+        </div>
       )}
 
     </main>

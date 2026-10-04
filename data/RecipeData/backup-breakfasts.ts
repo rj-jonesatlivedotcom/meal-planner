@@ -43,7 +43,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -89,7 +88,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "High",
     purines: "Low",
     dietaryNote: "Higher in both potassium and phosphate within the RenalPlan recipe-planning bands. Oats, milk and apple contribute potassium, while oats and milk are important phosphate sources. Consider this when planning meals if you have been advised to restrict either nutrient.",
-    fluidMl: 200, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -136,7 +134,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -181,7 +178,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -228,7 +224,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -275,7 +270,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 50, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -322,7 +316,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -364,7 +357,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Low in potassium and low in phosphate. Marmalade contributes very little potassium or phosphate at this portion size. Buttering bread/toast is optional.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -412,7 +404,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "High",
     purines: "Low",
     dietaryNote: "Higher in both potassium and phosphate within the RenalPlan recipe-planning bands. Oats, tomato and red pepper contribute potassium, while oats and egg contribute phosphate. Consider this when planning meals if you have been advised to restrict either nutrient.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -461,7 +452,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote: "Low in potassium and moderate in phosphate. Apple contributes potassium, while milk and egg contribute phosphate. Check the milk and bread labels for phosphate additives where relevant.",
-    fluidMl: 100, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
  {
@@ -506,7 +496,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -552,7 +541,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -596,7 +584,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -644,7 +631,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote: "Low in potassium and moderate in phosphate. The tortilla and cream cheese can vary by brand, particularly in relation to phosphate additives. Check the current product label and, where possible, choose products without added phosphates.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,},
   {
     id: "apple-cinnamon-pancakes",
@@ -692,7 +678,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Low in potassium. Apple and milk contribute potassium, while milk and egg contribute phosphate. Check packaged ingredients for phosphate additives where relevant.",
-    fluidMl: 75, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -737,7 +722,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Low in potassium. Blueberries and yoghurt contribute potassium, while yoghurt is also a phosphate source. Check the yoghurt and bread labels for phosphate additives where relevant. Buttering bread/toast is optional.",
-    fluidMl: 100, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -784,7 +768,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "The recipe is within the lower RenalPlan potassium and phosphate bands, but cream cheese and the English muffin are processed ingredients that can vary by brand. Check the ingredient list for phosphate additives containing 'phos' where relevant.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -831,7 +814,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote: "Moderate in potassium and moderate in phosphate within the RenalPlan recipe-planning bands. Strawberries and milk contribute potassium, while milk and egg contribute phosphate. Consider this when planning meals if you have been advised to restrict either nutrient.",
-    fluidMl: 75, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -875,7 +857,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Apple contributes potassium and cream cheese contributes phosphate. The phosphate content of processed foods can vary by brand, so check the cream cheese and bagel ingredient lists for added phosphates where relevant.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -924,7 +905,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote: "Moderate in phosphate and lower in potassium within the RenalPlan recipe-planning bands. Cream cheese contributes phosphate and the tortilla can vary by brand. Check the current tortilla and cream cheese labels for phosphate additives.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,},
 
   {
@@ -969,7 +949,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1014,7 +993,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
-    fluidMl: 50, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1061,7 +1039,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote: "Low in potassium and moderate in phosphate. The tortilla can vary by brand, particularly in relation to phosphate additives. Check the current product label and, where possible, choose a tortilla without added phosphates.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,},
   {
     id: "boiled-egg-soldiers",
@@ -1103,7 +1080,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands. Buttering bread/toast is optional.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1147,7 +1123,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "The recipe is within the lower RenalPlan potassium and phosphate bands. Cream cheese is a phosphate source and processed products can vary by brand, so check the ingredient list for added phosphates where relevant.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1193,7 +1168,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1242,7 +1216,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium is moderate on the RenalPlan recipe-planning bands, with low phosphate. Strawberries, apple and milk contribute potassium, while milk and egg contribute phosphate. Consider this when planning meals if you have been advised to restrict either nutrient.",
-    fluidMl: 75, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1287,7 +1260,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Moderate in potassium. Apple and yoghurt contribute potassium, while yoghurt is also a phosphate source. Check the yoghurt and bread labels for phosphate additives where relevant. Buttering bread/toast is optional.",
-    fluidMl: 100, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1333,7 +1305,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1382,7 +1353,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Moderate in potassium and low in phosphate. Apple and blueberries contribute potassium, while milk and egg contribute phosphate.",
-    fluidMl: 75, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
 
@@ -1428,7 +1398,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Contains Back bacon, which contributes a significant amount of sodium. Keep to the stated portion and check the product label, as sodium content varies between brands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1473,7 +1442,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 50, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1519,7 +1487,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1568,7 +1535,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote: "Moderate in potassium and moderate in phosphate within the RenalPlan recipe-planning bands. Strawberries and apple contribute potassium, while milk and egg contribute phosphate. Consider this when planning meals if you have been advised to restrict either nutrient.",
-    fluidMl: 75, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1613,7 +1579,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Cream cheese and processed bread can vary in phosphate content between brands. Check the ingredient list for added phosphates where relevant. Buttering bread/toast is optional.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1659,7 +1624,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Contains Back bacon, which contributes a significant amount of sodium. Keep to the stated portion and check the product label, as sodium content varies between brands. Buttering bread/toast is optional.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1704,7 +1668,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1749,7 +1712,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Potassium: low; phosphate: low; purines: low on the RenalPlan recipe-planning bands.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
   {
@@ -1798,7 +1760,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Moderate",
     purines: "Low",
     dietaryNote: "Low in potassium and moderate in phosphate. The tortilla and cream cheese can vary by brand, particularly in relation to phosphate additives. Check the current product labels and, where possible, choose products without added phosphates.",
-    fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,},
   {
     id: "apple-blueberry-french-toast",
@@ -1847,7 +1808,6 @@ export const breakfasts: Recipe[] = [
     phosphate: "Low",
     purines: "Low",
     dietaryNote: "Low in potassium and low in phosphate. Apple and blueberries contribute potassium, while milk and egg contribute phosphate.",
-    fluidMl: 75, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1,
   },
 ];

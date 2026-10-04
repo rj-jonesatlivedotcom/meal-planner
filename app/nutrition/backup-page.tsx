@@ -105,6 +105,26 @@ type NutrientTotals = Record<NutrientKey, number>;
 
 type Status = "green" | "amber" | "red";
 
+type FluidEntry = { id: string; date: string; drink: string; amountMl: number; createdAt?: string };
+const FLUID_LOG_STORAGE_KEY = "renalplan-fluid-log-v1";
+function getLocalDateKey(date: Date): string {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+function getCurrentWeekDate(dayIndex: number): string {
+  const today = new Date();
+  const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const weekday = monday.getDay();
+  monday.setDate(monday.getDate() + (weekday === 0 ? -6 : 1 - weekday) + dayIndex);
+  return getLocalDateKey(monday);
+}
+function readFluidLog(): FluidEntry[] {
+  try {
+    const raw = window.localStorage.getItem(FLUID_LOG_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch { return []; }
+}
+
 const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
 
 const defaultRequirements: Requirements = {
@@ -307,7 +327,7 @@ function getStatusText(status: Status): string {
 function getStatusDotClass(status: Status): string {
   if (status === "green") return "bg-green-600";
   if (status === "amber") return "bg-amber-400";
-  return "bg-red-500";
+  return "!bg-red-600";
 }
 
 function getLevelDotStatus(
@@ -394,6 +414,8 @@ export default function NutritionPage() {
     useState<PlannerMeals | null>(null);
   const [requirements, setRequirements] =
     useState<Requirements>(defaultRequirements);
+  const [fluidEntries, setFluidEntries] = useState<FluidEntry[]>([]);
+  const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
   const [selectedDay, setSelectedDay] =
     useState<Day>("Monday");
   const [authChecked, setAuthChecked] = useState(false);
@@ -511,6 +533,24 @@ export default function NutritionPage() {
       if (!mounted) return;
       setIsLoggedIn(Boolean(user));
       setAuthChecked(true);
+      if (user) {
+        const { data: cloudEntries, error } = await createClient()
+          .from("user_fluid_entries")
+          .select("id, consumed_on, drink, amount_ml, created_at")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: true });
+        if (!error && cloudEntries && mounted) {
+          const mapped: FluidEntry[] = cloudEntries.map((row: { id: string; consumed_on: string; drink: string; amount_ml: number; created_at: string }) => ({
+            id: row.id, date: row.consumed_on, drink: row.drink, amountMl: row.amount_ml, createdAt: row.created_at,
+          }));
+          const local = readFluidLog();
+          const merged = new Map<string, FluidEntry>();
+          [...mapped, ...local].forEach((entry) => merged.set(entry.id, entry));
+          const combined = [...merged.values()];
+          setFluidEntries(combined);
+          window.localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(combined));
+        }
+      }
     }
 
     void checkAuth();
@@ -523,6 +563,16 @@ export default function NutritionPage() {
   useEffect(() => {
     loadPlanner();
     loadRequirements();
+    setFluidEntries(readFluidLog());
+    try {
+      const savedRequirements = window.localStorage.getItem(REQUIREMENTS_STORAGE_KEY);
+      const parsedRequirements = savedRequirements ? JSON.parse(savedRequirements) : {};
+      const allowance = Number(parsedRequirements?.fluidLimitMl);
+      setFluidAllowanceMl(parsedRequirements?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
+    } catch { setFluidAllowanceMl(null); }
+    function handleFluidUpdate() {
+      setFluidEntries(readFluidLog());
+    }
 
     function handlePlannerUpdate() {
       loadPlanner();
@@ -530,12 +580,19 @@ export default function NutritionPage() {
 
     function handleRequirementsUpdate() {
       loadRequirements();
+      try {
+        const savedRequirements = window.localStorage.getItem(REQUIREMENTS_STORAGE_KEY);
+        const parsedRequirements = savedRequirements ? JSON.parse(savedRequirements) : {};
+        const allowance = Number(parsedRequirements?.fluidLimitMl);
+        setFluidAllowanceMl(parsedRequirements?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
+      } catch { setFluidAllowanceMl(null); }
     }
 
     window.addEventListener(
       "weekly-planner-updated",
       handlePlannerUpdate
     );
+    window.addEventListener("renalplan-fluid-log-updated", handleFluidUpdate);
 
     window.addEventListener(
       "meal-planner-requirements-updated",
@@ -550,6 +607,7 @@ export default function NutritionPage() {
         "weekly-planner-updated",
         handlePlannerUpdate
       );
+      window.removeEventListener("renalplan-fluid-log-updated", handleFluidUpdate);
 
       window.removeEventListener(
         "meal-planner-requirements-updated",
@@ -763,7 +821,8 @@ export default function NutritionPage() {
             display: none !important;
           }
 
-          .nutrition-print-page > .nutrition-print-summary {
+          .nutrition-print-page > .nutrition-print-summary,
+          .nutrition-print-page > .nutrition-print-fluid {
             display: block !important;
           }
 
@@ -982,7 +1041,7 @@ export default function NutritionPage() {
               })}
             </div>
 
-            <div className="mt-4 rounded-2xl bg-pink-50 p-4">
+            <div className="nutrition-mobile-daily-total mt-4 rounded-2xl bg-pink-50 p-4">
               <div className="flex items-center justify-between gap-3">
                 <span className="font-bold text-slate-900">
                   Daily total
@@ -1121,7 +1180,7 @@ export default function NutritionPage() {
                       </th>
                     ))}
 
-                    <th className="border-l-2 border-blue-200 bg-blue-50 px-3 py-4 text-center text-sm font-bold text-blue-900">
+                    <th className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-3 py-4 text-center text-sm font-bold text-blue-900">
                       Daily average
                     </th>
                   </tr>
@@ -1241,7 +1300,7 @@ export default function NutritionPage() {
                         );
                       })}
 
-                      <td className="border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
+                      <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
                         <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                           {(() => {
                             const mealRecipes = days
@@ -1497,7 +1556,7 @@ export default function NutritionPage() {
                       );
                     })}
 
-                    <td className="border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
+                    <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
                       <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                         {(() => {
                           const purines = weeklyPurineLevel;
@@ -1547,6 +1606,15 @@ export default function NutritionPage() {
                                 <strong className="text-slate-900">
                                   {formatSalt(dailyAverage.sodium)}
                                 </strong>
+                              </div>
+
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="text-slate-500">Fluid recorded</span>
+                                <strong className="text-slate-900">{Math.round(days.reduce((sum, day, index) => sum + fluidEntries.filter((entry) => entry.date === getCurrentWeekDate(index)).reduce((daySum, entry) => daySum + Number(entry.amountMl || 0), 0), 0) / 7).toLocaleString()} ml/day</strong>
+                              </div>
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="text-slate-500">Fluid allowance</span>
+                                <strong className="text-slate-900">{fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`}</strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
@@ -1607,7 +1675,61 @@ export default function NutritionPage() {
             </div>
           </section>
 
-          {/* WEEKLY SUMMARY */}
+          <section className="nutrition-print-fluid nutrition-print-card mb-6 w-full rounded-2xl border border-slate-600 bg-slate-800 p-5 shadow-sm">
+            <div className="mb-3">
+              <h2 className="text-lg font-extrabold text-slate-100">Fluid intake</h2>
+              <p className="mt-1 text-sm text-slate-300">This shows the drinks you record; it does not estimate fluid from planned meals.</p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[1500px] table-fixed border-collapse">
+                <colgroup>
+                  <col style={{ width: "160px" }} />
+                  {days.map((day) => <col key={day} />)}
+                  <col style={{ width: "200px" }} />
+                </colgroup>
+                <thead>
+                  <tr className="border-b border-slate-600">
+                    <th className="px-2 py-3 text-left text-xs font-bold text-slate-300">Recorded fluid</th>
+                    {days.map((day) => (
+                      <th key={day} className="px-2 py-3 text-center text-xs font-bold text-slate-300">{day}</th>
+                    ))}
+                    <th className="border-l-2 border-slate-600 bg-slate-700 px-2 py-3 text-center text-xs font-bold uppercase tracking-wide text-slate-200">Daily average</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th className="px-2 py-4 text-left text-sm font-semibold text-slate-200">Drinks recorded</th>
+                    {days.map((day, index) => {
+                      const total = fluidEntries
+                        .filter((entry) => entry.date === getCurrentWeekDate(index))
+                        .reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0);
+                      return (
+                        <td key={day} className="px-2 py-4 text-center align-top">
+                          <div className="mx-auto rounded-xl border border-slate-600 bg-slate-700 px-2 py-3">
+                            <p className="text-lg font-extrabold text-white">{total.toLocaleString()} ml</p>
+                            <p className="mt-1 text-[10px] text-slate-300">{day}</p>
+                          </div>
+                        </td>
+                      );
+                    })}
+                    <td className="border-l-2 border-slate-600 bg-slate-700 px-2 py-4 text-center align-top">
+                      <p className="text-xs font-bold uppercase tracking-wide text-slate-300">Weekly daily average</p>
+                      <p className="mt-2 text-xl font-extrabold text-white">{Math.round(days.reduce((sum, day, index) => sum + fluidEntries.filter((entry) => entry.date === getCurrentWeekDate(index)).reduce((daySum, entry) => daySum + Number(entry.amountMl || 0), 0), 0) / 7).toLocaleString()} ml/day</p>
+                    </td>
+                  </tr>
+                  {fluidAllowanceMl !== null && (
+                    <tr>
+                      <td colSpan={9} className="px-2 pt-2 text-xs leading-5 text-slate-300">
+                        Personal allowance saved in My Diet: {fluidAllowanceMl.toLocaleString()} ml/day. This is your saved setting, not a target recommended by RenalPlan.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+                    {/* WEEKLY SUMMARY */}
           <section className="nutrition-print-summary nutrition-print-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 md:p-6">
             <div className="mb-5">
               <h2 className="text-2xl font-bold text-green-800">
@@ -1811,6 +1933,16 @@ export default function NutritionPage() {
 
                       </tr>
                     ))}
+                    <tr className="border-b border-slate-100">
+                      <td className="px-3 py-3 font-semibold text-slate-900">Fluid recorded</td>
+                      <td className="px-3 py-3 text-slate-700">{fluidEntries.filter((entry) => days.some((_, index) => entry.date === getCurrentWeekDate(index))).reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0).toLocaleString()} ml</td>
+                      <td className="px-3 py-3 text-slate-700">{Math.round(days.reduce((sum, _, index) => sum + fluidEntries.filter((entry) => entry.date === getCurrentWeekDate(index)).reduce((daySum, entry) => daySum + Number(entry.amountMl || 0), 0), 0) / 7).toLocaleString()} ml/day</td>
+                    </tr>
+                    <tr className="border-b border-slate-100 last:border-b-0">
+                      <td className="px-3 py-3 font-semibold text-slate-900">Personal fluid allowance</td>
+                      <td className="px-3 py-3 text-slate-700">{fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`}</td>
+                      <td className="px-3 py-3 text-slate-700">{fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -1880,6 +2012,8 @@ export default function NutritionPage() {
               </aside>
             </div>
           </section>
+
+
 
           <p className="nutrition-print-hidden mx-auto mt-5 max-w-5xl text-center text-xs leading-5 text-slate-500">
             RenalPlan nutrition figures are intended as a

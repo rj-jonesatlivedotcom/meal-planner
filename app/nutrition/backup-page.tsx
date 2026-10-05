@@ -657,6 +657,34 @@ export default function NutritionPage() {
     return totals;
   }, [weeklyTotals]);
 
+  // Fluid from planned meals is estimated from each recipe's fluidMl value.
+  // The saved planner also stores per-meal serving counts in mealPeople.
+  function plannedMealFluidForDay(day: Day): number {
+    const savedPlanner = plannerMeals as (PlannerMeals & {
+      mealPeople?: Record<string, Record<string, number>>;
+    }) | null;
+
+    return mealTypes.reduce((total, meal) => {
+      const recipe = getRecipe(plannerMeals ?? {}, day, meal);
+      if (!recipe) return total;
+      const recipeFluid = Number((recipe as Recipe & { fluidMl?: number }).fluidMl ?? 0);
+      const people = Number(savedPlanner?.mealPeople?.[day]?.[meal] ?? 1);
+      return total + (Number.isFinite(recipeFluid) ? recipeFluid : 0) * (Number.isFinite(people) && people > 0 ? people : 1);
+    }, 0);
+  }
+
+  function drinksFluidForDayIndex(dayIndex: number): number {
+    const date = getCurrentWeekDate(dayIndex);
+    return fluidEntries
+      .filter((entry) => entry.date === date)
+      .reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0);
+  }
+
+  function totalFluidForDayIndex(dayIndex: number): number {
+    return plannedMealFluidForDay(days[dayIndex]) + drinksFluidForDayIndex(dayIndex);
+  }
+
+  const weeklyFluidTotal = days.reduce((sum, _day, index) => sum + totalFluidForDayIndex(index), 0);
   const allPlannedRecipes = useMemo(() => {
     const result: Recipe[] = [];
 
@@ -1165,14 +1193,11 @@ export default function NutritionPage() {
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-pink-700">Fluid intake</p>
-                  <p className="mt-1 text-sm text-slate-500">Drinks recorded</p>
+                  <p className="mt-1 text-sm text-slate-500">Meals + drinks recorded</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xl font-extrabold text-slate-900">
-                    {fluidEntries
-                      .filter((entry) => entry.date === getCurrentWeekDate(days.indexOf(selectedDay)))
-                      .reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0)
-                      .toLocaleString()} ml
+                    {totalFluidForDayIndex(days.indexOf(selectedDay)).toLocaleString()} ml
                   </p>
                   <p className="mt-1 text-xs text-slate-500">{selectedDay}</p>
                 </div>
@@ -1634,7 +1659,7 @@ export default function NutritionPage() {
 
                               <div className="flex items-center justify-between gap-2">
                                 <span className="text-slate-500">Fluid recorded</span>
-                                <strong className="text-slate-900">{Math.round(days.reduce((sum, day, index) => sum + fluidEntries.filter((entry) => entry.date === getCurrentWeekDate(index)).reduce((daySum, entry) => daySum + Number(entry.amountMl || 0), 0), 0) / 7).toLocaleString()} ml/day</strong>
+                                <strong className="text-slate-900">{Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day</strong>
                               </div>
                               <div className="flex items-center justify-between gap-2">
                                 <span className="text-slate-500">Fluid allowance</span>
@@ -1702,7 +1727,7 @@ export default function NutritionPage() {
           <section className="nutrition-print-fluid nutrition-print-card mb-6 hidden w-full rounded-2xl border border-slate-600 bg-slate-800 p-5 shadow-sm md:block">
             <div className="mb-3">
               <h2 className="text-lg font-extrabold text-slate-100">Fluid intake</h2>
-              <p className="mt-1 text-sm text-slate-300">This shows the drinks you record; it does not estimate fluid from planned meals.</p>
+              <p className="mt-1 text-sm text-slate-300">Estimated fluid includes drinks you record plus fluid from the meals planned for each day.</p>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full table-fixed border-collapse">
@@ -1713,7 +1738,7 @@ export default function NutritionPage() {
                 </colgroup>
                 <thead>
                   <tr className="border-b border-slate-600">
-                    <th className="px-2 py-3 text-left text-xs font-bold text-slate-300">Recorded fluid</th>
+                    <th className="px-2 py-3 text-left text-xs font-bold text-slate-300">Total fluid</th>
                     {days.map((day) => (
                       <th key={day} className="px-2 py-3 text-center text-xs font-bold text-slate-300">{day}</th>
                     ))}
@@ -1722,23 +1747,24 @@ export default function NutritionPage() {
                 </thead>
                 <tbody>
                   <tr>
-                    <th className="px-2 py-4 text-left text-sm font-semibold text-slate-200">Drinks recorded</th>
+                    <th className="px-2 py-4 text-left text-sm font-semibold text-slate-200">Meals + drinks</th>
                     {days.map((day, index) => {
-                      const total = fluidEntries
-                        .filter((entry) => entry.date === getCurrentWeekDate(index))
-                        .reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0);
+                      const drinks = drinksFluidForDayIndex(index);
+                      const meals = plannedMealFluidForDay(day);
+                      const total = meals + drinks;
                       return (
                         <td key={day} className="px-2 py-4 text-center align-top">
                           <div className="mx-auto rounded-xl border border-slate-600 bg-slate-700 px-2 py-3">
                             <p className="text-lg font-extrabold text-white">{total.toLocaleString()} ml</p>
                             <p className="mt-1 text-[10px] text-slate-300">{day}</p>
+                            <p className="mt-1 text-[10px] text-slate-300">Meals {meals.toLocaleString()} ml · Drinks {drinks.toLocaleString()} ml</p>
                           </div>
                         </td>
                       );
                     })}
                     <td className="border-l-2 border-slate-600 bg-slate-700 px-2 py-4 text-center align-top">
                       <p className="text-xs font-bold uppercase tracking-wide text-slate-300">Weekly daily average</p>
-                      <p className="mt-2 text-xl font-extrabold text-white">{Math.round(days.reduce((sum, day, index) => sum + fluidEntries.filter((entry) => entry.date === getCurrentWeekDate(index)).reduce((daySum, entry) => daySum + Number(entry.amountMl || 0), 0), 0) / 7).toLocaleString()} ml/day</p>
+                      <p className="mt-2 text-xl font-extrabold text-white">{Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day</p>
                     </td>
                   </tr>
                   {fluidAllowanceMl !== null && (
@@ -1958,9 +1984,9 @@ export default function NutritionPage() {
                       </tr>
                     ))}
                     <tr className="border-b border-slate-100">
-                      <td className="px-3 py-3 font-semibold text-slate-900">Fluid recorded</td>
-                      <td className="px-3 py-3 text-slate-700">{fluidEntries.filter((entry) => days.some((_, index) => entry.date === getCurrentWeekDate(index))).reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0).toLocaleString()} ml</td>
-                      <td className="px-3 py-3 text-slate-700">{Math.round(days.reduce((sum, _, index) => sum + fluidEntries.filter((entry) => entry.date === getCurrentWeekDate(index)).reduce((daySum, entry) => daySum + Number(entry.amountMl || 0), 0), 0) / 7).toLocaleString()} ml/day</td>
+                      <td className="px-3 py-3 font-semibold text-slate-900">Total fluid (meals + drinks)</td>
+                      <td className="px-3 py-3 text-slate-700">{weeklyFluidTotal.toLocaleString()} ml</td>
+                      <td className="px-3 py-3 text-slate-700">{Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day</td>
                     </tr>
                     <tr className="border-b border-slate-100 last:border-b-0">
                       <td className="px-3 py-3 font-semibold text-slate-900">Personal fluid allowance</td>

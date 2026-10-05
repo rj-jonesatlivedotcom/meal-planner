@@ -3,65 +3,7 @@ import RenalPlan from "@/components/RenalPlan";
 
 export default function About() {
   return (
-    <main className="about-page min-h-screen bg-white text-slate-900">
-
-      <style>{`
-        /* About page dark mode — RenalPlan uses html[data-theme="dark"], not Tailwind's .dark class. */
-        html[data-theme="dark"] .about-page {
-          background: var(--background) !important;
-          color: var(--foreground) !important;
-        }
-
-        html[data-theme="dark"] .about-page > section {
-          background: linear-gradient(to bottom, #101820, #122b24) !important;
-        }
-
-        html[data-theme="dark"] .about-page .bg-green-50 {
-          background-color: #163126 !important;
-        }
-
-        html[data-theme="dark"] .about-page .bg-orange-50 {
-          background-color: #35291d !important;
-        }
-
-        html[data-theme="dark"] .about-page .bg-slate-50 {
-          background-color: #202e3a !important;
-        }
-
-        html[data-theme="dark"] .about-page .bg-amber-50 {
-          background-color: #403719 !important;
-        }
-
-        html[data-theme="dark"] .about-page .bg-red-50 {
-          background-color: #401f24 !important;
-        }
-
-        html[data-theme="dark"] .about-page .border-green-100 {
-          border-color: #285743 !important;
-        }
-
-        html[data-theme="dark"] .about-page .text-slate-900,
-        html[data-theme="dark"] .about-page .text-slate-800 {
-          color: #edf2f7 !important;
-        }
-
-        html[data-theme="dark"] .about-page .text-slate-700,
-        html[data-theme="dark"] .about-page .text-slate-600 {
-          color: #c0ccd6 !important;
-        }
-
-        html[data-theme="dark"] .about-page .text-slate-500 {
-          color: #aebbc7 !important;
-        }
-
-        html[data-theme="dark"] .about-page .text-green-700 {
-          color: #86efac !important;
-        }
-
-        html[data-theme="dark"] .about-page .hover\\:text-green-900:hover {
-          color: #bbf7d0 !important;
-        }
-      `}</style>
+    <main className="min-h-screen bg-white text-slate-900">
       <section className="bg-gradient-to-b from-white to-green-50 px-5 py-12 sm:px-8">
         <div className="mx-auto max-w-[1240px]">
 

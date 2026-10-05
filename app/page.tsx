@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const freeSteps = [
   {
@@ -248,6 +248,27 @@ const benefits = [
 
 export default function Home() {
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
+  const foodCheckVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = foodCheckVideoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+
+    const tryPlay = () => {
+      video.play().catch(() => {
+        // Some browsers may still block autoplay. The video remains usable
+        // without controls if the browser requires a user gesture.
+      });
+    };
+
+    tryPlay();
+
+    return () => {
+      video.pause();
+    };
+  }, []);
 
   return (
     <main className="renal-homepage min-h-screen overflow-hidden bg-white text-slate-900">
@@ -462,6 +483,42 @@ export default function Home() {
       </section>
 
       {/* =========================================================
+          DESKTOP SHOWCASE VIDEO
+      ========================================================= */}
+      <section
+        className="hidden px-4 py-6 sm:px-8 lg:block lg:px-10 lg:py-8"
+        aria-label="See RenalPlan in action"
+      >
+        <div className="mx-auto max-w-[1450px]">
+          <div className="mb-5 text-center">
+            <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
+              See Renal<span className="text-[#079447]">Plan</span> in action
+            </h2>
+            <p className="renal-home-section-copy mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f] sm:text-base">
+              From your dietary requirements to your weekly shop — all in one place.
+            </p>
+          </div>
+          <div className="renal-home-video-frame overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
+          <video
+            className="block h-auto w-full object-contain"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+          >
+            <source
+              src="/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video element.
+          </video>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
           FREE JOURNEY
       ========================================================= */}
       <section className="renal-home-free-section px-4 py-4 sm:px-8 lg:px-10">
@@ -528,6 +585,141 @@ export default function Home() {
                   )}
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          FOOD CHECK PROMOTION
+          Wider/taller demo with benefits alongside the video.
+      ========================================================= */}
+      <section className="renal-home-food-check px-4 py-5 sm:px-8 lg:px-10 lg:py-7">
+        <div className="mx-auto max-w-[1450px]">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-[#21445f] dark:bg-[#0c1b27]">
+            <div className="grid items-stretch gap-8 p-5 sm:p-7 lg:grid-cols-[1fr_0.9fr] lg:gap-10 lg:p-9">
+
+              {/* Copy */}
+              <div className="order-1 flex h-full flex-col lg:order-1">
+                <p className="text-xs font-extrabold tracking-[0.14em] text-[#079447] dark:text-[#45e08a]">
+                  FOOD CHECK
+                </p>
+
+                <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-slate-800 dark:text-white sm:text-4xl lg:text-[2.65rem]">
+                  Check food{" "}
+                  <span className="block text-[#079447] dark:text-[#45e08a]">before you buy it.</span>
+                </h2>
+
+                <p className="mt-4 max-w-[590px] text-sm leading-relaxed text-slate-600 dark:text-slate-300 sm:text-base lg:text-lg">
+                  See a food in the supermarket? RenalPlan gives you three simple
+                  ways to find it and check its nutritional information — so you
+                  can make a more informed choice.
+                </p>
+
+                <div className="mt-6 max-w-[610px] space-y-3">
+                  <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#29475c] dark:bg-[#122738]">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#079447] text-sm font-extrabold text-white">
+                      1
+                    </span>
+                    <div>
+                      <p className="text-sm font-extrabold text-slate-800 dark:text-white">
+                        Scan a barcode
+                      </p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300 sm:text-sm">
+                        Quickly scan the barcode on a food packet.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#29475c] dark:bg-[#122738]">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#079447] text-sm font-extrabold text-white">
+                      2
+                    </span>
+                    <div>
+                      <p className="text-sm font-extrabold text-slate-800 dark:text-white">
+                        Enter a barcode
+                      </p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300 sm:text-sm">
+                        If scanning isn't practical, enter the barcode number manually.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#29475c] dark:bg-[#122738]">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#079447] text-sm font-extrabold text-white">
+                      3
+                    </span>
+                    <div>
+                      <p className="text-sm font-extrabold text-slate-800 dark:text-white">
+                        Search for a food
+                      </p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300 sm:text-sm">
+                        Can't find a barcode? Search for the food by name instead.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  href="/promotional-material/food-check"
+                  className="mt-6 inline-flex min-h-[50px] items-center justify-center gap-3 rounded-xl bg-[#078f43] px-6 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#067b3a] hover:shadow-lg"
+                >
+                  Discover Food Check <span className="text-lg">→</span>
+                </Link>
+
+                <div className="mt-auto max-w-[610px] rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#29475c] dark:bg-[#122738]">
+                  <p className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#079447] dark:text-[#45e08a]">
+                    Nutritional reference
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-300 sm:text-sm">
+                    RenalPlan uses McCance and Widdowson’s
+                    <span className="font-semibold text-slate-700 dark:text-slate-200"> Composition of Foods Integrated Dataset (CoFID) 2021</span>
+                    {" "}as a key reference for food nutrient values.
+                  </p>
+                  <a
+                    href="https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-block text-xs font-bold text-[#1266c3] hover:underline dark:text-[#7db9ff]"
+                  >
+                    View the CoFID 2021 reference →
+                  </a>
+                </div>
+              </div>
+
+              {/* Video */}
+              <div className="order-2 lg:order-2">
+                <div className="mx-auto w-full max-w-[390px] lg:max-w-[430px]">
+                  <div className="mb-3 flex items-center justify-center">
+                    <span className="rounded-full bg-slate-100 px-5 py-2 text-xs font-extrabold tracking-wide text-emerald-600 shadow-sm dark:bg-[#102b3c] dark:text-[#45e08a]">
+                      SEE IT IN ACTION
+                    </span>
+                  </div>
+
+                  <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-[#29475c] dark:bg-[#061018]">
+                    <video
+                      ref={foodCheckVideoRef}
+                      className="block h-auto w-full"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      aria-label="RenalPlan Food Check barcode scanning demonstration"
+                    >
+                      <source src="/videos/RenalPlan_Barcode.mp4" type="video/mp4" />
+                      Your browser does not support the video element.
+                    </video>
+                  </div>
+
+                  <div className="mt-3 flex justify-center">
+                    <span className="rounded-full border border-slate-200 bg-slate-100 px-4 py-1.5 text-[11px] font-bold text-slate-600 shadow-sm dark:border-[#29475c] dark:bg-[#102b3c] dark:text-slate-200">
+                      Scan → Check → Choose
+                    </span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -603,53 +795,16 @@ export default function Home() {
       </section>
 
       {/* =========================================================
-          DESKTOP SHOWCASE VIDEO
-          Kept completely unchanged.
-      ========================================================= */}
-      <section
-        className="hidden px-4 py-6 sm:px-8 lg:block lg:px-10 lg:py-8"
-        aria-label="See RenalPlan in action"
-      >
-        <div className="mx-auto max-w-[1450px]">
-          <div className="mb-5 text-center">
-            <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
-              See Renal<span className="text-[#079447]">Plan</span> in action
-            </h2>
-            <p className="renal-home-section-copy mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f] sm:text-base">
-              From your dietary requirements to your weekly shop — all in one place.
-            </p>
-          </div>
-          <div className="renal-home-video-frame overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
-          <video
-            className="block h-auto w-full"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label="RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
-          >
-            <source
-              src="/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
-              type="video/mp4"
-            />
-            Your browser does not support the video element.
-          </video>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
           CLOSING CTA
       ========================================================= */}
       <section className="renal-home-cta border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-10 sm:px-8 lg:px-10 lg:py-12">
         <div className="renal-fade-up mx-auto max-w-[1400px] text-center">
           <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-4xl">
-            Plan <span className="text-[#079447]">→</span> Shop{" "}
-            <span className="text-[#079447]">→</span> Cook
+            Check <span className="text-[#079447]">→</span> Plan{" "}
+            <span className="text-[#079447]">→</span> Shop
             <br />
             with <span className="text-[#12396b]">Renal</span>
-            <span className="text-[#079447]">Plan</span>.
+            <span className="text-[#079447]">Plan</span>
           </h2>
 
           <Link
@@ -673,12 +828,20 @@ export default function Home() {
               <span className="text-[#079447]">Plan</span>
             </div>
 
-            <p className="mt-1 text-sm text-slate-500">
-              Kidney-friendly meals made easier
-            </p>
+            <Link
+              href="/privacy"
+              className="mt-1 inline-block text-sm font-semibold text-[#12396b] transition hover:text-[#079447]"
+            >
+              Security &amp; Data Protection
+            </Link>
           </div>
 
           <div className="flex flex-col items-center gap-2 text-sm text-slate-600 sm:items-end sm:text-right">
+            <Link href="/about" className="font-semibold transition hover:opacity-80">
+              <span className="renal-home-about-label">About </span><span className="text-[#12396b]">Renal</span>
+              <span className="text-[#079447]">Plan</span>
+            </Link>
+
             <span>
               <span>Do you have any questions or need help? </span>
               <a
@@ -688,11 +851,6 @@ export default function Home() {
                 Contact us
               </a>
             </span>
-
-            <Link href="/about" className="font-semibold transition hover:opacity-80">
-              <span className="renal-home-about-label">About </span><span className="text-[#12396b]">Renal</span>
-              <span className="text-[#079447]">Plan</span>
-            </Link>
           </div>
         </div>
       </footer>

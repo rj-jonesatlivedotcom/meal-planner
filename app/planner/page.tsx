@@ -1724,7 +1724,30 @@ if (total <= limit * 0.75) {
   );
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-5 md:px-6 md:py-6">
+    <>
+      <style>{`
+        html[data-theme="dark"] .planner-desktop-empty-slot {
+          background: linear-gradient(135deg, #162b3a 0%, #1b3445 100%) !important;
+          border-color: #52697a !important;
+          color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .planner-empty-slot:hover {
+          background: linear-gradient(135deg, #1b3445 0%, #203d50 100%) !important;
+          border-color: #6b8293 !important;
+        }
+
+        html[data-theme="dark"] .planner-desktop-empty-slot > span:first-child {
+          background: #263d4d !important;
+          color: #d7e4ee !important;
+        }
+
+        html[data-theme="dark"] .planner-empty-slot > span:last-child {
+          color: #d5dee7 !important;
+        }
+      `}</style>
+
+      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-5 md:px-6 md:py-6">
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
 
@@ -1877,7 +1900,7 @@ if (total <= limit * 0.75) {
                       meal: "Breakfast",
                     })
                   }
-                  className="group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
                 >
 
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
@@ -1980,7 +2003,7 @@ if (total <= limit * 0.75) {
                       meal: "Lunch",
                     })
                   }
-                  className="group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
                 >
 
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
@@ -2083,7 +2106,7 @@ if (total <= limit * 0.75) {
                       meal: "Dinner",
                     })
                   }
-                  className="group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
                 >
 
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
@@ -2226,7 +2249,7 @@ if (total <= limit * 0.75) {
                     className={`border-l border-slate-100 p-1.5 md:p-2 ${
                       recipe
                         ? "bg-orange-50/35"
-                        : "bg-white"
+                        : "planner-empty-slot"
                     }`}
                   >
 
@@ -2371,7 +2394,7 @@ if (total <= limit * 0.75) {
                     className={`border-l border-slate-100 p-1.5 md:p-2 ${
                       recipe
                         ? "bg-orange-50/35"
-                        : "bg-white"
+                        : "planner-empty-slot"
                     }`}
                   >
 
@@ -2517,7 +2540,7 @@ if (total <= limit * 0.75) {
                     className={`border-l border-slate-100 p-1.5 md:p-2 ${
                       recipe
                         ? "bg-orange-50/35"
-                        : "bg-white"
+                        : "planner-empty-slot"
                     }`}
                   >
 
@@ -2625,7 +2648,7 @@ if (total <= limit * 0.75) {
 
             {/* DAILY NUTRITION ROW */}
 
-            <div className="planner-nutrition-row relative z-[9998] grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ isolation: "isolate", pointerEvents: "auto" }}>
+            <div className="planner-nutrition-row relative z-10 grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ pointerEvents: "auto" }}>
 
               <div className="planner-nutrition-label flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
 
@@ -2865,7 +2888,7 @@ if (total <= limit * 0.75) {
 
       {/* PREMIUM LOGIN PROMPT */}
       {premiumPrompt && (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[15000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
           <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-xl">
               {premiumPrompt === "pick" ? "🎲" : "👥"}
@@ -2891,7 +2914,7 @@ if (total <= limit * 0.75) {
               </button>
 
               <a
-                href="/login"
+                href="/auth/login"
                 className="rounded-2xl bg-blue-600 px-4 py-3 text-center font-bold text-white transition hover:bg-blue-700"
               >
                 Log in
@@ -3234,6 +3257,7 @@ if (total <= limit * 0.75) {
       )}
 
     </main>
+    </>
   );
 }
 

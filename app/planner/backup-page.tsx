@@ -339,6 +339,8 @@ export default function WeeklyPlannerPage() {
   const [fluidAmount, setFluidAmount] = useState("200");
   const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [emptyPlannerPromptDismissed, setEmptyPlannerPromptDismissed] = useState(false);
+  const plannerWasEmptyRef = useRef(false);
 
   useEffect(() => {
     const currentTheme = document.documentElement.dataset.theme;
@@ -360,6 +362,24 @@ export default function WeeklyPlannerPage() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (plannerMeals === null) return;
+
+    const isEmpty = days.every((day) =>
+      mealTypes.every((meal) => !plannerMeals[day]?.[meal])
+    );
+
+    if (isEmpty && !plannerWasEmptyRef.current) {
+      setEmptyPlannerPromptDismissed(false);
+    }
+
+    if (!isEmpty) {
+      setEmptyPlannerPromptDismissed(false);
+    }
+
+    plannerWasEmptyRef.current = isEmpty;
+  }, [plannerMeals]);
 
   useEffect(() => {
     setFluidEntries(readFluidLog());
@@ -1131,6 +1151,7 @@ export default function WeeklyPlannerPage() {
 
     setPlannerMeals(createEmptyPlanner());
     setMealPeople(createEmptyMealPeople());
+    setEmptyPlannerPromptDismissed(false);
     localStorage.removeItem("planner-pending-slot");
     setShowClearConfirm(false);
   }
@@ -1396,12 +1417,23 @@ if (total <= limit * 0.75) {
       return (
         <button
           type="button"
+          onPointerDown={(event) => {
+            // Desktop layout can swallow the later click despite the pointer cursor.
+            // Open on pointer-down and stop bubbling to any planner-level handlers.
+            if (event.pointerType === "mouse") {
+              event.preventDefault();
+              event.stopPropagation();
+              setFluidDate(date);
+              setFluidModalOpen(true);
+            }
+          }}
           onClick={(event) => {
             event.stopPropagation();
             setFluidDate(date);
             setFluidModalOpen(true);
           }}
-          className={`planner-fluid-card relative z-20 isolate flex min-h-[112px] w-full min-w-[82px] cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border px-2 py-3 text-center font-extrabold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${desktop ? "sm:min-h-[124px] sm:px-2.5" : ""}`}
+          style={{ pointerEvents: "auto", touchAction: "manipulation", position: "relative", zIndex: 10000, cursor: "pointer" }}
+          className={`planner-fluid-card relative z-[10000] isolate flex min-h-[112px] w-full min-w-[82px] cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border px-2 py-3 text-center font-extrabold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${desktop ? "sm:min-h-[124px] sm:px-2.5" : ""}`}
           aria-label={`${day}: ${total} ml estimated from planned meals and recorded drinks. Open fluid tracker`}
           title={`${day}: ${planned} ml from planned meals + ${drinks} ml drinks recorded. Click to view or edit.`}
         >
@@ -1712,7 +1744,36 @@ if (total <= limit * 0.75) {
     plannerMeals[selectedDay].Dinner
   );
 
+  const plannerIsCompletelyEmpty = days.every((day) =>
+    mealTypes.every((meal) => !plannerMeals[day]?.[meal])
+  );
+
+  const showEmptyPlannerPrompt =
+    plannerIsCompletelyEmpty && !emptyPlannerPromptDismissed;
+
   return (
+    <>
+<style>{`
+  html[data-theme="dark"] .planner-desktop-empty-slot {
+    background: linear-gradient(135deg, #162b3a 0%, #1b3445 100%) !important;
+    border-color: #52697a !important;
+  }
+
+  html[data-theme="dark"] .planner-desktop-empty-slot:hover {
+    background: linear-gradient(135deg, #1b3445 0%, #203d50 100%) !important;
+    border-color: #6b8293 !important;
+  }
+
+  html[data-theme="dark"] .planner-desktop-empty-slot > span:first-child {
+    background: #263d4d !important;
+    color: #edf2f7 !important;
+  }
+
+  html[data-theme="dark"] .planner-desktop-empty-slot > span:last-child {
+    color: #d5dee7 !important;
+  }
+`}</style>
+
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-5 md:px-6 md:py-6">
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
@@ -2107,10 +2168,6 @@ if (total <= limit * 0.75) {
                   value={nutritionView}
                   onChange={(event) => {
                     setNutritionView(event.target.value as NutritionView);
-                    if (event.target.value === "Fluid") {
-                      setFluidDate(getLocalDateKey());
-                      setFluidModalOpen(true);
-                    }
                   }}
                   className="mt-1.5 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-700 outline-none transition focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"
                   aria-label="Choose daily nutrition"
@@ -2301,7 +2358,7 @@ if (total <= limit * 0.75) {
                             meal: "Breakfast",
                           })
                         }
-                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
+                        className="planner-desktop-empty-slot group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
                       >
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
@@ -2447,7 +2504,7 @@ if (total <= limit * 0.75) {
                             meal: "Lunch",
                           })
                         }
-                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
+                        className="planner-desktop-empty-slot group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
                       >
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
@@ -2593,7 +2650,7 @@ if (total <= limit * 0.75) {
                             meal: "Dinner",
                           })
                         }
-                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
+                        className="planner-desktop-empty-slot group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
                       >
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
@@ -2618,7 +2675,7 @@ if (total <= limit * 0.75) {
 
             {/* DAILY NUTRITION ROW */}
 
-            <div className="planner-nutrition-row grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70">
+            <div className="planner-nutrition-row relative z-[9998] grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ isolation: "isolate", pointerEvents: "auto" }}>
 
               <div className="planner-nutrition-label flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
 
@@ -2632,10 +2689,6 @@ if (total <= limit * 0.75) {
                     value={nutritionView}
                     onChange={(event) => {
                       setNutritionView(event.target.value as NutritionView);
-                      if (event.target.value === "Fluid") {
-                        setFluidDate(getLocalDateKey());
-                        setFluidModalOpen(true);
-                      }
                     }}
                     className="planner-nutrition-select w-full rounded-xl border border-slate-200 bg-white px-2 py-1.5 text-[10px] font-bold text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                     aria-label="Choose daily nutrition"
@@ -2663,17 +2716,17 @@ if (total <= limit * 0.75) {
 
                   <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
                     <span className="flex items-center gap-1.5">
-                      <span className="h-2 w-2 rounded-full bg-green-500" />
+                      <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: "#22c55e", width: "8px", height: "8px", minWidth: "8px", minHeight: "8px", display: "inline-block", opacity: 1 }} />
                       Low
                     </span>
 
                     <span className="flex items-center gap-1.5">
-                      <span className="h-2 w-2 rounded-full bg-amber-400" />
+                      <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: "#fbbf24", width: "8px", height: "8px", minWidth: "8px", minHeight: "8px", display: "inline-block", opacity: 1 }} />
                       Moderate
                     </span>
 
                     <span className="flex items-center gap-1.5">
-                      <span className="h-2 w-2 rounded-full bg-red-500" />
+                      <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: "#ef4444", width: "8px", height: "8px", minWidth: "8px", minHeight: "8px", display: "inline-block", opacity: 1 }} />
                       High
                     </span>
                   </div>
@@ -2686,7 +2739,7 @@ if (total <= limit * 0.75) {
 
                 <div
                   key={`nutrition-${day}-${nutritionView}`}
-                  className="planner-nutrition-cell flex min-h-[118px] items-center justify-center border-l border-slate-100 px-1 py-3"
+                  className="planner-nutrition-cell relative z-[9999] flex min-h-[118px] items-center justify-center border-l border-slate-100 px-1 py-3" style={{ isolation: "isolate", pointerEvents: "auto" }}
                 >
                   <Tricirculus
                     day={day}
@@ -2860,9 +2913,88 @@ if (total <= limit * 0.75) {
 
       )}
 
+      {/* EMPTY PLANNER WELCOME PROMPT */}
+      {showEmptyPlannerPrompt && (
+        <div className="fixed inset-0 z-[15000] flex items-center justify-center bg-black/25 p-4 backdrop-blur-[2px]">
+          <div
+            className="w-full max-w-md rounded-3xl border p-6 text-center shadow-2xl"
+            style={{
+              backgroundColor: theme === "dark" ? "#102331" : "#ffffff",
+              borderColor: theme === "dark" ? "#31566d" : "#e2e8f0",
+              color: theme === "dark" ? "#f8fafc" : "#0f172a",
+            }}
+          >
+            <div
+              className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl text-2xl shadow-sm"
+              style={{
+                backgroundColor: theme === "dark" ? "#1d3a4c" : "#fff7ed",
+              }}
+              aria-hidden="true"
+            >
+              🍽️
+            </div>
+
+            <h2
+              className="mt-4 text-xl font-extrabold tracking-tight sm:text-2xl"
+              style={{ color: theme === "dark" ? "#f8fafc" : "#12396b" }}
+            >
+              Your week is ready to fill
+            </h2>
+
+            <p
+              className="mx-auto mt-2 max-w-sm text-sm leading-6"
+              style={{ color: theme === "dark" ? "#cbd5e1" : "#475569" }}
+            >
+              Choose your meals here, or let RenalPlan pick them for you.
+            </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <button
+                type="button"
+                onClick={() => setEmptyPlannerPromptDismissed(true)}
+                className="rounded-2xl border-2 px-4 py-3.5 text-sm font-extrabold transition hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: theme === "dark" ? "#172f3f" : "#ffffff",
+                  borderColor: theme === "dark" ? "#42657a" : "#cbd5e1",
+                  color: theme === "dark" ? "#f8fafc" : "#17385f",
+                }}
+              >
+                Choose my meals
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setEmptyPlannerPromptDismissed(true);
+                  startPickForMe();
+                }}
+                disabled={isDiceRolling}
+                className="rounded-2xl border-2 px-4 py-3.5 text-sm font-extrabold transition hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: theme === "dark" ? "#7c2d12" : "#ff6b00",
+                  borderColor: theme === "dark" ? "#9a3412" : "#ff6b00",
+                  color: theme === "dark" ? "#fff7ed" : "#000000",
+                }}
+              >
+                🎲 Let RenalPlan pick for me
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setEmptyPlannerPromptDismissed(true)}
+              className="mt-4 text-xs font-bold underline underline-offset-4 transition"
+              style={{ color: theme === "dark" ? "#a9c3d4" : "#64748b" }}
+            >
+              Not now
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* PREMIUM LOGIN PROMPT */}
       {premiumPrompt && (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[15000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
           <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-xl">
               {premiumPrompt === "pick" ? "🎲" : "👥"}
@@ -2888,7 +3020,7 @@ if (total <= limit * 0.75) {
               </button>
 
               <a
-                href="/login"
+                href="/auth/login"
                 className="rounded-2xl bg-blue-600 px-4 py-3 text-center font-bold text-white transition hover:bg-blue-700"
               >
                 Log in
@@ -3179,7 +3311,7 @@ if (total <= limit * 0.75) {
       )}
 
       {fluidModalOpen && (
-        <div className="fixed inset-0 z-[10000] flex items-end justify-center bg-slate-950/60 p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="fluid-tracker-title">
+        <div className="fixed inset-0 z-[20000] flex items-end justify-center bg-slate-950/60 p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="fluid-tracker-title">
           <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl sm:rounded-3xl sm:p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -3231,6 +3363,7 @@ if (total <= limit * 0.75) {
       )}
 
     </main>
+    </>
   );
 }
 

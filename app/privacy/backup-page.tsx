@@ -1,88 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function PrivacyPage() {
-  const router = useRouter();
-
   return (
-    <main className="privacy-page min-h-screen bg-slate-50 px-5 py-8 sm:py-10">
-
-      <style>{`
-        html[data-theme="dark"] .privacy-page {
-          background: #0f1c28 !important;
-          color: #edf2f7 !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .privacy-article {
-          background: #172634 !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .privacy-header,
-        html[data-theme="dark"] .privacy-page .privacy-footer {
-          border-color: #33495a !important;
-          background: #142330 !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .privacy-icon {
-          background: #20384d !important;
-          color: #8fc2ff !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .text-slate-900 {
-          color: #f1f5f9 !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .text-slate-700,
-        html[data-theme="dark"] .privacy-page .text-slate-600 {
-          color: #c5d0da !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .text-slate-500 {
-          color: #aebbc7 !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .privacy-dietary {
-          border-color: #36536b !important;
-          background: #1b3142 !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .privacy-dietary-title {
-          color: #8fc2ff !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .privacy-notice {
-          border-color: #3c5365 !important;
-          background: #202f3b !important;
-        }
-
-        html[data-theme="dark"] .privacy-page .privacy-back-top,
-        html[data-theme="dark"] .privacy-page .privacy-back-link {
-          color: #ffffff !important;
-        }
-      `}</style>
-
-      <style>{`
-        html[data-theme="dark"] .privacy-back-link {
-          color: #ffffff !important;
-        }
-      `}</style>
-      <div className="mx-auto max-w-[1400px]">
+    <main className="min-h-screen bg-slate-50 px-5 py-8 sm:py-10">
+      <div className="mx-auto max-w-4xl">
         <div className="mb-6">
-          <button
-            type="button"
-            onClick={() => router.back()}
-            className="privacy-back-top font-semibold text-[#0B3B75] hover:underline"
+          <Link
+            href="/account"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#0B3B75] hover:underline"
           >
-            ← Back
-          </button>
+            <span aria-hidden="true">←</span>
+            Back to My Account
+          </Link>
         </div>
 
-        <article className="privacy-article w-full overflow-hidden rounded-3xl bg-white shadow-sm">
-          <div className="privacy-header border-b border-slate-200 px-6 py-7 sm:px-10 sm:py-9">
+        <article className="overflow-hidden rounded-3xl bg-white shadow-sm">
+          <div className="border-b border-slate-200 px-6 py-7 sm:px-10 sm:py-9">
             <div className="flex items-start gap-4">
-              <div className="privacy-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-[#0B3B75]">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-[#0B3B75]">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -168,8 +105,8 @@ export default function PrivacyPage() {
                 </li>
               </ul>
 
-              <div className="privacy-dietary mt-5 rounded-2xl border border-blue-100 bg-blue-50/60 p-5">
-                <h3 className="privacy-dietary-title font-bold text-[#0B3B75]">
+              <div className="mt-5 rounded-2xl border border-blue-100 bg-blue-50/60 p-5">
+                <h3 className="font-bold text-[#0B3B75]">
                   Dietary information
                 </h3>
                 <p className="mt-2 leading-7 text-slate-700">
@@ -375,7 +312,7 @@ export default function PrivacyPage() {
               </p>
             </section>
 
-            <section className="privacy-notice rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <section className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
               <h2 className="text-lg font-extrabold text-slate-900">
                 Privacy questions or requests
               </h2>
@@ -394,14 +331,13 @@ export default function PrivacyPage() {
             </section>
           </div>
 
-          <div className="privacy-footer border-t border-slate-200 bg-slate-50 px-6 py-5 sm:px-10">
-            <button
-              type="button"
-              onClick={() => router.back()}
-              className="privacy-back-link font-semibold text-[#0B3B75] hover:underline"
+          <div className="border-t border-slate-200 bg-slate-50 px-6 py-5 sm:px-10">
+            <Link
+              href="/account"
+              className="font-semibold text-[#0B3B75] hover:underline"
             >
-              ← Back
-            </button>
+              ← Back to My Account
+            </Link>
           </div>
         </article>
       </div>

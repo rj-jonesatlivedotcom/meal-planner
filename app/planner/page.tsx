@@ -1773,6 +1773,16 @@ if (total <= limit * 0.75) {
   return (
     <>
       <style>{`
+/* Planner meal-card remove buttons: keep the X black in dark mode. */
+html[data-theme="dark"] main .planner-remove-button,
+html[data-theme="dark"] main .planner-remove-button:hover,
+html[data-theme="dark"] main .planner-remove-button:focus-visible {
+  color: #000000 !important;
+}
+html[data-theme="dark"] main .planner-remove-button {
+  background-color: #ffffff !important;
+}
+
         html[data-theme="dark"] .planner-desktop-empty-slot {
           background: linear-gradient(135deg, #162b3a 0%, #1b3445 100%) !important;
           border-color: #52697a !important;
@@ -1930,7 +1940,7 @@ if (total <= limit * 0.75) {
                           "Breakfast"
                         )
                       }
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm leading-none text-slate-500 transition hover:bg-white/80 hover:text-red-600"
+                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold leading-none text-black transition hover:bg-white/80 hover:text-red-600"
                       aria-label="Remove breakfast"
                       title="Remove breakfast"
                     >
@@ -2033,7 +2043,7 @@ if (total <= limit * 0.75) {
                           "Lunch"
                         )
                       }
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm leading-none text-slate-500 transition hover:bg-white/80 hover:text-red-600"
+                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold leading-none text-black transition hover:bg-white/80 hover:text-red-600"
                       aria-label="Remove lunch"
                       title="Remove lunch"
                     >
@@ -2136,7 +2146,7 @@ if (total <= limit * 0.75) {
                           "Dinner"
                         )
                       }
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm leading-none text-slate-500 transition hover:bg-white/80 hover:text-red-600"
+                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold leading-none text-black transition hover:bg-white/80 hover:text-red-600"
                       aria-label="Remove dinner"
                       title="Remove dinner"
                     >
@@ -2349,7 +2359,7 @@ if (total <= limit * 0.75) {
         "Breakfast"
       )
     }
-    className="absolute bottom-1.5 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-[#12396b] shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
+    className="planner-remove-button absolute bottom-1.5 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/95 text-xs font-bold leading-none text-black shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
     aria-label={`Remove ${recipe.name}`}
     title={`Remove ${recipe.name}`}
   >
@@ -2495,7 +2505,7 @@ if (total <= limit * 0.75) {
                                 "Lunch"
                               )
                             }
-                            className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-[#12396b] shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
+                            className="planner-remove-button absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/95 text-xs font-bold leading-none text-black shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -2641,7 +2651,7 @@ if (total <= limit * 0.75) {
                                 "Dinner"
                               )
                             }
-                            className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-[#12396b] shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
+                            className="planner-remove-button absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/95 text-xs font-bold leading-none text-black shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >

@@ -339,6 +339,20 @@ export default function WeeklyPlannerPage() {
   const [fluidAmount, setFluidAmount] = useState("200");
   const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [emptyPlannerPromptDismissed, setEmptyPlannerPromptDismissed] = useState(false);
+  const plannerWasEmptyRef = useRef(false);
+  // Prevent a mobile tap that dismisses the welcome prompt from being
+  // retargeted to an underlying planner control by the browser.
+  const suppressPlannerClickUntilRef = useRef(0);
+
+  function dismissEmptyPlannerPrompt() {
+    // Mobile browsers can finish a touch with a click after React has
+    // already removed the popup. Keep the planner click-blocked briefly
+    // so that same physical tap cannot open an empty-slot picker underneath.
+    suppressPlannerClickUntilRef.current = Date.now() + 600;
+    setEmptyPlannerPromptDismissed(true);
+  }
+
 
   useEffect(() => {
     const currentTheme = document.documentElement.dataset.theme;
@@ -360,6 +374,24 @@ export default function WeeklyPlannerPage() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (plannerMeals === null) return;
+
+    const isEmpty = days.every((day) =>
+      mealTypes.every((meal) => !plannerMeals[day]?.[meal])
+    );
+
+    if (isEmpty && !plannerWasEmptyRef.current) {
+      setEmptyPlannerPromptDismissed(false);
+    }
+
+    if (!isEmpty) {
+      setEmptyPlannerPromptDismissed(false);
+    }
+
+    plannerWasEmptyRef.current = isEmpty;
+  }, [plannerMeals]);
 
   useEffect(() => {
     setFluidEntries(readFluidLog());
@@ -1723,6 +1755,21 @@ if (total <= limit * 0.75) {
     plannerMeals[selectedDay].Dinner
   );
 
+  const plannerIsCompletelyEmpty = days.every((day) =>
+    mealTypes.every((meal) => !plannerMeals[day]?.[meal])
+  );
+
+  const selectedDayIsEmpty = mealTypes.every(
+    (meal) => !plannerMeals[selectedDay]?.[meal]
+  );
+
+  // Desktop keeps the original behaviour: show the welcome prompt only when
+  // the entire week is empty. On mobile, show it when the day being viewed
+  // is empty as well, because mobile only displays one day at a time.
+  const showEmptyPlannerPrompt =
+    (plannerIsCompletelyEmpty || selectedDayIsEmpty) &&
+    !emptyPlannerPromptDismissed;
+
   return (
     <>
       <style>{`
@@ -1759,7 +1806,15 @@ if (total <= limit * 0.75) {
         html[data-theme="dark"] .planner-clear-week-button { background: #202e3a !important; color: #f8fafc !important; border-color: #9a6b24 !important; }
       `}</style>
 
-      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-5 md:px-6 md:py-6">
+      <main
+        className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-5 md:px-6 md:py-6"
+        onClickCapture={(event) => {
+          if (Date.now() < suppressPlannerClickUntilRef.current) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }}
+      >
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
 
@@ -2900,6 +2955,91 @@ if (total <= limit * 0.75) {
 
         </div>
 
+      )}
+
+      {/* EMPTY PLANNER WELCOME PROMPT */}
+      {showEmptyPlannerPrompt && (
+        <div
+          className={`${
+            plannerIsCompletelyEmpty
+              ? "fixed inset-0 z-[30000] flex items-center justify-center bg-black/25 p-4 backdrop-blur-[2px]"
+              : "fixed inset-0 z-[30000] flex items-center justify-center bg-black/25 p-4 backdrop-blur-[2px] md:hidden"
+          }`}
+          onPointerDown={(event) => event.stopPropagation()}
+          onClick={(event) => event.stopPropagation()}
+        >
+          <div
+            className="w-full max-w-md rounded-3xl border p-6 text-center shadow-2xl"
+            style={{
+              backgroundColor: theme === "dark" ? "#102331" : "#ffffff",
+              borderColor: theme === "dark" ? "#31566d" : "#e2e8f0",
+              color: theme === "dark" ? "#f8fafc" : "#0f172a",
+            }}
+          >
+            <div
+              className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl text-2xl shadow-sm"
+              style={{ backgroundColor: theme === "dark" ? "#1d3a4c" : "#fff7ed" }}
+              aria-hidden="true"
+            >
+              🍽️
+            </div>
+
+            <h2
+              className="mt-4 text-xl font-extrabold tracking-tight sm:text-2xl"
+              style={{ color: theme === "dark" ? "#f8fafc" : "#12396b" }}
+            >
+              Your week is ready to fill
+            </h2>
+
+            <p
+              className="mx-auto mt-2 max-w-sm text-sm leading-6"
+              style={{ color: theme === "dark" ? "#cbd5e1" : "#475569" }}
+            >
+              Choose your meals here, or let RenalPlan pick them for you.
+            </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <button
+                type="button"
+                onClick={dismissEmptyPlannerPrompt}
+                className="rounded-2xl border-2 px-4 py-3.5 text-sm font-extrabold transition hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: theme === "dark" ? "#172f3f" : "#ffffff",
+                  borderColor: theme === "dark" ? "#42657a" : "#cbd5e1",
+                  color: theme === "dark" ? "#f8fafc" : "#17385f",
+                }}
+              >
+                Choose my meals
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  dismissEmptyPlannerPrompt();
+                  startPickForMe();
+                }}
+                disabled={isDiceRolling}
+                className="rounded-2xl border-2 px-4 py-3.5 text-sm font-extrabold transition hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: theme === "dark" ? "#7c2d12" : "#ff6b00",
+                  borderColor: theme === "dark" ? "#9a3412" : "#ff6b00",
+                  color: theme === "dark" ? "#fff7ed" : "#000000",
+                }}
+              >
+                🎲 Let RenalPlan pick for me
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={dismissEmptyPlannerPrompt}
+              className="mt-4 text-xs font-bold underline underline-offset-4 transition"
+              style={{ color: theme === "dark" ? "#a9c3d4" : "#64748b" }}
+            >
+              Not now
+            </button>
+          </div>
+        </div>
       )}
 
       {/* PREMIUM LOGIN PROMPT */}

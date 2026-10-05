@@ -815,65 +815,6 @@ export default function FoodCheckPage() {
 
   /*
    * ---------------------------------------------------------
-   * LOGGED OUT
-   * ---------------------------------------------------------
-   */
-
-  if (!signedIn) {
-    return (
-      <main className="min-h-screen bg-slate-50">
-        <div className="mx-auto max-w-[900px] px-4 py-10 lg:px-8 lg:py-14">
-          <section className="overflow-hidden rounded-[28px] border border-green-100 bg-white shadow-sm">
-            <div className="bg-gradient-to-br from-green-50 via-white to-blue-50 px-6 py-12 text-center sm:px-10 sm:py-16">
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-4xl">
-                🔎
-              </div>
-
-              <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-blue-950 sm:text-4xl">
-                Food Check
-              </h1>
-
-              <p className="mx-auto mt-4 max-w-xl text-lg leading-7 text-slate-600">
-                Search the CoFID 2021 database and view
-                detailed nutritional information for
-                thousands of UK foods.
-              </p>
-
-              <div className="mx-auto mt-7 max-w-xl rounded-2xl border border-blue-100 bg-blue-50 px-5 py-5">
-                <p className="font-bold text-blue-950">
-                  Please log in to use Food Check.
-                </p>
-
-                <p className="mt-1 text-sm leading-6 text-slate-600">
-                  Your Food Check database is available
-                  to logged-in RenalPlan users.
-                </p>
-
-                <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
-                  <a
-                    href="/auth/login"
-                    className="rounded-xl border border-slate-300 bg-white px-6 py-3 font-bold text-slate-900 transition hover:bg-slate-50"
-                  >
-                    Log in
-                  </a>
-
-                  <a
-                    href="/signup"
-                    className="rounded-xl bg-green-600 px-6 py-3 font-bold text-white transition hover:bg-green-700"
-                  >
-                    Sign up
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </main>
-    );
-  }
-
-  /*
-   * ---------------------------------------------------------
    * LOGGED-IN PAGE
    * ---------------------------------------------------------
    */
@@ -1538,6 +1479,54 @@ export default function FoodCheckPage() {
         </section>
 
       </div>
+
+      {!signedIn && (
+        <div className="fixed inset-x-0 bottom-0 top-[64px] z-[40] flex items-center justify-center bg-slate-900/35 p-4 backdrop-blur-[1px] md:top-[88px]">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="food-check-login-title"
+            className="w-full max-w-[480px] overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-2xl"
+          >
+            <div className="px-7 py-8 text-center sm:px-9 sm:py-9">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 text-3xl">
+                🔒
+              </div>
+
+              <h2
+                id="food-check-login-title"
+                className="mt-5 text-2xl font-extrabold tracking-tight text-[#12396b] sm:text-3xl"
+              >
+                Log in to use Food Check
+              </h2>
+
+              <p className="mx-auto mt-3 max-w-md text-base leading-7 text-slate-600">
+                Log in to your RenalPlan account to search foods, scan barcodes and view detailed nutritional information.
+              </p>
+
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                <a
+                  href="/auth/login"
+                  className="rounded-xl bg-[#174a86] px-5 py-3.5 font-bold text-white transition hover:bg-[#123d70]"
+                >
+                  Log in
+                </a>
+
+                <a
+                  href="/signup"
+                  className="rounded-xl bg-orange-500 px-5 py-3.5 font-bold text-white transition hover:bg-orange-600"
+                >
+                  Create account
+                </a>
+              </div>
+
+              <p className="mt-4 text-sm text-slate-500">
+                Your Food Check access is available with your RenalPlan account.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

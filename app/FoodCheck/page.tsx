@@ -1481,52 +1481,77 @@ export default function FoodCheckPage() {
       </div>
 
       {!signedIn && (
-        <div className="fixed inset-x-0 bottom-0 top-[88px] z-[15000] flex items-center justify-center bg-white/65 p-4 backdrop-blur-sm">
+        <div className="fixed inset-x-0 bottom-0 top-[64px] z-[40] flex items-center justify-center bg-white/20 p-4 backdrop-blur-[2px] md:top-[88px]">
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="food-check-login-title"
-            className="w-full max-w-[480px] overflow-hidden rounded-[28px] bg-white shadow-2xl dark:border dark:border-[#29445a] dark:bg-[#10212f]"
+            className="food-check-login-modal w-full max-w-md rounded-3xl bg-white/95 p-7 text-center shadow-2xl ring-1 ring-slate-200"
           >
-            <div className="px-7 py-8 text-center sm:px-9 sm:py-9">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 text-3xl dark:bg-[#2d2b20]">
-                🔒
-              </div>
-
-              <h2
-                id="food-check-login-title"
-                className="mt-5 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-3xl"
-              >
-                Log in to use Food Check
-              </h2>
-
-              <p className="mx-auto mt-3 max-w-md text-base leading-7 text-slate-600 dark:text-slate-300">
-                Log in to your RenalPlan account to search foods, scan barcodes and view detailed nutritional information.
-              </p>
-
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                <a
-                  href="/auth/login"
-                  className="rounded-xl bg-[#174a86] px-5 py-3.5 font-bold text-white transition hover:bg-[#123d70]"
-                >
-                  Log in
-                </a>
-
-                <a
-                  href="/signup"
-                  className="rounded-xl bg-orange-500 px-5 py-3.5 font-bold text-white transition hover:bg-orange-600"
-                >
-                  Create account
-                </a>
-              </div>
-
-              <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
-                Your Food Check access is available with your RenalPlan account.
-              </p>
+            <div className="food-check-login-icon mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-2xl">
+              🔒
             </div>
+
+            <h2
+              id="food-check-login-title"
+              className="food-check-login-title mt-4 text-2xl font-extrabold text-slate-900"
+            >
+              Log in to use Food Check
+            </h2>
+
+            <p className="food-check-login-description mt-3 text-sm leading-6 text-slate-600">
+              Log in to your RenalPlan account to search foods, scan barcodes and view detailed nutritional information.
+            </p>
+
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <a
+                href="/auth/login"
+                className="rounded-2xl bg-[#0B3B75] px-4 py-3 text-center font-bold text-white transition hover:bg-[#082E5C]"
+              >
+                Log in
+              </a>
+
+              <a
+                href="/signup"
+                className="rounded-2xl bg-orange-500 px-4 py-3 text-center font-bold text-white transition hover:bg-orange-600"
+              >
+                Create account
+              </a>
+            </div>
+
+            <p className="food-check-login-footnote mt-4 text-xs text-slate-500">
+              Your Food Check access is available with your RenalPlan account.
+            </p>
           </div>
         </div>
       )}
+
+      <style jsx global>{`
+        /* Keep Food Check's restricted-access popup consistent with the
+           My Diet and Nutrition popups while preserving the mobile
+           navigation fix. */
+        html[data-theme="dark"] .food-check-login-modal {
+          background-color: #172838 !important;
+          border-color: #526575 !important;
+          color: #f1f5f9 !important;
+        }
+
+        html[data-theme="dark"] .food-check-login-icon {
+          background-color: #202f3b !important;
+        }
+
+        html[data-theme="dark"] .food-check-login-title {
+          color: #f8fafc !important;
+        }
+
+        html[data-theme="dark"] .food-check-login-description {
+          color: #d7e2eb !important;
+        }
+
+        html[data-theme="dark"] .food-check-login-footnote {
+          color: #aab8c5 !important;
+        }
+      `}</style>
     </main>
   );
 }

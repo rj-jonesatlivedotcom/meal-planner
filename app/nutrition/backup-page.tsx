@@ -1724,10 +1724,10 @@ export default function NutritionPage() {
             </div>
           </section>
 
-          <section className="nutrition-print-fluid nutrition-print-card mb-6 hidden w-full rounded-2xl border border-slate-600 bg-slate-800 p-5 shadow-sm md:block">
+          <section className="nutrition-print-fluid nutrition-print-card mb-6 hidden w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-600 dark:bg-slate-800 md:block">
             <div className="mb-3">
-              <h2 className="text-lg font-extrabold text-slate-100">Fluid intake</h2>
-              <p className="mt-1 text-sm text-slate-300">Estimated fluid includes drinks you record plus fluid from the meals planned for each day.</p>
+              <h2 className="text-lg font-extrabold text-slate-900 dark:text-slate-100">Fluid intake</h2>
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-300">Estimated fluid includes drinks you record plus fluid from the meals planned for each day.</p>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full table-fixed border-collapse">
@@ -1737,39 +1737,39 @@ export default function NutritionPage() {
                   <col />
                 </colgroup>
                 <thead>
-                  <tr className="border-b border-slate-600">
-                    <th className="px-2 py-3 text-left text-xs font-bold text-slate-300">Total fluid</th>
+                  <tr className="border-b border-slate-200 dark:border-slate-600">
+                    <th className="px-2 py-3 text-left text-xs font-bold text-slate-500 dark:text-slate-300">Total fluid</th>
                     {days.map((day) => (
-                      <th key={day} className="px-2 py-3 text-center text-xs font-bold text-slate-300">{day}</th>
+                      <th key={day} className="px-2 py-3 text-center text-xs font-bold text-slate-500 dark:text-slate-300">{day}</th>
                     ))}
-                    <th className="border-l-2 border-slate-600 bg-slate-700 px-2 py-3 text-center text-xs font-bold uppercase tracking-wide text-slate-200">Daily average</th>
+                    <th className="border-l-2 border-slate-200 bg-slate-50 px-2 py-3 text-center text-xs font-bold uppercase tracking-wide text-slate-600 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200">Daily average</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th className="px-2 py-4 text-left text-sm font-semibold text-slate-200">Meals + drinks</th>
+                    <th className="px-2 py-4 text-left text-sm font-semibold text-slate-700 dark:text-slate-200">Meals + drinks</th>
                     {days.map((day, index) => {
                       const drinks = drinksFluidForDayIndex(index);
                       const meals = plannedMealFluidForDay(day);
                       const total = meals + drinks;
                       return (
                         <td key={day} className="px-2 py-4 text-center align-top">
-                          <div className="mx-auto rounded-xl border border-slate-600 bg-slate-700 px-2 py-3">
-                            <p className="text-lg font-extrabold text-white">{total.toLocaleString()} ml</p>
-                            <p className="mt-1 text-[10px] text-slate-300">{day}</p>
-                            <p className="mt-1 text-[10px] text-slate-300">Meals {meals.toLocaleString()} ml · Drinks {drinks.toLocaleString()} ml</p>
+                          <div className="mx-auto rounded-xl border border-slate-200 bg-slate-50 px-2 py-3 dark:border-slate-600 dark:bg-slate-700">
+                            <p className="text-lg font-extrabold text-slate-900 dark:text-white">{total.toLocaleString()} ml</p>
+                            <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-300">{day}</p>
+                            <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-300">Meals {meals.toLocaleString()} ml · Drinks {drinks.toLocaleString()} ml</p>
                           </div>
                         </td>
                       );
                     })}
-                    <td className="border-l-2 border-slate-600 bg-slate-700 px-2 py-4 text-center align-top">
-                      <p className="text-xs font-bold uppercase tracking-wide text-slate-300">Weekly daily average</p>
-                      <p className="mt-2 text-xl font-extrabold text-white">{Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day</p>
+                    <td className="border-l-2 border-slate-200 bg-slate-50 px-2 py-4 text-center align-top dark:border-slate-600 dark:bg-slate-700">
+                      <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-300">Weekly daily average</p>
+                      <p className="mt-2 text-xl font-extrabold text-slate-900 dark:text-white">{Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day</p>
                     </td>
                   </tr>
                   {fluidAllowanceMl !== null && (
                     <tr>
-                      <td colSpan={9} className="px-2 pt-2 text-xs leading-5 text-slate-300">
+                      <td colSpan={9} className="px-2 pt-2 text-xs leading-5 text-slate-500 dark:text-slate-300">
                         Personal allowance saved in My Diet: {fluidAllowanceMl.toLocaleString()} ml/day. This is your saved setting, not a target recommended by RenalPlan.
                       </td>
                     </tr>

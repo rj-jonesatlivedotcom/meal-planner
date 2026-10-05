@@ -339,6 +339,20 @@ export default function WeeklyPlannerPage() {
   const [fluidAmount, setFluidAmount] = useState("200");
   const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [emptyPlannerPromptDismissed, setEmptyPlannerPromptDismissed] = useState(false);
+  const plannerWasEmptyRef = useRef(false);
+  // Prevent a mobile tap that dismisses the welcome prompt from being
+  // retargeted to an underlying planner control by the browser.
+  const suppressPlannerClickUntilRef = useRef(0);
+
+  function dismissEmptyPlannerPrompt() {
+    // Mobile browsers can finish a touch with a click after React has
+    // already removed the popup. Keep the planner click-blocked briefly
+    // so that same physical tap cannot open an empty-slot picker underneath.
+    suppressPlannerClickUntilRef.current = Date.now() + 600;
+    setEmptyPlannerPromptDismissed(true);
+  }
+
 
   useEffect(() => {
     const currentTheme = document.documentElement.dataset.theme;
@@ -360,6 +374,24 @@ export default function WeeklyPlannerPage() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (plannerMeals === null) return;
+
+    const isEmpty = days.every((day) =>
+      mealTypes.every((meal) => !plannerMeals[day]?.[meal])
+    );
+
+    if (isEmpty && !plannerWasEmptyRef.current) {
+      setEmptyPlannerPromptDismissed(false);
+    }
+
+    if (!isEmpty) {
+      setEmptyPlannerPromptDismissed(false);
+    }
+
+    plannerWasEmptyRef.current = isEmpty;
+  }, [plannerMeals]);
 
   useEffect(() => {
     setFluidEntries(readFluidLog());
@@ -1723,6 +1755,21 @@ if (total <= limit * 0.75) {
     plannerMeals[selectedDay].Dinner
   );
 
+  const plannerIsCompletelyEmpty = days.every((day) =>
+    mealTypes.every((meal) => !plannerMeals[day]?.[meal])
+  );
+
+  const selectedDayIsEmpty = mealTypes.every(
+    (meal) => !plannerMeals[selectedDay]?.[meal]
+  );
+
+  // Desktop keeps the original behaviour: show the welcome prompt only when
+  // the entire week is empty. On mobile, show it when the day being viewed
+  // is empty as well, because mobile only displays one day at a time.
+  const showEmptyPlannerPrompt =
+    (plannerIsCompletelyEmpty || selectedDayIsEmpty) &&
+    !emptyPlannerPromptDismissed;
+
   return (
     <>
       <style>{`
@@ -1745,9 +1792,29 @@ if (total <= limit * 0.75) {
         html[data-theme="dark"] .planner-empty-slot > span:last-child {
           color: #d5dee7 !important;
         }
+
+        html[data-theme="dark"] .planner-nutrition-link {
+          background: #1f2d38 !important;
+          color: #f1f5f9 !important;
+          border-color: #405363 !important;
+        }
+        html[data-theme="dark"] .planner-nutrition-title { color: #f8fafc !important; }
+        html[data-theme="dark"] .planner-nutrition-description { color: #cbd5e1 !important; }
+        html[data-theme="dark"] .planner-nutrition-icon,
+        html[data-theme="dark"] .planner-nutrition-arrow { background: #334451 !important; color: #7dd3fc !important; }
+        html[data-theme="dark"] .planner-pick-for-me-button { background: #7c2d12 !important; color: #fff7ed !important; border-color: #9a3412 !important; }
+        html[data-theme="dark"] .planner-clear-week-button { background: #202e3a !important; color: #f8fafc !important; border-color: #9a6b24 !important; }
       `}</style>
 
-      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-5 md:px-6 md:py-6">
+      <main
+        className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-5 md:px-6 md:py-6"
+        onClickCapture={(event) => {
+          if (Date.now() < suppressPlannerClickUntilRef.current) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }}
+      >
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
 
@@ -1779,7 +1846,9 @@ if (total <= limit * 0.75) {
                   title={`${day}${isSelected ? " — selected planner day" : ""}`}
                   className={`relative min-w-0 rounded-xl px-1 py-2.5 text-[11px] font-bold transition ${
                     isSelected
-                      ? "bg-emerald-600 text-white ring-2 ring-emerald-300 shadow-sm"
+                      ? theme === "dark"
+                        ? "bg-emerald-600 text-white ring-2 ring-emerald-300 shadow-sm"
+                        : "bg-sky-100 text-sky-800 ring-2 ring-sky-300 shadow-sm"
                       : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-emerald-50 hover:text-emerald-800"
                   }`}
                 >
@@ -1787,7 +1856,9 @@ if (total <= limit * 0.75) {
                   {isSelected && (
                     <span
                       aria-hidden="true"
-                      className="mx-auto mt-1 block h-1 w-1 rounded-full bg-white"
+                      className={`mx-auto mt-1 block h-1 w-1 rounded-full ${
+                        theme === "dark" ? "bg-white" : "bg-sky-600"
+                      }`}
                     />
                   )}
                 </button>
@@ -2278,7 +2349,7 @@ if (total <= limit * 0.75) {
         "Breakfast"
       )
     }
-    className="absolute bottom-1.5 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
+    className="absolute bottom-1.5 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-[#12396b] shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
     aria-label={`Remove ${recipe.name}`}
     title={`Remove ${recipe.name}`}
   >
@@ -2331,7 +2402,7 @@ if (total <= limit * 0.75) {
                             meal: "Breakfast",
                           })
                         }
-                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
+                        className="planner-desktop-empty-slot group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
                       >
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
@@ -2424,7 +2495,7 @@ if (total <= limit * 0.75) {
                                 "Lunch"
                               )
                             }
-                            className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
+                            className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-[#12396b] shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -2477,7 +2548,7 @@ if (total <= limit * 0.75) {
                             meal: "Lunch",
                           })
                         }
-                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
+                        className="planner-desktop-empty-slot group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
                       >
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
@@ -2570,7 +2641,7 @@ if (total <= limit * 0.75) {
                                 "Dinner"
                               )
                             }
-                            className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-slate-400 shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
+                            className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-xs font-medium leading-none text-[#12396b] shadow-sm ring-1 ring-black/5 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -2623,7 +2694,7 @@ if (total <= limit * 0.75) {
                             meal: "Dinner",
                           })
                         }
-                        className="group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
+                        className="planner-desktop-empty-slot group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
                       >
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
@@ -2739,11 +2810,11 @@ if (total <= limit * 0.75) {
               onClick={startPickForMe}
               disabled={isDiceRolling}
               style={{
-                backgroundColor: theme === "dark" ? "#7c2d12" : "#ff6b00",
-                color: theme === "dark" ? "#fff7ed" : "#000000",
-                borderColor: theme === "dark" ? "#9a3412" : "#ff6b00",
+                backgroundColor: theme === "dark" ? "#7c2d12" : "#fed7aa",
+                color: theme === "dark" ? "#fff7ed" : "#12396b",
+                borderColor: theme === "dark" ? "#9a3412" : "#fdba74",
               }}
-              className={`group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-orange-500 bg-orange-500 px-3 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base ${
+              className={`planner-pick-for-me-button group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-3 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base ${
                 isDiceRolling
                   ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
                   : ""
@@ -2770,9 +2841,9 @@ if (total <= limit * 0.75) {
               onClick={() => setShowClearConfirm(true)}
               aria-label="Clear Week"
               style={{
-                backgroundColor: theme === "dark" ? "#202e3a" : "#34d399",
-                color: theme === "dark" ? "#f8fafc" : "#000000",
-                borderColor: theme === "dark" ? "#9a6b24" : "#10b981",
+                backgroundColor: theme === "dark" ? "#202e3a" : "#d1fae5",
+                color: theme === "dark" ? "#f8fafc" : "#12396b",
+                borderColor: theme === "dark" ? "#9a6b24" : "#a7f3d0",
               }}
               className="planner-clear-week-button flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-2 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base"
             >
@@ -2820,16 +2891,16 @@ if (total <= limit * 0.75) {
           <Link
             href="/nutrition"
             aria-label="Go to Nutrition"
-            className="group order-3 flex w-full items-center justify-between rounded-3xl bg-sky-50 p-4 text-left text-slate-900 shadow-md ring-1 ring-sky-200 transition duration-200 hover:-translate-y-0.5 hover:bg-sky-100 hover:shadow-lg hover:ring-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 dark:bg-slate-800 dark:text-slate-100 dark:ring-slate-600 dark:hover:bg-slate-700 md:order-2 md:w-[30%] md:flex-none md:p-5"
+            className="group order-3 flex w-full items-center justify-between rounded-3xl bg-sky-50 p-4 text-left text-slate-900 shadow-md ring-1 ring-sky-200 transition duration-200 hover:-translate-y-0.5 hover:bg-sky-100 hover:shadow-lg hover:ring-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 md:order-2 md:w-[30%] md:flex-none md:p-5"
           >
             <div className="flex min-w-0 items-center gap-3">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-xl dark:bg-slate-700">📊</span>
+              <span className="planner-nutrition-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-xl">📊</span>
               <div className="min-w-0">
-                <h2 className="text-base font-bold text-slate-900 dark:text-slate-100 md:text-lg">Go to Nutrition</h2>
-                <p className="mt-0.5 text-xs leading-5 text-slate-700 dark:text-slate-300 md:text-sm">Review your weekly nutrition and fluid intake.</p>
+                <h2 className="planner-nutrition-title text-base font-bold text-slate-900 md:text-lg">Go to Nutrition</h2>
+                <p className="planner-nutrition-description mt-0.5 text-xs leading-5 text-slate-700 md:text-sm">Review your weekly nutrition and fluid intake.</p>
               </div>
             </div>
-            <span className="ml-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-100 text-xl font-bold text-sky-700 transition group-hover:translate-x-1 group-hover:bg-sky-600 group-hover:text-white dark:bg-slate-700 dark:text-sky-300 dark:group-hover:bg-sky-600 dark:group-hover:text-white" aria-hidden="true">→</span>
+            <span className="planner-nutrition-arrow ml-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-100 text-xl font-bold text-sky-700 transition group-hover:translate-x-1 group-hover:bg-sky-600 group-hover:text-white" aria-hidden="true">→</span>
           </Link>
 
 
@@ -2842,7 +2913,7 @@ if (total <= limit * 0.75) {
 
       {showClearConfirm && (
 
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
 
           <div className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-2xl">
 
@@ -2886,9 +2957,94 @@ if (total <= limit * 0.75) {
 
       )}
 
+      {/* EMPTY PLANNER WELCOME PROMPT */}
+      {showEmptyPlannerPrompt && (
+        <div
+          className={`${
+            plannerIsCompletelyEmpty
+              ? "fixed inset-0 z-[30000] flex items-center justify-center bg-black/25 p-4 backdrop-blur-[2px]"
+              : "fixed inset-0 z-[30000] flex items-center justify-center bg-black/25 p-4 backdrop-blur-[2px] md:hidden"
+          }`}
+          onPointerDown={(event) => event.stopPropagation()}
+          onClick={(event) => event.stopPropagation()}
+        >
+          <div
+            className="w-full max-w-md rounded-3xl border p-6 text-center shadow-2xl"
+            style={{
+              backgroundColor: theme === "dark" ? "#102331" : "#ffffff",
+              borderColor: theme === "dark" ? "#31566d" : "#e2e8f0",
+              color: theme === "dark" ? "#f8fafc" : "#0f172a",
+            }}
+          >
+            <div
+              className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl text-2xl shadow-sm"
+              style={{ backgroundColor: theme === "dark" ? "#1d3a4c" : "#fff7ed" }}
+              aria-hidden="true"
+            >
+              🍽️
+            </div>
+
+            <h2
+              className="mt-4 text-xl font-extrabold tracking-tight sm:text-2xl"
+              style={{ color: theme === "dark" ? "#f8fafc" : "#12396b" }}
+            >
+              Your week is ready to fill
+            </h2>
+
+            <p
+              className="mx-auto mt-2 max-w-sm text-sm leading-6"
+              style={{ color: theme === "dark" ? "#cbd5e1" : "#475569" }}
+            >
+              Choose your meals here, or let RenalPlan pick them for you.
+            </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <button
+                type="button"
+                onClick={dismissEmptyPlannerPrompt}
+                className="rounded-2xl border-2 px-4 py-3.5 text-sm font-extrabold transition hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: theme === "dark" ? "#172f3f" : "#ffffff",
+                  borderColor: theme === "dark" ? "#42657a" : "#cbd5e1",
+                  color: theme === "dark" ? "#f8fafc" : "#17385f",
+                }}
+              >
+                Choose my meals
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  dismissEmptyPlannerPrompt();
+                  startPickForMe();
+                }}
+                disabled={isDiceRolling}
+                className="rounded-2xl border-2 px-4 py-3.5 text-sm font-extrabold transition hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: theme === "dark" ? "#7c2d12" : "#ff6b00",
+                  borderColor: theme === "dark" ? "#9a3412" : "#ff6b00",
+                  color: theme === "dark" ? "#fff7ed" : "#000000",
+                }}
+              >
+                🎲 Let RenalPlan pick for me
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={dismissEmptyPlannerPrompt}
+              className="mt-4 text-xs font-bold underline underline-offset-4 transition"
+              style={{ color: theme === "dark" ? "#a9c3d4" : "#64748b" }}
+            >
+              Not now
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* PREMIUM LOGIN PROMPT */}
       {premiumPrompt && (
-        <div className="fixed inset-0 z-[15000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
           <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-xl">
               {premiumPrompt === "pick" ? "🎲" : "👥"}
@@ -2935,7 +3091,7 @@ if (total <= limit * 0.75) {
 
       {showPickConfirm && (
 
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
 
           <div className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-2xl">
 
@@ -2996,7 +3152,7 @@ if (total <= limit * 0.75) {
 
       {peoplePicker && (
 
-        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
 
           <div className="w-full max-w-xs rounded-3xl bg-white p-6 shadow-2xl">
 
@@ -3086,7 +3242,7 @@ if (total <= limit * 0.75) {
 
       {picker && (
 
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
 
           <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
 

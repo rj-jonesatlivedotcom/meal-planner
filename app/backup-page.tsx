@@ -82,7 +82,7 @@ const freeSteps = [
     href: "/shopping",
     cardClass: "border-blue-100 bg-blue-50/60",
     numberClass: "bg-blue-500",
-    iconClass: "bg-blue-50 text-blue-600",
+    iconClass: "text-blue-600",
     icon: (
       <svg viewBox="0 0 64 64" className="h-5 w-5 sm:h-9 sm:w-9" aria-hidden="true">
         <path
@@ -345,6 +345,130 @@ export default function Home() {
           animation: renalPulse 2.8s ease-in-out infinite;
         }
 
+        html[data-theme="dark"] .renal-homepage .renal-home-brand-renal {
+          color: #93c5fd !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-brand-plan {
+          color: #86efac !important;
+        }
+
+        /* Homepage Food Check promotion: light by default, dark only when RenalPlan
+           itself is in dark mode. Do not use Tailwind dark: variants here because the
+           site's theme is controlled by html[data-theme], not the device preference. */
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check > div > div {
+          background: #0c1b27 !important;
+          border-color: #21445f !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check .border-slate-200 {
+          border-color: #29475c !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check .bg-slate-50 {
+          background: #122738 !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check h2 {
+          color: #ffffff !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check h2 span {
+          color: #45e08a !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check p {
+          color: #cbd5e1 !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check .text-slate-800,
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check .text-slate-700 {
+          color: #edf2f7 !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check .text-slate-600 {
+          color: #cbd5e1 !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check .text-[#079447] {
+          color: #45e08a !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check .text-[#1266c3] {
+          color: #7db9ff !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-food-check a[href="/promotional-material/food-check"] {
+          color: #ffffff !important;
+        }
+
+        /* Homepage benefit statements: blue in light mode, light in dark mode. */
+        .renal-homepage .renal-home-benefit,
+        .renal-homepage .renal-home-benefit > span:last-child {
+          color: #12396b !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-benefit,
+        html[data-theme="dark"] .renal-homepage .renal-home-benefit > span:last-child {
+          color: #edf2f7 !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-feature-card {
+          border-color: #29475c;
+          background: #1b3040;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-feature-card:hover {
+          background: #21394b;
+        }
+
+        /* Feature pop-ups: use the same lighter RenalPlan palette as the navbar. */
+        html[data-theme="dark"] .renal-homepage .renal-feature-modal {
+          background: #162b3a !important;
+          border-color: #29475c !important;
+          color: #e6f0f7 !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-feature-modal-title {
+          color: #93c5fd !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-feature-modal-eyebrow {
+          color: #86efac !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-feature-modal-description,
+        html[data-theme="dark"] .renal-homepage .renal-feature-modal-list {
+          color: #d5e2ec !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-feature-modal-close {
+          background: #21394b !important;
+          color: #e6f0f7 !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-feature-modal-signin,
+        html.dark .renal-homepage .renal-feature-modal-signin,
+        body.dark .renal-homepage .renal-feature-modal-signin {
+          border-color: #93c5fd !important;
+          background: #93c5fd !important;
+          color: #93c5fd !important;
+          opacity: 1 !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-feature-modal-signin:hover,
+        html.dark .renal-homepage .renal-feature-modal-signin:hover,
+        body.dark .renal-homepage .renal-feature-modal-signin:hover {
+          background: #bfdbfe !important;
+          color: #93c5fd !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-feature-modal-bullet {
+          background: #dff5e8 !important;
+          color: #078f43 !important;
+        }
+
+
         @media (prefers-reduced-motion: reduce) {
           .renal-fade-up,
           .renal-fade-in,
@@ -387,7 +511,7 @@ export default function Home() {
 
             <p className="renal-home-hero-copy mt-5 max-w-[620px] text-base leading-[1.48] text-[#17385f] sm:mt-6 sm:text-lg lg:text-[1.18rem]">
               Browse kidney-friendly recipes, or create a free account to
-              personalise RenalPlan to your dietary requirements.
+              personalise <span className="renal-home-brand-renal text-[#12396b]">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> to your dietary requirements.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
@@ -408,16 +532,16 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-start gap-x-4 gap-y-2 sm:mt-7 sm:max-w-[650px] sm:gap-x-5">
+            <div className="mt-6 grid grid-cols-3 gap-2 sm:mt-7 sm:flex sm:max-w-[650px] sm:gap-x-5">
               {benefits.map((benefit) => (
                 <div
                   key={benefit}
-                  className="renal-home-benefit flex items-start gap-1.5 text-left text-[11px] font-semibold leading-tight text-[#17385f] sm:items-center sm:gap-2 sm:text-sm"
+                  className="renal-home-benefit flex min-w-0 flex-col items-center gap-1.5 text-center text-xs font-semibold leading-tight !text-[#12396b] sm:flex-row sm:items-center sm:gap-2 sm:text-left sm:text-sm"
                 >
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#079447] text-[11px] font-extrabold text-white sm:h-6 sm:w-6">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#079447] text-[12px] font-extrabold text-white">
                     ✓
                   </span>
-                  <span>{benefit}</span>
+                  <span className="!text-[#12396b]">{benefit}</span>
                 </div>
               ))}
             </div>
@@ -450,7 +574,7 @@ export default function Home() {
         <div className="mx-auto w-full max-w-[760px]">
           <div className="text-center">
             <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
-              See Renal<span className="text-[#079447]">Plan</span> in action
+              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> in action
             </h2>
 
             <p className="mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f]">
@@ -492,7 +616,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1450px]">
           <div className="mb-5 text-center">
             <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
-              See Renal<span className="text-[#079447]">Plan</span> in action
+              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> in action
             </h2>
             <p className="renal-home-section-copy mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f] sm:text-base">
               From your dietary requirements to your weekly shop — all in one place.
@@ -596,64 +720,64 @@ export default function Home() {
       ========================================================= */}
       <section className="renal-home-food-check px-4 py-5 sm:px-8 lg:px-10 lg:py-7">
         <div className="mx-auto max-w-[1450px]">
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-[#21445f] dark:bg-[#0c1b27]">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
             <div className="grid items-stretch gap-8 p-5 sm:p-7 lg:grid-cols-[1fr_0.9fr] lg:gap-10 lg:p-9">
 
               {/* Copy */}
               <div className="order-1 flex h-full flex-col lg:order-1">
-                <p className="text-xs font-extrabold tracking-[0.14em] text-[#079447] dark:text-[#45e08a]">
+                <p className="text-xs font-extrabold tracking-[0.14em] text-[#079447]">
                   FOOD CHECK
                 </p>
 
-                <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-slate-800 dark:text-white sm:text-4xl lg:text-[2.65rem]">
+                <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-slate-800 sm:text-4xl lg:text-[2.65rem]">
                   Check food{" "}
-                  <span className="block text-[#079447] dark:text-[#45e08a]">before you buy it.</span>
+                  <span className="block text-[#079447]">before you buy it.</span>
                 </h2>
 
-                <p className="mt-4 max-w-[590px] text-sm leading-relaxed text-slate-600 dark:text-slate-300 sm:text-base lg:text-lg">
-                  See a food in the supermarket? RenalPlan gives you three simple
+                <p className="mt-4 max-w-[590px] text-sm leading-relaxed text-slate-600 sm:text-base lg:text-lg">
+                  See a food in the supermarket? <span className="renal-home-brand-renal text-slate-800">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> gives you three simple
                   ways to find it and check its nutritional information — so you
                   can make a more informed choice.
                 </p>
 
-                <div className="mt-6 max-w-[610px] space-y-3">
-                  <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#29475c] dark:bg-[#122738]">
+                <div className="mt-6 max-w-[610px]">
+                  <div className="flex items-start gap-3 border-b border-slate-200 py-3">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#079447] text-sm font-extrabold text-white">
                       1
                     </span>
                     <div>
-                      <p className="text-sm font-extrabold text-slate-800 dark:text-white">
+                      <p className="text-sm font-extrabold text-slate-800">
                         Scan a barcode
                       </p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300 sm:text-sm">
+                      <p className="mt-0.5 text-xs leading-relaxed text-slate-600 sm:text-sm">
                         Quickly scan the barcode on a food packet.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#29475c] dark:bg-[#122738]">
+                  <div className="flex items-start gap-3 border-b border-slate-200 py-3">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#079447] text-sm font-extrabold text-white">
                       2
                     </span>
                     <div>
-                      <p className="text-sm font-extrabold text-slate-800 dark:text-white">
+                      <p className="text-sm font-extrabold text-slate-800">
                         Enter a barcode
                       </p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300 sm:text-sm">
+                      <p className="mt-0.5 text-xs leading-relaxed text-slate-600 sm:text-sm">
                         If scanning isn't practical, enter the barcode number manually.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#29475c] dark:bg-[#122738]">
+                  <div className="flex items-start gap-3 py-3">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#079447] text-sm font-extrabold text-white">
                       3
                     </span>
                     <div>
-                      <p className="text-sm font-extrabold text-slate-800 dark:text-white">
+                      <p className="text-sm font-extrabold text-slate-800">
                         Search for a food
                       </p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300 sm:text-sm">
+                      <p className="mt-0.5 text-xs leading-relaxed text-slate-600 sm:text-sm">
                         Can't find a barcode? Search for the food by name instead.
                       </p>
                     </div>
@@ -667,20 +791,20 @@ export default function Home() {
                   Discover Food Check <span className="text-lg">→</span>
                 </Link>
 
-                <div className="mt-auto max-w-[610px] rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#29475c] dark:bg-[#122738]">
-                  <p className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#079447] dark:text-[#45e08a]">
+                <div className="mt-auto max-w-[610px] rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+                  <p className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#079447]">
                     Nutritional reference
                   </p>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-300 sm:text-sm">
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600 sm:text-sm">
                     RenalPlan uses McCance and Widdowson’s
-                    <span className="font-semibold text-slate-700 dark:text-slate-200"> Composition of Foods Integrated Dataset (CoFID) 2021</span>
+                    <span className="font-semibold text-slate-700"> Composition of Foods Integrated Dataset (CoFID) 2021</span>
                     {" "}as a key reference for food nutrient values.
                   </p>
                   <a
                     href="https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-1 inline-block text-xs font-bold text-[#1266c3] hover:underline dark:text-[#7db9ff]"
+                    className="mt-1 inline-block text-xs font-bold text-[#1266c3] hover:underline"
                   >
                     View the CoFID 2021 reference →
                   </a>
@@ -690,13 +814,8 @@ export default function Home() {
               {/* Video */}
               <div className="order-2 lg:order-2">
                 <div className="mx-auto w-full max-w-[390px] lg:max-w-[430px]">
-                  <div className="mb-3 flex items-center justify-center">
-                    <span className="rounded-full bg-slate-100 px-5 py-2 text-xs font-extrabold tracking-wide text-emerald-600 shadow-sm dark:bg-[#102b3c] dark:text-[#45e08a]">
-                      SEE IT IN ACTION
-                    </span>
-                  </div>
 
-                  <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-[#29475c] dark:bg-[#061018]">
+                  <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
                     <video
                       ref={foodCheckVideoRef}
                       className="block h-auto w-full"
@@ -710,12 +829,6 @@ export default function Home() {
                       <source src="/videos/RenalPlan_Barcode.mp4" type="video/mp4" />
                       Your browser does not support the video element.
                     </video>
-                  </div>
-
-                  <div className="mt-3 flex justify-center">
-                    <span className="rounded-full border border-slate-200 bg-slate-100 px-4 py-1.5 text-[11px] font-bold text-slate-600 shadow-sm dark:border-[#29475c] dark:bg-[#102b3c] dark:text-slate-200">
-                      Scan → Check → Choose
-                    </span>
                   </div>
                 </div>
               </div>
@@ -738,11 +851,11 @@ export default function Home() {
 
               <h2 className="renal-home-section-title mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl lg:text-[2.25rem]">
                 Get more with a free{" "}
-                <span><span className="text-[#1266c3]">Renal</span><span className="text-[#079447]">Plan</span></span> account
+                <span><span className="renal-home-brand-renal text-[#1266c3]">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span></span> account
               </h2>
 
               <p className="renal-home-section-copy mt-3 max-w-[430px] text-sm leading-relaxed text-slate-700 sm:text-base">
-                Personalise RenalPlan to your needs and unlock extra features
+                Personalise <span className="renal-home-brand-renal text-[#12396b]">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> to your needs and unlock extra features
                 that make meal planning even easier.
               </p>
             </div>
@@ -768,16 +881,16 @@ export default function Home() {
 
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="renal-home-card-title font-bold text-[#12396b]">
+                        <h3 className="renal-home-card-title font-bold text-[#12396b] dark:text-[#93c5fd]">
                           {feature.title}
                         </h3>
 
                         {feature.badge && (
-                          <span className="rounded-full bg-[#ffb15c] px-2.5 py-0.5 text-[10px] font-bold text-white">
+                          <span className="rounded-full bg-[#ffb15c] px-2.5 py-0.5 text-[10px] font-bold text-[#12396b]">
                             {feature.badge}
                           </span>
                         )}
-                        <span className="ml-auto text-lg text-[#1266c3] transition group-hover:translate-x-0.5" aria-hidden="true">
+                        <span className="ml-auto text-lg text-[#1266c3] transition group-hover:translate-x-0.5 dark:text-[#7db9ff]" aria-hidden="true">
                           →
                         </span>
                       </div>
@@ -803,8 +916,8 @@ export default function Home() {
             Check <span className="text-[#079447]">→</span> Plan{" "}
             <span className="text-[#079447]">→</span> Shop
             <br />
-            with <span className="text-[#12396b]">Renal</span>
-            <span className="text-[#079447]">Plan</span>
+            with <span className="renal-home-brand-renal text-[#12396b]">Renal</span>
+            <span className="renal-home-brand-plan text-[#079447]">Plan</span>
           </h2>
 
           <Link
@@ -824,16 +937,24 @@ export default function Home() {
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
           <div>
             <div className="text-lg font-bold">
-              <span className="text-[#12396b]">Renal</span>
-              <span className="text-[#079447]">Plan</span>
+              <span className="renal-home-brand-renal text-[#12396b]">Renal</span>
+              <span className="renal-home-brand-plan text-[#079447]">Plan</span>
             </div>
 
-            <p className="mt-1 text-sm text-slate-500">
-              Kidney-friendly meals made easier
-            </p>
+            <Link
+              href="/privacy"
+              className="mt-1 inline-block text-sm font-semibold text-[#1266c3] transition hover:text-[#079447] hover:underline"
+            >
+              Security and Data Protection
+            </Link>
           </div>
 
           <div className="flex flex-col items-center gap-2 text-sm text-slate-600 sm:items-end sm:text-right">
+            <Link href="/about" className="font-semibold transition hover:opacity-80">
+              <span className="renal-home-about-label">About </span><span className="renal-home-brand-renal text-[#12396b]">Renal</span>
+              <span className="renal-home-brand-plan text-[#079447]">Plan</span>
+            </Link>
+
             <span>
               <span>Do you have any questions or need help? </span>
               <a
@@ -843,11 +964,6 @@ export default function Home() {
                 Contact us
               </a>
             </span>
-
-            <Link href="/about" className="font-semibold transition hover:opacity-80">
-              <span className="renal-home-about-label">About </span><span className="text-[#12396b]">Renal</span>
-              <span className="text-[#079447]">Plan</span>
-            </Link>
           </div>
         </div>
       </footer>
@@ -864,24 +980,24 @@ export default function Home() {
             aria-modal="true"
             aria-labelledby="renal-feature-modal-title"
             aria-describedby="renal-feature-modal-description"
-            className="relative max-h-[90dvh] w-full max-w-xl overflow-y-auto rounded-t-3xl bg-white p-6 pb-7 shadow-2xl sm:rounded-3xl sm:p-8"
+            className="renal-feature-modal relative max-h-[90dvh] w-full max-w-xl overflow-y-auto rounded-t-3xl border border-transparent bg-white p-6 pb-7 shadow-2xl sm:rounded-3xl sm:p-8"
           >
             <button
               type="button"
               onClick={() => setSelectedFeature(null)}
               aria-label="Close feature information"
-              className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-2xl leading-none text-slate-600 transition hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1266c3]"
+              className="renal-feature-modal-close absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-2xl leading-none text-slate-600 transition hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7db9ff]"
             >
               ×
             </button>
 
             <div className="pr-10">
-              <p className="text-xs font-extrabold tracking-[0.14em] text-[#078f43]">
+              <p className="renal-feature-modal-eyebrow text-xs font-extrabold tracking-[0.14em] text-[#078f43]">
                 {featureDetails[selectedFeature].eyebrow}
               </p>
               <h2
                 id="renal-feature-modal-title"
-                className="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl"
+                className="renal-feature-modal-title mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl"
               >
                 {featureDetails[selectedFeature].heading}
               </h2>
@@ -889,15 +1005,15 @@ export default function Home() {
 
             <p
               id="renal-feature-modal-description"
-              className="mt-4 text-sm leading-relaxed text-slate-700 sm:text-base"
+              className="renal-feature-modal-description mt-4 text-sm leading-relaxed text-slate-700 sm:text-base"
             >
               {featureDetails[selectedFeature].description}
             </p>
 
             <ul className="mt-5 space-y-3">
               {featureDetails[selectedFeature].bullets.map((bullet) => (
-                <li key={bullet} className="flex items-start gap-3 text-sm leading-relaxed text-slate-700">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#dff5e8] text-xs font-extrabold text-[#078f43]" aria-hidden="true">
+                <li key={bullet} className="renal-feature-modal-list flex items-start gap-3 text-sm leading-relaxed text-slate-700">
+                  <span className="renal-feature-modal-bullet mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#dff5e8] text-xs font-extrabold text-[#078f43]" aria-hidden="true">
                     ✓
                   </span>
                   <span>{bullet}</span>
@@ -914,12 +1030,12 @@ export default function Home() {
               </Link>
               <Link
                 href="/auth/login"
-                className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#12396b]/20 bg-white px-5 py-3 text-center text-sm font-bold text-[#12396b] transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1266c3] focus-visible:ring-offset-2"
+                className="renal-feature-modal-signin inline-flex min-h-12 items-center justify-center rounded-xl border border-[#1266c3]/30 bg-white px-5 py-3 text-center text-sm font-bold text-[#1266c3] transition hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7db9ff] focus-visible:ring-offset-2 text-[#93c5fd]"
               >
                 Sign In
               </Link>
             </div>
-            <p className="mt-4 text-center text-xs text-slate-500">
+            <p className="mt-4 text-center text-xs text-slate-500 dark:text-slate-400">
               Close this window to keep exploring the homepage.
             </p>
           </section>

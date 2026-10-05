@@ -13,6 +13,7 @@ type Requirements = {
   purines: RequirementLevel;
   carbohydrateMin: number | null;
   carbohydrateMax: number | null;
+  fluidLimitMl: number | null;
 };
 
 const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
@@ -24,6 +25,7 @@ const defaultRequirements: Requirements = {
   purines: "Any",
   carbohydrateMin: null,
   carbohydrateMax: null,
+  fluidLimitMl: null,
 };
 
 const levelRank: Record<"Low" | "Moderate" | "High", number> = {
@@ -114,7 +116,7 @@ export default function RequirementsPage() {
       const { data, error } = await supabase
         .from("user_requirements")
         .select(
-          "sodium_limit, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max"
+          "sodium_limit, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml"
         )
         .eq("user_id", user.id)
         .maybeSingle();
@@ -130,6 +132,7 @@ export default function RequirementsPage() {
         purines: data.purines as RequirementLevel,
         carbohydrateMin: data.carbohydrate_min,
         carbohydrateMax: data.carbohydrate_max,
+        fluidLimitMl: data.fluid_limit_ml ?? null,
       };
 
       setRequirements(loadedRequirements);
@@ -195,6 +198,7 @@ export default function RequirementsPage() {
               nextRequirements.carbohydrateMin,
             carbohydrate_max:
               nextRequirements.carbohydrateMax,
+            fluid_limit_ml: nextRequirements.fluidLimitMl,
           },
           {
             onConflict: "user_id",
@@ -437,6 +441,52 @@ export default function RequirementsPage() {
                   <p className="mt-2 text-xs leading-5 text-slate-500">
                     RenalPlan uses one third of your daily limit as a practical
                     guide when matching individual meals.
+                  </p>
+                </div>
+
+                {/* DAILY FLUID ALLOWANCE */}
+                <div className="rounded-2xl border border-cyan-100 bg-cyan-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <label
+                        htmlFor="fluid-limit"
+                        className="block text-base font-extrabold text-slate-900"
+                      >
+                        Daily fluid allowance
+                      </label>
+                      <p className="mt-1 text-xs leading-5 text-slate-600">
+                        Enter the daily amount recommended by your renal team.
+                      </p>
+                    </div>
+                    <span className="shrink-0 rounded-full bg-cyan-100 px-2.5 py-1 text-xs font-bold text-cyan-800">
+                      Fluid
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex items-center gap-3">
+                    <input
+                      id="fluid-limit"
+                      type="number"
+                      min="0"
+                      max="10000"
+                      step="50"
+                      inputMode="numeric"
+                      value={requirements.fluidLimitMl ?? ""}
+                      onChange={(event) => {
+                        const raw = event.target.value;
+                        updateRequirement(
+                          "fluidLimitMl",
+                          raw === "" ? null : Math.max(0, Math.min(10000, Math.round(Number(raw))))
+                        );
+                      }}
+                      placeholder="e.g. 1000"
+                      className="min-h-11 w-full rounded-xl border border-cyan-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-cyan-700 focus:ring-2 focus:ring-cyan-100"
+                    />
+                    <span className="shrink-0 text-sm font-bold text-slate-700">ml/day</span>
+                  </div>
+
+                  <p className="mt-2 text-xs leading-5 text-slate-500">
+                    Leave blank if you do not have a set allowance. RenalPlan will use this figure as your personal target; it does not recommend a fluid limit.
                   </p>
                 </div>
 

@@ -17,9 +17,6 @@ export const metadata: Metadata = {
   },
   description:
     "RenalPlan helps you plan renal-friendly meals, discover kidney-friendly recipes, check nutritional values and create your shopping list.",
-  alternates: {
-    canonical: "https://www.renalplan.com/",
-  },
   openGraph: {
     title: "RenalPlan | Renal-Friendly Meal Planner & Recipes",
     description:

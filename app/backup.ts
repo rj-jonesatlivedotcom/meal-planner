@@ -1,3 +1,4 @@
+
 import type { MetadataRoute } from "next";
 import { recipes } from "@/data/RecipeData";
 

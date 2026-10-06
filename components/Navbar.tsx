@@ -384,13 +384,14 @@ export default function Navbar() {
             )}
           </Link>
 
-          <nav className="ml-auto flex items-center gap-0.5 lg:gap-1">
+          <div className="ml-auto flex min-w-0 flex-1 items-center justify-center">
             {loggedIn && pathname.startsWith("/planner") && (
+
               <button
                 type="button"
                 onClick={() => router.push("/planner?mychef=1")}
                 aria-label="MyChef - let MyChef plan your week"
-                className={`renalplan-mychef relative mr-14 flex min-h-11 items-center gap-2 rounded-full border px-4 text-[15px] font-extrabold shadow-sm transition ${
+                className={`renalplan-mychef relative mr-0 flex min-h-11 items-center gap-2 rounded-full border px-4 text-[15px] font-extrabold shadow-sm transition ${
                   theme === "dark"
                     ? "border-orange-500/70 bg-orange-700 text-white hover:bg-orange-600"
                     : "border-orange-500 bg-orange-600 text-white hover:bg-orange-700"
@@ -401,7 +402,9 @@ export default function Navbar() {
                 <span className="renalplan-mychef-sparkle relative z-10 text-base leading-none" aria-hidden="true">✦</span>
               </button>
             )}
+          </div>
 
+          <nav className="flex shrink-0 items-center gap-0.5 lg:gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -577,26 +580,6 @@ export default function Navbar() {
 
         {open && (
           <nav className="border-t border-slate-200 bg-white px-5 pb-4 pt-2 shadow-lg">
-            {loggedIn && pathname.startsWith("/planner") && (
-              <button
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  router.push("/planner?mychef=1");
-                }}
-                aria-label="MyChef - let MyChef plan your week"
-                className={`renalplan-mychef mb-2 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-lg font-extrabold shadow-sm ${
-                  theme === "dark"
-                    ? "border border-orange-500/70 bg-orange-700 text-white"
-                    : "border border-orange-500 bg-orange-600 text-white"
-                }`}
-              >
-                <span className="relative z-10 text-lg leading-none" aria-hidden="true">👨‍🍳</span>
-                <span className="relative z-10">MyChef</span>
-                <span className="renalplan-mychef-sparkle relative z-10 text-base leading-none" aria-hidden="true">✦</span>
-              </button>
-            )}
-
             {navItems.map((item) => (
               <Link
                 key={item.href}

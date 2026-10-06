@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
@@ -319,7 +319,7 @@ function syncPlannerWithShoppingList(
   );
 }
 
-export default function WeeklyPlannerPage() {
+function WeeklyPlannerPageContent() {
   const [selectedDay, setSelectedDay] =
     useState("Monday");
   const [plannerMeals, setPlannerMeals] =
@@ -2975,6 +2975,32 @@ html[data-theme="dark"] main .planner-remove-button {
 
             <button
               type="button"
+              onClick={startPickForMe}
+              disabled={isDiceRolling}
+              aria-label={isDiceRolling ? "MyChef is choosing your meals" : "Open MyChef"}
+              className={`planner-pick-for-me-button planner-mychef-button group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-orange-500 bg-orange-500 px-3 py-4 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg lg:hidden ${
+                isDiceRolling
+                  ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
+                  : ""
+              }`}
+            >
+              <span
+                className={`relative z-10 inline-flex text-xl leading-none transition-transform md:text-2xl ${
+                  isDiceRolling
+                    ? "animate-pulse scale-110"
+                    : "group-hover:scale-110"
+                }`}
+                aria-hidden="true"
+              >
+                <MyChefIcon className="h-7 w-7 md:h-8 md:w-8" />
+              </span>
+              <span className="relative z-10">
+                {isDiceRolling ? "MyChef is cooking..." : "MyChef"}
+              </span>
+            </button>
+
+            <button
+              type="button"
               onClick={() => setShowClearConfirm(true)}
               aria-label="Clear Week"
               style={{
@@ -3595,6 +3621,10 @@ html[data-theme="dark"] main .planner-remove-button {
   );
 }
 
-
-
-
+export default function WeeklyPlannerPage() {
+  return (
+    <Suspense fallback={null}>
+      <WeeklyPlannerPageContent />
+    </Suspense>
+  );
+}

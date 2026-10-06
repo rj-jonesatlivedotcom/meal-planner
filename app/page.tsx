@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const freeSteps = [
@@ -247,29 +246,104 @@ const benefits = [
   "Automatic shopping lists",
 ];
 
-export default function Home() {
-  const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
-  const foodCheckVideoRef = useRef<HTMLVideoElement | null>(null);
+function ShowcaseVideo({ mobile }: { mobile: boolean }) {
+  const [shouldRender, setShouldRender] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const video = foodCheckVideoRef.current;
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+
+    const update = () => {
+      setShouldRender(mobile ? !mediaQuery.matches : mediaQuery.matches);
+    };
+
+    update();
+    mediaQuery.addEventListener("change", update);
+
+    return () => mediaQuery.removeEventListener("change", update);
+  }, [mobile]);
+
+  if (shouldRender !== true) return null;
+
+  return (
+    <video
+      className={mobile ? "block h-full w-full object-contain object-center" : "block h-auto w-full object-contain"}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-label={
+        mobile
+          ? "RenalPlan mobile showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+          : "RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+      }
+    >
+      <source
+        src={
+          mobile
+            ? "/videos/RenalPlan_Mobile_Showcase_FINAL_v10_CLEAN.mp4"
+            : "/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
+        }
+        type="video/mp4"
+      />
+      Your browser does not support the video element.
+    </video>
+  );
+}
+
+function LazyFoodCheckVideo() {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
     if (!video) return;
 
-    video.muted = true;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
 
-    const tryPlay = () => {
-      video.play().catch(() => {
-        // Some browsers may still block autoplay. The video remains usable
-        // without controls if the browser requires a user gesture.
-      });
-    };
+    observer.observe(video);
 
-    tryPlay();
-
-    return () => {
-      video.pause();
-    };
+    return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
+
+    videoRef.current?.play().catch(() => {
+      // Some browsers may still block autoplay. The video remains usable
+      // without controls if the browser requires a user gesture.
+    });
+  }, [shouldLoad]);
+
+  return (
+    <video
+      ref={videoRef}
+      className="block aspect-[9/16] h-auto w-full object-contain"
+      autoPlay={shouldLoad}
+      muted
+      loop
+      playsInline
+      preload={shouldLoad ? "metadata" : "none"}
+      aria-label="RenalPlan Food Check barcode scanning demonstration"
+    >
+      {shouldLoad && (
+        <source src="/videos/RenalPlan_Barcode.mp4" type="video/mp4" />
+      )}
+      Your browser does not support the video element.
+    </video>
+  );
+}
+
+export default function Home() {
+  const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
 
   return (
     <main className="renal-homepage min-h-screen overflow-hidden bg-white text-slate-900">
@@ -489,13 +563,11 @@ export default function Home() {
           HERO
       ========================================================= */}
       <section className="renal-home-hero relative overflow-hidden bg-white">
-        <Image
-          src="/images/hero-background.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 h-full w-full object-cover object-[72%_center] lg:object-[76%_center]"
+        <div
+          className="absolute inset-0 bg-cover bg-[72%_center] bg-no-repeat lg:bg-[76%_center]"
+          style={{
+            backgroundImage: "url('/images/hero-background.png')",
+          }}
         />
 
         <div className="renal-home-hero-overlay absolute inset-0 bg-gradient-to-r from-white/90 via-white/55 via-[42%] to-transparent lg:via-[47%]" />
@@ -588,21 +660,7 @@ export default function Home() {
 
           <div className="relative mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-[#102b4d] shadow-lg">
             <div className="aspect-[9/16] w-full">
-              <video
-                className="block h-full w-full object-contain object-center"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-label="RenalPlan mobile showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
-              >
-                <source
-                  src="/videos/RenalPlan_Mobile_Showcase_FINAL_v10_CLEAN.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video element.
-              </video>
+              <ShowcaseVideo mobile />
             </div>
 
           </div>
@@ -626,21 +684,7 @@ export default function Home() {
             </p>
           </div>
           <div className="renal-home-video-frame overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
-          <video
-            className="block h-auto w-full object-contain"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label="RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
-          >
-            <source
-              src="/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
-              type="video/mp4"
-            />
-            Your browser does not support the video element.
-          </video>
+            <ShowcaseVideo mobile={false} />
           </div>
         </div>
       </section>
@@ -819,19 +863,7 @@ export default function Home() {
                 <div className="mx-auto w-full max-w-[390px] lg:max-w-[430px]">
 
                   <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
-                    <video
-                      ref={foodCheckVideoRef}
-                      className="block h-auto w-full"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="auto"
-                      aria-label="RenalPlan Food Check barcode scanning demonstration"
-                    >
-                      <source src="/videos/RenalPlan_Barcode.mp4" type="video/mp4" />
-                      Your browser does not support the video element.
-                    </video>
+                    <LazyFoodCheckVideo />
                   </div>
                 </div>
               </div>

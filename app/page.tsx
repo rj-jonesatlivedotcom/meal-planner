@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const freeSteps = [
@@ -488,11 +489,13 @@ export default function Home() {
           HERO
       ========================================================= */}
       <section className="renal-home-hero relative overflow-hidden bg-white">
-        <div
-          className="absolute inset-0 bg-cover bg-[72%_center] bg-no-repeat lg:bg-[76%_center]"
-          style={{
-            backgroundImage: "url('/images/hero-background.png')",
-          }}
+        <Image
+          src="/images/hero-background.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 h-full w-full object-cover object-[72%_center] lg:object-[76%_center]"
         />
 
         <div className="renal-home-hero-overlay absolute inset-0 bg-gradient-to-r from-white/90 via-white/55 via-[42%] to-transparent lg:via-[47%]" />

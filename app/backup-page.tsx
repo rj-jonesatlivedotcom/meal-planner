@@ -536,12 +536,12 @@ export default function Home() {
               {benefits.map((benefit) => (
                 <div
                   key={benefit}
-                  className="renal-home-benefit flex min-w-0 flex-col items-center gap-1.5 text-center text-xs font-semibold leading-tight !text-[#12396b] sm:flex-row sm:items-center sm:gap-2 sm:text-left sm:text-sm"
+                  className="renal-home-benefit flex min-w-0 flex-col items-center gap-1.5 text-center text-xs font-semibold leading-tight sm:flex-row sm:items-center sm:gap-2 sm:text-left sm:text-sm"
                 >
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#079447] text-[12px] font-extrabold text-white">
                     ✓
                   </span>
-                  <span className="!text-[#12396b]">{benefit}</span>
+                  <span>{benefit}</span>
                 </div>
               ))}
             </div>
@@ -913,8 +913,8 @@ export default function Home() {
       <section className="renal-home-cta border-t border-green-50 bg-gradient-to-b from-[#f4fbf7] to-white px-4 py-10 sm:px-8 lg:px-10 lg:py-12">
         <div className="renal-fade-up mx-auto max-w-[1400px] text-center">
           <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-4xl">
-            Check <span className="text-[#079447]">→</span> Plan{" "}
-            <span className="text-[#079447]">→</span> Shop
+            Plan <span className="text-[#079447]">→</span> Shop{" "}
+            <span className="text-[#079447]">→</span> Relax
             <br />
             with <span className="renal-home-brand-renal text-[#12396b]">Renal</span>
             <span className="renal-home-brand-plan text-[#079447]">Plan</span>

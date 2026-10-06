@@ -249,6 +249,7 @@ const benefits = [
 
 function ShowcaseVideo({ mobile }: { mobile: boolean }) {
   const [shouldRender, setShouldRender] = useState<boolean | null>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -263,7 +264,39 @@ function ShowcaseVideo({ mobile }: { mobile: boolean }) {
     return () => mediaQuery.removeEventListener("change", update);
   }, [mobile]);
 
+  useEffect(() => {
+    if (shouldRender !== true || shouldLoad) return;
+
+    // The showcase is below the hero and is intentionally not downloaded
+    // during the initial page load. Start the video after the visitor begins
+    // interacting with the page, keeping the visual space reserved above it.
+    const loadVideo = () => setShouldLoad(true);
+
+    window.addEventListener("scroll", loadVideo, { passive: true, once: true });
+
+    return () => {
+      window.removeEventListener("scroll", loadVideo);
+    };
+  }, [shouldRender, shouldLoad]);
+
   if (shouldRender !== true) return null;
+
+  if (!shouldLoad) {
+    return (
+      <div
+        className={
+          mobile
+            ? "h-full w-full bg-[#102b4d]"
+            : "aspect-video w-full bg-[#102b4d]"
+        }
+        aria-label={
+          mobile
+            ? "RenalPlan mobile showcase video will load when you scroll"
+            : "RenalPlan showcase video will load when you scroll"
+        }
+      />
+    );
+  }
 
   return (
     <video

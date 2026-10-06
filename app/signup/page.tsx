@@ -57,8 +57,7 @@ export default function SignupPage() {
       return;
     }
 
-    setMessage("Account created. Please check your email to confirm your account.");
-    setLoading(false);
+    router.push("/signup/success");
   }
 
   return (

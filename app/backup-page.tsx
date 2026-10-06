@@ -289,11 +289,6 @@ function ShowcaseVideo({ mobile }: { mobile: boolean }) {
             ? "h-full w-full bg-[#102b4d]"
             : "aspect-video w-full bg-[#102b4d]"
         }
-        aria-label={
-          mobile
-            ? "RenalPlan mobile showcase video will load when you scroll"
-            : "RenalPlan showcase video will load when you scroll"
-        }
       />
     );
   }
@@ -452,6 +447,16 @@ export default function Home() {
 
         .renal-pulse {
           animation: renalPulse 2.8s ease-in-out infinite;
+        }
+
+        /* Accessible green text: dark enough for small text in light mode,
+           while keeping the brighter RenalPlan green in dark mode. */
+        .renal-homepage .renal-home-accessible-green {
+          color: #067b3a !important;
+        }
+
+        html[data-theme="dark"] .renal-homepage .renal-home-accessible-green {
+          color: #45e08a !important;
         }
 
         html[data-theme="dark"] .renal-homepage .renal-home-brand-renal {
@@ -623,7 +628,7 @@ export default function Home() {
 
             <p className="renal-home-hero-copy mt-5 max-w-[620px] text-base leading-[1.48] text-[#17385f] sm:mt-6 sm:text-lg lg:text-[1.18rem]">
               Browse kidney-friendly recipes, or create a free account to
-              personalise <span className="renal-home-brand-renal text-[#12396b]">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> to your dietary requirements.
+              personalise <span className="renal-home-brand-renal text-[#12396b]">Renal</span><span className="renal-home-brand-plan renal-home-accessible-green text-[#079447]">Plan</span> to your dietary requirements.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
@@ -668,7 +673,7 @@ export default function Home() {
           >
             Healthy meals
             <br />
-            <span className="text-[#078f43]">Brighter days ♡</span>
+            <span className="renal-home-accessible-green text-[#078f43]">Brighter days ♡</span>
           </div>
         </div>
       </section>
@@ -686,7 +691,7 @@ export default function Home() {
         <div className="mx-auto w-full max-w-[760px]">
           <div className="text-center">
             <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
-              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> in action
+              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan renal-home-accessible-green text-[#079447]">Plan</span> in action
             </h2>
 
             <p className="mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f]">
@@ -714,7 +719,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1450px]">
           <div className="mb-5 text-center">
             <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
-              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> in action
+              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan renal-home-accessible-green text-[#079447]">Plan</span> in action
             </h2>
             <p className="renal-home-section-copy mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f] sm:text-base">
               From your dietary requirements to your weekly shop — all in one place.
@@ -733,7 +738,7 @@ export default function Home() {
         <div className="renal-home-free-panel mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-r from-[#effbf5] to-[#f8fcfa] px-5 py-6 shadow-sm sm:px-7 lg:px-8 lg:py-7">
           <div className="grid gap-6 lg:grid-cols-[0.95fr_2fr] lg:items-center">
             <div>
-              <span className="inline-flex rounded-full bg-[#d5f5e5] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#078f43]">
+              <span className="inline-flex rounded-full bg-[#d5f5e5] px-4 py-1.5 text-xs font-extrabold tracking-wide renal-home-accessible-green text-[#078f43]">
                 FREE FOR EVERYONE
               </span>
 
@@ -809,7 +814,7 @@ export default function Home() {
 
               {/* Copy */}
               <div className="order-1 flex h-full flex-col lg:order-1">
-                <p className="text-xs font-extrabold tracking-[0.14em] text-[#079447]">
+                <p className="text-xs font-extrabold tracking-[0.14em] renal-home-accessible-green text-[#079447]">
                   FOOD CHECK
                 </p>
 
@@ -819,7 +824,7 @@ export default function Home() {
                 </h2>
 
                 <p className="mt-4 max-w-[590px] text-sm leading-relaxed text-slate-600 sm:text-base lg:text-lg">
-                  See a food in the supermarket? <span className="renal-home-brand-renal text-slate-800">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> gives you three simple
+                  See a food in the supermarket? <span className="renal-home-brand-renal text-slate-800">Renal</span><span className="renal-home-brand-plan renal-home-accessible-green text-[#079447]">Plan</span> gives you three simple
                   ways to find it and check its nutritional information — so you
                   can make a more informed choice.
                 </p>
@@ -876,7 +881,7 @@ export default function Home() {
                 </Link>
 
                 <div className="mt-auto max-w-[610px] rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
-                  <p className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#079447]">
+                  <p className="text-[11px] font-extrabold uppercase tracking-[0.12em] renal-home-accessible-green text-[#079447]">
                     Nutritional reference
                   </p>
                   <p className="mt-1 text-xs leading-relaxed text-slate-600 sm:text-sm">
@@ -923,11 +928,11 @@ export default function Home() {
 
               <h2 className="renal-home-section-title mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl lg:text-[2.25rem]">
                 Get more with a free{" "}
-                <span><span className="renal-home-brand-renal text-[#1266c3]">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span></span> account
+                <span><span className="renal-home-brand-renal text-[#1266c3]">Renal</span><span className="renal-home-brand-plan renal-home-accessible-green text-[#079447]">Plan</span></span> account
               </h2>
 
               <p className="renal-home-section-copy mt-3 max-w-[430px] text-sm leading-relaxed text-slate-700 sm:text-base">
-                Personalise <span className="renal-home-brand-renal text-[#12396b]">Renal</span><span className="renal-home-brand-plan text-[#079447]">Plan</span> to your needs and unlock extra features
+                Personalise <span className="renal-home-brand-renal text-[#12396b]">Renal</span><span className="renal-home-brand-plan renal-home-accessible-green text-[#079447]">Plan</span> to your needs and unlock extra features
                 that make meal planning even easier.
               </p>
             </div>
@@ -989,7 +994,7 @@ export default function Home() {
             <span className="text-[#079447]">→</span> Relax
             <br />
             with <span className="renal-home-brand-renal text-[#12396b]">Renal</span>
-            <span className="renal-home-brand-plan text-[#079447]">Plan</span>
+            <span className="renal-home-brand-plan renal-home-accessible-green text-[#079447]">Plan</span>
           </h2>
 
           <Link
@@ -1010,7 +1015,7 @@ export default function Home() {
           <div>
             <div className="text-lg font-bold">
               <span className="renal-home-brand-renal text-[#12396b]">Renal</span>
-              <span className="renal-home-brand-plan text-[#079447]">Plan</span>
+              <span className="renal-home-brand-plan renal-home-accessible-green text-[#079447]">Plan</span>
             </div>
 
             <Link
@@ -1024,14 +1029,14 @@ export default function Home() {
           <div className="flex flex-col items-center gap-2 text-sm text-slate-600 sm:items-end sm:text-right">
             <Link href="/about" className="font-semibold transition hover:opacity-80">
               <span className="renal-home-about-label">About </span><span className="renal-home-brand-renal text-[#12396b]">Renal</span>
-              <span className="renal-home-brand-plan text-[#079447]">Plan</span>
+              <span className="renal-home-brand-plan renal-home-accessible-green text-[#079447]">Plan</span>
             </Link>
 
             <span>
               <span>Do you have any questions or need help? </span>
               <a
                 href="mailto:hello@renalplan.com"
-                className="font-semibold text-[#079447] transition hover:text-[#067b3a]"
+                className="font-semibold renal-home-accessible-green text-[#079447] transition hover:text-[#056f34]"
               >
                 Contact us
               </a>
@@ -1064,7 +1069,7 @@ export default function Home() {
             </button>
 
             <div className="pr-10">
-              <p className="renal-feature-modal-eyebrow text-xs font-extrabold tracking-[0.14em] text-[#078f43]">
+              <p className="renal-feature-modal-eyebrow text-xs font-extrabold tracking-[0.14em] renal-home-accessible-green text-[#078f43]">
                 {featureDetails[selectedFeature].eyebrow}
               </p>
               <h2

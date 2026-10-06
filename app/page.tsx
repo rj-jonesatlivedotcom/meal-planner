@@ -111,7 +111,7 @@ const freeSteps = [
 const accountFeatures = [
   {
     title: "My Diet",
-    badge: "Premium",
+    badge: "Free Account",
     text: "Set your dietary requirements so RenalPlan can personalise your meals.",
     href: "/promotional-material/my-diet",
     iconClass: "bg-blue-100 text-blue-600",
@@ -127,7 +127,7 @@ const accountFeatures = [
   },
   {
     title: "Nutrition",
-    badge: "Premium",
+    badge: "Free Account",
     text: "See your weekly nutrition summary with totals, averages and a printable report.",
     href: "/promotional-material/nutrition",
     iconClass: "bg-blue-100 text-blue-600",
@@ -150,7 +150,7 @@ const accountFeatures = [
   },
   {
     title: "Food Check",
-    badge: "Premium",
+    badge: "Free Account",
     text: "Check the nutritional information for individual foods quickly and easily.",
     href: "/promotional-material/food-check",
     iconClass: "bg-blue-100 text-blue-600",
@@ -176,7 +176,7 @@ const accountFeatures = [
   },
   {
     title: "Favourites",
-    badge: "Premium",
+    badge: "Free Account",
     text: "Save your favourite recipes and access them whenever you want.",
     href: "/promotional-material/favourites",
     iconClass: "bg-rose-100 text-rose-500",

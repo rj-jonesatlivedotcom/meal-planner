@@ -2,14 +2,18 @@
 import RenalPlan from "@/components/RenalPlan";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 function KidneyLogo() {
   return (
-    <img
+    <Image
       src="/icons/meal-planner-kidney-tick.png"
       alt="RenalPlan kidney-friendly logo"
+      width={64}
+      height={64}
+      sizes="56px"
       className="h-14 w-12 shrink-0 object-contain sm:h-16 sm:w-14"
       aria-hidden="true"
     />

@@ -436,7 +436,7 @@ export default function Navbar() {
 
                 <Link
                   href="/signup"
-                  className="rounded-lg bg-green-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-green-500"
+                  className="rounded-lg bg-[#067b3a] px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#056b32]"
                 >
                   Sign up
                 </Link>

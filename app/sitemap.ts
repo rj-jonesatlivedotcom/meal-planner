@@ -12,18 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/recipes`,
     },
     {
-      url: `${baseUrl}/planner`,
-    },
-    {
-      url: `${baseUrl}/nutrition`,
-    },
-    {
-      url: `${baseUrl}/requirements`,
-    },
-    {
-      url: `${baseUrl}/shopping`,
-    },
-    {
       url: `${baseUrl}/about`,
     },
   ];

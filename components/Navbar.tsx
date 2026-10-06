@@ -14,7 +14,7 @@ function KidneyLogo() {
       width={64}
       height={64}
       sizes="56px"
-      className="h-14 w-12 shrink-0 object-contain sm:h-16 sm:w-14"
+      className="h-14 w-auto shrink-0 object-contain sm:h-16 sm:w-auto"
       aria-hidden="true"
     />
   );

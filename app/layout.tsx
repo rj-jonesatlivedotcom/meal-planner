@@ -9,6 +9,13 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "RenalPlan",
+  url: "https://www.renalplan.com/",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.renalplan.com"),
   title: {
@@ -42,6 +49,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
         <ThemeSync />
         <Navbar />
         {children}

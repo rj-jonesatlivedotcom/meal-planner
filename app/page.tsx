@@ -248,7 +248,9 @@ const benefits = [
 ];
 
 function ShowcaseVideo({ mobile }: { mobile: boolean }) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [shouldRender, setShouldRender] = useState<boolean | null>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -263,32 +265,57 @@ function ShowcaseVideo({ mobile }: { mobile: boolean }) {
     return () => mediaQuery.removeEventListener("change", update);
   }, [mobile]);
 
+  useEffect(() => {
+    if (shouldRender !== true) return;
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px" },
+    );
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, [shouldRender]);
+
   if (shouldRender !== true) return null;
 
   return (
-    <video
-      className={mobile ? "block h-full w-full object-contain object-center" : "block h-auto w-full object-contain"}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      aria-label={
-        mobile
-          ? "RenalPlan mobile showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
-          : "RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
-      }
-    >
-      <source
-        src={
+    <div ref={containerRef} className="h-full w-full">
+      <video
+        className={mobile ? "block h-full w-full object-contain object-center" : "block h-auto w-full object-contain"}
+        autoPlay={shouldLoad}
+        muted
+        loop
+        playsInline
+        preload={shouldLoad ? "metadata" : "none"}
+        aria-label={
           mobile
-            ? "/videos/RenalPlan_Mobile_Showcase_FINAL_v10_CLEAN.mp4"
-            : "/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
+            ? "RenalPlan mobile showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+            : "RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
         }
-        type="video/mp4"
-      />
-      Your browser does not support the video element.
-    </video>
+      >
+        {shouldLoad && (
+          <source
+            src={
+              mobile
+                ? "/videos/RenalPlan_Mobile_Showcase_FINAL_v10_CLEAN.mp4"
+                : "/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
+            }
+            type="video/mp4"
+          />
+        )}
+        Your browser does not support the video element.
+      </video>
+    </div>
   );
 }
 

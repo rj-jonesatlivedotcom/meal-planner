@@ -14,7 +14,7 @@ function KidneyLogo() {
       width={64}
       height={64}
       sizes="56px"
-      className="h-14 w-auto shrink-0 object-contain sm:h-16 sm:w-auto"
+      className="h-14 w-12 shrink-0 object-contain sm:h-16 sm:w-14"
       aria-hidden="true"
     />
   );
@@ -363,20 +363,39 @@ export default function Navbar() {
                 href={item.href}
                 aria-current={item.active ? "page" : undefined}
                 className={`relative flex min-h-12 items-center whitespace-nowrap px-2.5 text-[15px] font-bold transition lg:px-3 ${
-                  item.active
+                  item.premium && !loggedIn
                     ? theme === "dark"
-                      ? "text-green-300 after:absolute after:inset-x-2 after:bottom-1 after:h-0.5 after:rounded-full after:bg-green-400"
-                      : "text-green-700 after:absolute after:inset-x-2 after:bottom-1 after:h-0.5 after:rounded-full after:bg-green-600"
-                    : theme === "dark"
-                      ? "text-slate-100/90 hover:text-green-300"
-                      : "text-slate-800 hover:text-green-700"
+                      ? "text-red-300 hover:text-red-200"
+                      : "text-slate-500 hover:text-slate-700"
+                    : item.active
+                      ? theme === "dark"
+                        ? "text-green-300 after:absolute after:inset-x-2 after:bottom-1 after:h-0.5 after:rounded-full after:bg-green-400"
+                        : "text-green-700 after:absolute after:inset-x-2 after:bottom-1 after:h-0.5 after:rounded-full after:bg-green-600"
+                      : theme === "dark"
+                        ? "text-slate-100/90 hover:text-green-300"
+                        : "text-slate-800 hover:text-green-700"
                 }`}
               >
-                <span className="flex flex-col items-center justify-center leading-none">
-                  <span>{item.label}</span>
-                  {item.premium && (
-                    <span className="mt-1 rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wide text-green-800">
-                      Premium
+                <span className="flex items-center justify-center gap-1.5 leading-none">
+                  <span className={theme === "dark" && item.premium && !loggedIn ? "!text-red-300" : undefined}>{item.label}</span>
+                  {item.premium && !loggedIn && (
+                    <span
+                      className={`inline-flex h-4 w-4 shrink-0 items-center justify-center ${theme === "dark" ? "text-red-300" : "text-slate-500"}`}
+                      aria-hidden="true"
+                      title="Log in to access"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        className="h-3.5 w-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <rect x="5" y="10" width="14" height="10" rx="2" />
+                        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                      </svg>
                     </span>
                   )}
                 </span>
@@ -528,18 +547,37 @@ export default function Navbar() {
                 aria-current={item.active ? "page" : undefined}
                 onClick={() => setOpen(false)}
                 className={`block rounded-xl px-4 py-3 text-lg font-semibold ${
-                  item.active
-                    ? "bg-green-50 text-green-700"
-                    : "text-slate-900 hover:bg-slate-50"
+                  item.premium && !loggedIn
+                    ? `${theme === "dark" ? "text-red-300 hover:bg-red-500/10 hover:text-red-200" : "text-slate-500 hover:bg-slate-50 hover:text-slate-700"}`
+                    : item.active
+                      ? "bg-green-50 text-green-700"
+                      : "text-slate-900 hover:bg-slate-50"
                 }`}
               >
                 <span className="flex items-center justify-between gap-3">
-                  <span>{item.label}</span>
-                  {item.premium && (
-                    <span className="rounded-full bg-green-100 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide text-green-800">
-                      Premium
-                    </span>
-                  )}
+                  <span className="flex items-center gap-2">
+                    <span className={theme === "dark" && item.premium && !loggedIn ? "!text-red-300" : undefined}>{item.label}</span>
+                    {item.premium && !loggedIn && (
+                      <span
+                        className={`inline-flex h-5 w-5 shrink-0 items-center justify-center ${theme === "dark" ? "text-red-300" : "text-slate-500"}`}
+                        aria-hidden="true"
+                        title="Log in to access"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <rect x="5" y="10" width="14" height="10" rx="2" />
+                          <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                        </svg>
+                      </span>
+                    )}
+                  </span>
                 </span>
               </Link>
             ))}

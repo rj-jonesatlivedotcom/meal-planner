@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
@@ -74,6 +75,30 @@ function MealIcon({
       <path d="M5.5 5.5l13 13" />
       <path d="M18.5 5.5l-13 13" />
       <circle cx="12" cy="12" r="8.5" />
+    </svg>
+  );
+}
+
+function MyChefIcon({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path
+        d="M7 14.5c-1.4-.7-2.3-2.1-2.3-3.6 0-2.3 1.9-4.1 4.2-4.1.3-3 2.8-5.3 5.8-5.3 2.3 0 4.3 1.3 5.3 3.2.5-.2 1-.3 1.6-.3 2.5 0 4.5 2 4.5 4.5 0 1.7-.9 3.1-2.3 3.9"
+        fill="currentColor"
+        fillOpacity="0.18"
+      />
+      <path d="M6.2 14.2h19.6v4.2H6.2z" fill="currentColor" fillOpacity="0.18" />
+      <path d="M8.2 18.4v6.1h15.6v-6.1" />
+      <path d="M10.8 21.3h10.4" />
     </svg>
   );
 }
@@ -319,7 +344,15 @@ export default function WeeklyPlannerPage() {
 
   const [showPickConfirm, setShowPickConfirm] =
     useState(false);
+  const [pendingReplaceAll, setPendingReplaceAll] =
+    useState(false);
   const [isDiceRolling, setIsDiceRolling] =
+    useState(false);
+  const [showMyChef, setShowMyChef] =
+    useState(false);
+  const [myChefStage, setMyChefStage] =
+    useState<"intro" | "cooking">("intro");
+  const [myChefFading, setMyChefFading] =
     useState(false);
 
   const [requirements, setRequirements] =
@@ -328,7 +361,7 @@ export default function WeeklyPlannerPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [premiumPrompt, setPremiumPrompt] =
-    useState<"pick" | "people" | null>(null);
+    useState<"pick" | null>(null);
   const [accountSyncReady, setAccountSyncReady] = useState(false);
   const [accountUserId, setAccountUserId] = useState<string | null>(null);
   const [fluidModalOpen, setFluidModalOpen] = useState(false);
@@ -1099,16 +1132,39 @@ export default function WeeklyPlannerPage() {
     setShowPickConfirm(false);
   }
 
+  function openMyChefIntro() {
+    if (isDiceRolling) return;
+    setShowPickConfirm(false);
+    setMyChefFading(false);
+    setMyChefStage("intro");
+    setShowMyChef(true);
+  }
+
   function animatePickForMe(replaceAll = false) {
     if (isDiceRolling) return;
 
-    setShowPickConfirm(false);
+    setMyChefStage("cooking");
+    setMyChefFading(false);
+    setShowMyChef(true);
     setIsDiceRolling(true);
 
     window.setTimeout(() => {
       pickForMe(replaceAll);
-      setIsDiceRolling(false);
-    }, 1200);
+      setMyChefFading(true);
+
+      window.setTimeout(() => {
+        setShowMyChef(false);
+        setMyChefFading(false);
+        setIsDiceRolling(false);
+        setMyChefStage("intro");
+      }, 700);
+    }, 1500);
+  }
+
+  function confirmMyChef() {
+    if (isDiceRolling) return;
+    setShowPickConfirm(false);
+    animatePickForMe(pendingReplaceAll);
   }
 
   function startPickForMe() {
@@ -1132,12 +1188,8 @@ export default function WeeklyPlannerPage() {
         )
       );
 
-    if (!hasEmptySlots) {
-      setShowPickConfirm(true);
-      return;
-    }
-
-    animatePickForMe();
+    setPendingReplaceAll(!hasEmptySlots);
+    openMyChefIntro();
   }
 
   function clearWeek() {
@@ -1812,8 +1864,118 @@ html[data-theme="dark"] main .planner-remove-button {
         html[data-theme="dark"] .planner-nutrition-description { color: #cbd5e1 !important; }
         html[data-theme="dark"] .planner-nutrition-icon,
         html[data-theme="dark"] .planner-nutrition-arrow { background: #334451 !important; color: #7dd3fc !important; }
+
+        @keyframes plannerMyChefShimmer {
+          0% { transform: translateX(-180%) skewX(-18deg); }
+          100% { transform: translateX(360%) skewX(-18deg); }
+        }
+        @keyframes plannerMyChefFloat {
+          0%, 100% { transform: translateY(0) rotate(-1deg); }
+          50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        @keyframes plannerMyChefWandWave {
+          0%, 100% { transform: translateY(0) rotate(-1deg); }
+          25% { transform: translateY(-5px) rotate(2deg); }
+          50% { transform: translateY(-2px) rotate(-2deg); }
+          75% { transform: translateY(-6px) rotate(2deg); }
+        }
+        @keyframes plannerMyChefFadeIn {
+          from { opacity: 0; transform: scale(0.96) translateY(8px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes plannerMyChefFadeOut {
+          from { opacity: 1; transform: scale(1); }
+          to { opacity: 0; transform: scale(0.96) translateY(8px); }
+        }
+
+        .planner-mychef-button {
+          position: relative;
+          overflow: hidden;
+          isolation: isolate;
+        }
+        .planner-mychef-button::after {
+          content: "";
+          position: absolute;
+          top: -35%;
+          bottom: -35%;
+          left: 0;
+          width: 34%;
+          transform: translateX(-180%) skewX(-18deg);
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.66), transparent);
+          animation: plannerMyChefShimmer 3s ease-in-out 0.5s infinite;
+          pointer-events: none;
+          z-index: 0;
+        }
+        .planner-mychef-button > * { position: relative; z-index: 1; }
+        .planner-mychef-overlay { animation: plannerMyChefFadeIn 0.35s ease-out both; }
+        .planner-mychef-panel { animation: plannerMyChefFadeIn 0.45s cubic-bezier(.22,.8,.24,1) both; }
+        .planner-mychef-panel.mychef-fading { animation: plannerMyChefFadeOut 0.7s ease-in forwards; }
+        .planner-mychef-chef { animation: plannerMyChefFloat 2.6s ease-in-out infinite; }
+        .planner-mychef-chef.mychef-waving { animation: plannerMyChefWandWave 1.15s ease-in-out infinite; }
+        .planner-mychef-panel.mychef-fading .planner-mychef-chef { animation: none; }
+        @media (prefers-reduced-motion: reduce) {
+          .planner-mychef-button::after,
+          .planner-mychef-chef,
+          .planner-mychef-chef.mychef-waving {
+            animation: none !important;
+          }
+        }
+
+        .planner-remove-button {
+          z-index: 30 !important;
+          background: #ffffff !important;
+          color: #111827 !important;
+          border: 1px solid #94a3b8 !important;
+          box-shadow: 0 1px 4px rgba(15,23,42,0.24) !important;
+        }
+
+        html[data-theme="dark"] .planner-mychef-panel {
+          background: #1d2d3a !important;
+          border-color: #52697a !important;
+        }
+        html[data-theme="dark"] .planner-mychef-panel > div {
+          background: #203241 !important;
+        }
+        html[data-theme="dark"] .planner-mychef-panel #mychef-title {
+          color: #f8fafc !important;
+        }
+        html[data-theme="dark"] .planner-mychef-panel p {
+          color: #d7e2ea !important;
+        }
+        html[data-theme="dark"] .planner-mychef-panel .text-\[#067b3a\] {
+          color: #69d39a !important;
+        }
+        .planner-remove-button:hover,
+        .planner-remove-button:focus-visible {
+          background: #ffffff !important;
+          color: #dc2626 !important;
+          border-color: #f87171 !important;
+        }
+        html[data-theme="dark"] main .planner-remove-button,
+        html[data-theme="dark"] main .planner-remove-button:hover,
+        html[data-theme="dark"] main .planner-remove-button:focus-visible {
+          background: #ffffff !important;
+          color: #111827 !important;
+          border-color: #94a3b8 !important;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.5) !important;
+        }
+        html[data-theme="dark"] main .planner-remove-button:hover,
+        html[data-theme="dark"] main .planner-remove-button:focus-visible {
+          color: #dc2626 !important;
+          border-color: #f87171 !important;
+        }
+
         html[data-theme="dark"] .planner-pick-for-me-button { background: #7c2d12 !important; color: #fff7ed !important; border-color: #9a3412 !important; }
         html[data-theme="dark"] .planner-clear-week-button { background: #202e3a !important; color: #f8fafc !important; border-color: #9a6b24 !important; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .planner-mychef-button::after,
+          .planner-mychef-overlay,
+          .planner-mychef-panel,
+          .planner-mychef-chef {
+            animation: none !important;
+          }
+        }
       `}</style>
 
       <main
@@ -1911,11 +2073,6 @@ html[data-theme="dark"] main .planner-remove-button {
                     <button
                       type="button"
                       onClick={() => {
-                        if (!authChecked || !isLoggedIn) {
-                          setPremiumPrompt("people");
-                          return;
-                        }
-
                         setPeoplePicker({
                           day: selectedDay,
                           meal: "Breakfast",
@@ -1940,11 +2097,11 @@ html[data-theme="dark"] main .planner-remove-button {
                           "Breakfast"
                         )
                       }
-                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold leading-none text-black transition hover:bg-white/80 hover:text-red-600"
+                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 transition hover:bg-white/80 hover:text-red-600"
                       aria-label="Remove breakfast"
                       title="Remove breakfast"
                     >
-                      🗑️
+                      ×
                     </button>
 
                     <div className="col-span-3 flex items-center gap-3">
@@ -2014,11 +2171,6 @@ html[data-theme="dark"] main .planner-remove-button {
                     <button
                       type="button"
                       onClick={() => {
-                        if (!authChecked || !isLoggedIn) {
-                          setPremiumPrompt("people");
-                          return;
-                        }
-
                         setPeoplePicker({
                           day: selectedDay,
                           meal: "Lunch",
@@ -2043,11 +2195,11 @@ html[data-theme="dark"] main .planner-remove-button {
                           "Lunch"
                         )
                       }
-                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold leading-none text-black transition hover:bg-white/80 hover:text-red-600"
+                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 transition hover:bg-white/80 hover:text-red-600"
                       aria-label="Remove lunch"
                       title="Remove lunch"
                     >
-                      🗑️
+                      ×
                     </button>
 
                     <div className="col-span-3 flex items-center gap-3">
@@ -2117,11 +2269,6 @@ html[data-theme="dark"] main .planner-remove-button {
                     <button
                       type="button"
                       onClick={() => {
-                        if (!authChecked || !isLoggedIn) {
-                          setPremiumPrompt("people");
-                          return;
-                        }
-
                         setPeoplePicker({
                           day: selectedDay,
                           meal: "Dinner",
@@ -2146,11 +2293,11 @@ html[data-theme="dark"] main .planner-remove-button {
                           "Dinner"
                         )
                       }
-                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold leading-none text-black transition hover:bg-white/80 hover:text-red-600"
+                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 transition hover:bg-white/80 hover:text-red-600"
                       aria-label="Remove dinner"
                       title="Remove dinner"
                     >
-                      🗑️
+                      ×
                     </button>
 
                     <div className="col-span-3 flex items-center gap-3">
@@ -2359,7 +2506,7 @@ html[data-theme="dark"] main .planner-remove-button {
         "Breakfast"
       )
     }
-    className="planner-remove-button absolute bottom-1.5 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/95 text-xs font-bold leading-none text-black shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
+    className="planner-remove-button absolute bottom-1.5 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
     aria-label={`Remove ${recipe.name}`}
     title={`Remove ${recipe.name}`}
   >
@@ -2370,11 +2517,6 @@ html[data-theme="dark"] main .planner-remove-button {
                         <button
                           type="button"
                           onClick={() => {
-                            if (!authChecked || !isLoggedIn) {
-                              setPremiumPrompt("people");
-                              return;
-                            }
-
                             setPeoplePicker({
                               day,
                               meal: "Breakfast",
@@ -2505,7 +2647,7 @@ html[data-theme="dark"] main .planner-remove-button {
                                 "Lunch"
                               )
                             }
-                            className="planner-remove-button absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/95 text-xs font-bold leading-none text-black shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
+                            className="planner-remove-button absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -2517,11 +2659,6 @@ html[data-theme="dark"] main .planner-remove-button {
                         <button
                           type="button"
                           onClick={() => {
-                            if (!authChecked || !isLoggedIn) {
-                              setPremiumPrompt("people");
-                              return;
-                            }
-
                             setPeoplePicker({
                               day,
                               meal: "Lunch",
@@ -2651,7 +2788,7 @@ html[data-theme="dark"] main .planner-remove-button {
                                 "Dinner"
                               )
                             }
-                            className="planner-remove-button absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/95 text-xs font-bold leading-none text-black shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
+                            className="planner-remove-button absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
                             aria-label={`Remove ${recipe.name}`}
                             title={`Remove ${recipe.name}`}
                           >
@@ -2663,11 +2800,6 @@ html[data-theme="dark"] main .planner-remove-button {
                         <button
                           type="button"
                           onClick={() => {
-                            if (!authChecked || !isLoggedIn) {
-                              setPremiumPrompt("people");
-                              return;
-                            }
-
                             setPeoplePicker({
                               day,
                               meal: "Dinner",
@@ -2824,25 +2956,25 @@ html[data-theme="dark"] main .planner-remove-button {
                 color: theme === "dark" ? "#fff7ed" : "#12396b",
                 borderColor: theme === "dark" ? "#9a3412" : "#fdba74",
               }}
-              className={`planner-pick-for-me-button group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-3 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base ${
+              className={`planner-pick-for-me-button planner-mychef-button group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-3 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base ${
                 isDiceRolling
                   ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
                   : ""
               }`}
-              aria-label={isDiceRolling ? "Picking meals for you" : "Pick for Me"}
+              aria-label={isDiceRolling ? "MyChef is choosing your meals" : "Open MyChef"}
             >
               <span
                 className={`inline-flex text-xl leading-none transition-transform md:text-2xl ${
                   isDiceRolling
-                    ? "animate-spin scale-125"
-                    : "group-hover:rotate-12"
+                    ? "animate-pulse scale-110"
+                    : "group-hover:scale-110"
                 }`}
                 aria-hidden="true"
               >
-                🎲
+                <MyChefIcon className="h-7 w-7 md:h-8 md:w-8" />
               </span>
               <span className="ml-1.5">
-                {isDiceRolling ? "Picking..." : "Pick for Me"}
+                {isDiceRolling ? "MyChef is cooking..." : "MyChef"}
               </span>
             </button>
 
@@ -3036,7 +3168,8 @@ html[data-theme="dark"] main .planner-remove-button {
                   color: theme === "dark" ? "#fff7ed" : "#000000",
                 }}
               >
-                🎲 Let RenalPlan pick for me
+                <span className="mr-2 inline-flex align-middle"><MyChefIcon className="h-5 w-5" /></span>
+                Let MyChef choose for me
               </button>
             </div>
 
@@ -3057,17 +3190,17 @@ html[data-theme="dark"] main .planner-remove-button {
         <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
           <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-xl">
-              {premiumPrompt === "pick" ? "🎲" : "👥"}
+              {premiumPrompt === "pick" ? <MyChefIcon className="h-7 w-7" /> : "👥"}
             </div>
 
             <h2 className="mt-4 text-xl font-bold text-slate-900">
               {premiumPrompt === "pick"
-                ? "Pick for Me is a Premium feature"
+                ? "MyChef is an account feature"
                 : "Choose the number of people"}
             </h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Log in to your RenalPlan account to use this Premium feature.
+              Log in to your RenalPlan account to use MyChef.
             </p>
 
             <div className="mt-6 grid grid-cols-2 gap-3">
@@ -3097,59 +3230,99 @@ html[data-theme="dark"] main .planner-remove-button {
         </div>
       )}
 
+      {/* MYCHEF EXPERIENCE */}
+      {showMyChef && (
+        <div className="planner-mychef-overlay fixed inset-0 z-[40000] flex items-center justify-center bg-[#071a30]/68 p-4 backdrop-blur-sm">
+          <section
+            className={`planner-mychef-panel ${myChefFading ? "mychef-fading" : ""} w-full max-w-md max-h-[calc(100dvh-1.5rem)] overflow-y-auto rounded-[2rem] border border-white/80 bg-white p-3 text-center shadow-2xl sm:p-5`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mychef-title"
+          >
+            <div className="rounded-[1.5rem] bg-gradient-to-br from-[#effbf5] via-white to-[#fff7ed] px-3 py-3 sm:px-5 sm:py-4">
+              <div className="mx-auto w-full max-w-[320px] sm:max-w-[420px]">
+                <Image
+                  src="/images/kidney-chef.png"
+                  alt="RenalPlan MyChef kidney chef"
+                  width={512}
+                  height={512}
+                  sizes="(max-width: 640px) 300px, 420px"
+                  className={`planner-mychef-chef ${myChefStage === "cooking" ? "mychef-waving" : ""} h-[13rem] w-full object-contain sm:h-[19rem]`}
+                  priority
+                />
+              </div>
+
+              {myChefStage === "intro" ? (
+                <>
+                  <div className="mt-1 flex items-center justify-center gap-2 text-[#067b3a]">
+                    <span className="text-lg" aria-hidden="true">✦</span>
+                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">Meet MyChef</span>
+                    <span className="text-lg" aria-hidden="true">✦</span>
+                  </div>
+                  <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Want MyChef to cook your week?</h2>
+                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">MyChef will choose meals that fit your saved dietary requirements and fill your empty week for you.</p>
+
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowMyChef(false)}
+                      className="rounded-2xl border-2 border-slate-200 bg-white px-4 py-3.5 text-sm font-extrabold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
+                    >
+                      Not now
+                    </button>
+                    <button
+                      type="button"
+                      onClick={confirmMyChef}
+                      className="planner-mychef-button relative overflow-hidden rounded-2xl border-2 border-orange-500 bg-orange-500 px-4 py-3.5 text-sm font-extrabold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
+                    >
+                      <span className="relative z-10 inline-flex items-center gap-2">
+                        <MyChefIcon className="h-5 w-5" />
+                        Yes — let MyChef cook
+                      </span>
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="mt-1 flex items-center justify-center gap-2 text-[#067b3a]">
+                    <span className="text-lg" aria-hidden="true">✦</span>
+                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">MyChef is cooking</span>
+                    <span className="text-lg" aria-hidden="true">✦</span>
+                  </div>
+                  <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Choosing meals just for you.</h2>
+                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">A little MyChef magic, then your new meals will appear in the Planner.</p>
+                </>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
+
       {/* PICK FOR ME CONFIRMATION */}
 
       {showPickConfirm && (
 
         <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
 
-          <div className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-2xl">
+          <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl">
 
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-xl">
-              🎲
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-orange-700">
+              <MyChefIcon className="h-7 w-7" />
             </div>
 
             <h2 className="mt-4 text-xl font-bold text-slate-900">
-              Pick a new week?
+              Let MyChef cook up a new week?
             </h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Your week is already full. This will replace all of your current meals with random choices.
+              Your week is already full. This will replace all of your current meals with new choices.
             </p>
 
             <div className="mt-6 grid grid-cols-2 gap-3">
-
-              <button
-                type="button"
-                onClick={() =>
-                  setShowPickConfirm(false)
-                }
-                className="rounded-2xl bg-slate-100 px-4 py-3 font-bold text-slate-700 transition hover:bg-slate-200"
-              >
-                Cancel
+              <button type="button" onClick={() => setShowPickConfirm(false)} className="rounded-2xl bg-slate-100 px-4 py-3 font-bold text-slate-700 transition hover:bg-slate-200">Cancel</button>
+              <button type="button" onClick={confirmMyChef} disabled={isDiceRolling} className="planner-mychef-button relative overflow-hidden rounded-2xl bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600">
+                <span className="relative z-10 inline-flex items-center gap-2"><MyChefIcon className="h-5 w-5" /> MyChef</span>
               </button>
-
-              <button
-                type="button"
-                onClick={() =>
-                  animatePickForMe(true)
-                }
-                disabled={isDiceRolling}
-                className={`rounded-2xl bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600 ${
-                  isDiceRolling ? "cursor-wait opacity-80" : ""
-                }`}
-              >
-                <span
-                  className={`mr-2 inline-block ${
-                    isDiceRolling ? "animate-spin" : ""
-                  }`}
-                  aria-hidden="true"
-                >
-                  🎲
-                </span>
-                {isDiceRolling ? "Picking..." : "Pick for Me"}
-              </button>
-
             </div>
 
           </div>

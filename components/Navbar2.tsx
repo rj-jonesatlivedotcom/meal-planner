@@ -268,81 +268,53 @@ export default function Navbar() {
                 }
               : null;
 
-  const loggedOutNavItems = [
-    { href: "/", label: "Home", active: pathname === "/", premium: false },
-    { href: "/recipes", label: "Recipes", active: pathname.startsWith("/recipes"), premium: false },
-    { href: "/planner", label: "Weekly Planner", active: pathname.startsWith("/planner"), premium: false },
-    { href: "/shopping", label: "Shopping List", active: pathname.startsWith("/shopping"), premium: false },
-    { href: "/requirements", label: "My Diet", active: pathname.startsWith("/requirements"), premium: true },
-    { href: "/nutrition", label: "Nutrition", active: pathname.startsWith("/nutrition"), premium: true },
-    { href: "/FoodCheck", label: "Food Check", active: pathname.startsWith("/FoodCheck"), premium: true },
+  const navItems = [
+    {
+      href: "/",
+      label: "Home",
+      active: pathname === "/",
+      premium: false,
+    },
+    {
+      href: "/recipes",
+      label: "Recipes",
+      active: pathname.startsWith("/recipes"),
+      premium: false,
+    },
+    {
+      href: "/planner",
+      label: "Weekly Planner",
+      active: pathname.startsWith("/planner"),
+      premium: false,
+    },
+    {
+      href: "/shopping",
+      label: "Shopping List",
+      active: pathname.startsWith("/shopping"),
+      premium: false,
+    },
+    {
+      href: "/requirements",
+      label: "My Diet",
+      active: pathname.startsWith("/requirements"),
+      premium: true,
+    },
+    {
+      href: "/nutrition",
+      label: "Nutrition",
+      active: pathname.startsWith("/nutrition"),
+      premium: true,
+    },
+    {
+      href: "/FoodCheck",
+      label: "Food Check",
+      active: pathname.startsWith("/FoodCheck"),
+      premium: true,
+    },
   ];
-
-  const loggedInNavItems = [
-    { href: "/", label: "Home", active: pathname === "/", premium: false },
-    { href: "/requirements", label: "My Diet", active: pathname.startsWith("/requirements"), premium: true },
-    { href: "/recipes", label: "Recipes", active: pathname.startsWith("/recipes"), premium: false },
-    { href: "/planner", label: "Planner", active: pathname.startsWith("/planner"), premium: false },
-    { href: "/nutrition", label: "Nutrition", active: pathname.startsWith("/nutrition"), premium: true },
-    { href: "/shopping", label: "Shopping List", active: pathname.startsWith("/shopping"), premium: false },
-    { href: "/FoodCheck", label: "Food Check", active: pathname.startsWith("/FoodCheck"), premium: true },
-  ];
-
-  const navItems = loggedIn ? loggedInNavItems : loggedOutNavItems;
 
   return (
-    <>
-      <style jsx>{`
-        @keyframes renalplan-glimmer {
-          0%, 55% { transform: translateX(-140%) rotate(18deg); opacity: 0; }
-          65% { opacity: 1; }
-          85% { transform: translateX(140%) rotate(18deg); opacity: 0; }
-          100% { transform: translateX(140%) rotate(18deg); opacity: 0; }
-        }
-
-        @keyframes renalplan-sparkle {
-          0%, 70%, 100% { transform: scale(1) rotate(0deg); opacity: .75; }
-          80% { transform: scale(1.18) rotate(12deg); opacity: 1; }
-          90% { transform: scale(.92) rotate(-8deg); opacity: .9; }
-        }
-
-        .renalplan-mychef {
-          position: relative;
-          overflow: hidden;
-          isolation: isolate;
-        }
-
-        .renalplan-mychef::after {
-          content: "";
-          position: absolute;
-          inset: -45% -25%;
-          width: 34%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.65),
-            rgba(255,255,255,.95),
-            transparent
-          );
-          transform: translateX(-140%) rotate(18deg);
-          animation: renalplan-glimmer 3.2s ease-in-out infinite;
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        .renalplan-mychef-sparkle {
-          animation: renalplan-sparkle 2.2s ease-in-out infinite;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .renalplan-mychef::after,
-          .renalplan-mychef-sparkle {
-            animation: none;
-          }
-        }
-      `}</style>
-
-      <header className="relative z-50 w-full border-b border-slate-200/80 bg-white shadow-sm">
+    <header className="relative z-50 w-full border-b border-slate-200/80 bg-white shadow-sm">
       {/* DESKTOP NAVIGATION */}
       <div className="hidden lg:block">
         <div className="mx-auto flex min-h-[82px] max-w-[1500px] items-center gap-8 px-8 lg:px-10">
@@ -385,23 +357,6 @@ export default function Navbar() {
           </Link>
 
           <nav className="ml-auto flex items-center gap-0.5 lg:gap-1">
-            {loggedIn && pathname.startsWith("/planner") && (
-              <button
-                type="button"
-                onClick={() => router.push("/planner?mychef=1")}
-                aria-label="MyChef - let MyChef plan your week"
-                className={`renalplan-mychef relative mr-14 flex min-h-11 items-center gap-2 rounded-full border px-4 text-[15px] font-extrabold shadow-sm transition ${
-                  theme === "dark"
-                    ? "border-orange-500/70 bg-orange-700 text-white hover:bg-orange-600"
-                    : "border-orange-500 bg-orange-600 text-white hover:bg-orange-700"
-                }`}
-              >
-                <span className="relative z-10 text-lg leading-none" aria-hidden="true">👨‍🍳</span>
-                <span className="relative z-10">MyChef</span>
-                <span className="renalplan-mychef-sparkle relative z-10 text-base leading-none" aria-hidden="true">✦</span>
-              </button>
-            )}
-
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -481,7 +436,15 @@ export default function Navbar() {
 
           <div className="ml-2 flex shrink-0 items-center gap-3">
             <ThemeToggle />
-            {loggedIn ? null : (
+            {loggedIn ? (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className={`rounded-lg px-3 py-2.5 text-sm font-semibold transition ${theme === "dark" ? "text-slate-100/90 hover:bg-white/10 hover:text-green-300" : "text-slate-800 hover:bg-green-50 hover:text-green-700"}`}
+              >
+                Log out
+              </button>
+            ) : (
               <>
                 <Link
                   href="/auth/login"
@@ -577,26 +540,6 @@ export default function Navbar() {
 
         {open && (
           <nav className="border-t border-slate-200 bg-white px-5 pb-4 pt-2 shadow-lg">
-            {loggedIn && pathname.startsWith("/planner") && (
-              <button
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  router.push("/planner?mychef=1");
-                }}
-                aria-label="MyChef - let MyChef plan your week"
-                className={`renalplan-mychef mb-2 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-lg font-extrabold shadow-sm ${
-                  theme === "dark"
-                    ? "border border-orange-500/70 bg-orange-700 text-white"
-                    : "border border-orange-500 bg-orange-600 text-white"
-                }`}
-              >
-                <span className="relative z-10 text-lg leading-none" aria-hidden="true">👨‍🍳</span>
-                <span className="relative z-10">MyChef</span>
-                <span className="renalplan-mychef-sparkle relative z-10 text-base leading-none" aria-hidden="true">✦</span>
-              </button>
-            )}
-
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -669,7 +612,15 @@ export default function Navbar() {
             <div className="mt-2 flex items-center justify-between gap-3 border-t border-slate-200 pt-3">
               <span className="text-sm font-semibold text-slate-600">{theme === "dark" ? "Dark mode" : "Light mode"}</span>
               <ThemeToggle mobile />
-              {loggedIn ? null : (
+              {loggedIn ? (
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="flex-1 rounded-xl border border-slate-300 px-4 py-3 text-center font-semibold text-slate-900"
+                >
+                  Log out
+                </button>
+              ) : (
                 <>
                   <Link
                     href="/auth/login"
@@ -693,7 +644,6 @@ export default function Navbar() {
         )}
       </div>
     </header>
-    </>
   );
 }
 

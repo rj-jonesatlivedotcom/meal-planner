@@ -12,6 +12,7 @@ export default function AccountPage() {
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState("");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const supabase = createClient();
@@ -32,6 +33,27 @@ export default function AccountPage() {
 
     loadAccount();
   }, [router]);
+
+  useEffect(() => {
+    const currentTheme = document.documentElement.dataset.theme;
+    if (currentTheme === "dark" || currentTheme === "light") {
+      setTheme(currentTheme);
+    }
+
+    const observer = new MutationObserver(() => {
+      const nextTheme = document.documentElement.dataset.theme;
+      if (nextTheme === "dark" || nextTheme === "light") {
+        setTheme(nextTheme);
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
 
   async function handleLogout() {
@@ -246,9 +268,9 @@ export default function AccountPage() {
                 type="button"
                 onClick={handleDeleteAccount}
                 disabled={deleting}
-                className="group flex w-full items-center gap-4 border-t border-slate-200 px-5 py-4 text-left transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60 sm:px-6"
+                className={`group flex w-full items-center gap-4 border-t px-5 py-4 text-left transition disabled:cursor-not-allowed disabled:opacity-60 sm:px-6 ${theme === "dark" ? "border-slate-700/80 hover:bg-red-950/30" : "border-slate-200 hover:bg-red-50"}`}
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600">
+                <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${theme === "dark" ? "bg-red-950/50 text-red-300" : "bg-red-50 text-red-600"}`}>
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -268,7 +290,7 @@ export default function AccountPage() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <p className="text-base text-red-600 sm:text-lg">
+                  <p className={`text-base sm:text-lg ${theme === "dark" ? "text-red-300" : "text-red-600"}`}>
                     {deleting ? "Deleting account..." : "Delete account"}
                   </p>
 
@@ -278,7 +300,7 @@ export default function AccountPage() {
                   </p>
                 </div>
 
-                <span className="shrink-0 text-2xl font-light text-red-500 transition-transform group-hover:translate-x-1">
+                <span className={`shrink-0 text-2xl font-light transition-transform group-hover:translate-x-1 ${theme === "dark" ? "text-red-300" : "text-red-500"}`}>
                   ›
                 </span>
               </button>
@@ -380,8 +402,8 @@ export default function AccountPage() {
           </section>
         </div>
 
-        {/* MOBILE LOGOUT */}
-        <section className="mt-5 pb-5 md:hidden">
+        {/* LOG OUT */}
+        <section className="mt-5 pb-5">
           <button
             type="button"
             onClick={handleLogout}

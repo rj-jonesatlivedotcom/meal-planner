@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
@@ -354,6 +355,9 @@ export default function WeeklyPlannerPage() {
     useState<"intro" | "cooking">("intro");
   const [myChefFading, setMyChefFading] =
     useState(false);
+
+  const searchParams = useSearchParams();
+  const myChefNavHandledRef = useRef(false);
 
   const [requirements, setRequirements] =
     useState<Requirements | null>(null);
@@ -1191,6 +1195,28 @@ export default function WeeklyPlannerPage() {
     setPendingReplaceAll(!hasEmptySlots);
     openMyChefIntro();
   }
+
+  useEffect(() => {
+    const requested = searchParams.get("mychef") === "1";
+
+    if (!requested) {
+      myChefNavHandledRef.current = false;
+      return;
+    }
+
+    if (
+      myChefNavHandledRef.current ||
+      !authChecked ||
+      plannerMeals === null ||
+      mealPeople === null
+    ) {
+      return;
+    }
+
+    myChefNavHandledRef.current = true;
+    window.history.replaceState(null, "", "/planner");
+    startPickForMe();
+  }, [searchParams, authChecked, plannerMeals, mealPeople]);
 
   function clearWeek() {
     // Clear drinks logged for the current Monday–Sunday planner week as well
@@ -2946,37 +2972,6 @@ html[data-theme="dark"] main .planner-remove-button {
         <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-stretch">
 
           <div className="order-1 flex w-full min-w-0 self-stretch items-stretch gap-3 md:order-3 md:w-auto md:flex-1 md:justify-end md:self-stretch">
-
-            <button
-              type="button"
-              onClick={startPickForMe}
-              disabled={isDiceRolling}
-              style={{
-                backgroundColor: theme === "dark" ? "#7c2d12" : "#fed7aa",
-                color: theme === "dark" ? "#fff7ed" : "#12396b",
-                borderColor: theme === "dark" ? "#9a3412" : "#fdba74",
-              }}
-              className={`planner-pick-for-me-button planner-mychef-button group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-3 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base ${
-                isDiceRolling
-                  ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
-                  : ""
-              }`}
-              aria-label={isDiceRolling ? "MyChef is choosing your meals" : "Open MyChef"}
-            >
-              <span
-                className={`inline-flex text-xl leading-none transition-transform md:text-2xl ${
-                  isDiceRolling
-                    ? "animate-pulse scale-110"
-                    : "group-hover:scale-110"
-                }`}
-                aria-hidden="true"
-              >
-                <MyChefIcon className="h-7 w-7 md:h-8 md:w-8" />
-              </span>
-              <span className="ml-1.5">
-                {isDiceRolling ? "MyChef is cooking..." : "MyChef"}
-              </span>
-            </button>
 
             <button
               type="button"

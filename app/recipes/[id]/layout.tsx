@@ -1,5 +1,8 @@
+
 import type { Metadata } from "next";
 import { recipes } from "@/data/RecipeData";
+
+const SITE_URL = "https://www.renalplan.com";
 
 type RecipeLayoutProps = {
   children: React.ReactNode;
@@ -32,22 +35,28 @@ export async function generateMetadata({
       robots: {
         index: false,
         follow: false,
+        },
+      // Keeps a canonical tag even if the recipe ID is invalid
+      alternates: {
+        canonical: `/recipes/${id}`,
       },
     };
   }
+
+  const recipeUrl = `${SITE_URL}/recipes/${recipe.id}`;
 
   return {
     title: `${recipe.name} | RenalPlan`,
     description: recipe.description,
 
     alternates: {
-      canonical: `https://www.renalplan.com/recipes/${recipe.id}`,
+      canonical: recipeUrl,
     },
 
     openGraph: {
       title: `${recipe.name} | RenalPlan`,
       description: recipe.description,
-      url: `https://www.renalplan.com/recipes/${recipe.id}`,
+      url: recipeUrl,
       siteName: "RenalPlan",
       locale: "en_GB",
       type: "article",
@@ -55,7 +64,7 @@ export async function generateMetadata({
         ? {
             images: [
               {
-                url: `https://www.renalplan.com${recipe.image}`,
+                url: `${SITE_URL}${recipe.image}`,
                 alt: recipe.name,
               },
             ],
@@ -81,9 +90,9 @@ export default async function RecipeLayout({
     return children;
   }
 
-  const recipeUrl = `https://www.renalplan.com/recipes/${recipe.id}`;
+  const recipeUrl = `${SITE_URL}/recipes/${recipe.id}`;
   const recipeImage = recipe.image?.trim()
-    ? `https://www.renalplan.com${recipe.image}`
+    ? `${SITE_URL}${recipe.image}`
     : undefined;
   const totalTime = toIsoDuration(recipe.cookingTime);
 
@@ -106,13 +115,13 @@ export default async function RecipeLayout({
     author: {
       "@type": "Organization",
       name: "RenalPlan",
-      url: "https://www.renalplan.com",
+      url: SITE_URL,
     },
 
     publisher: {
       "@type": "Organization",
       name: "RenalPlan",
-      url: "https://www.renalplan.com",
+      url: SITE_URL,
     },
 
     recipeCategory: recipe.category,
@@ -165,6 +174,3 @@ export default async function RecipeLayout({
     </>
   );
 }
-
-
-

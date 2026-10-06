@@ -248,7 +248,6 @@ const benefits = [
 ];
 
 function ShowcaseVideo({ mobile }: { mobile: boolean }) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const [shouldRender, setShouldRender] = useState<boolean | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
@@ -266,56 +265,63 @@ function ShowcaseVideo({ mobile }: { mobile: boolean }) {
   }, [mobile]);
 
   useEffect(() => {
-    if (shouldRender !== true) return;
+    if (shouldRender !== true || shouldLoad) return;
 
-    const container = containerRef.current;
-    if (!container) return;
+    // The showcase is below the hero and is intentionally not downloaded
+    // during the initial page load. Start the video after the visitor begins
+    // interacting with the page, keeping the visual space reserved above it.
+    const loadVideo = () => setShouldLoad(true);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "0px" },
-    );
+    window.addEventListener("scroll", loadVideo, { passive: true, once: true });
 
-    observer.observe(container);
-
-    return () => observer.disconnect();
-  }, [shouldRender]);
+    return () => {
+      window.removeEventListener("scroll", loadVideo);
+    };
+  }, [shouldRender, shouldLoad]);
 
   if (shouldRender !== true) return null;
 
-  return (
-    <div ref={containerRef} className="h-full w-full">
-      <video
-        className={mobile ? "block h-full w-full object-contain object-center" : "block h-auto w-full object-contain"}
-        autoPlay={shouldLoad}
-        muted
-        loop
-        playsInline
-        preload={shouldLoad ? "metadata" : "none"}
+  if (!shouldLoad) {
+    return (
+      <div
+        className={
+          mobile
+            ? "h-full w-full bg-[#102b4d]"
+            : "aspect-video w-full bg-[#102b4d]"
+        }
         aria-label={
           mobile
-            ? "RenalPlan mobile showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
-            : "RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+            ? "RenalPlan mobile showcase video will load when you scroll"
+            : "RenalPlan showcase video will load when you scroll"
         }
-      >
-        {shouldLoad && (
-          <source
-            src={
-              mobile
-                ? "/videos/RenalPlan_Mobile_Showcase_FINAL_v10_CLEAN.mp4"
-                : "/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
-            }
-            type="video/mp4"
-          />
-        )}
-        Your browser does not support the video element.
-      </video>
-    </div>
+      />
+    );
+  }
+
+  return (
+    <video
+      className={mobile ? "block h-full w-full object-contain object-center" : "block h-auto w-full object-contain"}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-label={
+        mobile
+          ? "RenalPlan mobile showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+          : "RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+      }
+    >
+      <source
+        src={
+          mobile
+            ? "/videos/RenalPlan_Mobile_Showcase_FINAL_v10_CLEAN.mp4"
+            : "/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
+        }
+        type="video/mp4"
+      />
+      Your browser does not support the video element.
+    </video>
   );
 }
 

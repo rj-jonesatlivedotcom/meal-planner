@@ -750,7 +750,7 @@ export const dinners: Recipe[] = [
     servings: 1,
   },
   {
-    id: "D012",
+    id: "turkey-sweetcorn-pasta",
     code: "D012",
     category: "Dinner",
     emoji: "🍝",
@@ -803,7 +803,7 @@ export const dinners: Recipe[] = [
   },
 
   {
-    id: "D013",
+    id: "lemon-cod-pasta-peppers",
     code: "D013",
     category: "Dinner",
     emoji: "🐟",
@@ -855,7 +855,7 @@ export const dinners: Recipe[] = [
   },
 
   {
-    id: "D014",
+    id: "chicken-sweetcorn-rice-bowl",
     code: "D014",
     category: "Dinner",
     emoji: "🍚",
@@ -907,7 +907,7 @@ export const dinners: Recipe[] = [
   },
 
   {
-    id: "D015",
+    id: "turkey-rice-roasted-peppers",
     code: "D015",
     category: "Dinner",
     emoji: "🍗",
@@ -960,7 +960,7 @@ export const dinners: Recipe[] = [
   },
 
   {
-    id: "D016",
+    id: "pork-apple-rice-bowl",
     code: "D016",
     category: "Dinner",
     emoji: "🍎",
@@ -1013,7 +1013,7 @@ export const dinners: Recipe[] = [
   },
 
   {
-    id: "D017",
+    id: "creamy-chicken-cabbage-pasta",
     code: "D017",
     category: "Dinner",
     emoji: "🍝",
@@ -1065,7 +1065,7 @@ export const dinners: Recipe[] = [
   },
 
   {
-    id: "D018",
+    id: "cod-sweetcorn-rice",
     code: "D018",
     category: "Dinner",
     emoji: "🐟",
@@ -1117,7 +1117,7 @@ export const dinners: Recipe[] = [
   },
 
   {
-    id: "D019",
+    id: "egg-vegetable-pasta",
     code: "D019",
     category: "Dinner",
     emoji: "🥚",
@@ -1170,7 +1170,7 @@ export const dinners: Recipe[] = [
   },
 
   {
-    id: "D020",
+    id: "chicken-apple-couscous-style-rice",
     code: "D020",
     category: "Dinner",
     emoji: "🍗",
@@ -1222,7 +1222,7 @@ export const dinners: Recipe[] = [
     servings: 1,
   },
   {
-    id: "D021", code: "D021", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.png",
+    id: "chicken-herb-sweetcorn-rice", code: "D021", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.png",
     name: "Chicken, Herb & Sweetcorn Rice", description: "Tender chicken with fluffy basmati rice, sweetcorn and herbs.", cookingTime: "30 minutes", calories: "612 kcal", protein: "32.5 g", equipment: "Large saucepan, frying pan, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1233,7 +1233,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D022", code: "D022", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
+    id: "beef-pepper-pasta", code: "D022", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
     name: "Beef & Pepper Pasta", description: "Lean beef mince with pasta, peppers and onion in a light herb sauce.", cookingTime: "25 minutes", calories: "648 kcal", protein: "34.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "120 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1244,7 +1244,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D023", code: "D023", category: "Dinner", emoji: "🐟", image: "/images/recipes/D023.png",
+    id: "herb-cod-potatoes-cabbage", code: "D023", category: "Dinner", emoji: "🐟", image: "/images/recipes/D023.png",
     name: "Herb Cod with Potatoes & Cabbage", description: "Baked cod served with boiled potatoes and tender cabbage with lemon and herbs.", cookingTime: "35 minutes", calories: "578 kcal", protein: "31.5 g", equipment: "Baking tray, saucepan, steamer or second saucepan, knife, chopping board, Oven",
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1255,7 +1255,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D024", code: "D024", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
+    id: "creamy-cheese-egg-pasta", code: "D024", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
     name: "Creamy Cheese & Egg Pasta", description: "Pasta coated in a creamy egg and Cheddar sauce with onion and herbs.", cookingTime: "20 minutes", calories: "625 kcal", protein: "29.0 g", equipment: "Large saucepan, frying pan, mixing bowl, colander, wooden spoon",
     ingredients: [
       { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" }, { item: "Egg", shoppingItem: "Egg", quantity: "1" }, { item: "Cheddar cheese", shoppingItem: "Cheddar cheese", quantity: "25 g" }, { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "100 ml" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1266,7 +1266,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D025", code: "D025", category: "Dinner", emoji: "🍖", image: "/images/recipes/D025.png",
+    id: "pork-apple-cabbage", code: "D025", category: "Dinner", emoji: "🍖", image: "/images/recipes/D025.png",
     name: "Pork, Apple & Cabbage", description: "Grilled pork with warm apple and tender cabbage, finished with herbs.", cookingTime: "30 minutes", calories: "590 kcal", protein: "35.0 g", equipment: "Grill pan, saucepan, frying pan, knife, chopping board",
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "140 g" }, { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (100 g)" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1277,7 +1277,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D026", code: "D026", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
+    id: "creamy-chicken-pepper-pasta", code: "D026", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
     name: "Creamy Chicken & Pepper Pasta", description: "Chicken and peppers folded through pasta with a light creamy sauce.", cookingTime: "25 minutes", calories: "635 kcal", protein: "34.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Single cream", shoppingItem: "Single cream", quantity: "50 ml" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1288,7 +1288,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D027", code: "D027", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
+    id: "cod-sweetcorn-herb-pasta", code: "D027", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
     name: "Cod, Sweetcorn & Herb Pasta", description: "Flaked cod with pasta and sweetcorn in a fresh lemon and herb dressing.", cookingTime: "25 minutes", calories: "610 kcal", protein: "33.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife",
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1299,7 +1299,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D028", code: "D028", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
+    id: "egg-cabbage-sweetcorn-rice", code: "D028", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
     name: "Egg, Cabbage & Sweetcorn Rice", description: "Fluffy rice stir-fried with egg, cabbage, sweetcorn and onion.", cookingTime: "25 minutes", calories: "575 kcal", protein: "20.0 g", equipment: "Saucepan, large frying pan, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Eggs", shoppingItem: "Eggs", quantity: "2" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1310,7 +1310,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D029", code: "D029", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
+    id: "pork-pepper-pasta", code: "D029", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
     name: "Pork & Pepper Pasta", description: "Tender pork with pasta, green pepper and onion in a light herb dressing.", cookingTime: "25 minutes", calories: "645 kcal", protein: "36.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1362,7 +1362,7 @@ export const dinners: Recipe[] = [
     servings: 1,
   },
   {
-    id: "D031",
+    id: "lemon-chicken-herb-pasta",
     code: "D031",
     category: "Dinner",
     emoji: "🍗",
@@ -1404,7 +1404,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D032",
+    id: "cod-pepper-lemon-rice",
     code: "D032",
     category: "Dinner",
     emoji: "🐟",
@@ -1447,7 +1447,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D033",
+    id: "beef-cabbage-rice",
     code: "D033",
     category: "Dinner",
     emoji: "🥩",
@@ -1488,7 +1488,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D034",
+    id: "cheesy-egg-vegetable-rice",
     code: "D034",
     category: "Dinner",
     emoji: "🍳",
@@ -1530,7 +1530,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D035",
+    id: "chicken-cabbage-herb-rice",
     code: "D035",
     category: "Dinner",
     emoji: "🍗",
@@ -1571,7 +1571,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D036",
+    id: "cod-cabbage-pasta",
     code: "D036",
     category: "Dinner",
     emoji: "🐟",
@@ -1613,7 +1613,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D037",
+    id: "pepper-beef-rice",
     code: "D037",
     category: "Dinner",
     emoji: "🥩",
@@ -1654,7 +1654,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D038",
+    id: "pork-apple-herb-pasta",
     code: "D038",
     category: "Dinner",
     emoji: "🍖",
@@ -1695,7 +1695,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "D039",
+    id: "egg-cauliflower-herb-pasta",
     code: "D039",
     category: "Dinner",
     emoji: "🍳",

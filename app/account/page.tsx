@@ -249,7 +249,7 @@ export default function AccountPage() {
 
                 <div className="min-w-0 flex-1">
                   <p className="text-base text-[#0B3B75] sm:text-lg">
-                    Security &amp; Data Protection
+                    Privacy &amp; Data Protection
                   </p>
 
                   <p className="mt-0.5 text-sm leading-5 text-slate-600 sm:text-base">

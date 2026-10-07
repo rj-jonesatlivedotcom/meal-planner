@@ -1,7 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/RecipeData";
 import {
@@ -1211,38 +1210,14 @@ export default function RecipesPage() {
             ===================================================== */}
         {filteredRecipes.length > 0 ? (
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {filteredRecipes.map((recipe, index) => (
-              <Fragment key={recipe.id}>
-                <RecipeCard
-                  recipe={recipe}
-                  favouriteRecipeIds={favouriteRecipeIds}
-                  userId={userId}
-                  onFavouriteChange={handleFavouriteChange}
-                />
-
-                {/* Gentle signup CTA after the first row of recipes for visitors */}
-                {!isLoggedIn && index === 7 && (
-                  <div className="col-span-full rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-blue-50 px-6 py-5 shadow-sm">
-                    <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-                      <div>
-                        <h2 className="text-lg font-extrabold text-slate-900">
-                          Found some meals you like?
-                        </h2>
-                        <p className="mt-1 text-sm text-slate-600">
-                          Create a free RenalPlan account and start planning your week.
-                        </p>
-                      </div>
-
-                      <Link
-                        href="/signup"
-                        className="inline-flex shrink-0 items-center justify-center rounded-xl bg-[#0B3B75] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#082E5C]"
-                      >
-                        Create free account
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </Fragment>
+            {filteredRecipes.map((recipe) => (
+              <RecipeCard
+                key={recipe.id}
+                recipe={recipe}
+                favouriteRecipeIds={favouriteRecipeIds}
+                userId={userId}
+                onFavouriteChange={handleFavouriteChange}
+              />
             ))}
           </div>
         ) : (

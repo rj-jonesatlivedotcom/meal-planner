@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  title: "Weekly Meal Planner",
   robots: {
     index: false,
     follow: true,

@@ -100,7 +100,7 @@ export default function PrivacyPage() {
 
               <div>
                 <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-                  Security &amp; Data Protection
+                  Privacy &amp; Data Protection
                 </h1>
                 <p className="mt-2 text-base leading-6 text-slate-600">
                   How RenalPlan protects and uses your personal information.

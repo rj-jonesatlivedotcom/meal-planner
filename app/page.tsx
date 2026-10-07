@@ -2206,7 +2206,7 @@ export default function Home() {
               href="/privacy"
               className="mt-1 inline-block text-sm font-semibold text-[#1266c3] transition hover:text-[#067b3a] hover:underline"
             >
-              Security and Data Protection
+              Privacy and Data Protection
             </Link>
           </div>
 

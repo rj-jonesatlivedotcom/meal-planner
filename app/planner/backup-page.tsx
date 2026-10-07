@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
@@ -318,7 +319,7 @@ function syncPlannerWithShoppingList(
   );
 }
 
-export default function WeeklyPlannerPage() {
+function WeeklyPlannerPageContent() {
   const [selectedDay, setSelectedDay] =
     useState("Monday");
   const [plannerMeals, setPlannerMeals] =
@@ -354,6 +355,9 @@ export default function WeeklyPlannerPage() {
     useState<"intro" | "cooking">("intro");
   const [myChefFading, setMyChefFading] =
     useState(false);
+
+  const searchParams = useSearchParams();
+  const myChefNavHandledRef = useRef(false);
 
   const [requirements, setRequirements] =
     useState<Requirements | null>(null);
@@ -1032,30 +1036,15 @@ export default function WeeklyPlannerPage() {
     });
   }
 
-  function getRandomRecipeId(
-    meal: string,
-    usedIds: Set<string>
-  ) {
-    const mealRecipes =
-      getMealRecipes(meal);
+  function shuffleRecipeIds(recipeIds: string[]) {
+    const shuffled = [...recipeIds];
 
-    const unusedRecipes =
-      mealRecipes.filter(
-        (recipe) => !usedIds.has(recipe.id)
-      );
-
-    const pool = unusedRecipes;
-
-    if (pool.length === 0) {
-      return null;
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
 
-    const randomIndex =
-      Math.floor(
-        Math.random() * pool.length
-      );
-
-    return pool[randomIndex].id;
+    return shuffled;
   }
 
   function pickForMe(
@@ -1078,6 +1067,27 @@ export default function WeeklyPlannerPage() {
         Breakfast: new Set<string>(),
         Lunch: new Set<string>(),
         Dinner: new Set<string>(),
+      };
+
+      // Give each meal type its own shuffled cycle. MyChef works through
+      // every suitable recipe once, then starts the cycle again so repeats
+      // are spread across the week rather than appearing together.
+      const recipeCycleByMeal: Record<string, string[]> = {
+        Breakfast: shuffleRecipeIds(
+          getMealRecipes("Breakfast").map((recipe) => recipe.id)
+        ),
+        Lunch: shuffleRecipeIds(
+          getMealRecipes("Lunch").map((recipe) => recipe.id)
+        ),
+        Dinner: shuffleRecipeIds(
+          getMealRecipes("Dinner").map((recipe) => recipe.id)
+        ),
+      };
+
+      const cyclePositionByMeal: Record<string, number> = {
+        Breakfast: 0,
+        Lunch: 0,
+        Dinner: 0,
       };
 
       if (!replaceAll) {
@@ -1107,14 +1117,36 @@ export default function WeeklyPlannerPage() {
             return;
           }
 
-          const recipeId =
-            getRandomRecipeId(
-              meal,
-              usedByMeal[meal]
-            );
+          const cycle = recipeCycleByMeal[meal];
 
-          if (!recipeId) {
+          if (!cycle || cycle.length === 0) {
             return;
+          }
+
+          // First use every suitable recipe that has not already appeared.
+          // Once those are exhausted, continue through the same cycle so
+          // repeats are naturally spaced out across the week.
+          let recipeId: string | null = null;
+
+          for (let offset = 0; offset < cycle.length; offset++) {
+            const index =
+              (cyclePositionByMeal[meal] + offset) % cycle.length;
+            const candidate = cycle[index];
+
+            if (!usedByMeal[meal].has(candidate)) {
+              recipeId = candidate;
+              cyclePositionByMeal[meal] = (index + 1) % cycle.length;
+              break;
+            }
+          }
+
+          // All suitable recipes have now been used, so take the next recipe
+          // in the cycle. This allows repeats while keeping them separated.
+          if (!recipeId) {
+            const index =
+              cyclePositionByMeal[meal] % cycle.length;
+            recipeId = cycle[index];
+            cyclePositionByMeal[meal] = (index + 1) % cycle.length;
           }
 
           nextPlanner[day][meal] =
@@ -1191,6 +1223,28 @@ export default function WeeklyPlannerPage() {
     setPendingReplaceAll(!hasEmptySlots);
     openMyChefIntro();
   }
+
+  useEffect(() => {
+    const requested = searchParams.get("mychef") === "1";
+
+    if (!requested) {
+      myChefNavHandledRef.current = false;
+      return;
+    }
+
+    if (
+      myChefNavHandledRef.current ||
+      !authChecked ||
+      plannerMeals === null ||
+      mealPeople === null
+    ) {
+      return;
+    }
+
+    myChefNavHandledRef.current = true;
+    window.history.replaceState(null, "", "/planner");
+    startPickForMe();
+  }, [searchParams, authChecked, plannerMeals, mealPeople]);
 
   function clearWeek() {
     // Clear drinks logged for the current Monday–Sunday planner week as well
@@ -2951,20 +3005,15 @@ html[data-theme="dark"] main .planner-remove-button {
               type="button"
               onClick={startPickForMe}
               disabled={isDiceRolling}
-              style={{
-                backgroundColor: theme === "dark" ? "#7c2d12" : "#fed7aa",
-                color: theme === "dark" ? "#fff7ed" : "#12396b",
-                borderColor: theme === "dark" ? "#9a3412" : "#fdba74",
-              }}
-              className={`planner-pick-for-me-button planner-mychef-button group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-3 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base ${
+              aria-label={isDiceRolling ? "MyChef is choosing your meals" : "Open MyChef"}
+              className={`planner-pick-for-me-button planner-mychef-button group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-orange-500 bg-orange-500 px-3 py-4 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg lg:hidden ${
                 isDiceRolling
                   ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
                   : ""
               }`}
-              aria-label={isDiceRolling ? "MyChef is choosing your meals" : "Open MyChef"}
             >
               <span
-                className={`inline-flex text-xl leading-none transition-transform md:text-2xl ${
+                className={`relative z-10 inline-flex text-xl leading-none transition-transform md:text-2xl ${
                   isDiceRolling
                     ? "animate-pulse scale-110"
                     : "group-hover:scale-110"
@@ -2973,7 +3022,7 @@ html[data-theme="dark"] main .planner-remove-button {
               >
                 <MyChefIcon className="h-7 w-7 md:h-8 md:w-8" />
               </span>
-              <span className="ml-1.5">
+              <span className="relative z-10">
                 {isDiceRolling ? "MyChef is cooking..." : "MyChef"}
               </span>
             </button>
@@ -3259,8 +3308,8 @@ html[data-theme="dark"] main .planner-remove-button {
                     <span className="text-xs font-extrabold uppercase tracking-[0.18em]">Meet MyChef</span>
                     <span className="text-lg" aria-hidden="true">✦</span>
                   </div>
-                  <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Want MyChef to cook your week?</h2>
-                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">MyChef will choose meals that fit your saved dietary requirements and fill your empty week for you.</p>
+                  <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Want MyChef to plan your week?</h2>
+                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">MyChef will choose meals that fit your saved dietary requirements and create a personalised plan for your week.</p>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     <button
@@ -3600,6 +3649,10 @@ html[data-theme="dark"] main .planner-remove-button {
   );
 }
 
-
-
-
+export default function WeeklyPlannerPage() {
+  return (
+    <Suspense fallback={null}>
+      <WeeklyPlannerPageContent />
+    </Suspense>
+  );
+}

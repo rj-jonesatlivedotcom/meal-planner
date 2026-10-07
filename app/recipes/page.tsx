@@ -192,6 +192,79 @@ export default function RecipesPage() {
     sortBy,
   ]);
 
+  // Remember where the user was on the Recipes page when opening a recipe,
+  // then restore that exact position when they come back.
+  useEffect(() => {
+    function saveRecipesScrollPosition(event: MouseEvent) {
+      const target = event.target as HTMLElement | null;
+      const link = target?.closest("a[href]") as HTMLAnchorElement | null;
+
+      if (!link) {
+        return;
+      }
+
+      const href = link.getAttribute("href") ?? "";
+
+      // Only save the position when leaving the Recipes page for a recipe.
+      // Do not interfere with signup, account, filter, or other links.
+      if (href.startsWith("/recipes/")) {
+        try {
+          sessionStorage.setItem(
+            "recipes-scroll-position",
+            String(window.scrollY)
+          );
+        } catch {
+          // Ignore storage errors.
+        }
+      }
+    }
+
+    document.addEventListener("click", saveRecipesScrollPosition);
+
+    return () => {
+      document.removeEventListener("click", saveRecipesScrollPosition);
+    };
+  }, []);
+
+  // Restore the previous Recipes-page position after the page has rendered.
+  useEffect(() => {
+    if (!filtersLoaded) {
+      return;
+    }
+
+    let savedPosition: number | null = null;
+
+    try {
+      const stored = sessionStorage.getItem("recipes-scroll-position");
+
+      if (stored !== null) {
+        const parsed = Number(stored);
+        if (Number.isFinite(parsed)) {
+          savedPosition = parsed;
+        }
+        sessionStorage.removeItem("recipes-scroll-position");
+      }
+    } catch {
+      // Ignore storage errors.
+    }
+
+    if (savedPosition === null) {
+      return;
+    }
+
+    const position = savedPosition;
+
+    // Wait for the recipe cards to be laid out before restoring the scroll.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: position,
+          behavior: "instant",
+        });
+      });
+    });
+  }, [filtersLoaded]);
+
   useEffect(() => {
     setRequirements(getStoredRequirements());
 

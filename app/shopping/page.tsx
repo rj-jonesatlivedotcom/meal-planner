@@ -1220,7 +1220,64 @@ function normaliseShoppingQuantity(
     return formatQuantity(parsed.amount * 3, "tsp");
   }
 
+  const withoutRedundantUnit = removeRedundantCountUnit(
+    name,
+    parsed.amount,
+    parsed.unit
+  );
+  if (withoutRedundantUnit !== null) {
+    return withoutRedundantUnit;
+  }
+
   return formatQuantity(parsed.amount, parsed.unit);
+}
+
+function removeRedundantCountUnit(
+  name: string,
+  amount: number,
+  unit: string
+): string | null {
+  const cleanName = cleanText(name).toLowerCase().replace(/\s+/g, " ").trim();
+  const cleanUnit = normaliseUnit(unit).toLowerCase().trim();
+
+  if (!cleanUnit || ["small", "medium", "large"].includes(cleanUnit)) {
+    return null;
+  }
+
+  const singularise = (value: string): string => {
+    if (value.endsWith("ies") && value.length > 3) {
+      return `${value.slice(0, -3)}y`;
+    }
+    if (value.endsWith("ves") && value.length > 3) {
+      const stem = value.slice(0, -3);
+      return `${stem}f`;
+    }
+    if (value.endsWith("s") && value.length > 1) {
+      return value.slice(0, -1);
+    }
+    return value;
+  };
+
+  const nameWords = cleanName.split(" ");
+  const lastWord = nameWords[nameWords.length - 1];
+  const unitSingular = singularise(cleanUnit);
+  const lastWordSingular = singularise(lastWord);
+
+  // If the quantity unit simply repeats the ingredient name, the item
+  // column already provides that information. Examples: "6 strawberries",
+  // "4 mushroom", "1 carrot", "2 pitta", "2 chicken breast".
+  if (
+    cleanUnit === cleanName ||
+    unitSingular === singularise(cleanName) ||
+    cleanUnit === lastWord ||
+    unitSingular === lastWord ||
+    cleanUnit === lastWordSingular ||
+    unitSingular === lastWordSingular
+  ) {
+    return decimalToFraction(amount);
+  }
+
+  return null;
 }
 
 function combineQuantity(
@@ -1660,6 +1717,18 @@ if (lower === "cod fillet" && parsed.unit === "") {
       quantity: `${decimalToFraction(Math.ceil(parsed.amount))} bunch${
         Math.ceil(parsed.amount) === 1 ? "" : "es"
       }`,
+    };
+  }
+
+  const withoutRedundantUnit = removeRedundantCountUnit(
+    name,
+    parsed.amount,
+    parsed.unit
+  );
+  if (withoutRedundantUnit !== null) {
+    return {
+      item: name,
+      quantity: withoutRedundantUnit,
     };
   }
 

@@ -1,13 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { recipes } from "@/data/RecipeData";
 
 type RequirementLevel = "Any" | "Low" | "Moderate";
+type CkdStage = "stage3" | "stage4" | "stage5" | "dialysis" | "custom";
 
 type Requirements = {
+  ckdStage: CkdStage;
   sodiumLimit: number | null;
+  proteinMinG: number | null;
+  proteinMaxG: number | null;
+  potassiumLimitMg: number | null;
+  phosphateLimitMg: number | null;
   potassium: RequirementLevel;
   phosphate: RequirementLevel;
   purines: RequirementLevel;
@@ -19,7 +24,12 @@ type Requirements = {
 const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
 
 const defaultRequirements: Requirements = {
+  ckdStage: "custom",
   sodiumLimit: null,
+  proteinMinG: null,
+  proteinMaxG: null,
+  potassiumLimitMg: null,
+  phosphateLimitMg: null,
   potassium: "Any",
   phosphate: "Any",
   purines: "Any",
@@ -28,35 +38,64 @@ const defaultRequirements: Requirements = {
   fluidLimitMl: null,
 };
 
-const levelRank: Record<"Low" | "Moderate" | "High", number> = {
-  Low: 1,
-  Moderate: 2,
-  High: 3,
+type StagePreset = {
+  saltG: number;
+  proteinMinGPerKg: number | null;
+  proteinMaxGPerKg: number | null;
+  potassiumLimitMmol: number | null;
+  phosphateLimitMg: number | null;
+  proteinNote: string;
 };
 
-function matchesLevel(
-  recipeLevel: "Low" | "Moderate" | "High",
-  requirement: RequirementLevel
-) {
-  if (requirement === "Any") {
-    return true;
-  }
+const stagePresets: Record<Exclude<CkdStage, "custom">, StagePreset> = {
+  stage3: {
+    saltG: 5,
+    proteinMinGPerKg: null,
+    proteinMaxGPerKg: null,
+    potassiumLimitMmol: null,
+    phosphateLimitMg: null,
+    proteinNote: "Enter the daily protein amount or range provided by your renal team. Stage guidance can vary with individual circumstances.",
+  },
+  stage4: {
+    saltG: 5,
+    proteinMinGPerKg: null,
+    proteinMaxGPerKg: null,
+    potassiumLimitMmol: 70,
+    phosphateLimitMg: 1000,
+    proteinNote: "Enter the daily protein amount or range provided by your renal team. Stage guidance can vary with individual circumstances.",
+  },
+  stage5: {
+    saltG: 5,
+    proteinMinGPerKg: null,
+    proteinMaxGPerKg: null,
+    potassiumLimitMmol: 70,
+    phosphateLimitMg: 1000,
+    proteinNote: "Enter the daily protein amount or range provided by your renal team. Stage guidance can vary with individual circumstances.",
+  },
+  dialysis: {
+    saltG: 5,
+    proteinMinGPerKg: null,
+    proteinMaxGPerKg: null,
+    potassiumLimitMmol: 70,
+    phosphateLimitMg: 1000,
+    proteinNote: "Enter the daily protein amount or range provided by your renal team. Stage guidance can vary with individual circumstances.",
+  },
+};
 
-  return levelRank[recipeLevel] <= levelRank[requirement];
+const MG_PER_MMOL_POTASSIUM = 39.1;
+const MG_PER_MMOL_PHOSPHORUS = 31.0;
+
+function mmolToPotassiumMg(mmol: number | null) {
+  return mmol === null ? null : Math.round(mmol * MG_PER_MMOL_POTASSIUM);
 }
 
-function getNutritionNumber(value: string | undefined): number {
-  if (!value) {
-    return 0;
-  }
-
-  const match = value.match(/-?\d+(?:\.\d+)?/);
-  return match ? Number(match[0]) : 0;
+function phosphorusMgToMmol(mg: number | null) {
+  return mg === null ? null : Number((mg / MG_PER_MMOL_PHOSPHORUS).toFixed(1));
 }
 
-function syncRequirementsToLocalStorage(
-  requirements: Requirements
-) {
+
+
+function syncRequirementsToLocalStorage(requirements: Requirements) {
   try {
     window.localStorage.setItem(
       REQUIREMENTS_STORAGE_KEY,
@@ -76,8 +115,10 @@ export default function RequirementsPage() {
     useState<Requirements>(defaultRequirements);
 
   const [saveStatus, setSaveStatus] = useState<
-    "idle" | "saving" | "saved" | "error"
+    "idle" | "saving" | "saved"
   >("idle");
+
+  const [openAdvice, setOpenAdvice] = useState<string | null>(null);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
@@ -100,14 +141,14 @@ export default function RequirementsPage() {
           );
 
           if (saved) {
-            const savedRequirements: Requirements =
-              JSON.parse(saved);
-
-            setRequirements(savedRequirements);
+            const savedRequirements = JSON.parse(saved) as Partial<Requirements>;
+            setRequirements({
+              ...defaultRequirements,
+              ...savedRequirements,
+            });
           }
         } catch {
-          // Keep the default requirements if local storage
-          // is unavailable or invalid.
+          // Keep the default requirements.
         }
 
         return;
@@ -116,7 +157,7 @@ export default function RequirementsPage() {
       const { data, error } = await supabase
         .from("user_requirements")
         .select(
-          "sodium_limit, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml"
+          "sodium_limit, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml, ckd_stage, protein_min_g, protein_max_g, potassium_limit_mg, phosphate_limit_mg"
         )
         .eq("user_id", user.id)
         .maybeSingle();
@@ -126,24 +167,98 @@ export default function RequirementsPage() {
       }
 
       const loadedRequirements: Requirements = {
-        sodiumLimit: data.sodium_limit,
+        ckdStage:
+          (data.ckd_stage as CkdStage | null) ?? "custom",
+        sodiumLimit: data.sodium_limit ?? null,
+        proteinMinG: data.protein_min_g ?? null,
+        proteinMaxG: data.protein_max_g ?? null,
+        potassiumLimitMg: data.potassium_limit_mg ?? null,
+        phosphateLimitMg: data.phosphate_limit_mg ?? null,
         potassium: data.potassium as RequirementLevel,
         phosphate: data.phosphate as RequirementLevel,
         purines: data.purines as RequirementLevel,
-        carbohydrateMin: data.carbohydrate_min,
-        carbohydrateMax: data.carbohydrate_max,
+        carbohydrateMin: data.carbohydrate_min ?? null,
+        carbohydrateMax: data.carbohydrate_max ?? null,
         fluidLimitMl: data.fluid_limit_ml ?? null,
       };
 
       setRequirements(loadedRequirements);
-
-      syncRequirementsToLocalStorage(
-        loadedRequirements
-      );
+      syncRequirementsToLocalStorage(loadedRequirements);
     }
 
     loadRequirements();
   }, []);
+
+  function trackDietUpdate(key: string) {
+    if (typeof window === "undefined") return;
+
+    const gtag = (window as typeof window & {
+      gtag?: (...args: any[]) => void;
+    }).gtag;
+
+    if (gtag) {
+      gtag("event", "diet_updated", {
+        changed_requirement: key,
+      });
+    }
+  }
+
+  function stageAdviceLabel() {
+    switch (requirements.ckdStage) {
+      case "stage3":
+        return "CKD Stage 3";
+      case "stage4":
+        return "CKD Stage 4";
+      case "stage5":
+        return "CKD Stage 5";
+      case "dialysis":
+        return "CKD Stage 5 — on dialysis";
+      default:
+        return "your selected CKD stage";
+    }
+  }
+
+  function nutrientAdvice(key: string) {
+    const stage = stageAdviceLabel();
+
+    switch (key) {
+      case "salt":
+        return `For ${stage}, keeping salt intake low is important. The starting figure is below 5 g salt per day. Your renal team may give you a different target based on your blood pressure, fluid status and overall health.`;
+      case "protein":
+        if (requirements.ckdStage === "stage3") {
+          return `For ${stage}, BDA guidance describes protein around 0.75–1.0 g/kg ideal body weight per day. RenalPlan leaves the actual daily figure blank so you can enter the amount or range given by your renal team.`;
+        }
+        if (requirements.ckdStage === "stage4" || requirements.ckdStage === "stage5") {
+          return `For ${stage}, protein requirements need to be individualised. UK renal guidance commonly uses around 0.8–1.0 g/kg ideal body weight per day, but your renal team may recommend something different. Enter their daily target.`;
+        }
+        if (requirements.ckdStage === "dialysis") {
+          return `For ${stage}, protein needs are generally higher because dialysis can increase protein losses. UK renal guidance commonly uses around 1.1–1.4 g/kg ideal body weight per day for haemodialysis, but the exact target depends on your dialysis treatment and renal team.`;
+        }
+        return "Protein needs are individual. Enter the daily amount or range provided by your renal team rather than relying on CKD stage alone.";
+      case "potassium":
+        if (requirements.ckdStage === "stage3") {
+          return `For ${stage}, potassium is usually not restricted unless your blood potassium is raised. BDA advises against unnecessary early potassium restriction because fruit, vegetables and other potassium-containing foods can be part of a healthy diet.`;
+        }
+        return `For ${stage}, potassium restriction is not automatically required just because of CKD stage. If your blood potassium remains high and your renal team has advised restriction, a commonly used dietary range is 50–70 mmol/day (about 1,955–2,737 mg/day).`;
+      case "phosphate":
+        if (requirements.ckdStage === "stage3") {
+          return `For ${stage}, phosphate is usually not restricted unless your blood phosphate is raised or your renal team has advised you to do so. Avoiding phosphate additives can still be helpful.`;
+        }
+        return `For ${stage}, phosphate restriction is individualised and may be advised when blood phosphate is raised. Your renal team may also consider your diet and phosphate binders. The starting figure here is only a preset and can be changed or removed.`;
+      case "fluid":
+        return `Fluid requirements are highly individual and are not determined by CKD stage alone. Your allowance may depend on kidney function, urine output, dialysis and your fluid status. Enter the amount given by your renal team.`;
+      case "purines":
+        return "Purine restriction is not a CKD-stage requirement. If you have gout or raised uric acid and have been advised to reduce purines, this setting can help. BDA describes dietary purine reduction as an adjunct to medical treatment, not a replacement for it.";
+      case "carbohydrate":
+        return "There is no single carbohydrate target for everyone. If you have diabetes, the amount and timing of carbohydrate may need to be individualised with your diabetes team, particularly if you use insulin or medicines that can cause low blood glucose. Spreading carbohydrate across the day can help some people manage blood glucose.";
+      default:
+        return "";
+    }
+  }
+
+  function toggleAdvice(key: string) {
+    setOpenAdvice((current) => (current === key ? null : key));
+  }
 
   function updateRequirement<K extends keyof Requirements>(
     key: K,
@@ -155,31 +270,44 @@ export default function RequirementsPage() {
     } as Requirements;
 
     setRequirements(nextRequirements);
-
-    // Track a dietary-requirement change in Google Analytics.
-    if (typeof window !== "undefined") {
-      const gtag = (window as typeof window & {
-        gtag?: (...args: any[]) => void;
-      }).gtag;
-
-      if (gtag) {
-        gtag("event", "diet_updated", {
-          changed_requirement: key,
-        });
-      }
-    }
+    trackDietUpdate(String(key));
 
     if (isLoggedIn) {
       void saveRequirements(nextRequirements);
-      return;
+    } else {
+      syncRequirementsToLocalStorage(nextRequirements);
     }
-
-    syncRequirementsToLocalStorage(nextRequirements);
   }
 
-  async function saveRequirements(
-    nextRequirements: Requirements
-  ) {
+  function applyStage(stage: Exclude<CkdStage, "custom">) {
+    const preset = stagePresets[stage];
+
+    const nextRequirements: Requirements = {
+      ...requirements,
+      ckdStage: stage,
+      sodiumLimit: Math.round(preset.saltG * 400),
+      proteinMinG: preset.proteinMinGPerKg,
+      proteinMaxG: preset.proteinMaxGPerKg,
+      potassiumLimitMg: mmolToPotassiumMg(preset.potassiumLimitMmol),
+      phosphateLimitMg: preset.phosphateLimitMg,
+      // These are editable starting presets, not medical prescriptions.
+      // Potassium/phosphate restrictions can be changed or removed to match
+      // the user's renal-team advice and blood results.
+      potassium: preset.potassiumLimitMmol === null ? "Any" : "Low",
+      phosphate: preset.phosphateLimitMg === null ? "Any" : "Low",
+    };
+
+    setRequirements(nextRequirements);
+    trackDietUpdate("ckd_stage");
+
+    if (isLoggedIn) {
+      void saveRequirements(nextRequirements);
+    } else {
+      syncRequirementsToLocalStorage(nextRequirements);
+    }
+  }
+
+  async function saveRequirements(nextRequirements: Requirements) {
     setSaveStatus("saving");
 
     try {
@@ -190,10 +318,7 @@ export default function RequirementsPage() {
       } = await supabase.auth.getUser();
 
       if (!user) {
-        syncRequirementsToLocalStorage(
-          nextRequirements
-        );
-
+        syncRequirementsToLocalStorage(nextRequirements);
         setSaveStatus("saved");
         return;
       }
@@ -203,14 +328,17 @@ export default function RequirementsPage() {
         .upsert(
           {
             user_id: user.id,
+            ckd_stage: nextRequirements.ckdStage,
             sodium_limit: nextRequirements.sodiumLimit,
+            protein_min_g: nextRequirements.proteinMinG,
+            protein_max_g: nextRequirements.proteinMaxG,
+            potassium_limit_mg: nextRequirements.potassiumLimitMg,
+            phosphate_limit_mg: nextRequirements.phosphateLimitMg,
             potassium: nextRequirements.potassium,
             phosphate: nextRequirements.phosphate,
             purines: nextRequirements.purines,
-            carbohydrate_min:
-              nextRequirements.carbohydrateMin,
-            carbohydrate_max:
-              nextRequirements.carbohydrateMax,
+            carbohydrate_min: nextRequirements.carbohydrateMin,
+            carbohydrate_max: nextRequirements.carbohydrateMax,
             fluid_limit_ml: nextRequirements.fluidLimitMl,
           },
           {
@@ -218,414 +346,453 @@ export default function RequirementsPage() {
           }
         );
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
-      syncRequirementsToLocalStorage(
-        nextRequirements
-      );
-
+      syncRequirementsToLocalStorage(nextRequirements);
       setSaveStatus("saved");
     } catch {
-      setSaveStatus("error");
+      // Keep the page usable even if the account save fails.
+      setSaveStatus("idle");
     }
   }
 
-  /*
-   * Work out which recipes currently match ALL selected
-   * requirements.
-   *
-   * Salt:
-   * The stored sodiumLimit represents the user's DAILY
-   * salt-derived sodium limit. For recipe matching we use
-   * one third of that daily limit as a practical per-meal
-   * guide.
-   *
-   * Potassium, phosphate and purines:
-   * These use the existing RenalPlan Low / Moderate / High
-   * recipe classifications.
-   *
-   * Carbohydrate:
-   * This is explicitly a PER-MEAL target because each recipe
-   * represents one adult serving.
-   */
-  const matchingRecipes = useMemo(() => {
-    const mealSodiumGuide =
-      requirements.sodiumLimit === null
-        ? null
-        : requirements.sodiumLimit / 3;
-
-    return recipes.filter(
-      (recipe: (typeof recipes)[number]) => {
-        const sodium = getNutritionNumber(
-          recipe.nutrition.sodium
-        );
-
-      const carbohydrates = getNutritionNumber(
-        recipe.nutrition.carbohydrates
-      );
-
-      const sodiumMatches =
-        mealSodiumGuide === null ||
-        sodium <= mealSodiumGuide;
-
-      const potassiumMatches = matchesLevel(
-        recipe.potassium,
-        requirements.potassium
-      );
-
-      const phosphateMatches = matchesLevel(
-        recipe.phosphate,
-        requirements.phosphate
-      );
-
-      const purinesMatches = matchesLevel(
-        recipe.purines,
-        requirements.purines
-      );
-
-      const carbohydrateMinMatches =
-        requirements.carbohydrateMin === null ||
-        carbohydrates >= requirements.carbohydrateMin;
-
-      const carbohydrateMaxMatches =
-        requirements.carbohydrateMax === null ||
-        carbohydrates <= requirements.carbohydrateMax;
-
-      return (
-        sodiumMatches &&
-        potassiumMatches &&
-        phosphateMatches &&
-        purinesMatches &&
-        carbohydrateMinMatches &&
-        carbohydrateMaxMatches
-      );
-    });
-  }, [requirements]);
-
-  const matchingRecipeCount =
-    matchingRecipes.length;
-
-  if (!authChecked) {
-    return null;
-  }
+  if (!authChecked) return null;
 
   return (
     <>
-      <main className="min-h-screen bg-white px-4 py-3 sm:px-6 md:px-6 lg:px-8">
+      <main className="renal-requirements-page min-h-screen bg-white px-4 py-3 sm:px-6 md:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl md:max-w-[1400px]">
           <section className="max-w-[1400px] rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm sm:p-6">
 
             <div className="border-b border-slate-200/80 pb-5">
               <p className="text-lg font-extrabold leading-7 text-slate-900 sm:text-xl">
-                Set your dietary requirements and we will use them to select
-                suitable recipes.
+                Tell RenalPlan about your daily dietary requirements.
               </p>
 
-              {/* LIVE RECIPE MATCH COUNT */}
-              <div
-                className={`sticky top-2 z-20 mt-4 rounded-2xl border px-4 py-3 ${
-                  matchingRecipeCount > 0
-                    ? "border-green-200 bg-green-50"
-                    : "border-red-200 bg-red-50"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
-                      matchingRecipeCount > 0
-                        ? "bg-green-100 text-green-700"
-                        : "bg-red-100 text-red-600"
-                    }`}
-                  >
-                    {matchingRecipeCount > 0 ? "✓" : "!"}
-                  </div>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
+                Choose the CKD stage you have been given and RenalPlan will enter
+                suggested daily figures. You can change any figure to the amount
+                recommended by your renal team.
+              </p>
 
-                  <div className="min-w-0 flex-1">
-                    {matchingRecipeCount > 0 ? (
-                      <p className="text-sm font-extrabold text-green-800 sm:text-base">
-                        {matchingRecipeCount}{" "}
-                        {matchingRecipeCount === 1
-                          ? "recipe matches"
-                          : "recipes match"}{" "}
-                        your requirements
-                      </p>
-                    ) : (
-                      <p className="text-sm font-extrabold text-red-700 sm:text-base">
-                        No recipes currently match your requirements
-                      </p>
-                    )}
+              {saveStatus === "saving" && (
+                <p className="mt-3 text-xs font-semibold text-[#0B3B75]">
+                  Saving…
+                </p>
+              )}
 
-                    {saveStatus === "error" ? (
-                      <p
-                        className={`mt-1 text-xs font-semibold ${
-                          matchingRecipeCount > 0
-                            ? "text-red-600"
-                            : "text-red-600"
-                        }`}
-                      >
-                        Unable to save your requirements. Please try again.
-                      </p>
-                    ) : (
-                      <p
-                        className={`mt-1 text-xs leading-5 ${
-                          matchingRecipeCount > 0
-                            ? "text-green-700"
-                            : "text-red-600"
-                        }`}
-                      >
-                        {matchingRecipeCount > 0
-                          ? "This number updates automatically when you change your dietary requirements."
-                          : "Try relaxing one or more of your selected limits."}
-                      </p>
-                    )}
-
-                    {saveStatus === "saving" && (
-                      <p className="mt-1 text-xs font-semibold text-[#0B3B75]">
-                        Saving your preferences…
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
             </div>
 
-            <div className="mt-6">
+            {/* CKD STAGE */}
+            <div className="mt-6 rounded-2xl border border-green-100 bg-green-50/40 p-4 sm:p-5">
+              <h2 className="text-xl font-extrabold text-slate-900">
+                What stage of CKD have you been diagnosed with?
+              </h2>
+
+              <p className="mt-1 text-sm leading-6 text-slate-600">
+                Selecting a stage fills the daily requirements below with
+                suggested starting figures. You can change them at any time.
+              </p>
+
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {([
+                  ["stage3", "CKD Stage 3"],
+                  ["stage4", "CKD Stage 4"],
+                  ["stage5", "CKD Stage 5"],
+                  ["dialysis", "CKD Stage 5 — on dialysis"],
+                ] as const).map(([value, label]) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => applyStage(value)}
+                    className={`min-h-12 rounded-xl border px-4 py-3 text-left text-sm font-extrabold transition ${
+                      requirements.ckdStage === value
+                        ? "border-green-500 bg-green-100 text-green-900 ring-2 ring-green-200"
+                        : "border-slate-300 bg-white text-slate-800 hover:border-green-400"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => updateRequirement("ckdStage", "custom")}
+                className={`mt-3 min-h-11 rounded-xl border px-4 py-3 text-sm font-bold transition ${
+                  requirements.ckdStage === "custom"
+                    ? "border-[#0B3B75] bg-blue-50 text-[#0B3B75]"
+                    : "border-slate-200 bg-white text-slate-700 hover:border-slate-400"
+                }`}
+              >
+                I don't want to use a CKD stage — set my own requirements
+              </button>
+
+              <p className="mt-4 text-xs leading-5 text-slate-500">
+                These are starting figures only. Your renal team may give you
+                different targets based on your blood results, treatment and
+                individual needs. You can change any figure below.
+              </p>
+            </div>
+
+            {/* DAILY REQUIREMENTS */}
+            <div className="mt-7">
               <div className="mb-4">
                 <h2 className="text-xl font-extrabold text-slate-900">
-                  Your renal requirements
+                  Your daily requirements
                 </h2>
-
                 <p className="mt-1 text-sm leading-6 text-slate-600">
-                  Choose the limits RenalPlan should use when selecting suitable
-                  recipes for you.
+                  These are the daily targets RenalPlan will use. The CKD stage
+                  fills suggested figures for you, and you can change any of them.
                 </p>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
 
                 {/* SALT */}
-                <div className="rounded-2xl border border-blue-100 bg-blue-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <label
-                        htmlFor="salt-limit"
-                        className="block text-base font-extrabold text-slate-900"
-                      >
-                        Daily salt limit
-                      </label>
-
-                      <p className="mt-1 text-xs leading-5 text-slate-600">
-                        Choose the maximum amount of salt you want to work with
-                        each day.
-                      </p>
+                <div className="rounded-2xl border border-blue-100 bg-blue-50/40 p-4 sm:p-5">
+                  <button
+                    type="button"
+                    onClick={() => toggleAdvice("salt")}
+                    className="flex w-full items-center justify-between gap-3 text-left"
+                    aria-expanded={openAdvice === "salt"}
+                  >
+                    <span className="text-base font-extrabold text-slate-900">Salt</span>
+                    <span className="shrink-0 text-xs font-bold text-slate-500">
+                      {openAdvice === "salt" ? "Hide advice" : "Advice"}
+                    </span>
+                  </button>
+                  {openAdvice === "salt" && (
+                    <div className="renal-advice-panel mt-3 rounded-xl border border-slate-200 bg-white/70 px-3 py-3 text-xs leading-5 text-slate-600">
+                      {nutrientAdvice("salt")}
                     </div>
+                  )}
+                  <p className="mt-1 text-xs leading-5 text-slate-600">
+                    Daily maximum.
+                  </p>
 
-                    <span className="shrink-0 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-bold text-[#0B3B75]">
-                      Salt
+                  <div className="mt-4 flex items-center gap-2">
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.1"
+                      value={
+                        requirements.sodiumLimit === null
+                          ? ""
+                          : Number((requirements.sodiumLimit / 400).toFixed(2))
+                      }
+                      onChange={(e) =>
+                        updateRequirement(
+                          "sodiumLimit",
+                          e.target.value === ""
+                            ? null
+                            : Math.round(Number(e.target.value) * 400)
+                        )
+                      }
+                      placeholder="No restriction"
+                      className="min-h-11 w-full rounded-xl border border-blue-200 bg-white px-4 text-sm font-semibold"
+                    />
+                    <span className="shrink-0 text-sm font-bold text-slate-700">
+                      g/day
                     </span>
                   </div>
 
-                  <select
-                    id="salt-limit"
-                    value={
-                      requirements.sodiumLimit === null
-                        ? "Any"
-                        : requirements.sodiumLimit
-                    }
-                    onChange={(event) =>
-                      updateRequirement(
-                        "sodiumLimit",
-                        event.target.value === "Any"
-                          ? null
-                          : Number(event.target.value)
-                      )
-                    }
-                    className="mt-4 min-h-11 w-full rounded-xl border border-blue-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-[#0B3B75] focus:ring-2 focus:ring-blue-100"
-                  >
-                    <option value="Any">Any</option>
-                    <option value={1200}>3 g per day</option>
-                    <option value={1600}>4 g per day</option>
-                    <option value={2000}>5 g per day</option>
-                    <option value={2400}>6 g per day</option>
-                  </select>
-
                   <p className="mt-2 text-xs leading-5 text-slate-500">
-                    RenalPlan uses one third of your daily limit as a practical
-                    guide when matching individual meals.
+                    BDA/NKF guidance for people with CKD recommends less than
+                    5 g salt per day. The CKD stage presets therefore start at
+                    5 g/day; change this if your renal team has given you a
+                    different target.
                   </p>
                 </div>
 
-                {/* DAILY FLUID ALLOWANCE */}
-                <div className="rounded-2xl border border-cyan-100 bg-cyan-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <label
-                        htmlFor="fluid-limit"
-                        className="block text-base font-extrabold text-slate-900"
-                      >
-                        Daily fluid allowance
-                      </label>
-                      <p className="mt-1 text-xs leading-5 text-slate-600">
-                        Enter the daily amount recommended by your renal team.
-                      </p>
-                    </div>
-                    <span className="shrink-0 rounded-full bg-cyan-100 px-2.5 py-1 text-xs font-bold text-cyan-800">
-                      Fluid
+                {/* PROTEIN */}
+                <div className="rounded-2xl border border-rose-100 bg-rose-50/40 p-4 sm:p-5">
+                  <button
+                    type="button"
+                    onClick={() => toggleAdvice("protein")}
+                    className="flex w-full items-center justify-between gap-3 text-left"
+                    aria-expanded={openAdvice === "protein"}
+                  >
+                    <span className="text-base font-extrabold text-slate-900">Protein</span>
+                    <span className="shrink-0 text-xs font-bold text-slate-500">
+                      {openAdvice === "protein" ? "Hide advice" : "Advice"}
                     </span>
+                  </button>
+                  {openAdvice === "protein" && (
+                    <div className="renal-advice-panel mt-3 rounded-xl border border-slate-200 bg-white/70 px-3 py-3 text-xs leading-5 text-slate-600">
+                      {nutrientAdvice("protein")}
+                    </div>
+                  )}
+                  <p className="mt-1 text-xs leading-5 text-slate-600">
+                    Daily amount or range. Enter the figure provided by your renal team.
+                  </p>
+
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-xs font-bold text-slate-700">
+                        Minimum
+                      </label>
+                      <div className="mt-1 flex items-center gap-2">
+                        <input
+                          type="number"
+                          min="0"
+                          step="1"
+                          value={requirements.proteinMinG ?? ""}
+                          onChange={(e) =>
+                            updateRequirement(
+                              "proteinMinG",
+                              e.target.value === "" ? null : Number(e.target.value)
+                            )
+                          }
+                          placeholder="No minimum"
+                          className="min-h-11 w-full rounded-xl border border-rose-200 bg-white px-3 text-sm font-semibold"
+                        />
+                        <span className="text-xs font-bold text-slate-600">g</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-bold text-slate-700">
+                        Maximum
+                      </label>
+                      <div className="mt-1 flex items-center gap-2">
+                        <input
+                          type="number"
+                          min="0"
+                          step="1"
+                          value={requirements.proteinMaxG ?? ""}
+                          onChange={(e) =>
+                            updateRequirement(
+                              "proteinMaxG",
+                              e.target.value === "" ? null : Number(e.target.value)
+                            )
+                          }
+                          placeholder="No maximum"
+                          className="min-h-11 w-full rounded-xl border border-rose-200 bg-white px-3 text-sm font-semibold"
+                        />
+                        <span className="text-xs font-bold text-slate-600">g</span>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="mt-4 flex items-center gap-3">
-                    <input
-                      id="fluid-limit"
-                      type="number"
-                      min="0"
-                      max="10000"
-                      step="50"
-                      inputMode="numeric"
-                      value={requirements.fluidLimitMl ?? ""}
-                      onChange={(event) => {
-                        const raw = event.target.value;
-                        updateRequirement(
-                          "fluidLimitMl",
-                          raw === "" ? null : Math.max(0, Math.min(10000, Math.round(Number(raw))))
-                        );
-                      }}
-                      placeholder="e.g. 1000"
-                      className="min-h-11 w-full rounded-xl border border-cyan-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-cyan-700 focus:ring-2 focus:ring-cyan-100"
-                    />
-                    <span className="shrink-0 text-sm font-bold text-slate-700">ml/day</span>
-                  </div>
-
-                  <p className="mt-2 text-xs leading-5 text-slate-500">
-                    Leave blank if you do not have a set allowance. RenalPlan will use this figure as your personal target; it does not recommend a fluid limit.
+                  <p className="mt-3 text-xs leading-5 text-slate-500">
+                    {requirements.ckdStage === "stage3"
+                      ? "BDA guidance for CKD 1–3 is 0.75–1.0 g/kg ideal body weight/day, with 1.0 g/kg/day as the aim."
+                      : requirements.ckdStage === "stage4" || requirements.ckdStage === "stage5"
+                        ? "UK Kidney Association guidance recommends 0.8–1.0 g/kg ideal body weight/day for Stage 4–5 CKD not on dialysis."
+                        : requirements.ckdStage === "dialysis"
+                          ? "UK Kidney Association guidance is higher on dialysis and differs by dialysis type. These figures are a starting range only."
+                          : "Enter the daily protein target supplied by your renal team."}
                   </p>
                 </div>
 
                 {/* POTASSIUM */}
-                <div className="rounded-2xl border border-green-100 bg-green-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <label
-                        htmlFor="potassium"
-                        className="block text-base font-extrabold text-slate-900"
-                      >
-                        Potassium
-                      </label>
-
-                      <p className="mt-1 text-xs leading-5 text-slate-600">
-                        Set the highest recipe level you want shown.
-                      </p>
+                <div className="rounded-2xl border border-green-100 bg-green-50/40 p-4 sm:p-5">
+                  <button
+                    type="button"
+                    onClick={() => toggleAdvice("potassium")}
+                    className="flex w-full items-center justify-between gap-3 text-left"
+                    aria-expanded={openAdvice === "potassium"}
+                  >
+                    <span className="text-base font-extrabold text-slate-900">Potassium</span>
+                    <span className="shrink-0 text-xs font-bold text-slate-500">
+                      {openAdvice === "potassium" ? "Hide advice" : "Advice"}
+                    </span>
+                  </button>
+                  {openAdvice === "potassium" && (
+                    <div className="renal-advice-panel mt-3 rounded-xl border border-slate-200 bg-white/70 px-3 py-3 text-xs leading-5 text-slate-600">
+                      {nutrientAdvice("potassium")}
                     </div>
+                  )}
+                  <p className="mt-1 text-xs leading-5 text-slate-600">
+                    Daily maximum, where a potassium restriction has been advised.
+                  </p>
 
-                    <span className="shrink-0 rounded-full bg-green-100 px-2.5 py-1 text-xs font-bold text-green-700">
-                      Renal
+                  <div className="mt-4 flex items-center gap-2">
+                    <input
+                      type="number"
+                      min="0"
+                      step="1"
+                      value={
+                        requirements.potassiumLimitMg === null
+                          ? ""
+                          : Number(
+                              (requirements.potassiumLimitMg / MG_PER_MMOL_POTASSIUM).toFixed(1)
+                            )
+                      }
+                      onChange={(e) =>
+                        updateRequirement(
+                          "potassiumLimitMg",
+                          e.target.value === ""
+                            ? null
+                            : Math.round(Number(e.target.value) * MG_PER_MMOL_POTASSIUM)
+                        )
+                      }
+                      placeholder="No restriction"
+                      className="min-h-11 w-full rounded-xl border border-green-200 bg-white px-4 text-sm font-semibold"
+                    />
+                    <span className="shrink-0 text-sm font-bold text-slate-700">
+                      mmol/day
                     </span>
                   </div>
 
-                  <select
-                    id="potassium"
-                    value={requirements.potassium}
-                    onChange={(event) =>
-                      updateRequirement(
-                        "potassium",
-                        event.target.value as RequirementLevel
-                      )
-                    }
-                    className="mt-4 min-h-11 w-full rounded-xl border border-green-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
-                  >
-                    <option>Any</option>
-                    <option value="Low">
-                      Low — under 400 mg per meal
-                    </option>
-                    <option value="Moderate">
-                      Moderate — 400–650 mg per meal
-                    </option>
-                  </select>
+                  <p className="mt-2 text-xs font-semibold text-slate-500">
+                    {requirements.potassiumLimitMg === null
+                      ? "No restriction set"
+                      : `≈ ${(requirements.potassiumLimitMg / MG_PER_MMOL_POTASSIUM).toFixed(1)} mmol/day`}
+                  </p>
+                  <p className="mt-2 text-xs leading-5 text-slate-500">
+                    {requirements.potassiumLimitMg === null
+                      ? "No potassium restriction is set for this preset. If your renal team has advised a limit, enter it here."
+                      : <>The preset is <span className="font-semibold">70 mmol/day</span> (about <span className="font-semibold">2,737 mg/day</span>). The commonly used restricted range is 50–70 mmol/day. You can change or remove this figure to match your renal team's advice.</>}
+                  </p>
                 </div>
 
                 {/* PHOSPHATE */}
-                <div className="rounded-2xl border border-purple-100 bg-purple-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <label
-                        htmlFor="phosphate"
-                        className="block text-base font-extrabold text-slate-900"
-                      >
-                        Phosphate
-                      </label>
-
-                      <p className="mt-1 text-xs leading-5 text-slate-600">
-                        Set the highest recipe level you want shown.
-                      </p>
+                <div className="rounded-2xl border border-purple-100 bg-purple-50/40 p-4 sm:p-5">
+                  <button
+                    type="button"
+                    onClick={() => toggleAdvice("phosphate")}
+                    className="flex w-full items-center justify-between gap-3 text-left"
+                    aria-expanded={openAdvice === "phosphate"}
+                  >
+                    <span className="text-base font-extrabold text-slate-900">Phosphate / phosphorus</span>
+                    <span className="shrink-0 text-xs font-bold text-slate-500">
+                      {openAdvice === "phosphate" ? "Hide advice" : "Advice"}
+                    </span>
+                  </button>
+                  {openAdvice === "phosphate" && (
+                    <div className="renal-advice-panel mt-3 rounded-xl border border-slate-200 bg-white/70 px-3 py-3 text-xs leading-5 text-slate-600">
+                      {nutrientAdvice("phosphate")}
                     </div>
+                  )}
+                  <p className="mt-1 text-xs leading-5 text-slate-600">
+                    Daily maximum, where a phosphate restriction has been advised.
+                  </p>
 
-                    <span className="shrink-0 rounded-full bg-purple-100 px-2.5 py-1 text-xs font-bold text-purple-700">
-                      Renal
+                  <div className="mt-4 flex items-center gap-2">
+                    <input
+                      type="number"
+                      min="0"
+                      step="1"
+                      value={
+                        requirements.phosphateLimitMg === null
+                          ? ""
+                          : requirements.phosphateLimitMg
+                      }
+                      onChange={(e) =>
+                        updateRequirement(
+                          "phosphateLimitMg",
+                          e.target.value === ""
+                            ? null
+                            : Math.max(0, Math.round(Number(e.target.value)))
+                        )
+                      }
+                      placeholder="No restriction"
+                      className="min-h-11 w-full rounded-xl border border-purple-200 bg-white px-4 text-sm font-semibold"
+                    />
+                    <span className="shrink-0 text-sm font-bold text-slate-700">
+                      mg/day
                     </span>
                   </div>
 
-                  <select
-                    id="phosphate"
-                    value={requirements.phosphate}
-                    onChange={(event) =>
-                      updateRequirement(
-                        "phosphate",
-                        event.target.value as RequirementLevel
-                      )
-                    }
-                    className="mt-4 min-h-11 w-full rounded-xl border border-purple-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100"
+                  <p className="mt-2 text-xs font-semibold text-slate-500">
+                    {requirements.phosphateLimitMg === null
+                      ? "No restriction set"
+                      : `≈ ${(requirements.phosphateLimitMg / MG_PER_MMOL_PHOSPHORUS).toFixed(1)} mmol/day`}
+                  </p>
+                  <p className="mt-2 text-xs leading-5 text-slate-500">
+                    Dietary phosphorus/phosphate is entered in mg/day. The equivalent is
+                    shown in mmol/day for reference. This is a starting preset only;
+                    your renal team may give you a different target or no restriction.
+                  </p>
+                </div>
+
+                {/* FLUID */}
+                <div className="rounded-2xl border border-cyan-100 bg-cyan-50/40 p-4 sm:p-5">
+                  <button
+                    type="button"
+                    onClick={() => toggleAdvice("fluid")}
+                    className="flex w-full items-center justify-between gap-3 text-left"
+                    aria-expanded={openAdvice === "fluid"}
                   >
-                    <option>Any</option>
-                    <option value="Low">
-                      Low — up to 250 mg per meal
-                    </option>
-                    <option value="Moderate">
-                      Moderate — 251–300 mg per meal
-                    </option>
-                  </select>
+                    <span className="text-base font-extrabold text-slate-900">Fluid</span>
+                    <span className="shrink-0 text-xs font-bold text-slate-500">
+                      {openAdvice === "fluid" ? "Hide advice" : "Advice"}
+                    </span>
+                  </button>
+                  {openAdvice === "fluid" && (
+                    <div className="renal-advice-panel mt-3 rounded-xl border border-slate-200 bg-white/70 px-3 py-3 text-xs leading-5 text-slate-600">
+                      {nutrientAdvice("fluid")}
+                    </div>
+                  )}
+                  <p className="mt-1 text-xs leading-5 text-slate-600">
+                    Daily maximum.
+                  </p>
+
+                  <div className="mt-4 flex items-center gap-2">
+                    <input
+                      type="number"
+                      min="0"
+                      max="10000"
+                      step="50"
+                      value={requirements.fluidLimitMl ?? ""}
+                      onChange={(e) =>
+                        updateRequirement(
+                          "fluidLimitMl",
+                          e.target.value === ""
+                            ? null
+                            : Math.max(0, Math.min(10000, Math.round(Number(e.target.value))))
+                        )
+                      }
+                      placeholder="No restriction"
+                      className="min-h-11 w-full rounded-xl border border-cyan-200 bg-white px-4 text-sm font-semibold"
+                    />
+                    <span className="shrink-0 text-sm font-bold text-slate-700">
+                      ml/day
+                    </span>
+                  </div>
 
                   <p className="mt-2 text-xs leading-5 text-slate-500">
-                    Recipes above the Moderate band are classified as High.
+                    Enter the allowance given by your renal team.
                   </p>
                 </div>
 
                 {/* PURINES */}
-                <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-4 transition-shadow hover:shadow-sm sm:p-5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <label
-                        htmlFor="purines"
-                        className="block text-base font-extrabold text-slate-900"
-                      >
-                        Purines
-                      </label>
-
-                      <p className="mt-1 text-xs leading-5 text-slate-600">
-                        Set the highest recipe level you want shown.
-                      </p>
-                    </div>
-
-                    <span className="shrink-0 rounded-full bg-orange-100 px-2.5 py-1 text-xs font-bold text-orange-700">
-                      Dietary
+                <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-4 sm:p-5">
+                  <button
+                    type="button"
+                    onClick={() => toggleAdvice("purines")}
+                    className="flex w-full items-center justify-between gap-3 text-left"
+                    aria-expanded={openAdvice === "purines"}
+                  >
+                    <span className="text-base font-extrabold text-slate-900">Purines</span>
+                    <span className="shrink-0 text-xs font-bold text-slate-500">
+                      {openAdvice === "purines" ? "Hide advice" : "Advice"}
                     </span>
-                  </div>
+                  </button>
+                  {openAdvice === "purines" && (
+                    <div className="renal-advice-panel mt-3 rounded-xl border border-slate-200 bg-white/70 px-3 py-3 text-xs leading-5 text-slate-600">
+                      {nutrientAdvice("purines")}
+                    </div>
+                  )}
+                  <p className="mt-1 text-xs leading-5 text-slate-600">
+                    If you have been advised to limit purines, choose the level recommended by your healthcare team.
+                  </p>
 
                   <select
-                    id="purines"
                     value={requirements.purines}
-                    onChange={(event) =>
+                    onChange={(e) =>
                       updateRequirement(
                         "purines",
-                        event.target.value as RequirementLevel
+                        e.target.value as RequirementLevel
                       )
                     }
-                    className="mt-4 min-h-11 w-full rounded-xl border border-orange-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"
+                    className="mt-4 min-h-11 w-full rounded-xl border border-orange-200 bg-white px-4 text-sm font-semibold"
                   >
-                    <option>Any</option>
-                    <option>Low</option>
-                    <option>Moderate</option>
+                    <option value="Any">No restriction</option>
+                    <option value="Low">Low</option>
+                    <option value="Moderate">Moderate</option>
                   </select>
                 </div>
               </div>
@@ -634,97 +801,78 @@ export default function RequirementsPage() {
             {/* CARBOHYDRATE */}
             <div className="mt-7">
               <div className="mb-4">
-                <h2 className="text-xl font-extrabold text-slate-900">
-                  Carbohydrate per meal
-                </h2>
-
+                <button
+                  type="button"
+                  onClick={() => toggleAdvice("carbohydrate")}
+                  className="flex w-full items-center justify-between gap-3 text-left"
+                  aria-expanded={openAdvice === "carbohydrate"}
+                >
+                  <span className="text-xl font-extrabold text-slate-900">Daily carbohydrate</span>
+                  <span className="shrink-0 text-xs font-bold text-slate-500">
+                    {openAdvice === "carbohydrate" ? "Hide advice" : "Advice"}
+                  </span>
+                </button>
+                {openAdvice === "carbohydrate" && (
+                  <div className="renal-advice-panel mt-3 rounded-xl border border-slate-200 bg-white/70 px-3 py-3 text-xs leading-5 text-slate-600">
+                    {nutrientAdvice("carbohydrate")}
+                  </div>
+                )}
                 <p className="mt-1 text-sm leading-6 text-slate-600">
-                  Set the carbohydrate range RenalPlan should use when selecting
-                  recipes. Each recipe represents one adult serving.
+                  These are daily totals, not per-meal limits.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-blue-100 bg-blue-50/30 p-4 sm:p-5">
                 <div className="grid gap-4 sm:grid-cols-2">
-
                   <div>
-                    <label
-                      htmlFor="carbohydrate-min"
-                      className="block text-sm font-bold text-slate-900"
-                    >
-                      Minimum per meal
+                    <label className="block text-sm font-bold text-slate-900">
+                      Minimum per day
                     </label>
-
                     <div className="mt-2 flex items-center gap-2">
                       <input
-                        id="carbohydrate-min"
                         type="number"
                         min="0"
                         step="1"
-                        value={
-                          requirements.carbohydrateMin === null
-                            ? ""
-                            : requirements.carbohydrateMin
-                        }
-                        onChange={(event) =>
+                        value={requirements.carbohydrateMin ?? ""}
+                        onChange={(e) =>
                           updateRequirement(
                             "carbohydrateMin",
-                            event.target.value === ""
-                              ? null
-                              : Number(event.target.value)
+                            e.target.value === "" ? null : Number(e.target.value)
                           )
                         }
                         placeholder="No minimum"
-                        className="min-h-11 w-full rounded-xl border border-blue-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-[#0B3B75] focus:ring-2 focus:ring-blue-100"
+                        className="min-h-11 w-full rounded-xl border border-blue-200 bg-white px-4 text-sm font-semibold"
                       />
-
-                      <span className="text-sm font-bold text-slate-600">
-                        g
-                      </span>
+                      <span className="text-sm font-bold text-slate-600">g</span>
                     </div>
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="carbohydrate-max"
-                      className="block text-sm font-bold text-slate-900"
-                    >
-                      Maximum per meal
+                    <label className="block text-sm font-bold text-slate-900">
+                      Maximum per day
                     </label>
-
                     <div className="mt-2 flex items-center gap-2">
                       <input
-                        id="carbohydrate-max"
                         type="number"
                         min="0"
                         step="1"
-                        value={
-                          requirements.carbohydrateMax === null
-                            ? ""
-                            : requirements.carbohydrateMax
-                        }
-                        onChange={(event) =>
+                        value={requirements.carbohydrateMax ?? ""}
+                        onChange={(e) =>
                           updateRequirement(
                             "carbohydrateMax",
-                            event.target.value === ""
-                              ? null
-                              : Number(event.target.value)
+                            e.target.value === "" ? null : Number(e.target.value)
                           )
                         }
                         placeholder="No maximum"
-                        className="min-h-11 w-full rounded-xl border border-blue-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-[#0B3B75] focus:ring-2 focus:ring-blue-100"
+                        className="min-h-11 w-full rounded-xl border border-blue-200 bg-white px-4 text-sm font-semibold"
                       />
-
-                      <span className="text-sm font-bold text-slate-600">
-                        g
-                      </span>
+                      <span className="text-sm font-bold text-slate-600">g</span>
                     </div>
                   </div>
-
                 </div>
 
-                <div className="carbohydrate-guidance-bar mt-5 rounded-xl border border-blue-100 bg-white/70 px-4 py-3">
-                  <p className="carbohydrate-guidance-text text-xs leading-5 text-slate-500">
+                <div className="mt-5 rounded-xl border border-blue-100 bg-white/70 px-4 py-3">
+                  <p className="text-xs leading-5 text-slate-500">
                     Your carbohydrate target should reflect the guidance you
                     have received from your healthcare or dietetic team.
                   </p>
@@ -739,10 +887,13 @@ export default function RequirementsPage() {
               </div>
 
               <p className="text-xs leading-5 text-slate-600">
-                These settings help RenalPlan select recipes based on the
-                nutrition information stored for each meal. They are a
-                planning aid and do not replace advice from your renal
-                dietitian or healthcare team.
+                Your dietary requirements are individual to you. Requirements
+                for salt, potassium, phosphate, protein, fluid and other
+                nutrients can vary depending on your kidney function, blood
+                results, treatment and other health conditions. Please speak to
+                your renal dietitian or consultant for advice on the
+                requirements that are right for you. RenalPlan is a planning
+                aid and does not replace advice from your renal healthcare team.
               </p>
             </div>
 
@@ -821,8 +972,120 @@ export default function RequirementsPage() {
         </div>
       )}
       <style jsx global>{`
-        /* Dark mode: the restricted-login popup should be a dark RenalPlan
-           panel with light, high-contrast writing. Light mode is unchanged. */
+        html[data-theme="dark"] .renal-requirements-page {
+          background: #0b1722 !important;
+          color: #f1f5f9;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page > div > section {
+          background: #142330 !important;
+          border-color: #33475a !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page h2,
+        html[data-theme="dark"] .renal-requirements-page h3,
+        html[data-theme="dark"] .renal-requirements-page label,
+        html[data-theme="dark"] .renal-requirements-page .text-slate-900,
+        html[data-theme="dark"] .renal-requirements-page .text-slate-800,
+        html[data-theme="dark"] .renal-requirements-page .text-slate-700 {
+          color: #f1f5f9 !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page .text-slate-600 {
+          color: #cbd5e1 !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page .text-slate-500 {
+          color: #94a3b8 !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page .border-slate-200,
+        html[data-theme="dark"] .renal-requirements-page .border-slate-200\/80 {
+          border-color: #33475a !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page .renal-advice-panel {
+          background: #0f1d29 !important;
+          border-color: #40576a !important;
+          color: #cbd5e1 !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page .bg-white,
+        html[data-theme="dark"] .renal-requirements-page .bg-white\/80,
+        html[data-theme="dark"] .renal-requirements-page .bg-white\/70,
+        html[data-theme="dark"] .renal-requirements-page .bg-white\/60 {
+          background: #1a2b39 !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page select,
+        html[data-theme="dark"] .renal-requirements-page input {
+          background: #0f1d29 !important;
+          color: #f8fafc !important;
+          border-color: #41576a !important;
+          color-scheme: dark;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page select option {
+          background: #0f1d29;
+          color: #f8fafc;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page .bg-blue-50\/40,
+        html[data-theme="dark"] .renal-requirements-page .bg-blue-50\/30,
+        html[data-theme="dark"] .renal-requirements-page .bg-green-50\/40,
+        html[data-theme="dark"] .renal-requirements-page .bg-green-50\/30,
+        html[data-theme="dark"] .renal-requirements-page .bg-rose-50\/40,
+        html[data-theme="dark"] .renal-requirements-page .bg-purple-50\/40,
+        html[data-theme="dark"] .renal-requirements-page .bg-cyan-50\/40,
+        html[data-theme="dark"] .renal-requirements-page .bg-orange-50\/40,
+        html[data-theme="dark"] .renal-requirements-page .bg-slate-50 {
+          background: #192c3a !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page .border-blue-100,
+        html[data-theme="dark"] .renal-requirements-page .border-blue-200,
+        html[data-theme="dark"] .renal-requirements-page .border-green-100,
+        html[data-theme="dark"] .renal-requirements-page .border-green-200,
+        html[data-theme="dark"] .renal-requirements-page .border-rose-100,
+        html[data-theme="dark"] .renal-requirements-page .border-rose-200,
+        html[data-theme="dark"] .renal-requirements-page .border-purple-100,
+        html[data-theme="dark"] .renal-requirements-page .border-purple-200,
+        html[data-theme="dark"] .renal-requirements-page .border-cyan-100,
+        html[data-theme="dark"] .renal-requirements-page .border-cyan-200,
+        html[data-theme="dark"] .renal-requirements-page .border-orange-100,
+        html[data-theme="dark"] .renal-requirements-page .border-orange-200 {
+          border-color: #40576a !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page .text-green-700,
+        html[data-theme="dark"] .renal-requirements-page .text-green-900,
+        html[data-theme="dark"] .renal-requirements-page .text-blue-900 {
+          color: #a7f3d0 !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page button.border-green-500.bg-green-100 {
+          background: #123b31 !important;
+          border-color: #6ee7b7 !important;
+          color: #d1fae5 !important;
+          box-shadow: 0 0 0 2px rgba(110, 231, 183, 0.2) !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page button.border-green-500.bg-green-100:hover {
+          background: #16483b !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page button.bg-white {
+          background: #172a38 !important;
+          color: #f1f5f9 !important;
+          border-color: #41576a !important;
+        }
+
+        html[data-theme="dark"] .renal-requirements-page .bg-blue-50,
+        html[data-theme="dark"] .renal-requirements-page .bg-green-100,
+        html[data-theme="dark"] .renal-requirements-page .bg-blue-50 {
+          background: #173447 !important;
+        }
+
         html[data-theme="dark"] .renal-login-modal-backdrop {
           background: rgba(5, 15, 25, 0.42) !important;
         }
@@ -843,12 +1106,6 @@ export default function RequirementsPage() {
 
         html[data-theme="dark"] .renal-login-modal-footnote {
           color: #94a3b8 !important;
-        }
-
-        html[data-theme="dark"] .renal-login-modal-title,
-        html[data-theme="dark"] .renal-login-modal-description,
-        html[data-theme="dark"] .renal-login-modal-footnote {
-          opacity: 1 !important;
         }
       `}</style>
     </>

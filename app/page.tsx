@@ -312,8 +312,8 @@ function ShowcaseVideo({ mobile }: { mobile: boolean }) {
       <source
         src={
           mobile
-            ? "/videos/RenalPlan_Mobile_Showcase_FINAL_v10_CLEAN.mp4"
-            : "/videos/RenalPlan_Showcase_Final_AMENDED.mp4"
+            ? "/videos/mobile-showcase.mp4"
+            : "/videos/desktop-showcase.mp4"
         }
         type="video/mp4"
       />

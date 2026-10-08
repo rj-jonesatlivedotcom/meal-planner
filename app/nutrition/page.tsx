@@ -89,6 +89,12 @@ type Requirements = {
   purines: RequirementLevel;
   carbohydrateMin?: number | null;
   carbohydrateMax?: number | null;
+  ckdStage?: string | null;
+  proteinMinG?: number | null;
+  proteinMaxG?: number | null;
+  potassiumLimitMg?: number | null;
+  phosphateLimitMg?: number | null;
+  fluidLimitMl?: number | null;
 };
 
 type NutrientKey =
@@ -103,7 +109,7 @@ type NutrientKey =
 
 type NutrientTotals = Record<NutrientKey, number>;
 
-type Status = "green" | "amber" | "red";
+type Status = "green" | "red";
 
 type FluidEntry = { id: string; date: string; drink: string; amountMl: number; createdAt?: string };
 const FLUID_LOG_STORAGE_KEY = "renalplan-fluid-log-v1";
@@ -134,6 +140,12 @@ const defaultRequirements: Requirements = {
   purines: "Any",
   carbohydrateMin: null,
   carbohydrateMax: null,
+  ckdStage: null,
+  proteinMinG: null,
+  proteinMaxG: null,
+  potassiumLimitMg: null,
+  phosphateLimitMg: null,
+  fluidLimitMl: null,
 };
 
 const emptyTotals = (): NutrientTotals => ({
@@ -227,9 +239,7 @@ function addTotals(
 }
 
 function worstStatus(statuses: Status[]): Status {
-  if (statuses.includes("red")) return "red";
-  if (statuses.includes("amber")) return "amber";
-  return "green";
+  return statuses.includes("red") ? "red" : "green";
 }
 
 function levelStatus(
@@ -238,25 +248,23 @@ function levelStatus(
 ): Status {
   if (requirement === "Any") return "green";
 
-  const recipeRank = levelRank[recipeLevel];
-  const requirementRank = levelRank[requirement];
-
-  if (recipeRank <= requirementRank) return "green";
-  if (recipeRank === requirementRank + 1) return "amber";
-  return "red";
+  return levelRank[recipeLevel] <= levelRank[requirement]
+    ? "green"
+    : "red";
 }
 
-function getMealStatus(
-  recipe: Recipe | null,
-  requirements: Requirements
+function numericLimitStatus(
+  actual: number,
+  min: number | null | undefined,
+  max: number | null | undefined
 ): Status {
-  if (!recipe) return "green";
+  const hasMin = min !== null && min !== undefined && Number.isFinite(min);
+  const hasMax = max !== null && max !== undefined && Number.isFinite(max);
 
-  return worstStatus([
-    levelStatus(recipe.potassium, requirements.potassium),
-    levelStatus(recipe.phosphate, requirements.phosphate),
-    levelStatus(recipe.purines, requirements.purines),
-  ]);
+  if (hasMin && actual < min!) return "red";
+  if (hasMax && actual > max!) return "red";
+
+  return "green";
 }
 
 function getDailyStatus(
@@ -264,82 +272,29 @@ function getDailyStatus(
   recipesForDay: Recipe[],
   requirements: Requirements
 ): Status {
-  const statuses: Status[] = [];
+  const statuses: Status[] = [
+    numericLimitStatus(totals.protein, requirements.proteinMinG, requirements.proteinMaxG),
+    numericLimitStatus(totals.sodium, null, requirements.sodiumLimit),
+    numericLimitStatus(totals.potassium, null, requirements.potassiumLimitMg),
+    numericLimitStatus(totals.phosphate, null, requirements.phosphateLimitMg),
+    numericLimitStatus(totals.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax),
+  ];
 
-  if (
-    requirements.sodiumLimit !== null &&
-    requirements.sodiumLimit !== undefined
-  ) {
-    const ratio = totals.sodium / requirements.sodiumLimit;
-
-    if (ratio > 1) {
-      statuses.push("red");
-    } else if (ratio > 0.75) {
-      statuses.push("amber");
-    } else {
-      statuses.push("green");
-    }
-  }
-
-  if (
-    requirements.carbohydrateMin !== null &&
-    requirements.carbohydrateMin !== undefined
-  ) {
-    if (totals.carbohydrates < requirements.carbohydrateMin * 0.95) {
-      statuses.push("red");
-    } else if (totals.carbohydrates < requirements.carbohydrateMin) {
-      statuses.push("amber");
-    } else {
-      statuses.push("green");
-    }
-  }
-
-  if (
-    requirements.carbohydrateMax !== null &&
-    requirements.carbohydrateMax !== undefined
-  ) {
-    if (totals.carbohydrates > requirements.carbohydrateMax * 1.05) {
-      statuses.push("red");
-    } else if (totals.carbohydrates > requirements.carbohydrateMax) {
-      statuses.push("amber");
-    } else {
-      statuses.push("green");
-    }
-  }
-
+  // Purines remain qualitative because the recipe data contains a level,
+  // not a numeric purine amount.
   recipesForDay.forEach((recipe) => {
-    statuses.push(
-      levelStatus(recipe.potassium, requirements.potassium),
-      levelStatus(recipe.phosphate, requirements.phosphate),
-      levelStatus(recipe.purines, requirements.purines)
-    );
+    statuses.push(levelStatus(recipe.purines, requirements.purines));
   });
 
-  return statuses.length ? worstStatus(statuses) : "green";
+  return worstStatus(statuses);
 }
 
 function getStatusText(status: Status): string {
-  if (status === "green") return "Within target";
-  if (status === "amber") return "Approaching limit";
-  return "Outside target";
+  return status === "green" ? "Within limit" : "Exceeds limit";
 }
 
 function getStatusDotClass(status: Status): string {
-  if (status === "green") return "bg-green-600";
-  if (status === "amber") return "bg-amber-400";
-  return "!bg-red-600";
-}
-
-function getLevelDotStatus(
-  level: "Low" | "Moderate" | "High" | number,
-  _requirement?: RequirementLevel
-): Status {
-  // When passed a numeric average (e.g. average.potassium) we don't have
-  // a mapped level, so default to green. String levels map to colours.
-  if (typeof level === "number") return "green";
-  if (level === "Low") return "green";
-  if (level === "Moderate") return "amber";
-  return "red";
+  return status === "green" ? "bg-green-600" : "!bg-red-600";
 }
 
 function getMatrixLevelText(
@@ -351,6 +306,10 @@ function getMatrixLevelText(
 function formatSalt(sodiumMg: number): string {
   const saltGrams = (sodiumMg * 2.5) / 1000;
   return `${saltGrams.toFixed(1)} g`;
+}
+
+function formatPotassiumMmol(potassiumMg: number): string {
+  return `${(potassiumMg / 39.1).toFixed(1)} mmol`;
 }
 
 function formatNumber(value: number): string {
@@ -508,23 +467,78 @@ export default function NutritionPage() {
     }
   }
 
-  function loadRequirements() {
+  async function loadRequirements() {
     try {
-      const saved = window.localStorage.getItem(
-        REQUIREMENTS_STORAGE_KEY
-      );
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        const { data, error } = await supabase
+          .from("user_requirements")
+          .select(
+            "ckd_stage, sodium_limit, protein_min_g, protein_max_g, potassium_limit_mg, phosphate_limit_mg, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml"
+          )
+          .eq("user_id", user.id)
+          .maybeSingle();
+
+        if (!error && data) {
+          const loadedRequirements: Requirements = {
+            sodiumLimit: data.sodium_limit ?? null,
+            potassium: (data.potassium ?? "Any") as RequirementLevel,
+            phosphate: (data.phosphate ?? "Any") as RequirementLevel,
+            purines: (data.purines ?? "Any") as RequirementLevel,
+            carbohydrateMin: data.carbohydrate_min ?? null,
+            carbohydrateMax: data.carbohydrate_max ?? null,
+            ckdStage: data.ckd_stage ?? null,
+            proteinMinG: data.protein_min_g ?? null,
+            proteinMaxG: data.protein_max_g ?? null,
+            potassiumLimitMg: data.potassium_limit_mg ?? null,
+            phosphateLimitMg: data.phosphate_limit_mg ?? null,
+            fluidLimitMl: data.fluid_limit_ml ?? null,
+          };
+
+          setRequirements(loadedRequirements);
+          setFluidAllowanceMl(loadedRequirements.fluidLimitMl ?? null);
+
+          try {
+            window.localStorage.setItem(
+              REQUIREMENTS_STORAGE_KEY,
+              JSON.stringify(loadedRequirements)
+            );
+          } catch {
+            // Ignore local storage errors.
+          }
+
+          return;
+        }
+      }
+    } catch {
+      // Fall through to local storage.
+    }
+
+    try {
+      const saved = window.localStorage.getItem(REQUIREMENTS_STORAGE_KEY);
 
       if (!saved) {
         setRequirements(defaultRequirements);
+        setFluidAllowanceMl(defaultRequirements.fluidLimitMl ?? null);
         return;
       }
 
-      setRequirements({
-        ...defaultRequirements,
-        ...JSON.parse(saved),
-      });
+      const parsed = JSON.parse(saved) as Partial<Requirements>;
+      const loaded = { ...defaultRequirements, ...parsed };
+
+      setRequirements(loaded);
+      setFluidAllowanceMl(
+        loaded.fluidLimitMl != null && Number.isFinite(Number(loaded.fluidLimitMl))
+          ? Number(loaded.fluidLimitMl)
+          : null
+      );
     } catch {
       setRequirements(defaultRequirements);
+      setFluidAllowanceMl(null);
     }
   }
 
@@ -569,14 +583,9 @@ export default function NutritionPage() {
 
   useEffect(() => {
     loadPlanner();
-    loadRequirements();
+    void loadRequirements();
     setFluidEntries(readFluidLog());
-    try {
-      const savedRequirements = window.localStorage.getItem(REQUIREMENTS_STORAGE_KEY);
-      const parsedRequirements = savedRequirements ? JSON.parse(savedRequirements) : {};
-      const allowance = Number(parsedRequirements?.fluidLimitMl);
-      setFluidAllowanceMl(parsedRequirements?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
-    } catch { setFluidAllowanceMl(null); }
+
     function handleFluidUpdate() {
       setFluidEntries(readFluidLog());
     }
@@ -586,13 +595,7 @@ export default function NutritionPage() {
     }
 
     function handleRequirementsUpdate() {
-      loadRequirements();
-      try {
-        const savedRequirements = window.localStorage.getItem(REQUIREMENTS_STORAGE_KEY);
-        const parsedRequirements = savedRequirements ? JSON.parse(savedRequirements) : {};
-        const allowance = Number(parsedRequirements?.fluidLimitMl);
-        setFluidAllowanceMl(parsedRequirements?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
-      } catch { setFluidAllowanceMl(null); }
+      void loadRequirements();
     }
 
     window.addEventListener(
@@ -1038,16 +1041,25 @@ export default function NutritionPage() {
             page-break-inside: avoid !important;
           }
         }
+        html[data-theme="dark"] .nutrition-pdf-button {
+          background-color: #c45f16 !important;
+        }
+
+        html[data-theme="dark"] .nutrition-pdf-button:hover {
+          background-color: #d66b19 !important;
+        }
+
         .nutrition-pdf-shimmer {
-          animation: nutrition-pdf-shimmer 2.4s ease-in-out infinite;
+          animation: nutrition-pdf-shimmer 3.5s ease-in-out infinite;
+          opacity: 0.5;
         }
 
         @keyframes nutrition-pdf-shimmer {
-          0%, 55% {
+          0%, 52% {
             transform: translateX(-180%) skewX(-20deg);
           }
-          75%, 100% {
-            transform: translateX(520%) skewX(-20deg);
+          68%, 100% {
+            transform: translateX(260%) skewX(-20deg);
           }
         }
       `}</style>
@@ -1110,11 +1122,6 @@ export default function NutritionPage() {
                   meal
                 );
                 const totals = getMealTotals(recipe);
-                const status = getMealStatus(
-                  recipe,
-                  requirements
-                );
-
                 return (
                   <div
                     key={meal}
@@ -1135,14 +1142,6 @@ export default function NutritionPage() {
                         </h3>
                       </div>
 
-                      {recipe && (
-                        <span
-                          className={`mt-1 h-3.5 w-3.5 shrink-0 rounded-full ${getStatusDotClass(
-                            status
-                          )}`}
-                          title={getStatusText(status)}
-                        />
-                      )}
                     </div>
 
                     {recipe && (
@@ -1191,47 +1190,23 @@ export default function NutritionPage() {
 
                         <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Potassium</span>
-                          <span className="flex items-center gap-2 font-semibold text-slate-900">
-                            <span
-                              className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                                getLevelDotStatus(recipe.potassium)
-                              )}`}
-                              title={getStatusText(
-                                levelStatus(recipe.potassium, requirements.potassium)
-                              )}
-                            />
+                          <strong className="text-slate-900">
                             {formatNutrient(getNutritionNumber(recipe.nutrition.potassium), "mg")}
-                          </span>
+                          </strong>
                         </div>
 
                         <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Phosphorus</span>
-                          <span className="flex items-center gap-2 font-semibold text-slate-900">
-                            <span
-                              className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                                getLevelDotStatus(recipe.phosphate)
-                              )}`}
-                              title={getStatusText(
-                                levelStatus(recipe.phosphate, requirements.phosphate)
-                              )}
-                            />
+                          <strong className="text-slate-900">
                             {formatNutrient(getNutritionNumber(recipe.nutrition.phosphate), "mg")}
-                          </span>
+                          </strong>
                         </div>
 
                         <div className="flex items-center justify-between gap-3">
                           <span className="text-slate-500">Purines</span>
-                          <span className="flex items-center gap-2 font-semibold text-slate-900">
-                            <span
-                              className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                                getLevelDotStatus(recipe.purines)
-                              )}`}
-                              title={getStatusText(
-                                levelStatus(recipe.purines, requirements.purines)
-                              )}
-                            />
+                          <strong className="text-slate-900">
                             {getMatrixLevelText(recipe.purines)}
-                          </span>
+                          </strong>
                         </div>
                       </div>
                     )}
@@ -1303,15 +1278,14 @@ export default function NutritionPage() {
                   <span className="flex items-center gap-2 font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                        worstStatus(
-                          mealTypes
-                            .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
-                            .filter((recipe): recipe is Recipe => Boolean(recipe))
-                            .map((recipe) => levelStatus(recipe.potassium, requirements.potassium))
+                        numericLimitStatus(
+                          dayTotals[selectedDay].potassium,
+                          null,
+                          requirements.potassiumLimitMg
                         )
                       )}`}
                     />
-                    {formatNutrient(dayTotals[selectedDay].potassium, "mg")}
+                    {formatPotassiumMmol(dayTotals[selectedDay].potassium)}
                   </span>
                 </div>
 
@@ -1320,11 +1294,10 @@ export default function NutritionPage() {
                   <span className="flex items-center gap-2 font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                        worstStatus(
-                          mealTypes
-                            .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
-                            .filter((recipe): recipe is Recipe => Boolean(recipe))
-                            .map((recipe) => levelStatus(recipe.phosphate, requirements.phosphate))
+                        numericLimitStatus(
+                          dayTotals[selectedDay].phosphate,
+                          null,
+                          requirements.phosphateLimitMg
                         )
                       )}`}
                     />
@@ -1483,32 +1456,23 @@ export default function NutritionPage() {
 
                                 <div className="flex items-center justify-between gap-2">
                                   <span className="text-slate-500">Potassium</span>
-                                  <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                    <span
-                                      className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(getLevelDotStatus(recipe.potassium))}`}
-                                    />
+                                  <strong className="text-slate-900">
                                     {formatNutrient(getNutritionNumber(recipe.nutrition.potassium), "mg")}
-                                  </span>
+                                  </strong>
                                 </div>
 
                                 <div className="flex items-center justify-between gap-2">
                                   <span className="text-slate-500">Phosphorus</span>
-                                  <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                    <span
-                                      className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(getLevelDotStatus(recipe.phosphate))}`}
-                                    />
+                                  <strong className="text-slate-900">
                                     {formatNutrient(getNutritionNumber(recipe.nutrition.phosphate), "mg")}
-                                  </span>
+                                  </strong>
                                 </div>
 
                                 <div className="flex items-center justify-between gap-2">
                                   <span className="text-slate-500">Purines</span>
-                                  <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                    <span
-                                      className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(getLevelDotStatus(recipe.purines))}`}
-                                    />
+                                  <strong className="text-slate-900">
                                     {getMatrixLevelText(recipe.purines)}
-                                  </span>
+                                  </strong>
                                 </div>
                               </div>
                             ) : (
@@ -1594,10 +1558,11 @@ export default function NutritionPage() {
                                     <span
                                       className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
                                         average.potassium
-                                          ? getLevelDotStatus(
-                                              average.potassium,
-                                              requirements.potassium
-                                            )
+                                          ? numericLimitStatus(
+                                        average.potassium,
+                                        null,
+                                        requirements.potassiumLimitMg
+                                      )
                                           : "green"
                                       )}`}
                                     />
@@ -1611,10 +1576,11 @@ export default function NutritionPage() {
                                     <span
                                       className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
                                         average.phosphate
-                                          ? getLevelDotStatus(
-                                              average.phosphate,
-                                              requirements.phosphate
-                                            )
+                                          ? numericLimitStatus(
+                                        average.phosphate,
+                                        null,
+                                        requirements.phosphateLimitMg
+                                      )
                                           : "green"
                                       )}`}
                                     />
@@ -1628,10 +1594,7 @@ export default function NutritionPage() {
                                     <span
                                       className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
                                         purines
-                                          ? getLevelDotStatus(
-                                              purines,
-                                              requirements.purines
-                                            )
+                                          ? levelStatus(purines, requirements.purines)
                                           : "green"
                                       )}`}
                                     />
@@ -1725,14 +1688,14 @@ export default function NutritionPage() {
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
                                         className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          worstStatus(
-                                            dayRecipes.map((recipe) =>
-                                              levelStatus(recipe.potassium, requirements.potassium)
-                                            )
+                                          numericLimitStatus(
+                                            dayTotals[day].potassium,
+                                            null,
+                                            requirements.potassiumLimitMg
                                           )
                                         )}`}
                                       />
-                                      {formatNutrient(dayTotals[day].potassium, "mg")}
+                                      {formatPotassiumMmol(dayTotals[day].potassium)}
                                     </span>
                                   </div>
 
@@ -1741,10 +1704,10 @@ export default function NutritionPage() {
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
                                         className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          worstStatus(
-                                            dayRecipes.map((recipe) =>
-                                              levelStatus(recipe.phosphate, requirements.phosphate)
-                                            )
+                                          numericLimitStatus(
+                                            dayTotals[day].phosphate,
+                                            null,
+                                            requirements.phosphateLimitMg
                                           )
                                         )}`}
                                       />
@@ -1758,10 +1721,7 @@ export default function NutritionPage() {
                                       <span
                                         className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
                                           purines
-                                            ? getLevelDotStatus(
-                                                purines,
-                                                requirements.purines
-                                              )
+                                            ? levelStatus(purines, requirements.purines)
                                             : "green"
                                         )}`}
                                       />
@@ -1833,14 +1793,14 @@ export default function NutritionPage() {
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
                                     className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      worstStatus(
-                                        allPlannedRecipes.map((recipe) =>
-                                          levelStatus(recipe.potassium, requirements.potassium)
-                                        )
+                                      numericLimitStatus(
+                                        dailyAverage.potassium,
+                                        null,
+                                        requirements.potassiumLimitMg
                                       )
                                     )}`}
                                   />
-                                  {formatNutrient(dailyAverage.potassium, "mg")}
+                                  {formatPotassiumMmol(dailyAverage.potassium)}
                                 </span>
                               </div>
 
@@ -1849,10 +1809,10 @@ export default function NutritionPage() {
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
                                     className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      worstStatus(
-                                        allPlannedRecipes.map((recipe) =>
-                                          levelStatus(recipe.phosphate, requirements.phosphate)
-                                        )
+                                      numericLimitStatus(
+                                        dailyAverage.phosphate,
+                                        null,
+                                        requirements.phosphateLimitMg
                                       )
                                     )}`}
                                   />
@@ -1866,9 +1826,7 @@ export default function NutritionPage() {
                                   <span
                                     className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
                                       purines
-                                        ? getLevelDotStatus(
-                                            purines
-                                          )
+                                        ? levelStatus(purines, requirements.purines)
                                         : "green"
                                     )}`}
                                   />
@@ -1975,158 +1933,112 @@ export default function NutritionPage() {
                     {[
                       {
                         label: "Energy (kcal)",
-                        total: formatNumber(
-                          weeklyTotals.calories
-                        ),
-                        average: formatNumber(
-                          dailyAverage.calories
-                        ),
+                        total: formatNumber(weeklyTotals.calories),
+                        average: formatNumber(dailyAverage.calories),
                         requirement: "Not specified",
                         status: "green" as Status,
                       },
                       {
                         label: "Protein (g)",
-                        total: formatNumber(
-                          weeklyTotals.protein
+                        total: formatNumber(weeklyTotals.protein),
+                        average: formatNumber(dailyAverage.protein),
+                        requirement: formatRange(
+                          requirements.proteinMinG,
+                          requirements.proteinMaxG,
+                          "g/day"
                         ),
-                        average: formatNumber(
-                          dailyAverage.protein
+                        status: numericLimitStatus(
+                          dailyAverage.protein,
+                          requirements.proteinMinG,
+                          requirements.proteinMaxG
                         ),
-                        requirement: "Not specified",
-                        status: "green" as Status,
                       },
                       {
                         label: "Carbohydrate (g)",
-                        total: formatNumber(
-                          weeklyTotals.carbohydrates
-                        ),
-                        average: formatNumber(
-                          dailyAverage.carbohydrates
-                        ),
+                        total: formatNumber(weeklyTotals.carbohydrates),
+                        average: formatNumber(dailyAverage.carbohydrates),
                         requirement: formatRange(
                           requirements.carbohydrateMin,
                           requirements.carbohydrateMax,
-                          "g"
+                          "g/day"
                         ),
-                        status:
-                          requirements.carbohydrateMin ===
-                            null &&
-                          requirements.carbohydrateMax === null
-                            ? "green"
-                            : worstStatus([
-                                requirements.carbohydrateMin !==
-                                  null &&
-                                requirements.carbohydrateMin !==
-                                  undefined
-                                  ? dailyAverage.carbohydrates <
-                                    requirements.carbohydrateMin
-                                    ? "amber"
-                                    : "green"
-                                  : "green",
-                                requirements.carbohydrateMax !==
-                                  null &&
-                                requirements.carbohydrateMax !==
-                                  undefined
-                                  ? dailyAverage.carbohydrates >
-                                    requirements.carbohydrateMax
-                                    ? "amber"
-                                    : "green"
-                                  : "green",
-                              ]),
+                        status: numericLimitStatus(
+                          dailyAverage.carbohydrates,
+                          requirements.carbohydrateMin,
+                          requirements.carbohydrateMax
+                        ),
                       },
                       {
                         label: "Fat (g)",
                         total: formatNumber(weeklyTotals.fat),
-                        average: formatNumber(
-                          dailyAverage.fat
-                        ),
+                        average: formatNumber(dailyAverage.fat),
                         requirement: "Not specified",
                         status: "green" as Status,
                       },
                       {
                         label: "Fibre (g)",
-                        total: formatNumber(
-                          weeklyTotals.fibre
-                        ),
-                        average: formatNumber(
-                          dailyAverage.fibre
-                        ),
+                        total: formatNumber(weeklyTotals.fibre),
+                        average: formatNumber(dailyAverage.fibre),
                         requirement: "Not specified",
                         status: "green" as Status,
                       },
                       {
                         label: "Salt (g)",
-                        total: formatSalt(
-                          weeklyTotals.sodium
-                        ),
-                        average: formatSalt(
-                          dailyAverage.sodium
-                        ),
+                        total: formatSalt(weeklyTotals.sodium),
+                        average: formatSalt(dailyAverage.sodium),
                         requirement:
                           requirements.sodiumLimit !== null &&
                           requirements.sodiumLimit !== undefined
-                            ? `≤ ${formatSalt(
-                                requirements.sodiumLimit
-                              )} g/day`
+                            ? `≤ ${formatSalt(requirements.sodiumLimit)}/day`
                             : "No limit set",
-                        status:
-                          requirements.sodiumLimit === null ||
-                          requirements.sodiumLimit === undefined
-                            ? "green"
-                            : dailyAverage.sodium >
-                                requirements.sodiumLimit
-                              ? "red"
-                              : dailyAverage.sodium >
-                                  requirements.sodiumLimit *
-                                    0.75
-                                ? "amber"
-                                : "green",
+                        status: numericLimitStatus(
+                          dailyAverage.sodium,
+                          null,
+                          requirements.sodiumLimit
+                        ),
                       },
                       {
                         label: "Potassium",
-                        total: formatNumber(weeklyTotals.potassium) + " mg",
-                        average: formatNumber(dailyAverage.potassium) + " mg",
-                        requirement: requirementLevelText(requirements.potassium),
-                        status: worstStatus(
-                          allPlannedRecipes.map((recipe) =>
-                            levelStatus(recipe.potassium, requirements.potassium)
-                          )
+                        total: formatPotassiumMmol(weeklyTotals.potassium),
+                        average: formatPotassiumMmol(dailyAverage.potassium),
+                        requirement:
+                          requirements.potassiumLimitMg != null
+                            ? `≤ ${formatPotassiumMmol(requirements.potassiumLimitMg)}/day`
+                            : "No limit set",
+                        status: numericLimitStatus(
+                          dailyAverage.potassium,
+                          null,
+                          requirements.potassiumLimitMg
                         ),
                       },
                       {
                         label: "Phosphorus",
                         total: formatNumber(weeklyTotals.phosphate) + " mg",
                         average: formatNumber(dailyAverage.phosphate) + " mg",
-                        requirement: requirementLevelText(requirements.phosphate),
-                        status: worstStatus(
-                          allPlannedRecipes.map((recipe) =>
-                            levelStatus(recipe.phosphate, requirements.phosphate)
-                          )
+                        requirement:
+                          requirements.phosphateLimitMg != null
+                            ? `≤ ${formatNumber(requirements.phosphateLimitMg)} mg/day`
+                            : "No limit set",
+                        status: numericLimitStatus(
+                          dailyAverage.phosphate,
+                          null,
+                          requirements.phosphateLimitMg
                         ),
                       },
                       {
                         label: "Purines",
-                        total:
-                          weeklyPurineLevel
-                            ? `Average: ${weeklyPurineLevel}`
-                            : "—",
+                        total: weeklyPurineLevel
+                          ? `Average: ${weeklyPurineLevel}`
+                          : "—",
                         average: weeklyPurineLevel
                           ? getMatrixLevelText(weeklyPurineLevel)
                           : "—",
-                        requirement:
-                          requirementLevelText(
-                            requirements.purines
-                          ),
-                        status: worstStatus(
-                          allPlannedRecipes.map((recipe) =>
-                            levelStatus(
-                              recipe.purines,
-                              requirements.purines
-                            )
-                          )
-                        ),
+                        requirement: requirementLevelText(requirements.purines),
+                        status: weeklyPurineLevel
+                          ? levelStatus(weeklyPurineLevel, requirements.purines)
+                          : "green",
                       },
-                    ].map((row) => (
+                                        ].map((row) => (
                       <tr
                         key={row.label}
                         className="border-b border-slate-100 last:border-b-0"
@@ -2186,44 +2098,40 @@ export default function NutritionPage() {
                 </p>
 
                 <p className="mt-3 text-sm leading-5 text-slate-700">
-                  Traffic lights use your saved RenalPlan
-                  requirements where a comparable target is
-                  available.
+                  Your daily totals and averages are compared with the
+                  personal requirements saved in My Diet. The traffic
+                  light shows the overall result against those limits.
                 </p>
 
                 <div className="mt-3 space-y-2 text-sm">
-                  {(["green", "amber", "red"] as Status[]).map(
-                    (status) => (
-                      <div
-                        key={status}
-                        className="flex items-center gap-3"
-                      >
-                        <span
-                          className={`h-3.5 w-3.5 rounded-full ${getStatusDotClass(
-                            status
-                          )}`}
-                        />
+                  {(["green", "red"] as Status[]).map((status) => (
+                    <div
+                      key={status}
+                      className="flex items-center gap-3"
+                    >
+                      <span
+                        className={`h-3.5 w-3.5 rounded-full ${getStatusDotClass(
+                          status
+                        )}`}
+                      />
 
-                        <span className="text-slate-700">
-                          {status === "green"
-                            ? "Within target"
-                            : status === "amber"
-                              ? "Approaching limit"
-                              : "Outside target"}
-                        </span>
-                      </div>
-                    )
-                  )}
+                      <span className="text-slate-700">
+                        {status === "green"
+                          ? "Within limit"
+                          : "Exceeds limit"}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
                 <p className="mt-3 border-t border-green-200 pt-3 text-xs leading-5 text-slate-600">
-                  Potassium and phosphorus are shown as actual amounts
-                  in milligrams (mg). This gives you a clearer picture
-                  of how much of each nutrient is in your planned meals.
-                  Purines are shown as Low, Moderate or High because
-                  the recipe data uses a classification rather than a
-                  numeric purine value. Weekly totals and daily averages
-                  are calculated from the meals currently in your planner.
+                  Green means the daily figure is within the saved limit;
+                  red means it exceeds the saved limit. Individual meal
+                  figures are shown for information only and are not judged
+                  against the full daily allowance. Potassium is displayed
+                  in mmol, phosphorus in mg and salt in g. Purines are shown
+                  as Low, Moderate or High because the recipe data uses a
+                  classification rather than a numeric purine value.
                 </p>
               </aside>
             </div>

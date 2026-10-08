@@ -359,8 +359,17 @@ function WeeklyPlannerPageContent() {
   const searchParams = useSearchParams();
   const myChefNavHandledRef = useRef(false);
 
+  type PlannerRequirements = Requirements & {
+    ckdStage?: string | null;
+    proteinMinG?: number | null;
+    proteinMaxG?: number | null;
+    potassiumLimitMg?: number | null;
+    phosphateLimitMg?: number | null;
+    fluidLimitMl?: number | null;
+  };
+
   const [requirements, setRequirements] =
-    useState<Requirements | null>(null);
+    useState<PlannerRequirements | null>(null);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
@@ -795,10 +804,71 @@ function WeeklyPlannerPageContent() {
   }
 
   useEffect(() => {
-    setRequirements(getStoredRequirements());
+    let cancelled = false;
+
+    async function loadPlannerRequirements() {
+      // My Diet is the single source of truth for the user's daily
+      // requirements. Load the full current record rather than relying on
+      // the legacy recipeRequirements type, which does not contain the
+      // numeric potassium/phosphate/protein limits.
+      try {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (user) {
+          const { data } = await supabase
+            .from("user_requirements")
+            .select(
+              "ckd_stage, sodium_limit, protein_min_g, protein_max_g, potassium_limit_mg, phosphate_limit_mg, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml"
+            )
+            .eq("user_id", user.id)
+            .maybeSingle();
+
+          if (!cancelled && data) {
+            setRequirements({
+              sodiumLimit: data.sodium_limit ?? null,
+              potassium: (data.potassium ?? "Any") as Requirements["potassium"],
+              phosphate: (data.phosphate ?? "Any") as Requirements["phosphate"],
+              purines: (data.purines ?? "Any") as Requirements["purines"],
+              carbohydrateMin: data.carbohydrate_min ?? null,
+              carbohydrateMax: data.carbohydrate_max ?? null,
+              ckdStage: data.ckd_stage ?? null,
+              proteinMinG: data.protein_min_g ?? null,
+              proteinMaxG: data.protein_max_g ?? null,
+              potassiumLimitMg: data.potassium_limit_mg ?? null,
+              phosphateLimitMg: data.phosphate_limit_mg ?? null,
+              fluidLimitMl: data.fluid_limit_ml ?? null,
+            });
+            return;
+          }
+        }
+      } catch {
+        // Fall through to the locally saved My Diet requirements.
+      }
+
+      if (cancelled) return;
+
+      try {
+        const raw = window.localStorage.getItem(
+          "meal-planner-requirements"
+        );
+
+        if (!raw) {
+          setRequirements(getStoredRequirements() as PlannerRequirements | null);
+          return;
+        }
+
+        const parsed = JSON.parse(raw) as PlannerRequirements;
+        setRequirements(parsed);
+      } catch {
+        setRequirements(getStoredRequirements() as PlannerRequirements | null);
+      }
+    }
+
+    void loadPlannerRequirements();
 
     const handleRequirementsUpdated = () => {
-      setRequirements(getStoredRequirements());
+      void loadPlannerRequirements();
     };
 
     window.addEventListener(
@@ -1000,6 +1070,18 @@ function WeeklyPlannerPageContent() {
         },
       };
     });
+
+    if (typeof window !== "undefined") {
+      const gtag = (window as typeof window & {
+        gtag?: (...args: any[]) => void;
+      }).gtag;
+
+      if (gtag) {
+        gtag("event", "meal_added", {
+          meal_type: picker.meal,
+        });
+      }
+    }
 
     setPicker(null);
   }
@@ -1344,6 +1426,7 @@ openMyChefIntro();
   type NutritionView =
     | "Calories"
     | "Protein"
+    | "Carbohydrate"
     | "Sodium"
     | "Potassium"
     | "Phosphate"
@@ -1363,6 +1446,11 @@ openMyChefIntro();
   function formatSalt(sodiumMg: number): string {
   const saltGrams = (sodiumMg * 2.5) / 1000;
   return `${saltGrams.toFixed(1)} g`;
+}
+
+function formatPotassiumMmol(mg: number): string {
+  const mmol = mg / 39.1;
+  return `${mmol.toFixed(1)} mmol`;
 }
 
   function getDayMealRecipes(day: string) {
@@ -1389,21 +1477,48 @@ openMyChefIntro();
     return getLocalDateKey(monday);
   }
 
+  type DailyNumericField =
+    | "calories"
+    | "protein"
+    | "carbohydrates"
+    | "sodium"
+    | "potassium"
+    | "phosphate";
+
+  type DailyRequirements = PlannerRequirements;
+
   function getDailyNutritionTotal(
     day: string,
-    field: "calories" | "protein"
+    field: DailyNumericField
   ) {
     const meals = getDayMealRecipes(day);
+
     const values = mealTypes
       .map((meal) => meals[meal as keyof typeof meals])
       .filter(Boolean)
-      .map((recipe) =>
-        getNutritionNumber(
-          field === "calories"
-            ? recipe!.calories
-            : recipe!.protein
-        )
-      );
+      .map((recipe) => {
+        if (field === "calories") {
+          return getNutritionNumber(recipe!.calories);
+        }
+
+        if (field === "protein") {
+          return getNutritionNumber(recipe!.protein);
+        }
+
+        if (field === "carbohydrates") {
+          return getNutritionNumber(recipe!.nutrition.carbohydrates);
+        }
+
+        if (field === "sodium") {
+          return getNutritionNumber(recipe!.nutrition.sodium);
+        }
+
+        if (field === "potassium") {
+          return getNutritionNumber(recipe!.nutrition.potassium ?? "0");
+        }
+
+        return getNutritionNumber(recipe!.nutrition.phosphate ?? "0");
+      });
 
     if (values.length === 0) {
       return null;
@@ -1413,6 +1528,58 @@ openMyChefIntro();
       (total, value) => total + value,
       0
     );
+  }
+
+  function getDailyNutritionLimit(
+    field: DailyNumericField
+  ): number | null {
+    const dailyRequirements =
+      requirements as DailyRequirements | null;
+
+    if (!dailyRequirements) {
+      return null;
+    }
+
+    if (field === "protein") {
+      return dailyRequirements.proteinMaxG ?? null;
+    }
+
+    if (field === "sodium") {
+      return dailyRequirements.sodiumLimit ?? null;
+    }
+
+    if (field === "potassium") {
+      return dailyRequirements.potassiumLimitMg ?? null;
+    }
+
+    if (field === "phosphate") {
+      return dailyRequirements.phosphateLimitMg ?? null;
+    }
+
+    if (field === "carbohydrates") {
+      return dailyRequirements.carbohydrateMax ?? null;
+    }
+
+    return null;
+  }
+
+  function getDailyNutritionStatus(
+    day: string,
+    field: DailyNumericField
+  ): "Within" | "Over" | "No limit" | "No meals" {
+    const total = getDailyNutritionTotal(day, field);
+
+    if (total === null) {
+      return "No meals";
+    }
+
+    const limit = getDailyNutritionLimit(field);
+
+    if (limit === null) {
+      return "No limit";
+    }
+
+    return total <= limit ? "Within" : "Over";
   }
 
   function getSodiumRating(sodium: string) {
@@ -1450,28 +1617,19 @@ openMyChefIntro();
   }
 
   function getDailySodiumStatus(day: string) {
-    const total = getDailySodiumTotal(day);
+    const status = getDailyNutritionStatus(day, "sodium");
 
-    if (total === null || requirements?.sodiumLimit === null) {
-      return "No limit";
-    }
-
-    const limit = requirements?.sodiumLimit;
-
-if (limit === null || limit === undefined) {
-  return "No limit";
-}
-
-if (total <= limit * 0.75) {
+    if (status === "Within") {
       return "Low";
     }
 
-    if (total <= limit) {
-      return "Moderate";
+    if (status === "Over") {
+      return "High";
     }
 
-    return "High";
+    return "No limit";
   }
+
 
   function getMealNutritionRating(
     day: string,
@@ -1542,12 +1700,11 @@ if (total <= limit * 0.75) {
       const planned = plannedMealFluidForDay(day);
       const drinks = fluidTotalForDate(date);
       const shortDay = day.slice(0, 3).toUpperCase();
+
       return (
         <button
           type="button"
           onPointerDown={(event) => {
-            // Desktop layout can swallow the later click despite the pointer cursor.
-            // Open on pointer-down and stop bubbling to any planner-level handlers.
             if (event.pointerType === "mouse") {
               event.preventDefault();
               event.stopPropagation();
@@ -1560,33 +1717,78 @@ if (total <= limit * 0.75) {
             setFluidDate(date);
             setFluidModalOpen(true);
           }}
-          style={{ pointerEvents: "auto", touchAction: "manipulation", position: "relative", zIndex: 10000, cursor: "pointer" }}
-          className={`planner-fluid-card relative z-[10000] isolate flex min-h-[112px] w-full min-w-[82px] cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border px-2 py-3 text-center font-extrabold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${desktop ? "sm:min-h-[124px] sm:px-2.5" : ""}`}
+          style={{
+            pointerEvents: "auto",
+            touchAction: "manipulation",
+            position: "relative",
+            zIndex: 10000,
+            cursor: "pointer",
+          }}
+          className={`planner-fluid-card relative z-[10000] isolate flex min-h-[112px] w-full min-w-[82px] cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border px-2 py-3 text-center font-extrabold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+            desktop ? "sm:min-h-[124px] sm:px-2.5" : ""
+          }`}
           aria-label={`${day}: ${total} ml estimated from planned meals and recorded drinks. Open fluid tracker`}
           title={`${day}: ${planned} ml from planned meals + ${drinks} ml drinks recorded. Click to view or edit.`}
         >
-          <span className="planner-fluid-card-day pointer-events-none text-[10px] uppercase tracking-[0.16em]">{shortDay}</span>
-          <svg viewBox="0 0 24 24" fill="none" className="planner-fluid-card-icon pointer-events-none h-5 w-5" aria-hidden="true">
-            <path d="M12 3.25S5.5 10.15 5.5 14.25a6.5 6.5 0 0 0 13 0C18.5 10.15 12 3.25 12 3.25Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M9 15.2a3.1 3.1 0 0 0 3.1 3.1" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          <span className="planner-fluid-card-day pointer-events-none text-[10px] uppercase tracking-[0.16em]">
+            {shortDay}
+          </span>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            className="planner-fluid-card-icon pointer-events-none h-5 w-5"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 3.25S5.5 10.15 5.5 14.25a6.5 6.5 0 0 0 13 0C18.5 10.15 12 3.25 12 3.25Z"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M9 15.2a3.1 3.1 0 0 0 3.1 3.1"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
           </svg>
-          <span className="planner-fluid-card-total pointer-events-none text-lg leading-none tracking-tight sm:text-xl">{total.toLocaleString()} <span className="planner-fluid-card-unit text-xs">ml</span></span>
-          <span className="planner-fluid-card-meter pointer-events-none mt-0.5 h-1 w-10 rounded-full" aria-hidden="true" />
-          <span className="planner-fluid-card-action pointer-events-none text-[9px] uppercase tracking-[0.12em] sm:text-[10px]">View / edit <span aria-hidden="true">›</span></span>
+          <span className="planner-fluid-card-total pointer-events-none text-lg leading-none tracking-tight sm:text-xl">
+            {total.toLocaleString()}{" "}
+            <span className="planner-fluid-card-unit text-xs">ml</span>
+          </span>
+          <span
+            className="planner-fluid-card-meter pointer-events-none mt-0.5 h-1 w-10 rounded-full"
+            aria-hidden="true"
+          />
+          <span className="planner-fluid-card-action pointer-events-none text-[9px] uppercase tracking-[0.12em] sm:text-[10px]">
+            View / edit <span aria-hidden="true">›</span>
+          </span>
         </button>
       );
     }
 
-    if (
-      nutritionView === "Calories" ||
-      nutritionView === "Protein"
-    ) {
-      const total = getDailyNutritionTotal(
-        day,
-        nutritionView === "Calories"
-          ? "calories"
-          : "protein"
-      );
+    const numericField: DailyNumericField | null =
+      nutritionView === "Calories"
+        ? "calories"
+        : nutritionView === "Protein"
+          ? "protein"
+          : nutritionView === "Carbohydrate"
+            ? "carbohydrates"
+            : nutritionView === "Sodium"
+              ? "sodium"
+              : nutritionView === "Potassium"
+                ? "potassium"
+                : nutritionView === "Phosphate"
+                  ? "phosphate"
+                  : null;
+
+    if (numericField) {
+      const total = getDailyNutritionTotal(day, numericField);
+      const limit =
+        getDailyNutritionLimit(numericField);
+      const status =
+        getDailyNutritionStatus(day, numericField);
 
       if (total === null) {
         return (
@@ -1596,93 +1798,153 @@ if (total <= limit * 0.75) {
         );
       }
 
+      // Numeric daily views compare the full day's total with the user's
+      // daily requirement: green when within the limit, red when over it.
+      // Calories has no daily requirement and therefore remains neutral.
+      const statusColour =
+        status === "Over"
+          ? "#ef4444"
+          : status === "Within"
+            ? "#16a34a"
+            : "#64748b";
+
+      const displayTotal =
+        nutritionView === "Sodium"
+          ? formatSalt(total)
+          : nutritionView === "Potassium"
+            ? formatPotassiumMmol(total)
+            : nutritionView === "Phosphate"
+              ? `${total.toLocaleString()} mg`
+              : `${total.toLocaleString()} ${
+                  nutritionView === "Calories"
+                    ? "kcal"
+                    : "g"
+                }`;
+
+      const displayLimit =
+        limit === null
+          ? null
+          : nutritionView === "Sodium"
+            ? formatSalt(limit)
+            : nutritionView === "Potassium"
+              ? formatPotassiumMmol(limit)
+              : nutritionView === "Phosphate"
+                ? `${limit.toLocaleString()} mg`
+                : `${limit.toLocaleString()} ${
+                    nutritionView === "Calories"
+                      ? "kcal"
+                      : "g"
+                  }`;
+
       if (!desktop) {
+        const hasLimit = limit !== null && status !== "No limit";
+        const indicatorColour =
+          status === "Over" ? "#ef4444" :
+          status === "Within" ? "#16a34a" : "#64748b";
+
         return (
-          <span className="text-sm font-extrabold text-slate-800">
-            {total.toLocaleString()}
-            {nutritionView === "Calories"
-              ? " kcal"
-              : " g"}
-          </span>
+          <div
+            className="flex flex-col items-center justify-center"
+            title={
+              limit !== null
+                ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
+                : `${day} ${nutritionView}: daily total ${displayTotal}`
+            }
+            aria-label={
+              limit !== null
+                ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
+                : `${day} ${nutritionView}: daily total ${displayTotal}`
+            }
+          >
+            <div
+              className="flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] shadow-sm"
+              style={{
+                borderColor: indicatorColour,
+                backgroundColor: status === "Over" ? "#7f1d1d" : status === "Within" ? "#166534" : "#334155",
+              }}
+            >
+              <div className="text-center leading-tight">
+                <div className="text-[11px] font-extrabold text-white">
+                  {nutritionView === "Calories" ? total.toLocaleString() : displayTotal}
+                </div>
+                {hasLimit && (
+                  <div className="mt-0.5 text-[7px] font-bold text-white/90">
+                    / {displayLimit}
+                  </div>
+                )}
+              </div>
+            </div>
+            {hasLimit && (
+              <span
+                className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
+                style={{ color: indicatorColour }}
+              >
+                {status === "Over" ? "Exceeds limit" : "Within limit"}
+              </span>
+            )}
+          </div>
         );
       }
 
       return (
-        <div className="flex flex-col items-center justify-center">
-          <div className="flex h-[68px] w-[68px] items-center justify-center rounded-full border-[5px] border-slate-200 bg-white shadow-sm">
+        <div
+          className="flex flex-col items-center justify-center"
+          aria-label={
+            limit !== null
+              ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
+              : `${day} ${nutritionView}: daily total ${displayTotal}`
+          }
+          title={
+            limit !== null
+              ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
+              : `${day} ${nutritionView}: ${displayTotal}`
+          }
+        >
+          <div
+            className="flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] bg-white shadow-sm"
+            style={{ borderColor: statusColour }}
+          >
             <div className="text-center leading-tight">
-              <div className="text-[11px] font-extrabold text-slate-800">
-                {total.toLocaleString()}
+              <div
+                className="text-[11px] font-extrabold"
+                style={{ color: statusColour }}
+              >
+                {displayTotal}
               </div>
-
-              <div className="text-[8px] font-bold uppercase tracking-wide text-slate-400">
-                {nutritionView === "Calories"
-                  ? "kcal"
-                  : "protein"}
-              </div>
+              {limit !== null && (
+                <div className="mt-0.5 text-[7px] font-bold text-slate-400">
+                  / {displayLimit}
+                </div>
+              )}
             </div>
           </div>
+
+          {limit !== null && (
+            <span
+              className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
+              style={{ color: statusColour }}
+            >
+              {status}
+            </span>
+          )}
         </div>
       );
     }
 
-    const breakfast = getMealNutritionRating(
-      day,
-      "Breakfast"
-    );
-
-    const lunch = getMealNutritionRating(
-      day,
-      "Lunch"
-    );
-
-    const dinner = getMealNutritionRating(
-      day,
-      "Dinner"
-    );
-
-    const dailySodiumStatus =
-      nutritionView === "Sodium"
-        ? getDailySodiumStatus(day)
-        : null;
+    // Purines remain a meal-level RAG because recipe data stores purines
+    // as Low / Moderate / High rather than a numeric daily amount.
+    const breakfast = getMealNutritionRating(day, "Breakfast");
+    const lunch = getMealNutritionRating(day, "Lunch");
+    const dinner = getMealNutritionRating(day, "Dinner");
 
     const breakfastColour =
       getNutritionSegmentClass(breakfast);
-
     const lunchColour =
       getNutritionSegmentClass(lunch);
-
     const dinnerColour =
       getNutritionSegmentClass(dinner);
 
     if (!desktop) {
-      if (nutritionView === "Sodium") {
-        const mobileStatus = dailySodiumStatus ?? "No limit";
-        const mobileStatusColour =
-          mobileStatus === "High"
-            ? "#ef4444"
-            : mobileStatus === "Moderate"
-              ? "#f59e0b"
-              : mobileStatus === "Low"
-                ? "#16a34a"
-                : "#94a3b8";
-
-        return (
-          <span
-            className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full shadow-sm ring-1 ring-slate-200/90"
-            style={{
-              background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 118deg, #ffffff 118deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 242deg, ${dinnerColour} 242deg 358deg, #ffffff 358deg 360deg)`,
-            }}
-            aria-label={`${day} Salt: daily total ${getDailySodiumTotal(day) !== null ? formatSalt(getDailySodiumTotal(day)!) : "no meals"}, ${mobileStatus.toLowerCase()}`}
-            title={`${day} Salt: daily total ${getDailySodiumTotal(day) !== null ? formatSalt(getDailySodiumTotal(day)!) : "no meals"}, ${mobileStatus.toLowerCase()}`}
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[7px] font-extrabold uppercase leading-none shadow-inner" style={{ color: mobileStatusColour }}>
-              {mobileStatus === "No limit" ? "—" : mobileStatus}
-            </span>
-          </span>
-        );
-      }
-
       return (
         <span
           className="h-11 w-11 shrink-0 rounded-full shadow-sm ring-1 ring-slate-200/90"
@@ -1695,19 +1957,13 @@ if (total <= limit * 0.75) {
       );
     }
 
-    const ratings = [
-      breakfast,
-      lunch,
-      dinner,
-    ].filter(
+    const ratings = [breakfast, lunch, dinner].filter(
       (rating) => rating !== "Empty"
     );
 
     let overallStatus = "No meals";
 
-    if (nutritionView === "Sodium") {
-      overallStatus = dailySodiumStatus ?? "No limit";
-    } else if (ratings.includes("High")) {
+    if (ratings.includes("High")) {
       overallStatus = "High";
     } else if (ratings.includes("Moderate")) {
       overallStatus = "Moderate";
@@ -1727,52 +1983,27 @@ if (total <= limit * 0.75) {
     const mealCount = ratings.length;
 
     function getBadgeClass(rating: string) {
-      if (rating === "High") {
-        return "bg-red-500 text-white";
-      }
-
-      if (rating === "Moderate") {
-        return "bg-amber-400 text-white";
-      }
-
-      if (rating === "Low") {
-        return "bg-green-500 text-white";
-      }
-
+      if (rating === "High") return "bg-red-500 text-white";
+      if (rating === "Moderate") return "bg-amber-400 text-white";
+      if (rating === "Low") return "bg-green-500 text-white";
       return "bg-slate-200 text-slate-400";
     }
 
     function getShortRating(rating: string) {
-      if (rating === "Moderate") {
-        return "Mod";
-      }
-
-      if (rating === "Empty") {
-        return "—";
-      }
-
+      if (rating === "Moderate") return "Mod";
+      if (rating === "Empty") return "—";
       return rating;
     }
 
     return (
-      <div
-        className="flex flex-col items-center justify-center"
-        aria-label={
-          nutritionView === "Sodium"
-            ? `${day} Salt: daily total ${getDailySodiumTotal(day) !== null ? formatSalt(getDailySodiumTotal(day)!) : "no meals"}, ${overallStatus.toLowerCase()}`
-            : `${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`
-        }
-        title={
-          nutritionView === "Sodium"
-            ? `${day} Salt: daily total ${getDailySodiumTotal(day) !== null ? formatSalt(getDailySodiumTotal(day)!) : "no meals"}, ${overallStatus.toLowerCase()}`
-            : `${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`
-        }
-      >
+      <div className="flex flex-col items-center justify-center">
         <div
           className="relative flex h-[70px] w-[70px] items-center justify-center rounded-full shadow-sm"
           style={{
             background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 116deg, #ffffff 116deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 244deg, ${dinnerColour} 244deg 358deg, #ffffff 358deg 360deg)`,
           }}
+          aria-label={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+          title={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
         >
           <div className="flex h-[54px] w-[54px] flex-col items-center justify-center rounded-full bg-white shadow-inner">
             <span
@@ -1781,62 +2012,29 @@ if (total <= limit * 0.75) {
             >
               {overallStatus}
             </span>
-
             <span className="mt-0.5 text-[9px] font-bold text-slate-500">
               {mealCount} {mealCount === 1 ? "meal" : "meals"}
             </span>
-
-            {nutritionView === "Sodium" &&
-              getDailySodiumTotal(day) !== null && (
-                <span className="mt-0.5 text-[8px] font-semibold text-slate-400">
-                  {formatSalt(getDailySodiumTotal(day)!)}
-                </span>
-              )}
           </div>
         </div>
 
         <div className="mt-2 flex items-start justify-center gap-2">
-          <div className="flex flex-col items-center">
-            <span
-              className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-extrabold shadow-sm ${getBadgeClass(
-                breakfast
-              )}`}
-            >
-              B
-            </span>
-
-            <span className="mt-1 text-[8px] font-semibold text-slate-400">
-              {getShortRating(breakfast)}
-            </span>
-          </div>
-
-          <div className="flex flex-col items-center">
-            <span
-              className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-extrabold shadow-sm ${getBadgeClass(
-                lunch
-              )}`}
-            >
-              L
-            </span>
-
-            <span className="mt-1 text-[8px] font-semibold text-slate-400">
-              {getShortRating(lunch)}
-            </span>
-          </div>
-
-          <div className="flex flex-col items-center">
-            <span
-              className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-extrabold shadow-sm ${getBadgeClass(
-                dinner
-              )}`}
-            >
-              D
-            </span>
-
-            <span className="mt-1 text-[8px] font-semibold text-slate-400">
-              {getShortRating(dinner)}
-            </span>
-          </div>
+          {[
+            ["B", breakfast],
+            ["L", lunch],
+            ["D", dinner],
+          ].map(([label, rating]) => (
+            <div key={label} className="flex flex-col items-center">
+              <span
+                className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-extrabold shadow-sm ${getBadgeClass(rating)}`}
+              >
+                {label}
+              </span>
+              <span className="mt-1 text-[8px] font-semibold text-slate-400">
+                {getShortRating(rating)}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -1929,6 +2127,35 @@ html[data-theme="dark"] main .planner-remove-button {
         html[data-theme="dark"] .planner-nutrition-description { color: #cbd5e1 !important; }
         html[data-theme="dark"] .planner-nutrition-icon,
         html[data-theme="dark"] .planner-nutrition-arrow { background: #334451 !important; color: #7dd3fc !important; }
+        html[data-theme="dark"] .planner-nutrition-row {
+          background: #101b26 !important;
+          border-color: #334155 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-label,
+        html[data-theme="dark"] .planner-nutrition-cell {
+          background: #101b26 !important;
+          border-color: #334155 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-heading {
+          color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-select {
+          background: #1e293b !important;
+          color: #f8fafc !important;
+          border-color: #475569 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-legend {
+          color: #cbd5e1 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-row .text-slate-400 {
+          color: #cbd5e1 !important;
+        }
+
 
         @keyframes plannerMyChefShimmer {
           0% { transform: translateX(-180%) skewX(-18deg); }
@@ -2471,6 +2698,9 @@ html[data-theme="dark"] main .planner-remove-button {
                   <option value="Protein">
                     Protein
                   </option>
+                  <option value="Carbohydrate">
+                    Carbohydrate
+                  </option>
                   <option value="Sodium">
                     Salt
                   </option>
@@ -2977,6 +3207,9 @@ html[data-theme="dark"] main .planner-remove-button {
                     <option value="Protein">
                       Protein
                     </option>
+                    <option value="Carbohydrate">
+                      Carbohydrate
+                    </option>
                     <option value="Sodium">
                       Salt
                     </option>
@@ -2992,22 +3225,37 @@ html[data-theme="dark"] main .planner-remove-button {
                     <option value="Fluid">Fluid (tap to log drinks)</option>
                   </select>
 
-                  <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
-                    <span className="flex items-center gap-1.5">
-                      <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: "#22c55e", width: "8px", height: "8px", minWidth: "8px", minHeight: "8px", display: "inline-block", opacity: 1 }} />
-                      Low
-                    </span>
-
-                    <span className="flex items-center gap-1.5">
-                      <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: "#fbbf24", width: "8px", height: "8px", minWidth: "8px", minHeight: "8px", display: "inline-block", opacity: 1 }} />
-                      Moderate
-                    </span>
-
-                    <span className="flex items-center gap-1.5">
-                      <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: "#ef4444", width: "8px", height: "8px", minWidth: "8px", minHeight: "8px", display: "inline-block", opacity: 1 }} />
-                      High
-                    </span>
-                  </div>
+                  {nutritionView !== "Fluid" && (
+                    <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
+                      {nutritionView === "Purines" ? (
+                        <>
+                          <span className="flex items-center gap-1.5">
+                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
+                            Low
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-amber-400" />
+                            Moderate
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />
+                            High
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="flex items-center gap-1.5">
+                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
+                            Within limit
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />
+                            Exceeds limit
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  )}
 
                 </div>
 

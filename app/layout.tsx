@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import ThemeSync from "@/components/ThemeSync";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 import type { Metadata, Viewport } from "next";
 
 export const viewport: Viewport = {
@@ -56,6 +57,20 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KP1SPXH4NC"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-KP1SPXH4NC');
+          `}
+        </Script>
+
         <ThemeSync />
         <Navbar />
         {children}

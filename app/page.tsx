@@ -252,7 +252,7 @@ const benefits = [
 function ShowcaseVideo({ mobile }: { mobile: boolean }) {
   const [shouldRender, setShouldRender] = useState<boolean | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
-
+const [soundOn, setSoundOn] = useState(false);
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
@@ -295,30 +295,49 @@ function ShowcaseVideo({ mobile }: { mobile: boolean }) {
     );
   }
 
+  
   return (
-    <video
-      className={mobile ? "block h-full w-full object-contain object-center" : "block h-auto w-full object-contain"}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      aria-label={
-        mobile
-          ? "RenalPlan mobile showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
-          : "RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
-      }
-    >
-      <source
-        src={
+    <div className="relative w-full">
+      <video
+        className={
           mobile
-            ? "/videos/mobile-showcase.mp4"
-            : "/videos/desktop-showcase.mp4"
+            ? "block h-full w-full object-contain object-center"
+            : "block h-auto w-full object-contain"
         }
-        type="video/mp4"
-      />
-      Your browser does not support the video element.
-    </video>
+        autoPlay
+        muted={mobile || !soundOn}
+        loop
+        playsInline
+        preload="metadata"
+        aria-label={
+          mobile
+            ? "RenalPlan mobile showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+            : "RenalPlan showcase showing dietary requirements, weekly planning, nutrition and shopping list features"
+        }
+      >
+        <source
+          src={
+            mobile
+              ? "/videos/mobile-showcase.mp4"
+              : "/videos/desktop-showcase.mp4"
+          }
+          type="video/mp4"
+        />
+        Your browser does not support the video element.
+      </video>
+
+      {!mobile && (
+        <button
+          type="button"
+          onClick={() => setSoundOn((current) => !current)}
+          aria-pressed={soundOn}
+          aria-label={soundOn ? "Turn sound off" : "Turn sound on"}
+          className="absolute bottom-4 right-4 z-10 rounded-full bg-slate-900/85 px-4 py-2 text-sm font-semibold text-white shadow-lg transition hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          {soundOn ? "🔊 Sound on" : "🔇 Turn sound on"}
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -1103,6 +1122,8 @@ function LoggedInHome() {
           <div className="relative grid gap-6 px-5 py-6 sm:px-8 sm:py-7 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-9 lg:py-8">
             <div>
               <div className="flex flex-wrap items-center gap-2">
+
+        
                 <p className="text-xs font-extrabold tracking-[0.18em] text-[#067b3a]">WELCOME BACK</p>
                 {requirementsSet ? (
                   <span className="renal-dashboard-diet-set rounded-full bg-green-100 px-2.5 py-1 text-[11px] font-extrabold text-[#067b3a]">MY DIET SET</span>

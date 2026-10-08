@@ -248,6 +248,12 @@ export default function FoodCheckPage() {
   const nutritionRef =
     useRef<HTMLDivElement | null>(null);
 
+  const searchDebounceRef =
+    useRef<number | null>(null);
+
+  const searchRequestRef =
+    useRef(0);
+
   /*
    * ---------------------------------------------------------
    * CHECK LOGIN STATUS
@@ -281,18 +287,20 @@ export default function FoodCheckPage() {
    * ---------------------------------------------------------
    */
 
-  async function performSearch() {
+  async function performSearch(termOverride?: string) {
     if (!signedIn) {
       return;
     }
 
-    const term = search.trim();
+    const term = (termOverride ?? search).trim();
+    const requestId = ++searchRequestRef.current;
 
     setSelectedFood(null);
     setError("");
 
     if (!term) {
       setResults([]);
+      setSearching(false);
       return;
     }
 
@@ -344,11 +352,13 @@ export default function FoodCheckPage() {
           failedQuery.error
         );
 
-        setError(
-          "We couldn't search the food database. Please try again."
-        );
+        if (requestId === searchRequestRef.current) {
+          setError(
+            "We couldn't search the food database. Please try again."
+          );
 
-        setResults([]);
+          setResults([]);
+        }
         return;
       }
 
@@ -461,24 +471,30 @@ export default function FoodCheckPage() {
         return nameA.localeCompare(nameB);
       });
 
-      setResults(
-        matchingRows
-          .slice(0, 50)
-          .map(mapFood)
-      );
+      if (requestId === searchRequestRef.current) {
+        setResults(
+          matchingRows
+            .slice(0, 50)
+            .map(mapFood)
+        );
+      }
     } catch (searchError) {
       console.error(
         "CoFID search failed:",
         searchError
       );
 
-      setError(
-        "We couldn't search the food database. Please try again."
-      );
+      if (requestId === searchRequestRef.current) {
+        setError(
+          "We couldn't search the food database. Please try again."
+        );
 
-      setResults([]);
+        setResults([]);
+      }
     } finally {
-      setSearching(false);
+      if (requestId === searchRequestRef.current) {
+        setSearching(false);
+      }
     }
   }
 
@@ -734,6 +750,11 @@ export default function FoodCheckPage() {
       if (scannerTimerRef.current !== null) {
         window.clearTimeout(scannerTimerRef.current);
       }
+
+      if (searchDebounceRef.current !== null) {
+        window.clearTimeout(searchDebounceRef.current);
+      }
+
       scannerStreamRef.current?.getTracks().forEach((track) => track.stop());
     };
   }, []);
@@ -877,12 +898,37 @@ export default function FoodCheckPage() {
                     <input
                       value={search}
                       onChange={(e) => {
-                        setSearch(e.target.value);
+                        const nextSearch = e.target.value;
+
+                        setSearch(nextSearch);
                         setSelectedFood(null);
-                        setResults([]);
+
+                        if (searchDebounceRef.current !== null) {
+                          window.clearTimeout(searchDebounceRef.current);
+                          searchDebounceRef.current = null;
+                        }
+
+                        // Invalidate any search that is still running.
+                        searchRequestRef.current += 1;
+
+                        if (nextSearch.trim().length < 2) {
+                          setResults([]);
+                          setSearching(false);
+                          return;
+                        }
+
+                        searchDebounceRef.current = window.setTimeout(() => {
+                          searchDebounceRef.current = null;
+                          void performSearch(nextSearch);
+                        }, 300);
                       }}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
+                          if (searchDebounceRef.current !== null) {
+                            window.clearTimeout(searchDebounceRef.current);
+                            searchDebounceRef.current = null;
+                          }
+
                           void performSearch();
                         }
                       }}
@@ -894,9 +940,22 @@ export default function FoodCheckPage() {
 
                   <button
                     type="button"
-                    onClick={() =>
-                      void performSearch()
-                    }
+                    onClick={() => {
+                      const gtag = (window as typeof window & {
+                        gtag?: (...args: any[]) => void;
+                      }).gtag;
+
+                      if (gtag) {
+                        gtag("event", "food_check_used");
+                      }
+
+                      if (searchDebounceRef.current !== null) {
+                        window.clearTimeout(searchDebounceRef.current);
+                        searchDebounceRef.current = null;
+                      }
+
+                      void performSearch();
+                    }}
                     disabled={searching}
                     className="h-14 shrink-0 rounded-2xl bg-green-600 px-5 font-bold text-white shadow-sm transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-60 sm:px-6"
                   >

@@ -1766,7 +1766,40 @@ export default function ShoppingPage() {
       }
     }
 
+    let analyticsTimer: number | null = null;
+    let analyticsAttempts = 0;
+
+    const sendShoppingListViewed = () => {
+      const gtag = (window as typeof window & {
+        gtag?: (...args: any[]) => void;
+      }).gtag;
+
+      if (gtag) {
+        gtag("event", "shopping_list_viewed");
+        return;
+      }
+
+      analyticsAttempts += 1;
+
+      if (analyticsAttempts < 20) {
+        analyticsTimer = window.setTimeout(
+          sendShoppingListViewed,
+          250
+        );
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      sendShoppingListViewed();
+    }
+
     setLoaded(true);
+
+    return () => {
+      if (analyticsTimer !== null) {
+        window.clearTimeout(analyticsTimer);
+      }
+    };
   }, []);
 
   useEffect(() => {

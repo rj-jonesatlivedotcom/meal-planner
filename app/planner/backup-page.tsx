@@ -1221,7 +1221,18 @@ function WeeklyPlannerPageContent() {
       );
 
     setPendingReplaceAll(!hasEmptySlots);
-    openMyChefIntro();
+
+if (typeof window !== "undefined") {
+  const gtag = (window as typeof window & {
+    gtag?: (...args: any[]) => void;
+  }).gtag;
+
+  if (gtag) {
+    gtag("event", "mychef_used");
+  }
+}
+
+openMyChefIntro();
   }
 
   useEffect(() => {
@@ -2104,6 +2115,33 @@ html[data-theme="dark"] main .planner-remove-button {
           onTouchStart={handlePlannerTouchStart}
           onTouchEnd={handlePlannerTouchEnd}
         >
+
+          {/* MOBILE MYCHEF */}
+          <button
+            type="button"
+            onClick={startPickForMe}
+            disabled={isDiceRolling}
+            aria-label={isDiceRolling ? "MyChef is planning your meals" : "Open MyChef"}
+            className={`planner-pick-for-me-button planner-mychef-button group mb-3 flex h-[72px] min-h-[72px] w-full flex-col items-center justify-center gap-1.5 rounded-2xl border-2 border-orange-500 bg-orange-500 px-3 py-2 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg ${
+              isDiceRolling
+                ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
+                : ""
+            }`}
+          >
+            <span
+              className={`relative z-10 inline-flex leading-none transition-transform ${
+                isDiceRolling
+                  ? "animate-pulse scale-110"
+                  : "group-hover:scale-110"
+              }`}
+              aria-hidden="true"
+            >
+              <MyChefIcon className="h-6 w-6" />
+            </span>
+            <span className="relative z-10">
+              {isDiceRolling ? "MyChef is planning..." : "Let MyChef plan"}
+            </span>
+          </button>
 
           <section className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/80">
 
@@ -2995,37 +3033,27 @@ html[data-theme="dark"] main .planner-remove-button {
 
         </div>
 
+        {/* MOBILE CLEAR WEEK */}
+        <button
+          type="button"
+          onClick={() => setShowClearConfirm(true)}
+          aria-label="Clear Week"
+          style={{
+            backgroundColor: theme === "dark" ? "#202e3a" : "#d1fae5",
+            color: theme === "dark" ? "#f8fafc" : "#12396b",
+            borderColor: theme === "dark" ? "#9a6b24" : "#a7f3d0",
+          }}
+          className="planner-clear-week-button mt-3 flex w-full items-center justify-center gap-3 rounded-3xl border-2 p-4 text-sm font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:hidden"
+        >
+          <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/70 text-xl leading-none" aria-hidden="true">🗑️</span>
+          <span className="whitespace-nowrap">Clear Week</span>
+        </button>
+
         {/* SHOPPING LIST / CLEAR */}
 
         <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-stretch">
 
           <div className="order-1 flex w-full min-w-0 self-stretch items-stretch gap-3 md:order-3 md:w-auto md:flex-1 md:justify-end md:self-stretch">
-
-            <button
-              type="button"
-              onClick={startPickForMe}
-              disabled={isDiceRolling}
-              aria-label={isDiceRolling ? "MyChef is choosing your meals" : "Open MyChef"}
-              className={`planner-pick-for-me-button planner-mychef-button group flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-orange-500 bg-orange-500 px-3 py-4 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg lg:hidden ${
-                isDiceRolling
-                  ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
-                  : ""
-              }`}
-            >
-              <span
-                className={`relative z-10 inline-flex text-xl leading-none transition-transform md:text-2xl ${
-                  isDiceRolling
-                    ? "animate-pulse scale-110"
-                    : "group-hover:scale-110"
-                }`}
-                aria-hidden="true"
-              >
-                <MyChefIcon className="h-7 w-7 md:h-8 md:w-8" />
-              </span>
-              <span className="relative z-10">
-                {isDiceRolling ? "MyChef is cooking..." : "MyChef"}
-              </span>
-            </button>
 
             <button
               type="button"
@@ -3036,7 +3064,7 @@ html[data-theme="dark"] main .planner-remove-button {
                 color: theme === "dark" ? "#f8fafc" : "#12396b",
                 borderColor: theme === "dark" ? "#9a6b24" : "#a7f3d0",
               }}
-              className="planner-clear-week-button flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-2 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base"
+              className="planner-clear-week-button hidden md:flex flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-2 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base"
             >
               <span className="inline-flex text-xl leading-none md:text-2xl" aria-hidden="true">🗑️</span>
               <span className="whitespace-nowrap">Clear Week</span>
@@ -3309,7 +3337,7 @@ html[data-theme="dark"] main .planner-remove-button {
                     <span className="text-lg" aria-hidden="true">✦</span>
                   </div>
                   <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Want MyChef to plan your week?</h2>
-                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">MyChef will choose meals that fit your saved dietary requirements and create a personalised plan for your week.</p>
+                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">MyChef will plan your meals that fit your saved dietary requirements and create a personalised plan for your week.</p>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     <button
@@ -3326,7 +3354,7 @@ html[data-theme="dark"] main .planner-remove-button {
                     >
                       <span className="relative z-10 inline-flex items-center gap-2">
                         <MyChefIcon className="h-5 w-5" />
-                        Yes — let MyChef cook
+                        Yes — let MyChef plan
                       </span>
                     </button>
                   </div>
@@ -3335,7 +3363,7 @@ html[data-theme="dark"] main .planner-remove-button {
                 <>
                   <div className="mt-1 flex items-center justify-center gap-2 text-[#067b3a]">
                     <span className="text-lg" aria-hidden="true">✦</span>
-                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">MyChef is cooking</span>
+                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">MyChef is planning</span>
                     <span className="text-lg" aria-hidden="true">✦</span>
                   </div>
                   <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Choosing meals just for you.</h2>
@@ -3360,7 +3388,7 @@ html[data-theme="dark"] main .planner-remove-button {
             </div>
 
             <h2 className="mt-4 text-xl font-bold text-slate-900">
-              Let MyChef cook up a new week?
+              Let MyChef plan a new week?
             </h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">

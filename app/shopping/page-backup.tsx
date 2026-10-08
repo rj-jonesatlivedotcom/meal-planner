@@ -2380,44 +2380,47 @@ ${checklistHtml}
     string,
     { card: string; header: string; badge: string }
   > = {
+    // Keep every shopping card on the same clean neutral surface. Category
+    // identity is carried by the icon and small item-count badge instead of
+    // giving every card a different coloured body.
     "🥩 Meat & Fish": {
-      card: "border-rose-200 bg-rose-50/60",
+      card: "border-slate-200 bg-white",
       header: "bg-rose-100/80 border-rose-200",
-      badge: "bg-rose-100 text-rose-700",
+      badge: "bg-rose-50 text-rose-700",
     },
     "🥕 Fruit & Vegetables": {
-      card: "border-emerald-200 bg-emerald-50/55",
+      card: "border-slate-200 bg-white",
       header: "bg-emerald-100/80 border-emerald-200",
-      badge: "bg-emerald-100 text-emerald-700",
+      badge: "bg-emerald-50 text-emerald-700",
     },
     "🥫 Cupboard": {
-      card: "border-amber-200 bg-amber-50/60",
+      card: "border-slate-200 bg-white",
       header: "bg-amber-100/80 border-amber-200",
-      badge: "bg-amber-100 text-amber-700",
+      badge: "bg-amber-50 text-amber-700",
     },
     "❄️ Frozen": {
-      card: "border-violet-200 bg-violet-50/60",
+      card: "border-slate-200 bg-white",
       header: "bg-violet-100/80 border-violet-200",
-      badge: "bg-violet-100 text-violet-700",
+      badge: "bg-violet-50 text-violet-700",
     },
     "🍞 Bakery": {
-      card: "border-sky-200 bg-sky-50/60",
+      card: "border-slate-200 bg-white",
       header: "bg-sky-100/80 border-sky-200",
-      badge: "bg-sky-100 text-sky-700",
+      badge: "bg-sky-50 text-sky-700",
     },
     "🧊 Chilled": {
-      card: "border-cyan-200 bg-cyan-50/60",
+      card: "border-slate-200 bg-white",
       header: "bg-cyan-100/80 border-cyan-200",
-      badge: "bg-cyan-100 text-cyan-700",
+      badge: "bg-cyan-50 text-cyan-700",
     },
     "🧂 Herbs & Spices": {
-      card: "border-pink-200 bg-pink-50/60",
+      card: "border-slate-200 bg-white",
       header: "bg-pink-100/80 border-pink-200",
-      badge: "bg-pink-100 text-pink-700",
+      badge: "bg-pink-50 text-pink-700",
     },
     Other: {
-      card: "border-slate-200 bg-slate-50/60",
-      header: "bg-slate-100/80 border-slate-200",
+      card: "border-slate-200 bg-white",
+      header: "bg-slate-50 border-slate-200",
       badge: "bg-slate-100 text-slate-700",
     },
   };
@@ -2435,17 +2438,42 @@ ${checklistHtml}
     }))
     .filter((group) => group.items.length > 0);
 
-  // On desktop the category cards use three independent columns so a short
-  // category does not leave a large empty area before the next card.
-  const leftCategoryGroups = groupedShoppingList.filter(
-    (_, index) => index % 3 === 0
-  );
-  const middleCategoryGroups = groupedShoppingList.filter(
-    (_, index) => index % 3 === 1
-  );
-  const rightCategoryGroups = groupedShoppingList.filter(
-    (_, index) => index % 3 === 2
-  );
+  /*
+   * Desktop masonry-style packing.
+   *
+   * The old index % 3 distribution put the 1st/4th/7th categories in the
+   * left column, 2nd/5th/8th in the middle and so on. That created large
+   * holes whenever a short category (such as Bakery) sat above a tall one.
+   *
+   * Instead, estimate each card's height from its item count and place the
+   * next category into the currently shortest column. The actual cards keep
+   * their natural height, while the estimated packing keeps the three
+   * columns visually balanced as the shopping list changes.
+   */
+  const desktopColumns: Array<typeof groupedShoppingList> = [[], [], []];
+  const desktopColumnHeights = [0, 0, 0];
+
+  [...groupedShoppingList]
+    .sort((a, b) => {
+      const heightA = 58 + a.items.length * 42;
+      const heightB = 58 + b.items.length * 42;
+      return heightB - heightA;
+    })
+    .forEach((group) => {
+      let shortestColumn = 0;
+      for (let i = 1; i < desktopColumnHeights.length; i += 1) {
+        if (desktopColumnHeights[i] < desktopColumnHeights[shortestColumn]) {
+          shortestColumn = i;
+        }
+      }
+
+      desktopColumns[shortestColumn].push(group);
+      desktopColumnHeights[shortestColumn] +=
+        58 + group.items.length * 42 + 20;
+    });
+
+  const [leftCategoryGroups, middleCategoryGroups, rightCategoryGroups] =
+    desktopColumns;
 
   function CategoryIcon({ category }: { category: string }) {
     const iconClass = "h-6 w-6 shrink-0";
@@ -2631,7 +2659,7 @@ ${checklistHtml}
           </span>
         </div>
 
-        <ul className="divide-y divide-white/80 px-4 py-1">
+        <ul className="divide-y divide-slate-100 px-4 py-1">
           {group.items.map((item, itemIndex) => {
             const checked = checkedItems.includes(item.item);
 
@@ -2677,8 +2705,21 @@ ${checklistHtml}
   return (
     <>
       <style>{`
+        /* Shopping List: keep category cards visually uniform in light mode.
+           Category colours are intentionally limited to the icons and small
+           count badges so the page reads as one cohesive shopping list. */
+        .shopping-list-category-card {
+          background: #ffffff !important;
+          background-image: none !important;
+          border-color: #dbe4ea !important;
+        }
+
+        .shopping-list-category-card > ul {
+          background: #ffffff !important;
+        }
+
         /* Shopping List: make every category card body a genuine dark-mode
-           surface. The pastel category headers remain unchanged. */
+           surface. */
         html[data-theme="dark"] .shopping-list-category-card {
           background: #202e3a !important;
           background-image: none !important;
@@ -2689,6 +2730,13 @@ ${checklistHtml}
           background: #202e3a !important;
           background-image: none !important;
           border-color: #405363 !important;
+        }
+
+        /* Dark mode: keep every item-count pill clearly readable. */
+        html[data-theme="dark"] .shopping-list-category-badge {
+          background: #edf2f7 !important;
+          color: #12396b !important;
+          border-color: transparent !important;
         }
 
         html[data-theme="dark"] .shopping-list-category-card .shopping-list-item {

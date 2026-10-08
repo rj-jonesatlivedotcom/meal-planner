@@ -1001,6 +1001,18 @@ function WeeklyPlannerPageContent() {
       };
     });
 
+    if (typeof window !== "undefined") {
+      const gtag = (window as typeof window & {
+        gtag?: (...args: any[]) => void;
+      }).gtag;
+
+      if (gtag) {
+        gtag("event", "meal_added", {
+          meal_type: picker.meal,
+        });
+      }
+    }
+
     setPicker(null);
   }
 

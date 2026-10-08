@@ -428,6 +428,9 @@ export default function RecipeCard({
       )
     );
 
+    // Tell the Planner to preserve this recipe-card change during account hydration.
+    localStorage.setItem("planner-recipe-add-pending", "true");
+
     /*
      * Clear temporary slot.
      */
@@ -575,6 +578,9 @@ export default function RecipeCard({
         planner
       )
     );
+
+    // Tell the Planner to preserve this recipe-card change during account hydration.
+    localStorage.setItem("planner-recipe-add-pending", "true");
 
     /*
      * Refresh displayed locations.
@@ -865,21 +871,21 @@ export default function RecipeCard({
           >
             <div className="rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-2">
               <div className="text-[11px] font-medium text-slate-500">Cooking time</div>
-              <div className="mt-0.5 text-sm font-bold text-slate-900">
+              <div className="nutrition-badge-value mt-0.5 text-sm font-bold text-slate-900">
                 ⏱️ {recipe.cookingTime.replace(/\bminutes\b/gi, "mins")}
               </div>
             </div>
 
             <div className="rounded-xl border border-green-200 bg-green-50 px-2.5 py-2">
               <div className="text-[11px] font-medium text-green-700">Salt</div>
-              <div className="mt-0.5 text-sm font-bold text-slate-900">
+              <div className="nutrition-badge-value mt-0.5 text-sm font-bold text-slate-900">
                 {formatSalt(recipe.nutrition?.salt, recipe.nutrition?.sodium)}
               </div>
             </div>
 
             <div className={`rounded-xl border px-2.5 py-2 ${getTrafficClasses(recipe.potassium)}`}>
               <div className="text-[11px] font-medium">Potassium</div>
-              <div className="mt-0.5 flex items-center gap-1.5 text-sm font-bold text-slate-900">
+              <div className="nutrition-badge-value mt-0.5 flex items-center gap-1.5 text-sm font-bold text-slate-900">
                 <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${getTrafficDot(recipe.potassium)}`} aria-hidden="true" />
                 {recipe.nutrition?.potassium ?? recipe.potassium ?? "—"}
               </div>
@@ -887,7 +893,7 @@ export default function RecipeCard({
 
             <div className={`rounded-xl border px-2.5 py-2 ${getTrafficClasses(recipe.phosphate)}`}>
               <div className="text-[11px] font-medium">Phosphate</div>
-              <div className="mt-0.5 flex items-center gap-1.5 text-sm font-bold text-slate-900">
+              <div className="nutrition-badge-value mt-0.5 flex items-center gap-1.5 text-sm font-bold text-slate-900">
                 <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${getTrafficDot(recipe.phosphate)}`} aria-hidden="true" />
                 {recipe.nutrition?.phosphate ?? recipe.phosphate ?? "—"}
               </div>

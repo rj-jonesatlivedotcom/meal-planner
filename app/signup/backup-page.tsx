@@ -48,19 +48,6 @@ export default function SignupPage() {
       return;
     }
 
-    // Track a successful account creation in Google Analytics.
-    if (typeof window !== "undefined") {
-      const gtag = (window as typeof window & {
-        gtag?: (...args: any[]) => void;
-      }).gtag;
-
-      if (gtag) {
-        gtag("event", "account_signup", {
-          method: "email",
-        });
-      }
-    }
-
     // Supabase can return a successful signUp response for an existing
     // confirmed email while returning a user with no identities.
     if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {

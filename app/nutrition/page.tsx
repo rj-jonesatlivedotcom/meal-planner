@@ -420,6 +420,13 @@ export default function NutritionPage() {
     useState<Day>("Monday");
   const [authChecked, setAuthChecked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showPdfOptions, setShowPdfOptions] = useState(false);
+  const [pdfSections, setPdfSections] = useState({
+    weeklySummary: true,
+    dailyBreakdown: true,
+    fluid: false,
+    about: true,
+  });
 
 
   const touchStartX = useRef<number | null>(null);
@@ -826,6 +833,98 @@ export default function NutritionPage() {
         </div>
       )}
 
+      {showPdfOptions && (
+        <div className="nutrition-print-hidden fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="pdf-options-title"
+            className="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl"
+          >
+            <div className="flex items-start gap-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-50 text-xl">
+                🖨️
+              </div>
+              <div>
+                <h2 id="pdf-options-title" className="text-xl font-extrabold text-slate-900">
+                  Choose your PDF report
+                </h2>
+                <p className="mt-1 text-sm leading-5 text-slate-600">
+                  Select the sections you want to include.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 space-y-3">
+              {[
+                {
+                  key: "weeklySummary" as const,
+                  title: "Weekly nutritional summary",
+                  description: "Weekly totals and daily averages for your nutrients.",
+                },
+                {
+                  key: "dailyBreakdown" as const,
+                  title: "Daily nutrition breakdown",
+                  description: "Breakfast, lunch and dinner nutrition for each day.",
+                },
+                {
+                  key: "fluid" as const,
+                  title: "Fluid intake",
+                  description: "Recorded drinks plus estimated fluid from planned meals.",
+                },
+                {
+                  key: "about" as const,
+                  title: "About these figures",
+                  description: "How the figures and traffic lights are calculated.",
+                },
+              ].map((section) => (
+                <label
+                  key={section.key}
+                  className="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-orange-300 hover:bg-orange-50/40"
+                >
+                  <input
+                    type="checkbox"
+                    checked={pdfSections[section.key]}
+                    onChange={(event) =>
+                      setPdfSections((current) => ({
+                        ...current,
+                        [section.key]: event.target.checked,
+                      }))
+                    }
+                    className="mt-1 h-5 w-5 shrink-0 accent-orange-500"
+                  />
+                  <span>
+                    <span className="block font-bold text-slate-900">{section.title}</span>
+                    <span className="mt-1 block text-sm leading-5 text-slate-500">{section.description}</span>
+                  </span>
+                </label>
+              ))}
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setShowPdfOptions(false)}
+                className="rounded-2xl bg-slate-100 px-4 py-3 font-bold text-slate-700 transition hover:bg-slate-200"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={!Object.values(pdfSections).some(Boolean)}
+                onClick={() => {
+                  setShowPdfOptions(false);
+                  window.setTimeout(() => window.print(), 50);
+                }}
+                className="rounded-2xl bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Create PDF
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
+
       <style jsx global>{`
         @media print {
           body {
@@ -849,9 +948,18 @@ export default function NutritionPage() {
             display: none !important;
           }
 
-          .nutrition-print-page > .nutrition-print-summary,
-          .nutrition-print-page > .nutrition-print-fluid {
+          .nutrition-print-page.pdf-show-weekly-summary > .nutrition-print-summary,
+          .nutrition-print-page.pdf-show-daily-breakdown > .nutrition-print-grid,
+          .nutrition-print-page.pdf-show-fluid > .nutrition-print-fluid,
+          .nutrition-print-page.pdf-show-about .nutrition-print-about {
             display: block !important;
+          }
+
+          .nutrition-print-page:not(.pdf-show-weekly-summary) .nutrition-print-summary,
+          .nutrition-print-page:not(.pdf-show-daily-breakdown) .nutrition-print-grid,
+          .nutrition-print-page:not(.pdf-show-fluid) .nutrition-print-fluid,
+          .nutrition-print-page:not(.pdf-show-about) .nutrition-print-about {
+            display: none !important;
           }
 
           .nutrition-print-card {
@@ -860,7 +968,48 @@ export default function NutritionPage() {
           }
 
           @page {
-            margin: 12mm;
+            size: A4 landscape;
+            margin: 10mm;
+          }
+
+          /* The weekly grid contains 7 days plus a daily-average column.
+             Let the table use the full landscape page instead of allowing
+             the individual day cells to force the report off the page. */
+          .nutrition-print-grid {
+            width: 100% !important;
+            max-width: none !important;
+            overflow: visible !important;
+          }
+
+          .nutrition-print-grid > div {
+            width: 100% !important;
+            overflow: visible !important;
+          }
+
+          .nutrition-print-grid table {
+            width: 100% !important;
+            max-width: none !important;
+            min-width: 0 !important;
+            table-layout: fixed !important;
+          }
+
+          .nutrition-print-grid th:first-child,
+          .nutrition-print-grid td:first-child {
+            width: 85px !important;
+          }
+
+          .nutrition-print-grid th,
+          .nutrition-print-grid td {
+            padding: 4px !important;
+          }
+
+          .nutrition-print-grid .nutrition-weekly-average {
+            width: 90px !important;
+          }
+
+          .nutrition-print-grid td > div {
+            min-width: 0 !important;
+            font-size: 9px !important;
           }
 
           .nutrition-print-summary {
@@ -889,10 +1038,32 @@ export default function NutritionPage() {
             page-break-inside: avoid !important;
           }
         }
+        .nutrition-pdf-shimmer {
+          animation: nutrition-pdf-shimmer 2.4s ease-in-out infinite;
+        }
+
+        @keyframes nutrition-pdf-shimmer {
+          0%, 55% {
+            transform: translateX(-180%) skewX(-20deg);
+          }
+          75%, 100% {
+            transform: translateX(520%) skewX(-20deg);
+          }
+        }
       `}</style>
 
       <main className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-50 px-4 py-5 md:px-6 md:py-6">
-        <div className="nutrition-print-page mx-auto max-w-7xl md:max-w-[1400px]">
+        <div
+          className={`nutrition-print-page mx-auto max-w-7xl md:max-w-[1400px] ${
+            pdfSections.weeklySummary ? "pdf-show-weekly-summary" : ""
+          } ${
+            pdfSections.dailyBreakdown ? "pdf-show-daily-breakdown" : ""
+          } ${
+            pdfSections.fluid ? "pdf-show-fluid" : ""
+          } ${
+            pdfSections.about ? "pdf-show-about" : ""
+          }`}
+        >
           <div className="nutrition-print-hidden mb-4 md:hidden">
             <div
               className="grid grid-cols-7 gap-1.5"
@@ -1211,7 +1382,7 @@ export default function NutritionPage() {
           </section>
 
           {/* DESKTOP WEEKLY GRID */}
-          <section className="nutrition-print-card mb-7 hidden overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5 md:block">
+          <section className="nutrition-print-grid nutrition-print-card mb-7 hidden overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5 md:block">
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
@@ -1658,15 +1829,6 @@ export default function NutritionPage() {
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Fluid recorded</span>
-                                <strong className="text-slate-900">{Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day</strong>
-                              </div>
-                              <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Fluid allowance</span>
-                                <strong className="text-slate-900">{fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`}</strong>
-                              </div>
-
-                              <div className="flex items-center justify-between gap-2">
                                 <span className="text-slate-500">Potassium</span>
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
@@ -1997,15 +2159,19 @@ export default function NutritionPage() {
                 </table>
               </div>
 
-              <aside className="h-full rounded-2xl bg-green-50 p-4">
+              <aside className="nutrition-print-about h-full rounded-2xl bg-green-50 p-4">
                 {!showLoginOverlay && (
                 <div className="nutrition-print-hidden mb-4">
                   <button
                     type="button"
-                    onClick={() => window.print()}
-                    className="w-full rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-orange-600"
+                    onClick={() => setShowPdfOptions(true)}
+                    className="nutrition-pdf-button relative w-full overflow-hidden rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-orange-600"
                   >
-                    🖨️ Print / Save as PDF
+                    <span className="relative z-10">🖨️ Print / Save as PDF</span>
+                    <span
+                      aria-hidden="true"
+                      className="nutrition-pdf-shimmer pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/45 to-transparent"
+                    />
                   </button>
                 </div>
                 )}

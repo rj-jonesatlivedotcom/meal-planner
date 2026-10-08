@@ -145,6 +145,22 @@ export default function RecipeCard({
 }: RecipeCardProps) {
   const router = useRouter();
 
+  function trackRecipeViewed() {
+    if (typeof window === "undefined") return;
+
+    const gtag = (window as typeof window & {
+      gtag?: (...args: any[]) => void;
+    }).gtag;
+
+    if (gtag) {
+      gtag("event", "recipe_viewed", {
+        recipe_id: recipe.id,
+        recipe_name: recipe.name,
+        meal_type: getMealTypeLabel(recipe.code),
+      });
+    }
+  }
+
   const [showPlanner, setShowPlanner] =
     useState(false);
 
@@ -743,6 +759,7 @@ export default function RecipeCard({
 
       <Link
         href={`/recipes/${recipe.id}`}
+        onClick={trackRecipeViewed}
         className="
           block
           w-full
@@ -811,6 +828,7 @@ export default function RecipeCard({
         {/* Recipe content */}
         <Link
           href={`/recipes/${recipe.id}`}
+          onClick={trackRecipeViewed}
           className="block"
         >
 

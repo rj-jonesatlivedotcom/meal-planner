@@ -788,17 +788,17 @@ export default function NutritionPage() {
               </div>
             </div>
 
-            <div className="absolute inset-0 flex items-center justify-center bg-white/20 p-4">
-              <div className="w-full max-w-md rounded-3xl bg-white/95 p-7 text-center shadow-2xl ring-1 ring-slate-200">
+            <div className="renal-login-modal-backdrop absolute inset-0 flex items-center justify-center bg-white/20 p-4">
+              <div className="renal-login-modal-card w-full max-w-md rounded-3xl bg-white/95 p-7 text-center shadow-2xl ring-1 ring-slate-200">
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-2xl">
                   🔒
                 </div>
 
-                <h1 className="mt-4 text-2xl font-extrabold text-slate-900">
+                <h1 className="renal-login-modal-title mt-4 text-2xl font-extrabold text-slate-900">
                   Log in to view your Nutrition Report
                 </h1>
 
-                <p className="mt-3 text-sm leading-6 text-slate-600">
+                <p className="renal-login-modal-description mt-3 text-sm leading-6 text-slate-600">
                   Your personalised weekly nutrition report is available when you are logged into your RenalPlan account. Sign in to view your report and create a printable or PDF copy to share with your nutritionist or renal consultant.
                 </p>
 
@@ -817,7 +817,7 @@ export default function NutritionPage() {
                   </a>
                 </div>
 
-                <p className="mt-4 text-xs text-slate-500">
+                <p className="renal-login-modal-footnote mt-4 text-xs text-slate-500">
                   Your personalised report is saved to your account.
                 </p>
               </div>
@@ -2072,6 +2072,37 @@ export default function NutritionPage() {
           </p>
         </div>
       </main>
+      <style jsx global>{`
+        /* Dark mode: the restricted-login popup should be a dark RenalPlan
+           panel with light, high-contrast writing. Light mode is unchanged. */
+        html[data-theme="dark"] .renal-login-modal-backdrop {
+          background: rgba(5, 15, 25, 0.42) !important;
+        }
+
+        html[data-theme="dark"] .renal-login-modal-card {
+          background: #172635 !important;
+          border-color: #33475a !important;
+          color: #f8fafc !important;
+        }
+
+        html[data-theme="dark"] .renal-login-modal-title {
+          color: #f8fafc !important;
+        }
+
+        html[data-theme="dark"] .renal-login-modal-description {
+          color: #cbd5e1 !important;
+        }
+
+        html[data-theme="dark"] .renal-login-modal-footnote {
+          color: #94a3b8 !important;
+        }
+
+        html[data-theme="dark"] .renal-login-modal-title,
+        html[data-theme="dark"] .renal-login-modal-description,
+        html[data-theme="dark"] .renal-login-modal-footnote {
+          opacity: 1 !important;
+        }
+      `}</style>
     </>
   );
 }

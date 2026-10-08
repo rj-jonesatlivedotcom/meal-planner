@@ -29,19 +29,6 @@ export default function LoginPage() {
       return;
     }
 
-    // Track a successful login in Google Analytics.
-    if (typeof window !== "undefined") {
-      const gtag = (window as typeof window & {
-        gtag?: (...args: any[]) => void;
-      }).gtag;
-
-      if (gtag) {
-        gtag("event", "login", {
-          method: "email",
-        });
-      }
-    }
-
     router.push("/");
     router.refresh();
   }

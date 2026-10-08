@@ -156,6 +156,19 @@ export default function RequirementsPage() {
 
     setRequirements(nextRequirements);
 
+    // Track a dietary-requirement change in Google Analytics.
+    if (typeof window !== "undefined") {
+      const gtag = (window as typeof window & {
+        gtag?: (...args: any[]) => void;
+      }).gtag;
+
+      if (gtag) {
+        gtag("event", "diet_updated", {
+          changed_requirement: key,
+        });
+      }
+    }
+
     if (isLoggedIn) {
       void saveRequirements(nextRequirements);
       return;

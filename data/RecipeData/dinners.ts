@@ -3,7 +3,7 @@ import type { Recipe } from "./types";
 export const dinners: Recipe[] = [
 {
     id: "lemon-herb-chicken-rice",
-    code: "D001",
+    code: "D001", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍋",
     image: "/images/recipes/D001.png",
@@ -77,7 +77,7 @@ export const dinners: Recipe[] = [
   },
 {
     id: "turkey-rosemary-rice",
-    code: "D002",
+    code: "D002", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🌿",
     image: "/images/recipes/D002.png",
@@ -146,7 +146,7 @@ export const dinners: Recipe[] = [
   },
 {
     id: "pork-herb-rice",
-    code: "D003",
+    code: "D003", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🥕",
     image: "/images/recipes/D003.png",
@@ -215,7 +215,7 @@ export const dinners: Recipe[] = [
   },
 {
     id: "lemon-cod-rice",
-    code: "D004",
+    code: "D004", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🐟",
     image: "/images/recipes/D004.png",
@@ -290,7 +290,7 @@ export const dinners: Recipe[] = [
   },
 {
     id: "lemon-salmon-rice",
-    code: "D005",
+    code: "D005", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍋",
     image: "/images/recipes/D005.png",
@@ -360,7 +360,7 @@ export const dinners: Recipe[] = [
   },
 {
     id: "beef-paprika-rice",
-    code: "D006",
+    code: "D006", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🥩",
     image: "/images/recipes/D006.png",
@@ -429,7 +429,7 @@ export const dinners: Recipe[] = [
   },
 {
     id: "egg-cheddar-pasta-cabbage",
-    code: "D007",
+    code: "D007", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍝",
     image: "/images/recipes/D007.png",
@@ -499,7 +499,7 @@ export const dinners: Recipe[] = [
   },
 {
     id: "chicken-paprika-rice-peppers",
-    code: "D008",
+    code: "D008", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🌶️",
     image: "/images/recipes/D008.png",
@@ -569,7 +569,7 @@ export const dinners: Recipe[] = [
   },
 {
     id: "creamy-pork-pasta-cabbage",
-    code: "D009",
+    code: "D009", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍝",
     image: "/images/recipes/D009.png",
@@ -639,7 +639,7 @@ export const dinners: Recipe[] = [
   },
 {
     id: "egg-cauliflower-rice",
-    code: "D010",
+    code: "D010", mealFamily: "rice-bowl",
     category: "Dinner",
     emoji: "🥚",
     image: "/images/recipes/D010.png",
@@ -709,7 +709,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "d011-creamy-chicken-mushroom-rice",
-    code: "D011",
+    code: "D011", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍄",
     image: "/images/recipes/D011.png",
@@ -751,7 +751,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "turkey-sweetcorn-pasta",
-    code: "D012",
+    code: "D012", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍝",
     image: "/images/recipes/D012.png",
@@ -804,7 +804,7 @@ export const dinners: Recipe[] = [
 
   {
     id: "lemon-cod-pasta-peppers",
-    code: "D013",
+    code: "D013", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🐟",
     image: "/images/recipes/D013.png",
@@ -856,7 +856,7 @@ export const dinners: Recipe[] = [
 
   {
     id: "chicken-sweetcorn-rice-bowl",
-    code: "D014",
+    code: "D014", mealFamily: "rice-bowl",
     category: "Dinner",
     emoji: "🍚",
     image: "/images/recipes/D014.png",
@@ -908,7 +908,7 @@ export const dinners: Recipe[] = [
 
   {
     id: "turkey-rice-roasted-peppers",
-    code: "D015",
+    code: "D015", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍗",
     image: "/images/recipes/D015.png",
@@ -961,7 +961,7 @@ export const dinners: Recipe[] = [
 
   {
     id: "pork-apple-rice-bowl",
-    code: "D016",
+    code: "D016", mealFamily: "rice-bowl",
     category: "Dinner",
     emoji: "🍎",
     image: "/images/recipes/D016.png",
@@ -1014,7 +1014,7 @@ export const dinners: Recipe[] = [
 
   {
     id: "creamy-chicken-cabbage-pasta",
-    code: "D017",
+    code: "D017", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍝",
     image: "/images/recipes/D017.png",
@@ -1066,7 +1066,7 @@ export const dinners: Recipe[] = [
 
   {
     id: "cod-sweetcorn-rice",
-    code: "D018",
+    code: "D018", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🐟",
     image: "/images/recipes/D018.png",
@@ -1118,7 +1118,7 @@ export const dinners: Recipe[] = [
 
   {
     id: "egg-vegetable-pasta",
-    code: "D019",
+    code: "D019", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🥚",
     image: "/images/recipes/D019.png",
@@ -1171,7 +1171,7 @@ export const dinners: Recipe[] = [
 
   {
     id: "chicken-apple-couscous-style-rice",
-    code: "D020",
+    code: "D020", mealFamily: "couscous-bowl",
     category: "Dinner",
     emoji: "🍗",
     image: "/images/recipes/D020.png",
@@ -1222,7 +1222,7 @@ export const dinners: Recipe[] = [
     servings: 1,
   },
   {
-    id: "chicken-herb-sweetcorn-rice", code: "D021", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.png",
+    id: "chicken-herb-sweetcorn-rice", code: "D021", mealFamily: "rice-dish", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.png",
     name: "Chicken, Herb & Sweetcorn Rice", description: "Tender chicken with fluffy basmati rice, sweetcorn and herbs.", cookingTime: "30 minutes", calories: "612 kcal", protein: "32.5 g", equipment: "Large saucepan, frying pan, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1233,7 +1233,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "beef-pepper-pasta", code: "D022", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
+    id: "beef-pepper-pasta", code: "D022", mealFamily: "hot-pasta", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
     name: "Beef & Pepper Pasta", description: "Lean beef mince with pasta, peppers and onion in a light herb sauce.", cookingTime: "25 minutes", calories: "648 kcal", protein: "34.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "120 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1244,7 +1244,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "herb-cod-potatoes-cabbage", code: "D023", category: "Dinner", emoji: "🐟", image: "/images/recipes/D023.png",
+    id: "herb-cod-potatoes-cabbage", code: "D023", mealFamily: "potato-dish", category: "Dinner", emoji: "🐟", image: "/images/recipes/D023.png",
     name: "Herb Cod with Potatoes & Cabbage", description: "Baked cod served with boiled potatoes and tender cabbage with lemon and herbs.", cookingTime: "35 minutes", calories: "578 kcal", protein: "31.5 g", equipment: "Baking tray, saucepan, steamer or second saucepan, knife, chopping board, Oven",
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1255,7 +1255,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "creamy-cheese-egg-pasta", code: "D024", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
+    id: "creamy-cheese-egg-pasta", code: "D024", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
     name: "Creamy Cheese & Egg Pasta", description: "Pasta coated in a creamy egg and Cheddar sauce with onion and herbs.", cookingTime: "20 minutes", calories: "625 kcal", protein: "29.0 g", equipment: "Large saucepan, frying pan, mixing bowl, colander, wooden spoon",
     ingredients: [
       { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" }, { item: "Egg", shoppingItem: "Egg", quantity: "1" }, { item: "Cheddar cheese", shoppingItem: "Cheddar cheese", quantity: "25 g" }, { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "100 ml" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1266,7 +1266,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "pork-apple-cabbage", code: "D025", category: "Dinner", emoji: "🍖", image: "/images/recipes/D025.png",
+    id: "pork-apple-cabbage", code: "D025", mealFamily: "meat-and-vegetable-dish", category: "Dinner", emoji: "🍖", image: "/images/recipes/D025.png",
     name: "Pork, Apple & Cabbage", description: "Grilled pork with warm apple and tender cabbage, finished with herbs.", cookingTime: "30 minutes", calories: "590 kcal", protein: "35.0 g", equipment: "Grill pan, saucepan, frying pan, knife, chopping board",
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "140 g" }, { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (100 g)" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1277,7 +1277,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "creamy-chicken-pepper-pasta", code: "D026", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
+    id: "creamy-chicken-pepper-pasta", code: "D026", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
     name: "Creamy Chicken & Pepper Pasta", description: "Chicken and peppers folded through pasta with a light creamy sauce.", cookingTime: "25 minutes", calories: "635 kcal", protein: "34.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Single cream", shoppingItem: "Single cream", quantity: "50 ml" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1288,7 +1288,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "cod-sweetcorn-herb-pasta", code: "D027", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
+    id: "cod-sweetcorn-herb-pasta", code: "D027", mealFamily: "hot-pasta", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
     name: "Cod, Sweetcorn & Herb Pasta", description: "Flaked cod with pasta and sweetcorn in a fresh lemon and herb dressing.", cookingTime: "25 minutes", calories: "610 kcal", protein: "33.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife",
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1299,7 +1299,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "egg-cabbage-sweetcorn-rice", code: "D028", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
+    id: "egg-cabbage-sweetcorn-rice", code: "D028", mealFamily: "rice-dish", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
     name: "Egg, Cabbage & Sweetcorn Rice", description: "Fluffy rice stir-fried with egg, cabbage, sweetcorn and onion.", cookingTime: "25 minutes", calories: "575 kcal", protein: "20.0 g", equipment: "Saucepan, large frying pan, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Eggs", shoppingItem: "Eggs", quantity: "2" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1310,7 +1310,7 @@ export const dinners: Recipe[] = [
     servings: 1
   },
   {
-    id: "pork-pepper-pasta", code: "D029", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
+    id: "pork-pepper-pasta", code: "D029", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
     name: "Pork & Pepper Pasta", description: "Tender pork with pasta, green pepper and onion in a light herb dressing.", cookingTime: "25 minutes", calories: "645 kcal", protein: "36.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1322,7 +1322,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "d030-pork-apple-cabbage-skillet",
-    code: "D030",
+    code: "D030", mealFamily: "skillet",
     category: "Dinner",
     emoji: "🍎",
     image: "/images/recipes/D030.png",
@@ -1363,7 +1363,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "lemon-chicken-herb-pasta",
-    code: "D031",
+    code: "D031", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍗",
     image: "/images/recipes/D031.png",
@@ -1405,7 +1405,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "cod-pepper-lemon-rice",
-    code: "D032",
+    code: "D032", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🐟",
     image: "/images/recipes/D032.png",
@@ -1448,7 +1448,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "beef-cabbage-rice",
-    code: "D033",
+    code: "D033", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🥩",
     image: "/images/recipes/D033.png",
@@ -1489,7 +1489,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "cheesy-egg-vegetable-rice",
-    code: "D034",
+    code: "D034", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍳",
     image: "/images/recipes/D034.png",
@@ -1531,7 +1531,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "chicken-cabbage-herb-rice",
-    code: "D035",
+    code: "D035", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍗",
     image: "/images/recipes/D035.png",
@@ -1572,7 +1572,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "cod-cabbage-pasta",
-    code: "D036",
+    code: "D036", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🐟",
     image: "/images/recipes/D036.png",
@@ -1614,7 +1614,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "pepper-beef-rice",
-    code: "D037",
+    code: "D037", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🥩",
     image: "/images/recipes/D037.png",
@@ -1655,7 +1655,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "pork-apple-herb-pasta",
-    code: "D038",
+    code: "D038", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍖",
     image: "/images/recipes/D038.png",
@@ -1696,7 +1696,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "egg-cauliflower-herb-pasta",
-    code: "D039",
+    code: "D039", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍳",
     image: "/images/recipes/D039.png",
@@ -1738,7 +1738,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "d040-cod-sweetcorn-potato-bake",
-    code: "D040",
+    code: "D040", mealFamily: "potato-bake",
     category: "Dinner",
     emoji: "🐟",
     image: "/images/recipes/D040.png",
@@ -1781,7 +1781,7 @@ export const dinners: Recipe[] = [
     servings: 1,
   },
 
-  { id: "chicken-leek-couscous-lemon", code: "D041", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.png", name: "Chicken & Leek Couscous with Lemon", description: "Tender chicken with fluffy couscous, softened leek and carrot, finished with fresh lemon and parsley.", cookingTime: "30 minutes", calories: "371 kcal", protein: "15.8 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "chicken-leek-couscous-lemon", code: "D041", mealFamily: "couscous-dish", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.png", name: "Chicken & Leek Couscous with Lemon", description: "Tender chicken with fluffy couscous, softened leek and carrot, finished with fresh lemon and parsley.", cookingTime: "30 minutes", calories: "371 kcal", protein: "15.8 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" },
       { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
@@ -1791,7 +1791,7 @@ export const dinners: Recipe[] = [
       { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
     ], method: ["00:00 — Prepare the couscous using unsalted water according to the packet instructions.", "05:00 — Slice the chicken and cook in half the olive oil until completely cooked through.", "12:00 — Boil the leek and carrot in unsalted water until tender, then drain well.", "18:00 — Fluff the couscous and stir through the vegetables.", "22:00 — Top with the sliced chicken and finish with the remaining olive oil, lemon juice and parsley.", "30:00 — Serve immediately."], nutrition: { calories: "371 kcal", protein: "15.8 g", carbohydrates: "29.6 g", fat: "21.9 g", fibre: "2.2 g", sodium: "47 mg", salt: "0.12 g", potassium: "371 mg", phosphate: "172 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "turkey-meatballs-herb-rice", code: "D042", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Herb-seasoned turkey meatballs served with basmati rice, tender cabbage and onion.", cookingTime: "30 minutes", calories: "505 kcal", protein: "20.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "turkey-meatballs-herb-rice", code: "D042", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Herb-seasoned turkey meatballs served with basmati rice, tender cabbage and onion.", cookingTime: "30 minutes", calories: "505 kcal", protein: "20.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Turkey, meat, average, raw", shoppingItem: "Turkey mince (lean)", quantity: "60 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "70 g" },
       { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (50 g)" },
@@ -1800,7 +1800,7 @@ export const dinners: Recipe[] = [
       { item: "Rosemary, dried", shoppingItem: "Dried rosemary", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Mix the turkey mince with rosemary and form into small meatballs.", "08:00 — Heat the olive oil in a frying pan and cook the meatballs, turning regularly, until browned and completely cooked through.", "18:00 — Boil the cabbage and onion in unsalted water until tender, then drain well.", "25:00 — Check the rice is tender and drain if required.", "30:00 — Serve the meatballs with the rice and vegetables."], nutrition: { calories: "505 kcal", protein: "20.0 g", carbohydrates: "61.7 g", fat: "21.4 g", fibre: "2.4 g", sodium: "45 mg", salt: "0.11 g", potassium: "366 mg", phosphate: "216 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "cod-herby-noodles-cucumber", code: "D043", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Baked cod with plain noodles, tender cabbage and cucumber, finished with lemon, parsley and olive oil.", cookingTime: "30 minutes", calories: "377 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
+  { id: "cod-herby-noodles-cucumber", code: "D043", mealFamily: "noodles", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Baked cod with plain noodles, tender cabbage and cucumber, finished with lemon, parsley and olive oil.", cookingTime: "30 minutes", calories: "377 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "50 g" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
       { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "¼ cucumber (30 g)" },
@@ -1810,7 +1810,7 @@ export const dinners: Recipe[] = [
       { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
     ], method: ["00:00 — Heat the oven to 200°C and bake the cod until opaque and cooked through.", "05:00 — Cook the noodles in unsalted water according to the packet instructions, then drain thoroughly.", "12:00 — Boil the cabbage in unsalted water until tender, then drain well.", "18:00 — Prepare the cucumber and combine it with the noodles and cabbage.", "22:00 — Add the olive oil, lemon juice and parsley and toss gently.", "25:00 — Flake the cod over the noodles and serve."], nutrition: { calories: "377 kcal", protein: "15.7 g", carbohydrates: "33.9 g", fat: "20.8 g", fibre: "3.0 g", sodium: "56 mg", salt: "0.14 g", potassium: "330 mg", phosphate: "140 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "pork-apple-leek-rice", code: "D044", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Lean pork medallions with basmati rice, softened leek and warm apple finished with thyme.", cookingTime: "30 minutes", calories: "421 kcal", protein: "14.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "pork-apple-leek-rice", code: "D044", mealFamily: "meat-and-vegetable-dish", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Lean pork medallions with basmati rice, softened leek and warm apple finished with thyme.", cookingTime: "30 minutes", calories: "421 kcal", protein: "14.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "50 g" },
       { item: "Leeks, raw", shoppingItem: "Leek", quantity: "½ leek (15 g)" },
@@ -1819,7 +1819,7 @@ export const dinners: Recipe[] = [
       { item: "Thyme, dried, ground", shoppingItem: "Dried thyme", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Slice the pork into medallions and heat the olive oil in a frying pan.", "08:00 — Cook the pork until completely cooked through, turning regularly.", "18:00 — Add the sliced leek and cook until softened.", "22:00 — Add the diced apple and cook gently until just softened.", "30:00 — Serve the pork with the rice and apple and leek mixture."], nutrition: { calories: "421 kcal", protein: "14.4 g", carbohydrates: "46.1 g", fat: "21.2 g", fibre: "1.4 g", sodium: "17 mg", salt: "0.04 g", potassium: "267 mg", phosphate: "144 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "chicken-carrot-noodle-stir-fry", code: "D045", category: "Dinner", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "385 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "chicken-carrot-noodle-stir-fry", code: "D045", mealFamily: "noodle-stir-fry", category: "Dinner", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "385 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
       { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (30 g)" },
@@ -1828,7 +1828,7 @@ export const dinners: Recipe[] = [
       { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the noodles in unsalted water according to the packet instructions, then drain thoroughly.", "05:00 — Cook the chicken in the olive oil until completely cooked through.", "15:00 — Add the boiled carrot and cabbage and cook gently until tender.", "22:00 — Add the ground ginger and drained noodles and toss together.", "30:00 — Serve immediately."], nutrition: { calories: "385 kcal", protein: "14.7 g", carbohydrates: "35.3 g", fat: "21.6 g", fibre: "3.6 g", sodium: "56 mg", salt: "0.14 g", potassium: "326 mg", phosphate: "123 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "beef-meatballs-couscous-peppers", code: "D046", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Lean beef meatballs with couscous, softened green pepper and onion, gently seasoned with paprika.", cookingTime: "30 minutes", calories: "415 kcal", protein: "18.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "beef-meatballs-couscous-peppers", code: "D046", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Lean beef meatballs with couscous, softened green pepper and onion, gently seasoned with paprika.", cookingTime: "30 minutes", calories: "415 kcal", protein: "18.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Beef, mince, raw, extra lean", shoppingItem: "Beef mince (5% fat)", quantity: "60 g" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "40 g" },
       { item: "Peppers, capsicum, green, raw", shoppingItem: "Green pepper", quantity: "½ green pepper (30 g)" },
@@ -1837,7 +1837,7 @@ export const dinners: Recipe[] = [
       { item: "Paprika", shoppingItem: "Paprika", quantity: "¼ tsp" }
     ], method: ["00:00 — Prepare the couscous using unsalted water according to the packet instructions.", "05:00 — Mix the beef mince with paprika and form into small meatballs.", "08:00 — Cook the meatballs in the olive oil, turning regularly, until browned and completely cooked through.", "18:00 — Add the green pepper and onion and cook until softened.", "25:00 — Fluff the couscous and serve with the meatballs and vegetables.", "30:00 — Serve immediately."], nutrition: { calories: "415 kcal", protein: "18.4 g", carbohydrates: "34.1 g", fat: "23.5 g", fibre: "0.0 g", sodium: "58 mg", salt: "0.14 g", potassium: "353 mg", phosphate: "213 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "haddock-lemon-rice-leeks", code: "D047", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.png", name: "Haddock with Lemon Rice & Leeks", description: "Baked haddock with lemon basmati rice, softened leek and boiled carrot.", cookingTime: "30 minutes", calories: "447 kcal", protein: "16.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
+  { id: "haddock-lemon-rice-leeks", code: "D047", mealFamily: "rice-dish", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.png", name: "Haddock with Lemon Rice & Leeks", description: "Baked haddock with lemon basmati rice, softened leek and boiled carrot.", cookingTime: "30 minutes", calories: "447 kcal", protein: "16.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Haddock, flesh only, raw", shoppingItem: "Haddock fillet", quantity: "60 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
       { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
@@ -1846,7 +1846,7 @@ export const dinners: Recipe[] = [
       { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }
     ], method: ["00:00 — Heat the oven to 200°C and bake the haddock until opaque and completely cooked through.", "05:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "12:00 — Boil the leek and carrot in unsalted water until tender, then drain well.", "22:00 — Toss the vegetables with the olive oil and lemon juice.", "25:00 — Check the rice is tender and drain if required.", "30:00 — Serve the haddock with the rice and vegetables."], nutrition: { calories: "447 kcal", protein: "16.0 g", carbohydrates: "52.4 g", fat: "20.7 g", fibre: "1.8 g", sodium: "47 mg", salt: "0.12 g", potassium: "319 mg", phosphate: "165 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "chicken-pear-rice-bowl", code: "D048", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken and basmati rice with warm pear and tender cabbage, finished with rosemary.", cookingTime: "30 minutes", calories: "467 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "chicken-pear-rice-bowl", code: "D048", mealFamily: "rice-bowl", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken and basmati rice with warm pear and tender cabbage, finished with rosemary.", cookingTime: "30 minutes", calories: "467 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
       { item: "Pears, average, raw, flesh only", shoppingItem: "Pear", quantity: "½ pear (30 g)" },
@@ -1855,7 +1855,7 @@ export const dinners: Recipe[] = [
       { item: "Rosemary, dried", shoppingItem: "Dried rosemary", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the basmati rice in unsalted water according to the packet instructions.", "05:00 — Cook the chicken in the olive oil until completely cooked through.", "15:00 — Boil the cabbage in unsalted water until tender, then drain well.", "22:00 — Dice the pear and warm gently with the cabbage and rosemary.", "27:00 — Check the rice is tender and drain if required.", "30:00 — Serve the chicken with the rice and pear and cabbage mixture."], nutrition: { calories: "467 kcal", protein: "16.7 g", carbohydrates: "55.1 g", fat: "21.5 g", fibre: "2.7 g", sodium: "42 mg", salt: "0.11 g", potassium: "349 mg", phosphate: "152 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "pork-carrot-couscous-skillet", code: "D049", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Lean pork with couscous, boiled carrot and softened leek, finished with thyme.", cookingTime: "30 minutes", calories: "383 kcal", protein: "15.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "pork-carrot-couscous-skillet", code: "D049", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Lean pork with couscous, boiled carrot and softened leek, finished with thyme.", cookingTime: "30 minutes", calories: "383 kcal", protein: "15.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "40 g" },
       { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" },
@@ -1864,7 +1864,7 @@ export const dinners: Recipe[] = [
       { item: "Thyme, dried, ground", shoppingItem: "Dried thyme", quantity: "¼ tsp" }
     ], method: ["00:00 — Prepare the couscous using unsalted water according to the packet instructions.", "05:00 — Slice the pork and cook in the olive oil until completely cooked through.", "15:00 — Boil the carrot and leek in unsalted water until tender, then drain well.", "22:00 — Add the vegetables and thyme to the pork pan and warm through.", "27:00 — Fluff the couscous and spoon the pork and vegetables over it.", "30:00 — Serve immediately."], nutrition: { calories: "383 kcal", protein: "15.1 g", carbohydrates: "33.8 g", fat: "21.7 g", fibre: "2.7 g", sodium: "24 mg", salt: "0.06 g", potassium: "359 mg", phosphate: "191 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "cod-leek-pasta-bake", code: "D050", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Flaked cod and white pasta baked with softened leek and cabbage, finished with parsley and olive oil.", cookingTime: "30 minutes", calories: "374 kcal", protein: "16.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking dish", ingredients: [
+  { id: "cod-leek-pasta-bake", code: "D050", mealFamily: "pasta-bake", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Flaked cod and white pasta baked with softened leek and cabbage, finished with parsley and olive oil.", cookingTime: "30 minutes", calories: "374 kcal", protein: "16.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking dish", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "45 g" },
       { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "40 g" },
       { item: "Leeks, raw", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
@@ -1873,7 +1873,7 @@ export const dinners: Recipe[] = [
       { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" }
     ], method: ["00:00 — Heat the oven to 200°C.", "02:00 — Cook the pasta in unsalted water according to the packet instructions, then drain thoroughly.", "10:00 — Bake the cod until opaque and completely cooked through, then flake into large pieces.", "15:00 — Boil the leek and cabbage in unsalted water until tender, then drain well.", "20:00 — Combine the pasta, vegetables and cod with the olive oil and parsley in a baking dish.", "25:00 — Bake until hot throughout.", "30:00 — Serve immediately."], nutrition: { calories: "374 kcal", protein: "16.1 g", carbohydrates: "32.2 g", fat: "21.0 g", fibre: "1.4 g", sodium: "44 mg", salt: "0.11 g", potassium: "368 mg", phosphate: "169 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "turkey-apple-noodle-bowl", code: "D051", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey and plain noodles with apple and cucumber, finished with ginger and olive oil.", cookingTime: "30 minutes", calories: "386 kcal", protein: "15.5 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "turkey-apple-noodle-bowl", code: "D051", mealFamily: "noodle-bowl", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey and plain noodles with apple and cucumber, finished with ginger and olive oil.", cookingTime: "30 minutes", calories: "386 kcal", protein: "15.5 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "50 g (raw)" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
       { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apple", quantity: "⅜ apple (30 g)" },
@@ -1882,7 +1882,7 @@ export const dinners: Recipe[] = [
       { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" }
     ], method: ["00:00 — Cook the noodles in unsalted water according to the packet instructions, then drain thoroughly.", "05:00 — Slice the turkey and cook in the olive oil until completely cooked through.", "18:00 — Add the diced apple and cook gently until just softened.", "23:00 — Toss the turkey and apple through the noodles with the cucumber and ground ginger.", "30:00 — Serve immediately."], nutrition: { calories: "386 kcal", protein: "15.5 g", carbohydrates: "35.9 g", fat: "21.0 g", fibre: "2.3 g", sodium: "33 mg", salt: "0.08 g", potassium: "252 mg", phosphate: "148 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 },
-  { id: "chicken-herb-meatballs-rice", code: "D052", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken herb meatballs with basmati rice, tender cabbage and carrot, finished with parsley.", cookingTime: "30 minutes", calories: "459 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "chicken-herb-meatballs-rice", code: "D052", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken herb meatballs with basmati rice, tender cabbage and carrot, finished with parsley.", cookingTime: "30 minutes", calories: "459 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
       { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (50 g)" },

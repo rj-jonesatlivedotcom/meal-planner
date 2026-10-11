@@ -1145,25 +1145,25 @@ function LoggedInHome() {
               </p>
 
               <Link
-                href="/planner"
+                href="/requirements"
                 className="renal-dashboard-mychef group mt-5 block max-w-[720px] rounded-2xl border border-emerald-100 bg-white/70 px-4 py-3.5 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#067b3a] focus-visible:ring-offset-2 sm:px-5"
               >
                 <div className="flex items-start gap-3">
                   <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 shadow-sm transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
                     <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M7.4 13.2c-1.7-.8-2.7-2.1-2.7-3.8 0-2.5 2.1-4.5 4.6-4.5 1 0 1.9.3 2.7.9.8-2 2.3-3.2 4.5-3.2s3.8 1.2 4.5 3.2c.8-.6 1.7-.9 2.7-.9 2.5 0 4.6 2 4.6 4.5 0 1.7-1 3-2.7 3.8" fill="currentColor" opacity="0.14"/>
-                      <path d="M7.4 13.2c-1.7-.8-2.7-2.1-2.7-3.8 0-2.5 2.1-4.5 4.6-4.5 1 0 1.9.3 2.7.9.8-2 2.3-3.2 4.5-3.2s3.8 1.2 4.5 3.2c.8-.6 1.7-.9 2.7-.9 2.5 0 4.6 2 4.6 4.5 0 1.7-1 3-2.7 3.8"/>
-                      <path d="M6.2 13.2h19.6v5.5H6.2z"/>
-                      <path d="M6.2 18.7h19.6M8.8 22h14.4"/>
+                      <circle cx="16" cy="9" r="4" fill="currentColor" opacity="0.18" />
+                      <circle cx="16" cy="9" r="4" />
+                      <path d="M7 27c0-5.4 3.7-9 9-9s9 3.6 9 9" />
+                      <path d="M4 15h5M23 15h5" opacity="0.65" />
                     </svg>
                   </span>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#067b3a]">MYCHEF</p>
+                      <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#067b3a]">START HERE</p>
                       <span className="text-sm font-extrabold text-[#067b3a] transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">→</span>
                     </div>
-                    <p className="renal-dashboard-heading mt-1 text-sm font-extrabold text-[#12396b] sm:text-base">Let MyChef curate your week.</p>
-                    <p className="renal-dashboard-muted mt-1 text-sm leading-relaxed text-[#355270]">MyChef can choose meals that fit your saved dietary requirements, so you can build a complete week without having to work it all out yourself.</p>
+                    <p className="renal-dashboard-heading mt-1 text-sm font-extrabold text-[#12396b] sm:text-base">Start with My Diet.</p>
+                    <p className="renal-dashboard-muted mt-1 text-sm leading-relaxed text-[#355270]">Set your dietary requirements first, so RenalPlan can help you choose meals and understand your nutrition.</p>
                   </div>
                 </div>
               </Link>
@@ -1215,6 +1215,32 @@ function LoggedInHome() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* MYCHEF — placed below the welcome panel so My Diet is the first action */}
+        <section className="renal-dashboard-surface renal-dashboard-reveal mt-4 rounded-3xl border border-emerald-100 bg-white p-4 shadow-sm sm:p-5">
+          <Link
+            href="/planner"
+            className="renal-dashboard-mychef group flex items-start gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/40 px-4 py-4 transition duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50/70 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#067b3a] focus-visible:ring-offset-2 sm:items-center sm:px-5"
+          >
+            <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 shadow-sm transition-transform duration-300 group-hover:scale-105 sm:mt-0" aria-hidden="true">
+              <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7.4 13.2c-1.7-.8-2.7-2.1-2.7-3.8 0-2.5 2.1-4.5 4.6-4.5 1 0 1.9.3 2.7.9.8-2 2.3-3.2 4.5-3.2s3.8 1.2 4.5 3.2c.8-.6 1.7-.9 2.7-.9 2.5 0 4.6 2 4.6 4.5 0 1.7-1 3-2.7 3.8" fill="currentColor" opacity="0.14"/>
+                <path d="M7.4 13.2c-1.7-.8-2.7-2.1-2.7-3.8 0-2.5 2.1-4.5 4.6-4.5 1 0 1.9.3 2.7.9.8-2 2.3-3.2 4.5-3.2s3.8 1.2 4.5 3.2c.8-.6 1.7-.9 2.7-.9 2.5 0 4.6 2 4.6 4.5 0 1.7-1 3-2.7 3.8"/>
+                <path d="M6.2 13.2h19.6v5.5H6.2z"/>
+                <path d="M6.2 18.7h19.6M8.8 22h14.4"/>
+              </svg>
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-center gap-2">
+                <span className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#067b3a]">MYCHEF</span>
+                <span className="text-sm font-extrabold text-[#067b3a] transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+              </span>
+              <span className="renal-dashboard-heading mt-1 block text-base font-extrabold text-[#12396b] sm:text-lg">Let MyChef curate your week.</span>
+              <span className="renal-dashboard-muted mt-1 block text-sm leading-relaxed text-[#355270]">Once your dietary requirements are set, MyChef can choose meals that fit them and help you build a complete week.</span>
+            </span>
+            <span className="hidden shrink-0 self-center rounded-xl bg-[#067b3a] px-4 py-2.5 text-sm font-extrabold text-white sm:inline-flex">Open MyChef →</span>
+          </Link>
         </section>
 
         {/* JOURNEY */}

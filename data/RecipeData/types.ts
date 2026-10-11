@@ -20,7 +20,7 @@ export type Recipe = {
   id: string;
   code: string;
   category: string;
-  emoji: string;
+  mealFamily: string;emoji: string;
   image: string;
   name: string;
   description: string;

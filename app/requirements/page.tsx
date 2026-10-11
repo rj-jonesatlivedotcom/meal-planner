@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 type RequirementLevel = "Any" | "Low" | "Moderate";
@@ -22,6 +22,7 @@ type Requirements = {
 };
 
 const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
+const REQUIREMENTS_PENDING_SAVE_KEY = "meal-planner-requirements-pending-save";
 
 const defaultRequirements: Requirements = {
   ckdStage: "custom",
@@ -95,12 +96,21 @@ function phosphorusMgToMmol(mg: number | null) {
 
 
 
-function syncRequirementsToLocalStorage(requirements: Requirements) {
+function syncRequirementsToLocalStorage(
+  requirements: Requirements,
+  pendingSave = false
+) {
   try {
     window.localStorage.setItem(
       REQUIREMENTS_STORAGE_KEY,
       JSON.stringify(requirements)
     );
+
+    if (pendingSave) {
+      window.localStorage.setItem(REQUIREMENTS_PENDING_SAVE_KEY, "true");
+    } else {
+      window.localStorage.removeItem(REQUIREMENTS_PENDING_SAVE_KEY);
+    }
 
     window.dispatchEvent(
       new Event("meal-planner-requirements-updated")
@@ -123,6 +133,11 @@ export default function RequirementsPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
 
+  // Serialize account saves so an older request can never overwrite a newer
+  // protein target or CKD-stage selection in Supabase.
+  const saveQueueRef = useRef<Promise<void>>(Promise.resolve());
+  const saveVersionRef = useRef(0);
+
   useEffect(() => {
     async function loadRequirements() {
       const supabase = createClient();
@@ -133,6 +148,26 @@ export default function RequirementsPage() {
 
       setIsLoggedIn(Boolean(user));
       setAuthChecked(true);
+
+      // If a recent edit has not finished saving to Supabase, the browser's
+      // pending local copy is the latest source of truth. Do not replace it
+      // with older account data when this page is reopened.
+      try {
+        const hasPendingSave =
+          window.localStorage.getItem(REQUIREMENTS_PENDING_SAVE_KEY) === "true";
+        const saved = window.localStorage.getItem(REQUIREMENTS_STORAGE_KEY);
+
+        if (hasPendingSave && saved) {
+          const pendingRequirements = JSON.parse(saved) as Partial<Requirements>;
+          setRequirements({
+            ...defaultRequirements,
+            ...pendingRequirements,
+          });
+          return;
+        }
+      } catch {
+        // Continue with the normal account/local settings load.
+      }
 
       if (!user) {
         try {
@@ -239,7 +274,7 @@ export default function RequirementsPage() {
         if (requirements.ckdStage === "stage3") {
           return `For ${stage}, potassium is usually not restricted unless your blood potassium is raised. BDA advises against unnecessary early potassium restriction because fruit, vegetables and other potassium-containing foods can be part of a healthy diet.`;
         }
-        return `For ${stage}, potassium restriction is not automatically required just because of CKD stage. If your blood potassium remains high and your renal team has advised restriction, a commonly used dietary range is 50–70 mmol/day (about 1,955–2,737 mg/day).`;
+        return `For ${stage}, potassium restriction is not automatically required just because of CKD stage. If your blood potassium remains high and your renal team has advised restriction, a commonly used dietary range is 1,955–2,737 mg/day (about 50–70 mmol/day).`;
       case "phosphate":
         if (requirements.ckdStage === "stage3") {
           return `For ${stage}, phosphate is usually not restricted unless your blood phosphate is raised or your renal team has advised you to do so. Avoiding phosphate additives can still be helpful.`;
@@ -272,10 +307,11 @@ export default function RequirementsPage() {
     setRequirements(nextRequirements);
     trackDietUpdate(String(key));
 
+    // Update MyChef immediately; do not wait for the network round-trip.
+    syncRequirementsToLocalStorage(nextRequirements, isLoggedIn);
+
     if (isLoggedIn) {
       void saveRequirements(nextRequirements);
-    } else {
-      syncRequirementsToLocalStorage(nextRequirements);
     }
   }
 
@@ -300,60 +336,81 @@ export default function RequirementsPage() {
     setRequirements(nextRequirements);
     trackDietUpdate("ckd_stage");
 
+    // The selected preset (including its cleared protein fields) is available
+    // to MyChef straight away while the account save is pending.
+    syncRequirementsToLocalStorage(nextRequirements, isLoggedIn);
+
     if (isLoggedIn) {
       void saveRequirements(nextRequirements);
-    } else {
-      syncRequirementsToLocalStorage(nextRequirements);
     }
   }
 
   async function saveRequirements(nextRequirements: Requirements) {
+    const saveVersion = ++saveVersionRef.current;
+
+    // Keep the current browser's settings up to date immediately. The pending
+    // flag tells MyChef to trust this latest local copy until the account save
+    // has completed successfully.
+    syncRequirementsToLocalStorage(nextRequirements, true);
     setSaveStatus("saving");
 
-    try {
-      const supabase = createClient();
+    saveQueueRef.current = saveQueueRef.current.then(async () => {
+      // Skip queued saves that have already been superseded by a newer edit.
+      if (saveVersion !== saveVersionRef.current) return;
 
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      try {
+        const supabase = createClient();
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
 
-      if (!user) {
-        syncRequirementsToLocalStorage(nextRequirements);
-        setSaveStatus("saved");
-        return;
-      }
-
-      const { error } = await supabase
-        .from("user_requirements")
-        .upsert(
-          {
-            user_id: user.id,
-            ckd_stage: nextRequirements.ckdStage,
-            sodium_limit: nextRequirements.sodiumLimit,
-            protein_min_g: nextRequirements.proteinMinG,
-            protein_max_g: nextRequirements.proteinMaxG,
-            potassium_limit_mg: nextRequirements.potassiumLimitMg,
-            phosphate_limit_mg: nextRequirements.phosphateLimitMg,
-            potassium: nextRequirements.potassium,
-            phosphate: nextRequirements.phosphate,
-            purines: nextRequirements.purines,
-            carbohydrate_min: nextRequirements.carbohydrateMin,
-            carbohydrate_max: nextRequirements.carbohydrateMax,
-            fluid_limit_ml: nextRequirements.fluidLimitMl,
-          },
-          {
-            onConflict: "user_id",
+        if (!user) {
+          if (saveVersion === saveVersionRef.current) {
+            syncRequirementsToLocalStorage(nextRequirements);
+            setSaveStatus("saved");
           }
-        );
+          return;
+        }
 
-      if (error) throw error;
+        const { error } = await supabase
+          .from("user_requirements")
+          .upsert(
+            {
+              user_id: user.id,
+              ckd_stage: nextRequirements.ckdStage,
+              sodium_limit: nextRequirements.sodiumLimit,
+              protein_min_g: nextRequirements.proteinMinG,
+              protein_max_g: nextRequirements.proteinMaxG,
+              potassium_limit_mg: nextRequirements.potassiumLimitMg,
+              phosphate_limit_mg: nextRequirements.phosphateLimitMg,
+              potassium: nextRequirements.potassium,
+              phosphate: nextRequirements.phosphate,
+              purines: nextRequirements.purines,
+              carbohydrate_min: nextRequirements.carbohydrateMin,
+              carbohydrate_max: nextRequirements.carbohydrateMax,
+              fluid_limit_ml: nextRequirements.fluidLimitMl,
+              updated_at: new Date().toISOString(),
+            },
+            { onConflict: "user_id" }
+          );
 
-      syncRequirementsToLocalStorage(nextRequirements);
-      setSaveStatus("saved");
-    } catch {
-      // Keep the page usable even if the account save fails.
-      setSaveStatus("idle");
-    }
+        if (error) throw error;
+
+        // Only the newest successful save may clear the pending flag.
+        if (saveVersion === saveVersionRef.current) {
+          syncRequirementsToLocalStorage(nextRequirements);
+          setSaveStatus("saved");
+        }
+      } catch {
+        // Keep the pending local values usable in this browser. Do not silently
+        // replace them with a stale account value while the save can be retried.
+        if (saveVersion === saveVersionRef.current) {
+          setSaveStatus("idle");
+        }
+      }
+    });
+
+    await saveQueueRef.current;
   }
 
   if (!authChecked) return null;
@@ -613,26 +670,20 @@ export default function RequirementsPage() {
                       type="number"
                       min="0"
                       step="1"
-                      value={
-                        requirements.potassiumLimitMg === null
-                          ? ""
-                          : Number(
-                              (requirements.potassiumLimitMg / MG_PER_MMOL_POTASSIUM).toFixed(1)
-                            )
-                      }
+                      value={requirements.potassiumLimitMg ?? ""}
                       onChange={(e) =>
                         updateRequirement(
                           "potassiumLimitMg",
                           e.target.value === ""
                             ? null
-                            : Math.round(Number(e.target.value) * MG_PER_MMOL_POTASSIUM)
+                            : Math.max(0, Math.round(Number(e.target.value)))
                         )
                       }
                       placeholder="No restriction"
                       className="min-h-11 w-full rounded-xl border border-green-200 bg-white px-4 text-sm font-semibold"
                     />
                     <span className="shrink-0 text-sm font-bold text-slate-700">
-                      mmol/day
+                      mg/day
                     </span>
                   </div>
 
@@ -644,7 +695,7 @@ export default function RequirementsPage() {
                   <p className="mt-2 text-xs leading-5 text-slate-500">
                     {requirements.potassiumLimitMg === null
                       ? "No potassium restriction is set for this preset. If your renal team has advised a limit, enter it here."
-                      : <>The preset is <span className="font-semibold">70 mmol/day</span> (about <span className="font-semibold">2,737 mg/day</span>). The commonly used restricted range is 50–70 mmol/day. You can change or remove this figure to match your renal team's advice.</>}
+                      : <>The preset is <span className="font-semibold">2,737 mg/day</span> (about <span className="font-semibold">70 mmol/day</span>). A commonly used restricted range is 1,955–2,737 mg/day (about 50–70 mmol/day). Enter potassium in mg/day; the mmol/day equivalent is shown above for reference. You can change or remove this figure to match your renal team's advice.</>}
                   </p>
                 </div>
 

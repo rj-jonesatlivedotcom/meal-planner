@@ -25,8 +25,6 @@ type RecipeCardProps = {
       phosphate?: string;
       carbohydrates?: string;
     };
-    potassium?: string;
-    phosphate?: string;
   };
   favouriteRecipeIds?: string[];
   userId?: string | null;
@@ -103,28 +101,6 @@ function formatSalt(
     (sodiumNumber * 2.5) / 1000;
 
   return `${saltGrams.toFixed(2).replace(/\.00$/, "")} g`;
-}
-
-function getTrafficClasses(level: string | undefined) {
-  switch (level?.toLowerCase()) {
-    case "high":
-      return "border-red-200 bg-red-50 text-red-700";
-    case "moderate":
-      return "border-amber-200 bg-amber-50 text-amber-700";
-    default:
-      return "border-green-200 bg-green-50 text-green-700";
-  }
-}
-
-function getTrafficDot(level: string | undefined) {
-  switch (level?.toLowerCase()) {
-    case "high":
-      return "bg-red-500";
-    case "moderate":
-      return "bg-amber-400";
-    default:
-      return "bg-green-500";
-  }
 }
 
 type Placement = {
@@ -884,36 +860,35 @@ export default function RecipeCard({
               grid
               grid-cols-2
               gap-2
-              sm:grid-cols-4
+              xl:grid-cols-4
+              xl:gap-1.5
             "
           >
-            <div className="rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-2">
-              <div className="text-[11px] font-medium text-slate-500">Cooking time</div>
-              <div className="nutrition-badge-value mt-0.5 text-sm font-bold text-slate-900">
+            <div className="min-w-0 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 dark:border-slate-700 dark:bg-slate-800">
+              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Cooking time</div>
+              <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100 xl:text-xs">
                 ⏱️ {recipe.cookingTime.replace(/\bminutes\b/gi, "mins")}
               </div>
             </div>
 
-            <div className="rounded-xl border border-green-200 bg-green-50 px-2.5 py-2">
-              <div className="text-[11px] font-medium text-green-700">Salt</div>
-              <div className="nutrition-badge-value mt-0.5 text-sm font-bold text-slate-900">
+            <div className="min-w-0 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 dark:border-slate-700 dark:bg-slate-800">
+              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Salt</div>
+              <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100 xl:text-xs">
                 {formatSalt(recipe.nutrition?.salt, recipe.nutrition?.sodium)}
               </div>
             </div>
 
-            <div className={`rounded-xl border px-2.5 py-2 ${getTrafficClasses(recipe.potassium)}`}>
-              <div className="text-[11px] font-medium">Potassium</div>
-              <div className="nutrition-badge-value mt-0.5 flex items-center gap-1.5 text-sm font-bold text-slate-900">
-                <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${getTrafficDot(recipe.potassium)}`} aria-hidden="true" />
-                {recipe.nutrition?.potassium ?? recipe.potassium ?? "—"}
+            <div className="min-w-0 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 dark:border-slate-700 dark:bg-slate-800">
+              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Potassium</div>
+              <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100 xl:text-xs">
+                {recipe.nutrition?.potassium ?? "—"}
               </div>
             </div>
 
-            <div className={`rounded-xl border px-2.5 py-2 ${getTrafficClasses(recipe.phosphate)}`}>
-              <div className="text-[11px] font-medium">Phosphate</div>
-              <div className="nutrition-badge-value mt-0.5 flex items-center gap-1.5 text-sm font-bold text-slate-900">
-                <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${getTrafficDot(recipe.phosphate)}`} aria-hidden="true" />
-                {recipe.nutrition?.phosphate ?? recipe.phosphate ?? "—"}
+            <div className="min-w-0 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 dark:border-slate-700 dark:bg-slate-800">
+              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Phosphate</div>
+              <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100 xl:text-xs">
+                {recipe.nutrition?.phosphate ?? "—"}
               </div>
             </div>
           </div>
@@ -961,9 +936,16 @@ export default function RecipeCard({
               transition
               hover:bg-green-800
               hover:shadow-md
+              !text-white
             "
+            style={{ color: "#ffffff" }}
           >
-            📅 Add to Planner
+            <span
+              className="!text-white"
+              style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
+            >
+              📅 Add to Planner
+            </span>
           </button>
 
         </div>
@@ -1256,9 +1238,16 @@ export default function RecipeCard({
                     text-white
                     transition
                     hover:bg-green-800
+                    !text-white
                   "
+                  style={{ color: "#ffffff" }}
                 >
-                  Add to Planner
+                  <span
+                    className="!text-white"
+                    style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
+                  >
+                    Add to Planner
+                  </span>
                 </button>
 
               </div>

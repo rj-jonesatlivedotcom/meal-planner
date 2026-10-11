@@ -6,7 +6,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
-import { getStoredRequirements, recipeMatchesRequirements, type Requirements } from "@/lib/recipeRequirements";
+import { getStoredRequirements, type Requirements } from "@/lib/recipeRequirements";
 
 const days = [
   "Monday",
@@ -1138,106 +1138,192 @@ function WeeklyPlannerPageContent() {
       const nextPlanner: PlannerMeals =
         replaceAll
           ? createEmptyPlanner()
-          : JSON.parse(
-              JSON.stringify(current)
-            );
+          : JSON.parse(JSON.stringify(current));
 
-      const usedByMeal: Record<
-        string,
-        Set<string>
-      > = {
+      const usedByMeal: Record<string, Set<string>> = {
         Breakfast: new Set<string>(),
         Lunch: new Set<string>(),
         Dinner: new Set<string>(),
       };
 
-      // Give each meal type its own shuffled cycle. MyChef works through
-      // every suitable recipe once, then starts the cycle again so repeats
-      // are spread across the week rather than appearing together.
-      const recipeCycleByMeal: Record<string, string[]> = {
-        Breakfast: shuffleRecipeIds(
-          getMealRecipes("Breakfast").map((recipe) => recipe.id)
-        ),
-        Lunch: shuffleRecipeIds(
-          getMealRecipes("Lunch").map((recipe) => recipe.id)
-        ),
-        Dinner: shuffleRecipeIds(
-          getMealRecipes("Dinner").map((recipe) => recipe.id)
-        ),
-      };
-
-      const cyclePositionByMeal: Record<string, number> = {
-        Breakfast: 0,
-        Lunch: 0,
-        Dinner: 0,
-      };
-
       if (!replaceAll) {
         days.forEach((day) => {
           mealTypes.forEach((meal) => {
-            const recipeId =
-              current[day]?.[meal];
-
-            if (
-              recipeId &&
-              usedByMeal[meal]
-            ) {
-              usedByMeal[meal].add(
-                recipeId
-              );
-            }
+            const recipeId = current[day]?.[meal];
+            if (recipeId) usedByMeal[meal].add(recipeId);
           });
         });
       }
 
-      days.forEach((day) => {
-        mealTypes.forEach((meal) => {
-          if (
-            !replaceAll &&
-            nextPlanner[day][meal]
-          ) {
-            return;
-          }
+      type Recipe = typeof recipes[number];
+      type DayCombo = {
+        Breakfast: Recipe;
+        Lunch: Recipe;
+        Dinner: Recipe;
+      };
 
-          const cycle = recipeCycleByMeal[meal];
+      // mealFamily is a variety label (for example, sandwich, pasta or rice
+      // bowl), not a nutritional restriction. Older recipes without a family
+      // remain eligible and simply do not trigger a family-repeat penalty.
+      const getMealFamily = (recipe: Recipe | null | undefined): string => {
+        const family = recipe && "mealFamily" in recipe
+          ? (recipe as Recipe & { mealFamily?: string }).mealFamily
+          : undefined;
+        return typeof family === "string" ? family.trim().toLowerCase() : "";
+      };
 
-          if (!cycle || cycle.length === 0) {
-            return;
-          }
+      const numeric = (recipe: Recipe, field: "protein" | "carbohydrates" | "sodium" | "potassium" | "phosphate") => {
+        if (field === "protein") return getNutritionNumber(recipe.protein);
+        return getNutritionNumber(recipe.nutrition[field] ?? "0");
+      };
 
-          // First use every suitable recipe that has not already appeared.
-          // Once those are exhausted, continue through the same cycle so
-          // repeats are naturally spaced out across the week.
-          let recipeId: string | null = null;
+      const rank: Record<string, number> = {
+        Low: 1,
+        Moderate: 2,
+        High: 3,
+      };
 
-          for (let offset = 0; offset < cycle.length; offset++) {
-            const index =
-              (cyclePositionByMeal[meal] + offset) % cycle.length;
-            const candidate = cycle[index];
+      const getPool = (meal: string, fixedRecipeId: string | null): Recipe[] => {
+        if (fixedRecipeId) {
+          const fixed = recipes.find((recipe) => recipe.id === fixedRecipeId);
+          return fixed ? [fixed] : [];
+        }
 
-            if (!usedByMeal[meal].has(candidate)) {
-              recipeId = candidate;
-              cyclePositionByMeal[meal] = (index + 1) % cycle.length;
-              break;
+        const codePrefix = meal === "Breakfast" ? "B" : meal === "Lunch" ? "L" : "D";
+        return recipes.filter((recipe) =>
+          (recipe.code?.toUpperCase() ?? "").startsWith(codePrefix)
+        );
+      };
+
+      const shuffleRecipes = (pool: Recipe[]): Recipe[] => {
+        const shuffled = [...pool];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      };
+
+      // Evaluate a bounded shortlist rather than the full Cartesian product
+      // of every recipe. This keeps MyChef responsive as the catalogue grows.
+      const MAX_CANDIDATES_PER_MEAL = 16;
+
+      days.forEach((day, dayIndex) => {
+        const previousDay = dayIndex > 0 ? days[dayIndex - 1] : null;
+
+        const getVariedPool = (meal: string): Recipe[] => {
+          const fixedId = !replaceAll ? current[day]?.[meal] ?? null : null;
+          const pool = getPool(meal, fixedId);
+          if (pool.length <= 1 || !previousDay) return pool;
+
+          const previousRecipeId = nextPlanner[previousDay]?.[meal] ?? null;
+          const previousRecipe = previousRecipeId
+            ? recipes.find((recipe) => recipe.id === previousRecipeId)
+            : undefined;
+          const previousFamily = getMealFamily(previousRecipe);
+
+          // Avoid the same family in adjacent days whenever the catalogue
+          // offers another family. If there is no alternative, allow it.
+          if (previousFamily && !fixedId) {
+            const alternatives = pool.filter(
+              (recipe) => getMealFamily(recipe) !== previousFamily
+            );
+            if (alternatives.length > 0) {
+              return shuffleRecipes(alternatives).slice(0, MAX_CANDIDATES_PER_MEAL);
             }
           }
 
-          // All suitable recipes have now been used, so take the next recipe
-          // in the cycle. This allows repeats while keeping them separated.
-          if (!recipeId) {
-            const index =
-              cyclePositionByMeal[meal] % cycle.length;
-            recipeId = cycle[index];
-            cyclePositionByMeal[meal] = (index + 1) % cycle.length;
+          return pool.length > MAX_CANDIDATES_PER_MEAL
+            ? shuffleRecipes(pool).slice(0, MAX_CANDIDATES_PER_MEAL)
+            : pool;
+        };
+
+        const breakfastPool = getVariedPool("Breakfast");
+        const lunchPool = getVariedPool("Lunch");
+        const dinnerPool = getVariedPool("Dinner");
+
+        if (!breakfastPool.length || !lunchPool.length || !dinnerPool.length) return;
+
+        const dailyScore = (combo: DayCombo): number => {
+          const comboRecipes = [combo.Breakfast, combo.Lunch, combo.Dinner];
+          const protein = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "protein"), 0);
+          const carbohydrates = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "carbohydrates"), 0);
+          const sodium = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "sodium"), 0);
+          const potassium = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "potassium"), 0);
+          const phosphate = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "phosphate"), 0);
+
+          let score = 0;
+          const penalty = (amount: number, weight: number) => {
+            score += Math.max(0, amount) * weight;
+          };
+
+          // My Diet targets are daily totals. Hard upper limits carry the
+          // strongest penalty; mealFamily only influences variety.
+          if (requirements?.sodiumLimit != null) penalty(sodium - requirements.sodiumLimit, 100000);
+          if (requirements?.potassiumLimitMg != null) {
+            penalty(potassium - requirements.potassiumLimitMg, 100000);
+          } else if (requirements?.potassium && requirements.potassium !== "Any") {
+            comboRecipes.forEach((recipe) => penalty((rank[recipe.potassium] ?? 1) - (rank[requirements.potassium] ?? 1), 50000));
           }
+          if (requirements?.phosphateLimitMg != null) {
+            penalty(phosphate - requirements.phosphateLimitMg, 100000);
+          } else if (requirements?.phosphate && requirements.phosphate !== "Any") {
+            comboRecipes.forEach((recipe) => penalty((rank[recipe.phosphate] ?? 1) - (rank[requirements.phosphate] ?? 1), 50000));
+          }
+          if (requirements?.purines && requirements.purines !== "Any") {
+            comboRecipes.forEach((recipe) => penalty((rank[recipe.purines] ?? 1) - (rank[requirements.purines] ?? 1), 50000));
+          }
+          if (requirements?.proteinMinG != null) penalty(requirements.proteinMinG - protein, 2000);
+          if (requirements?.proteinMaxG != null) penalty(protein - requirements.proteinMaxG, 100000);
+          if (requirements?.carbohydrateMin != null) penalty(requirements.carbohydrateMin - carbohydrates, 500);
+          if (requirements?.carbohydrateMax != null) penalty(carbohydrates - requirements.carbohydrateMax, 100000);
 
-          nextPlanner[day][meal] =
-            recipeId;
+          const mealEntries: [string, Recipe][] = [
+            ["Breakfast", combo.Breakfast],
+            ["Lunch", combo.Lunch],
+            ["Dinner", combo.Dinner],
+          ];
+          mealEntries.forEach(([meal, recipe]) => {
+            if (usedByMeal[meal].has(recipe.id)) score += 25;
+            if (previousDay) {
+              const previousId = nextPlanner[previousDay]?.[meal] ?? null;
+              const previousRecipe = previousId
+                ? recipes.find((candidate) => candidate.id === previousId)
+                : undefined;
+              const family = getMealFamily(recipe);
+              if (family && family === getMealFamily(previousRecipe)) score += 1000;
+            }
+          });
 
-          usedByMeal[meal].add(
-            recipeId
-          );
-        });
+          score += Math.random() * 2;
+          return score;
+        };
+
+        let bestCombo: DayCombo | null = null;
+        let bestScore = Number.POSITIVE_INFINITY;
+
+        for (const Breakfast of breakfastPool) {
+          for (const Lunch of lunchPool) {
+            for (const Dinner of dinnerPool) {
+              const combo: DayCombo = { Breakfast, Lunch, Dinner };
+              const score = dailyScore(combo);
+              if (score < bestScore) {
+                bestScore = score;
+                bestCombo = combo;
+              }
+            }
+          }
+        }
+
+        if (!bestCombo) return;
+
+        nextPlanner[day].Breakfast = bestCombo.Breakfast.id;
+        nextPlanner[day].Lunch = bestCombo.Lunch.id;
+        nextPlanner[day].Dinner = bestCombo.Dinner.id;
+
+        usedByMeal.Breakfast.add(bestCombo.Breakfast.id);
+        usedByMeal.Lunch.add(bestCombo.Lunch.id);
+        usedByMeal.Dinner.add(bestCombo.Dinner.id);
       });
 
       return nextPlanner;
@@ -1413,13 +1499,10 @@ openMyChefIntro();
               ? code.startsWith("D")
               : false;
 
-      return (
-        matchesMeal &&
-        recipeMatchesRequirements(
-          recipe,
-          requirements
-        )
-      );
+      // My Diet requirements are daily targets. Individual recipes are no
+      // longer filtered against a fraction of the daily allowance here.
+      // The Nutrition view and MyChef judge the complete day's combination.
+      return matchesMeal;
     });
   }
 
@@ -1573,7 +1656,30 @@ function formatPotassiumMmol(mg: number): string {
       return "No meals";
     }
 
+    const dailyRequirements = requirements as DailyRequirements | null;
     const limit = getDailyNutritionLimit(field);
+
+    if (!dailyRequirements) {
+      return "No limit";
+    }
+
+    if (field === "protein") {
+      const min = dailyRequirements.proteinMinG ?? null;
+      const max = dailyRequirements.proteinMaxG ?? null;
+      if (min === null && max === null) return "No limit";
+      if (min !== null && total < min) return "Over";
+      if (max !== null && total > max) return "Over";
+      return "Within";
+    }
+
+    if (field === "carbohydrates") {
+      const min = dailyRequirements.carbohydrateMin ?? null;
+      const max = dailyRequirements.carbohydrateMax ?? null;
+      if (min === null && max === null) return "No limit";
+      if (min !== null && total < min) return "Over";
+      if (max !== null && total > max) return "Over";
+      return "Within";
+    }
 
     if (limit === null) {
       return "No limit";

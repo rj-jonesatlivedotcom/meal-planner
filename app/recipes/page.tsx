@@ -4,11 +4,6 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/RecipeData";
-import {
-  getStoredRequirements,
-  recipeMatchesRequirements,
-  type Requirements,
-} from "@/lib/recipeRequirements";
 import { createClient } from "@/lib/supabase/client";
 
 export default function RecipesPage() {
@@ -19,8 +14,6 @@ export default function RecipesPage() {
   const [showFavourites, setShowFavourites] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [filtersLoaded, setFiltersLoaded] = useState(false);
-  const [requirements, setRequirements] =
-    useState<Requirements | null>(null);
   const [favouriteRecipeIds, setFavouriteRecipeIds] = useState<string[]>([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -67,15 +60,28 @@ export default function RecipesPage() {
     Vegetarian: "🥕",
   };
 
-  // Apply the Recipes-page state from the current URL.
-  // A Weekly Planner link such as /recipes?meal=Dinner supplies
-  // temporary meal context. A normal /recipes visit must always
-  // start clean.
+  // Restore Recipes-page filters when returning from an individual recipe.
+  // Explicit Planner and My Account links take priority over saved state.
   useEffect(() => {
-    const validMealTypes = [
-      "Breakfast",
-      "Lunch",
-      "Dinner",
+    const validMealTypes = ["Breakfast", "Lunch", "Dinner"];
+    const validSortOptions = [
+      "default",
+      "time-asc",
+      "time-desc",
+      "calories-asc",
+      "calories-desc",
+      "potassium-asc",
+      "phosphate-asc",
+      "purines-asc",
+    ];
+    const validProteinTypes = [
+      "All",
+      "Chicken",
+      "Beef",
+      "Pork",
+      "Lamb",
+      "Fish",
+      "Vegetarian",
     ];
 
     try {
@@ -106,15 +112,13 @@ export default function RecipesPage() {
         setShowFavourites(true);
         setSearchText("");
         setSortBy("default");
-
         setFiltersLoaded(true);
         return;
       }
 
-      if (
-        plannerMeal &&
-        validMealTypes.includes(plannerMeal)
-      ) {
+      // A meal type supplied by the Weekly Planner takes priority over the
+      // user's previous browse state, and is consumed after this visit.
+      if (plannerMeal && validMealTypes.includes(plannerMeal)) {
         plannerFilterRef.current = true;
         setSelectedMealType(plannerMeal);
         setSelectedProtein("All");
@@ -122,7 +126,6 @@ export default function RecipesPage() {
         setSearchText("");
         setSortBy("default");
 
-        // Consume the planner meal once so the URL becomes plain /recipes.
         const url = new URL(window.location.href);
         url.searchParams.delete("meal");
         window.history.replaceState(
@@ -135,21 +138,61 @@ export default function RecipesPage() {
         return;
       }
 
-      // A normal visit to /recipes should always start with clean filters.
-      plannerFilterRef.current = true;
-      setSelectedMealType("All");
-      setSelectedProtein("All");
-      setShowFavourites(false);
-      setSearchText("");
-      setSortBy("default");
+      // Normal Recipes-page visits restore the last-used filters instead of
+      // resetting them. This keeps meal type, protein, favourites, search and
+      // sort selections when a user opens a recipe and comes back.
+      let savedFilters: {
+        selectedMealType?: unknown;
+        selectedProtein?: unknown;
+        showFavourites?: unknown;
+        searchText?: unknown;
+        sortBy?: unknown;
+      } | null = null;
 
       try {
-        sessionStorage.removeItem("recipes-filters");
+        const stored = sessionStorage.getItem("recipes-filters");
+        if (stored) {
+          savedFilters = JSON.parse(stored);
+        }
       } catch {
-        // Ignore storage errors.
+        // Ignore missing or malformed saved state and use defaults.
+      }
+
+      if (savedFilters) {
+        setSelectedMealType(
+          typeof savedFilters.selectedMealType === "string" &&
+            (savedFilters.selectedMealType === "All" ||
+              validMealTypes.includes(savedFilters.selectedMealType))
+            ? savedFilters.selectedMealType
+            : "All"
+        );
+        setSelectedProtein(
+          typeof savedFilters.selectedProtein === "string" &&
+            validProteinTypes.includes(savedFilters.selectedProtein)
+            ? savedFilters.selectedProtein
+            : "All"
+        );
+        setShowFavourites(savedFilters.showFavourites === true);
+        setSearchText(
+          typeof savedFilters.searchText === "string"
+            ? savedFilters.searchText
+            : ""
+        );
+        setSortBy(
+          typeof savedFilters.sortBy === "string" &&
+            validSortOptions.includes(savedFilters.sortBy)
+            ? savedFilters.sortBy
+            : "default"
+        );
+      } else {
+        setSelectedMealType("All");
+        setSelectedProtein("All");
+        setShowFavourites(false);
+        setSearchText("");
+        setSortBy("default");
       }
     } catch {
-      // Ignore invalid URL data.
+      // Ignore invalid URL or storage data and allow the page to load.
     }
 
     setFiltersLoaded(true);
@@ -264,26 +307,6 @@ export default function RecipesPage() {
       });
     });
   }, [filtersLoaded]);
-
-  useEffect(() => {
-    setRequirements(getStoredRequirements());
-
-    function handleRequirementsUpdated() {
-      setRequirements(getStoredRequirements());
-    }
-
-    window.addEventListener(
-      "meal-planner-requirements-updated",
-      handleRequirementsUpdated
-    );
-
-    return () => {
-      window.removeEventListener(
-        "meal-planner-requirements-updated",
-        handleRequirementsUpdated
-      );
-    };
-  }, []);
 
   useEffect(() => {
     const supabase = createClient();
@@ -491,12 +514,6 @@ export default function RecipesPage() {
         !showFavourites ||
         favouriteRecipeIds.includes(recipe.id);
 
-      const matchesRequirements =
-        recipeMatchesRequirements(
-          recipe,
-          requirements
-        );
-
       const searchableText = [
         recipe.name,
         recipe.description,
@@ -544,7 +561,6 @@ export default function RecipesPage() {
         matchesMealType &&
         matchesProtein &&
         matchesFavourite &&
-        matchesRequirements &&
         matchesSearch
       );
     })
@@ -625,19 +641,18 @@ export default function RecipesPage() {
 
   const searchDisplay = searchText.trim();
 
-  // Keep the green results count in sync with the recipes currently shown,
-  // including search text, meal type, protein, favourites, and My Diet.
-  const requirementsMatchCount = filteredRecipes.length;
+  // Keep the green results count in sync with the actual recipe browsing
+  // filters. My Diet is assessed against daily nutrition totals, not per recipe.
+  const filteredRecipeCount = filteredRecipes.length;
 
-  // Meal-type button counts reflect the current search/protein/favourites
-  // selection as well, but do not depend on the currently selected meal type.
-  const requirementsMatchedRecipes = recipes.filter((recipe) => {
+  // Meal-type button counts reflect search/protein/favourites selections,
+  // but do not depend on the currently selected meal type.
+  const recipesMatchingBrowseFilters = recipes.filter((recipe) => {
     const matchesProtein =
       selectedProtein === "All" ||
       getProteinType(recipe) === selectedProtein;
     const matchesFavourite =
       !showFavourites || favouriteRecipeIds.includes(recipe.id);
-    const matchesRequirements = recipeMatchesRequirements(recipe, requirements);
     const searchableText = [
       recipe.name,
       recipe.description,
@@ -667,18 +682,18 @@ export default function RecipesPage() {
         return variants.some((variant) => searchableText.includes(variant));
       });
 
-    return matchesProtein && matchesFavourite && matchesRequirements && matchesSearch;
+    return matchesProtein && matchesFavourite && matchesSearch;
   });
 
   const mealTypeCounts = {
-    All: requirementsMatchedRecipes.length,
-    Breakfast: requirementsMatchedRecipes.filter(
+    All: recipesMatchingBrowseFilters.length,
+    Breakfast: recipesMatchingBrowseFilters.filter(
       (recipe) => getMealType(recipe) === "Breakfast"
     ).length,
-    Lunch: requirementsMatchedRecipes.filter(
+    Lunch: recipesMatchingBrowseFilters.filter(
       (recipe) => getMealType(recipe) === "Lunch"
     ).length,
-    Dinner: requirementsMatchedRecipes.filter(
+    Dinner: recipesMatchingBrowseFilters.filter(
       (recipe) => getMealType(recipe) === "Dinner"
     ).length,
   };
@@ -921,8 +936,10 @@ export default function RecipesPage() {
                             // Ignore storage errors.
                           }
                         }}
-                        className="text-sm font-semibold text-blue-600 hover:text-blue-800"
+                        className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-rose-700 bg-rose-700 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:border-rose-800 hover:bg-rose-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-600 focus-visible:ring-offset-2"
+                        aria-label="Clear all recipe filters and search"
                       >
+                        <span aria-hidden="true">✕</span>
                         Clear filters
                       </button>
                     ) : (
@@ -1172,8 +1189,10 @@ export default function RecipesPage() {
                             // Ignore storage errors.
                           }
                         }}
-                        className="text-sm font-semibold text-blue-600 hover:text-blue-800"
+                        className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-rose-700 bg-rose-700 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:border-rose-800 hover:bg-rose-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-600 focus-visible:ring-offset-2"
+                        aria-label="Clear all recipe filters and search"
                       >
+                        <span aria-hidden="true">✕</span>
                         Clear filters
                       </button>
                     ) : (
@@ -1226,7 +1245,7 @@ export default function RecipesPage() {
         </div>
 
         {/* =====================================================
-            DESKTOP REQUIREMENTS BAR
+            DESKTOP RECIPE COUNT BAR
             ===================================================== */}
         <div className="mb-4 hidden rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 md:flex md:items-center md:justify-between md:gap-4 md:px-5">
 
@@ -1238,11 +1257,11 @@ export default function RecipesPage() {
 
             <div className="min-w-0">
               <div className="font-bold text-green-700">
-                {requirementsMatchCount} {requirementsMatchCount === 1 ? "recipe" : "recipes"} found with your current filters
+                {filteredRecipeCount} {filteredRecipeCount === 1 ? "recipe" : "recipes"} found with your current filters
               </div>
 
               <div className="text-sm text-slate-500">
-                Results update as you search or change filters. Recipes are still matched against your My Diet settings.
+                Results update as you search, filter by meal type or protein, choose favourites, or change the sort order.
               </div>
             </div>
           </div>
@@ -1262,9 +1281,14 @@ export default function RecipesPage() {
                   }
                   className={`rounded-xl border px-4 py-2.5 text-sm font-semibold whitespace-nowrap transition ${
                     active
-                      ? "border-green-700 bg-green-700 text-white shadow-sm"
+                      ? "border-green-700 bg-green-700 !text-white shadow-sm"
                       : "border-blue-200 bg-white text-slate-800 hover:bg-blue-50"
                   }`}
+                  style={
+                    active
+                      ? { color: "#ffffff", WebkitTextFillColor: "#ffffff" }
+                      : undefined
+                  }
                 >
                   {mealType} (
                   {
@@ -1283,7 +1307,7 @@ export default function RecipesPage() {
             RECIPES
             ===================================================== */}
         {filteredRecipes.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {filteredRecipes.map((recipe, index) => (
               <Fragment key={recipe.id}>
                 <RecipeCard
@@ -1294,7 +1318,7 @@ export default function RecipesPage() {
                 />
 
                 {/* Gentle signup CTA after the first row of recipes for visitors */}
-                {!isLoggedIn && index === 7 && (
+                {!isLoggedIn && index === 5 && (
                   <div className="col-span-full rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-blue-50 px-6 py-5 shadow-sm">
                     <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
                       <div>

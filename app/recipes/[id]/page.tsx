@@ -32,38 +32,6 @@ type PendingSlot = {
   meal: string;
 };
 
-function getTrafficLightStyle(value: string | undefined) {
-  const normalized = value?.trim().toLowerCase();
-
-  if (normalized === "low") {
-    return { background: "#16a34a" };
-  }
-
-  if (normalized === "moderate") {
-    return { background: "#F4C542" };
-  }
-
-  if (normalized === "high") {
-    return { background: "#dc2626" };
-  }
-
-  if (normalized === "low-moderate" || normalized === "low/moderate") {
-    return {
-      background:
-        "linear-gradient(90deg, #16a34a 0 50%, #F4C542 50% 100%)",
-    };
-  }
-
-  if (normalized === "moderate-high" || normalized === "moderate/high") {
-    return {
-      background:
-        "linear-gradient(90deg, #F4C542 0 50%, #dc2626 50% 100%)",
-    };
-  }
-
-  return { background: "#cbd5e1" };
-}
-
 function getDefaultMealType(code: string) {
   const firstLetter =
     code?.charAt(0).toUpperCase();
@@ -765,7 +733,8 @@ export default function RecipeDetailPage() {
               <button
                 type="button"
                 onClick={openPlanner}
-                className="mt-auto w-full rounded-xl bg-green-700 px-5 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-green-800"
+                className="mt-auto w-full rounded-xl bg-green-700 px-5 py-3.5 text-base font-bold !text-white shadow-sm transition hover:bg-green-800"
+                style={{ color: "#ffffff" }}
               >
                 {placements.length > 0
                   ? "📅 Add Another to Planner"
@@ -835,12 +804,12 @@ export default function RecipeDetailPage() {
             </h2>
 
             <div className="grid grid-cols-2 gap-3 text-sm">
-              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Calories</span><strong>{recipe.nutrition.calories}</strong></div>
-              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Protein</span><strong>{recipe.nutrition.protein}</strong></div>
-              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Carbohydrates</span><strong>{recipe.nutrition.carbohydrates}</strong></div>
-              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Fat</span><strong>{recipe.nutrition.fat}</strong></div>
-              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Fibre</span><strong>{recipe.nutrition.fibre}</strong></div>
-              <div className="rounded-xl bg-slate-50 p-4"><span className="block text-xs text-slate-500">Salt (g)</span><strong>{formatSalt(recipe.nutrition.sodium)}</strong></div>
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Calories</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.calories}</strong></div>
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Protein</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.protein}</strong></div>
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Carbohydrates</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.carbohydrates}</strong></div>
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Fat</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.fat}</strong></div>
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Fibre</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.fibre}</strong></div>
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Salt (g)</span><strong className="text-slate-900 dark:text-slate-100">{formatSalt(recipe.nutrition.sodium)}</strong></div>
             </div>
           </div>
 
@@ -850,23 +819,15 @@ export default function RecipeDetailPage() {
             </h2>
 
             <div className="space-y-3">
-              <div className="flex items-center justify-between gap-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
-                <span>🥔 <strong>Potassium:</strong> {recipe.nutrition.potassium}</span>
-                <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-slate-700">
-                  <span aria-hidden="true" className="h-4 w-4 rounded-full border border-white shadow-sm" style={getTrafficLightStyle(recipe.potassium)} />
-                  {recipe.potassium}
-                </span>
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                🥔 <strong>Potassium:</strong> {recipe.nutrition.potassium}
               </div>
 
-              <div className="flex items-center justify-between gap-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
-                <span>🧀 <strong>Phosphate:</strong> {recipe.nutrition.phosphate}</span>
-                <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-slate-700">
-                  <span aria-hidden="true" className="h-4 w-4 rounded-full border border-white shadow-sm" style={getTrafficLightStyle(recipe.phosphate)} />
-                  {recipe.phosphate}
-                </span>
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                🧀 <strong>Phosphate:</strong> {recipe.nutrition.phosphate}
               </div>
 
-              <div className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
                 🍖 <strong>Purines:</strong> {recipe.purines}
               </div>
 
@@ -1031,20 +992,12 @@ export default function RecipeDetailPage() {
 
       <div className="space-y-2 rounded-lg border p-4">
 
-        <div className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 p-3 text-sm">
-          <span>🥔 <strong>Potassium:</strong> {recipe.nutrition.potassium}</span>
-          <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-slate-700">
-            <span aria-hidden="true" className="h-4 w-4 rounded-full border border-white shadow-sm" style={getTrafficLightStyle(recipe.potassium)} />
-            {recipe.potassium}
-          </span>
+        <div className="rounded-lg border border-slate-300 bg-slate-50 p-3 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+          🥔 <strong>Potassium:</strong> {recipe.nutrition.potassium}
         </div>
 
-        <div className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 p-3 text-sm">
-          <span>🧀 <strong>Phosphate:</strong> {recipe.nutrition.phosphate}</span>
-          <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-slate-700">
-            <span aria-hidden="true" className="h-4 w-4 rounded-full border border-white shadow-sm" style={getTrafficLightStyle(recipe.phosphate)} />
-            {recipe.phosphate}
-          </span>
+        <div className="rounded-lg border border-slate-300 bg-slate-50 p-3 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+          🧀 <strong>Phosphate:</strong> {recipe.nutrition.phosphate}
         </div>
 
         <p className="rounded-lg bg-slate-50 p-3 text-sm">
@@ -1081,7 +1034,8 @@ export default function RecipeDetailPage() {
         <button
           type="button"
           onClick={openPlanner}
-          className="rounded-xl bg-green-700 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-green-800"
+          className="rounded-xl bg-green-700 px-5 py-3 text-sm font-bold !text-white shadow-lg transition hover:bg-green-800"
+          style={{ color: "#ffffff" }}
         >
           {placements.length > 0
             ? "📅 Add Another to Planner"
@@ -1249,7 +1203,8 @@ export default function RecipeDetailPage() {
                   onClick={
                     addToPlanner
                   }
-                  className="w-full rounded-xl bg-green-700 px-4 py-3 font-bold text-white transition hover:bg-green-800"
+                  className="w-full rounded-xl bg-green-700 px-4 py-3 font-bold !text-white transition hover:bg-green-800"
+                  style={{ color: "#ffffff" }}
                 >
                   Add to Planner
                 </button>

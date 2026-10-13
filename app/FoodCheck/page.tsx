@@ -975,7 +975,7 @@ export default function FoodCheckPage() {
                       <div className="min-w-0 flex-1">
                         <h2 className="font-bold text-blue-950">Scan barcode</h2>
                         <p className="mt-1 break-words text-sm leading-5 text-slate-600">
-                          Use your camera to scan a product barcode.
+                          
                         </p>
                         <button
                           type="button"
@@ -994,7 +994,7 @@ export default function FoodCheckPage() {
                       <div className="min-w-0 flex-1">
                         <h2 className="font-bold text-blue-950">Enter barcode</h2>
                         <p className="mt-1 break-words text-sm leading-5 text-slate-600">
-                          Enter the barcode from a product package.
+                          
                         </p>
                         <div className="mt-3 flex min-w-0 flex-col gap-2 sm:flex-row">
                           <input

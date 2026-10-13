@@ -1531,9 +1531,8 @@ openMyChefIntro();
   return `${saltGrams.toFixed(1)} g`;
 }
 
-function formatPotassiumMmol(mg: number): string {
-  const mmol = mg / 39.1;
-  return `${mmol.toFixed(1)} mmol`;
+function formatPotassiumMg(mg: number): string {
+  return `${Math.round(mg).toLocaleString("en-GB")} mg`;
 }
 
   function getDayMealRecipes(day: string) {
@@ -1918,7 +1917,7 @@ function formatPotassiumMmol(mg: number): string {
         nutritionView === "Sodium"
           ? formatSalt(total)
           : nutritionView === "Potassium"
-            ? formatPotassiumMmol(total)
+            ? formatPotassiumMg(total)
             : nutritionView === "Phosphate"
               ? `${total.toLocaleString()} mg`
               : `${total.toLocaleString()} ${
@@ -1933,7 +1932,7 @@ function formatPotassiumMmol(mg: number): string {
           : nutritionView === "Sodium"
             ? formatSalt(limit)
             : nutritionView === "Potassium"
-              ? formatPotassiumMmol(limit)
+              ? formatPotassiumMg(limit)
               : nutritionView === "Phosphate"
                 ? `${limit.toLocaleString()} mg`
                 : `${limit.toLocaleString()} ${
@@ -3405,7 +3404,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
         {/* SHOPPING LIST / CLEAR */}
 
-        <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-stretch">
+        <div className="hidden md:mt-5 md:flex md:flex-row md:items-stretch md:gap-3">
 
           <div className="order-1 flex w-full min-w-0 self-stretch items-stretch gap-3 md:order-3 md:w-auto md:flex-1 md:justify-end md:self-stretch">
 

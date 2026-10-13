@@ -426,12 +426,6 @@ export default function RequirementsPage() {
                 Tell RenalPlan about your daily dietary requirements.
               </p>
 
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
-                Choose the CKD stage you have been given and RenalPlan will enter
-                suggested daily figures. You can change any figure to the amount
-                recommended by your renal team.
-              </p>
-
               {saveStatus === "saving" && (
                 <p className="mt-3 text-xs font-semibold text-[#0B3B75]">
                   Saving…
@@ -932,12 +926,8 @@ export default function RequirementsPage() {
             </div>
 
             {/* DISCLAIMER */}
-            <div className="mt-6 flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
-              <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green-100 text-sm font-bold text-green-700">
-                ✓
-              </div>
-
-              <p className="text-xs leading-5 text-slate-600">
+            <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 sm:mt-6 sm:px-4 sm:py-3">
+              <p className="text-[11px] leading-4 text-slate-600 sm:text-xs sm:leading-5">
                 Your dietary requirements are individual to you. Requirements
                 for salt, potassium, phosphate, protein, fluid and other
                 nutrients can vary depending on your kidney function, blood

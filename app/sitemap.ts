@@ -1,0 +1,24 @@
+import type { MetadataRoute } from "next";
+import { recipes } from "@/data/RecipeData";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://www.renalplan.com";
+
+  const staticPages: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
+    },
+    {
+      url: `${baseUrl}/recipes`,
+    },
+    {
+      url: `${baseUrl}/about`,
+    },
+  ];
+
+  const recipePages: MetadataRoute.Sitemap = recipes.map((recipe) => ({
+    url: `${baseUrl}/recipes/${recipe.id}`,
+  }));
+
+  return [...staticPages, ...recipePages];
+}

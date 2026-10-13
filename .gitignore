@@ -42,3 +42,12 @@ next-env.d.ts
 
 .vercel
 .env*
+# Local dependencies and generated files
+node_modules/
+.next/
+.vercel/
+
+# Preserve local recovery files
+.git-damaged-backup/
+.vercel
+.env*

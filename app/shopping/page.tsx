@@ -2910,24 +2910,44 @@ ${checklistHtml}
                     </div>
                   </div>
 
-                  <div className="flex min-w-0 flex-col items-center justify-center gap-1 px-1 py-1 sm:min-w-[120px] sm:flex-row sm:justify-start sm:gap-3 sm:px-3">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-blue-600 sm:h-7 sm:w-7" aria-hidden="true">
+                  <div className="flex min-w-0 flex-col items-center justify-center px-1 py-1 sm:min-w-[120px] sm:flex-row sm:justify-start sm:px-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="mb-1 h-6 w-6 text-blue-600 sm:hidden" aria-hidden="true">
                       <circle cx="9" cy="8" r="3" />
                       <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
                       <circle cx="17" cy="9" r="2.5" />
                       <path d="M15.5 14.5A5.5 5.5 0 0 1 21 20" />
                     </svg>
-                    <div className="min-w-0 text-center whitespace-nowrap sm:text-left">
-                      <div className="text-xl font-bold leading-none text-slate-900 sm:text-2xl">{people}</div>
-                      <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500 sm:mt-1 sm:text-xs">
-                        {people === 1 ? "person" : "people"}
+                    <select
+                      aria-label="People"
+                      value={people}
+                      onChange={(e) => updateHouseholdPeople(Number(e.target.value))}
+                      className="mt-1 w-full min-w-0 rounded-lg border border-slate-200 bg-white px-1.5 py-2 text-center text-xs font-semibold text-slate-700 shadow-sm outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 sm:hidden"
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                        <option key={n} value={n}>
+                          {n} {n === 1 ? "Person" : "People"}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="hidden min-w-0 text-center whitespace-nowrap sm:flex sm:items-center sm:gap-3 sm:text-left">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-blue-600 sm:h-7 sm:w-7" aria-hidden="true">
+                        <circle cx="9" cy="8" r="3" />
+                        <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                        <circle cx="17" cy="9" r="2.5" />
+                        <path d="M15.5 14.5A5.5 5.5 0 0 1 21 20" />
+                      </svg>
+                      <div>
+                        <div className="text-xl font-bold leading-none text-slate-900 sm:text-2xl">{people}</div>
+                        <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500 sm:mt-1 sm:text-xs">
+                          {people === 1 ? "person" : "people"}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-end">
-                  <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-start">
+                <div className="flex w-full flex-row flex-wrap gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-end sm:gap-3">
+                  <div className="hidden w-full items-center justify-between gap-3 sm:flex sm:w-auto sm:justify-start">
                     <label className="whitespace-nowrap text-sm font-semibold text-slate-700">
                       Cooking for:
                     </label>
@@ -2946,7 +2966,7 @@ ${checklistHtml}
 
                   <button
                     onClick={downloadOfflineChecklist}
-                    className="w-full whitespace-nowrap rounded-xl border-2 border-emerald-600 bg-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700 active:scale-[0.99] sm:w-auto sm:py-2.5"
+                    className="min-w-0 flex-1 whitespace-nowrap rounded-xl border-2 border-emerald-600 bg-emerald-600 px-2 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5"
                     title="Download a shopping checklist that works without internet"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5 inline-block h-5 w-5 align-[-4px]" aria-hidden="true">
@@ -2954,12 +2974,13 @@ ${checklistHtml}
                       <path d="m7 10 5 5 5-5" />
                       <path d="M5 20h14" />
                     </svg>
-                    Download Offline Checklist
+                    <span className="sm:hidden">Download</span>
+                    <span className="hidden sm:inline">Download Offline Checklist</span>
                   </button>
 
                   <button
                     onClick={uncheckAll}
-                    className="w-full whitespace-nowrap rounded-xl border-2 border-orange-500 bg-white px-5 py-3 text-sm font-bold text-orange-600 shadow-sm transition hover:bg-orange-50 active:scale-[0.99] sm:w-auto sm:py-2.5"
+                    className="min-w-0 flex-1 whitespace-nowrap rounded-xl border-2 border-orange-500 bg-white px-2 py-3 text-sm font-bold text-orange-600 shadow-sm transition hover:bg-orange-50 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5 inline-block h-5 w-5 align-[-4px]" aria-hidden="true">
                       <path d="M4 7h16" />

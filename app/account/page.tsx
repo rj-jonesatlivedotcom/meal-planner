@@ -137,7 +137,7 @@ export default function AccountPage() {
   if (loading) {
     return (
       <main className="min-h-screen bg-slate-50 px-5 py-8 sm:py-9">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl">
           <div className="rounded-2xl bg-white p-6 shadow-sm">
             <p className="text-slate-600">Loading your account...</p>
           </div>
@@ -151,7 +151,7 @@ export default function AccountPage() {
       <div className="mx-auto max-w-7xl">
 
         {/* TWO-COLUMN ACCOUNT LAYOUT */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
+        <div className="grid grid-cols-1">
 
           {/* LEFT COLUMN — ACCOUNT */}
           <section>
@@ -188,6 +188,41 @@ export default function AccountPage() {
                   </button>
                 </div>
               </div>
+
+              {/* LOG OUT */}
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="group flex w-full items-center gap-4 border-t border-slate-200 px-5 py-4 text-left transition hover:bg-slate-50 sm:px-6"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#0B3B75]">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-6 w-6"
+                    aria-hidden="true"
+                  >
+                    <path d="M10 17l5-5-5-5" />
+                    <path d="M15 12H3" />
+                    <path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4" />
+                  </svg>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-base text-[#0B3B75] sm:text-lg">
+                    Log out
+                  </p>
+                  <p className="mt-0.5 text-sm leading-5 text-slate-600 sm:text-base">
+                    Sign out of your RenalPlan account.
+                  </p>
+                </div>
+                <span className="shrink-0 text-2xl font-light text-[#0B3B75] transition-transform group-hover:translate-x-1">
+                  ›
+                </span>
+              </button>
 
               {/* CHANGE PASSWORD */}
               <Link
@@ -313,133 +348,10 @@ export default function AccountPage() {
             )}
           </section>
 
-          {/* RIGHT COLUMN — MY RENALPLAN */}
-          <section>
-            <div className="mb-3">
-              <h1 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
-                My RenalPlan
-              </h1>
-
-              <p className="mt-1 text-base leading-6 text-slate-600 sm:text-lg">
-                Quick access to your personal RenalPlan features.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-
-              {/* MY DIET */}
-              <Link
-                href="/requirements"
-                className="group flex items-center gap-4 rounded-2xl border border-green-300 bg-green-50/60 px-5 py-4 transition hover:border-green-400 hover:bg-green-50 sm:px-6"
-              >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-green-100 text-green-700">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-8 w-8"
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="8" r="3.5" />
-                    <path d="M5 20c.8-3.4 3.3-5.2 7-5.2s6.2 1.8 7 5.2" />
-                  </svg>
-                </div>
-
-                <div className="min-w-0 flex-1">
-                  <h3 className="text-base text-green-700 sm:text-lg">
-                    My Diet
-                  </h3>
-
-                  <p className="mt-1 text-sm leading-5 text-slate-600 sm:text-base">
-                    Manage your dietary requirements and preferences.
-                  </p>
-                </div>
-
-                <span className="shrink-0 text-2xl font-light text-green-600 transition-transform group-hover:translate-x-1">
-                  ›
-                </span>
-              </Link>
-
-              {/* MY FAVOURITES */}
-              <Link
-                href="/recipes?view=favourites"
-                className="group flex items-center gap-4 rounded-2xl border border-orange-300 bg-orange-50/60 px-5 py-4 transition hover:border-orange-400 hover:bg-orange-50 sm:px-6"
-              >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-red-500">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-8 w-8"
-                    aria-hidden="true"
-                  >
-                    <path d="M20.8 8.8c0 5.5-8.8 10-8.8 10s-8.8-4.5-8.8-10A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.8 2.6z" />
-                  </svg>
-                </div>
-
-                <div className="min-w-0 flex-1">
-                  <h3 className="text-base text-orange-600 sm:text-lg">
-                    My Favourites
-                  </h3>
-
-                  <p className="mt-1 text-sm leading-5 text-slate-600 sm:text-base">
-                    Save and quickly access your favourite recipes.
-                  </p>
-                </div>
-
-                <span className="shrink-0 text-2xl font-light text-orange-600 transition-transform group-hover:translate-x-1">
-                  ›
-                </span>
-              </Link>
-
-            </div>
-          </section>
         </div>
 
-        {/* LOG OUT */}
-        <section className="mt-5 pb-5">
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-white px-5 py-4 text-left shadow-sm transition hover:border-blue-300 hover:bg-slate-50"
-          >
-            <div>
-              <p className="text-base text-[#0B3B75]">
-                Log out
-              </p>
-
-              <p className="mt-0.5 text-sm leading-5 text-slate-600">
-                Sign out of your RenalPlan account.
-              </p>
-            </div>
-
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#0B3B75]">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-                aria-hidden="true"
-              >
-                <path d="M10 17l5-5-5-5" />
-                <path d="M15 12H3" />
-                <path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4" />
-              </svg>
-            </span>
-          </button>
-        </section>
-
         {/* CONTACT */}
-        <div className="pt-2 pb-5 text-right">
+        <div className="pt-3 pb-5 text-left">
           <p className="text-sm text-slate-500">
             Do you have any questions or need help?{" "}
             <a

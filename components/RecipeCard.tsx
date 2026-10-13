@@ -916,6 +916,14 @@ export default function RecipeCard({
           "
         >
 
+          {/* Protein amount fills the available space on mobile, matching the nutrient cards. */}
+          <div className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 md:hidden dark:border-slate-700 dark:bg-slate-800">
+            <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200">Protein</div>
+            <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100">
+              {recipe.protein || "—"}
+            </div>
+          </div>
+
           {/* Add to Planner */}
           <button
             type="button"

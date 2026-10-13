@@ -177,16 +177,24 @@ const accountFeatures = [
     ),
   },
   {
-    title: "Favourites",
+    title: "MyChef",
     badge: "Free Account",
-    text: "Save your favourite recipes and access them whenever you want.",
-    href: "/promotional-material/favourites",
-    iconClass: "bg-rose-100 text-rose-500",
+    text: "Let MyChef choose meals for your week around your dietary requirements.",
+    href: "/planner",
+    iconClass: "bg-emerald-100 text-emerald-600",
     icon: (
       <svg viewBox="0 0 48 48" className="h-7 w-7" aria-hidden="true">
         <path
-          d="M24 39S8 29 8 17c0-5 3-9 8-9 4 0 7 3 8 6 1-3 4-6 8-6 5 0 8 4 8 9 0 12-16 22-16 22Z"
+          d="M12 25a8 8 0 0 1 1-15 10 10 0 0 1 18-1 8 8 0 0 1 5 15v5H12v-4Z"
           fill="currentColor"
+        />
+        <path
+          d="M12 29h24v5H12zM15 34v5h18v-5M19 17v5M25 14v8M31 17v5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     ),
@@ -230,15 +238,15 @@ const featureDetails: Record<
       "Make food choices with your dietary needs in mind.",
     ],
   },
-  Favourites: {
-    eyebrow: "SAVE TIME NEXT TIME",
-    heading: "Keep your go-to meals close.",
+  MyChef: {
+    eyebrow: "MAKE MEAL PLANNING EASIER",
+    heading: "Let MyChef choose your week.",
     description:
-      "Save recipes you love, so you can find them again without having to search through the full recipe collection.",
+      "MyChef helps you fill your weekly planner with meal ideas that take your dietary requirements into account.",
     bullets: [
-      "Save recipes you want to make again.",
-      "Build a personal collection of go-to meals.",
-      "Make future meal planning quicker and easier.",
+      "Choose meals for your weekly plan in moments.",
+      "Use your dietary requirements to guide meal choices.",
+      "Spend less time deciding what to cook.",
     ],
   },
 };
@@ -459,13 +467,13 @@ function LoggedInHome() {
         const parsed = JSON.parse(savedRequirements);
         const meaningful =
           parsed &&
-          (parsed.potassium !== "Any" ||
-            parsed.phosphate !== "Any" ||
-            parsed.purines !== "Any" ||
-            parsed.sodiumLimit !== null ||
-            parsed.carbohydrateMin !== null ||
-            parsed.carbohydrateMax !== null ||
-            parsed.fluidLimitMl !== null);
+          (["Low", "Moderate", "High"].includes(parsed.potassium) ||
+            ["Low", "Moderate", "High"].includes(parsed.phosphate) ||
+            ["Low", "Moderate", "High"].includes(parsed.purines) ||
+            parsed.sodiumLimit != null ||
+            parsed.carbohydrateMin != null ||
+            parsed.carbohydrateMax != null ||
+            parsed.fluidLimitMl != null);
         setRequirementsSet(Boolean(meaningful));
       } else {
         setRequirementsSet(false);
@@ -544,13 +552,13 @@ function LoggedInHome() {
 
       if (requirements) {
         const meaningful =
-          requirements.potassium !== "Any" ||
-          requirements.phosphate !== "Any" ||
-          requirements.purines !== "Any" ||
-          requirements.sodium_limit !== null ||
-          requirements.carbohydrate_min !== null ||
-          requirements.carbohydrate_max !== null ||
-          requirements.fluid_limit_ml !== null;
+          (requirements.potassium === "Low" || requirements.potassium === "Moderate" || requirements.potassium === "High") ||
+          (requirements.phosphate === "Low" || requirements.phosphate === "Moderate" || requirements.phosphate === "High") ||
+          (requirements.purines === "Low" || requirements.purines === "Moderate" || requirements.purines === "High") ||
+          requirements.sodium_limit != null ||
+          requirements.carbohydrate_min != null ||
+          requirements.carbohydrate_max != null ||
+          requirements.fluid_limit_ml != null;
         setRequirementsSet(Boolean(meaningful));
 
         try {
@@ -626,6 +634,45 @@ function LoggedInHome() {
 
   const plannedMeals = plannedSlots.filter((slot) => Boolean(slot.recipe)).length;
 
+  // The hero adapts to the user's current stage instead of always sending them to My Diet.
+  const nextAction = !requirementsSet
+    ? {
+        eyebrow: "YOUR FIRST STEP",
+        title: "Start with My Diet.",
+        description: "Set your dietary requirements first, so RenalPlan can tailor meal choices and nutrition information around your needs.",
+        href: "/requirements",
+        button: "Set up My Diet",
+      }
+    : plannedMeals === 0
+      ? {
+          eyebrow: "YOUR NEXT STEP",
+          title: "Let's plan your week.",
+          description: "Your dietary preferences are set. Choose your meals or let MyChef help fill your planner.",
+          href: "/planner",
+          button: "Start planning",
+        }
+      : plannedMeals < 21
+        ? {
+            eyebrow: "PICK UP WHERE YOU LEFT OFF",
+            title: "Build out your week.",
+            description: `${plannedMeals} of 21 meals are planned. Add a few more, or use MyChef for inspiration.`,
+            href: "/planner",
+            button: "Continue your plan",
+          }
+        : {
+            eyebrow: "YOUR WEEK IS PLANNED",
+            title: "Your RenalPlan is complete.",
+            description: "Your shopping list is ready. Check what you need for the week ahead, and head to the shops when you're ready.",
+            href: "/shopping",
+            button: "Open shopping list",
+          };
+
+  const currentJourneyStep = !requirementsSet
+    ? 1
+    : plannedMeals < 21
+      ? 2
+      : 4;
+
   const [todayName, setTodayName] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
 
@@ -648,12 +695,13 @@ function LoggedInHome() {
       if (!slot.recipe) return totals;
       totals.calories += parseValue(slot.recipe.nutrition?.calories);
       totals.protein += parseValue(slot.recipe.nutrition?.protein);
+      totals.carbohydrates += parseValue(slot.recipe.nutrition?.carbohydrates);
       totals.potassium += parseValue(slot.recipe.nutrition?.potassium);
       totals.phosphate += parseValue(slot.recipe.nutrition?.phosphate);
       totals.salt += parseValue(slot.recipe.nutrition?.salt);
       return totals;
     },
-    { calories: 0, protein: 0, potassium: 0, phosphate: 0, salt: 0 },
+    { calories: 0, protein: 0, carbohydrates: 0, potassium: 0, phosphate: 0, salt: 0 },
   );
 
   const hasViewingNutrition = viewingMealCount > 0;
@@ -708,8 +756,8 @@ function LoggedInHome() {
     // Keep broad recommendation filters.
   }
 
-  const recommendedRecipe =
-    recipes.find((recipe) => {
+  const recommendedRecipes =
+    recipes.filter((recipe) => {
       if (plannedIds.has(recipe.id) || favouriteIds.includes(recipe.id)) {
         return false;
       }
@@ -747,7 +795,10 @@ function LoggedInHome() {
       }
 
       return true;
-    }) ?? null;
+    }).filter((recipe) => !plannedIds.has(recipe.id) && !favouriteIds.includes(recipe.id)).slice(0, 2);
+
+  const recommendedRecipe = recommendedRecipes[0] ?? null;
+  const secondRecommendedRecipe = recommendedRecipes[1] ?? null;
 
   const journeySteps = [
     {
@@ -875,7 +926,7 @@ function LoggedInHome() {
   }
 
   return (
-    <main className="renal-homepage renal-dashboard min-h-screen bg-[#f7fbff] px-4 pb-10 text-slate-900 sm:px-8 lg:px-10">
+    <main className="renal-homepage renal-dashboard min-h-screen bg-white px-4 pb-10 text-slate-900 sm:px-8 lg:px-10">
       <style jsx global>{`
         @keyframes renalDashboardRise {
           from {
@@ -910,6 +961,28 @@ function LoggedInHome() {
 
         .renal-dashboard-reveal {
           animation: renalDashboardRise 0.55s ease-out both;
+        }
+
+        .renal-dashboard-ticker-track {
+          animation: renalDashboardTicker 48s linear infinite;
+        }
+
+        .renal-dashboard-ticker-track:hover {
+          animation-play-state: paused;
+        }
+
+        html[data-theme="dark"] .renal-dashboard .renal-dashboard-ticker-track {
+          color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .renal-dashboard [aria-label="RenalPlan updates and tip of the day"] {
+          background: #172b40;
+          border-color: #36506a;
+        }
+
+        @keyframes renalDashboardTicker {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
         }
 
         .renal-dashboard > div > section:nth-of-type(3) > div:nth-child(2) {
@@ -998,6 +1071,12 @@ function LoggedInHome() {
         }
         html[data-theme="dark"] .renal-dashboard .renal-dashboard-mychef p:first-child {
           color: #78e6a6 !important;
+        }
+        html[data-theme="dark"] .renal-dashboard .renal-dashboard-mychef .text-\[\#067b3a\] {
+          color: #78e6a6 !important;
+        }
+        html[data-theme="dark"] .renal-dashboard .renal-dashboard-mychef .text-\[\#12396b\] {
+          color: #f1f5f9 !important;
         }
         html[data-theme="dark"] .renal-dashboard .renal-dashboard-food-illustration {
           background: linear-gradient(135deg, #122b3d, #162b3a, #13232e) !important;
@@ -1107,7 +1186,8 @@ function LoggedInHome() {
           .renal-dashboard-reveal,
           .renal-dashboard-progress::after,
           .renal-dashboard-encourage,
-          .renal-dashboard-week-badge {
+          .renal-dashboard-week-badge,
+          .renal-dashboard-ticker-track {
             animation: none !important;
           }
         }
@@ -1119,109 +1199,252 @@ function LoggedInHome() {
           <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#d7f5e6]/70 blur-3xl" aria-hidden="true" />
           <div className="pointer-events-none absolute -bottom-28 left-1/3 h-56 w-56 rounded-full bg-[#dbeafe]/50 blur-3xl" aria-hidden="true" />
 
-          <div className="relative grid gap-6 px-5 py-6 sm:px-8 sm:py-7 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-9 lg:py-8">
-            <div>
+          <div className="relative grid gap-5 px-5 py-5 sm:px-8 sm:py-7 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.95fr)] lg:items-start lg:gap-6 lg:px-8 lg:py-7">
+            <div className="relative z-10">
               <div className="flex flex-wrap items-center gap-2">
 
         
                 <p className="text-xs font-extrabold tracking-[0.18em] text-[#067b3a]">WELCOME BACK</p>
-                {requirementsSet ? (
-                  <span className="renal-dashboard-diet-set rounded-full bg-green-100 px-2.5 py-1 text-[11px] font-extrabold text-[#067b3a]">MY DIET SET</span>
-                ) : (
-                  <span className="rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-extrabold text-amber-700">ONE SMALL STEP TO START</span>
-                )}
+                <span className={`rounded-full px-2.5 py-1 text-[11px] font-extrabold ${
+                  !requirementsSet
+                    ? "bg-amber-100 text-amber-700"
+                    : plannedMeals === 21
+                      ? "renal-dashboard-diet-set bg-green-100 text-[#067b3a]"
+                      : plannedMeals > 0
+                        ? "bg-blue-100 text-blue-700"
+                        : "renal-dashboard-diet-set bg-green-100 text-[#067b3a]"
+                }`}>
+                  {!requirementsSet
+                    ? "MY DIET TO SET"
+                    : plannedMeals === 21
+                      ? "WEEK PLANNED"
+                      : plannedMeals > 0
+                        ? "WEEK IN PROGRESS"
+                        : "MY DIET SET"}
+                </span>
               </div>
 
-              <h1 className="renal-dashboard-heading mt-3 max-w-[700px] text-4xl font-extrabold leading-[1.02] tracking-[-0.035em] text-[#12396b] sm:text-5xl lg:text-[3.35rem]">
-                Your <span className="text-[#1266c3]">Renal</span><span className="text-[#067b3a]">Plan</span> is ready.
+              <h1 className="renal-dashboard-heading mt-3 max-w-[850px] text-3xl font-extrabold leading-[1.06] tracking-[-0.035em] text-[#12396b] sm:text-5xl lg:text-[3.1rem]">
+                {nextAction.title}
               </h1>
 
               <p className="renal-dashboard-muted mt-3 max-w-[670px] text-base leading-relaxed text-[#355270] sm:text-lg">
-                {plannedMeals > 0
-                  ? `${plannedMeals} of 21 meals are planned this week. You've already done some of the hard work.`
-                  : requirementsSet
-                    ? "Your diet is set. Start building a week of meals that works for you."
-                    : "Start with My Diet and we&apos;ll help shape the recipes and nutrition information around your choices."}
+                <span className="sm:hidden">Your shopping list is ready!</span>
+                <span className="hidden sm:inline">{nextAction.description}</span>
               </p>
 
               <Link
-                href="/requirements"
-                className="renal-dashboard-mychef group mt-5 block max-w-[720px] rounded-2xl border border-emerald-100 bg-white/70 px-4 py-3.5 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#067b3a] focus-visible:ring-offset-2 sm:px-5"
+                href={nextAction.href}
+                className="renal-dashboard-mychef group mt-4 block max-w-[720px] rounded-2xl border border-emerald-100 bg-white/70 px-4 py-3 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#067b3a] focus-visible:ring-offset-2 sm:mt-5 sm:px-5 sm:py-3.5"
               >
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 shadow-sm transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-emerald-700 shadow-sm transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
                     <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="16" cy="9" r="4" fill="currentColor" opacity="0.18" />
-                      <circle cx="16" cy="9" r="4" />
-                      <path d="M7 27c0-5.4 3.7-9 9-9s9 3.6 9 9" />
-                      <path d="M4 15h5M23 15h5" opacity="0.65" />
+                      <path d="M7 16h18M17 8l8 8-8 8" />
                     </svg>
                   </span>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                      <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#067b3a]">START HERE</p>
-                      <span className="text-sm font-extrabold text-[#067b3a] transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">→</span>
-                    </div>
-                    <p className="renal-dashboard-heading mt-1 text-sm font-extrabold text-[#12396b] sm:text-base">Start with My Diet.</p>
-                    <p className="renal-dashboard-muted mt-1 text-sm leading-relaxed text-[#355270]">Set your dietary requirements first, so RenalPlan can help you choose meals and understand your nutrition.</p>
-                  </div>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#067b3a]">{nextAction.eyebrow}</span>
+                    <span className="renal-dashboard-heading mt-0.5 block text-sm font-extrabold text-[#12396b] sm:text-base">{nextAction.button}</span>
+                  </span>
+                  <span className="shrink-0 rounded-xl bg-[#067b3a] px-3 py-2 text-xs font-extrabold text-white sm:px-4 sm:py-2.5 sm:text-sm">Continue →</span>
                 </div>
               </Link>
             </div>
 
-            <div className="renal-dashboard-card rounded-3xl border border-white/90 bg-white/78 p-5 shadow-md backdrop-blur sm:p-6">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#1266c3]">YOUR WEEK AT A GLANCE</p>
-                  <p className="mt-1 text-sm font-semibold text-[#355270]">A little progress is still progress.</p>
+            <div className="relative flex min-w-0 flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5 lg:min-h-[304px]">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#067b3a]">YOUR RENALPLAN</p>
+                  <h2 className="renal-dashboard-heading mt-1 text-lg font-extrabold tracking-tight text-[#12396b] sm:text-xl">Dashboard</h2>
                 </div>
-                <div className="renal-dashboard-week-badge flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#f0faf5] text-center ring-1 ring-green-100">
-                  <div>
-                    <p className="text-lg font-extrabold leading-none text-[#067b3a]">{plannedMeals}</p>
-                    <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-[#4a657f]">of 21</p>
-                  </div>
-                </div>
+                <Link href={nextAction.href} className="renal-dashboard-link shrink-0 rounded-lg border border-blue-200 px-2.5 py-2 text-xs font-bold text-[#1266c3] transition hover:bg-slate-50">{nextAction.button} →</Link>
               </div>
 
-              <div className="renal-dashboard-progress mt-5 h-3 rounded-full bg-slate-200">
-                <div className="h-full rounded-full bg-gradient-to-r from-[#067b3a] via-[#1ba866] to-[#1266c3] transition-all duration-700" style={{ width: `${Math.round((plannedMeals / 21) * 100)}%` }} />
-              </div>
-
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                <div className="rounded-2xl bg-green-50 px-3 py-3 text-center">
+              <div className="mt-3 grid grid-cols-3 gap-2">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 px-2 py-2 text-center">
                   <p className="text-lg font-extrabold text-[#067b3a]">{plannedMeals}</p>
-                  <p className="mt-0.5 text-[11px] font-bold text-slate-500">Meals planned</p>
+                  <p className="text-[10px] font-bold text-slate-500">Meals planned</p>
                 </div>
-                <div className="rounded-2xl bg-rose-50 px-3 py-3 text-center">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 px-2 py-2 text-center">
                   <p className="text-lg font-extrabold text-rose-500">{favouriteIds.length}</p>
-                  <p className="mt-0.5 text-[11px] font-bold text-slate-500">Favourites</p>
+                  <p className="text-[10px] font-bold text-slate-500">Favourites</p>
                 </div>
-                <div className="rounded-2xl bg-violet-50 px-3 py-3 text-center">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 px-2 py-2 text-center">
                   <p className="text-lg font-extrabold text-violet-700">{shoppingCount}</p>
-                  <p className="mt-0.5 text-[11px] font-bold text-slate-500">Shop items</p>
+                  <p className="text-[10px] font-bold text-slate-500">Shop items</p>
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-blue-100 bg-blue-50/60 px-4 py-3">
-                <div>
-                  <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#1266c3]">TODAY · {todayName || "Your day"}</p>
-                  <p className="mt-1 text-sm font-bold text-[#12396b]">{todayMealCount}/3 meals planned</p>
+              <div className="renal-dashboard-progress mt-3 h-2.5 rounded-full bg-slate-200">
+                <div className="h-full rounded-full bg-[#067b3a] transition-all duration-700" style={{ width: `${Math.round((plannedMeals / 21) * 100)}%` }} />
+              </div>
+
+              <div className="mt-3 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 py-2.5" aria-label="RenalPlan updates and tip of the day">
+            <div className="flex items-center gap-3 px-3">
+              <span className="shrink-0 rounded-md bg-[#067b3a] px-2 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white">Tip of the day</span>
+              <div className="min-w-0 flex-1 overflow-hidden">
+                <div className="renal-dashboard-ticker-track flex w-max items-center gap-10 whitespace-nowrap text-xs font-semibold text-[#244563] sm:text-sm">
+                  <span>{plannedMeals === 21 ? "Your week is fully planned — your shopping list is ready." : plannedMeals > 0 ? `You're ${plannedMeals} of 21 meals into your weekly plan. Keep going!` : "Start planning your week, or let MyChef choose meals for you."}</span>
+                  <span>{shoppingCount > 0 ? `Your shopping list currently has ${shoppingCount} items.` : "Your shopping list builds automatically as you plan meals."}</span>
+                  <span>{favouriteIds.length > 0 ? `You have ${favouriteIds.length} saved favourite${favouriteIds.length === 1 ? "" : "s"} ready to revisit.` : "Save favourite recipes to make planning quicker next week."}</span>
+                  <span>Tip: review your weekly nutrition summary to see how your planned meals add up.</span>
+                  <span aria-hidden="true">{plannedMeals === 21 ? "Your week is fully planned — your shopping list is ready." : plannedMeals > 0 ? `You're ${plannedMeals} of 21 meals into your weekly plan. Keep going!` : "Start planning your week, or let MyChef choose meals for you."}</span>
+                  <span aria-hidden="true">{shoppingCount > 0 ? `Your shopping list currently has ${shoppingCount} items.` : "Your shopping list builds automatically as you plan meals."}</span>
+                  <span aria-hidden="true">{favouriteIds.length > 0 ? `You have ${favouriteIds.length} saved favourite${favouriteIds.length === 1 ? "" : "s"} ready to revisit.` : "Save favourite recipes to make planning quicker next week."}</span>
+                  <span aria-hidden="true">Tip: review your weekly nutrition summary to see how your planned meals add up.</span>
                 </div>
-                {todayMealCount === 3 ? (
-                  <span className="renal-dashboard-day-complete rounded-full bg-green-100 px-2.5 py-1 text-[11px] font-extrabold text-[#067b3a]">DAY COMPLETE ✓</span>
-                ) : (
-                  <span className="text-xs font-extrabold text-[#1266c3]">Keep going →</span>
-                )}
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </section>
+
+        {/* JOURNEY */}
+        {journeyOpen ? (
+          <section className="renal-dashboard-surface renal-dashboard-reveal mt-5 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+            <div className="flex items-center justify-between gap-4">
+              <div className="min-w-0">
+                <h2 className="renal-dashboard-heading whitespace-nowrap text-lg font-extrabold tracking-tight text-[#12396b] sm:text-3xl">
+                  Your <span className="text-[#1266c3]">Renal</span><span className="text-[#067b3a]">Plan</span> journey
+                </h2>
+                <p className="renal-dashboard-muted mt-1 text-sm text-slate-600 sm:text-base">
+                  Follow these simple steps from your diet to the supermarket.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={toggleJourney}
+                aria-expanded={true}
+                aria-controls="renalplan-journey"
+                className="hidden shrink-0 rounded-xl border border-slate-200 px-3 py-2 text-sm font-bold text-[#12396b] transition hover:bg-slate-50 sm:inline-flex"
+              >
+                Hide journey
+              </button>
+            </div>
+
+            <div id="renalplan-journey" className="mt-4 grid items-stretch gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-3 xl:grid-cols-5">
+              {journeySteps.map((step, index) => {
+                const styles = colourClasses[step.colour];
+                const isCurrentStep = index + 1 === currentJourneyStep;
+                const isCompleted = index === 0 ? requirementsSet : index === 1 ? plannedMeals === 21 : index === 3 ? shoppingCount > 0 : false;
+                return (
+                  <div key={step.number} className={`renal-dashboard-journey-card relative flex h-full flex-col overflow-hidden rounded-2xl border p-2.5 sm:p-4 ${styles.card} ${isCurrentStep ? "ring-2 ring-[#1266c3] ring-offset-1" : ""}`}>
+                    <div className="relative z-10 flex items-center justify-between gap-2 sm:gap-3">
+                      <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+                        <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-extrabold text-white sm:h-9 sm:w-9 sm:text-sm ${styles.number}`}>
+                          {step.number}
+                        </span>
+                        <h3 className="min-w-0 text-xs font-extrabold leading-tight text-[#12396b] sm:text-lg">{step.title}</h3>
+                      </div>
+                      <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10 ${styles.icon} [&>svg]:h-4 [&>svg]:w-4 sm:[&>svg]:h-6 sm:[&>svg]:w-6`}>
+                        <JourneyIcon index={index} />
+                      </span>
+                    </div>
+                    <p className="renal-dashboard-muted relative z-10 mt-1 hidden flex-1 text-xs leading-relaxed text-slate-600 sm:block sm:text-sm">{step.description}</p>
+                    <Link
+                      href={step.href}
+                      className={`renal-dashboard-journey-button relative z-10 mt-2 inline-flex min-h-8 w-full items-center justify-center rounded-lg border bg-white/70 px-1.5 py-1.5 text-[11px] font-bold leading-tight transition sm:mt-4 sm:min-h-10 sm:rounded-xl sm:px-3 sm:py-2 sm:text-sm ${styles.button}`}
+                    >
+                      {step.status} →
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-3 flex justify-center sm:hidden">
+              <button
+                type="button"
+                onClick={toggleJourney}
+                aria-expanded={true}
+                aria-controls="renalplan-journey"
+                className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-bold text-[#12396b] transition hover:bg-slate-50"
+              >
+                Hide journey ↑
+              </button>
+            </div>
+          </section>
+        ) : (
+          <button
+            type="button"
+            onClick={toggleJourney}
+            aria-expanded={false}
+            aria-controls="renalplan-journey"
+            className="renal-dashboard-surface mt-5 flex min-h-14 w-full items-center justify-between rounded-2xl border border-blue-100 bg-white px-5 py-3 text-left shadow-sm transition hover:border-slate-300 hover:bg-slate-50"
+          >
+            <span className="font-bold text-[#12396b]">
+              Your <span className="text-[#1266c3]">Renal</span><span className="text-[#067b3a]">Plan</span> journey
+            </span>
+            <span className="shrink-0 text-sm font-bold text-[#1266c3]">Show journey →</span>
+          </button>
+        )}
+
+        {/* SELECTED DAY + NUTRITION — compact content below the green Week at a Glance divider */}
+        <section className="renal-dashboard-surface renal-dashboard-card renal-dashboard-reveal mt-4 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div>
+              <h2 className="renal-dashboard-heading text-xl font-extrabold tracking-tight text-[#12396b]">Your week at a glance</h2>
+            </div>
+            <Link href="/planner" className="renal-dashboard-link shrink-0 rounded-lg border border-blue-200 px-2.5 py-2 text-xs font-bold text-[#1266c3] transition hover:bg-slate-50">View planner →</Link>
+          </div>
+          <div className="mt-2 grid grid-cols-7 gap-1" aria-label="Choose a day to view">
+                {days.map((day) => {
+                  const count = mealTypes.filter((meal) => Boolean(findRecipe(planner?.[day]?.[meal]))).length;
+                  const selected = day === viewingDay;
+                  const isToday = day === todayName;
+                  return (
+                    <button key={day} type="button" onClick={() => setSelectedDay(day)} aria-pressed={selected} aria-label={`${day}: ${count} of 3 meals planned${isToday ? ", today" : ""}`} className={`min-w-0 rounded-xl border px-1.5 py-2 text-center outline-none transition duration-200 hover:-translate-y-0.5 hover:shadow-sm focus-visible:ring-2 focus-visible:ring-[#1266c3] focus-visible:ring-offset-2 sm:px-2 sm:py-2.5 ${selected ? "border-[#12396b] bg-[#12396b] shadow-md ring-2 ring-blue-200" : "border-slate-200 bg-white hover:border-slate-400 hover:bg-slate-50"}`}>
+                      <span className={`block text-[9px] font-extrabold uppercase tracking-wide sm:text-[11px] ${selected ? "text-white" : "text-slate-600"}`}>{day.slice(0, 3)}</span>
+                      <span className={`mx-auto mt-1 flex h-7 items-center justify-center rounded-lg px-1 text-[10px] font-extrabold transition duration-200 sm:h-8 sm:text-xs ${selected ? "bg-white/15 text-white" : "bg-slate-100 text-slate-600"}`}>{count}/3</span>
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="mt-3 border-t-2 border-[#067b3a]" />
+          <div className="pt-1">
+            <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+              <div className="min-w-0">
+                <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
+                  <div><p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#067b3a]">VIEWING · {viewingDay || "Your day"}</p><p className="mt-1 text-sm font-semibold text-[#12396b]">{viewingMealCount}/3 meals planned</p></div>
+                  <Link href="/planner" className="shrink-0 rounded-lg bg-[#067b3a] px-3 py-2 text-xs font-extrabold text-white transition hover:bg-[#056b32]">Open planner →</Link>
+                </div>
+                <div className="mt-2 space-y-2">
+                  {viewingSlots.filter((slot) => slot.recipe).length > 0 ? (
+                    viewingSlots.filter((slot) => slot.recipe).map((slot) => (
+                      <Link key={`${slot.day}-${slot.meal}`} href="/planner" className="renal-dashboard-soft flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 transition hover:border-slate-300 hover:bg-slate-50/30"><div className="min-w-0"><p className="text-[10px] font-extrabold uppercase tracking-wide text-[#1266c3]">{slot.meal}</p><p className="truncate text-sm font-semibold text-slate-800 dark:text-slate-100">{slot.recipe?.name}</p></div><DashboardArrow /></Link>
+                    ))
+                  ) : plannedMeals > 0 ? (
+                    <div className="renal-dashboard-soft rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3"><p className="text-sm font-bold text-[#12396b]">Nothing planned for {viewingDay || "this day"} yet.</p><p className="renal-dashboard-muted mt-1 text-xs text-slate-600">Open your planner to add a meal.</p></div>
+                  ) : (
+                    <div className="renal-dashboard-soft rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3"><p className="text-sm font-bold text-[#12396b]">Your week is waiting.</p><p className="renal-dashboard-muted mt-1 text-xs text-slate-600">Start adding meals to see your plan here.</p></div>
+                  )}
+                </div>
+              </div>
+
+              <div className="min-w-0 pt-2 sm:pt-3">
+                <div className="mb-3 h-1 w-full rounded-full bg-[#067b3a] sm:hidden" aria-hidden="true" />
+                <div className="flex items-start justify-between gap-3"><div><h3 className="renal-dashboard-heading text-lg font-extrabold tracking-tight text-[#12396b]">Nutrition for {viewingDay || "today"}{hasViewingNutrition ? ` · ${viewingNutrition.calories} kcal` : ""}</h3><p className="renal-dashboard-muted mt-1 text-xs text-slate-600">Totals from meals planned for this day.</p></div><Link href="/nutrition" className="renal-dashboard-link shrink-0 text-xs font-bold text-[#1266c3]">View details →</Link></div>
+                {hasViewingNutrition ? (
+                  <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Energy</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.calories} kcal</p></div>
+                    <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Protein</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.protein.toFixed(1).replace(/\.0$/, "")} g</p></div>
+                    <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Carbohydrates</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.carbohydrates.toFixed(1).replace(/\.0$/, "")} g</p></div>
+                    <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Potassium</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.potassium} mg</p></div>
+                    <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Phosphate</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.phosphate} mg</p></div>
+                    <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Salt</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.salt.toFixed(2).replace(/\.00$/, "")} g</p></div>
+                  </div>
+                ) : <div className="renal-dashboard-soft mt-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-4"><p className="text-sm font-bold text-[#12396b]">Plan a meal for {viewingDay || "this day"} first.</p><p className="renal-dashboard-muted mt-1 text-xs text-slate-600">Your totals will appear here.</p></div>}
               </div>
             </div>
           </div>
         </section>
 
         {/* MYCHEF — placed below the welcome panel so My Diet is the first action */}
-        <section className="renal-dashboard-surface renal-dashboard-reveal mt-4 rounded-3xl border border-emerald-100 bg-white p-4 shadow-sm sm:p-5">
+        <section className="renal-dashboard-surface renal-dashboard-reveal mt-4 hidden rounded-3xl border border-emerald-100 bg-white p-4 shadow-sm sm:block sm:p-5">
           <Link
             href="/planner"
-            className="renal-dashboard-mychef group flex items-start gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/40 px-4 py-4 transition duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50/70 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#067b3a] focus-visible:ring-offset-2 sm:items-center sm:px-5"
+            className="renal-dashboard-mychef group flex items-start gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-4 transition duration-300 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-slate-50 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#067b3a] focus-visible:ring-offset-2 sm:items-center sm:px-5"
           >
             <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 shadow-sm transition-transform duration-300 group-hover:scale-105 sm:mt-0" aria-hidden="true">
               <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -1237,257 +1460,27 @@ function LoggedInHome() {
                 <span className="text-sm font-extrabold text-[#067b3a] transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">→</span>
               </span>
               <span className="renal-dashboard-heading mt-1 block text-base font-extrabold text-[#12396b] sm:text-lg">Let MyChef curate your week.</span>
-              <span className="renal-dashboard-muted mt-1 block text-sm leading-relaxed text-[#355270]">Once your dietary requirements are set, MyChef can choose meals that fit them and help you build a complete week.</span>
+              <span className="renal-dashboard-muted mt-1 hidden text-sm leading-relaxed text-[#355270] sm:block">Once your dietary requirements are set, MyChef can choose meals that fit them and help you build a complete week.</span>
             </span>
             <span className="hidden shrink-0 self-center rounded-xl bg-[#067b3a] px-4 py-2.5 text-sm font-extrabold text-white sm:inline-flex">Open MyChef →</span>
           </Link>
         </section>
 
-        {/* JOURNEY */}
-        {journeyOpen ? (
-          <section className="renal-dashboard-surface renal-dashboard-reveal mt-5 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-            <div className="flex items-center justify-between gap-4">
-              <div className="min-w-0">
-                <h2 className="renal-dashboard-heading text-2xl font-extrabold tracking-tight text-[#12396b] sm:text-3xl">
-                  Your <span className="text-[#1266c3]">Renal</span><span className="text-[#067b3a]">Plan</span> journey
-                </h2>
-                <p className="renal-dashboard-muted mt-1 text-sm text-slate-600 sm:text-base">
-                  Follow these simple steps from your diet to the supermarket.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={toggleJourney}
-                aria-expanded={true}
-                aria-controls="renalplan-journey"
-                className="shrink-0 rounded-xl border border-slate-200 px-3 py-2 text-sm font-bold text-[#12396b] transition hover:bg-slate-50"
-              >
-                Hide journey
-              </button>
-            </div>
-
-            <div id="renalplan-journey" className="mt-5 grid items-stretch gap-3 sm:grid-cols-2 xl:grid-cols-5">
-              {journeySteps.map((step, index) => {
-                const styles = colourClasses[step.colour];
-                return (
-                  <div key={step.number} className={`renal-dashboard-journey-card flex h-full flex-col rounded-2xl border p-4 ${styles.card}`}>
-                    <div className="flex items-center justify-between gap-3">
-                      <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-extrabold text-white ${styles.number}`}>
-                        {step.number}
-                      </span>
-                      <span className={`flex h-10 w-10 items-center justify-center rounded-full ${styles.icon}`}>
-                        <JourneyIcon index={index} />
-                      </span>
-                    </div>
-                    <h3 className="mt-4 text-lg font-extrabold leading-tight text-[#12396b]">{step.title}</h3>
-                    <p className="renal-dashboard-muted mt-1 flex-1 text-sm leading-relaxed text-slate-600">{step.description}</p>
-                    <Link
-                      href={step.href}
-                      className={`renal-dashboard-journey-button mt-4 inline-flex min-h-10 w-full items-center justify-center rounded-xl border bg-white/70 px-3 py-2 text-sm font-bold transition ${styles.button}`}
-                    >
-                      {step.status} →
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-        ) : (
-          <button
-            type="button"
-            onClick={toggleJourney}
-            aria-expanded={false}
-            aria-controls="renalplan-journey"
-            className="renal-dashboard-surface mt-5 flex min-h-14 w-full items-center justify-between rounded-2xl border border-blue-100 bg-white px-5 py-3 text-left shadow-sm transition hover:border-blue-200 hover:bg-blue-50/40"
-          >
-            <span className="font-bold text-[#12396b]">
-              Your <span className="text-[#1266c3]">Renal</span><span className="text-[#067b3a]">Plan</span> journey
-            </span>
-            <span className="shrink-0 text-sm font-bold text-[#1266c3]">Show journey →</span>
-          </button>
-        )}
-
-        {/* WEEK / NUTRITION / FOOD CHECK */}
-        <section className="mt-4 grid items-stretch gap-4 xl:grid-cols-[1.25fr_0.9fr_0.9fr]">
-          <div className="renal-dashboard-surface renal-dashboard-card renal-dashboard-reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-5 h-full flex flex-col">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="renal-dashboard-heading text-2xl font-extrabold tracking-tight text-[#12396b]">This week&apos;s plan</h2>
-                <p className="renal-dashboard-muted mt-1 text-sm text-slate-600">
-                  <strong className="text-[#067b3a]">{plannedMeals}</strong> of 21 meals planned
-                </p>
-              </div>
-              <Link href="/planner" className="renal-dashboard-link rounded-xl border border-blue-200 px-3 py-2 text-sm font-bold text-[#1266c3] transition hover:-translate-y-0.5 hover:shadow-sm">View planner →</Link>
-            </div>
-
-            <div className="renal-dashboard-progress mt-4 h-3 rounded-full bg-slate-200">
-              <div className="h-full rounded-full bg-[#067b3a] transition-all duration-700" style={{ width: `${Math.round((plannedMeals / 21) * 100)}%` }} />
-            </div>
-
-            <div className="mt-4 grid grid-cols-7 gap-1.5" aria-label="Choose a day to view">
-              {days.map((day) => {
-                const count = mealTypes.filter((meal) => Boolean(findRecipe(planner?.[day]?.[meal]))).length;
-                const selected = day === viewingDay;
-                const isToday = day === todayName;
-                return (
-                  <button
-                    key={day}
-                    type="button"
-                    onClick={() => setSelectedDay(day)}
-                    aria-pressed={selected}
-                    aria-label={`${day}: ${count} of 3 meals planned${isToday ? ", today" : ""}`}
-                    className="text-center outline-none"
-                  >
-                    <span className={`renal-dashboard-muted text-[10px] font-bold uppercase tracking-wide sm:text-xs ${selected ? "text-[#1266c3]" : "text-slate-500"}`}>{day.slice(0, 3)}</span>
-                    <span className={`mx-auto mt-1 flex h-9 w-9 items-center justify-center rounded-xl text-xs font-extrabold transition duration-200 hover:-translate-y-0.5 hover:shadow-sm focus-visible:ring-2 focus-visible:ring-[#1266c3] focus-visible:ring-offset-2 ${selected ? "bg-[#12396b] text-white ring-2 ring-[#93c5fd]/60" : count === 3 ? "bg-green-100 text-green-700" : count > 0 ? "bg-blue-50 text-blue-700" : "bg-slate-100 text-slate-400"}`}>
-                      {count}/3
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="renal-dashboard-encourage mt-5 rounded-2xl border border-green-100 bg-green-50/70 p-4">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#067b3a]">VIEWING · {viewingDay || "Your day"}</p>
-                  <p className="mt-1 text-sm font-semibold text-[#12396b]">{viewingMealCount}/3 meals planned</p>
-                </div>
-                <Link href="/planner" className="shrink-0 rounded-xl bg-[#067b3a] px-3 py-2 text-xs font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#056b32]">Open planner →</Link>
-              </div>
-            </div>
-
-            <div className="mt-3 space-y-2">
-              {viewingSlots.filter((slot) => slot.recipe).length > 0 ? (
-                viewingSlots.filter((slot) => slot.recipe).map((slot) => (
-                  <Link key={`${slot.day}-${slot.meal}`} href="/planner" className="renal-dashboard-soft flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 transition hover:border-blue-200 hover:bg-blue-50/30">
-                    <div className="min-w-0">
-                      <p className="text-xs font-extrabold uppercase tracking-wide text-[#1266c3]">{slot.meal}</p>
-                      <p className="truncate text-sm font-semibold text-slate-800 dark:text-slate-100">{slot.recipe?.name}</p>
-                    </div>
-                    <DashboardArrow />
-                  </Link>
-                ))
-              ) : plannedMeals > 0 ? (
-                <div className="renal-dashboard-soft rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-center">
-                  <p className="font-bold text-[#12396b]">Nothing planned for {viewingDay || "this day"} yet.</p>
-                  <p className="renal-dashboard-muted mt-1 text-sm text-slate-600">Open your planner to add a meal.</p>
-                </div>
-              ) : (
-                <div className="renal-dashboard-soft rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-center">
-                  <p className="font-bold text-[#12396b]">Your week is waiting.</p>
-                  <p className="renal-dashboard-muted mt-1 text-sm text-slate-600">Start adding meals to see your plan here.</p>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="renal-dashboard-surface renal-dashboard-card renal-dashboard-reveal h-full rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-5">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="renal-dashboard-heading text-2xl font-extrabold tracking-tight text-[#12396b]">Nutrition for {viewingDay || "today"}</h2>
-                <p className="renal-dashboard-muted mt-1 text-sm leading-relaxed text-slate-600">Total from all meals planned for {viewingDay || "this day"}.</p>
-              </div>
-              <Link href="/nutrition" className="renal-dashboard-link shrink-0 text-sm font-bold text-[#1266c3]">View details →</Link>
-            </div>
-
-            {hasViewingNutrition ? (
-              <div className="mt-5 grid grid-cols-2 gap-2.5">
-                <div className="renal-dashboard-soft rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                  <p className="text-xs font-bold text-slate-500">Energy</p>
-                  <p className="mt-1 text-lg font-extrabold text-[#12396b]">{viewingNutrition.calories} kcal</p>
-                </div>
-                <div className="renal-dashboard-soft rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                  <p className="text-xs font-bold text-slate-500">Protein</p>
-                  <p className="mt-1 text-lg font-extrabold text-[#12396b]">{viewingNutrition.protein.toFixed(1).replace(/\.0$/, "")} g</p>
-                </div>
-                <div className="renal-dashboard-soft rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                  <p className="text-xs font-bold text-slate-500">Potassium</p>
-                  <p className="mt-1 text-lg font-extrabold text-[#12396b]">{viewingNutrition.potassium} mg</p>
-                </div>
-                <div className="renal-dashboard-soft rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                  <p className="text-xs font-bold text-slate-500">Phosphate</p>
-                  <p className="mt-1 text-lg font-extrabold text-[#12396b]">{viewingNutrition.phosphate} mg</p>
-                </div>
-                <div className="renal-dashboard-soft col-span-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                  <p className="text-xs font-bold text-slate-500">Salt</p>
-                  <p className="mt-1 text-lg font-extrabold text-[#12396b]">{viewingNutrition.salt.toFixed(2).replace(/\.00$/, "")} g</p>
-                </div>
-              </div>
-            ) : (
-              <div className="renal-dashboard-soft mt-5 rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-8 text-center">
-                <p className="font-bold text-[#12396b]">Plan a meal for {viewingDay || "this day"} first.</p>
-                <p className="renal-dashboard-muted mt-1 text-sm text-slate-600">Your totals will appear here.</p>
-              </div>
-            )}
-          </div>
-
-          <div className="renal-dashboard-surface renal-dashboard-reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 h-full flex flex-col">
-            <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#1266c3]">FOOD CHECK</p>
-            <h2 className="renal-dashboard-heading mt-2 text-2xl font-extrabold tracking-tight text-[#12396b]">Checking something in the supermarket?</h2>
-            <p className="renal-dashboard-muted mt-2 text-sm leading-relaxed text-slate-600">Use Food Check to look up a food while you shop.</p>
-
-            <div className="renal-dashboard-food-illustration mt-4 overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-slate-50 px-4 py-3">
-              <div className="flex items-center justify-center">
-                <svg viewBox="0 0 420 155" className="h-[125px] w-full" role="img" aria-label="Illustration of a smartphone scanning a food barcode">
-                  <defs>
-                    <linearGradient id="rpPhone" x1="0" x2="1">
-                      <stop offset="0%" stopColor="#12396b" />
-                      <stop offset="100%" stopColor="#1266c3" />
-                    </linearGradient>
-                    <linearGradient id="rpScan" x1="0" x2="1">
-                      <stop offset="0%" stopColor="#067b3a" stopOpacity="0" />
-                      <stop offset="50%" stopColor="#21c77a" stopOpacity="0.95" />
-                      <stop offset="100%" stopColor="#067b3a" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <rect x="70" y="10" width="94" height="135" rx="18" fill="url(#rpPhone)" opacity="0.12"/>
-                  <rect x="74" y="8" width="94" height="135" rx="18" fill="white" stroke="#9fc8ed" strokeWidth="3"/>
-                  <rect x="84" y="24" width="74" height="95" rx="10" fill="#f1f7ff"/>
-                  <circle cx="121" cy="17" r="2.3" fill="#9fc8ed"/>
-                  <rect x="93" y="35" width="56" height="18" rx="6" fill="#dcecff"/>
-                  <path d="M98 44h46" stroke="#1266c3" strokeWidth="3" strokeLinecap="round" opacity="0.8"/>
-                  <rect x="94" y="63" width="54" height="34" rx="6" fill="white" stroke="#c9deef" strokeWidth="2"/>
-                  <path d="M101 74v12M105 71v18M110 75v9M114 70v20M119 74v12M124 71v18M129 76v8M134 69v21M140 74v12" stroke="#12396b" strokeWidth="2.5" strokeLinecap="round"/>
-                  <path d="M94 100h54" stroke="#b8d7f1" strokeWidth="3" strokeLinecap="round"/>
-                  <g transform="translate(208 30)">
-                    <path d="M22 12h98l14 18v64H8V30L22 12Z" fill="#fffdf7" stroke="#d8cda9" strokeWidth="3" strokeLinejoin="round"/>
-                    <path d="M8 30h126" stroke="#d8cda9" strokeWidth="3"/>
-                    <rect x="40" y="42" width="60" height="16" rx="8" fill="#dff5e8"/>
-                    <path d="M51 50h38" stroke="#067b3a" strokeWidth="3" strokeLinecap="round"/>
-                    <rect x="37" y="68" width="62" height="25" rx="4" fill="#f8fbff" stroke="#c9deef" strokeWidth="2"/>
-                    <path d="M44 75v11M48 73v15M53 76v9M57 72v17M62 75v11M67 73v15M73 76v9M78 72v17M83 74v13M88 76v9" stroke="#12396b" strokeWidth="2.3" strokeLinecap="round"/>
-                  </g>
-                  <path d="M166 76C190 76 201 76 222 76" stroke="#21c77a" strokeWidth="7" strokeLinecap="round" opacity="0.18"/>
-                  <path d="M166 76C190 76 201 76 222 76" stroke="url(#rpScan)" strokeWidth="3.5" strokeLinecap="round"/>
-                  <circle cx="178" cy="76" r="4" fill="#067b3a" opacity="0.22"/>
-                </svg>
-              </div>
-              <p className="mt-0.5 text-center text-xs font-semibold text-[#355270]">Scan a product and check it before it goes in your basket.</p>
-            </div>
-
-            <div className="mt-4 space-y-2.5">
-              <Link href="/FoodCheck" className="flex items-center justify-between rounded-xl bg-[#1266c3] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#0d5aa8]"><span>Scan a barcode</span><DashboardArrow /></Link>
-              <Link href="/FoodCheck" className="renal-dashboard-soft flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-bold text-[#1266c3]"><span>Enter a barcode number</span><DashboardArrow /></Link>
-              <Link href="/FoodCheck" className="renal-dashboard-soft flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-bold text-[#1266c3]"><span>Search the database</span><DashboardArrow /></Link>
-            </div>
-          </div>
-        </section>
-
         {/* FAVOURITES + RECOMMENDATION */}
-        <section className="mt-5 grid items-start gap-5 lg:grid-cols-[1.35fr_0.95fr]">
-          <div className="renal-dashboard-surface rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <section className="mt-5 grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2">
+          <div className="renal-dashboard-surface hidden h-full min-w-0 w-full rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:block sm:p-5">
             <div className="flex items-center justify-between gap-4">
               <h2 className="renal-dashboard-heading flex items-center gap-2 text-2xl font-extrabold tracking-tight text-[#12396b]">
                 <span className="text-rose-500" aria-hidden="true">♥</span> Your favourites
               </h2>
-              <Link href="/recipes?favourites=true" className="renal-dashboard-link text-sm font-bold text-[#1266c3]">View all favourites →</Link>
+              <Link href="/recipes?favourites=true" className="renal-dashboard-link text-sm font-bold text-[#1266c3]"><span className="sm:hidden">View favourites →</span><span className="hidden sm:inline">View all favourites →</span></Link>
             </div>
 
+            <div className="hidden sm:block">
             {favouriteRecipes.length > 0 ? (
-              <div className="mt-5 grid items-start gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-3 flex flex-wrap items-start gap-3">
                 {favouriteRecipes.map((recipe) => (
-                  <Link key={recipe.id} href={`/recipes/${recipe.id}`} className="renal-dashboard-recipe group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <Link key={recipe.id} href={`/recipes/${recipe.id}`} className="renal-dashboard-recipe group w-full max-w-[280px] self-start overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
                     {recipe.image ? (
                       <div className="aspect-[4/3] overflow-hidden bg-slate-100">
                         <Image src={recipe.image} alt={recipe.name} width={640} height={480} sizes="(max-width: 640px) 50vw, 240px" className="h-full w-full object-cover transition group-hover:scale-[1.02]" />
@@ -1508,19 +1501,20 @@ function LoggedInHome() {
                 <Link href="/recipes" className="mt-4 inline-flex rounded-xl bg-[#067b3a] px-4 py-2.5 text-sm font-bold text-white">Find a recipe →</Link>
               </div>
             )}
+            </div>
           </div>
 
-          <div className="renal-dashboard-recommendation renal-dashboard-reveal rounded-3xl border border-green-100 bg-gradient-to-br from-[#effbf5] to-white p-5 shadow-sm sm:p-6">
-            <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#067b3a]">JUST FOR YOU</p>
-            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-[#12396b]">Recommended for you</h2>
+          <div className="renal-dashboard-recommendation renal-dashboard-reveal h-full min-w-0 w-full rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <h2 className="text-2xl font-extrabold tracking-tight text-[#12396b]">Recommended for you</h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
               {requirementsSet ? "A recipe chosen around your saved dietary settings and current plan." : "Set your My Diet preferences and RenalPlan can make recommendations around them."}
             </p>
 
             {recommendedRecipe ? (
-              <Link href={`/recipes/${recommendedRecipe.id}`} className="renal-dashboard-recipe mt-5 block overflow-hidden rounded-2xl border border-green-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <Link href={`/recipes/${recommendedRecipe.id}`} className="renal-dashboard-recipe block w-full min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
                 {recommendedRecipe.image ? (
-                  <Image src={recommendedRecipe.image} alt={recommendedRecipe.name} width={720} height={520} sizes="(max-width: 1024px) 100vw, 420px" className="aspect-[4/3] w-full object-cover" />
+                  <Image src={recommendedRecipe.image} alt={recommendedRecipe.name} width={560} height={420} sizes="(max-width: 640px) 100vw, 280px" className="aspect-[4/3] w-full object-cover" />
                 ) : null}
                 <div className="p-4">
                   <p className="font-extrabold text-[#12396b]">{recommendedRecipe.name}</p>
@@ -1528,6 +1522,19 @@ function LoggedInHome() {
                   <p className="mt-2 text-xs text-slate-500">K {recommendedRecipe.nutrition?.potassium ?? "—"} · P {recommendedRecipe.nutrition?.phosphate ?? "—"} · Salt {recommendedRecipe.nutrition?.salt ?? "—"}</p>
                 </div>
               </Link>
+              {secondRecommendedRecipe ? (
+                <Link href={`/recipes/${secondRecommendedRecipe.id}`} className="renal-dashboard-recipe hidden w-full min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:block">
+                  {secondRecommendedRecipe.image ? (
+                    <Image src={secondRecommendedRecipe.image} alt={secondRecommendedRecipe.name} width={560} height={420} sizes="(max-width: 640px) 100vw, 280px" className="aspect-[4/3] w-full object-cover" />
+                  ) : null}
+                  <div className="p-4">
+                    <p className="font-extrabold text-[#12396b]">{secondRecommendedRecipe.name}</p>
+                    <p className="mt-1 text-xs font-semibold text-[#067b3a]">Fits your current settings</p>
+                    <p className="mt-2 text-xs text-slate-500">K {secondRecommendedRecipe.nutrition?.potassium ?? "—"} · P {secondRecommendedRecipe.nutrition?.phosphate ?? "—"} · Salt {secondRecommendedRecipe.nutrition?.salt ?? "—"}</p>
+                  </div>
+                </Link>
+              ) : null}
+              </div>
             ) : (
               <div className="mt-5 rounded-2xl border border-dashed border-green-200 bg-white/70 px-4 py-7 text-center">
                 <p className="font-bold text-[#12396b]">Ready for inspiration?</p>
@@ -1538,12 +1545,52 @@ function LoggedInHome() {
           </div>
         </section>
 
+        <nav aria-label="Dashboard shortcuts" className="mt-3 grid grid-cols-2 gap-3 sm:hidden">
+          <Link href="/planner" className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-white px-3 py-3 text-sm font-extrabold text-[#067b3a] shadow-sm transition hover:bg-emerald-50">
+            <span aria-hidden="true">✦</span> MyChef <span aria-hidden="true">→</span>
+          </Link>
+          <Link href="/recipes?favourites=true" className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-rose-200 bg-white px-3 py-3 text-sm font-extrabold text-rose-600 shadow-sm transition hover:bg-rose-50">
+            <span aria-hidden="true">♥</span> Favourites <span aria-hidden="true">→</span>
+          </Link>
+        </nav>
+
         {/* Dashboard ends here: navigation and the journey already provide global actions. */}
 
         {!loaded && (
           <p className="sr-only" aria-live="polite">Loading your RenalPlan dashboard.</p>
         )}
       </div>
+
+      {/* =========================================================
+          DASHBOARD FOOTER — matches the homepage footer
+      ========================================================= */}
+      <footer className="renal-home-footer mt-10 -mx-4 border-t border-slate-100 bg-white px-5 py-7 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-12">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+          <div className="flex flex-col items-center gap-2 text-sm text-slate-600 sm:items-end sm:text-right">
+            <Link href="/about" className="font-semibold transition hover:opacity-80">
+              <span className="renal-home-about-label">About </span><span className="renal-home-brand-renal text-[#12396b]">Renal</span>
+              <span className="renal-home-brand-plan text-[#067b3a]">Plan</span>
+            </Link>
+
+            <Link
+              href="/privacy"
+              className="font-semibold text-[#1266c3] transition hover:text-[#067b3a] hover:underline"
+            >
+              Privacy and Data Protection
+            </Link>
+
+            <span>
+              <span>Do you have any questions or need help? </span>
+              <a
+                href="mailto:hello@renalplan.com"
+                className="font-semibold text-[#067b3a] transition hover:text-[#067b3a]"
+              >
+                Contact us
+              </a>
+            </span>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
@@ -1910,59 +1957,6 @@ export default function Home() {
       </section>
 
       {/* =========================================================
-          MOBILE SHOWCASE VIDEO
-          Dedicated mobile video.
-          Enlarged on mobile so the actual screen recording is easier
-          to see, while keeping the desktop video completely separate.
-      ========================================================= */}
-      <section
-        className="px-2 py-7 sm:px-8 sm:py-8 lg:hidden"
-        aria-label="See RenalPlan in action"
-      >
-        <div className="mx-auto w-full max-w-[760px]">
-          <div className="text-center">
-            <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
-              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan text-[#067b3a]">Plan</span> in action
-            </h2>
-
-            <p className="mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f]">
-              From your dietary requirements to your weekly shop — all in one
-              place.
-            </p>
-          </div>
-
-          <div className="relative mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-[#102b4d] shadow-lg">
-            <div className="aspect-[9/16] w-full">
-              <ShowcaseVideo mobile />
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          DESKTOP SHOWCASE VIDEO
-      ========================================================= */}
-      <section
-        className="hidden px-4 py-6 sm:px-8 lg:block lg:px-10 lg:py-8"
-        aria-label="See RenalPlan in action"
-      >
-        <div className="mx-auto max-w-[1450px]">
-          <div className="mb-5 text-center">
-            <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
-              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan text-[#067b3a]">Plan</span> in action
-            </h2>
-            <p className="renal-home-section-copy mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f] sm:text-base">
-              From your dietary requirements to your weekly shop — all in one place.
-            </p>
-          </div>
-          <div className="renal-home-video-frame overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
-            <ShowcaseVideo mobile={false} />
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
           FREE JOURNEY
       ========================================================= */}
       <section className="renal-home-free-section px-4 py-4 sm:px-8 lg:px-10">
@@ -2028,6 +2022,128 @@ export default function Home() {
                     </span>
                   )}
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          MOBILE SHOWCASE VIDEO
+          Dedicated mobile video.
+          Enlarged on mobile so the actual screen recording is easier
+          to see, while keeping the desktop video completely separate.
+      ========================================================= */}
+      <section
+        className="px-2 py-7 sm:px-8 sm:py-8 lg:hidden"
+        aria-label="See RenalPlan in action"
+      >
+        <div className="mx-auto w-full max-w-[760px]">
+          <div className="text-center">
+            <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
+              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan text-[#067b3a]">Plan</span> in action
+            </h2>
+
+            <p className="mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f]">
+              From your dietary requirements to your weekly shop — all in one
+              place.
+            </p>
+          </div>
+
+          <div className="relative mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-[#102b4d] shadow-lg">
+            <div className="aspect-[9/16] w-full">
+              <ShowcaseVideo mobile />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          DESKTOP SHOWCASE VIDEO
+      ========================================================= */}
+      <section
+        className="hidden px-4 py-6 sm:px-8 lg:block lg:px-10 lg:py-8"
+        aria-label="See RenalPlan in action"
+      >
+        <div className="mx-auto max-w-[1450px]">
+          <div className="mb-5 text-center">
+            <h2 className="renal-home-section-title text-3xl font-extrabold leading-tight tracking-tight text-[#12396b]">
+              See <span className="renal-home-brand-renal">Renal</span><span className="renal-home-brand-plan text-[#067b3a]">Plan</span> in action
+            </h2>
+            <p className="renal-home-section-copy mx-auto mt-2 max-w-[520px] text-sm leading-relaxed text-[#17385f] sm:text-base">
+              From your dietary requirements to your weekly shop — all in one place.
+            </p>
+          </div>
+          <div className="renal-home-video-frame overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm">
+            <ShowcaseVideo mobile={false} />
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          ACCOUNT / PREMIUM FEATURES
+      ========================================================= */}
+      <section className="renal-home-account-section px-4 py-4 sm:px-8 lg:px-10">
+        <div className="renal-home-account-panel mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-br from-[#eef7ff] to-[#f8fbff] px-5 py-6 shadow-sm sm:px-7 lg:px-8 lg:py-8">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_2fr] lg:items-center">
+            <div>
+              <span className="inline-flex rounded-full bg-[#d9ecff] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#1266c3]">
+                WITH A RENALPLAN ACCOUNT
+              </span>
+
+              <h2 className="renal-home-section-title mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl lg:text-[2.25rem]">
+                Get more with a free{" "}
+                <span><span className="renal-home-brand-renal text-[#1266c3]">Renal</span><span className="renal-home-brand-plan text-[#067b3a]">Plan</span></span> account
+              </h2>
+
+              <p className="renal-home-section-copy mt-3 max-w-[430px] text-sm leading-relaxed text-slate-700 sm:text-base">
+                Personalise <span className="renal-home-brand-renal text-[#12396b]">Renal</span><span className="renal-home-brand-plan text-[#067b3a]">Plan</span> to your needs and unlock extra features
+                that make meal planning even easier.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {accountFeatures.map((feature, index) => (
+                <button
+                  key={feature.title}
+                  type="button"
+                  style={{
+                    animationDelay: `${index * 110 + 120}ms`,
+                  }}
+                  onClick={() => setSelectedFeature(feature.title)}
+                  aria-haspopup="dialog"
+                  className="renal-home-feature-card renal-fade-up group w-full rounded-2xl border border-white/80 bg-white/80 p-4 text-left shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1266c3] focus-visible:ring-offset-2 sm:p-5"
+                >
+                  <div className="flex items-start gap-3">
+                    <div
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${feature.iconClass}`}
+                    >
+                      {feature.icon}
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="renal-home-card-title font-bold text-[#12396b] dark:text-[#93c5fd]">
+                          {feature.title}
+                        </h3>
+
+                        {feature.badge && (
+                          <span className="rounded-full bg-[#ffb15c] px-2.5 py-0.5 text-[10px] font-bold text-[#12396b]">
+                            {feature.badge}
+                          </span>
+                        )}
+                        <span className="ml-auto text-lg text-[#1266c3] transition group-hover:translate-x-0.5 dark:text-[#7db9ff]" aria-hidden="true">
+                          →
+                        </span>
+                      </div>
+
+                      <p className="renal-home-card-copy mt-1 text-xs leading-relaxed text-slate-600 sm:text-sm">
+                        {feature.text}
+                      </p>
+                    </div>
+                  </div>
+                </button>
               ))}
             </div>
           </div>
@@ -2141,75 +2257,6 @@ export default function Home() {
                 </div>
               </div>
 
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          ACCOUNT / PREMIUM FEATURES
-      ========================================================= */}
-      <section className="renal-home-account-section px-4 py-4 sm:px-8 lg:px-10">
-        <div className="renal-home-account-panel mx-auto max-w-[1450px] rounded-3xl bg-gradient-to-br from-[#eef7ff] to-[#f8fbff] px-5 py-6 shadow-sm sm:px-7 lg:px-8 lg:py-8">
-          <div className="grid gap-6 lg:grid-cols-[0.9fr_2fr] lg:items-center">
-            <div>
-              <span className="inline-flex rounded-full bg-[#d9ecff] px-4 py-1.5 text-xs font-extrabold tracking-wide text-[#1266c3]">
-                WITH A RENALPLAN ACCOUNT
-              </span>
-
-              <h2 className="renal-home-section-title mt-3 text-2xl font-extrabold leading-tight tracking-tight text-[#12396b] sm:text-3xl lg:text-[2.25rem]">
-                Get more with a free{" "}
-                <span><span className="renal-home-brand-renal text-[#1266c3]">Renal</span><span className="renal-home-brand-plan text-[#067b3a]">Plan</span></span> account
-              </h2>
-
-              <p className="renal-home-section-copy mt-3 max-w-[430px] text-sm leading-relaxed text-slate-700 sm:text-base">
-                Personalise <span className="renal-home-brand-renal text-[#12396b]">Renal</span><span className="renal-home-brand-plan text-[#067b3a]">Plan</span> to your needs and unlock extra features
-                that make meal planning even easier.
-              </p>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2">
-              {accountFeatures.map((feature, index) => (
-                <button
-                  key={feature.title}
-                  type="button"
-                  style={{
-                    animationDelay: `${index * 110 + 120}ms`,
-                  }}
-                  onClick={() => setSelectedFeature(feature.title)}
-                  aria-haspopup="dialog"
-                  className="renal-home-feature-card renal-fade-up group w-full rounded-2xl border border-white/80 bg-white/80 p-4 text-left shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1266c3] focus-visible:ring-offset-2 sm:p-5"
-                >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${feature.iconClass}`}
-                    >
-                      {feature.icon}
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="renal-home-card-title font-bold text-[#12396b] dark:text-[#93c5fd]">
-                          {feature.title}
-                        </h3>
-
-                        {feature.badge && (
-                          <span className="rounded-full bg-[#ffb15c] px-2.5 py-0.5 text-[10px] font-bold text-[#12396b]">
-                            {feature.badge}
-                          </span>
-                        )}
-                        <span className="ml-auto text-lg text-[#1266c3] transition group-hover:translate-x-0.5 dark:text-[#7db9ff]" aria-hidden="true">
-                          →
-                        </span>
-                      </div>
-
-                      <p className="renal-home-card-copy mt-1 text-xs leading-relaxed text-slate-600 sm:text-sm">
-                        {feature.text}
-                      </p>
-                    </div>
-                  </div>
-                </button>
-              ))}
             </div>
           </div>
         </div>
@@ -2331,10 +2378,10 @@ export default function Home() {
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <Link
-                href="/signup"
+                href={selectedFeature === "MyChef" ? "/planner" : "/signup"}
                 className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#067b3a] px-5 py-3 text-center text-sm font-bold text-white shadow-sm transition hover:bg-[#067b3a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#078f43] focus-visible:ring-offset-2"
               >
-                Create Your Free Account
+                {selectedFeature === "MyChef" ? "Explore MyChef" : "Create Your Free Account"}
               </Link>
               <Link
                 href="/auth/login"

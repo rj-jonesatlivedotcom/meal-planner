@@ -49,3 +49,5 @@ node_modules/
 
 # Preserve local recovery files
 .git-damaged-backup/
+.vercel
+.env*

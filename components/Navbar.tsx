@@ -294,9 +294,9 @@ export default function Navbar() {
     <>
       <style jsx>{`
         @keyframes renalplan-glimmer {
-          0%, 55% { transform: translateX(-140%) rotate(18deg); opacity: 0; }
-          65% { opacity: 1; }
-          85% { transform: translateX(140%) rotate(18deg); opacity: 0; }
+          0%, 28% { transform: translateX(-140%) rotate(18deg); opacity: 0; }
+          38%, 58% { opacity: 1; }
+          78% { transform: translateX(140%) rotate(18deg); opacity: 0; }
           100% { transform: translateX(140%) rotate(18deg); opacity: 0; }
         }
 
@@ -306,26 +306,26 @@ export default function Navbar() {
           90% { transform: scale(.92) rotate(-8deg); opacity: .9; }
         }
 
-        .renalplan-mychef {
+        .renalplan-nav-cta {
           position: relative;
           overflow: hidden;
           isolation: isolate;
         }
 
-        .renalplan-mychef::after {
+        .renalplan-nav-cta::after {
           content: "";
           position: absolute;
           inset: -45% -25%;
-          width: 34%;
+          width: 44%;
           background: linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.65),
-            rgba(255,255,255,.95),
+            rgba(255,255,255,.9),
+            rgba(255,255,255,1),
             transparent
           );
           transform: translateX(-140%) rotate(18deg);
-          animation: renalplan-glimmer 3.2s ease-in-out infinite;
+          animation: renalplan-glimmer 2.7s ease-in-out infinite;
           pointer-events: none;
           z-index: 0;
         }
@@ -335,7 +335,7 @@ export default function Navbar() {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .renalplan-mychef::after,
+          .renalplan-nav-cta::after,
           .renalplan-mychef-sparkle {
             animation: none;
           }
@@ -391,15 +391,72 @@ export default function Navbar() {
                 type="button"
                 onClick={() => router.push("/planner?mychef=1")}
                 aria-label="MyChef - let MyChef plan your week"
-                className={`renalplan-mychef relative mr-0 flex min-h-11 items-center gap-2 rounded-full border px-4 text-[15px] font-extrabold shadow-sm transition ${
+                className={`renalplan-nav-cta relative mr-0 flex min-h-11 items-center gap-2 rounded-full border px-4 text-[15px] font-extrabold shadow-sm transition ${
                   theme === "dark"
-                    ? "border-orange-500/70 bg-orange-700 text-white hover:bg-orange-600"
-                    : "border-orange-500 bg-orange-600 text-white hover:bg-orange-700"
+                    ? "border-sky-200 bg-sky-100 text-sky-950 hover:bg-sky-200"
+                    : "border-sky-200 bg-sky-100 text-sky-950 hover:bg-sky-200"
                 }`}
               >
                 <span className="relative z-10 text-lg leading-none" aria-hidden="true">👨‍🍳</span>
                 <span className="relative z-10">MyChef</span>
                 <span className="renalplan-mychef-sparkle relative z-10 text-base leading-none" aria-hidden="true">✦</span>
+              </button>
+            )}
+            {loggedIn && pathname.startsWith("/nutrition") && (
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event("renalplan:open-nutrition-pdf"))}
+                aria-label="Print or save nutrition report as PDF"
+                className={`renalplan-nav-cta relative mr-0 flex min-h-11 items-center gap-2 rounded-full border px-4 text-[15px] font-extrabold shadow-sm transition ${
+                  theme === "dark"
+                    ? "border-sky-200 bg-sky-100 text-sky-950 hover:bg-sky-200"
+                    : "border-sky-200 bg-sky-100 text-sky-950 hover:bg-sky-200"
+                }`}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="relative z-10 h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M6 9V3h12v6" />
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                  <path d="M6 14h12v7H6z" />
+                  <path d="M18 12h.01" />
+                </svg>
+                <span className="relative z-10">PDF report</span>
+              </button>
+            )}
+            {pathname.startsWith("/shopping") && (
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event("renalplan:download-shopping-checklist"))}
+                aria-label="Download offline shopping checklist"
+                className={`renalplan-nav-cta relative mr-0 flex min-h-11 items-center gap-2 rounded-full border px-4 text-[15px] font-extrabold shadow-sm transition ${
+                  theme === "dark"
+                    ? "border-sky-200 bg-sky-100 text-sky-950 hover:bg-sky-200"
+                    : "border-sky-200 bg-sky-100 text-sky-950 hover:bg-sky-200"
+                }`}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="relative z-10 h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 3v12" />
+                  <path d="m7 10 5 5 5-5" />
+                  <path d="M5 20h14" />
+                </svg>
+                <span className="relative z-10">Download List</span>
               </button>
             )}
           </div>

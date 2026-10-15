@@ -1,0 +1,2 @@
+﻿import { FileBlob, SpreadsheetFile } from '@oai/artifact-tool';const w=await SpreadsheetFile.importXlsx(await FileBlob.load('C:/Users/rj-jo/Documents/RenalPlan/outputs/renalplan-cofid-2021-audit/RenalPlan_CoFID_2021_Audit.xlsx'));
+for(const n of ['Summary','Method and Sources']){const s=w.worksheets.getItem(n);const v=s.getUsedRange().values;console.log(n);v.forEach((r,i)=>{if(r.some(x=>x!==null&&x!==''))console.log(i+1,JSON.stringify(r.slice(0,n==='Summary'?6:3)));});}

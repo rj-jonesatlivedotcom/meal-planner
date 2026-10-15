@@ -1,0 +1,20 @@
+﻿import fs from 'node:fs/promises';
+import {FileBlob,SpreadsheetFile} from '@oai/artifact-tool';
+const p='C:/Users/rj-jo/Documents/RenalPlan/outputs/renalplan-cofid-2021-audit/RenalPlan_CoFID_2021_Audit_Fibre_Excluded.xlsx';
+const w=await SpreadsheetFile.importXlsx(await FileBlob.load(p));
+const get=(s,r)=>w.worksheets.getItem(s).getRange(r).values;
+const statuses=get('Recipe Status','A6:Q155').filter(r=>r[0]);
+const count={};for(const r of statuses)count[r[5]]=(count[r[5]]||0)+1;
+const nutrient=get('Nutrient Comparison','A6:M1205').filter(r=>r[0]);
+const b008=nutrient.filter(r=>r[0]==='B008');
+const fibreRows=nutrient.filter(r=>String(r[3]).toLowerCase().includes('fibre'));
+const ingredientFiber=get('Ingredient Audit','Y6:Y862').flat().filter(v=>v!==null&&v!=='').length+get('Ingredient Audit','AG6:AG862').flat().filter(v=>v!==null&&v!=='').length;
+const assert=(ok,msg)=>{if(!ok)throw new Error(msg)};
+assert(statuses.length===150,'Recipe status count mismatch');
+assert(JSON.stringify(count)===JSON.stringify({'Unresolved pending better source data':125,Verified:16,'Discrepancy requiring correction':9}),`Unexpected statuses ${JSON.stringify(count)}`);
+assert(nutrient.length===1050,'Non-fibre comparison count mismatch'); assert(fibreRows.length===0,'Fibre rows remain'); assert(ingredientFiber===0,'Fibre input/contribution values remain'); assert(b008.length===7,'B008 does not have seven comparisons'); assert(b008.every(r=>r[2]==='Verified'),'B008 status mismatch');
+const vals=Object.fromEntries(b008.map(r=>[r[3],r[5]])); assert(JSON.stringify(vals)===JSON.stringify({Energy:280,Protein:5.6,Carbohydrate:46.2,Fat:9.3,Sodium:294,Potassium:106,'Phosphorus vs listed phosphate':70}),`B008 comparison values mismatch ${JSON.stringify(vals)}`);
+const bstatus=statuses.find(r=>r[0]==='B008'); assert(bstatus?.[5]==='Verified','B008 status table mismatch');
+const errors=await w.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!|#SPILL!|#CALC!',options:{useRegex:true,maxResults:100}}); assert(!errors.ndjson.includes('"address"'),'Spreadsheet error scan found cells');
+for(const [sheet,range,file] of [['Summary','A1:F24','summary.png'],['Recipe Status','A1:Q16','status.png'],['Nutrient Comparison','A1:M14','comparison.png'],['Method and Sources','A1:C29','methods.png']]){const blob=await w.render({sheetName:sheet,range,scale:1.2});await fs.writeFile(`C:/Users/rj-jo/Documents/RenalPlan/outputs/renalplan-cofid-2021-audit/.work/${file}`,new Uint8Array(await blob.arrayBuffer()));}
+console.log(JSON.stringify({statusCounts:count,nutrientRows:nutrient.length,fibreComparisonRows:fibreRows.length,fibreIngredientValues:ingredientFiber,b008:vals,errorScan:errors.ndjson,visuals:'Rendered summary, status, comparison and methods sheets.'}));

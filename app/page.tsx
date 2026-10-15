@@ -251,6 +251,39 @@ const featureDetails: Record<
   },
 };
 
+const renalDietTips = [
+  "Flavour without the salt: try herbs, spices, lemon juice or vinegar.",
+  "Check food labels for salt and phosphate additives, especially in processed foods.",
+  "Some low-sodium salts contain potassium chloride and may not suit a low-potassium diet.",
+  "Bacon, ham and sausages can be high in salt. Choose fresh meat more often where suitable.",
+  "Making sauces from scratch helps you control the salt and ingredients.",
+  "Ingredients containing ‘phos’ may indicate phosphate additives. Check labels if advised to limit phosphate.",
+  "Portion sizes matter: suitability can depend on how much you eat.",
+  "If you need to manage potassium, ask your renal dietitian about suitable fruit portions.",
+  "Apples, grapes and berries may suit a lower-potassium diet, depending on your portions and needs.",
+  "If you need to reduce potassium, boiling some vegetables in water can help lower their potassium content.",
+  "Many vegetables can fit a kidney-friendly diet. Your potassium needs and portions guide your choices.",
+  "Only follow a low-potassium diet if your kidney team recommends it.",
+  "Bread, rice, pasta and cereals can fit into a balanced diet; choose what suits your requirements.",
+  "Milk, yoghurt and cheese contain phosphate. Ask your renal dietitian what amounts suit you.",
+  "Phosphate occurs naturally in foods and is also added to some processed products. Added phosphate is readily absorbed.",
+  "Protein needs can change when you start dialysis. Ask your renal team how much you need.",
+  "Fresh, unprocessed meat often gives you more control over added salt than processed alternatives.",
+  "Crisps and salted nuts can add a lot of salt. Compare labels and consider less-salty alternatives.",
+  "Eating less salt may help manage thirst if you have a fluid restriction.",
+  "Fluid limits are individual. Follow the daily allowance set by your kidney team.",
+  "Soup counts towards your fluid allowance if you have been prescribed a fluid restriction.",
+  "Plan meals before shopping to help check ingredients and organise your shopping list.",
+  "Review weekly totals and daily averages to spot patterns in your planned meals.",
+  "Your potassium and phosphate targets depend on your circumstances. Ask your kidney team about your blood results.",
+  "Your dietary needs can change with blood results, medicines and treatment. Review your plan when advised.",
+  "Renal diets differ from person to person. Advice that suits someone else may not suit you.",
+  "A kidney-friendly diet can still include variety. Focus on the changes recommended for your needs.",
+  "Eating out? Ask how meals are prepared and whether sauces or salt can be adjusted.",
+  "If you also have diabetes, your meal plan needs to consider blood glucose as well as renal requirements.",
+  "Your renal dietitian can tailor advice to your blood results, treatment, medicines and nutritional needs.",
+];
+
 const benefits = [
   "Kidney-friendly recipes",
   "Easy meal planning",
@@ -409,6 +442,23 @@ function LoggedInHome() {
   const [shoppingCount, setShoppingCount] = useState(0);
   const [requirementsSet, setRequirementsSet] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [todayTipIndex, setTodayTipIndex] = useState(0);
+
+  useEffect(() => {
+    // Use local calendar dates, but UTC arithmetic, so daylight-saving changes
+    // do not affect the one-tip-per-day rotation. The series repeats every 30 days.
+    const updateTipForToday = () => {
+      const now = new Date();
+      const localToday = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+      const cycleStart = Date.UTC(2026, 0, 1);
+      const dayNumber = Math.floor((localToday - cycleStart) / 86400000);
+      setTodayTipIndex(((dayNumber % renalDietTips.length) + renalDietTips.length) % renalDietTips.length);
+    };
+
+    updateTipForToday();
+    const intervalId = window.setInterval(updateTipForToday, 60_000);
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   const days = [
     "Monday",
@@ -833,14 +883,6 @@ function LoggedInHome() {
       colour: "purple",
       status: shoppingCount > 0 ? `${shoppingCount} items` : "Builds from your plan",
     },
-    {
-      number: "5",
-      title: "Food Check",
-      description: "Check food while you're shopping.",
-      href: "/FoodCheck",
-      colour: "rose",
-      status: "Open Food Check",
-    },
   ];
 
   const colourClasses: Record<
@@ -963,26 +1005,34 @@ function LoggedInHome() {
           animation: renalDashboardRise 0.55s ease-out both;
         }
 
-        .renal-dashboard-ticker-track {
-          animation: renalDashboardTicker 48s linear infinite;
+        @keyframes renalDashboardTipTicker {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
         }
 
-        .renal-dashboard-ticker-track:hover {
+        .renal-dashboard-tip-track {
+          animation: renalDashboardTipTicker 34s linear infinite;
+          will-change: transform;
+        }
+
+        .renal-dashboard-tip-track:hover {
           animation-play-state: paused;
         }
 
-        html[data-theme="dark"] .renal-dashboard .renal-dashboard-ticker-track {
-          color: #e2e8f0 !important;
+        .renal-dashboard-tip-ticker:focus-within .renal-dashboard-tip-track {
+          animation-play-state: paused;
         }
 
-        html[data-theme="dark"] .renal-dashboard [aria-label="RenalPlan updates and tip of the day"] {
+        html[data-theme="dark"] .renal-dashboard [aria-label^="Renal diet tip of the day"] {
           background: #172b40;
           border-color: #36506a;
         }
 
-        @keyframes renalDashboardTicker {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+        @media (prefers-reduced-motion: reduce) {
+          .renal-dashboard-tip-track {
+            animation: none !important;
+            transform: none !important;
+          }
         }
 
         .renal-dashboard > div > section:nth-of-type(3) > div:nth-child(2) {
@@ -1186,8 +1236,7 @@ function LoggedInHome() {
           .renal-dashboard-reveal,
           .renal-dashboard-progress::after,
           .renal-dashboard-encourage,
-          .renal-dashboard-week-badge,
-          .renal-dashboard-ticker-track {
+          .renal-dashboard-week-badge {
             animation: none !important;
           }
         }
@@ -1255,8 +1304,7 @@ function LoggedInHome() {
             <div className="relative flex min-w-0 flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5 lg:min-h-[304px]">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#067b3a]">YOUR RENALPLAN</p>
-                  <h2 className="renal-dashboard-heading mt-1 text-lg font-extrabold tracking-tight text-[#12396b] sm:text-xl">Dashboard</h2>
+                  <h2 className="renal-dashboard-heading text-lg font-extrabold tracking-tight text-[#12396b] sm:text-xl">Dashboard</h2>
                 </div>
                 <Link href={nextAction.href} className="renal-dashboard-link shrink-0 rounded-lg border border-blue-200 px-2.5 py-2 text-xs font-bold text-[#1266c3] transition hover:bg-slate-50">{nextAction.button} →</Link>
               </div>
@@ -1280,23 +1328,22 @@ function LoggedInHome() {
                 <div className="h-full rounded-full bg-[#067b3a] transition-all duration-700" style={{ width: `${Math.round((plannedMeals / 21) * 100)}%` }} />
               </div>
 
-              <div className="mt-3 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 py-2.5" aria-label="RenalPlan updates and tip of the day">
-            <div className="flex items-center gap-3 px-3">
-              <span className="shrink-0 rounded-md bg-[#067b3a] px-2 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white">Tip of the day</span>
-              <div className="min-w-0 flex-1 overflow-hidden">
-                <div className="renal-dashboard-ticker-track flex w-max items-center gap-10 whitespace-nowrap text-xs font-semibold text-[#244563] sm:text-sm">
-                  <span>{plannedMeals === 21 ? "Your week is fully planned — your shopping list is ready." : plannedMeals > 0 ? `You're ${plannedMeals} of 21 meals into your weekly plan. Keep going!` : "Start planning your week, or let MyChef choose meals for you."}</span>
-                  <span>{shoppingCount > 0 ? `Your shopping list currently has ${shoppingCount} items.` : "Your shopping list builds automatically as you plan meals."}</span>
-                  <span>{favouriteIds.length > 0 ? `You have ${favouriteIds.length} saved favourite${favouriteIds.length === 1 ? "" : "s"} ready to revisit.` : "Save favourite recipes to make planning quicker next week."}</span>
-                  <span>Tip: review your weekly nutrition summary to see how your planned meals add up.</span>
-                  <span aria-hidden="true">{plannedMeals === 21 ? "Your week is fully planned — your shopping list is ready." : plannedMeals > 0 ? `You're ${plannedMeals} of 21 meals into your weekly plan. Keep going!` : "Start planning your week, or let MyChef choose meals for you."}</span>
-                  <span aria-hidden="true">{shoppingCount > 0 ? `Your shopping list currently has ${shoppingCount} items.` : "Your shopping list builds automatically as you plan meals."}</span>
-                  <span aria-hidden="true">{favouriteIds.length > 0 ? `You have ${favouriteIds.length} saved favourite${favouriteIds.length === 1 ? "" : "s"} ready to revisit.` : "Save favourite recipes to make planning quicker next week."}</span>
-                  <span aria-hidden="true">Tip: review your weekly nutrition summary to see how your planned meals add up.</span>
+              <div
+                className="renal-dashboard-tip-ticker mt-3 overflow-hidden rounded-xl border border-emerald-100 bg-emerald-50/80 py-2.5 lg:my-auto lg:flex lg:h-[90px] lg:items-center"
+                aria-label="Daily renal diet tip"
+              >
+                <div className="flex items-center gap-3 px-3 sm:gap-4 sm:px-4">
+                  <span className="z-10 shrink-0 rounded-md bg-[#067b3a] px-2 py-1 text-[9px] font-extrabold uppercase tracking-wide text-white shadow-sm sm:text-[10px]">
+                    Daily tip
+                  </span>
+                  <div className="min-w-0 flex-1 overflow-hidden" aria-live="polite">
+                    <div className="renal-dashboard-tip-track flex w-max items-center whitespace-nowrap text-xs font-semibold text-[#244563] sm:text-sm lg:text-lg">
+                      <span className="shrink-0 pr-12 sm:pr-16">{renalDietTips[todayTipIndex]}</span>
+                      <span className="shrink-0 pr-12 sm:pr-16" aria-hidden="true">{renalDietTips[todayTipIndex]}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
             </div>
           </div>
         </section>
@@ -1324,7 +1371,7 @@ function LoggedInHome() {
               </button>
             </div>
 
-            <div id="renalplan-journey" className="mt-4 grid items-stretch gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-3 xl:grid-cols-5">
+            <div id="renalplan-journey" className="mt-4 grid items-stretch gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-3 xl:grid-cols-4">
               {journeySteps.map((step, index) => {
                 const styles = colourClasses[step.colour];
                 const isCurrentStep = index + 1 === currentJourneyStep;
@@ -1566,7 +1613,7 @@ function LoggedInHome() {
       ========================================================= */}
       <footer className="renal-home-footer mt-10 -mx-4 border-t border-slate-100 bg-white px-5 py-7 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-12">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
-          <div className="flex flex-col items-center gap-2 text-sm text-slate-600 sm:items-end sm:text-right">
+          <div className="flex flex-col items-center gap-2 text-sm text-slate-600 sm:ml-auto sm:items-end sm:text-right">
             <Link href="/about" className="font-semibold transition hover:opacity-80">
               <span className="renal-home-about-label">About </span><span className="renal-home-brand-renal text-[#12396b]">Renal</span>
               <span className="renal-home-brand-plan text-[#067b3a]">Plan</span>

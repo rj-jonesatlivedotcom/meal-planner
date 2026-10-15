@@ -297,6 +297,26 @@ function getStatusDotClass(status: Status): string {
   return status === "green" ? "bg-green-600" : "!bg-red-600";
 }
 
+function NutritionStatusLabel({ status }: { status: Status | null }) {
+  if (!status) {
+    return <span className="text-xs text-slate-500">Not assessed</span>;
+  }
+
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-semibold ${
+        status === "green" ? "text-green-700" : "text-red-700"
+      }`}
+    >
+      <span
+        aria-hidden="true"
+        className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(status)}`}
+      />
+      {getStatusText(status)}
+    </span>
+  );
+}
+
 function getMatrixLevelText(
   level: "Low" | "Moderate" | "High"
 ): string {
@@ -308,8 +328,8 @@ function formatSalt(sodiumMg: number): string {
   return `${saltGrams.toFixed(1)} g`;
 }
 
-function formatPotassiumMmol(potassiumMg: number): string {
-  return `${(potassiumMg / 39.1).toFixed(1)} mmol`;
+function formatPotassiumMg(potassiumMg: number): string {
+  return formatNutrient(potassiumMg, "mg");
 }
 
 function formatNumber(value: number): string {
@@ -380,6 +400,7 @@ export default function NutritionPage() {
   const [authChecked, setAuthChecked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showPdfOptions, setShowPdfOptions] = useState(false);
+  const [mainSummaryOpen, setMainSummaryOpen] = useState(false);
   const [pdfSections, setPdfSections] = useState({
     weeklySummary: true,
     dailyBreakdown: true,
@@ -390,6 +411,76 @@ export default function NutritionPage() {
 
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
+  const pdfOptionsDialogRef = useRef<HTMLElement | null>(null);
+  const pdfOptionsReturnFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const openPdfOptions = () => {
+      const activeElement = document.activeElement;
+      pdfOptionsReturnFocusRef.current =
+        activeElement instanceof HTMLElement ? activeElement : null;
+      setShowPdfOptions(true);
+    };
+
+    window.addEventListener("renalplan:open-nutrition-pdf", openPdfOptions);
+    return () =>
+      window.removeEventListener("renalplan:open-nutrition-pdf", openPdfOptions);
+  }, []);
+
+  useEffect(() => {
+    if (!showPdfOptions) return;
+
+    const dialog = pdfOptionsDialogRef.current;
+    if (!dialog) return;
+
+    const getFocusableElements = () =>
+      Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+        )
+      );
+
+    getFocusableElements()[0]?.focus();
+
+    const handleDialogKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setShowPdfOptions(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusableElements = getFocusableElements();
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (!firstElement || !lastElement) {
+        event.preventDefault();
+        dialog.focus();
+      } else if (
+        event.shiftKey &&
+        (document.activeElement === firstElement || !dialog.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (
+        !event.shiftKey &&
+        (document.activeElement === lastElement || !dialog.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleDialogKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleDialogKeyDown);
+      const returnFocusTarget = pdfOptionsReturnFocusRef.current;
+      if (returnFocusTarget?.isConnected) returnFocusTarget.focus();
+      pdfOptionsReturnFocusRef.current = null;
+    };
+  }, [showPdfOptions]);
 
   function handleNutritionTouchStart(
     event: React.TouchEvent<HTMLElement>
@@ -718,6 +809,119 @@ export default function NutritionPage() {
     [allPlannedRecipes]
   );
 
+  const weeklySummaryRows: Array<{
+    label: string;
+    total: string;
+    average: string;
+    requirement: string;
+    status: Status | null;
+  }> = [
+    {
+      label: "Energy (kcal)",
+      total: formatNumber(weeklyTotals.calories),
+      average: formatNumber(dailyAverage.calories),
+      requirement: "Not specified",
+      status: null,
+    },
+    {
+      label: "Protein (g)",
+      total: formatNumber(weeklyTotals.protein),
+      average: formatNumber(dailyAverage.protein),
+      requirement: formatRange(requirements.proteinMinG, requirements.proteinMaxG, "g/day"),
+      status:
+        requirements.proteinMinG != null || requirements.proteinMaxG != null
+          ? numericLimitStatus(dailyAverage.protein, requirements.proteinMinG, requirements.proteinMaxG)
+          : null,
+    },
+    {
+      label: "Carbohydrate (g)",
+      total: formatNumber(weeklyTotals.carbohydrates),
+      average: formatNumber(dailyAverage.carbohydrates),
+      requirement: formatRange(requirements.carbohydrateMin, requirements.carbohydrateMax, "g/day"),
+      status:
+        requirements.carbohydrateMin != null || requirements.carbohydrateMax != null
+          ? numericLimitStatus(dailyAverage.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)
+          : null,
+    },
+    {
+      label: "Fat (g)",
+      total: formatNumber(weeklyTotals.fat),
+      average: formatNumber(dailyAverage.fat),
+      requirement: "Not specified",
+      status: null,
+    },
+    {
+      label: "Fibre (g)",
+      total: formatNumber(weeklyTotals.fibre),
+      average: formatNumber(dailyAverage.fibre),
+      requirement: "Not specified",
+      status: null,
+    },
+    {
+      label: "Salt (g)",
+      total: formatSalt(weeklyTotals.sodium),
+      average: formatSalt(dailyAverage.sodium),
+      requirement:
+        requirements.sodiumLimit !== null && requirements.sodiumLimit !== undefined
+          ? `\\u2264 ${formatSalt(requirements.sodiumLimit)}/day`
+          : "No limit set",
+      status:
+        requirements.sodiumLimit != null
+          ? numericLimitStatus(dailyAverage.sodium, null, requirements.sodiumLimit)
+          : null,
+    },
+    {
+      label: "Potassium (mg)",
+      total: formatPotassiumMg(weeklyTotals.potassium),
+      average: formatPotassiumMg(dailyAverage.potassium),
+      requirement:
+        requirements.potassiumLimitMg != null
+          ? `\\u2264 ${formatPotassiumMg(requirements.potassiumLimitMg)}/day`
+          : "No limit set",
+      status:
+        requirements.potassiumLimitMg != null
+          ? numericLimitStatus(dailyAverage.potassium, null, requirements.potassiumLimitMg)
+          : null,
+    },
+    {
+      label: "Phosphorus",
+      total: `${formatNumber(weeklyTotals.phosphate)} mg`,
+      average: `${formatNumber(dailyAverage.phosphate)} mg`,
+      requirement:
+        requirements.phosphateLimitMg != null
+          ? `\\u2264 ${formatNumber(requirements.phosphateLimitMg)} mg/day`
+          : "No limit set",
+      status:
+        requirements.phosphateLimitMg != null
+          ? numericLimitStatus(dailyAverage.phosphate, null, requirements.phosphateLimitMg)
+          : null,
+    },
+    {
+      label: "Purines",
+      total: weeklyPurineLevel ? `Average: ${weeklyPurineLevel}` : "\\u2014",
+      average: weeklyPurineLevel ? getMatrixLevelText(weeklyPurineLevel) : "\\u2014",
+      requirement: requirementLevelText(requirements.purines),
+      status:
+        weeklyPurineLevel && requirements.purines !== "Any"
+          ? levelStatus(weeklyPurineLevel, requirements.purines)
+          : null,
+    },
+    {
+      label: "Total fluid (meals + drinks)",
+      total: `${weeklyFluidTotal.toLocaleString()} ml`,
+      average: `${Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day`,
+      requirement: "—",
+      status: null,
+    },
+    {
+      label: "Personal fluid allowance",
+      total: fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`,
+      average: fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`,
+      requirement: "—",
+      status: null,
+    },
+  ];
+
   function getDailyStatusForDay(day: Day): Status {
     const recipesForDay = mealTypes
       .map((meal) =>
@@ -839,9 +1043,12 @@ export default function NutritionPage() {
       {showPdfOptions && (
         <div className="nutrition-print-hidden fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
           <section
+            ref={pdfOptionsDialogRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby="pdf-options-title"
+            aria-describedby="pdf-options-description"
+            tabIndex={-1}
             className="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl"
           >
             <div className="flex items-start gap-3">
@@ -852,7 +1059,7 @@ export default function NutritionPage() {
                 <h2 id="pdf-options-title" className="text-xl font-extrabold text-slate-900">
                   Choose your PDF report
                 </h2>
-                <p className="mt-1 text-sm leading-5 text-slate-600">
+                <p id="pdf-options-description" className="mt-1 text-sm leading-5 text-slate-600">
                   Select the sections you want to include.
                 </p>
               </div>
@@ -930,7 +1137,20 @@ export default function NutritionPage() {
 
       <style jsx global>{`
         @media print {
+          html,
           body {
+            min-height: 0 !important;
+            height: auto !important;
+            overflow: visible !important;
+          }
+
+          body {
+            background: white !important;
+          }
+
+          .nutrition-print-main {
+            min-height: 0 !important;
+            padding: 0 !important;
             background: white !important;
           }
 
@@ -944,6 +1164,8 @@ export default function NutritionPage() {
 
           .nutrition-print-page {
             max-width: none !important;
+            min-height: 0 !important;
+            margin: 0 !important;
             padding: 0 !important;
           }
 
@@ -951,17 +1173,30 @@ export default function NutritionPage() {
             display: none !important;
           }
 
-          .nutrition-print-page.pdf-show-weekly-summary > .nutrition-print-summary,
+          .nutrition-print-page > .contents,
+          .nutrition-print-page > .contents > #nutrition-main-summary-content {
+            display: contents !important;
+          }
+
+          .nutrition-print-summary-desktop {
+            display: block !important;
+          }
+
+          .nutrition-print-page.pdf-show-weekly-summary .nutrition-print-summary,
+          .nutrition-print-page.pdf-show-about .nutrition-print-summary,
           .nutrition-print-page.pdf-show-daily-breakdown > .nutrition-print-grid,
           .nutrition-print-page.pdf-show-fluid > .nutrition-print-fluid,
           .nutrition-print-page.pdf-show-about .nutrition-print-about {
             display: block !important;
           }
 
-          .nutrition-print-page:not(.pdf-show-weekly-summary) .nutrition-print-summary,
+          .nutrition-print-page:not(.pdf-show-weekly-summary):not(.pdf-show-about) .nutrition-print-summary,
           .nutrition-print-page:not(.pdf-show-daily-breakdown) .nutrition-print-grid,
           .nutrition-print-page:not(.pdf-show-fluid) .nutrition-print-fluid,
-          .nutrition-print-page:not(.pdf-show-about) .nutrition-print-about {
+          .nutrition-print-page:not(.pdf-show-about) .nutrition-print-about,
+          .nutrition-print-page.pdf-show-about:not(.pdf-show-weekly-summary) .nutrition-print-summary-desktop,
+          .nutrition-print-page.pdf-show-about:not(.pdf-show-weekly-summary) .nutrition-print-summary > .mb-5,
+          .nutrition-print-page.pdf-show-about:not(.pdf-show-weekly-summary) .nutrition-print-summary > .grid > div:first-child {
             display: none !important;
           }
 
@@ -970,54 +1205,58 @@ export default function NutritionPage() {
             border: 1px solid #cbd5e1 !important;
           }
 
-          @page {
-            size: A4 landscape;
-            margin: 10mm;
-          }
-
-          /* The weekly grid contains 7 days plus a daily-average column.
-             Let the table use the full landscape page instead of allowing
-             the individual day cells to force the report off the page. */
+          /* Replace the on-screen seven-day grid with readable print tables. */
           .nutrition-print-grid {
             width: 100% !important;
             max-width: none !important;
             overflow: visible !important;
           }
 
-          .nutrition-print-grid > div {
-            width: 100% !important;
-            overflow: visible !important;
+          .nutrition-print-grid > .overflow-x-auto {
+            display: none !important;
           }
 
-          .nutrition-print-grid table {
+          .nutrition-print-daily-report {
+            display: block !important;
+          }
+
+          .nutrition-print-daily-table {
             width: 100% !important;
             max-width: none !important;
             min-width: 0 !important;
             table-layout: fixed !important;
+            border-collapse: collapse !important;
           }
 
-          .nutrition-print-grid th:first-child,
-          .nutrition-print-grid td:first-child {
-            width: 85px !important;
+          .nutrition-print-daily-table th,
+          .nutrition-print-daily-table td {
+            border: 1px solid #cbd5e1 !important;
+            padding: 3px !important;
+            vertical-align: top !important;
+            overflow-wrap: anywhere !important;
+            font-size: 7pt !important;
           }
 
-          .nutrition-print-grid th,
-          .nutrition-print-grid td {
-            padding: 4px !important;
+          .nutrition-print-daily-table th:first-child {
+            width: 18mm !important;
           }
 
-          .nutrition-print-grid .nutrition-weekly-average {
-            width: 90px !important;
+          .nutrition-print-daily-table th:nth-child(2) {
+            width: 48mm !important;
           }
 
-          .nutrition-print-grid td > div {
-            min-width: 0 !important;
-            font-size: 9px !important;
+          .nutrition-print-day {
+            margin-bottom: 5mm !important;
+            break-inside: avoid !important;
+            page-break-inside: avoid !important;
+          }
+
+          .nutrition-print-daily-table tr {
+            break-inside: avoid !important;
+            page-break-inside: avoid !important;
           }
 
           .nutrition-print-summary {
-            break-inside: avoid !important;
-            page-break-inside: avoid !important;
             margin: 0 !important;
           }
 
@@ -1035,6 +1274,11 @@ export default function NutritionPage() {
             min-width: 0 !important;
           }
 
+          .nutrition-print-summary td,
+          .nutrition-print-summary th {
+            overflow-wrap: anywhere !important;
+          }
+
           .nutrition-print-summary aside {
             margin-top: 16px !important;
             break-inside: avoid !important;
@@ -1042,16 +1286,28 @@ export default function NutritionPage() {
           }
         }
         html[data-theme="dark"] .nutrition-pdf-button {
-          background-color: #c45f16 !important;
+          background-color: #e0f2fe !important;
+          border-color: #bae6fd !important;
+          color: #082f49 !important;
         }
 
         html[data-theme="dark"] .nutrition-pdf-button:hover {
-          background-color: #d66b19 !important;
+          background-color: #bae6fd !important;
+        }
+
+        html[data-theme="dark"] .nutrition-main-summary-toggle {
+          background-color: #263b4c !important;
+          border-color: #40566a !important;
+          color: #edf4fb !important;
+        }
+
+        html[data-theme="dark"] .nutrition-main-summary-toggle:hover {
+          background-color: #30495c !important;
         }
 
         .nutrition-pdf-shimmer {
-          animation: nutrition-pdf-shimmer 3.5s ease-in-out infinite;
-          opacity: 0.5;
+          animation: nutrition-pdf-shimmer 2.6s ease-in-out infinite;
+          opacity: 0.9;
         }
 
         @keyframes nutrition-pdf-shimmer {
@@ -1062,9 +1318,14 @@ export default function NutritionPage() {
             transform: translateX(260%) skewX(-20deg);
           }
         }
+        @media (prefers-reduced-motion: reduce) {
+          .nutrition-pdf-shimmer {
+            animation: none;
+          }
+        }
       `}</style>
 
-      <main className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-50 px-4 py-5 md:px-6 md:py-6">
+      <main className="nutrition-print-main min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-50 px-4 py-5 md:px-6 md:py-6">
         <div
           className={`nutrition-print-page mx-auto max-w-7xl md:max-w-[1400px] ${
             pdfSections.weeklySummary ? "pdf-show-weekly-summary" : ""
@@ -1201,52 +1462,52 @@ export default function NutritionPage() {
                 </span>
               </div>
 
-              <div className="mt-3 space-y-2 text-sm">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Energy</span>
-                  <strong className="text-slate-900">
+              <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-xs sm:text-sm">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-slate-600">Energy</span>
+                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
                     {formatNutrient(dayTotals[selectedDay].calories, "kcal")}
                   </strong>
                 </div>
 
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Protein</span>
-                  <strong className="text-slate-900">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-slate-600">Protein</span>
+                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
                     {formatNutrient(dayTotals[selectedDay].protein, "g")}
                   </strong>
                 </div>
 
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Carbohydrate</span>
-                  <strong className="text-slate-900">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-slate-600">Carbohydrate</span>
+                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
                     {formatNutrient(dayTotals[selectedDay].carbohydrates, "g")}
                   </strong>
                 </div>
 
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Fat</span>
-                  <strong className="text-slate-900">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-slate-600">Fat</span>
+                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
                     {formatNutrient(dayTotals[selectedDay].fat, "g")}
                   </strong>
                 </div>
 
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Fibre</span>
-                  <strong className="text-slate-900">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-slate-600">Fibre</span>
+                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
                     {formatNutrient(dayTotals[selectedDay].fibre, "g")}
                   </strong>
                 </div>
 
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Salt (g)</span>
-                  <strong className="text-slate-900">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-slate-600">Salt (g)</span>
+                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
                     {formatSalt(dayTotals[selectedDay].sodium)}
                   </strong>
                 </div>
 
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Potassium</span>
-                  <span className="flex items-center gap-2 font-semibold text-slate-900">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-slate-600">Potassium</span>
+                  <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
                         numericLimitStatus(
@@ -1256,13 +1517,13 @@ export default function NutritionPage() {
                         )
                       )}`}
                     />
-                    {formatPotassiumMmol(dayTotals[selectedDay].potassium)}
+                    {formatPotassiumMg(dayTotals[selectedDay].potassium)}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Phosphorus</span>
-                  <span className="flex items-center gap-2 font-semibold text-slate-900">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-slate-600">Phosphorus</span>
+                  <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
                         numericLimitStatus(
@@ -1276,9 +1537,9 @@ export default function NutritionPage() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-600">Purines</span>
-                  <span className="flex items-center gap-2 font-semibold text-slate-900">
+                <div className="col-span-2 flex min-w-0 items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-slate-600">Purines</span>
+                  <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
                         worstStatus(
@@ -1327,6 +1588,140 @@ export default function NutritionPage() {
 
           {/* DESKTOP WEEKLY GRID */}
           <section className="nutrition-print-grid nutrition-print-card mb-7 hidden overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5 md:block">
+            <div className="nutrition-print-daily-report hidden">
+              {days.map((day) => {
+                const dayRecipes = mealTypes
+                  .map((meal) => getRecipe(plannerMeals, day, meal))
+                  .filter((recipe): recipe is Recipe => Boolean(recipe));
+                const dayPurines = averageRecipeLevel(dayRecipes, "purines");
+
+                return (
+                  <section key={day} className="nutrition-print-day">
+                    <h3 className="mb-2 text-base font-bold text-slate-900">{day}</h3>
+                    <table className="nutrition-print-daily-table">
+                      <thead>
+                        <tr className="bg-slate-100 text-left">
+                          <th>Meal</th>
+                          <th>Planned recipe</th>
+                          <th>Energy</th>
+                          <th>Protein</th>
+                          <th>Carbohydrate</th>
+                          <th>Fat</th>
+                          <th>Fibre</th>
+                          <th>Salt</th>
+                          <th>Potassium</th>
+                          <th>Phosphorus</th>
+                          <th>Purines</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {mealTypes.map((meal) => {
+                          const recipe = getRecipe(plannerMeals, day, meal);
+                          const totals = getMealTotals(recipe);
+
+                          return (
+                            <tr key={`${day}-${meal}`}>
+                              <th className="text-left">{meal}</th>
+                              <td>{recipe?.name ?? "No meal planned"}</td>
+                              <td>{recipe ? formatNutrient(totals.calories, "kcal") : "—"}</td>
+                              <td>{recipe ? formatNutrient(totals.protein, "g") : "—"}</td>
+                              <td>{recipe ? formatNutrient(totals.carbohydrates, "g") : "—"}</td>
+                              <td>{recipe ? formatNutrient(totals.fat, "g") : "—"}</td>
+                              <td>{recipe ? formatNutrient(totals.fibre, "g") : "—"}</td>
+                              <td>{recipe ? formatSalt(totals.sodium) : "—"}</td>
+                              <td>{recipe ? formatPotassiumMg(totals.potassium) : "—"}</td>
+                              <td>{recipe ? formatNutrient(totals.phosphate, "mg") : "—"}</td>
+                              <td>{recipe ? getMatrixLevelText(recipe.purines) : "—"}</td>
+                            </tr>
+                          );
+                        })}
+                        <tr className="bg-green-50 font-bold">
+                          <th className="text-left">Daily total</th>
+                          <td>All planned meals</td>
+                          <td>{formatNutrient(dayTotals[day].calories, "kcal")}</td>
+                          <td>{formatNutrient(dayTotals[day].protein, "g")}</td>
+                          <td>{formatNutrient(dayTotals[day].carbohydrates, "g")}</td>
+                          <td>{formatNutrient(dayTotals[day].fat, "g")}</td>
+                          <td>{formatNutrient(dayTotals[day].fibre, "g")}</td>
+                          <td>{formatSalt(dayTotals[day].sodium)}</td>
+                          <td>{formatPotassiumMg(dayTotals[day].potassium)}</td>
+                          <td>{formatNutrient(dayTotals[day].phosphate, "mg")}</td>
+                          <td>{dayPurines ? getMatrixLevelText(dayPurines) : "—"}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </section>
+                );
+              })}
+
+              <section className="nutrition-print-day">
+                <h3 className="mb-2 text-base font-bold text-slate-900">Daily averages</h3>
+                <table className="nutrition-print-daily-table">
+                  <thead>
+                    <tr className="bg-slate-100 text-left">
+                      <th>Meal</th>
+                      <th>Planned recipe</th>
+                      <th>Energy</th>
+                      <th>Protein</th>
+                      <th>Carbohydrate</th>
+                      <th>Fat</th>
+                      <th>Fibre</th>
+                      <th>Salt</th>
+                      <th>Potassium</th>
+                      <th>Phosphorus</th>
+                      <th>Purines</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {mealTypes.map((meal) => {
+                      const mealRecipes = days
+                        .map((day) => getRecipe(plannerMeals, day, meal))
+                        .filter((recipe): recipe is Recipe => Boolean(recipe));
+                      const average = emptyTotals();
+
+                      days.forEach((day) => {
+                        addTotals(average, getMealTotals(getRecipe(plannerMeals, day, meal)));
+                      });
+                      (Object.keys(average) as NutrientKey[]).forEach((key) => {
+                        average[key] /= 7;
+                      });
+
+                      const purines = averageRecipeLevel(mealRecipes, "purines");
+
+                      return (
+                        <tr key={`average-${meal}`}>
+                          <th className="text-left">{meal}</th>
+                          <td>Weekly average per {meal.toLowerCase()}</td>
+                          <td>{formatNutrient(average.calories, "kcal")}</td>
+                          <td>{formatNutrient(average.protein, "g")}</td>
+                          <td>{formatNutrient(average.carbohydrates, "g")}</td>
+                          <td>{formatNutrient(average.fat, "g")}</td>
+                          <td>{formatNutrient(average.fibre, "g")}</td>
+                          <td>{formatSalt(average.sodium)}</td>
+                          <td>{formatPotassiumMg(average.potassium)}</td>
+                          <td>{formatNutrient(average.phosphate, "mg")}</td>
+                          <td>{purines ? getMatrixLevelText(purines) : "—"}</td>
+                        </tr>
+                      );
+                    })}
+                    <tr className="bg-blue-50 font-bold">
+                      <th className="text-left">Daily total</th>
+                      <td>Average across the week</td>
+                      <td>{formatNutrient(dailyAverage.calories, "kcal")}</td>
+                      <td>{formatNutrient(dailyAverage.protein, "g")}</td>
+                      <td>{formatNutrient(dailyAverage.carbohydrates, "g")}</td>
+                      <td>{formatNutrient(dailyAverage.fat, "g")}</td>
+                      <td>{formatNutrient(dailyAverage.fibre, "g")}</td>
+                      <td>{formatSalt(dailyAverage.sodium)}</td>
+                      <td>{formatPotassiumMg(dailyAverage.potassium)}</td>
+                      <td>{formatNutrient(dailyAverage.phosphate, "mg")}</td>
+                      <td>{weeklyPurineLevel ? getMatrixLevelText(weeklyPurineLevel) : "—"}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+            </div>
+
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
@@ -1666,7 +2061,7 @@ export default function NutritionPage() {
                                           )
                                         )}`}
                                       />
-                                      {formatPotassiumMmol(dayTotals[day].potassium)}
+                                      {formatPotassiumMg(dayTotals[day].potassium)}
                                     </span>
                                   </div>
 
@@ -1771,7 +2166,7 @@ export default function NutritionPage() {
                                       )
                                     )}`}
                                   />
-                                  {formatPotassiumMmol(dailyAverage.potassium)}
+                                  {formatPotassiumMg(dailyAverage.potassium)}
                                 </span>
                               </div>
 
@@ -1870,7 +2265,33 @@ export default function NutritionPage() {
             </div>
           </section>
 
-                    {/* WEEKLY SUMMARY */}
+          <div className="contents">
+            <button
+              type="button"
+              id="nutrition-main-summary-toggle"
+              aria-controls="nutrition-main-summary-content"
+              aria-expanded={mainSummaryOpen}
+              onClick={() => setMainSummaryOpen((open) => !open)}
+              className="nutrition-main-summary-toggle nutrition-print-hidden mb-3 flex w-full items-center justify-between rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-left text-base font-bold text-green-900 shadow-sm transition hover:bg-green-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 md:hidden"
+            >
+              <span>Main Summary</span>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className={`h-5 w-5 transition-transform ${mainSummaryOpen ? "rotate-180" : ""}`}
+              >
+                <path d="m5 7.5 5 5 5-5" />
+              </svg>
+            </button>
+
+            <div
+              id="nutrition-main-summary-content"
+              className={mainSummaryOpen ? "contents" : "hidden md:contents"}
+            >
+          {/* WEEKLY SUMMARY */}
           <section className="nutrition-print-summary nutrition-print-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 md:p-6">
             <div className="mb-5">
               <h2 className="text-2xl font-bold text-green-800">
@@ -1883,177 +2304,75 @@ export default function NutritionPage() {
               </p>
             </div>
 
-            <div className="grid gap-5 xl:grid-cols-[minmax(0,720px)_minmax(320px,360px)] xl:justify-start">
-              <div className="overflow-x-auto">
-                <table className="w-full max-w-[720px] border-collapse text-sm">
-                  <thead>
-                    <tr className="border-b border-slate-200 text-left">
-                      <th className="px-3 py-3 font-bold text-slate-700">
-                        Nutrient
-                      </th>
-                      <th className="px-3 py-3 font-bold text-slate-700">
-                        Weekly total
-                      </th>
-                      <th className="px-3 py-3 font-bold text-slate-700">
-                        Daily average
-                      </th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {[
-                      {
-                        label: "Energy (kcal)",
-                        total: formatNumber(weeklyTotals.calories),
-                        average: formatNumber(dailyAverage.calories),
-                        requirement: "Not specified",
-                        status: "green" as Status,
-                      },
-                      {
-                        label: "Protein (g)",
-                        total: formatNumber(weeklyTotals.protein),
-                        average: formatNumber(dailyAverage.protein),
-                        requirement: formatRange(
-                          requirements.proteinMinG,
-                          requirements.proteinMaxG,
-                          "g/day"
-                        ),
-                        status: numericLimitStatus(
-                          dailyAverage.protein,
-                          requirements.proteinMinG,
-                          requirements.proteinMaxG
-                        ),
-                      },
-                      {
-                        label: "Carbohydrate (g)",
-                        total: formatNumber(weeklyTotals.carbohydrates),
-                        average: formatNumber(dailyAverage.carbohydrates),
-                        requirement: formatRange(
-                          requirements.carbohydrateMin,
-                          requirements.carbohydrateMax,
-                          "g/day"
-                        ),
-                        status: numericLimitStatus(
-                          dailyAverage.carbohydrates,
-                          requirements.carbohydrateMin,
-                          requirements.carbohydrateMax
-                        ),
-                      },
-                      {
-                        label: "Fat (g)",
-                        total: formatNumber(weeklyTotals.fat),
-                        average: formatNumber(dailyAverage.fat),
-                        requirement: "Not specified",
-                        status: "green" as Status,
-                      },
-                      {
-                        label: "Fibre (g)",
-                        total: formatNumber(weeklyTotals.fibre),
-                        average: formatNumber(dailyAverage.fibre),
-                        requirement: "Not specified",
-                        status: "green" as Status,
-                      },
-                      {
-                        label: "Salt (g)",
-                        total: formatSalt(weeklyTotals.sodium),
-                        average: formatSalt(dailyAverage.sodium),
-                        requirement:
-                          requirements.sodiumLimit !== null &&
-                          requirements.sodiumLimit !== undefined
-                            ? `≤ ${formatSalt(requirements.sodiumLimit)}/day`
-                            : "No limit set",
-                        status: numericLimitStatus(
-                          dailyAverage.sodium,
-                          null,
-                          requirements.sodiumLimit
-                        ),
-                      },
-                      {
-                        label: "Potassium",
-                        total: formatPotassiumMmol(weeklyTotals.potassium),
-                        average: formatPotassiumMmol(dailyAverage.potassium),
-                        requirement:
-                          requirements.potassiumLimitMg != null
-                            ? `≤ ${formatPotassiumMmol(requirements.potassiumLimitMg)}/day`
-                            : "No limit set",
-                        status: numericLimitStatus(
-                          dailyAverage.potassium,
-                          null,
-                          requirements.potassiumLimitMg
-                        ),
-                      },
-                      {
-                        label: "Phosphorus",
-                        total: formatNumber(weeklyTotals.phosphate) + " mg",
-                        average: formatNumber(dailyAverage.phosphate) + " mg",
-                        requirement:
-                          requirements.phosphateLimitMg != null
-                            ? `≤ ${formatNumber(requirements.phosphateLimitMg)} mg/day`
-                            : "No limit set",
-                        status: numericLimitStatus(
-                          dailyAverage.phosphate,
-                          null,
-                          requirements.phosphateLimitMg
-                        ),
-                      },
-                      {
-                        label: "Purines",
-                        total: weeklyPurineLevel
-                          ? `Average: ${weeklyPurineLevel}`
-                          : "—",
-                        average: weeklyPurineLevel
-                          ? getMatrixLevelText(weeklyPurineLevel)
-                          : "—",
-                        requirement: requirementLevelText(requirements.purines),
-                        status: weeklyPurineLevel
-                          ? levelStatus(weeklyPurineLevel, requirements.purines)
-                          : "green",
-                      },
-                                        ].map((row) => (
-                      <tr
-                        key={row.label}
-                        className="border-b border-slate-100 last:border-b-0"
-                      >
-                        <td className="px-3 py-3 font-semibold text-slate-900">
-                          {row.label}
-                        </td>
-
-                        <td className="px-3 py-3 text-slate-700">
-                          {row.total}
-                        </td>
-
-                        <td className="px-3 py-3 text-slate-700">
-                          {row.average}
-                        </td>
-
+            <div className="grid gap-5 xl:grid-cols-[minmax(0,800px)_minmax(320px,360px)] xl:justify-start">
+              <div className="min-w-0">
+                <div className="nutrition-print-summary-desktop hidden overflow-x-auto md:block">
+                  <table className="w-full max-w-[800px] border-collapse text-sm">
+                    <thead>
+                      <tr className="border-b border-slate-200 text-left">
+                        <th className="px-3 py-3 font-bold text-slate-700">Nutrient</th>
+                        <th className="px-3 py-3 font-bold text-slate-700">Weekly total</th>
+                        <th className="px-3 py-3 font-bold text-slate-700">Daily average</th>
+                        <th className="px-2 py-3 font-bold text-slate-700">Daily target</th>
+                        <th className="px-2 py-3 font-bold text-slate-700">Status</th>
                       </tr>
-                    ))}
-                    <tr className="border-b border-slate-100">
-                      <td className="px-3 py-3 font-semibold text-slate-900">Total fluid (meals + drinks)</td>
-                      <td className="px-3 py-3 text-slate-700">{weeklyFluidTotal.toLocaleString()} ml</td>
-                      <td className="px-3 py-3 text-slate-700">{Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day</td>
-                    </tr>
-                    <tr className="border-b border-slate-100 last:border-b-0">
-                      <td className="px-3 py-3 font-semibold text-slate-900">Personal fluid allowance</td>
-                      <td className="px-3 py-3 text-slate-700">{fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`}</td>
-                      <td className="px-3 py-3 text-slate-700">{fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {weeklySummaryRows.map((row) => (
+                        <tr key={row.label} className="border-b border-slate-100 last:border-b-0">
+                          <td className="px-3 py-3 font-semibold text-slate-900">{row.label}</td>
+                          <td className="px-3 py-3 text-slate-700">{row.total}</td>
+                          <td className="px-3 py-3 text-slate-700">{row.average}</td>
+                          <td className="px-2 py-3 text-slate-700">{row.requirement}</td>
+                          <td className="px-2 py-3"><NutritionStatusLabel status={row.status} /></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
 
+                <div className="nutrition-print-hidden divide-y divide-slate-200 md:hidden">
+                  {weeklySummaryRows.map((row) => (
+                    <article key={row.label} className="py-2.5 first:pt-0 last:pb-0">
+                      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+                        <div className="min-w-0">
+                          <h3 className="break-words text-sm font-semibold leading-5 text-slate-900">{row.label}</h3>
+                          {row.status && <NutritionStatusLabel status={row.status} />}
+                        </div>
+                        <div className="text-right">
+                          <div className="text-[10px] leading-4 text-slate-500">Daily average</div>
+                          <div className="text-sm font-bold leading-5 text-slate-900">{row.average}</div>
+                        </div>
+                      </div>
+                      <div className="mt-1 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 text-xs leading-4">
+                        <span className="min-w-0 break-words">
+                          <span className="text-slate-500">Weekly: </span>
+                          <span className="font-medium text-slate-700">{row.total}</span>
+                        </span>
+                        <span className="min-w-0 break-words text-slate-600">
+                          <span className="text-slate-500">Target: </span>
+                          <span className="font-medium text-slate-700">{row.requirement}</span>
+                        </span>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
               <aside className="nutrition-print-about h-full rounded-2xl bg-green-50 p-4">
                 {!showLoginOverlay && (
-                <div className="nutrition-print-hidden mb-4">
+                <div className="nutrition-print-hidden mb-4 lg:hidden">
                   <button
                     type="button"
-                    onClick={() => setShowPdfOptions(true)}
-                    className="nutrition-pdf-button relative w-full overflow-hidden rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-orange-600"
+                    onClick={(event) => {
+                      pdfOptionsReturnFocusRef.current = event.currentTarget;
+                      setShowPdfOptions(true);
+                    }}
+                    className="nutrition-pdf-button relative w-full overflow-hidden rounded-xl border border-sky-200 bg-sky-100 px-4 py-2.5 text-sm font-bold text-sky-950 shadow-sm transition hover:bg-sky-200"
                   >
                     <span className="relative z-10">🖨️ Print / Save as PDF</span>
                     <span
                       aria-hidden="true"
-                      className="nutrition-pdf-shimmer pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/45 to-transparent"
+                      className="nutrition-pdf-shimmer pointer-events-none absolute inset-y-0 -left-1/3 w-1/2 skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/95 to-transparent"
                     />
                   </button>
                 </div>
@@ -2100,7 +2419,7 @@ export default function NutritionPage() {
                   red means it exceeds the saved limit. Individual meal
                   figures are shown for information only and are not judged
                   against the full daily allowance. Potassium is displayed
-                  in mmol, phosphorus in mg and salt in g. Purines are shown
+                  in mg from food data, phosphorus in mg and salt in g. Purines are shown
                   as Low, Moderate or High because the recipe data uses a
                   classification rather than a numeric purine value.
                 </p>
@@ -2115,6 +2434,8 @@ export default function NutritionPage() {
             planning aid and should not replace advice from your
             renal or healthcare team.
           </p>
+            </div>
+          </div>
         </div>
       </main>
       <style jsx global>{`

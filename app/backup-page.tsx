@@ -1560,6 +1560,37 @@ function LoggedInHome() {
           <p className="sr-only" aria-live="polite">Loading your RenalPlan dashboard.</p>
         )}
       </div>
+
+      {/* =========================================================
+          DASHBOARD FOOTER — matches the homepage footer
+      ========================================================= */}
+      <footer className="renal-home-footer mt-10 -mx-4 border-t border-slate-100 bg-white px-5 py-7 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-12">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+          <div className="flex flex-col items-center gap-2 text-sm text-slate-600 sm:items-end sm:text-right">
+            <Link href="/about" className="font-semibold transition hover:opacity-80">
+              <span className="renal-home-about-label">About </span><span className="renal-home-brand-renal text-[#12396b]">Renal</span>
+              <span className="renal-home-brand-plan text-[#067b3a]">Plan</span>
+            </Link>
+
+            <Link
+              href="/privacy"
+              className="font-semibold text-[#1266c3] transition hover:text-[#067b3a] hover:underline"
+            >
+              Privacy and Data Protection
+            </Link>
+
+            <span>
+              <span>Do you have any questions or need help? </span>
+              <a
+                href="mailto:hello@renalplan.com"
+                className="font-semibold text-[#067b3a] transition hover:text-[#067b3a]"
+              >
+                Contact us
+              </a>
+            </span>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

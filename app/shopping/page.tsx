@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 
@@ -1800,6 +1800,7 @@ function getCategory(item: string): string {
  * ============================================================ */
 
 export default function ShoppingPage() {
+  const downloadChecklistHandlerRef = useRef<() => void>(() => {});
   const [selectedRecipes, setSelectedRecipes] = useState<string[]>([]);
   const [shoppingList, setShoppingList] = useState<ShoppingItem[]>([]);
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
@@ -2395,6 +2396,17 @@ export default function ShoppingPage() {
     setCheckedItems([]);
   }
 
+  const categoryOrder = [
+    "🥩 Meat & Fish",
+    "🥕 Fruit & Vegetables",
+    "🥫 Cupboard",
+    "❄️ Frozen",
+    "🍞 Bakery",
+    "🧊 Chilled",
+    "🧂 Herbs & Spices",
+    "Other",
+  ];
+
   function downloadOfflineChecklist() {
     if (shoppingList.length === 0) return;
 
@@ -2467,16 +2479,18 @@ ${checklistHtml}
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
-  const categoryOrder = [
-    "🥩 Meat & Fish",
-    "🥕 Fruit & Vegetables",
-    "🥫 Cupboard",
-    "❄️ Frozen",
-    "🍞 Bakery",
-    "🧊 Chilled",
-    "🧂 Herbs & Spices",
-    "Other",
-  ];
+  useEffect(() => {
+    downloadChecklistHandlerRef.current = downloadOfflineChecklist;
+  });
+
+  useEffect(() => {
+    const handleNavbarDownload = () => downloadChecklistHandlerRef.current();
+    window.addEventListener("renalplan:download-shopping-checklist", handleNavbarDownload);
+
+    return () => {
+      window.removeEventListener("renalplan:download-shopping-checklist", handleNavbarDownload);
+    };
+  }, []);
 
   const categoryStyles: Record<
     string,
@@ -2807,6 +2821,43 @@ ${checklistHtml}
   return (
     <>
       <style>{`
+        @keyframes renalplan-glimmer {
+          0%, 55% { transform: translateX(-140%) rotate(18deg); opacity: 0; }
+          65% { opacity: 1; }
+          85% { transform: translateX(140%) rotate(18deg); opacity: 0; }
+          100% { transform: translateX(140%) rotate(18deg); opacity: 0; }
+        }
+
+        .shopping-download-shimmer {
+          position: relative;
+          overflow: hidden;
+          isolation: isolate;
+        }
+
+        .shopping-download-shimmer::after {
+          content: "";
+          position: absolute;
+          inset: -45% -25%;
+          width: 34%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.65),
+            rgba(255,255,255,.95),
+            transparent
+          );
+          transform: translateX(-140%) rotate(18deg);
+          animation: renalplan-glimmer 3.2s ease-in-out infinite;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .shopping-download-shimmer::after {
+            animation: none;
+          }
+        }
+
         /* Shopping List: keep category cards visually uniform in light mode.
            Category colours are intentionally limited to the icons and small
            count badges so the page reads as one cohesive shopping list. */
@@ -2966,21 +3017,21 @@ ${checklistHtml}
 
                   <button
                     onClick={downloadOfflineChecklist}
-                    className="min-w-0 flex-1 whitespace-nowrap rounded-xl border-2 border-emerald-600 bg-emerald-600 px-2 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5"
+                    className="shopping-download-shimmer min-w-0 flex-1 whitespace-nowrap rounded-xl border-2 border-sky-200 bg-sky-100 px-2 py-3 text-sm font-bold text-sky-950 shadow-sm transition hover:border-sky-300 hover:bg-sky-200 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5 lg:hidden"
                     title="Download a shopping checklist that works without internet"
                   >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5 inline-block h-5 w-5 align-[-4px]" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 mr-1.5 inline-block h-5 w-5 align-[-4px]" aria-hidden="true">
                       <path d="M12 3v12" />
                       <path d="m7 10 5 5 5-5" />
                       <path d="M5 20h14" />
                     </svg>
-                    <span className="sm:hidden">Download</span>
-                    <span className="hidden sm:inline">Download Offline Checklist</span>
+                    <span className="relative z-10 sm:hidden">Download</span>
+                    <span className="relative z-10 hidden sm:inline">Download Offline Checklist</span>
                   </button>
 
                   <button
                     onClick={uncheckAll}
-                    className="min-w-0 flex-1 whitespace-nowrap rounded-xl border-2 border-orange-500 bg-white px-2 py-3 text-sm font-bold text-orange-600 shadow-sm transition hover:bg-orange-50 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5"
+                    className="min-w-0 flex-1 whitespace-nowrap rounded-xl border-2 border-orange-200 bg-white px-2 py-3 text-sm font-bold text-orange-700 shadow-sm transition hover:bg-orange-50 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5 inline-block h-5 w-5 align-[-4px]" aria-hidden="true">
                       <path d="M4 7h16" />

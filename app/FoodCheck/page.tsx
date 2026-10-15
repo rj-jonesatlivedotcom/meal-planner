@@ -21,8 +21,8 @@ type Food = {
   fibre: number;
   salt: number;
   sodium: number;
-  potassium: number;
-  phosphorus: number;
+  potassium: number | null;
+  phosphorus: number | null;
   calcium: number;
   magnesium: number;
   iron: number;
@@ -52,6 +52,25 @@ function numberValue(
   }
 
   return 0;
+}
+
+function optionalNumberValue(
+  row: CofidRow,
+  ...keys: string[]
+): number | null {
+  for (const key of keys) {
+    const value = row[key];
+
+    if (value !== null && value !== undefined && value !== "") {
+      const number = Number(value);
+
+      if (Number.isFinite(number)) {
+        return number;
+      }
+    }
+  }
+
+  return null;
 }
 
 function textValue(
@@ -177,13 +196,13 @@ function mapFood(row: CofidRow): Food {
       "sodium"
     ),
 
-    potassium: numberValue(
+    potassium: optionalNumberValue(
       row,
       "potassium_mg",
       "potassium"
     ),
 
-    phosphorus: numberValue(
+    phosphorus: optionalNumberValue(
       row,
       "phosphorus_mg",
       "phosphorus",
@@ -561,7 +580,18 @@ export default function FoodCheckPage() {
       const n = product.nutriments ?? {};
       const numeric = (value: unknown) => {
         const number = Number(value);
-        return Number.isFinite(number) ? number : 0;
+        return value !== null && value !== undefined && value !== "" && Number.isFinite(number)
+          ? number
+          : 0;
+      };
+
+      const optionalNumeric = (value: unknown): number | null => {
+        if (value === null || value === undefined || value === "") {
+          return null;
+        }
+
+        const number = Number(value);
+        return Number.isFinite(number) ? number : null;
       };
 
       const productName =
@@ -595,8 +625,12 @@ export default function FoodCheckPage() {
         fibre: numeric(n.fiber_100g ?? n.fibers_100g),
         salt: numeric(n.salt_100g),
         sodium: numeric(n.sodium_100g) * 1000,
-        potassium: numeric(n.potassium_100g) * 1000,
-        phosphorus: numeric(n.phosphorus_100g) * 1000,
+        potassium: optionalNumeric(n.potassium_100g) === null
+          ? null
+          : optionalNumeric(n.potassium_100g)! * 1000,
+        phosphorus: optionalNumeric(n.phosphorus_100g) === null
+          ? null
+          : optionalNumeric(n.phosphorus_100g)! * 1000,
         calcium: numeric(n.calcium_100g) * 1000,
         magnesium: numeric(n.magnesium_100g) * 1000,
         iron: numeric(n.iron_100g) * 1000,
@@ -1434,17 +1468,21 @@ export default function FoodCheckPage() {
 
                         <NutritionRow
                           label="Potassium"
-                          value={`${formatNumber(
-                            selectedFood.potassium
-                          )} mg`}
+                          value={
+                            selectedFood.potassium === null
+                              ? "Not available"
+                              : `${formatNumber(selectedFood.potassium)} mg`
+                          }
                           emphasis="green"
                         />
 
                         <NutritionRow
                           label="Phosphorus"
-                          value={`${formatNumber(
-                            selectedFood.phosphorus
-                          )} mg`}
+                          value={
+                            selectedFood.phosphorus === null
+                              ? "Not available"
+                              : `${formatNumber(selectedFood.phosphorus)} mg`
+                          }
                           emphasis="orange"
                         />
 

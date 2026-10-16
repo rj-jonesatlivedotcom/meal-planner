@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
+import { getNutritionEvidenceText } from "@/lib/nutritionEvidence";
 
 const days = [
   "Monday",
@@ -824,9 +825,11 @@ export default function RecipeDetailPage() {
               </div>
 
               <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
-                🧀 <strong>Phosphate:</strong> {recipe.nutrition.phosphate}
+                🧀 <strong>Phosphorus:</strong> {recipe.nutrition.phosphate}
               </div>
 
+              {!recipe.clinicalReviewPending && (
+                <>
               <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
                 🍖 <strong>Purines:</strong> {recipe.purines}
               </div>
@@ -837,6 +840,12 @@ export default function RecipeDetailPage() {
                   <p className="mt-1">{recipe.dietaryNote}</p>
                 </div>
               )}
+                </>
+              )}
+              <details className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+                <summary className="cursor-pointer py-2 font-semibold">Nutrition information</summary>
+                <p className="mt-1">{getNutritionEvidenceText(recipe)}</p>
+              </details>
             </div>
           </div>
 
@@ -991,15 +1000,16 @@ export default function RecipeDetailPage() {
       </h2>
 
       <div className="space-y-2 rounded-lg border p-4">
-
         <div className="rounded-lg border border-slate-300 bg-slate-50 p-3 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
           🥔 <strong>Potassium:</strong> {recipe.nutrition.potassium}
         </div>
 
         <div className="rounded-lg border border-slate-300 bg-slate-50 p-3 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
-          🧀 <strong>Phosphate:</strong> {recipe.nutrition.phosphate}
+          🧀 <strong>Phosphorus:</strong> {recipe.nutrition.phosphate}
         </div>
 
+        {!recipe.clinicalReviewPending && (
+          <>
         <p className="rounded-lg bg-slate-50 p-3 text-sm">
           🍖 <strong>Purines:</strong> {recipe.purines}
         </p>
@@ -1011,6 +1021,12 @@ export default function RecipeDetailPage() {
           </div>
         )}
 
+          </>
+        )}
+        <details className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+                <summary className="cursor-pointer py-2 font-semibold">Nutrition information</summary>
+                <p className="mt-1">{getNutritionEvidenceText(recipe)}</p>
+              </details>
       </div>
 
       {/* Back to Recipes */}

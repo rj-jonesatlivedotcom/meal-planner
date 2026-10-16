@@ -9,6 +9,8 @@ export type Requirements = {
   purines: RequirementLevel;
   carbohydrateMin: number | null;
   carbohydrateMax: number | null;
+  potassiumLimitMg?: number | null;
+  phosphateLimitMg?: number | null;
 };
 
 export const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
@@ -74,9 +76,15 @@ export function recipeMatchesRequirements(
 
   return (
     (mealSodiumGuide === null || sodium <= mealSodiumGuide) &&
-    matchesLevel(recipe.potassium, requirements.potassium) &&
-    matchesLevel(recipe.phosphate, requirements.phosphate) &&
-    matchesLevel(recipe.purines, requirements.purines) &&
+    (requirements.potassiumLimitMg == null ||
+      getSodiumNumber(recipe.nutrition.potassium ?? "") <= requirements.potassiumLimitMg) &&
+    (requirements.phosphateLimitMg == null ||
+      getSodiumNumber(recipe.nutrition.phosphate ?? "") <= requirements.phosphateLimitMg) &&
+    (recipe.clinicalReviewPending || (
+      matchesLevel(recipe.potassium, requirements.potassium) &&
+      matchesLevel(recipe.phosphate, requirements.phosphate) &&
+      matchesLevel(recipe.purines, requirements.purines)
+    )) &&
     matchesCarbohydrateMinimum &&
     matchesCarbohydrateMaximum
   );

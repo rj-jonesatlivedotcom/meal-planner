@@ -783,6 +783,9 @@ function LoggedInHome() {
     purines: string;
     carbohydrateMin: number | null;
     carbohydrateMax: number | null;
+    potassiumLimitMg?: number | null;
+    phosphateLimitMg?: number | null;
+    proteinMaxG?: number | null;
   } = {
     sodiumLimit: null,
     potassium: "Any",
@@ -812,13 +815,22 @@ function LoggedInHome() {
         return false;
       }
 
-      if (!matchesRequirement(recipe.potassium, requirementFilters.potassium)) {
+      // Unreviewed qualitative labels cannot establish suitability or exclude every recipe.
+      if (!recipe.clinicalReviewPending && (
+        !matchesRequirement(recipe.potassium, requirementFilters.potassium) ||
+        !matchesRequirement(recipe.phosphate, requirementFilters.phosphate) ||
+        !matchesRequirement(recipe.purines, requirementFilters.purines)
+      )) {
         return false;
       }
-      if (!matchesRequirement(recipe.phosphate, requirementFilters.phosphate)) {
-        return false;
-      }
-      if (!matchesRequirement(recipe.purines, requirementFilters.purines)) {
+      if (
+        (requirementFilters.potassiumLimitMg != null &&
+          parseValue(recipe.nutrition.potassium) > requirementFilters.potassiumLimitMg) ||
+        (requirementFilters.phosphateLimitMg != null &&
+          parseValue(recipe.nutrition.phosphate) > requirementFilters.phosphateLimitMg) ||
+        (requirementFilters.proteinMaxG != null &&
+          parseValue(recipe.nutrition.protein) > requirementFilters.proteinMaxG)
+      ) {
         return false;
       }
 
@@ -1478,7 +1490,7 @@ function LoggedInHome() {
                     <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Protein</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.protein.toFixed(1).replace(/\.0$/, "")} g</p></div>
                     <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Carbohydrates</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.carbohydrates.toFixed(1).replace(/\.0$/, "")} g</p></div>
                     <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Potassium</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.potassium} mg</p></div>
-                    <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Phosphate</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.phosphate} mg</p></div>
+                    <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Phosphorus</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.phosphate} mg</p></div>
                     <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Salt</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.salt.toFixed(2).replace(/\.00$/, "")} g</p></div>
                   </div>
                 ) : <div className="renal-dashboard-soft mt-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-4"><p className="text-sm font-bold text-[#12396b]">Plan a meal for {viewingDay || "this day"} first.</p><p className="renal-dashboard-muted mt-1 text-xs text-slate-600">Your totals will appear here.</p></div>}
@@ -1556,7 +1568,6 @@ function LoggedInHome() {
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
               {requirementsSet ? "A recipe chosen around your saved dietary settings and current plan." : "Set your My Diet preferences and RenalPlan can make recommendations around them."}
             </p>
-
             {recommendedRecipe ? (
               <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <Link href={`/recipes/${recommendedRecipe.id}`} className="renal-dashboard-recipe block w-full min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
@@ -1565,7 +1576,7 @@ function LoggedInHome() {
                 ) : null}
                 <div className="p-4">
                   <p className="font-extrabold text-[#12396b]">{recommendedRecipe.name}</p>
-                  <p className="mt-1 text-xs font-semibold text-[#067b3a]">Fits your current settings</p>
+                  <p className="mt-1 text-xs font-semibold text-[#067b3a]">Matches your numeric preferences</p>
                   <p className="mt-2 text-xs text-slate-500">K {recommendedRecipe.nutrition?.potassium ?? "—"} · P {recommendedRecipe.nutrition?.phosphate ?? "—"} · Salt {recommendedRecipe.nutrition?.salt ?? "—"}</p>
                 </div>
               </Link>
@@ -1576,7 +1587,7 @@ function LoggedInHome() {
                   ) : null}
                   <div className="p-4">
                     <p className="font-extrabold text-[#12396b]">{secondRecommendedRecipe.name}</p>
-                    <p className="mt-1 text-xs font-semibold text-[#067b3a]">Fits your current settings</p>
+                    <p className="mt-1 text-xs font-semibold text-[#067b3a]">Matches your numeric preferences</p>
                     <p className="mt-2 text-xs text-slate-500">K {secondRecommendedRecipe.nutrition?.potassium ?? "—"} · P {secondRecommendedRecipe.nutrition?.phosphate ?? "—"} · Salt {secondRecommendedRecipe.nutrition?.salt ?? "—"}</p>
                   </div>
                 </Link>

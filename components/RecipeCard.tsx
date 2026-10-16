@@ -14,6 +14,10 @@ type RecipeCardProps = {
     image: string;
     name: string;
     description: string;
+    conditionalProxyPending?: boolean;
+    nutritionIncomplete?: ("calories" | "protein" | "carbohydrates" | "fat" | "fibre" | "sodium" | "salt" | "potassium" | "phosphate")[];
+    quantityConversionsEstimated?: boolean;
+    clinicalReviewPending?: boolean;
     cookingTime: string;
     calories: string;
     protein: string;
@@ -886,7 +890,7 @@ export default function RecipeCard({
             </div>
 
             <div className="min-w-0 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Phosphate</div>
+              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Phosphorus</div>
               <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100 xl:text-xs">
                 {recipe.nutrition?.phosphate ?? "—"}
               </div>

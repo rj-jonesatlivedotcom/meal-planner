@@ -16,6 +16,8 @@ export type Nutrition = {
   phosphate?: string;
 };
 
+export type NutritionField = keyof Nutrition;
+
 export type Recipe = {
   id: string;
   code: string;
@@ -35,6 +37,14 @@ export type Recipe = {
   phosphate: "Low" | "Moderate" | "High";
   purines: "Low" | "Moderate" | "High";
   dietaryNote?: string;
+  /** Status of the current CoFID ingredient-input calculation. */
+  nutritionBasis?: "CoFID ingredient-input estimate";
+  nutritionIncomplete?: NutritionField[];
+  /** Nutrients supplemented from an explicitly cited secondary source, when applicable. */
+  nutritionSourceNote?: string;
+  quantityConversionsEstimated?: boolean;
+  conditionalProxyPending?: boolean;
+  clinicalReviewPending?: boolean;
   /** Approximate countable fluid in ml from listed liquid/semi-liquid ingredients; excludes natural food moisture and drained cooking water. */
   fluidMl?: number;
   servings: number;

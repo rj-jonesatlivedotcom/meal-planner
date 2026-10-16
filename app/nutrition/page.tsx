@@ -109,7 +109,7 @@ type NutrientKey =
 
 type NutrientTotals = Record<NutrientKey, number>;
 
-type Status = "green" | "red";
+type Status = "green" | "red" | "pending";
 
 type FluidEntry = { id: string; date: string; drink: string; amountMl: number; createdAt?: string };
 const FLUID_LOG_STORAGE_KEY = "renalplan-fluid-log-v1";
@@ -239,13 +239,15 @@ function addTotals(
 }
 
 function worstStatus(statuses: Status[]): Status {
-  return statuses.includes("red") ? "red" : "green";
+  if (statuses.includes("red")) return "red";
+  return statuses.includes("pending") ? "pending" : "green";
 }
 
 function levelStatus(
-  recipeLevel: "Low" | "Moderate" | "High",
+  recipeLevel: "Low" | "Moderate" | "High" | "Pending review",
   requirement: RequirementLevel
 ): Status {
+  if (recipeLevel === "Pending review") return "pending";
   if (requirement === "Any") return "green";
 
   return levelRank[recipeLevel] <= levelRank[requirement]
@@ -283,17 +285,23 @@ function getDailyStatus(
   // Purines remain qualitative because the recipe data contains a level,
   // not a numeric purine amount.
   recipesForDay.forEach((recipe) => {
-    statuses.push(levelStatus(recipe.purines, requirements.purines));
+    statuses.push(
+      recipe.clinicalReviewPending && requirements.purines !== "Any"
+        ? "pending"
+        : levelStatus(recipe.purines, requirements.purines),
+    );
   });
 
   return worstStatus(statuses);
 }
 
 function getStatusText(status: Status): string {
+  if (status === "pending") return "Not assessed";
   return status === "green" ? "Within limit" : "Exceeds limit";
 }
 
 function getStatusDotClass(status: Status): string {
+  if (status === "pending") return "bg-slate-400";
   return status === "green" ? "bg-green-600" : "!bg-red-600";
 }
 
@@ -305,7 +313,7 @@ function NutritionStatusLabel({ status }: { status: Status | null }) {
   return (
     <span
       className={`inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-semibold ${
-        status === "green" ? "text-green-700" : "text-red-700"
+        status === "pending" ? "text-slate-500" : status === "green" ? "text-green-700" : "text-red-700"
       }`}
     >
       <span
@@ -318,9 +326,19 @@ function NutritionStatusLabel({ status }: { status: Status | null }) {
 }
 
 function getMatrixLevelText(
-  level: "Low" | "Moderate" | "High"
+  level: "Low" | "Moderate" | "High" | "Pending review"
 ): string {
+  if (level === "Pending review") return "Not assessed";
   return level === "Moderate" ? "Mod" : level;
+}
+
+function getRecipeLevelText(
+  recipe: Recipe,
+  key: "potassium" | "phosphate" | "purines",
+): string {
+  return recipe.clinicalReviewPending
+    ? "Not assessed"
+    : getMatrixLevelText(recipe[key]);
 }
 
 function formatSalt(sodiumMg: number): string {
@@ -373,8 +391,11 @@ function requirementLevelText(
 function averageRecipeLevel(
   dayRecipes: Recipe[],
   key: "potassium" | "phosphate" | "purines"
-): "Low" | "Moderate" | "High" | null {
+): "Low" | "Moderate" | "High" | "Pending review" | null {
   if (!dayRecipes.length) return null;
+  if (dayRecipes.some((recipe) => recipe.clinicalReviewPending)) {
+    return "Pending review";
+  }
 
   const totalPoints = dayRecipes.reduce(
     (total, recipe) => total + levelRank[recipe[key]],
@@ -808,7 +829,6 @@ export default function NutritionPage() {
     () => averageRecipeLevel(allPlannedRecipes, "purines"),
     [allPlannedRecipes]
   );
-
   const weeklySummaryRows: Array<{
     label: string;
     total: string;
@@ -863,7 +883,7 @@ export default function NutritionPage() {
       average: formatSalt(dailyAverage.sodium),
       requirement:
         requirements.sodiumLimit !== null && requirements.sodiumLimit !== undefined
-          ? `\\u2264 ${formatSalt(requirements.sodiumLimit)}/day`
+          ? `≤ ${formatSalt(requirements.sodiumLimit)}/day`
           : "No limit set",
       status:
         requirements.sodiumLimit != null
@@ -876,7 +896,7 @@ export default function NutritionPage() {
       average: formatPotassiumMg(dailyAverage.potassium),
       requirement:
         requirements.potassiumLimitMg != null
-          ? `\\u2264 ${formatPotassiumMg(requirements.potassiumLimitMg)}/day`
+          ? `≤ ${formatPotassiumMg(requirements.potassiumLimitMg)}/day`
           : "No limit set",
       status:
         requirements.potassiumLimitMg != null
@@ -889,7 +909,7 @@ export default function NutritionPage() {
       average: `${formatNumber(dailyAverage.phosphate)} mg`,
       requirement:
         requirements.phosphateLimitMg != null
-          ? `\\u2264 ${formatNumber(requirements.phosphateLimitMg)} mg/day`
+          ? `≤ ${formatNumber(requirements.phosphateLimitMg)} mg/day`
           : "No limit set",
       status:
         requirements.phosphateLimitMg != null
@@ -898,8 +918,8 @@ export default function NutritionPage() {
     },
     {
       label: "Purines",
-      total: weeklyPurineLevel ? `Average: ${weeklyPurineLevel}` : "\\u2014",
-      average: weeklyPurineLevel ? getMatrixLevelText(weeklyPurineLevel) : "\\u2014",
+      total: weeklyPurineLevel ? `Average: ${getMatrixLevelText(weeklyPurineLevel)}` : "—",
+      average: weeklyPurineLevel ? getMatrixLevelText(weeklyPurineLevel) : "—",
       requirement: requirementLevelText(requirements.purines),
       status:
         weeklyPurineLevel && requirements.purines !== "Any"
@@ -1438,7 +1458,7 @@ export default function NutritionPage() {
                         </div>
                         <div className="col-span-2 flex items-center justify-between gap-3">
                           <span className="text-slate-500">Purines</span>
-                          <strong className="text-slate-900">{getMatrixLevelText(recipe.purines)}</strong>
+                          <strong className="text-slate-900">{getRecipeLevelText(recipe, "purines")}</strong>
                         </div>
                       </div>
                     )}
@@ -1546,7 +1566,7 @@ export default function NutritionPage() {
                           mealTypes
                             .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
                             .filter((recipe): recipe is Recipe => Boolean(recipe))
-                            .map((recipe) => levelStatus(recipe.purines, requirements.purines))
+                            .map((recipe) => levelStatus(recipe.clinicalReviewPending ? "Pending review" : recipe.purines, requirements.purines))
                         )
                       )}`}
                     />
@@ -1631,7 +1651,7 @@ export default function NutritionPage() {
                               <td>{recipe ? formatSalt(totals.sodium) : "—"}</td>
                               <td>{recipe ? formatPotassiumMg(totals.potassium) : "—"}</td>
                               <td>{recipe ? formatNutrient(totals.phosphate, "mg") : "—"}</td>
-                              <td>{recipe ? getMatrixLevelText(recipe.purines) : "—"}</td>
+                              <td>{recipe ? getRecipeLevelText(recipe, "purines") : "—"}</td>
                             </tr>
                           );
                         })}
@@ -1837,7 +1857,7 @@ export default function NutritionPage() {
                                 <div className="flex items-center justify-between gap-2">
                                   <span className="text-slate-500">Purines</span>
                                   <strong className="text-slate-900">
-                                    {getMatrixLevelText(recipe.purines)}
+                                    {getRecipeLevelText(recipe, "purines")}
                                   </strong>
                                 </div>
                               </div>
@@ -2419,9 +2439,8 @@ export default function NutritionPage() {
                   red means it exceeds the saved limit. Individual meal
                   figures are shown for information only and are not judged
                   against the full daily allowance. Potassium is displayed
-                  in mg from food data, phosphorus in mg and salt in g. Purines are shown
-                  as Low, Moderate or High because the recipe data uses a
-                  classification rather than a numeric purine value.
+                  in mg from food data, phosphorus in mg and salt in g. Purine classifications
+                  awaiting renal dietitian review are not assessed.
                 </p>
               </aside>
             </div>
@@ -2432,7 +2451,10 @@ export default function NutritionPage() {
           <p className="nutrition-print-hidden mx-auto mt-5 max-w-5xl text-center text-xs leading-5 text-slate-500">
             RenalPlan nutrition figures are intended as a
             planning aid and should not replace advice from your
-            renal or healthcare team.
+            renal or healthcare team. Calculations follow the recorded source mappings,
+            quantity conversions and approved estimation assumptions; they are not
+            measured plate values. Clinical suitability, dietary guidance and qualitative
+            classifications remain pending qualified renal dietitian review.
           </p>
             </div>
           </div>
@@ -2472,6 +2494,7 @@ export default function NutritionPage() {
     </>
   );
 }
+
 
 
 

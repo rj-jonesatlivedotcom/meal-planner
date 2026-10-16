@@ -656,7 +656,7 @@ export default function RequirementsPage() {
                     </div>
                   )}
                   <p className="mt-1 text-xs leading-5 text-slate-600">
-                    Daily maximum, where a potassium restriction has been advised.
+                    Daily maximum, where a potassium restriction has been advised. Older Low/Moderate/High preferences are retained but not applied while classifications await renal dietitian review.
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
@@ -712,7 +712,7 @@ export default function RequirementsPage() {
                     </div>
                   )}
                   <p className="mt-1 text-xs leading-5 text-slate-600">
-                    Daily maximum, where a phosphate restriction has been advised.
+                    Daily maximum, where a phosphate restriction has been advised. Older Low/Moderate/High preferences are retained but not applied while classifications await renal dietitian review.
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
@@ -822,11 +822,16 @@ export default function RequirementsPage() {
                     </div>
                   )}
                   <p className="mt-1 text-xs leading-5 text-slate-600">
-                    If you have been advised to limit purines, choose the level recommended by your healthcare team.
+                    Follow the purine advice provided by your healthcare team.
+                  </p>
+                  <p id="purines-availability" className="mt-2 text-xs leading-5 text-slate-500">
+                    Your saved preference is retained. Purine classifications are not applied until qualified renal dietitian review; use the numeric potassium and phosphorus limits above.
                   </p>
 
                   <select
                     value={requirements.purines}
+                    aria-describedby="purines-availability"
+                    disabled
                     onChange={(e) =>
                       updateRequirement(
                         "purines",

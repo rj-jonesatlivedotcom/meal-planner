@@ -1207,15 +1207,21 @@ function WeeklyPlannerPageContent() {
           if (requirements?.potassiumLimitMg != null) {
             penalty(potassium - requirements.potassiumLimitMg, 100000);
           } else if (requirements?.potassium && requirements.potassium !== "Any") {
-            comboRecipes.forEach((recipe) => penalty((rank[recipe.potassium] ?? 1) - (rank[requirements.potassium] ?? 1), 50000));
+            comboRecipes.forEach((recipe) => {
+              if (!recipe.clinicalReviewPending) penalty((rank[recipe.potassium] ?? 1) - (rank[requirements.potassium] ?? 1), 50000);
+            });
           }
           if (requirements?.phosphateLimitMg != null) {
             penalty(phosphate - requirements.phosphateLimitMg, 100000);
           } else if (requirements?.phosphate && requirements.phosphate !== "Any") {
-            comboRecipes.forEach((recipe) => penalty((rank[recipe.phosphate] ?? 1) - (rank[requirements.phosphate] ?? 1), 50000));
+            comboRecipes.forEach((recipe) => {
+              if (!recipe.clinicalReviewPending) penalty((rank[recipe.phosphate] ?? 1) - (rank[requirements.phosphate] ?? 1), 50000);
+            });
           }
           if (requirements?.purines && requirements.purines !== "Any") {
-            comboRecipes.forEach((recipe) => penalty((rank[recipe.purines] ?? 1) - (rank[requirements.purines] ?? 1), 50000));
+            comboRecipes.forEach((recipe) => {
+              if (!recipe.clinicalReviewPending) penalty((rank[recipe.purines] ?? 1) - (rank[requirements.purines] ?? 1), 50000);
+            });
           }
           if (requirements?.proteinMinG != null) penalty(requirements.proteinMinG - protein, 2000);
           if (requirements?.proteinMaxG != null) penalty(protein - requirements.proteinMaxG, 100000);
@@ -1456,7 +1462,7 @@ openMyChefIntro();
     | "Carbohydrate"
     | "Sodium"
     | "Potassium"
-    | "Phosphate"
+    | "Phosphorus"
     | "Purines";
 
   const [nutritionView, setNutritionView] =
@@ -1694,7 +1700,7 @@ function formatPotassiumMg(mg: number): string {
     if (
       nutritionView !== "Sodium" &&
       nutritionView !== "Potassium" &&
-      nutritionView !== "Phosphate" &&
+      nutritionView !== "Phosphorus" &&
       nutritionView !== "Purines"
     ) {
       return "Empty";
@@ -1707,14 +1713,14 @@ function formatPotassiumMg(mg: number): string {
     }
 
     if (nutritionView === "Potassium") {
-      return recipe.potassium;
+      return recipe.clinicalReviewPending ? "Pending review" : recipe.potassium;
     }
 
-    if (nutritionView === "Phosphate") {
-      return recipe.phosphate;
+    if (nutritionView === "Phosphorus") {
+      return recipe.clinicalReviewPending ? "Pending review" : recipe.phosphate;
     }
 
-    return recipe.purines;
+    return recipe.clinicalReviewPending ? "Pending review" : recipe.purines;
   }
 
   function getNutritionSegmentClass(
@@ -1829,7 +1835,7 @@ function formatPotassiumMg(mg: number): string {
               ? "sodium"
               : nutritionView === "Potassium"
                 ? "potassium"
-                : nutritionView === "Phosphate"
+                : nutritionView === "Phosphorus"
                   ? "phosphate"
                   : null;
 
@@ -1863,7 +1869,7 @@ function formatPotassiumMg(mg: number): string {
           ? formatSalt(total)
           : nutritionView === "Potassium"
             ? formatPotassiumMg(total)
-            : nutritionView === "Phosphate"
+            : nutritionView === "Phosphorus"
               ? `${total.toLocaleString()} mg`
               : `${total.toLocaleString()} ${
                   nutritionView === "Calories"
@@ -1878,7 +1884,7 @@ function formatPotassiumMg(mg: number): string {
             ? formatSalt(limit)
             : nutritionView === "Potassium"
               ? formatPotassiumMg(limit)
-              : nutritionView === "Phosphate"
+              : nutritionView === "Phosphorus"
                 ? `${limit.toLocaleString()} mg`
                 : `${limit.toLocaleString()} ${
                     nutritionView === "Calories"
@@ -2013,7 +2019,9 @@ function formatPotassiumMg(mg: number): string {
 
     let overallStatus = "No meals";
 
-    if (ratings.includes("High")) {
+    if (ratings.includes("Pending review")) {
+      overallStatus = "Not assessed";
+    } else if (ratings.includes("High")) {
       overallStatus = "High";
     } else if (ratings.includes("Moderate")) {
       overallStatus = "Moderate";
@@ -2042,6 +2050,7 @@ function formatPotassiumMg(mg: number): string {
     function getShortRating(rating: string) {
       if (rating === "Moderate") return "Mod";
       if (rating === "Empty") return "—";
+      if (rating === "Pending review") return "N/A";
       return rating;
     }
 
@@ -2784,8 +2793,8 @@ html[data-theme="dark"] main .planner-remove-button {
                   <option value="Potassium">
                     Potassium
                   </option>
-                  <option value="Phosphate">
-                    Phosphate
+                  <option value="Phosphorus">
+                    Phosphorus
                   </option>
                   <option value="Purines">
                     Purines
@@ -3305,8 +3314,8 @@ html[data-theme="dark"] main .planner-remove-button {
                     <option value="Potassium">
                       Potassium
                     </option>
-                    <option value="Phosphate">
-                      Phosphate
+                    <option value="Phosphorus">
+                      Phosphorus
                     </option>
                     <option value="Purines">
                       Purines
@@ -3314,7 +3323,12 @@ html[data-theme="dark"] main .planner-remove-button {
                   </select>
 
                   <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
-                    {nutritionView === "Purines" ? (
+                    {nutritionView === "Purines" && recipes.some((recipe) => recipe.clinicalReviewPending) ? (
+                      <span className="flex items-center gap-1.5">
+                        <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-slate-400" />
+                        Not assessed
+                      </span>
+                    ) : nutritionView === "Purines" ? (
                       <>
                         <span className="flex items-center gap-1.5">
                           <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />

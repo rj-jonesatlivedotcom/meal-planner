@@ -72,7 +72,6 @@ export default function RecipesPage() {
       "calories-desc",
       "potassium-asc",
       "phosphate-asc",
-      "purines-asc",
     ];
     const validProteinTypes = [
       "All",
@@ -482,10 +481,10 @@ export default function RecipesPage() {
     .split(/\s+/)
     .filter(Boolean);
 
-  const dietaryRank: Record<string, number> = {
-    Low: 1,
-    Moderate: 2,
-    Higher: 3,
+  // Missing values sort last, independently of the unreviewed clinical labels.
+  const nutrientAmount = (value: string | undefined) => {
+    const match = value?.replace(/,/g, "").match(/\d+(?:\.\d+)?/);
+    return match ? Number(match[0]) : Number.POSITIVE_INFINITY;
   };
 
   const getMinutes = (value: string) => {
@@ -591,22 +590,10 @@ export default function RecipesPage() {
           );
 
         case "potassium-asc":
-          return (
-            dietaryRank[a.potassium] -
-            dietaryRank[b.potassium]
-          );
+          return nutrientAmount(a.nutrition.potassium) - nutrientAmount(b.nutrition.potassium);
 
         case "phosphate-asc":
-          return (
-            dietaryRank[a.phosphate] -
-            dietaryRank[b.phosphate]
-          );
-
-        case "purines-asc":
-          return (
-            dietaryRank[a.purines] -
-            dietaryRank[b.purines]
-          );
+          return nutrientAmount(a.nutrition.phosphate) - nutrientAmount(b.nutrition.phosphate);
 
         default: {
           const mealOrder: Record<string, number> = {
@@ -896,17 +883,11 @@ export default function RecipesPage() {
                           Calories — highest first
                         </option>
 
-                        <option value="potassium-asc">
-                          Potassium — lowest first
-                        </option>
+                        <option value="potassium-asc">Potassium (mg) — lowest first</option>
 
-                        <option value="phosphate-asc">
-                          Phosphate — lowest first
-                        </option>
+                        <option value="phosphate-asc">Phosphorus (mg) — lowest first</option>
 
-                        <option value="purines-asc">
-                          Purines — lowest first
-                        </option>
+                        <option value="purines-asc" disabled>Purines — pending review</option>
                       </select>
                     </div>
                   </div>
@@ -1148,17 +1129,11 @@ export default function RecipesPage() {
                           🔥 Calories — highest first
                         </option>
 
-                        <option value="potassium-asc">
-                          🥔 Potassium — lowest first
-                        </option>
+                        <option value="potassium-asc">Potassium (mg) — lowest first</option>
 
-                        <option value="phosphate-asc">
-                          🧀 Phosphate — lowest first
-                        </option>
+                        <option value="phosphate-asc">Phosphorus (mg) — lowest first</option>
 
-                        <option value="purines-asc">
-                          🍖 Purines — lowest first
-                        </option>
+                        <option value="purines-asc" disabled>Purines — pending review</option>
                       </select>
                     </div>
                   </div>

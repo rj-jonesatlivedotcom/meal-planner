@@ -2151,7 +2151,10 @@ function formatPotassiumMg(mg: number): string {
   // Desktop keeps the original behaviour: show the welcome prompt only when
   // the entire week is empty. On mobile, show it when the day being viewed
   // is empty as well, because mobile only displays one day at a time.
+  // Dated calendar weeks should be browsable without a blocking welcome modal.
+  // Preserve the legacy undated Planner welcome behaviour.
   const showEmptyPlannerPrompt =
+    !datedPlannerEnabled() &&
     (plannerIsCompletelyEmpty || selectedDayIsEmpty) &&
     !emptyPlannerPromptDismissed;
 

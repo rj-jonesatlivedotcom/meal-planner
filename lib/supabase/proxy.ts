@@ -1,15 +1,22 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { supabaseConfiguration, datedPlannerEnabled, calendarOnlyFetch } from "./config";
 
 export async function updateSession(request: NextRequest) {
+  const config = supabaseConfiguration();
+  if (datedPlannerEnabled() && !["127.0.0.1", "localhost"].includes(request.nextUrl.hostname)) {
+    return new NextResponse("Calendar Test mode is available only on loopback", { status: 403 });
+  }
   let supabaseResponse = NextResponse.next({
     request,
   });
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+    config.url,
+    config.key,
     {
+      cookieOptions: config.cookieOptions,
+      ...(datedPlannerEnabled() ? { global: { fetch: calendarOnlyFetch } } : {}),
       cookies: {
         getAll() {
           return request.cookies.getAll();

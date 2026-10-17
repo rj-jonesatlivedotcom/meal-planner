@@ -1,7 +1,9 @@
 "use client";
 
+import { useWeeklyPageStorage, datedDayDate } from "@/lib/weeklyPageStorage";
+
 import { createClient } from "@/lib/supabase/client";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { recipes, type Recipe } from "@/data/RecipeData";
 
 const days = [
@@ -117,20 +119,14 @@ function getLocalDateKey(date: Date): string {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 function getCurrentWeekDate(dayIndex: number): string {
+  const dated = datedDayDate(days[dayIndex]);
+  if (dated) return dated;
   const today = new Date();
   const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const weekday = monday.getDay();
   monday.setDate(monday.getDate() + (weekday === 0 ? -6 : 1 - weekday) + dayIndex);
   return getLocalDateKey(monday);
 }
-function readFluidLog(): FluidEntry[] {
-  try {
-    const raw = window.localStorage.getItem(FLUID_LOG_STORAGE_KEY);
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch { return []; }
-}
-
 const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
 
 const defaultRequirements: Requirements = {
@@ -164,6 +160,7 @@ const levelRank: Record<"Low" | "Moderate" | "High", number> = {
   Moderate: 2,
   High: 3,
 };
+
 
 function getNutritionNumber(value: string | undefined): number {
   if (!value) return 0;
@@ -410,6 +407,15 @@ function averageRecipeLevel(
 }
 
 export default function NutritionPage() {
+  const weeklyPageStorage = useWeeklyPageStorage();
+const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
+  try {
+    const raw = weeklyPageStorage.getItem(FLUID_LOG_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch { return []; }
+}, [weeklyPageStorage]);
+
   const [plannerMeals, setPlannerMeals] =
     useState<PlannerMeals | null>(null);
   const [requirements, setRequirements] =
@@ -560,10 +566,9 @@ export default function NutritionPage() {
     }
   }
 
-  function loadPlanner() {
+  const loadPlanner = useCallback(function loadPlanner() {
     try {
-      const saved = window.localStorage.getItem(
-        "weekly-planner"
+      const saved = weeklyPageStorage.getItem("weekly-planner"
       );
 
       if (!saved) {
@@ -577,7 +582,7 @@ export default function NutritionPage() {
     } catch {
       setPlannerMeals(null);
     }
-  }
+  }, [weeklyPageStorage]);
 
   async function loadRequirements() {
     try {
@@ -681,7 +686,7 @@ export default function NutritionPage() {
           [...mapped, ...local].forEach((entry) => merged.set(entry.id, entry));
           const combined = [...merged.values()];
           setFluidEntries(combined);
-          window.localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(combined));
+          weeklyPageStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(combined));
         }
       }
     }
@@ -691,7 +696,7 @@ export default function NutritionPage() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [readFluidLog, weeklyPageStorage]);
 
   useEffect(() => {
     loadPlanner();
@@ -742,7 +747,7 @@ export default function NutritionPage() {
         handleRequirementsUpdate
       );
     };
-  }, []);
+  }, [loadPlanner, readFluidLog]);
 
   const dayTotals = useMemo(() => {
     const totals = {} as Record<Day, NutrientTotals>;

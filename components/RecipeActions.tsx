@@ -1,6 +1,9 @@
 "use client";
 
+import { useWeeklyPageStorage, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { recipes } from "@/data/RecipeData";
 
@@ -44,6 +47,8 @@ function getDefaultMealType(
 export default function RecipeActions({
   recipeId,
 }: Props) {
+  const weeklyPageStorage = useWeeklyPageStorage();
+  const router = useRouter();
   const [added, setAdded] =
     useState(false);
 
@@ -71,8 +76,7 @@ export default function RecipeActions({
   useEffect(() => {
     function loadShoppingStatus() {
       const saved =
-        localStorage.getItem(
-          "shopping-data"
+        weeklyPageStorage.getItem("shopping-data"
         );
 
       if (!saved) {
@@ -108,12 +112,11 @@ export default function RecipeActions({
         loadShoppingStatus
       );
     };
-  }, [recipeId]);
+  }, [recipeId, weeklyPageStorage]);
 
   function toggleRecipe() {
     const saved =
-      localStorage.getItem(
-        "shopping-data"
+      weeklyPageStorage.getItem("shopping-data"
       );
 
     const data = saved
@@ -149,8 +152,7 @@ export default function RecipeActions({
       setAdded(true);
     }
 
-    localStorage.setItem(
-      "shopping-data",
+    weeklyPageStorage.setItem("shopping-data",
       JSON.stringify(data)
     );
 
@@ -173,8 +175,7 @@ export default function RecipeActions({
 
   function addToPlanner() {
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     let planner: {
@@ -225,8 +226,7 @@ export default function RecipeActions({
     /*
      * Save Planner.
      */
-    localStorage.setItem(
-      "weekly-planner",
+    weeklyPageStorage.setItem("weekly-planner",
       JSON.stringify(
         planner
       )
@@ -237,8 +237,7 @@ export default function RecipeActions({
      * the Shopping List.
      */
     const shoppingSaved =
-      localStorage.getItem(
-        "shopping-data"
+      weeklyPageStorage.getItem("shopping-data"
       );
 
     const shoppingData =
@@ -269,8 +268,7 @@ export default function RecipeActions({
         ];
     }
 
-    localStorage.setItem(
-      "shopping-data",
+    weeklyPageStorage.setItem("shopping-data",
       JSON.stringify(
         shoppingData
       )
@@ -300,7 +298,7 @@ export default function RecipeActions({
      * Use normal browser navigation so
      * the recipe page is definitely left.
      */
-    window.location.href = "/planner";
+    navigateWeeklyPage("/planner", url => router.push(url));
   }
 
   return (

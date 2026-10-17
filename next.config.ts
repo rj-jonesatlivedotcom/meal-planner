@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  distDir: process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_RENALPLAN_DATED_TEST === "1"
+    ? ".next-calendar-test" : ".next",
   allowedDevOrigins: ["192.168.1.7"],
 
   async redirects() {

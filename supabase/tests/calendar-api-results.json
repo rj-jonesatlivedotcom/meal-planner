@@ -1,0 +1,20 @@
+{
+  "project": "RenalPlan Calendar Test",
+  "date": "2026-10-17T10:43:51.864Z",
+  "passed": [
+    "unauthenticated table and save RPC access denied",
+    "actual adapter roundtrip preserves people, checks and recipe ID",
+    "owner isolation through actual authenticated REST reads",
+    "direct authenticated insert/update/delete are denied",
+    "simultaneous same-revision updates accept exactly one writer",
+    "repeated create-only and stale update cannot overwrite",
+    "reading future week neither creates nor copies a plan",
+    "calendar settings preserve defaults and isolate users",
+    "simultaneous settings updates accept exactly one writer"
+  ],
+  "cleanupRequiredTestUserIds": [
+    "b290a143-e46e-4883-9c81-8744bd29054b",
+    "c299d1a0-ca67-408d-84d2-8ea81a093fd1"
+  ],
+  "complete": true
+}

@@ -1,5 +1,7 @@
 "use client";
 
+import { useWeeklyPageStorage, afterWeeklyPageWrites } from "@/lib/weeklyPageStorage";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -123,6 +125,7 @@ export default function RecipeCard({
   userId = null,
   onFavouriteChange,
 }: RecipeCardProps) {
+  const weeklyPageStorage = useWeeklyPageStorage();
   const router = useRouter();
 
   function trackRecipeViewed() {
@@ -214,8 +217,7 @@ export default function RecipeCard({
    */
   function getRecipePlacements(): Placement[] {
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     if (!saved) {
@@ -254,8 +256,7 @@ export default function RecipeCard({
    */
   function loadPendingSlot() {
     const saved =
-      localStorage.getItem(
-        "planner-pending-slot"
+      weeklyPageStorage.getItem("planner-pending-slot"
       );
 
     if (!saved) {
@@ -280,15 +281,13 @@ export default function RecipeCard({
       } else {
         setPendingSlot(null);
 
-        localStorage.removeItem(
-          "planner-pending-slot"
+        weeklyPageStorage.removeItem("planner-pending-slot"
         );
       }
     } catch {
       setPendingSlot(null);
 
-      localStorage.removeItem(
-        "planner-pending-slot"
+      weeklyPageStorage.removeItem("planner-pending-slot"
       );
     }
   }
@@ -358,8 +357,7 @@ export default function RecipeCard({
     }
 
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     let planner: {
@@ -417,21 +415,19 @@ export default function RecipeCard({
     /*
      * Save Planner.
      */
-    localStorage.setItem(
-      "weekly-planner",
+    weeklyPageStorage.setItem("weekly-planner",
       JSON.stringify(
         planner
       )
     );
 
     // Tell the Planner to preserve this recipe-card change during account hydration.
-    localStorage.setItem("planner-recipe-add-pending", "true");
+    weeklyPageStorage.setItem("planner-recipe-add-pending", "true");
 
     /*
      * Clear temporary slot.
      */
-    localStorage.removeItem(
-      "planner-pending-slot"
+    weeklyPageStorage.removeItem("planner-pending-slot"
     );
 
     setPendingSlot(null);
@@ -459,7 +455,7 @@ export default function RecipeCard({
     /*
      * Return to Weekly Planner.
      */
-    router.push("/planner");
+    afterWeeklyPageWrites(() => router.push("/planner"));
   }
 
   /*
@@ -506,8 +502,7 @@ export default function RecipeCard({
    */
   function addToPlanner() {
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     let planner: {
@@ -568,15 +563,14 @@ export default function RecipeCard({
     /*
      * Save Planner.
      */
-    localStorage.setItem(
-      "weekly-planner",
+    weeklyPageStorage.setItem("weekly-planner",
       JSON.stringify(
         planner
       )
     );
 
     // Tell the Planner to preserve this recipe-card change during account hydration.
-    localStorage.setItem("planner-recipe-add-pending", "true");
+    weeklyPageStorage.setItem("planner-recipe-add-pending", "true");
 
     /*
      * Refresh displayed locations.
@@ -609,7 +603,7 @@ export default function RecipeCard({
     /*
      * Return to Weekly Planner.
      */
-    router.push("/planner");
+    afterWeeklyPageWrites(() => router.push("/planner"));
   }
 
   /*
@@ -618,8 +612,7 @@ export default function RecipeCard({
    */
   function removeFromPlanner() {
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     if (!saved) {
@@ -656,8 +649,7 @@ export default function RecipeCard({
         );
       });
 
-      localStorage.setItem(
-        "weekly-planner",
+      weeklyPageStorage.setItem("weekly-planner",
         JSON.stringify(
           planner
         )

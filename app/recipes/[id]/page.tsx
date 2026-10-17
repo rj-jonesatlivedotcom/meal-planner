@@ -1,8 +1,10 @@
 "use client";
 
+import { useWeeklyPageStorage, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getNutritionEvidenceText } from "@/lib/nutritionEvidence";
@@ -67,6 +69,8 @@ function formatSalt(sodiumValue: string | undefined) {
 }
 
 export default function RecipeDetailPage() {
+  const weeklyPageStorage = useWeeklyPageStorage();
+  const router = useRouter();
   const params = useParams();
 
   const id = params?.id as string;
@@ -203,8 +207,7 @@ export default function RecipeDetailPage() {
    */
   function getRecipePlacements(): Placement[] {
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     if (!saved) {
@@ -243,8 +246,7 @@ export default function RecipeDetailPage() {
    */
   function loadPendingSlot() {
     const saved =
-      localStorage.getItem(
-        "planner-pending-slot"
+      weeklyPageStorage.getItem("planner-pending-slot"
       );
 
     if (!saved) {
@@ -269,15 +271,13 @@ export default function RecipeDetailPage() {
       } else {
         setPendingSlot(null);
 
-        localStorage.removeItem(
-          "planner-pending-slot"
+        weeklyPageStorage.removeItem("planner-pending-slot"
         );
       }
     } catch {
       setPendingSlot(null);
 
-      localStorage.removeItem(
-        "planner-pending-slot"
+      weeklyPageStorage.removeItem("planner-pending-slot"
       );
     }
   }
@@ -364,8 +364,7 @@ export default function RecipeDetailPage() {
     }
 
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     let planner: {
@@ -406,18 +405,16 @@ export default function RecipeDetailPage() {
       pendingSlot.meal
     ] = recipe.id;
 
-    localStorage.setItem(
-      "weekly-planner",
+    weeklyPageStorage.setItem("weekly-planner",
       JSON.stringify(
         planner
       )
     );
 
     // Tell the Planner to preserve this recipe-page change during account hydration.
-    localStorage.setItem("planner-recipe-add-pending", "true");
+    weeklyPageStorage.setItem("planner-recipe-add-pending", "true");
 
-    localStorage.removeItem(
-      "planner-pending-slot"
+    weeklyPageStorage.removeItem("planner-pending-slot"
     );
 
     setPendingSlot(null);
@@ -438,7 +435,7 @@ export default function RecipeDetailPage() {
       )
     );
 
-    window.location.href = "/planner";
+    navigateWeeklyPage("/planner", url => router.push(url));
   }
 
   /*
@@ -478,8 +475,7 @@ export default function RecipeDetailPage() {
     }
 
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     let planner: {
@@ -520,15 +516,14 @@ export default function RecipeDetailPage() {
       plannerMeal
     ] = recipe.id;
 
-    localStorage.setItem(
-      "weekly-planner",
+    weeklyPageStorage.setItem("weekly-planner",
       JSON.stringify(
         planner
       )
     );
 
     // Tell the Planner to preserve this recipe-page change during account hydration.
-    localStorage.setItem("planner-recipe-add-pending", "true");
+    weeklyPageStorage.setItem("planner-recipe-add-pending", "true");
 
     setPlacements(
       getRecipePlacements()
@@ -548,7 +543,7 @@ export default function RecipeDetailPage() {
 
     setShowPlanner(false);
 
-    window.location.href = "/planner";
+    navigateWeeklyPage("/planner", url => router.push(url));
   }
 
   /*
@@ -561,8 +556,7 @@ export default function RecipeDetailPage() {
     }
 
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     if (!saved) {
@@ -593,8 +587,7 @@ export default function RecipeDetailPage() {
         );
       });
 
-      localStorage.setItem(
-        "weekly-planner",
+      weeklyPageStorage.setItem("weekly-planner",
         JSON.stringify(
           planner
         )

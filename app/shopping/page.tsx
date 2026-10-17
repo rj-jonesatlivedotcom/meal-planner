@@ -1,5 +1,8 @@
 "use client";
 
+import { useWeeklyPageStorage } from "@/lib/weeklyPageStorage";
+import { datedPlannerEnabled } from "@/lib/supabase/config";
+
 import { useEffect, useRef, useState } from "react";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
@@ -1800,6 +1803,7 @@ function getCategory(item: string): string {
  * ============================================================ */
 
 export default function ShoppingPage() {
+  const weeklyPageStorage = useWeeklyPageStorage();
   const downloadChecklistHandlerRef = useRef<() => void>(() => {});
   const [selectedRecipes, setSelectedRecipes] = useState<string[]>([]);
   const [shoppingList, setShoppingList] = useState<ShoppingItem[]>([]);
@@ -1812,7 +1816,7 @@ export default function ShoppingPage() {
   const [accountUserId, setAccountUserId] = useState<string | null>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem("shopping-data");
+    const saved = weeklyPageStorage.getItem("shopping-data");
 
     if (saved) {
       try {
@@ -1870,7 +1874,7 @@ export default function ShoppingPage() {
         window.clearTimeout(analyticsTimer);
       }
     };
-  }, []);
+  }, [weeklyPageStorage]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -1878,6 +1882,7 @@ export default function ShoppingPage() {
     let cancelled = false;
 
     async function syncAccountShoppingData() {
+      if (datedPlannerEnabled()) return;
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
 
@@ -1947,12 +1952,11 @@ export default function ShoppingPage() {
         setPeople(remotePeople);
         setCheckedItems(remoteCheckedItems);
 
-        localStorage.setItem(
-          "weekly-planner",
+        weeklyPageStorage.setItem("weekly-planner",
           JSON.stringify({ ...remotePlanner, mealPeople: remoteMealPeople })
         );
 
-        const currentShopping = localStorage.getItem("shopping-data");
+        const currentShopping = weeklyPageStorage.getItem("shopping-data");
         let shoppingData: ShoppingData = {
           selectedRecipes: remotePlannerRecipes,
           shoppingList: [],
@@ -1970,8 +1974,7 @@ export default function ShoppingPage() {
           }
         }
 
-        localStorage.setItem(
-          "shopping-data",
+        weeklyPageStorage.setItem("shopping-data",
           JSON.stringify({
             ...shoppingData,
             selectedRecipes: remotePlannerRecipes,
@@ -1982,7 +1985,7 @@ export default function ShoppingPage() {
           })
         );
       } else {
-        const savedPlanner = localStorage.getItem("weekly-planner");
+        const savedPlanner = weeklyPageStorage.getItem("weekly-planner");
         let planner: Record<string, any> = {};
         let mealPeople: Record<string, any> = {};
 
@@ -2020,7 +2023,7 @@ export default function ShoppingPage() {
     return () => {
       cancelled = true;
     };
-  }, [loaded]);
+  }, [loaded, weeklyPageStorage]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -2030,15 +2033,14 @@ export default function ShoppingPage() {
      * became the single source of truth. Current planner data is kept;
      * old manually-added recipe IDs are discarded.
      */
-    const saved = localStorage.getItem("shopping-data");
+    const saved = weeklyPageStorage.getItem("shopping-data");
 
     if (saved) {
       try {
         const data: ShoppingData = JSON.parse(saved);
         const currentPlannerRecipes = data.plannerRecipes ?? [];
 
-        localStorage.setItem(
-          "shopping-data",
+        weeklyPageStorage.setItem("shopping-data",
           JSON.stringify({
             ...data,
             selectedRecipes: currentPlannerRecipes,
@@ -2052,7 +2054,7 @@ export default function ShoppingPage() {
     }
 
     function reloadShoppingData() {
-      const saved = localStorage.getItem("shopping-data");
+      const saved = weeklyPageStorage.getItem("shopping-data");
       if (!saved) return;
 
       try {
@@ -2076,7 +2078,7 @@ export default function ShoppingPage() {
       window.removeEventListener("shopping-list-updated", reloadShoppingData);
       window.removeEventListener("storage", reloadShoppingData);
     };
-  }, [loaded]);
+  }, [loaded, weeklyPageStorage]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -2273,8 +2275,7 @@ export default function ShoppingPage() {
   useEffect(() => {
     if (!loaded) return;
 
-    localStorage.setItem(
-      "shopping-data",
+    weeklyPageStorage.setItem("shopping-data",
       JSON.stringify({
         selectedRecipes: plannerRecipes,
         shoppingList,
@@ -2285,12 +2286,12 @@ export default function ShoppingPage() {
       })
     );
 
-    if (accountSyncReady && accountUserId) {
+    if (!datedPlannerEnabled() && accountSyncReady && accountUserId) {
       let planner: Record<string, any> = {};
       let mealPeople: Record<string, any> = {};
 
       try {
-        const savedPlanner = localStorage.getItem("weekly-planner");
+        const savedPlanner = weeklyPageStorage.getItem("weekly-planner");
         if (savedPlanner) {
           const parsed = JSON.parse(savedPlanner);
           planner = parsed ?? {};
@@ -2327,7 +2328,7 @@ export default function ShoppingPage() {
     plannerCounts,
     accountSyncReady,
     accountUserId,
-  ]);
+  , weeklyPageStorage]);
 
   function updateHouseholdPeople(newPeople: number) {
     const nextPeople = Math.max(1, Math.min(8, newPeople));
@@ -2345,7 +2346,7 @@ export default function ShoppingPage() {
      */
     try {
       const savedPlanner =
-        localStorage.getItem("weekly-planner");
+        weeklyPageStorage.getItem("weekly-planner");
 
       if (savedPlanner) {
         const plannerData = JSON.parse(savedPlanner);

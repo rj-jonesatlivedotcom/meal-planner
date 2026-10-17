@@ -1,9 +1,12 @@
 "use client";
 
+import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
+import { datedPlannerEnabled } from "@/lib/supabase/config";
+
 import Link from "next/link";
 import Image from "next/image";
-import { Suspense, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useMemo, useEffect, useRef, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getStoredRequirements, type Requirements } from "@/lib/recipeRequirements";
@@ -98,21 +101,6 @@ function getLocalDateKey(date = new Date()): string {
   return `${year}-${month}-${day}`;
 }
 
-function readFluidLog(): FluidEntry[] {
-  try {
-    const value = localStorage.getItem(FLUID_LOG_STORAGE_KEY);
-    if (!value) return [];
-    const parsed = JSON.parse(value);
-    return Array.isArray(parsed) ? parsed.filter((entry) =>
-      entry && typeof entry.id === "string" && typeof entry.date === "string" &&
-      typeof entry.drink === "string" && Number.isFinite(Number(entry.amountMl))
-    ) : [];
-  } catch {
-    return [];
-  }
-}
-
-
 function createEmptyPlanner(): PlannerMeals {
   const initial: PlannerMeals = {};
 
@@ -137,10 +125,30 @@ function createEmptyMealPeople(): MealPeople {
   return initial;
 }
 
+function WeeklyPlannerPageContent() {
+  const weeklyPageStorage = useWeeklyPageStorage();
+  const router = useRouter();
+const { readFluidLog, getHouseholdPeople, syncPlannerWithShoppingList } = useMemo(() => {
+function readFluidLog(): FluidEntry[] {
+  try {
+    const value = weeklyPageStorage.getItem(FLUID_LOG_STORAGE_KEY);
+    if (!value) return [];
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.filter((entry) =>
+      entry && typeof entry.id === "string" && typeof entry.date === "string" &&
+      typeof entry.drink === "string" && Number.isFinite(Number(entry.amountMl))
+    ) : [];
+  } catch {
+    return [];
+  }
+}
+
+
+
 function getHouseholdPeople(): number {
   try {
     const shoppingData =
-      localStorage.getItem("shopping-data");
+      weeklyPageStorage.getItem("shopping-data");
 
     if (shoppingData) {
       const parsed = JSON.parse(shoppingData);
@@ -189,7 +197,7 @@ function syncPlannerWithShoppingList(
   mealPeople: MealPeople
 ) {
   const saved =
-    localStorage.getItem("shopping-data");
+    weeklyPageStorage.getItem("shopping-data");
 
   let data: ShoppingData = {
     selectedRecipes: [],
@@ -243,8 +251,7 @@ function syncPlannerWithShoppingList(
     ]),
   ];
 
-  localStorage.setItem(
-    "shopping-data",
+  weeklyPageStorage.setItem("shopping-data",
     JSON.stringify({
       ...data,
       selectedRecipes:
@@ -263,7 +270,10 @@ function syncPlannerWithShoppingList(
   );
 }
 
-function WeeklyPlannerPageContent() {
+
+return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShoppingList };
+}, [weeklyPageStorage]);
+
   const [selectedDay, setSelectedDay] =
     useState("Monday");
   const [plannerMeals, setPlannerMeals] =
@@ -405,7 +415,7 @@ function WeeklyPlannerPageContent() {
         [...cloudEntries, ...localEntries].forEach((entry) => byId.set(entry.id, entry));
         const merged = [...byId.values()];
         setFluidEntries(merged);
-        localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(merged));
+        weeklyPageStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(merged));
         const localOnly = localEntries.filter((entry) => !cloudEntries.some((cloud) => cloud.id === entry.id));
         if (localOnly.length) {
           await supabase.from("user_fluid_entries").upsert(localOnly.map((entry) => ({
@@ -441,12 +451,12 @@ function WeeklyPlannerPageContent() {
       window.removeEventListener("meal-planner-requirements-updated", reloadRequirements);
       window.removeEventListener("storage", reloadFluid);
     };
-  }, []);
+  }, [readFluidLog, weeklyPageStorage]);
 
   function saveFluidEntries(nextEntries: FluidEntry[]) {
     const previousEntries = fluidEntries;
     setFluidEntries(nextEntries);
-    localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(nextEntries));
+    weeklyPageStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(nextEntries));
     window.dispatchEvent(new Event("renalplan-fluid-log-updated"));
     void (async () => {
       try {
@@ -539,7 +549,7 @@ function WeeklyPlannerPageContent() {
   const accountHydratedRef = useRef(false);
 
   useEffect(() => {
-    if (!authChecked || !plannerInitialisedRef.current) return;
+    if (datedPlannerEnabled() || !authChecked || !plannerInitialisedRef.current) return;
 
     let cancelled = false;
 
@@ -551,7 +561,7 @@ function WeeklyPlannerPageContent() {
 
       if (!user) {
         setAccountUserId(null);
-        localStorage.removeItem("planner-recipe-add-pending");
+        weeklyPageStorage.removeItem("planner-recipe-add-pending");
         setAccountSyncReady(true);
         accountHydratedRef.current = true;
         return;
@@ -584,7 +594,7 @@ function WeeklyPlannerPageContent() {
       // navigating here. Treat that explicit change as newer than the saved account
       // plan, otherwise account hydration can immediately overwrite the new meal.
       const recipeAddPending =
-        localStorage.getItem("planner-recipe-add-pending") === "true";
+        weeklyPageStorage.getItem("planner-recipe-add-pending") === "true";
 
       if (recipeAddPending) {
         const { error: saveError } = await supabase
@@ -601,7 +611,7 @@ function WeeklyPlannerPageContent() {
           // Keep the marker so a later Planner load can retry rather than
           // silently reverting the user's explicit recipe selection.
         } else {
-          localStorage.removeItem("planner-recipe-add-pending");
+          weeklyPageStorage.removeItem("planner-recipe-add-pending");
         }
 
         if (!cancelled) {
@@ -640,7 +650,7 @@ function WeeklyPlannerPageContent() {
             console.error("Unable to save existing local meal plan:", saveError);
           }
         } else {
-          const shoppingSaved = localStorage.getItem("shopping-data");
+          const shoppingSaved = weeklyPageStorage.getItem("shopping-data");
           let shoppingData: ShoppingData = {
             selectedRecipes: [],
             shoppingList: [],
@@ -659,8 +669,7 @@ function WeeklyPlannerPageContent() {
             }
           }
 
-          localStorage.setItem(
-            "shopping-data",
+          weeklyPageStorage.setItem("shopping-data",
             JSON.stringify({ ...shoppingData, people: remotePeople })
           );
 
@@ -695,7 +704,7 @@ function WeeklyPlannerPageContent() {
     return () => {
       cancelled = true;
     };
-  }, [authChecked, plannerMeals, mealPeople]);
+  }, [authChecked, plannerMeals, mealPeople, getHouseholdPeople, weeklyPageStorage]);
 
   function handlePlannerTouchStart(
 
@@ -827,8 +836,7 @@ function WeeklyPlannerPageContent() {
       createEmptyMealPeople();
 
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     if (!saved) {
@@ -863,7 +871,7 @@ function WeeklyPlannerPageContent() {
       const householdPeople = getHouseholdPeople();
 
       if (
-        householdPeople > 1 &&
+        !datedPlannerEnabled() && householdPeople > 1 &&
         savedMealPeople
       ) {
         const savedValues = days.flatMap((day) =>
@@ -915,7 +923,7 @@ function WeeklyPlannerPageContent() {
         handleRequirementsUpdated
       );
     };
-  }, []);
+  }, [getHouseholdPeople, syncPlannerWithShoppingList, weeklyPageStorage]);
 
   useEffect(() => {
     if (
@@ -925,8 +933,7 @@ function WeeklyPlannerPageContent() {
       return;
     }
 
-    localStorage.setItem(
-      "weekly-planner",
+    weeklyPageStorage.setItem("weekly-planner",
       JSON.stringify({
         ...plannerMeals,
         mealPeople,
@@ -938,7 +945,7 @@ function WeeklyPlannerPageContent() {
       mealPeople
     );
 
-    if (accountSyncReady && accountUserId && accountHydratedRef.current) {
+    if (!datedPlannerEnabled() && accountSyncReady && accountUserId && accountHydratedRef.current) {
       const supabase = createClient();
       const householdPeople = getHouseholdPeople();
 
@@ -960,7 +967,7 @@ function WeeklyPlannerPageContent() {
     window.dispatchEvent(
       new Event("weekly-planner-updated")
     );
-  }, [plannerMeals, mealPeople, accountSyncReady, accountUserId]);
+  }, [plannerMeals, mealPeople, accountSyncReady, accountUserId, getHouseholdPeople, syncPlannerWithShoppingList, weeklyPageStorage]);
 
   function getPeopleForMeal(
     day: string,
@@ -1386,6 +1393,8 @@ openMyChefIntro();
 
     const currentWeekDates = new Set(
       days.map((_, index) => {
+        const selectedDate = datedDayDate(days[index]);
+        if (selectedDate) return selectedDate;
         const date = new Date(monday);
         date.setDate(monday.getDate() + index);
         return getLocalDateKey(date);
@@ -1398,15 +1407,14 @@ openMyChefIntro();
 
     setPlannerMeals(createEmptyPlanner());
     setMealPeople(createEmptyMealPeople());
-    localStorage.removeItem("planner-pending-slot");
+    weeklyPageStorage.removeItem("planner-pending-slot");
     setShowClearConfirm(false);
   }
 
   function browseRecipes() {
     if (!picker) return;
 
-    localStorage.setItem(
-      "planner-pending-slot",
+    weeklyPageStorage.setItem("planner-pending-slot",
       JSON.stringify({
         day: picker.day,
         meal: picker.meal,
@@ -1415,9 +1423,9 @@ openMyChefIntro();
 
     setPicker(null);
 
-    window.location.href = `/recipes?meal=${encodeURIComponent(
+    navigateWeeklyPage(`/recipes?meal=${encodeURIComponent(
       picker.meal
-    )}`;
+    )}`, url => router.push(url));
   }
 
   function getRecipe(
@@ -1499,6 +1507,8 @@ function formatPotassiumMg(mg: number): string {
   }
 
   function getDateForPlannerDay(day: string): string {
+    const dated = datedDayDate(day);
+    if (dated) return dated;
     const today = new Date();
     const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const weekday = monday.getDay();
@@ -2375,7 +2385,7 @@ html[data-theme="dark"] main .planner-remove-button {
                       : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-emerald-50 hover:text-emerald-800"
                   }`}
                 >
-                  {day.slice(0, 3)}
+                  {day.slice(0, 3)}{datedDayDate(day) && <span className="block text-[10px]">{datedDayDate(day)?.slice(5)}</span>}
                   {isSelected && (
                     <span
                       aria-hidden="true"
@@ -2849,7 +2859,7 @@ html[data-theme="dark"] main .planner-remove-button {
                   className="flex items-center justify-center border-l border-emerald-100 bg-emerald-50 py-2"
                 >
                   <span className="text-sm font-extrabold tracking-[0.08em] text-green-700">
-                    {day.slice(0, 3)}
+                    {day.slice(0, 3)}{datedDayDate(day) && <span className="block text-[10px]">{datedDayDate(day)?.slice(5)}</span>}
                   </span>
                 </div>
               ))}
@@ -3396,7 +3406,7 @@ html[data-theme="dark"] main .planner-remove-button {
             </div>
 
             <h2 className="mt-4 text-xl font-bold text-slate-900">
-              Clear this week?
+              Clear this week? {datedDayDate("Monday") && <span>{datedDayDate("Monday")} – {datedDayDate("Sunday")}</span>}
             </h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">

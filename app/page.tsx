@@ -1,9 +1,11 @@
 "use client";
 
+import { useWeeklyPageStorage } from "@/lib/weeklyPageStorage";
+
 import Link from "next/link";
 import Image from "next/image";
 import { recipes } from "@/data/RecipeData";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 const freeSteps = [
@@ -434,6 +436,7 @@ function LazyFoodCheckVideo() {
 }
 
 function LoggedInHome() {
+  const weeklyPageStorage = useWeeklyPageStorage();
   const [journeyOpen, setJourneyOpen] = useState(true);
   const [planner, setPlanner] = useState<
     Record<string, Record<string, string | null>>
@@ -482,9 +485,9 @@ function LoggedInHome() {
     }
   }, []);
 
-  function readLocalData() {
+  const readLocalData = useCallback(function readLocalData() {
     try {
-      const savedPlanner = localStorage.getItem("weekly-planner");
+      const savedPlanner = weeklyPageStorage.getItem("weekly-planner");
       if (savedPlanner) {
         const parsed = JSON.parse(savedPlanner);
         setPlanner(parsed && typeof parsed === "object" ? parsed : {});
@@ -496,7 +499,7 @@ function LoggedInHome() {
     }
 
     try {
-      const savedShopping = localStorage.getItem("shopping-data");
+      const savedShopping = weeklyPageStorage.getItem("shopping-data");
       if (savedShopping) {
         const parsed = JSON.parse(savedShopping);
         setShoppingCount(
@@ -531,7 +534,7 @@ function LoggedInHome() {
     } catch {
       setRequirementsSet(false);
     }
-  }
+  }, [weeklyPageStorage]);
 
   useEffect(() => {
     let cancelled = false;
@@ -647,7 +650,7 @@ function LoggedInHome() {
       window.removeEventListener("meal-planner-requirements-updated", refresh);
       window.removeEventListener("storage", refresh);
     };
-  }, []);
+  }, [readLocalData]);
 
   function toggleJourney() {
     setJourneyOpen((current) => {

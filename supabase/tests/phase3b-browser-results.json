@@ -1,0 +1,21 @@
+{
+  "project": "RenalPlan Calendar Test",
+  "date": "2026-10-17",
+  "liveMigrationPassed": true,
+  "firstRunFailure": "jsonb property order in idempotency marker; fixed and regression tested",
+  "checks": [
+    "legacy import and repeat/source preservation/account isolation",
+    "occupied destination preserved",
+    "committed import recovered after injected dropped response",
+    "failed import retained archive and resumed"
+  ],
+  "anonymousSignInsRestoredOff": true,
+  "sessionsSignedOut": true,
+  "syntheticUserIds": [
+    "16e62ac3-7b11-49e8-b1cd-062dacc000ef",
+    "c386b6cd-0ad9-4f68-b9f6-40378de30ee3",
+    "98074472-c039-467b-a106-3ac90e783503",
+    "3332f36e-9123-4fe3-b464-f5c29d95f33c"
+  ],
+  "fixturesRetained": true
+}

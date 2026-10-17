@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ThemeSync from "@/components/ThemeSync";
+import DatedPlannerBoundary from "@/components/calendar/DatedPlannerBoundary";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -62,7 +63,7 @@ export default function RootLayout({
 
         <ThemeSync />
         <Navbar />
-        {children}
+        <DatedPlannerBoundary>{children}</DatedPlannerBoundary>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -656,7 +656,7 @@ export default function RequirementsPage() {
                     </div>
                   )}
                   <p className="mt-1 text-xs leading-5 text-slate-600">
-                    Daily maximum, where a potassium restriction has been advised. Older Low/Moderate/High preferences are retained but not applied while classifications await renal dietitian review.
+                    Daily maximum for potassium, if your renal team has advised a restriction.
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
@@ -689,7 +689,7 @@ export default function RequirementsPage() {
                   <p className="mt-2 text-xs leading-5 text-slate-500">
                     {requirements.potassiumLimitMg === null
                       ? "No potassium restriction is set for this preset. If your renal team has advised a limit, enter it here."
-                      : <>The preset is <span className="font-semibold">2,737 mg/day</span> (about <span className="font-semibold">70 mmol/day</span>). A commonly used restricted range is 1,955–2,737 mg/day (about 50–70 mmol/day). Enter potassium in mg/day; the mmol/day equivalent is shown above for reference. You can change or remove this figure to match your renal team's advice.</>}
+                      : <>Your current limit is shown above. The usual starting preset is <span className="font-semibold">2,737 mg/day</span> (about <span className="font-semibold">70 mmol/day</span>). A commonly used restricted range is 1,955–2,737 mg/day (about 50–70 mmol/day). Enter potassium in mg/day; the mmol/day equivalent is shown above for reference. You can change or remove this figure to match your renal team's advice.</>}
                   </p>
                 </div>
 
@@ -701,7 +701,7 @@ export default function RequirementsPage() {
                     className="flex w-full items-center justify-between gap-3 text-left"
                     aria-expanded={openAdvice === "phosphate"}
                   >
-                    <span className="text-base font-extrabold text-slate-900">Phosphate / phosphorus</span>
+                    <span className="text-base font-extrabold text-slate-900">Phosphorus</span>
                     <span className="shrink-0 text-xs font-bold text-slate-500">
                       {openAdvice === "phosphate" ? "Hide advice" : "Advice"}
                     </span>
@@ -712,7 +712,7 @@ export default function RequirementsPage() {
                     </div>
                   )}
                   <p className="mt-1 text-xs leading-5 text-slate-600">
-                    Daily maximum, where a phosphate restriction has been advised. Older Low/Moderate/High preferences are retained but not applied while classifications await renal dietitian review.
+                    Daily maximum for dietary phosphorus, if your renal team has advised a restriction.
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
@@ -747,9 +747,7 @@ export default function RequirementsPage() {
                       : `≈ ${(requirements.phosphateLimitMg / MG_PER_MMOL_PHOSPHORUS).toFixed(1)} mmol/day`}
                   </p>
                   <p className="mt-2 text-xs leading-5 text-slate-500">
-                    Dietary phosphorus/phosphate is entered in mg/day. The equivalent is
-                    shown in mmol/day for reference. This is a starting preset only;
-                    your renal team may give you a different target or no restriction.
+                    Food composition data reports phosphorus (P), not the mass of phosphate (PO₄). Enter phosphorus in mg/day; the mmol/day figure is calculated using the atomic mass of phosphorus. Your renal team may recommend a different target or no restriction.
                   </p>
                 </div>
 
@@ -801,49 +799,6 @@ export default function RequirementsPage() {
                   <p className="mt-2 text-xs leading-5 text-slate-500">
                     Enter the allowance given by your renal team.
                   </p>
-                </div>
-
-                {/* PURINES */}
-                <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-4 sm:p-5">
-                  <button
-                    type="button"
-                    onClick={() => toggleAdvice("purines")}
-                    className="flex w-full items-center justify-between gap-3 text-left"
-                    aria-expanded={openAdvice === "purines"}
-                  >
-                    <span className="text-base font-extrabold text-slate-900">Purines</span>
-                    <span className="shrink-0 text-xs font-bold text-slate-500">
-                      {openAdvice === "purines" ? "Hide advice" : "Advice"}
-                    </span>
-                  </button>
-                  {openAdvice === "purines" && (
-                    <div className="renal-advice-panel mt-3 rounded-xl border border-slate-200 bg-white/70 px-3 py-3 text-xs leading-5 text-slate-600">
-                      {nutrientAdvice("purines")}
-                    </div>
-                  )}
-                  <p className="mt-1 text-xs leading-5 text-slate-600">
-                    Follow the purine advice provided by your healthcare team.
-                  </p>
-                  <p id="purines-availability" className="mt-2 text-xs leading-5 text-slate-500">
-                    Your saved preference is retained. Purine classifications are not applied until qualified renal dietitian review; use the numeric potassium and phosphorus limits above.
-                  </p>
-
-                  <select
-                    value={requirements.purines}
-                    aria-describedby="purines-availability"
-                    disabled
-                    onChange={(e) =>
-                      updateRequirement(
-                        "purines",
-                        e.target.value as RequirementLevel
-                      )
-                    }
-                    className="mt-4 min-h-11 w-full rounded-xl border border-orange-200 bg-white px-4 text-sm font-semibold"
-                  >
-                    <option value="Any">No restriction</option>
-                    <option value="Low">Low</option>
-                    <option value="Moderate">Moderate</option>
-                  </select>
                 </div>
               </div>
             </div>
@@ -934,7 +889,7 @@ export default function RequirementsPage() {
             <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 sm:mt-6 sm:px-4 sm:py-3">
               <p className="text-[11px] leading-4 text-slate-600 sm:text-xs sm:leading-5">
                 Your dietary requirements are individual to you. Requirements
-                for salt, potassium, phosphate, protein, fluid and other
+                for salt, potassium, phosphorus, protein, fluid and other
                 nutrients can vary depending on your kidney function, blood
                 results, treatment and other health conditions. Please speak to
                 your renal dietitian or consultant for advice on the

@@ -9,7 +9,8 @@ import { createWeeklyPlanStore } from "@/lib/weeklyPlanStore";
 import { createWeeklyPlanAccount } from "@/lib/weeklyPlanAccount";
 import { migrateLegacyAccount } from "@/lib/weeklyPlanMigration";
 import { attachWeeklyPages, pendingWeeklyChanges, retainReviewedWeeklyChange, createWeeklyPageStorage, flushWeeklyPageWrites } from "@/lib/weeklyPageStorage";
-import { currentMonday, dateForSlot, mondayForDate, planStorageKey, type WeeklyPlan } from "@/lib/weeklyPlans";
+import { currentMonday, mondayForDate, planStorageKey, type WeeklyPlan } from "@/lib/weeklyPlans";
+import CalendarToolbar from "./CalendarToolbar";
 import { LegacyWeekAssignment, WeekConflictReview } from "./IntegrationControls";
 import { stageLegacyGuestImport } from "@/lib/weeklyPlanStore";
 
@@ -125,12 +126,9 @@ function TestRuntime({ children }: { children: ReactNode }) {
     void context.select(mondayForDate(date.toISOString().slice(0, 10)));
   };
   return <div>
-    {path === "/planner" && <nav aria-label="Planner week" className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-4 py-3">
-      <button onClick={() => shift(-7)} className="rounded-lg bg-sky-100 px-3 py-2">Previous week</button>
-      <span className="text-sm font-semibold">{state.weekStart} – {dateForSlot(state.weekStart, "Sunday")}</span>
-      <button onClick={() => shift(7)} className="rounded-lg bg-sky-100 px-3 py-2">Next week</button>
-      <button onClick={() => void context.select(currentMonday())} className="rounded-lg border px-3 py-2">This Week</button>
-    </nav>}
+    {path === "/planner" && <CalendarToolbar key={`toolbar:${state.owner.kind}:${state.owner.id}:${state.weekStart}`} plan={state.plan}
+      shift={shift} thisWeek={() => void context.select(currentMonday())}
+      readPlan={() => context.getSnapshot().status === "ready" ? context.getSnapshot().plan : null} />}
     <div key={`${state.owner?.kind}:${state.owner?.id}:${state.weekStart}`}>{children}</div>
   </div>;
 }

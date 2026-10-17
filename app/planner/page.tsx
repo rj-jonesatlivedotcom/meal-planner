@@ -1,6 +1,7 @@
 "use client";
 
 import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
+import { formatWeek, shortCalendarDate } from "@/lib/calendar";
 import { datedPlannerEnabled } from "@/lib/supabase/config";
 
 import Link from "next/link";
@@ -2385,7 +2386,7 @@ html[data-theme="dark"] main .planner-remove-button {
                       : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-emerald-50 hover:text-emerald-800"
                   }`}
                 >
-                  {day.slice(0, 3)}{datedDayDate(day) && <span className="block text-[10px]">{datedDayDate(day)?.slice(5)}</span>}
+                  {day.slice(0, 3)}{datedDayDate(day) && <span className="block text-[10px]">{shortCalendarDate(datedDayDate(day)!)}</span>}
                   {isSelected && (
                     <span
                       aria-hidden="true"
@@ -2859,7 +2860,7 @@ html[data-theme="dark"] main .planner-remove-button {
                   className="flex items-center justify-center border-l border-emerald-100 bg-emerald-50 py-2"
                 >
                   <span className="text-sm font-extrabold tracking-[0.08em] text-green-700">
-                    {day.slice(0, 3)}{datedDayDate(day) && <span className="block text-[10px]">{datedDayDate(day)?.slice(5)}</span>}
+                    {day.slice(0, 3)}{datedDayDate(day) && <span className="block text-[10px]">{shortCalendarDate(datedDayDate(day)!)}</span>}
                   </span>
                 </div>
               ))}
@@ -3406,7 +3407,7 @@ html[data-theme="dark"] main .planner-remove-button {
             </div>
 
             <h2 className="mt-4 text-xl font-bold text-slate-900">
-              Clear this week? {datedDayDate("Monday") && <span>{datedDayDate("Monday")} – {datedDayDate("Sunday")}</span>}
+              Clear this week? {datedDayDate("Monday") && <span>{formatWeek(datedDayDate("Monday")!)}</span>}
             </h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">

@@ -534,7 +534,6 @@ export default function Navbar() {
                   <circle cx="12" cy="8" r="4" />
                   <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7" />
                 </svg>
-                <span>My Account</span>
               </Link>
             )}
           </nav>
@@ -707,7 +706,6 @@ export default function Navbar() {
             )}
 
             <div className="mt-2 flex items-center justify-between gap-3 border-t border-slate-200 pt-3">
-              <span className="text-sm font-semibold text-slate-600">{theme === "dark" ? "Dark mode" : "Light mode"}</span>
               <ThemeToggle mobile />
               {loggedIn ? null : (
                 <>

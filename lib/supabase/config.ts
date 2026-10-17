@@ -1,11 +1,27 @@
 export const CALENDAR_TEST_ORIGIN = "https://pyevnakjpgwvylqmpqat.supabase.co";
 
-/** Disabled in every production build. No normal credentials are a test fallback. */
+/** Preview opt-in is compiled by Next; production deployments remain disabled. */
 export function datedPlannerEnabled() {
-  return process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_RENALPLAN_DATED_TEST === "1";
+  if (process.env.VERCEL_ENV === "production") return false;
+  return process.env.NEXT_PUBLIC_RENALPLAN_DATED_TEST === "1" &&
+    (process.env.NODE_ENV === "development" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview");
+}
+
+/** Canonical deployment origin supplied by Vercel, never by request headers. */
+export function calendarPreviewOrigin() {
+  if (process.env.VERCEL_ENV !== "preview" || !datedPlannerEnabled()) return null;
+  const host = process.env.VERCEL_URL;
+  return host && /^[a-z0-9][a-z0-9-]*\.vercel\.app$/.test(host) ? `https://${host}` : null;
+}
+
+/** Public bearer links stay disabled until hosting-level path logging is resolved. */
+export function calendarSubscriptionsEnabled() {
+  return datedPlannerEnabled() && process.env.NODE_ENV === "development";
 }
 
 export function supabaseConfiguration() {
+  if (process.env.NEXT_PUBLIC_VERCEL_ENV === "preview" && !datedPlannerEnabled())
+    throw new Error("Preview requires explicit Calendar Test configuration");
   if (datedPlannerEnabled()) {
     const key = process.env.NEXT_PUBLIC_RENALPLAN_CALENDAR_TEST_KEY;
     if (!key?.startsWith("sb_publishable_")) throw new Error("Explicit Calendar Test publishable key required");

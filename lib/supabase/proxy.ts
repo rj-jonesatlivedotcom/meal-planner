@@ -1,11 +1,14 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { supabaseConfiguration, datedPlannerEnabled, calendarOnlyFetch } from "./config";
+import { supabaseConfiguration, datedPlannerEnabled, calendarOnlyFetch, calendarPreviewOrigin } from "./config";
 
 export async function updateSession(request: NextRequest) {
   const config = supabaseConfiguration();
-  if (datedPlannerEnabled() && !["127.0.0.1", "localhost"].includes(request.nextUrl.hostname)) {
-    return new NextResponse("Calendar Test mode is available only on loopback", { status: 403 });
+  const previewOrigin = calendarPreviewOrigin();
+  if (datedPlannerEnabled() && (process.env.VERCEL_ENV === "preview"
+    ? !previewOrigin || request.headers.get("host") !== new URL(previewOrigin).host
+    : !["127.0.0.1", "localhost"].includes(request.nextUrl.hostname))) {
+    return new NextResponse("Calendar Test request host rejected", { status: 403 });
   }
   let supabaseResponse = NextResponse.next({
     request,

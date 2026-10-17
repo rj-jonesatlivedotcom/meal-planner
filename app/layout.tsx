@@ -64,8 +64,8 @@ export default function RootLayout({
         <ThemeSync />
         <Navbar />
         <DatedPlannerBoundary>{children}</DatedPlannerBoundary>
-        <Analytics />
-        <SpeedInsights />
+        {process.env.VERCEL_ENV !== "preview" && <Analytics />}
+        {process.env.VERCEL_ENV !== "preview" && <SpeedInsights />}
       </body>
     </html>
   );

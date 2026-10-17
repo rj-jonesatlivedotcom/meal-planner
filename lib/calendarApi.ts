@@ -4,12 +4,13 @@ import { buildCalendar, calendarPreferences, preferencesFromRow, type CalendarRe
 
 const json = (value: unknown, status = 200) => Response.json(value, { status, headers: { "Cache-Control": "private, no-store", "Referrer-Policy": "no-referrer" } });
 const digest = (value: string) => createHash("sha256").update(value).digest("hex");
-type Ports = { enabled: () => boolean; account: () => Promise<SupabaseClient>; publicClient: () => SupabaseClient; recipes: readonly CalendarRecipe[] };
+type Ports = { enabled: () => boolean; subscriptionsEnabled?: () => boolean; trustedOrigin?: () => string | null; account: () => Promise<SupabaseClient>; publicClient: () => SupabaseClient; recipes: readonly CalendarRecipe[] };
 // Next may use an internal localhost URL even when the browser uses 127.0.0.1.
 // Trust only the actual Host header, restricted to the already isolated loopback
 // environment. Never use arbitrary forwarded hosts to build bearer URLs.
-function requestOrigin(request: Request) {
+function requestOrigin(request: Request, trustedOrigin?: string | null) {
   const target = new URL(request.url), host = request.headers.get("host");
+  if (trustedOrigin) return (host ?? target.host) === new URL(trustedOrigin).host ? trustedOrigin : null;
   if (host) {
     if (!/^(localhost|127\.0\.0\.1)(:\d{1,5})?$/.test(host)) return null;
     try { target.host = host; } catch { return null; }
@@ -22,7 +23,7 @@ const revision = (value: unknown, nullable = true): value is number | null =>
 export function calendarHandlers(ports: Ports) {
   async function accountRequest(request: Request, kind: "settings" | "subscription") {
     if (!ports.enabled()) return new Response(null, { status: 404 });
-    const origin = requestOrigin(request);
+    const origin = requestOrigin(request, ports.trustedOrigin?.());
     if (!origin) return json({ error: "Request host rejected" }, 403);
     const mutation = request.method !== "GET";
     if (mutation && request.headers.get("origin") !== origin) return json({ error: "Request origin rejected" }, 403);
@@ -48,6 +49,8 @@ export function calendarHandlers(ports: Ports) {
         return json({ preferences: preferencesFromRow(data), revision: data.revision, updatedAt: data.updated_at });
       }
       if (kind === "subscription") {
+        if (request.method === "POST" && ports.subscriptionsEnabled?.() === false)
+          return json({ error: "Private subscriptions are unavailable on this preview pending hosting log privacy verification. Selected-week downloads remain available." }, 503);
         if (!["GET", "POST", "DELETE"].includes(request.method)) return new Response(null, { status: 405 });
         const body = mutation ? await request.json() : {};
         if (!body || typeof body !== "object" || Array.isArray(body)) return json({ error: "Invalid calendar request" }, 400);
@@ -70,6 +73,7 @@ export function calendarHandlers(ports: Ports) {
   }
   async function feed(token: string) {
     if (!ports.enabled()) return new Response(null, { status: 404 });
+    if (ports.subscriptionsEnabled?.() === false) return new Response(null, { status: 404 });
     if (!/^[A-Za-z0-9_-]{43}$/.test(token)) return new Response(null, { status: 404 });
     try {
       const { data, error } = await ports.publicClient().rpc("rp_calendar_feed", { p_token_hash: digest(token) });

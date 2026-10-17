@@ -5,14 +5,27 @@ import { buildCalendar, calendarPreferences, preferencesFromRow, type CalendarRe
 const json = (value: unknown, status = 200) => Response.json(value, { status, headers: { "Cache-Control": "private, no-store", "Referrer-Policy": "no-referrer" } });
 const digest = (value: string) => createHash("sha256").update(value).digest("hex");
 type Ports = { enabled: () => boolean; account: () => Promise<SupabaseClient>; publicClient: () => SupabaseClient; recipes: readonly CalendarRecipe[] };
+// Next may use an internal localhost URL even when the browser uses 127.0.0.1.
+// Trust only the actual Host header, restricted to the already isolated loopback
+// environment. Never use arbitrary forwarded hosts to build bearer URLs.
+function requestOrigin(request: Request) {
+  const target = new URL(request.url), host = request.headers.get("host");
+  if (host) {
+    if (!/^(localhost|127\.0\.0\.1)(:\d{1,5})?$/.test(host)) return null;
+    try { target.host = host; } catch { return null; }
+  }
+  return ["localhost", "127.0.0.1"].includes(target.hostname) ? target.origin : null;
+}
 const revision = (value: unknown, nullable = true): value is number | null =>
   (nullable && value === null) || (typeof value === "number" && Number.isSafeInteger(value) && value >= 0);
 /** Injected ports keep route tests independent of cookies, network and credentials. */
 export function calendarHandlers(ports: Ports) {
   async function accountRequest(request: Request, kind: "settings" | "subscription") {
     if (!ports.enabled()) return new Response(null, { status: 404 });
+    const origin = requestOrigin(request);
+    if (!origin) return json({ error: "Request host rejected" }, 403);
     const mutation = request.method !== "GET";
-    if (mutation && request.headers.get("origin") !== new URL(request.url).origin) return json({ error: "Request origin rejected" }, 403);
+    if (mutation && request.headers.get("origin") !== origin) return json({ error: "Request origin rejected" }, 403);
     try {
       const client = await ports.account();
       const { data: auth, error: authError } = await client.auth.getUser();
@@ -47,7 +60,7 @@ export function calendarHandlers(ports: Ports) {
           p_expected_generation: mutation ? body.generation : null, p_token_hash: token ? digest(token) : null,
         });
         if (error) return rpcError(error);
-        return json({ ...data, ...(token ? { url: `${new URL(request.url).origin}/api/calendar/feed/${token}` } : {}) });
+        return json({ ...data, ...(token ? { url: `${origin}/api/calendar/feed/${token}` } : {}) });
       }
       return new Response(null, { status: 405 });
     } catch (error) {

@@ -1,0 +1,32 @@
+{
+  "project": "RenalPlan Calendar Test",
+  "projectRef": "pyevnakjpgwvylqmpqat",
+  "checksPassed": 19,
+  "checks": [
+    "actual SSR auth cookies authenticate settings requests",
+    "authenticated calendar preferences save approved defaults",
+    "save distinct meals in London autumn and spring clock-change weeks",
+    "authenticated subscription creation returns a private link",
+    "valid unauthenticated subscription URL retrieves all saved weeks as ICS",
+    "London DST times are correct across both March and October changes",
+    "approved meal, preparation and preceding-Saturday shopping reminders appear",
+    "account B cannot read A plans, preferences or subscription status",
+    "direct client plan writes remain denied",
+    "stale plan save returns PT409 and explicitly reviewed retry preserves newest data",
+    "meal changes update feed titles while preserving date-slot UIDs",
+    "configurable meal time and disabled optional reminders update the same event",
+    "stale preferences produce HTTP409 and saved preferences remain recoverable",
+    "Clear Week publishes cancelled meal events with unchanged identifiers",
+    "token regeneration invalidates old URL and preserves event identities",
+    "stale concurrent subscription change is rejected with HTTP409",
+    "revocation removes private calendar access immediately",
+    "invalid and unknown links return empty404 without private calendar data",
+    "sign-out removes authenticated management access"
+  ],
+  "failures": [],
+  "syntheticUserIds": [
+    "d42bd847-9f21-41b0-8cd3-4df9f7a922a5",
+    "d50fea98-0dd7-4775-b01b-4db5188e24af"
+  ],
+  "subscriptionsRevokedAndSessionsSignedOut": true
+}

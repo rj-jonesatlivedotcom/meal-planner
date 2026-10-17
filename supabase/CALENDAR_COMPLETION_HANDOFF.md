@@ -1,5 +1,7 @@
 # Calendar completion — 17 October 2026
 
+Follow-up: the migration is installed in Calendar Test; its live SQL suites, 19 authenticated API checks, 29 targeted tests and authenticated browser/export checks passed. Anonymous sign-ins are restored off and test subscriptions/sessions cleaned up. See `CALENDAR_TEST_ACTIVATION_REPORT.md` for the origin fix, evidence and remaining provider/device/production prerequisites. The original completion-pass evidence below is retained as history.
+
 ## Review state
 
 Work is on local branch `codex/calendar-completion-oct17`. Phase 4 was checkpointed at `690f741`. No push, merge, deployment or production Supabase operation occurred. The calendar feature still requires development mode plus the explicit Calendar Test flag; all new routes use that same gate. Normal Planner grid/card styles and the audited datasets are unchanged.

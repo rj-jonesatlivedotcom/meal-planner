@@ -1,8 +1,14 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { supabaseConfiguration, datedPlannerEnabled, calendarOnlyFetch, calendarPreviewOrigin } from "./config";
+import { calendarFeedHostPolicy } from "../calendarFeedHost";
 
 export async function updateSession(request: NextRequest) {
+  const feedPolicy = calendarFeedHostPolicy(request);
+  if (feedPolicy === "reject") return new NextResponse(null, { status: 404, headers: { "Cache-Control": "no-store" } });
+  // Capability validation stays in the feed handler. Do not refresh or attach
+  // an account's cookies on the separate public hostname.
+  if (feedPolicy === "feed") return NextResponse.next({ request });
   const config = supabaseConfiguration();
   const previewOrigin = calendarPreviewOrigin();
   if (datedPlannerEnabled() && (process.env.VERCEL_ENV === "preview"

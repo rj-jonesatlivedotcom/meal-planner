@@ -5,10 +5,15 @@ import { createServerClient } from '@supabase/ssr';
 import { calendarTestConfiguration, calendarTestFetch } from './calendar-test-environment.mjs';
 
 const { url, key } = calendarTestConfiguration(process.env);
-const origin = 'http://127.0.0.1:4330';
+const httpsOrigin = process.env.RENALPLAN_CALENDAR_HTTPS_ORIGIN;
+if (httpsOrigin && !/^https:\/\/renalplan-[a-z0-9]+-jones-developing\.vercel\.app$/.test(httpsOrigin)) throw new Error('Only an isolated RenalPlan Preview origin is allowed');
+const origin = httpsOrigin ?? 'http://127.0.0.1:4330';
+const publicFeedOrigin = httpsOrigin ? 'https://renalplan-git-codex-calendar-completion-oct17-jones-developing.vercel.app' : origin;
+const bypass = process.env.RENALPLAN_CALENDAR_PREVIEW_BYPASS;
+if (httpsOrigin && !bypass) throw new Error('Protected Preview access must be explicit');
 const clients = [], checks = [], failures = [];
 const requireCheck = (value, label) => { if (!value) throw new Error(label); };
-const resultsPath = new URL('./calendar-subscription-api-results.json', import.meta.url);
+const resultsPath = new URL(httpsOrigin ? './calendar-subscription-https-results.json' : './calendar-subscription-api-results.json', import.meta.url);
 const preferences = { timezone:'Europe/London', breakfastTime:'08:00', lunchTime:'13:00', dinnerTime:'18:00',
  mealEnabled:true, mealMinutes:15, preparationEnabled:true, preparationMinutes:30, shoppingEnabled:true, shoppingWeekday:6, shoppingTime:'10:00' };
 
@@ -26,9 +31,9 @@ async function identity() {
  return fixture;
 }
 async function api(fixture,path,method='GET',body,owner=fixture?.id) {
- const target=new URL(path,origin); requireCheck(target.origin===origin,'Non-local API request rejected');
+ const target=new URL(path,origin); requireCheck(target.origin===origin,'Unexpected API origin rejected');
  return fetch(target,{method,redirect:'error',signal:AbortSignal.timeout(20000),
-  headers:{Origin:origin,'Content-Type':'application/json',...(fixture?{Cookie:[...fixture.jar].map(([name,value])=>`${name}=${value}`).join('; '),'X-RenalPlan-Owner':owner}:{})},
+  headers:{Origin:origin,'Content-Type':'application/json',...(httpsOrigin?{'x-vercel-protection-bypass':bypass}:{}),...(fixture?{Cookie:[...fixture.jar].map(([name,value])=>`${name}=${value}`).join('; '),'X-RenalPlan-Owner':owner}:{})},
   ...(body===undefined?{}:{body:JSON.stringify(body)})});
 }
 async function json(fixture,path,method,body,status=200,owner) {
@@ -37,8 +42,9 @@ async function json(fixture,path,method,body,status=200,owner) {
  requireCheck(response.status===status,'Unexpected API response status'); return response.json();
 }
 async function feed(link,status=200) {
- const target=new URL(link); requireCheck(target.origin===origin && /^\/api\/calendar\/feed\/[\w-]{43}$/.test(target.pathname),'Unexpected private URL target');
- const response=await api(null,target.pathname); requireCheck(response.status===status,'Unexpected feed status');
+ const target=new URL(link); requireCheck(target.origin===publicFeedOrigin && /^\/api\/calendar\/feed\/[\w-]{43}$/.test(target.pathname),'Unexpected private URL target');
+ // Public HTTPS checks intentionally send no account cookies or Vercel bypass.
+ const response=await fetch(target,{redirect:'error',signal:AbortSignal.timeout(20000)}); requireCheck(response.status===status,'Unexpected feed status');
  const text=await response.text(); if(status!==200)requireCheck(!text.includes('VEVENT'),'Rejected link exposed a calendar');
  return text.replace(/\r\n /g,'');
 }
@@ -74,6 +80,18 @@ try {
   requireCheck(event(firstFeed,'2026-10-19','breakfast')?.includes('SUMMARY:Apple & Honey Porridge'),'Correct recipe title');
   requireCheck(!firstFeed.includes('Synthetic private shopping item') && !firstFeed.includes(a.id),'Private fields leaked');
  });
+ if(httpsOrigin) {
+  await check('public feed hostname rejects application and management routes',async()=>{
+   for(const path of ['/planner','/account','/api/calendar/settings','/api/calendar/subscription']) {
+    const response=await fetch(publicFeedOrigin+path,{redirect:'error'});
+    requireCheck(response.status===404 && !(await response.text()).includes('VEVENT'),'Public hostname exposed application or account routes');
+   }
+  });
+  await check('public feed supports HEAD without returning private calendar contents',async()=>{
+   const response=await fetch(link,{method:'HEAD',redirect:'error'});
+   requireCheck(response.status===200 && (await response.text())==='','HEAD feed response');
+  });
+ }
  await check('London DST times are correct across both March and October changes',async()=>{
   for(const [date,slot,time] of [['2026-03-23','breakfast','20260323T080000Z'],['2026-03-29','breakfast','20260329T070000Z'],
    ['2026-10-19','breakfast','20261019T070000Z'],['2026-10-25','dinner','20261025T180000Z']])
@@ -161,7 +179,7 @@ try {
    }
   }catch{cleanup=false;}
  }
- fs.writeFileSync(resultsPath,JSON.stringify({project:'RenalPlan Calendar Test',projectRef:'pyevnakjpgwvylqmpqat',checksPassed:checks.length,checks,failures,
+ fs.writeFileSync(resultsPath,JSON.stringify({project:'RenalPlan Calendar Test',projectRef:'pyevnakjpgwvylqmpqat',...(httpsOrigin?{httpsOrigin,publicFeedOrigin}:{}),checksPassed:checks.length,checks,failures,
   syntheticUserIds:clients.map(f=>f.id).filter(Boolean),subscriptionsRevokedAndSessionsSignedOut:cleanup},null,2)+'\n');
  console.log('Safe result register written; private URLs and session credentials were not persisted.');
  if(!cleanup)process.exitCode=1;

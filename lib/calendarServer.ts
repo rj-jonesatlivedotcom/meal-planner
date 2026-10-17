@@ -1,6 +1,6 @@
 import { createClient as createPublicClient } from "@supabase/supabase-js";
 import { createClient } from "./supabase/server";
-import { datedPlannerEnabled, supabaseConfiguration, calendarOnlyFetch, calendarPreviewOrigin, calendarSubscriptionsEnabled } from "./supabase/config";
+import { datedPlannerEnabled, supabaseConfiguration, calendarOnlyFetch, calendarPreviewOrigin, calendarSubscriptionsEnabled, calendarPublicFeedOrigin } from "./supabase/config";
 import { calendarHandlers } from "./calendarApi";
 import { recipes } from "@/data/RecipeData";
 
@@ -8,6 +8,7 @@ export const calendarServer = calendarHandlers({
   enabled: datedPlannerEnabled,
   trustedOrigin: calendarPreviewOrigin,
   subscriptionsEnabled: calendarSubscriptionsEnabled,
+  feedOrigin: calendarPublicFeedOrigin,
   account: createClient,
   publicClient: () => {
     if (!datedPlannerEnabled()) throw new Error("Calendar routes are disabled");

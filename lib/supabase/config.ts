@@ -14,9 +14,18 @@ export function calendarPreviewOrigin() {
   return host && /^[a-z0-9][a-z0-9-]*\.vercel\.app$/.test(host) ? `https://${host}` : null;
 }
 
-/** Public bearer links stay disabled until hosting-level path logging is resolved. */
+/** Optional feed-only alias; never repurpose the protected application origin. */
+export function calendarPublicFeedOrigin() {
+  const appOrigin = calendarPreviewOrigin();
+  const value = process.env.RENALPLAN_CALENDAR_PUBLIC_FEED_ORIGIN;
+  if (!appOrigin || !value || !/^https:\/\/[a-z0-9][a-z0-9-]*\.vercel\.app$/.test(value) || value === appOrigin) return null;
+  return value;
+}
+
+/** Hosted opt-in records the owner's restricted-platform-log exception. */
 export function calendarSubscriptionsEnabled() {
-  return datedPlannerEnabled() && process.env.NODE_ENV === "development";
+  return datedPlannerEnabled() && (process.env.NODE_ENV === "development" ||
+    (process.env.RENALPLAN_CALENDAR_RESTRICTED_LOGS_ACCEPTED === "1" && !!calendarPublicFeedOrigin()));
 }
 
 export function supabaseConfiguration() {

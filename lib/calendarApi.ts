@@ -4,7 +4,7 @@ import { buildCalendar, calendarPreferences, preferencesFromRow, type CalendarRe
 
 const json = (value: unknown, status = 200) => Response.json(value, { status, headers: { "Cache-Control": "private, no-store", "Referrer-Policy": "no-referrer" } });
 const digest = (value: string) => createHash("sha256").update(value).digest("hex");
-type Ports = { enabled: () => boolean; subscriptionsEnabled?: () => boolean; trustedOrigin?: () => string | null; account: () => Promise<SupabaseClient>; publicClient: () => SupabaseClient; recipes: readonly CalendarRecipe[] };
+type Ports = { enabled: () => boolean; subscriptionsEnabled?: () => boolean; trustedOrigin?: () => string | null; feedOrigin?: () => string | null; account: () => Promise<SupabaseClient>; publicClient: () => SupabaseClient; recipes: readonly CalendarRecipe[] };
 // Next may use an internal localhost URL even when the browser uses 127.0.0.1.
 // Trust only the actual Host header, restricted to the already isolated loopback
 // environment. Never use arbitrary forwarded hosts to build bearer URLs.
@@ -63,7 +63,7 @@ export function calendarHandlers(ports: Ports) {
           p_expected_generation: mutation ? body.generation : null, p_token_hash: token ? digest(token) : null,
         });
         if (error) return rpcError(error);
-        return json({ ...data, ...(token ? { url: `${origin}/api/calendar/feed/${token}` } : {}) });
+        return json({ ...data, ...(token ? { url: `${ports.feedOrigin?.() ?? origin}/api/calendar/feed/${token}` } : {}) });
       }
       return new Response(null, { status: 405 });
     } catch (error) {

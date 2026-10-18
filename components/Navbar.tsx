@@ -104,6 +104,31 @@ function PageIcon({
   );
 }
 
+  function ThemeToggle({ theme, onToggle, mobile = false }: { theme: "light" | "dark"; onToggle: () => Promise<void>; mobile?: boolean }) {
+    return (
+      <button
+        type="button"
+        onClick={() => void onToggle()}
+        aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        className={`flex shrink-0 items-center justify-center rounded-lg transition ${theme === "dark" ? "text-slate-100/90 hover:bg-white/10 hover:text-green-300" : "text-slate-800 hover:bg-green-50 hover:text-green-700"} ${
+          mobile ? "h-12 w-12" : "h-12 w-12"
+        }`}
+      >
+        {theme === "dark" ? (
+          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M20.9 13A8.5 8.5 0 0 1 11 3.1 8.5 8.5 0 1 0 20.9 13Z" />
+          </svg>
+        )}
+      </button>
+    );
+  }
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -189,30 +214,6 @@ export default function Navbar() {
     }
   }
 
-  function ThemeToggle({ mobile = false }: { mobile?: boolean }) {
-    return (
-      <button
-        type="button"
-        onClick={() => void toggleTheme()}
-        aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        className={`flex shrink-0 items-center justify-center rounded-lg transition ${theme === "dark" ? "text-slate-100/90 hover:bg-white/10 hover:text-green-300" : "text-slate-800 hover:bg-green-50 hover:text-green-700"} ${
-          mobile ? "h-12 w-12" : "h-12 w-12"
-        }`}
-      >
-        {theme === "dark" ? (
-          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
-          </svg>
-        ) : (
-          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M20.9 13A8.5 8.5 0 0 1 11 3.1 8.5 8.5 0 1 0 20.9 13Z" />
-          </svg>
-        )}
-      </button>
-    );
-  }
 
   const pageHeader: {
     icon:
@@ -539,7 +540,7 @@ export default function Navbar() {
           </nav>
 
           <div className="ml-2 flex shrink-0 items-center gap-3">
-            <ThemeToggle />
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
             {loggedIn ? null : (
               <>
                 <Link
@@ -678,9 +679,11 @@ export default function Navbar() {
               </Link>
             ))}
 
+            <div className="flex flex-wrap items-center gap-3" aria-label="Account and appearance">
             {loggedIn && (
               <Link
                 href="/account"
+                aria-label="My Account"
                 onClick={() => setOpen(false)}
                 className={`flex items-center gap-3 rounded-xl px-4 py-3 text-lg font-semibold ${
                   pathname.startsWith("/account")
@@ -701,12 +704,10 @@ export default function Navbar() {
                   <circle cx="12" cy="8" r="4" />
                   <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7" />
                 </svg>
-                <span>My Account</span>
               </Link>
             )}
 
-            <div className="mt-2 flex items-center justify-between gap-3 border-t border-slate-200 pt-3">
-              <ThemeToggle mobile />
+
               {loggedIn ? null : (
                 <>
                   <Link
@@ -726,6 +727,7 @@ export default function Navbar() {
                   </Link>
                 </>
               )}
+              <ThemeToggle mobile theme={theme} onToggle={toggleTheme} />
             </div>
           </nav>
         )}

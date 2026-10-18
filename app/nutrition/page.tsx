@@ -155,12 +155,6 @@ const emptyTotals = (): NutrientTotals => ({
   phosphate: 0,
 });
 
-const levelRank: Record<"Low" | "Moderate" | "High", number> = {
-  Low: 1,
-  Moderate: 2,
-  High: 3,
-};
-
 
 function getNutritionNumber(value: string | undefined): number {
   if (!value) return 0;
@@ -240,17 +234,6 @@ function worstStatus(statuses: Status[]): Status {
   return statuses.includes("pending") ? "pending" : "green";
 }
 
-function levelStatus(
-  recipeLevel: "Low" | "Moderate" | "High" | "Pending review",
-  requirement: RequirementLevel
-): Status {
-  if (recipeLevel === "Pending review") return "pending";
-  if (requirement === "Any") return "green";
-
-  return levelRank[recipeLevel] <= levelRank[requirement]
-    ? "green"
-    : "red";
-}
 
 function numericLimitStatus(
   actual: number,
@@ -268,7 +251,6 @@ function numericLimitStatus(
 
 function getDailyStatus(
   totals: NutrientTotals,
-  recipesForDay: Recipe[],
   requirements: Requirements
 ): Status {
   const statuses: Status[] = [
@@ -278,16 +260,6 @@ function getDailyStatus(
     numericLimitStatus(totals.phosphate, null, requirements.phosphateLimitMg),
     numericLimitStatus(totals.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax),
   ];
-
-  // Purines remain qualitative because the recipe data contains a level,
-  // not a numeric purine amount.
-  recipesForDay.forEach((recipe) => {
-    statuses.push(
-      recipe.clinicalReviewPending && requirements.purines !== "Any"
-        ? "pending"
-        : levelStatus(recipe.purines, requirements.purines),
-    );
-  });
 
   return worstStatus(statuses);
 }
@@ -322,21 +294,6 @@ function NutritionStatusLabel({ status }: { status: Status | null }) {
   );
 }
 
-function getMatrixLevelText(
-  level: "Low" | "Moderate" | "High" | "Pending review"
-): string {
-  if (level === "Pending review") return "Not assessed";
-  return level === "Moderate" ? "Mod" : level;
-}
-
-function getRecipeLevelText(
-  recipe: Recipe,
-  key: "potassium" | "phosphate" | "purines",
-): string {
-  return recipe.clinicalReviewPending
-    ? "Not assessed"
-    : getMatrixLevelText(recipe[key]);
-}
 
 function formatSalt(sodiumMg: number): string {
   const saltGrams = (sodiumMg * 2.5) / 1000;
@@ -378,33 +335,6 @@ function formatRange(
   return "—";
 }
 
-function requirementLevelText(
-  level: RequirementLevel
-): string {
-  if (level === "Any") return "Any level";
-  return `${level} preferred`;
-}
-
-function averageRecipeLevel(
-  dayRecipes: Recipe[],
-  key: "potassium" | "phosphate" | "purines"
-): "Low" | "Moderate" | "High" | "Pending review" | null {
-  if (!dayRecipes.length) return null;
-  if (dayRecipes.some((recipe) => recipe.clinicalReviewPending)) {
-    return "Pending review";
-  }
-
-  const totalPoints = dayRecipes.reduce(
-    (total, recipe) => total + levelRank[recipe[key]],
-    0
-  );
-
-  const averagePoints = Math.round(totalPoints / dayRecipes.length);
-
-  if (averagePoints <= 1) return "Low";
-  if (averagePoints === 2) return "Moderate";
-  return "High";
-}
 
 export default function NutritionPage() {
   const weeklyPageStorage = useWeeklyPageStorage();
@@ -812,28 +742,8 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   }
 
   const weeklyFluidTotal = days.reduce((sum, _day, index) => sum + totalFluidForDayIndex(index), 0);
-  const allPlannedRecipes = useMemo(() => {
-    const result: Recipe[] = [];
 
-    days.forEach((day) => {
-      mealTypes.forEach((meal) => {
-        const recipe = getRecipe(
-          plannerMeals ?? {},
-          day,
-          meal
-        );
 
-        if (recipe) result.push(recipe);
-      });
-    });
-
-    return result;
-  }, [plannerMeals]);
-
-  const weeklyPurineLevel = useMemo(
-    () => averageRecipeLevel(allPlannedRecipes, "purines"),
-    [allPlannedRecipes]
-  );
   const weeklySummaryRows: Array<{
     label: string;
     total: string;
@@ -921,16 +831,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
           ? numericLimitStatus(dailyAverage.phosphate, null, requirements.phosphateLimitMg)
           : null,
     },
-    {
-      label: "Purines",
-      total: weeklyPurineLevel ? `Average: ${getMatrixLevelText(weeklyPurineLevel)}` : "—",
-      average: weeklyPurineLevel ? getMatrixLevelText(weeklyPurineLevel) : "—",
-      requirement: requirementLevelText(requirements.purines),
-      status:
-        weeklyPurineLevel && requirements.purines !== "Any"
-          ? levelStatus(weeklyPurineLevel, requirements.purines)
-          : null,
-    },
+
     {
       label: "Total fluid (meals + drinks)",
       total: `${weeklyFluidTotal.toLocaleString()} ml`,
@@ -948,15 +849,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   ];
 
   function getDailyStatusForDay(day: Day): Status {
-    const recipesForDay = mealTypes
-      .map((meal) =>
-        getRecipe(plannerMeals ?? {}, day, meal)
-      )
-      .filter((recipe): recipe is Recipe => Boolean(recipe));
+
 
     return getDailyStatus(
       dayTotals[day],
-      recipesForDay,
       requirements
     );
   }
@@ -1461,10 +1357,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                           <span className="text-slate-500">Phosphorus</span>
                           <strong className="shrink-0 text-slate-900">{formatNutrient(getNutritionNumber(recipe.nutrition.phosphate), "mg")}</strong>
                         </div>
-                        <div className="col-span-2 flex items-center justify-between gap-3">
-                          <span className="text-slate-500">Purines</span>
-                          <strong className="text-slate-900">{getRecipeLevelText(recipe, "purines")}</strong>
-                        </div>
+
                       </div>
                     )}
                   </div>
@@ -1562,30 +1455,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   </span>
                 </div>
 
-                <div className="col-span-2 flex min-w-0 items-center justify-between gap-2">
-                  <span className="min-w-0 break-words text-slate-600">Purines</span>
-                  <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap font-semibold text-slate-900">
-                    <span
-                      className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                        worstStatus(
-                          mealTypes
-                            .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
-                            .filter((recipe): recipe is Recipe => Boolean(recipe))
-                            .map((recipe) => levelStatus(recipe.clinicalReviewPending ? "Pending review" : recipe.purines, requirements.purines))
-                        )
-                      )}`}
-                    />
-                    {(() => {
-                      const level = averageRecipeLevel(
-                        mealTypes
-                          .map((meal) => getRecipe(plannerMeals, selectedDay, meal))
-                          .filter((recipe): recipe is Recipe => Boolean(recipe)),
-                        "purines"
-                      );
-                      return level ? getMatrixLevelText(level) : "—";
-                    })()}
-                  </span>
-                </div>
+
               </div>
             </div>
 
@@ -1615,10 +1485,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
           <section className="nutrition-print-grid nutrition-print-card mb-7 hidden overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5 md:block">
             <div className="nutrition-print-daily-report hidden">
               {days.map((day) => {
-                const dayRecipes = mealTypes
-                  .map((meal) => getRecipe(plannerMeals, day, meal))
-                  .filter((recipe): recipe is Recipe => Boolean(recipe));
-                const dayPurines = averageRecipeLevel(dayRecipes, "purines");
+
 
                 return (
                   <section key={day} className="nutrition-print-day">
@@ -1636,7 +1503,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                           <th>Salt</th>
                           <th>Potassium</th>
                           <th>Phosphorus</th>
-                          <th>Purines</th>
+
                         </tr>
                       </thead>
                       <tbody>
@@ -1656,7 +1523,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                               <td>{recipe ? formatSalt(totals.sodium) : "—"}</td>
                               <td>{recipe ? formatPotassiumMg(totals.potassium) : "—"}</td>
                               <td>{recipe ? formatNutrient(totals.phosphate, "mg") : "—"}</td>
-                              <td>{recipe ? getRecipeLevelText(recipe, "purines") : "—"}</td>
+
                             </tr>
                           );
                         })}
@@ -1671,7 +1538,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                           <td>{formatSalt(dayTotals[day].sodium)}</td>
                           <td>{formatPotassiumMg(dayTotals[day].potassium)}</td>
                           <td>{formatNutrient(dayTotals[day].phosphate, "mg")}</td>
-                          <td>{dayPurines ? getMatrixLevelText(dayPurines) : "—"}</td>
+
                         </tr>
                       </tbody>
                     </table>
@@ -1694,14 +1561,12 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       <th>Salt</th>
                       <th>Potassium</th>
                       <th>Phosphorus</th>
-                      <th>Purines</th>
+
                     </tr>
                   </thead>
                   <tbody>
                     {mealTypes.map((meal) => {
-                      const mealRecipes = days
-                        .map((day) => getRecipe(plannerMeals, day, meal))
-                        .filter((recipe): recipe is Recipe => Boolean(recipe));
+
                       const average = emptyTotals();
 
                       days.forEach((day) => {
@@ -1711,7 +1576,6 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                         average[key] /= 7;
                       });
 
-                      const purines = averageRecipeLevel(mealRecipes, "purines");
 
                       return (
                         <tr key={`average-${meal}`}>
@@ -1725,7 +1589,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                           <td>{formatSalt(average.sodium)}</td>
                           <td>{formatPotassiumMg(average.potassium)}</td>
                           <td>{formatNutrient(average.phosphate, "mg")}</td>
-                          <td>{purines ? getMatrixLevelText(purines) : "—"}</td>
+
                         </tr>
                       );
                     })}
@@ -1740,7 +1604,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       <td>{formatSalt(dailyAverage.sodium)}</td>
                       <td>{formatPotassiumMg(dailyAverage.potassium)}</td>
                       <td>{formatNutrient(dailyAverage.phosphate, "mg")}</td>
-                      <td>{weeklyPurineLevel ? getMatrixLevelText(weeklyPurineLevel) : "—"}</td>
+
                     </tr>
                   </tbody>
                 </table>
@@ -1859,12 +1723,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
-                                  <span className="text-slate-500">Purines</span>
-                                  <strong className="text-slate-900">
-                                    {getRecipeLevelText(recipe, "purines")}
-                                  </strong>
-                                </div>
+
                               </div>
                             ) : (
                               <span className="text-sm font-bold text-slate-300">
@@ -1878,9 +1737,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
                         <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                           {(() => {
-                            const mealRecipes = days
-                              .map((day) => getRecipe(plannerMeals, day, meal))
-                              .filter((recipe): recipe is Recipe => Boolean(recipe));
+
 
                             const average = emptyTotals();
 
@@ -1897,7 +1754,6 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                               average[key] /= 7;
                             });
 
-                            const purines = averageRecipeLevel(mealRecipes, "purines");
 
                             return (
                               <>
@@ -1979,19 +1835,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                   </span>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
-                                  <span className="text-slate-500">Purines</span>
-                                  <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                    <span
-                                      className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                        purines
-                                          ? levelStatus(purines, requirements.purines)
-                                          : "green"
-                                      )}`}
-                                    />
-                                    {purines ? getMatrixLevelText(purines) : "—"}
-                                  </span>
-                                </div>
+
                               </>
                             );
                           })()}
@@ -2018,14 +1862,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                         >
                           <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                             {(() => {
-                              const dayRecipes = mealTypes
-                                .map((meal) => getRecipe(plannerMeals, day, meal))
-                                .filter((recipe): recipe is Recipe => Boolean(recipe));
 
-                              const purines = averageRecipeLevel(
-                                dayRecipes,
-                                "purines"
-                              );
 
                               return (
                                 <>
@@ -2106,19 +1943,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                     </span>
                                   </div>
 
-                                  <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Purines</span>
-                                    <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                      <span
-                                        className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          purines
-                                            ? levelStatus(purines, requirements.purines)
-                                            : "green"
-                                        )}`}
-                                      />
-                                      {purines ? getMatrixLevelText(purines) : "—"}
-                                    </span>
-                                  </div>
+
                                 </>
                               );
                             })()}
@@ -2130,7 +1955,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                     <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
                       <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                         {(() => {
-                          const purines = weeklyPurineLevel;
+
 
                           return (
                             <>
@@ -2211,19 +2036,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                 </span>
                               </div>
 
-                              <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Purines</span>
-                                <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                  <span
-                                    className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      purines
-                                        ? levelStatus(purines, requirements.purines)
-                                        : "green"
-                                    )}`}
-                                  />
-                                  {purines ? getMatrixLevelText(purines) : "—"}
-                                </span>
-                              </div>
+
                             </>
                           );
                         })()}
@@ -2444,13 +2257,11 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   red means it exceeds the saved limit. Individual meal
                   figures are shown for information only and are not judged
                   against the full daily allowance. Potassium is displayed
-                  in mg from food data, phosphorus in mg and salt in g. Purine classifications
-                  awaiting renal dietitian review are not assessed.
+                  in mg from food data, phosphorus in mg and salt in g.
                 </p>
               </aside>
             </div>
           </section>
-
 
 
           <p className="nutrition-print-hidden mx-auto mt-5 max-w-5xl text-center text-xs leading-5 text-slate-500">
@@ -2499,8 +2310,5 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     </>
   );
 }
-
-
-
 
 

@@ -32,6 +32,10 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (state.status !== "ready") return;
+    // Refresh read-only dashboard/shopping summaries once the correct
+    // account's week has finished loading.
+    window.dispatchEvent(new Event("weekly-planner-updated"));
+    window.dispatchEvent(new Event("shopping-list-updated"));
     void Promise.resolve().then(() => {
       setError(null);
       setPending(pendingWeeklyChanges());
@@ -56,7 +60,8 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
     return () => { stop(); attachWeeklyPages(null); window.removeEventListener("renalplan-week-error", onError); };
   }, [context]);
 
-  const usesMeals = path === "/planner" || path === "/shopping" || path === "/nutrition";
+  const isRecoveryRoute = path === "/saved-meals/recovery";
+  const usesMeals = isRecoveryRoute || path === "/planner" || path === "/shopping" || path === "/nutrition";
   if (!usesMeals) return children;
   if (!state.owner) return <p role="status" className="p-5">{error ?? "Loading saved meals..."}</p>;
   const currentReview = review?.local.owner.id === state.owner.id && review?.local.owner.kind === state.owner.kind && review.local.weekStart === state.weekStart ? review : null;
@@ -77,7 +82,7 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
       }} />}
   </div>;
   const interrupted = currentPending.length > 0 && <section className="mx-auto max-w-3xl p-5" aria-label="Recover interrupted changes">
-    <h2 className="font-semibold">Review interrupted changes for {state.weekStart}</h2>
+    <h2 className="font-semibold">Saved changes for {state.weekStart}</h2>
     <p className="my-2 text-sm">These changes were retained before a save finished. Review each change before continuing. The recovery record remains preserved.</p>
     <pre className="max-h-72 overflow-auto whitespace-pre-wrap text-xs">{JSON.stringify(currentPending[0].value, null, 2)}</pre>
     <button className="m-2 rounded-lg bg-sky-100 px-3 py-2" onClick={() => {
@@ -96,11 +101,12 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
   const shift = (amount: number) => { void context.select(shiftWeek(state.weekStart, amount / 7)); };
   const shownPlan = state.plan ?? emptyWeeklyPlan(state.owner, state.weekStart);
   return <div>
-    {isPlannerRoute(path) && <CalendarToolbar key={`toolbar:${state.owner.kind}:${state.owner.id}:${state.weekStart}`} plan={shownPlan}
+    {isRecoveryRoute && children}
+    {(isPlannerRoute(path) || isRecoveryRoute) && <CalendarToolbar key={`toolbar:${state.owner.kind}:${state.owner.id}:${state.weekStart}`} plan={shownPlan}
       shift={shift} thisWeek={() => void context.select(currentMonday())}
       readPlan={() => context.getSnapshot().status === "ready" ? context.getSnapshot().plan : null} />}
     {recovery}
-    {isPlannerRoute(path) && <>
+    {isRecoveryRoute && <>
       <ExistingPlan key={`legacy:${state.owner.kind}:${state.owner.id}`} owner={state.owner} onImported={async week => {
         const owner = state.owner!;
         const current = context.getSnapshot().owner;
@@ -111,10 +117,10 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
           ...(owner.kind === "account" ? { account: createWeeklyPlanAccount(client, owner.id) } : {})}));
         await context.select(week);
       }} />
-      {interrupted && <details className="mx-auto max-w-4xl p-3"><summary>Review interrupted changes</summary>{interrupted}</details>}
+      {interrupted && <details className="mx-auto max-w-4xl p-3"><summary>Recover unsaved meals</summary>{interrupted}</details>}
     </>}
     {!state.plan ? <p role="status" className="p-5">Loading saved meals...</p> :
-      <div key={`${state.owner.kind}:${state.owner.id}:${state.weekStart}`} inert={state.status === "error"}>{children}</div>}
+      <div key={`${state.owner.kind}:${state.owner.id}:${state.weekStart}`} inert={state.status === "error"}>{!isRecoveryRoute && children}</div>}
   </div>;
 }
 
@@ -149,7 +155,7 @@ function ExistingPlan({owner, onImported}: {owner: WeeklyPlan["owner"]; onImport
   }, [owner]);
   if (!input) return null;
   return <details className="mx-auto max-w-[1448px] px-4 py-1 text-sm md:px-6" onToggle={event => setOpened(event.currentTarget.open)}>
-    <summary className="cursor-pointer text-slate-600 dark:text-slate-300">Your previous meal plan</summary>
+    <summary className="cursor-pointer text-slate-600 dark:text-slate-300">Recover an older meal plan</summary>
     {opened && <div className="py-2">
       <p role="status">{message}</p>
       {input && <LegacyWeekAssignment onImport={async week => {

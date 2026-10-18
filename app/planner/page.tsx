@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Suspense, useMemo, useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import { normalizePlannerNutrient, type PlannerNutrient } from "@/lib/plannerNutrients";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getStoredRequirements, type Requirements } from "@/lib/recipeRequirements";
@@ -1465,14 +1466,7 @@ openMyChefIntro();
     });
   }
 
-  type NutritionView =
-    | "Calories"
-    | "Protein"
-    | "Carbohydrate"
-    | "Sodium"
-    | "Potassium"
-    | "Phosphorus"
-    | "Purines";
+  type NutritionView = PlannerNutrient;
 
   const [nutritionView, setNutritionView] =
     useState<NutritionView>("Calories");
@@ -1711,8 +1705,7 @@ function formatPotassiumMg(mg: number): string {
     if (
       nutritionView !== "Sodium" &&
       nutritionView !== "Potassium" &&
-      nutritionView !== "Phosphorus" &&
-      nutritionView !== "Purines"
+      nutritionView !== "Phosphorus"
     ) {
       return "Empty";
     }
@@ -1731,7 +1724,7 @@ function formatPotassiumMg(mg: number): string {
       return recipe.clinicalReviewPending ? "Pending review" : recipe.phosphate;
     }
 
-    return recipe.clinicalReviewPending ? "Pending review" : recipe.purines;
+    return "Empty";
   }
 
   function getNutritionSegmentClass(
@@ -1998,8 +1991,7 @@ function formatPotassiumMg(mg: number): string {
       );
     }
 
-    // Purines remain a meal-level RAG because recipe data stores purines
-    // as Low / Moderate / High rather than a numeric daily amount.
+    // Fallback meal ratings for non-numeric nutrient views.
     const breakfast = getMealNutritionRating(day, "Breakfast");
     const lunch = getMealNutritionRating(day, "Lunch");
     const dinner = getMealNutritionRating(day, "Dinner");
@@ -2776,7 +2768,7 @@ html[data-theme="dark"] main .planner-remove-button {
                 <select
                   value={nutritionView}
                   onChange={(event) => {
-                    setNutritionView(event.target.value as NutritionView);
+                    setNutritionView(normalizePlannerNutrient(event.target.value));
                   }}
                   className="mt-1.5 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-700 outline-none transition focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"
                   aria-label="Choose daily nutrition"
@@ -2798,9 +2790,6 @@ html[data-theme="dark"] main .planner-remove-button {
                   </option>
                   <option value="Phosphorus">
                     Phosphorus
-                  </option>
-                  <option value="Purines">
-                    Purines
                   </option>
                 </select>
 
@@ -3297,7 +3286,7 @@ html[data-theme="dark"] main .planner-remove-button {
                   <select
                     value={nutritionView}
                     onChange={(event) => {
-                      setNutritionView(event.target.value as NutritionView);
+                      setNutritionView(normalizePlannerNutrient(event.target.value));
                     }}
                     className="planner-nutrition-select w-full rounded-xl border border-slate-200 bg-white px-2 py-1.5 text-[10px] font-bold text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                     aria-label="Choose daily nutrition"
@@ -3320,34 +3309,10 @@ html[data-theme="dark"] main .planner-remove-button {
                     <option value="Phosphorus">
                       Phosphorus
                     </option>
-                    <option value="Purines">
-                      Purines
-                    </option>
                   </select>
 
                   <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
-                    {nutritionView === "Purines" && recipes.some((recipe) => recipe.clinicalReviewPending) ? (
-                      <span className="flex items-center gap-1.5">
-                        <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-slate-400" />
-                        Not assessed
-                      </span>
-                    ) : nutritionView === "Purines" ? (
-                      <>
-                        <span className="flex items-center gap-1.5">
-                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
-                          Low
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-amber-400" />
-                          Moderate
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />
-                          High
-                        </span>
-                      </>
-                    ) : (
-                      <>
+                    <>
                         <span className="flex items-center gap-1.5">
                           <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
                           Within limit
@@ -3357,7 +3322,6 @@ html[data-theme="dark"] main .planner-remove-button {
                           Exceeds limit
                         </span>
                       </>
-                    )}
                   </div>
 
                 </div>

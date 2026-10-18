@@ -13,7 +13,8 @@ export async function updateSession(request: NextRequest) {
   const previewOrigin = calendarApplicationOrigin();
   if (datedPlannerEnabled() && (process.env.VERCEL_ENV === "preview" || process.env.VERCEL_ENV === "production"
     ? !previewOrigin || request.headers.get("host") !== new URL(previewOrigin).host
-    : !["127.0.0.1", "localhost"].includes(request.nextUrl.hostname))) {
+    // next dev -H 0.0.0.0 uses the bind address in nextUrl, even for loopback requests.
+    : !/^(?:127\.0\.0\.1|localhost)(?::\d+)?$/i.test(request.headers.get("host") ?? ""))) {
     return new NextResponse("Calendar request host rejected", { status: 403 });
   }
   let supabaseResponse = NextResponse.next({

@@ -887,7 +887,7 @@ export default function RecipesPage() {
 
                         <option value="phosphate-asc">Phosphorus (mg) — lowest first</option>
 
-                        <option value="purines-asc" disabled>Purines — pending review</option>
+
                       </select>
                     </div>
                   </div>
@@ -1133,7 +1133,7 @@ export default function RecipesPage() {
 
                         <option value="phosphate-asc">Phosphorus (mg) — lowest first</option>
 
-                        <option value="purines-asc" disabled>Purines — pending review</option>
+
                       </select>
                     </div>
                   </div>

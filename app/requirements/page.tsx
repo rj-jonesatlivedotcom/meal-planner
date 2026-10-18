@@ -282,8 +282,6 @@ export default function RequirementsPage() {
         return `For ${stage}, phosphate restriction is individualised and may be advised when blood phosphate is raised. Your renal team may also consider your diet and phosphate binders. The starting figure here is only a preset and can be changed or removed.`;
       case "fluid":
         return `Fluid requirements are highly individual and are not determined by CKD stage alone. Your allowance may depend on kidney function, urine output, dialysis and your fluid status. Enter the amount given by your renal team.`;
-      case "purines":
-        return "Purine restriction is not a CKD-stage requirement. If you have gout or raised uric acid and have been advised to reduce purines, this setting can help. BDA describes dietary purine reduction as an adjunct to medical treatment, not a replacement for it.";
       case "carbohydrate":
         return "There is no single carbohydrate target for everyone. If you have diabetes, the amount and timing of carbohydrate may need to be individualised with your diabetes team, particularly if you use insulin or medicines that can cause low blood glucose. Spreading carbohydrate across the day can help some people manage blood glucose.";
       default:

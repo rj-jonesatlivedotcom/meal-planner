@@ -4,6 +4,7 @@ import RenalPlan from "@/components/RenalPlan";
 export default function About() {
   return (
     <main className="about-page min-h-screen bg-white text-slate-900">
+      <p className="mx-auto max-w-6xl px-6 pt-4 text-sm"><Link href="/saved-meals/recovery" className="font-semibold text-green-700 underline">Recover saved meals</Link></p>
 
       <style>{`
         /* About page dark mode — RenalPlan uses html[data-theme="dark"], not Tailwind's .dark class. */
@@ -289,27 +290,6 @@ export default function About() {
                 </a>
               </div>
 
-              <div>
-                <h3 className="font-bold">
-                  Kaneko et al. (2014) — Total Purine and Purine Base Content of
-                  Common Foodstuffs for Facilitating Nutritional Therapy for Gout
-                  and Hyperuricemia
-                </h3>
-                <p className="mt-1 text-sm text-slate-600">
-                  Primary published source used for the food-level purine
-                  classification. The study measured total purine content in
-                  common foodstuffs and provides the five published purine
-                  categories described above.
-                </p>
-                <a
-                  href="https://www.jstage.jst.go.jp/article/bpb/37/5/37_b13-00967/_html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold text-green-700 underline underline-offset-2 hover:text-green-900"
-                >
-                  Kaneko et al. — full study ↗
-                </a>
-              </div>
 
               <div>
                 <h3 className="font-bold">

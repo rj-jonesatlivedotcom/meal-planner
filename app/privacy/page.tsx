@@ -146,7 +146,7 @@ export default function PrivacyPage() {
                 </li>
                 <li className="list-disc">
                   <strong>Dietary requirements:</strong> settings you choose
-                  for salt/sodium, potassium, phosphate, purines and
+                  for salt/sodium, potassium, phosphate and
                   carbohydrate ranges.
                 </li>
                 <li className="list-disc">

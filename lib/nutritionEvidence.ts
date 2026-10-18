@@ -53,4 +53,4 @@ export function getNutritionEvidenceText(
 }
 
 export const clinicalReviewNotice =
-  "Potassium, phosphorus and purine classifications and dietary guidance are pending qualified renal dietitian review.";
+  "Potassium and phosphorus classifications and dietary guidance are pending qualified renal dietitian review.";

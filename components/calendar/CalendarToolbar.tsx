@@ -5,7 +5,7 @@ import { buildCalendar, calendarDefaults, calendarNamespace, calendarPreferences
 import { currentMonday, type WeeklyPlan } from "@/lib/weeklyPlans";
 import { flushWeeklyPageWrites } from "@/lib/weeklyPageStorage";
 import { recipes } from "@/data/RecipeData";
-import { productionCalendarEnabled } from "@/lib/supabase/config";
+import { liveCalendarEnabled } from "@/lib/supabase/config";
 
 type Props = { plan: WeeklyPlan; shift: (days: number) => void; thisWeek: () => void; readPlan: () => WeeklyPlan | null };
 // Unmodified provider artwork, served locally (no third-party image requests):
@@ -18,12 +18,29 @@ export default function CalendarToolbar(props: Props) {
   const [panel, setPanel] = useState<"connect" | "times" | null>(null);
   const isThisWeek = props.plan.weekStart === currentMonday();
   return <>
-    <nav aria-label="Planner week" className="mx-auto flex w-full max-w-[1448px] flex-wrap items-center gap-2 px-4 py-2 text-slate-800 dark:text-slate-100 md:px-6">
-      <button type="button" className={button} aria-label="Previous week" onClick={() => props.shift(-7)}>←</button>
-      <span className="flex min-h-10 w-56 shrink-0 items-center justify-center text-center text-sm font-bold tabular-nums" aria-live="polite">{formatWeek(props.plan.weekStart)}</span>
-      <button type="button" className={button} aria-label="Next week" onClick={() => props.shift(7)}>→</button>
-      {!isThisWeek && <button type="button" className={button} onClick={props.thisWeek}>This week</button>}
-      <div className="ml-auto flex gap-2">
+    <style jsx>{`
+      .planner-toolbar { display: flex; align-items: center; gap: 8px; width: 100%; max-width: 1448px; margin: 0 auto; padding: 8px 24px; }
+      .planner-week { display: flex; align-items: center; gap: 8px; }
+      .planner-week-label { display: flex; align-items: center; justify-content: center; width: 224px; min-height: 40px; text-align: center; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .planner-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+      @media (max-width: 1023px) {
+        .planner-toolbar { flex-direction: column; align-items: stretch; padding: 8px 16px; }
+        .planner-week { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; }
+        .planner-week-label { width: auto; min-width: 0; min-height: 44px; }
+        .planner-week-arrow { width: 44px; height: 44px; padding-left: 0; padding-right: 0; }
+        .planner-this-week { grid-column: 2; justify-self: center; }
+        .planner-actions { width: 100%; justify-content: space-between; margin-left: 0; }
+        .planner-actions button { min-height: 44px; }
+      }
+    `}</style>
+    <nav aria-label="Planner week" className="planner-toolbar text-slate-800 dark:text-slate-100">
+      <div className="planner-week">
+        <button type="button" className={`${button} planner-week-arrow`} aria-label="Previous week" onClick={() => props.shift(-7)}>&#8592;</button>
+        <span className="planner-week-label" aria-live="polite">{formatWeek(props.plan.weekStart)}</span>
+        <button type="button" className={`${button} planner-week-arrow`} aria-label="Next week" onClick={() => props.shift(7)}>&#8594;</button>
+        {!isThisWeek && <button type="button" className={`${button} planner-this-week`} onClick={props.thisWeek}>This week</button>}
+      </div>
+      <div className="planner-actions">
         <button type="button" className={button} onClick={() => setPanel("connect")}>Add to calendar</button>
         <button type="button" className={button} onClick={() => setPanel("times")}>Meal times</button>
       </div>
@@ -174,7 +191,7 @@ function CalendarPanel({ plan, readPlan, initialPanel, onClose }: Props & { init
         <summary className="cursor-pointer font-semibold">Privacy &amp; technical details</summary>
         <div className="mt-3 space-y-2">
           <p>A read-only subscription includes all saved dated weeks. Anyone with its private link can view meal names and dates. Keep it private; regenerating or revoking stops the old link. Previously downloaded copies cannot be recalled.</p>
-          <p>{productionCalendarEnabled() ? "Keep your private calendar link secure. Revoke it here to stop future access." : "Calendar Test only. Google, Outlook and Apple need a publicly reachable HTTPS feed. Production remains disabled."}</p>
+          <p>{liveCalendarEnabled() ? "Keep your private calendar link secure. Revoke it here to stop future access." : "Calendar Test only. Google, Outlook and Apple need a publicly reachable HTTPS feed. Production remains disabled."}</p>
           <p>Subscriptions update on your calendar provider&apos;s schedule, not immediately. Removing a meal publishes its event as cancelled. A downloaded file is a one-time snapshot.</p>
           {!guest && subscription.active && !provider && <p>Select your calendar above to manage or revoke its private link.</p>}
         </div>

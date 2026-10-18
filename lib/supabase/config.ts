@@ -10,13 +10,22 @@ export function productionCalendarEnabled() {
     (process.env.VERCEL_ENV === undefined || process.env.VERCEL_ENV === "production");
 }
 
+/** Explicit loopback development opt-in; ignored by every hosted build. */
+export function localLiveCalendarEnabled() {
+  return process.env.NODE_ENV === "development" && !process.env.VERCEL_ENV &&
+    process.env.NEXT_PUBLIC_RENALPLAN_DATED_LOCAL_LIVE === "1";
+}
+export function liveCalendarEnabled() {
+  return productionCalendarEnabled() || localLiveCalendarEnabled();
+}
+
 export function calendarGuestStorageKey() {
-  return productionCalendarEnabled() ? "renalplan-calendar-guest" : "renalplan-calendar-test-guest";
+  return liveCalendarEnabled() ? "renalplan-calendar-guest" : "renalplan-calendar-test-guest";
 }
 
 /** Both opt-ins default off; the Test flag can never activate production. */
 export function datedPlannerEnabled() {
-  if (productionCalendarEnabled()) return true;
+  if (liveCalendarEnabled()) return true;
   if (process.env.VERCEL_ENV === "production") return false;
   return process.env.NEXT_PUBLIC_RENALPLAN_DATED_TEST === "1" &&
     (process.env.NODE_ENV === "development" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview");
@@ -24,7 +33,7 @@ export function datedPlannerEnabled() {
 
 /** Fixed canonical origin; request/forwarded headers cannot choose it. */
 export function calendarApplicationOrigin() {
-  return productionCalendarEnabled() ? CALENDAR_WEBSITE_ORIGIN : calendarPreviewOrigin();
+  return localLiveCalendarEnabled() ? null : productionCalendarEnabled() ? CALENDAR_WEBSITE_ORIGIN : calendarPreviewOrigin();
 }
 
 /** Canonical deployment origin supplied by Vercel, never by request headers. */
@@ -36,6 +45,7 @@ export function calendarPreviewOrigin() {
 
 /** Optional feed-only alias; never repurpose the protected application origin. */
 export function calendarPublicFeedOrigin() {
+  if (localLiveCalendarEnabled()) return CALENDAR_WEBSITE_ORIGIN;
   const appOrigin = calendarPreviewOrigin();
   const value = process.env.RENALPLAN_CALENDAR_PUBLIC_FEED_ORIGIN;
   if (!appOrigin || !value || !/^https:\/\/[a-z0-9][a-z0-9-]*\.vercel\.app$/.test(value) || value === appOrigin) return null;
@@ -50,7 +60,7 @@ export function calendarSubscriptionsEnabled() {
 }
 
 export function supabaseConfiguration() {
-  if (productionCalendarEnabled()) {
+  if (liveCalendarEnabled()) {
     const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
     if (process.env.NEXT_PUBLIC_SUPABASE_URL !== CALENDAR_PRODUCTION_ORIGIN ||
       !key?.startsWith("sb_publishable_") || key === process.env.NEXT_PUBLIC_RENALPLAN_CALENDAR_TEST_KEY)
@@ -71,7 +81,7 @@ export function supabaseConfiguration() {
 /** Independent transport boundary, not merely a hidden UI control. */
 export function calendarOnlyFetch(input: RequestInfo | URL, init?: RequestInit) {
   const url = new URL(typeof input === "string" || input instanceof URL ? input : input.url);
-  const expected = productionCalendarEnabled() ? supabaseConfiguration().url : CALENDAR_TEST_ORIGIN;
+  const expected = liveCalendarEnabled() ? supabaseConfiguration().url : CALENDAR_TEST_ORIGIN;
   if (url.origin !== expected || url.username || url.password) throw new Error("Dated Planner rejected an unexpected destination");
   return fetch(input, { ...init, redirect: "error", signal: init?.signal ?? AbortSignal.timeout(20000) });
 }

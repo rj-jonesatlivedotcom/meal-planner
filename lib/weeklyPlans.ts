@@ -45,6 +45,16 @@ export function mondayForDate(value: string): string {
   return date.toISOString().slice(0, 10);
 }
 
+/** Move between Mondays without local-time or daylight-saving drift. */
+export function shiftWeek(weekStart: string, weeks: number): string {
+  requireMonday(weekStart);
+  if (!Number.isSafeInteger(weeks)) throw new Error("Week offset must be an integer");
+  const date = dateValue(weekStart);
+  date.setUTCDate(date.getUTCDate() + weeks * 7);
+  if (!Number.isFinite(date.getTime())) throw new Error("Week outside supported range");
+  return requireMonday(date.toISOString().slice(0, 10));
+}
+
 export function requireMonday(value: string): string {
   if (mondayForDate(value) !== value) throw new Error("Week must start on Monday");
   return value;

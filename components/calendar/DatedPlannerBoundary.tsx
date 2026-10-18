@@ -77,7 +77,7 @@ function TestRuntime({ children }: { children: ReactNode }) {
   }, [state.owner]);
 
   useEffect(() => {
-    if (path === "/" && state.owner && state.weekStart !== currentMonday()) void context.select(currentMonday());
+    if (path === "/planner" && state.owner && state.weekStart !== currentMonday()) void context.select(currentMonday());
   }, [path, state.owner, state.weekStart, context]);
 
   // Calendar setup and recovery screens belong to the Planner only.
@@ -101,7 +101,7 @@ function TestRuntime({ children }: { children: ReactNode }) {
         await context.resolve(choice, revision, raw); setReview(null); setError(null);
       }} />}
   </div>;
-  if (!state.plan || !legacyChecked || (path === "/" && state.weekStart !== currentMonday())) return <p role="status" className="p-5">Loading the selected week…</p>;
+  if (!state.plan || !legacyChecked) return <p role="status" className="p-5">Loading the selected week…</p>;
   if (legacy && legacy.owner.id === state.owner.id && legacy.owner.kind === state.owner.kind) return <div className="mx-auto max-w-3xl p-5"><LegacyWeekAssignment onImport={async week => {
     if (legacy.owner.kind === "account") await migrateLegacyAccount({ account: createWeeklyPlanAccount(createClient(), legacy.owner.id), storage: localStorage, input: { ...legacy, weekStart: week } });
     else stageLegacyGuestImport(localStorage, { ...legacy, weekStart: week });

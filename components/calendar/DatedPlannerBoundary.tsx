@@ -15,6 +15,7 @@ import { LegacyWeekAssignment, WeekConflictReview } from "./IntegrationControls"
 import { stageLegacyGuestImport } from "@/lib/weeklyPlanStore";
 
 type LegacyInput = Parameters<typeof migrateLegacyAccount>[0]["input"];
+function isPlannerRoute(path: string) { return path === "/planner"; }
 
 export default function DatedPlannerBoundary({ children }: { children: ReactNode }) {
   return datedPlannerEnabled() ? <TestRuntime>{children}</TestRuntime> : children;
@@ -81,7 +82,7 @@ function TestRuntime({ children }: { children: ReactNode }) {
 
   // Calendar setup and recovery screens belong to the Planner only.
   // Other routes must remain accessible even when an old plan needs importing.
-  if (path !== "/planner") return children;
+  if (!isPlannerRoute(path)) return children;
   if (!state.owner) return <p role="status" className="p-5">Loading the selected account...</p>;
   const currentReview = review?.local.owner.id === state.owner.id && review?.local.owner.kind === state.owner.kind && review.local.weekStart === state.weekStart ? review : null;
   const currentPending = pending.filter(item => item.journal.startsWith(`renalplan:weekly-ui:${state.owner!.kind}:${encodeURIComponent(state.owner!.id)}:${state.weekStart}:pending-change:`));

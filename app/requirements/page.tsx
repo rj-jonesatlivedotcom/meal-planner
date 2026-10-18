@@ -800,11 +800,8 @@ export default function RequirementsPage() {
                     Enter the allowance given by your renal team.
                   </p>
                 </div>
-              </div>
-            </div>
-
             {/* CARBOHYDRATE */}
-            <div className="mt-7">
+            <div>
               <div className="mb-4">
                 <button
                   type="button"
@@ -882,6 +879,9 @@ export default function RequirementsPage() {
                     have received from your healthcare or dietetic team.
                   </p>
                 </div>
+              </div>
+            </div>
+
               </div>
             </div>
 

@@ -17,8 +17,7 @@ export default function CalendarToolbar(props: Props) {
       <button type="button" className={button} aria-label="Previous week" onClick={() => props.shift(-7)}>←</button>
       <span className="text-sm font-bold tabular-nums" aria-live="polite">{formatWeek(props.plan.weekStart)}</span>
       <button type="button" className={button} aria-label="Next week" onClick={() => props.shift(7)}>→</button>
-      {isThisWeek ? <span className="rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200">This week</span>
-        : <button type="button" className={button} onClick={props.thisWeek}>This week</button>}
+      {!isThisWeek && <button type="button" className={button} onClick={props.thisWeek}>This week</button>}
       <div className="ml-auto flex gap-2">
         <button type="button" className={button} onClick={() => setPanel("connect")}>Connect calendar</button>
         <button type="button" className={button} onClick={() => setPanel("times")}>Meal times</button>

@@ -9,7 +9,7 @@ import { createWeeklyPlanStore } from "@/lib/weeklyPlanStore";
 import { createWeeklyPlanAccount } from "@/lib/weeklyPlanAccount";
 import { migrateLegacyAccount } from "@/lib/weeklyPlanMigration";
 import { attachWeeklyPages, pendingWeeklyChanges, retainReviewedWeeklyChange, createWeeklyPageStorage, flushWeeklyPageWrites } from "@/lib/weeklyPageStorage";
-import { currentMonday, mondayForDate, planStorageKey, type WeeklyPlan } from "@/lib/weeklyPlans";
+import { currentMonday, shiftWeek, planStorageKey, type WeeklyPlan } from "@/lib/weeklyPlans";
 import CalendarToolbar from "./CalendarToolbar";
 import { LegacyWeekAssignment, WeekConflictReview } from "./IntegrationControls";
 import { stageLegacyGuestImport } from "@/lib/weeklyPlanStore";
@@ -126,8 +126,8 @@ function TestRuntime({ children }: { children: ReactNode }) {
     }}>Keep current plan; retain recovery record</button>
   </section>;
   const shift = (amount: number) => {
-    const date = new Date(`${state.weekStart}T12:00:00Z`); date.setUTCDate(date.getUTCDate() + amount);
-    void context.select(mondayForDate(date.toISOString().slice(0, 10)));
+    if (!Number.isSafeInteger(amount) || amount % 7 !== 0) return;
+    void context.select(shiftWeek(state.weekStart, amount / 7));
   };
   return <div>
     {path === "/planner" && <CalendarToolbar key={`toolbar:${state.owner.kind}:${state.owner.id}:${state.weekStart}`} plan={state.plan}

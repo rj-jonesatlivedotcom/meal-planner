@@ -76,9 +76,10 @@ function TestRuntime({ children }: { children: ReactNode }) {
     return () => { cancelled = true; };
   }, [state.owner]);
 
-  useEffect(() => {
-    if (path === "/planner" && state.owner && state.weekStart !== currentMonday()) void context.select(currentMonday());
-  }, [path, state.owner, state.weekStart, context]);
+  // Do not reset the selected week when navigation changes it. Previously
+  // this effect depended on weekStart, so clicking either arrow selected a
+  // different week and immediately jumped back to the current Monday.
+  // The context already initialises at the current Monday on first mount.
 
   // Calendar setup and recovery screens belong to the Planner only.
   // Other routes must remain accessible even when an old plan needs importing.

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { datedPlannerEnabled } from "./supabase/config";
+import { datedPlannerTakeoverEnabled as datedPlannerEnabled } from "./supabase/config";
 import { convertLegacyPlan, dateForSlot, WEEK_DAYS, MEAL_SLOTS, type WeeklyPlan } from "./weeklyPlans";
 import type { createWeeklyPlanContext } from "./weeklyPlanContext";
 

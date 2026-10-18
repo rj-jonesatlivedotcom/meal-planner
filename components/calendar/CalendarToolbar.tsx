@@ -5,6 +5,7 @@ import { buildCalendar, calendarDefaults, calendarNamespace, calendarPreferences
 import { currentMonday, type WeeklyPlan } from "@/lib/weeklyPlans";
 import { flushWeeklyPageWrites } from "@/lib/weeklyPageStorage";
 import { recipes } from "@/data/RecipeData";
+import { productionCalendarEnabled } from "@/lib/supabase/config";
 
 type Props = { plan: WeeklyPlan; shift: (days: number) => void; thisWeek: () => void; readPlan: () => WeeklyPlan | null };
 const button = "rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-semibold hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-emerald-600 dark:border-slate-600 dark:hover:bg-slate-800";
@@ -138,7 +139,7 @@ function CalendarPanel({ plan, readPlan, initialPanel, onClose }: Props & { init
       <div><p className="mb-2 font-semibold">{formatWeek(plan.weekStart)}</p><button type="button" className={button} disabled={!ready || busy} onClick={download}>Download this week (.ics)</button></div>
       {guest ? <p>Sign in to subscribe to all your saved weeks. Guest plans can be downloaded above.</p> : <>
         <p>A read-only subscription includes all saved dated weeks. Anyone with its private link can view meal names and dates. Keep it private; regenerating or revoking stops the old link. Previously downloaded copies cannot be recalled.</p>
-        <p className="text-xs text-slate-500 dark:text-slate-400">Calendar Test only. Google, Outlook and Apple need a publicly reachable HTTPS feed. Production remains disabled.</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400">{productionCalendarEnabled() ? "Keep your private calendar link secure. Revoke it here to stop future access." : "Calendar Test only. Google, Outlook and Apple need a publicly reachable HTTPS feed. Production remains disabled."}</p>
         <div className="flex flex-wrap gap-2"><button type="button" disabled={!ready || busy} className={button} onClick={() => void run(async () => { const data = await request("subscription", "POST", { generation: subscription.generation }); setSubscription(data); setUrl(data.url); })}>{subscription.active ? "Regenerate private link" : "Create private link"}</button>
           {subscription.active && <button type="button" disabled={busy} className={button} onClick={() => void run(async () => { const data = await request("subscription", "DELETE", { generation: subscription.generation }); setSubscription(data); setUrl(""); setMessage("Subscription revoked. The previous link no longer works."); })}>Revoke link</button>}</div>
         {url && <label className="block text-xs font-semibold">Private subscription URL (shown only now)<input readOnly value={url} onFocus={e => e.target.select()} className="my-1 w-full rounded-lg border border-slate-300 bg-transparent p-2 text-xs font-normal" /><button type="button" className={button} onClick={() => void run(async () => { await navigator.clipboard.writeText(url); setMessage("Private link copied."); })}>Copy link</button></label>}

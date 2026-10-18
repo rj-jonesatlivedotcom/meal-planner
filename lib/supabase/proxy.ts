@@ -1,6 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { supabaseConfiguration, datedPlannerEnabled, calendarOnlyFetch, calendarPreviewOrigin } from "./config";
+import { supabaseConfiguration, datedPlannerEnabled, calendarOnlyFetch, calendarApplicationOrigin } from "./config";
 import { calendarFeedHostPolicy } from "../calendarFeedHost";
 
 export async function updateSession(request: NextRequest) {
@@ -10,11 +10,11 @@ export async function updateSession(request: NextRequest) {
   // an account's cookies on the separate public hostname.
   if (feedPolicy === "feed") return NextResponse.next({ request });
   const config = supabaseConfiguration();
-  const previewOrigin = calendarPreviewOrigin();
-  if (datedPlannerEnabled() && (process.env.VERCEL_ENV === "preview"
+  const previewOrigin = calendarApplicationOrigin();
+  if (datedPlannerEnabled() && (process.env.VERCEL_ENV === "preview" || process.env.VERCEL_ENV === "production"
     ? !previewOrigin || request.headers.get("host") !== new URL(previewOrigin).host
     : !["127.0.0.1", "localhost"].includes(request.nextUrl.hostname))) {
-    return new NextResponse("Calendar Test request host rejected", { status: 403 });
+    return new NextResponse("Calendar request host rejected", { status: 403 });
   }
   let supabaseResponse = NextResponse.next({
     request,

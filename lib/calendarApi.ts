@@ -50,7 +50,7 @@ export function calendarHandlers(ports: Ports) {
       }
       if (kind === "subscription") {
         if (request.method === "POST" && ports.subscriptionsEnabled?.() === false)
-          return json({ error: "Private subscriptions are unavailable on this preview pending hosting log privacy verification. Selected-week downloads remain available." }, 503);
+          return json({ error: "Private subscriptions are unavailable on this deployment. Selected-week downloads remain available." }, 503);
         if (!["GET", "POST", "DELETE"].includes(request.method)) return new Response(null, { status: 405 });
         const body = mutation ? await request.json() : {};
         if (!body || typeof body !== "object" || Array.isArray(body)) return json({ error: "Invalid calendar request" }, 400);
@@ -68,7 +68,7 @@ export function calendarHandlers(ports: Ports) {
       return new Response(null, { status: 405 });
     } catch (error) {
       if (error instanceof SyntaxError) return json({ error: "Invalid calendar request" }, 400);
-      return json({ error: "Calendar Test migration or connection is unavailable. No settings were replaced." }, 503);
+      return json({ error: "Calendar migration or connection is unavailable. No settings were replaced." }, 503);
     }
   }
   async function feed(token: string) {
@@ -90,5 +90,5 @@ export function calendarHandlers(ports: Ports) {
 function rpcError(error: { code?: string }) {
   if (error.code === "PT409") return json({ error: "Another session changed these settings. Close and reopen to review the saved version." }, 409);
   if (["22023", "23514", "22P02", "22007", "22008", "22003"].includes(error.code ?? "")) return json({ error: "Invalid calendar setting. Review the values and try again." }, 400);
-  return json({ error: "Calendar Test migration or connection is unavailable. No settings were replaced." }, 503);
+  return json({ error: "Calendar migration or connection is unavailable. No settings were replaced." }, 503);
 }

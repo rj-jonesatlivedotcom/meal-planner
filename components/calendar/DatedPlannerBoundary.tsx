@@ -3,7 +3,7 @@
 import { useEffect, useState, useSyncExternalStore, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { datedPlannerEnabled } from "@/lib/supabase/config";
+import { datedPlannerEnabled, calendarGuestStorageKey } from "@/lib/supabase/config";
 import { createWeeklyPlanContext, bindWeeklyPlanAuth } from "@/lib/weeklyPlanContext";
 import { createWeeklyPlanStore } from "@/lib/weeklyPlanStore";
 import { createWeeklyPlanAccount } from "@/lib/weeklyPlanAccount";
@@ -40,8 +40,9 @@ function TestRuntime({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     attachWeeklyPages(context);
-    let guestId = localStorage.getItem("renalplan-calendar-test-guest");
-    if (!guestId) { guestId = crypto.randomUUID(); localStorage.setItem("renalplan-calendar-test-guest", guestId); }
+    const guestKey = calendarGuestStorageKey();
+    let guestId = localStorage.getItem(guestKey);
+    if (!guestId) { guestId = crypto.randomUUID(); localStorage.setItem(guestKey, guestId); }
     const client = createClient();
     const stop = bindWeeklyPlanAuth(context, client.auth, owner => createWeeklyPlanStore({ owner, storage: localStorage,
       ...(owner.kind === "account" ? { account: createWeeklyPlanAccount(client, owner.id) } : {}) }),

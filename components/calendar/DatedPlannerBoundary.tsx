@@ -3,7 +3,7 @@
 import { useEffect, useState, useSyncExternalStore, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { datedPlannerEnabled, calendarGuestStorageKey } from "@/lib/supabase/config";
+import { datedPlannerTakeoverEnabled as datedPlannerEnabled, calendarGuestStorageKey } from "@/lib/supabase/config";
 import { createWeeklyPlanContext, bindWeeklyPlanAuth } from "@/lib/weeklyPlanContext";
 import { createWeeklyPlanStore } from "@/lib/weeklyPlanStore";
 import { createWeeklyPlanAccount } from "@/lib/weeklyPlanAccount";

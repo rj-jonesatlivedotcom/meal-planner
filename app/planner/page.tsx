@@ -2,7 +2,7 @@
 
 import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
 import { formatWeek, shortCalendarDate } from "@/lib/calendar";
-import { datedPlannerEnabled } from "@/lib/supabase/config";
+import { datedPlannerTakeoverEnabled as datedPlannerEnabled } from "@/lib/supabase/config";
 
 import Link from "next/link";
 import Image from "next/image";

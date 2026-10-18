@@ -120,7 +120,28 @@ export function createWeeklyPageStorage() {
 }
 
 export function useWeeklyPageStorage() {
-  const [storage] = useState(createWeeklyPageStorage);
+  // Do not capture the selected week during React render. Auth verification and
+  // week loading are asynchronous, and capture() correctly rejects an unready
+  // week. Resolve the storage binding when each operation actually runs.
+  const [storage] = useState(() => ({
+    getItem(key: string) {
+      try {
+        return createWeeklyPageStorage().getItem(key);
+      } catch (error) {
+        // Dashboard summaries may be empty while the signed-in week loads.
+        // Never fall back to unscoped legacy data or another account's cache.
+        if (error instanceof Error && error.message === "Week not loaded" &&
+            (key === "weekly-planner" || key === "shopping-data")) return null;
+        throw error;
+      }
+    },
+    setItem(key: string, value: string) {
+      return createWeeklyPageStorage().setItem(key, value);
+    },
+    removeItem(key: string) {
+      return createWeeklyPageStorage().removeItem(key);
+    },
+  }));
   return storage;
 }
 

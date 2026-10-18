@@ -24,13 +24,15 @@ export default function CalendarToolbar(props: Props) {
       .planner-week-label { display: flex; align-items: center; justify-content: center; width: 224px; min-height: 40px; text-align: center; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
       .planner-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
       @media (max-width: 1023px) {
-        .planner-toolbar { flex-direction: column; align-items: stretch; padding: 8px 16px; }
+        .planner-toolbar { --planner-return-width: clamp(72px, 22vw, 96px); position: relative; flex-direction: column; align-items: stretch; padding: 8px 16px; }
         .planner-week { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; }
         .planner-week-label { width: auto; min-width: 0; min-height: 44px; }
         .planner-week-arrow { width: 44px; height: 44px; padding-left: 0; padding-right: 0; }
-        .planner-this-week { grid-column: 2; justify-self: center; }
+        .planner-this-week { position: absolute; bottom: 8px; left: 16px; width: var(--planner-return-width); min-height: 44px; }
         .planner-actions { width: 100%; justify-content: space-between; margin-left: 0; }
+        .planner-toolbar:has(.planner-this-week) .planner-actions { padding-left: calc(var(--planner-return-width) + 8px); }
         .planner-actions button { min-height: 44px; }
+        .planner-actions button, .planner-this-week { padding: 6px clamp(4px, 1.6vw, 8px); font-size: clamp(11px, 3.2vw, 14px); white-space: nowrap; }
       }
     `}</style>
     <nav aria-label="Planner week" className="planner-toolbar text-slate-800 dark:text-slate-100">

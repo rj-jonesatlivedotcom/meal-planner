@@ -1,8 +1,8 @@
 "use client";
 
 import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
-import { formatWeek, shortCalendarDate, buildCalendar, calendarDefaults } from "@/lib/calendar";
-import { currentMonday, mondayForDate } from "@/lib/weeklyPlans";
+import { formatWeek, shortCalendarDate, buildCalendar, calendarDefaults, calendarNamespace } from "@/lib/calendar";
+import { currentMonday, mondayForDate, type WeeklyMeals } from "@/lib/weeklyPlans";
 import { datedPlannerTakeoverEnabled as datedPlannerEnabled } from "@/lib/supabase/config";
 
 import Link from "next/link";
@@ -2372,13 +2372,13 @@ html[data-theme="dark"] main .planner-remove-button {
           </label>
           {calendarExportError && <p role="alert" className="my-2 text-sm text-red-600">{calendarExportError}</p>}
           <div className="mt-3 flex flex-wrap gap-2">
-            <button type="button" className="rounded-lg bg-emerald-700 px-3 py-2 text-sm font-bold text-white" onClick={() => {
+            <button type="button" className="rounded-lg bg-emerald-700 px-3 py-2 text-sm font-bold text-white" onClick={async () => {
               try {
                 if (!plannerMeals || !mealPeople) throw new Error("Your meal plan is still loading.");
                 if (mondayForDate(calendarWeek) !== calendarWeek) throw new Error("Please choose a Monday.");
                 const content = buildCalendar({
-                  namespace: "renalplan-legacy-planner",
-                  weeks: [{ weekStart: calendarWeek, planner: plannerMeals, revision: 0, updatedAt: new Date().toISOString() }],
+                  namespace: await calendarNamespace(`legacy-planner:${accountUserId ?? "guest"}`),
+                  weeks: [{ weekStart: calendarWeek, planner: plannerMeals as unknown as WeeklyMeals, revision: 0, updatedAt: new Date().toISOString() }],
                   preferences: calendarDefaults, recipes, settingsRevision: 0
                 });
                 const href = URL.createObjectURL(new Blob([content], { type: "text/calendar;charset=utf-8" }));

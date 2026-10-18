@@ -2,7 +2,7 @@
 
 import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
 import { formatWeek, shortCalendarDate, buildCalendar, calendarDefaults, calendarNamespace } from "@/lib/calendar";
-import { currentMonday, mondayForDate, shiftWeek, type WeeklyMeals } from "@/lib/weeklyPlans";
+import { currentMonday, mondayForDate, type WeeklyMeals } from "@/lib/weeklyPlans";
 import { datedPlannerTakeoverEnabled as datedPlannerEnabled } from "@/lib/supabase/config";
 
 import Link from "next/link";
@@ -2366,13 +2366,7 @@ html[data-theme="dark"] main .planner-remove-button {
         {calendarExportOpen && <div role="dialog" aria-modal="true" aria-label="Connect calendar" className="mb-4 rounded-xl border border-slate-300 bg-white p-4 text-slate-900 shadow-lg dark:border-slate-600 dark:bg-slate-800 dark:text-white">
           <h2 className="font-bold">Connect calendar</h2>
           <p className="my-2 text-sm">Add a copy of your existing weekly meal plan to Google, Outlook or Apple Calendar. Your Planner stays unchanged.</p>
-          <div className="flex flex-wrap items-center gap-2 text-sm">
-            <label htmlFor="calendar-export-week">Week beginning (Monday)</label>
-            <button type="button" aria-label="Previous export week" onClick={() => { try { setCalendarWeek(week => shiftWeek(week, -1)); setCalendarExportError(""); } catch { setCalendarExportError("Please choose a Monday first."); } }} className="rounded border px-3 py-2" title="Previous week">←</button>
-            <input id="calendar-export-week" type="date" value={calendarWeek} onChange={event => { setCalendarWeek(event.target.value); setCalendarExportError(""); }} className="rounded border p-2 text-slate-900" />
-            <button type="button" aria-label="Next export week" onClick={() => { try { setCalendarWeek(week => shiftWeek(week, 1)); setCalendarExportError(""); } catch { setCalendarExportError("Please choose a Monday first."); } }} className="rounded border px-3 py-2" title="Next week">→</button>
-            <button type="button" onClick={() => { setCalendarWeek(currentMonday()); setCalendarExportError(""); }} className="rounded border px-3 py-2">This week</button>
-          </div>
+          <p className="my-2 text-sm">Export week: {formatWeek(currentMonday())}. Your current Planner has no separately saved dated weeks, so another week cannot be exported safely yet.</p>
           {calendarExportError && <p role="alert" className="my-2 text-sm text-red-600">{calendarExportError}</p>}
           <div className="mt-3 flex flex-wrap gap-2">
             <button type="button" className="rounded-lg bg-emerald-700 px-3 py-2 text-sm font-bold text-white" onClick={async () => {

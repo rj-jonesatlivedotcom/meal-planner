@@ -2379,6 +2379,9 @@ html[data-theme="dark"] main .planner-remove-button {
               try {
                 if (!plannerMeals || !mealPeople) throw new Error("Your meal plan is still loading.");
                 if (mondayForDate(calendarWeek) !== calendarWeek) throw new Error("Please choose a Monday.");
+                // The legacy Planner has only one undated meal plan. Do not silently
+                // label those meals as a different week when browsing export dates.
+                if (calendarWeek !== currentMonday()) throw new Error("The Planner does not yet store separate dated weeks. Export the current week only; no meals have been moved or copied.");
                 const content = buildCalendar({
                   namespace: await calendarNamespace(`legacy-planner:${accountUserId ?? "guest"}`),
                   weeks: [{ weekStart: calendarWeek, planner: plannerMeals as unknown as WeeklyMeals, revision: 0, updatedAt: new Date().toISOString() }],

@@ -1,7 +1,8 @@
 "use client";
 
 import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
-import { formatWeek, shortCalendarDate } from "@/lib/calendar";
+import { formatWeek, shortCalendarDate, buildCalendar, calendarDefaults } from "@/lib/calendar";
+import { currentMonday, mondayForDate } from "@/lib/weeklyPlans";
 import { datedPlannerTakeoverEnabled as datedPlannerEnabled } from "@/lib/supabase/config";
 
 import Link from "next/link";
@@ -279,6 +280,9 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     useState("Monday");
   const [plannerMeals, setPlannerMeals] =
     useState<PlannerMeals | null>(null);
+  const [calendarExportOpen, setCalendarExportOpen] = useState(false);
+  const [calendarWeek, setCalendarWeek] = useState(() => currentMonday());
+  const [calendarExportError, setCalendarExportError] = useState("");
 
   const [mealPeople, setMealPeople] =
     useState<MealPeople | null>(null);
@@ -2354,6 +2358,41 @@ html[data-theme="dark"] main .planner-remove-button {
       >
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
+        <div className="mb-3 flex justify-end">
+          <button type="button" onClick={() => { setCalendarWeek(currentMonday()); setCalendarExportError(""); setCalendarExportOpen(true); }}
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-800">
+            Connect calendar
+          </button>
+        </div>
+        {calendarExportOpen && <div role="dialog" aria-modal="true" aria-label="Connect calendar" className="mb-4 rounded-xl border border-slate-300 bg-white p-4 text-slate-900 shadow-lg dark:border-slate-600 dark:bg-slate-800 dark:text-white">
+          <h2 className="font-bold">Connect calendar</h2>
+          <p className="my-2 text-sm">Add a copy of your existing weekly meal plan to Google, Outlook or Apple Calendar. Your Planner stays unchanged.</p>
+          <label className="block text-sm">Week beginning (Monday)
+            <input type="date" value={calendarWeek} onChange={event => setCalendarWeek(event.target.value)} className="ml-2 rounded border p-2 text-slate-900" />
+          </label>
+          {calendarExportError && <p role="alert" className="my-2 text-sm text-red-600">{calendarExportError}</p>}
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button type="button" className="rounded-lg bg-emerald-700 px-3 py-2 text-sm font-bold text-white" onClick={() => {
+              try {
+                if (!plannerMeals || !mealPeople) throw new Error("Your meal plan is still loading.");
+                if (mondayForDate(calendarWeek) !== calendarWeek) throw new Error("Please choose a Monday.");
+                const content = buildCalendar({
+                  namespace: "renalplan-legacy-planner",
+                  weeks: [{ weekStart: calendarWeek, planner: plannerMeals, revision: 0, updatedAt: new Date().toISOString() }],
+                  preferences: calendarDefaults, recipes, settingsRevision: 0
+                });
+                const href = URL.createObjectURL(new Blob([content], { type: "text/calendar;charset=utf-8" }));
+                const link = document.createElement("a");
+                link.href = href; link.download = `RenalPlan-${calendarWeek}.ics`; link.click();
+                setTimeout(() => URL.revokeObjectURL(href), 1000);
+                setCalendarExportError("");
+              } catch (error) { setCalendarExportError(error instanceof Error ? error.message : "Calendar export failed"); }
+            }}>Download calendar file (.ics)</button>
+            <button type="button" onClick={() => setCalendarExportOpen(false)} className="rounded-lg border px-3 py-2 text-sm">Close</button>
+          </div>
+          <p className="mt-3 text-xs">Import the downloaded file into Google, Outlook or Apple Calendar. This is a one-time copy, not a live subscription; future Planner changes require another export.</p>
+        </div>}
+
 
         {/* MOBILE DAY SELECTOR */}
 

@@ -118,13 +118,22 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
   </div>;
 }
 
-/** Only an explicit click reads or offers to assign an undated plan. */
+/** Read-only discovery; importing still requires an explicit week assignment. */
+function hasPreviousMeals(planner: unknown): boolean {
+  if (!planner || typeof planner !== "object") return false;
+  return ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].some(day => {
+    const meals = (planner as Record<string, unknown>)[day];
+    return !!meals && typeof meals === "object" && ["Breakfast", "Lunch", "Dinner"].some(slot => {
+      const recipe = (meals as Record<string, unknown>)[slot];
+      return typeof recipe === "string" && recipe.trim().length > 0;
+    });
+  });
+}
 function ExistingPlan({owner, onImported}: {owner: WeeklyPlan["owner"]; onImported: (week: string) => Promise<void>}) {
   const [opened, setOpened] = useState(false);
   const [input, setInput] = useState<LegacyInput | null>(null);
   const [message, setMessage] = useState("");
   useEffect(() => {
-    if (!opened) return;
     let cancelled = false;
     void (async () => {
       setMessage("Loading existing saved plan...");
@@ -134,12 +143,13 @@ function ExistingPlan({owner, onImported}: {owner: WeeklyPlan["owner"]; onImport
         const raw = localStorage.getItem("weekly-planner");
         if (raw) source = {owner, weekStart: currentMonday(), planner: JSON.parse(raw), shopping: JSON.parse(localStorage.getItem("shopping-data") ?? "{}")};
       }
-      if (!cancelled) { setInput(source); setMessage(source ? "Your original saved plan stays unchanged until you explicitly assign a week." : "No undated saved plan was found."); }
+      if (!cancelled) { setInput(source && hasPreviousMeals(source.planner) ? source : null); setMessage(source ? "Your earlier meals are still saved. Choose a week to use them in your Planner. Your original plan will be kept." : "No undated saved plan was found."); }
     })().catch(failure => {if (!cancelled) setMessage(failure instanceof Error ? failure.message : "Unable to read saved plan");});
     return () => {cancelled = true;};
-  }, [opened, owner]);
+  }, [owner]);
+  if (!input) return null;
   return <details className="mx-auto max-w-[1448px] px-4 py-1 text-sm md:px-6" onToggle={event => setOpened(event.currentTarget.open)}>
-    <summary className="cursor-pointer text-slate-600 dark:text-slate-300">Existing undated plan</summary>
+    <summary className="cursor-pointer text-slate-600 dark:text-slate-300">Your previous meal plan</summary>
     {opened && <div className="py-2">
       <p role="status">{message}</p>
       {input && <LegacyWeekAssignment onImport={async week => {

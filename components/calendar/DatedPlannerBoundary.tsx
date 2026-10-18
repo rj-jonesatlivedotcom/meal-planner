@@ -15,7 +15,6 @@ import { LegacyWeekAssignment, WeekConflictReview } from "./IntegrationControls"
 import { stageLegacyGuestImport } from "@/lib/weeklyPlanStore";
 
 type LegacyInput = Parameters<typeof migrateLegacyAccount>[0]["input"];
-const connected = (path: string) => ["/", "/planner", "/shopping", "/nutrition", "/recipes"].some(route => route === path || (route === "/recipes" && path.startsWith("/recipes/")));
 
 export default function DatedPlannerBoundary({ children }: { children: ReactNode }) {
   return datedPlannerEnabled() ? <TestRuntime>{children}</TestRuntime> : children;

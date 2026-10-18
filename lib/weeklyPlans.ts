@@ -58,6 +58,13 @@ export function dateForSlot(weekStart: string, day: WeekDay): string {
   return date.toISOString().slice(0, 10);
 }
 
+export function shiftWeek(weekStart: string, weeks: number): string {
+  if (!Number.isSafeInteger(weeks)) throw new Error("Invalid week offset");
+  const date = dateValue(requireMonday(weekStart));
+  date.setUTCDate(date.getUTCDate() + weeks * 7);
+  return requireMonday(date.toISOString().slice(0, 10));
+}
+
 export function currentMonday(now = new Date(), timezone = CALENDAR_DEFAULTS.timezone as string): string {
   const parts = new Intl.DateTimeFormat("en-GB", {
     timeZone: timezone, year: "numeric", month: "2-digit", day: "2-digit",

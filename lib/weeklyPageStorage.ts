@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 import { datedPlannerEnabled } from "./supabase/config";
 import { convertLegacyPlan, dateForSlot, WEEK_DAYS, MEAL_SLOTS, type WeeklyPlan } from "./weeklyPlans";
 import type { createWeeklyPlanContext } from "./weeklyPlanContext";
@@ -6,6 +6,11 @@ import type { createWeeklyPlanContext } from "./weeklyPlanContext";
 type Scope = { owner: WeeklyPlan["owner"] | null; weekStart: string } | null;
 type Context = ReturnType<typeof createWeeklyPlanContext>;
 let context: Context | null = null;
+let detachContext: (() => void) | undefined;
+const listeners = new Set<() => void>();
+const notify = () => listeners.forEach(listener => listener());
+const subscribe = (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; };
+const serverSnapshot = () => null;
 let queue: Promise<void> = Promise.resolve();
 const requested = new Map<string, string>();
 const activeJournals = new Set<string>();
@@ -26,7 +31,12 @@ export function retainReviewedWeeklyChange(journal: string) {
   localStorage.setItem(journal, JSON.stringify({ ...entry, reviewed: true }));
 }
 export function flushWeeklyPageWrites() { return queue; }
-export function attachWeeklyPages(value: Context | null) { context = value; }
+export function attachWeeklyPages(value: Context | null) {
+  detachContext?.();
+  context = value;
+  detachContext = value?.subscribe(notify);
+  notify();
+}
 export function datedSnapshot() { return context?.getSnapshot() ?? null; }
 
 export function datedDayDate(day: string) {
@@ -120,29 +130,21 @@ export function createWeeklyPageStorage() {
 }
 
 export function useWeeklyPageStorage() {
-  // Do not capture the selected week during React render. Auth verification and
-  // week loading are asynchronous, and capture() correctly rejects an unready
-  // week. Resolve the storage binding when each operation actually runs.
-  const [storage] = useState(() => ({
-    getItem(key: string) {
-      try {
-        return createWeeklyPageStorage().getItem(key);
-      } catch (error) {
-        // Dashboard summaries may be empty while the signed-in week loads.
-        // Never fall back to unscoped legacy data or another account's cache.
-        if (error instanceof Error && error.message === "Week not loaded" &&
-            (key === "weekly-planner" || key === "shopping-data")) return null;
-        throw error;
-      }
-    },
-    setItem(key: string, value: string) {
-      return createWeeklyPageStorage().setItem(key, value);
-    },
-    removeItem(key: string) {
-      return createWeeklyPageStorage().removeItem(key);
-    },
-  }));
-  return storage;
+  const state = useSyncExternalStore(subscribe, datedSnapshot, serverSnapshot);
+  const owner = state?.owner;
+  const week = state?.weekStart;
+  const loaded = Boolean(state?.plan);
+  // A mounted page's callbacks retain their original account/week. Resolving a
+  // fresh binding inside each write would send a delayed old effect to a new week.
+  return useMemo(() => {
+    if (!datedPlannerEnabled() || (loaded && owner && week)) return createWeeklyPageStorage();
+    const unavailable: Pick<Storage, "getItem" | "setItem" | "removeItem"> = {
+      getItem: () => null,
+      setItem: () => { throw new Error("Week not loaded"); },
+      removeItem: () => { throw new Error("Week not loaded"); },
+    };
+    return unavailable;
+  }, [owner, week, loaded]);
 }
 
 export function afterWeeklyPageWrites(navigate: () => void) {

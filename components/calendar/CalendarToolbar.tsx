@@ -137,7 +137,7 @@ function CalendarPanel({ plan, readPlan, initialPanel, onClose }: Props & { init
       </fieldset>
     </form> : <div className="space-y-4 text-sm">
       <div><p className="mb-2 font-semibold">{formatWeek(plan.weekStart)}</p><button type="button" className={button} disabled={!ready || busy} onClick={download}>Download this week (.ics)</button></div>
-      {guest ? <p>Sign in to subscribe to all your saved weeks. Guest plans can be downloaded above.</p> : <>
+      {guest ? <p>Downloads are one-time snapshots. Sign in to create a live subscription to your saved weeks.</p> : <>
         <p>A read-only subscription includes all saved dated weeks. Anyone with its private link can view meal names and dates. Keep it private; regenerating or revoking stops the old link. Previously downloaded copies cannot be recalled.</p>
         <p className="text-xs text-slate-500 dark:text-slate-400">{productionCalendarEnabled() ? "Keep your private calendar link secure. Revoke it here to stop future access." : "Calendar Test only. Google, Outlook and Apple need a publicly reachable HTTPS feed. Production remains disabled."}</p>
         <div className="flex flex-wrap gap-2"><button type="button" disabled={!ready || busy} className={button} onClick={() => void run(async () => { const data = await request("subscription", "POST", { generation: subscription.generation }); setSubscription(data); setUrl(data.url); })}>{subscription.active ? "Regenerate private link" : "Create private link"}</button>

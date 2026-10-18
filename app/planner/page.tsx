@@ -340,7 +340,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
   const [fluidAmount, setFluidAmount] = useState("200");
   const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [emptyPlannerPromptDismissed, setEmptyPlannerPromptDismissed] = useState(false);
+  const [, setEmptyPlannerPromptDismissed] = useState(false);
   const plannerWasEmptyRef = useRef(false);
   // Prevent a mobile tap that dismisses the welcome prompt from being
   // retargeted to an underlying planner control by the browser.
@@ -2144,19 +2144,8 @@ function formatPotassiumMg(mg: number): string {
     mealTypes.every((meal) => !plannerMeals[day]?.[meal])
   );
 
-  const selectedDayIsEmpty = mealTypes.every(
-    (meal) => !plannerMeals[selectedDay]?.[meal]
-  );
-
-  // Desktop keeps the original behaviour: show the welcome prompt only when
-  // the entire week is empty. On mobile, show it when the day being viewed
-  // is empty as well, because mobile only displays one day at a time.
-  // Dated calendar weeks should be browsable without a blocking welcome modal.
-  // Preserve the legacy undated Planner welcome behaviour.
-  const showEmptyPlannerPrompt =
-    !datedPlannerEnabled() &&
-    (plannerIsCompletelyEmpty || selectedDayIsEmpty) &&
-    !emptyPlannerPromptDismissed;
+  // The retired auto-fill welcome popup stays off in every Planner mode.
+  const showEmptyPlannerPrompt = false;
 
   return (
     <>

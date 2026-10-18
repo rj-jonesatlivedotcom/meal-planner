@@ -80,7 +80,9 @@ function TestRuntime({ children }: { children: ReactNode }) {
     if (path === "/" && state.owner && state.weekStart !== currentMonday()) void context.select(currentMonday());
   }, [path, state.owner, state.weekStart, context]);
 
-  // Calendar setup and recovery screens belong to the Planner only.\n  // Other routes must remain accessible even when an old plan needs importing.\n  if (path !== "/planner") return children;
+  // Calendar setup and recovery screens belong to the Planner only.
+  // Other routes must remain accessible even when an old plan needs importing.
+  if (path !== "/planner") return children;
   if (!state.owner) return <p role="status" className="p-5">Loading the selected account...</p>;
   const currentReview = review?.local.owner.id === state.owner.id && review?.local.owner.kind === state.owner.kind && review.local.weekStart === state.weekStart ? review : null;
   const currentPending = pending.filter(item => item.journal.startsWith(`renalplan:weekly-ui:${state.owner!.kind}:${encodeURIComponent(state.owner!.id)}:${state.weekStart}:pending-change:`));

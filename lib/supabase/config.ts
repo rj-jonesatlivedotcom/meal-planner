@@ -22,6 +22,13 @@ export function datedPlannerEnabled() {
     (process.env.NODE_ENV === "development" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview");
 }
 
+/** The original Planner remains authoritative. Calendar integration is opt-in.
+ * This UI switch is independent of the calendar API's production enablement.
+ */
+export function datedPlannerTakeoverEnabled() {
+  return false;
+}
+
 /** Fixed canonical origin; request/forwarded headers cannot choose it. */
 export function calendarApplicationOrigin() {
   return productionCalendarEnabled() ? CALENDAR_WEBSITE_ORIGIN : calendarPreviewOrigin();

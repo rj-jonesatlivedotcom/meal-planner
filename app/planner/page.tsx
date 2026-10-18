@@ -2157,10 +2157,9 @@ function formatPotassiumMg(mg: number): string {
   // is empty as well, because mobile only displays one day at a time.
   // Dated calendar weeks should be browsable without a blocking welcome modal.
   // Preserve the legacy undated Planner welcome behaviour.
-  const showEmptyPlannerPrompt =
-    !datedPlannerEnabled() &&
-    (plannerIsCompletelyEmpty || selectedDayIsEmpty) &&
-    !emptyPlannerPromptDismissed;
+  // Empty meal slots remain available for manual selection or MyChef.
+  // Never interrupt Planner entry with the retired auto-fill welcome popup.
+  const showEmptyPlannerPrompt = false;
 
   return (
     <>

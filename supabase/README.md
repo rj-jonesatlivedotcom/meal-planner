@@ -28,8 +28,10 @@ Static checks are not evidence of successful SQL execution or RLS isolation.
 - `p_expected_revision = null` means create only. Existing rows cause SQLSTATE
   `PT409` after the corrective patch. Updates require the exact last acknowledged revision and advance it
   atomically. Two writers using the same revision cannot both succeed.
-- Do not automatically retry PT409 using a newly fetched revision: keep the draft
-  and reconcile it with the account version first.
+- Supabase is authoritative for signed-in users. On PT409 or an uncertain save
+  response, reload the saved account week without replaying a stale snapshot.
+  Browser drafts are passive backups, never a competing account plan; users are
+  never asked to compare or select versions.
 - Save payloads contain the whole weekly snapshot, including shopping state.
   Callers must share one week-aware store; Shopping must not send a stale Planner.
 - Clear a week through an explicit revision-checked update, not DELETE.

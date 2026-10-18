@@ -8,10 +8,10 @@ import { createWeeklyPlanContext, bindWeeklyPlanAuth } from "@/lib/weeklyPlanCon
 import { createWeeklyPlanStore } from "@/lib/weeklyPlanStore";
 import { createWeeklyPlanAccount } from "@/lib/weeklyPlanAccount";
 import { migrateLegacyAccount } from "@/lib/weeklyPlanMigration";
-import { attachWeeklyPages, pendingWeeklyChanges, retainReviewedWeeklyChange, createWeeklyPageStorage, flushWeeklyPageWrites } from "@/lib/weeklyPageStorage";
-import { currentMonday, shiftWeek, emptyWeeklyPlan, planStorageKey, type WeeklyPlan } from "@/lib/weeklyPlans";
+import { attachWeeklyPages, flushWeeklyPageWrites } from "@/lib/weeklyPageStorage";
+import { currentMonday, shiftWeek, emptyWeeklyPlan, type WeeklyPlan } from "@/lib/weeklyPlans";
 import CalendarToolbar from "./CalendarToolbar";
-import { LegacyWeekAssignment, WeekConflictReview } from "./IntegrationControls";
+import { LegacyWeekAssignment } from "./IntegrationControls";
 import { stageLegacyGuestImport } from "@/lib/weeklyPlanStore";
 
 type LegacyInput = Parameters<typeof migrateLegacyAccount>[0]["input"];
@@ -27,8 +27,6 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
   const state = useSyncExternalStore(context.subscribe, context.getSnapshot, context.getSnapshot);
   const [error, setError] = useState<string | null>(null);
 
-  const [review, setReview] = useState<{ local: WeeklyPlan; remote: WeeklyPlan | null; raw: string | null } | null>(null);
-  const [pending, setPending] = useState<ReturnType<typeof pendingWeeklyChanges>>([]);
 
   useEffect(() => {
     if (state.status !== "ready") return;
@@ -38,7 +36,6 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
     window.dispatchEvent(new Event("shopping-list-updated"));
     void Promise.resolve().then(() => {
       setError(null);
-      setPending(pendingWeeklyChanges());
     }).catch(failure => setError(failure instanceof Error ? failure.message : "Unable to inspect recovery drafts"));
   }, [state, context]);
 
@@ -63,41 +60,13 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
   const isRecoveryRoute = path === "/saved-meals/recovery";
   const usesMeals = isRecoveryRoute || path === "/planner" || path === "/shopping" || path === "/nutrition";
   if (!usesMeals) return children;
-  if (!state.owner) return <p role="status" className="p-5">{error ?? "Loading saved meals..."}</p>;
-  const currentReview = review?.local.owner.id === state.owner.id && review?.local.owner.kind === state.owner.kind && review.local.weekStart === state.weekStart ? review : null;
-  const currentPending = pending.filter(item => item.journal.startsWith(`renalplan:weekly-ui:${state.owner!.kind}:${encodeURIComponent(state.owner!.id)}:${state.weekStart}:pending-change:`));
+  if (!state.owner) return <p role="status" className="p-5">{error ? "Unable to load your saved meals. Please reload and try again." : "Loading saved meals..."}</p>;
   const recovery = (error || state.status === "error") && <div className="mx-auto max-w-4xl p-5">
-    <p role="alert">{error ?? state.error}</p>
-    {!currentReview && <button className="mt-3 rounded-lg bg-sky-100 px-4 py-2" onClick={() => {
-      void (async () => {
-        const local = state.plan ?? context.getDraft();
-        if (!local) { setError(null); await context.select(state.weekStart); return; }
-        const remote = local.owner.kind === "account" ? await createWeeklyPlanAccount(createClient(), local.owner.id).load(local.weekStart) : null;
-        setReview({ local, remote, raw: localStorage.getItem(`${planStorageKey(local.owner, local.weekStart)}:sync`) });
-      })().catch(failure => setError(failure instanceof Error ? failure.message : "Review failed"));
-    }}>Review saved and local versions</button>}
-    {currentReview && <WeekConflictReview key={`${currentReview.local.owner.id}:${currentReview.local.weekStart}:${currentReview.remote?.baseRevision}`} {...currentReview}
-      reviewedLocalRaw={currentReview.raw} onResolve={async (choice, revision, raw) => {
-        await context.resolve(choice, revision, raw); setReview(null); setError(null);
-      }} />}
+    <p role="alert">Unable to load or save your meals. Please check your connection and try again.</p>
+    <button className="mt-3 rounded-lg bg-sky-100 px-4 py-2" onClick={() => {
+      setError(null); void context.select(state.weekStart);
+    }}>Try again</button>
   </div>;
-  const interrupted = currentPending.length > 0 && <section className="mx-auto max-w-3xl p-5" aria-label="Recover interrupted changes">
-    <h2 className="font-semibold">Saved changes for {state.weekStart}</h2>
-    <p className="my-2 text-sm">These changes were retained before a save finished. Review each change before continuing. The recovery record remains preserved.</p>
-    <pre className="max-h-72 overflow-auto whitespace-pre-wrap text-xs">{JSON.stringify(currentPending[0].value, null, 2)}</pre>
-    <button className="m-2 rounded-lg bg-sky-100 px-3 py-2" onClick={() => {
-      void (async () => {
-        const item = currentPending[0], storage = createWeeklyPageStorage();
-        storage.setItem(item.key, JSON.stringify(item.value));
-        await flushWeeklyPageWrites();
-        if (context.getSnapshot().status === "error") return;
-        retainReviewedWeeklyChange(item.journal); setPending(pendingWeeklyChanges());
-      })().catch(failure => setError(failure instanceof Error ? failure.message : "Recovery failed"));
-    }}>Apply this recovered change</button>
-    <button className="m-2 rounded-lg border px-3 py-2" onClick={() => {
-      retainReviewedWeeklyChange(currentPending[0].journal); setPending(pendingWeeklyChanges());
-    }}>Keep current plan; retain recovery record</button>
-  </section>;
   const shift = (amount: number) => { void context.select(shiftWeek(state.weekStart, amount / 7)); };
   const shownPlan = state.plan ?? emptyWeeklyPlan(state.owner, state.weekStart);
   return <div>
@@ -106,6 +75,7 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
       shift={shift} thisWeek={() => void context.select(currentMonday())}
       readPlan={() => context.getSnapshot().status === "ready" ? context.getSnapshot().plan : null} />}
     {recovery}
+    {state.notice && <p role="status" className="mx-auto max-w-4xl px-4 py-2 text-sm">{state.notice}</p>}
     {isRecoveryRoute && <>
       <ExistingPlan key={`legacy:${state.owner.kind}:${state.owner.id}`} owner={state.owner} onImported={async week => {
         const owner = state.owner!;
@@ -117,9 +87,8 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
           ...(owner.kind === "account" ? { account: createWeeklyPlanAccount(client, owner.id) } : {})}));
         await context.select(week);
       }} />
-      {interrupted && <details className="mx-auto max-w-4xl p-3"><summary>Recover unsaved meals</summary>{interrupted}</details>}
     </>}
-    {!state.plan ? <p role="status" className="p-5">Loading saved meals...</p> :
+    {!state.plan ? (!recovery && <p role="status" className="p-5">Loading saved meals...</p>) :
       <div key={`${state.owner.kind}:${state.owner.id}:${state.weekStart}`} inert={state.status === "error"}>{!isRecoveryRoute && children}</div>}
   </div>;
 }

@@ -1,5 +1,6 @@
 import { emptyWeeklyPlan, planStorageKey, readLocalDraft, requireMonday,
   convertLegacyPlan, type PlanOwner, type WeeklyPlan } from "./weeklyPlans";
+import { createAuthoritativeAccountPlanStore } from "./authoritativeAccountPlanStore";
 
 type StoragePort = Pick<Storage, "getItem" | "setItem">;
 type AccountPort = {
@@ -8,7 +9,6 @@ type AccountPort = {
 };
 type CacheEntry = { plan: WeeklyPlan; dirty: boolean };
 const copy = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
-const content = (plan: WeeklyPlan) => JSON.stringify({ ...plan, baseRevision: null });
 
 export class WeeklyDraftConflict extends Error {
   constructor() { super("Both the local draft and account week changed. Keep both versions for review."); }
@@ -23,6 +23,7 @@ export function createWeeklyPlanStore(options: {
   const { storage, account } = options;
   const owner = { ...options.owner };
   if ((owner.kind === "account") !== Boolean(account)) throw new Error("Account storage must match the owner namespace");
+  if (account) return createAuthoritativeAccountPlanStore(owner, storage, account);
   const entries = new Map<string, CacheEntry>();
   const observed = new Map<string, string | null>();
   const pending = new Map<string, Promise<WeeklyPlan>>();
@@ -76,31 +77,7 @@ export function createWeeklyPlanStore(options: {
 
   async function load(week: string): Promise<WeeklyPlan> {
     active(); requireMonday(week);
-    const before = read(week);
-    if (!account) return copy(before?.plan ?? emptyWeeklyPlan(owner, week));
-    const remote = await account.load(week);
-    active();
-    const local = read(week);
-    // Do not install a server response over edits made while the request ran.
-    if (pending.has(week) || local !== before) return copy(local?.plan ?? emptyWeeklyPlan(owner, week));
-    if (local?.dirty) {
-      if (remote && (remote.baseRevision !== local.plan.baseRevision || content(remote) !== content(local.plan))) {
-        // Same base revision is safe: local-only edits may be saved using CAS.
-        if (remote.baseRevision !== local.plan.baseRevision) {
-          archive(week, { local, remote });
-          storage.setItem(`${key(week)}:remote`, JSON.stringify(remote));
-          blocked.add(week);
-          throw new WeeklyDraftConflict();
-        }
-      } else if (!remote && local.plan.baseRevision !== null) {
-        archive(week, { local, remote: null });
-        blocked.add(week); throw new WeeklyDraftConflict();
-      }
-      return copy(local.plan);
-    }
-    const result = remote ?? emptyWeeklyPlan(owner, week);
-    write({ plan: result, dirty: false });
-    return copy(result);
+    return copy(read(week)?.plan ?? emptyWeeklyPlan(owner, week));
   }
 
   return {
@@ -124,10 +101,10 @@ export function createWeeklyPlanStore(options: {
       active(); requireMonday(week);
       if (pending.has(week)) throw new Error("Wait for the pending save before resolving");
       const local = entries.get(week) ?? null;
-      const remote = account ? await account.load(week) : null;
+      const remote = null;
       active();
       if ((entries.get(week) ?? null) !== local) throw new WeeklyDraftConflict();
-      if ((remote?.baseRevision ?? null) !== reviewedRevision) throw new WeeklyDraftConflict();
+      if (reviewedRevision !== null) throw new WeeklyDraftConflict();
       if (choice && choice.weekStart !== week) throw new Error("Resolution week mismatch");
       const resolved = validate(choice ?? remote ?? emptyWeeklyPlan(owner, week));
       // A local revision token also prevents overwriting another tab during review.
@@ -138,7 +115,7 @@ export function createWeeklyPlanStore(options: {
         throw new WeeklyDraftConflict();
       }
       archive(week, { local, remote, resolution: resolved });
-      const next = { ...resolved, baseRevision: remote?.baseRevision ?? null };
+      const next = { ...resolved, baseRevision: null };
       // Only after explicit review and archival may another tab's cache baseline
       // be replaced. The next normal write must still observe that same raw value.
       if (raw !== JSON.stringify(local)) {
@@ -169,34 +146,9 @@ export function createWeeklyPlanStore(options: {
     async save(week: string): Promise<WeeklyPlan> {
       active(); requireMonday(week);
       if (blocked.has(week)) throw new WeeklyDraftConflict();
-      if (pending.has(week)) return copy(await pending.get(week)!);
       const entry = read(week);
       if (!entry) throw new Error("No local draft to save");
-      if (!account || !entry.dirty) return copy(entry.plan);
-      const snapshot = copy(entry.plan);
-      const task = (async () => {
-        try {
-          const saved = validate(await account.save(snapshot));
-          active();
-          if (saved.weekStart !== week) throw new Error("Save returned a different week");
-          const latest = read(week)!;
-          if (content(latest.plan) === content(snapshot)) {
-            write({ plan: saved, dirty: false });
-          } else {
-            // Keep edits made during the save, acknowledging only their baseline.
-            write({ plan: { ...latest.plan, baseRevision: saved.baseRevision }, dirty: true });
-          }
-          return copy(read(week)!.plan);
-        } catch (error) {
-          // Unknown network outcomes also block automatic retry: the write may
-          // have committed. A new load/reconciliation is needed before retry.
-          blocked.add(week);
-          if (!disposed) archive(week, { local: read(week), attempted: snapshot, unknownSaveOutcome: true });
-          throw error;
-        } finally { pending.delete(week); }
-      })();
-      pending.set(week, task);
-      return copy(await task);
+      return copy(entry.plan);
     },
   };
 }

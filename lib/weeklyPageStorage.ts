@@ -70,11 +70,13 @@ function fluidScope(state: Scope = datedSnapshot()) {
 export function createWeeklyPageStorage() {
   const bound = datedPlannerEnabled() ? context?.capture() : null;
   const identity = bound ? { owner: bound.owner, weekStart: bound.week } : null;
+  const readBaselines = new Map<string, WeeklyPlan>();
   return {
   getItem(key: string) {
     if (!datedPlannerEnabled()) return localStorage.getItem(key);
     if (key === "renalplan-fluid-log-v1") return localStorage.getItem(fluidScope(identity));
     const plan = bound?.read();
+    if (plan && (key === "weekly-planner" || key === "shopping-data")) readBaselines.set(key, plan);
     if (key === "weekly-planner") return plan ? JSON.stringify({ ...plan.planner, mealPeople: plan.mealPeople }) : null;
     if (key === "shopping-data") return plan ? JSON.stringify(projectShopping(plan)) : null;
     return localStorage.getItem(scope(key, identity));
@@ -90,25 +92,49 @@ export function createWeeklyPageStorage() {
     const value = JSON.parse(raw);
     const requestKey = scope(key, identity);
     if (requested.get(requestKey) === raw) return;
+    const current = readBaselines.get(key) ?? captured.read();
+    const submitted = key === "weekly-planner"
+      ? convertLegacyPlan({ owner: current.owner, weekStart: current.weekStart, planner: value }).plan : null;
+    const baselineShopping = projectShopping(current);
+    const equal = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
+    // Apply only this action's changed fields to the latest saved account week.
+    // Replacing an entire stale page projection would erase other devices' meals.
     const transform = (plan: WeeklyPlan): WeeklyPlan => {
-      if (key === "weekly-planner") {
-        const converted = convertLegacyPlan({ owner: plan.owner, weekStart: plan.weekStart, planner: value });
-        return { ...plan, planner: converted.plan.planner, mealPeople: converted.plan.mealPeople };
+      if (submitted) {
+        for (const day of WEEK_DAYS) for (const meal of MEAL_SLOTS) {
+          const mealChanged = !equal(submitted.planner[day][meal], current.planner[day][meal]);
+          if (mealChanged) plan.planner[day][meal] = submitted.planner[day][meal];
+          if (mealChanged || !equal(submitted.mealPeople[day][meal], current.mealPeople[day][meal])) {
+            const people = submitted.mealPeople[day][meal];
+            if (people === undefined) delete plan.mealPeople[day][meal];
+            else plan.mealPeople[day][meal] = people;
+          }
+        }
+        return plan;
       }
-      return { ...plan, householdPeople: value.people ?? plan.householdPeople,
-        shopping: { checkedItems: value.checkedItems ?? plan.shopping.checkedItems,
-          legacy: { ...plan.shopping.legacy, ...value } } };
+      if (value.people !== undefined && value.people !== current.householdPeople) plan.householdPeople = value.people;
+      if (Array.isArray(value.checkedItems)) {
+        const before = new Set(current.shopping.checkedItems);
+        const after = new Set<string>(value.checkedItems);
+        plan.shopping.checkedItems = plan.shopping.checkedItems.filter(item => !before.has(item) || after.has(item));
+        for (const item of after) if (!before.has(item) && !plan.shopping.checkedItems.includes(item)) plan.shopping.checkedItems.push(item);
+      }
+      for (const name of Object.keys(value)) if (!equal(value[name], baselineShopping[name as keyof typeof baselineShopping])) {
+        plan.shopping.legacy[name] = value[name];
+      }
+      return plan;
     };
-    const current = captured.read();
-    if (current && JSON.stringify(transform(current)) === JSON.stringify(current)) return;
+    if (current && JSON.stringify(transform(JSON.parse(JSON.stringify(current)))) === JSON.stringify(current)) return;
     const journal = `${scope("pending-change", identity)}:${crypto.randomUUID()}`;
     // Persist intent before scheduling: logout/navigation must not lose it.
-    localStorage.setItem(journal, JSON.stringify({ owner: captured.owner, week: captured.week, key, value }));
+    try { localStorage.setItem(journal, JSON.stringify({ owner: captured.owner, week: captured.week, key, value })); }
+    catch (error) { if (captured.owner.kind !== "account") throw error; }
     requested.set(requestKey, raw);
     activeJournals.add(journal);
     const task = async () => {
       await captured.patch(transform);
-      localStorage.removeItem(journal);
+      try { localStorage.removeItem(journal); }
+      catch (error) { if (captured.owner.kind !== "account") throw error; }
       if (requested.get(requestKey) === raw) requested.delete(requestKey);
       window.dispatchEvent(new Event("weekly-planner-updated"));
       window.dispatchEvent(new Event("shopping-list-updated"));

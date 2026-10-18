@@ -6,6 +6,7 @@ type LockPort = { request<T>(name: string, callback: () => Promise<T>): Promise<
 export type WeekContextSnapshot = {
   owner: PlanOwner | null; weekStart: string; plan: WeeklyPlan | null;
   status: "signed-out" | "loading" | "ready" | "saving" | "error"; error: string | null;
+  notice?: string | null;
 };
 
 /** Framework-neutral provider for useSyncExternalStore. Not mounted in the app.
@@ -19,21 +20,25 @@ export function createWeeklyPlanContext(initialWeek: string, locks?: LockPort) {
   const publish = (next: WeekContextSnapshot) => { state = next; listeners.forEach(fn => fn()); };
   const copy = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
   async function coordinate<T>(owner: PlanOwner, week: string, run: () => Promise<T>): Promise<T> {
-    if (!locks) throw new Error("Cross-tab write coordination unavailable; this provider is read-only");
+    if (!locks) {
+      if (owner.kind === "account") return run(); // Supabase revisions coordinate account writes.
+      throw new Error("Unable to save on this browser. Please try another browser.");
+    }
     return locks.request(`renalplan-week:${owner.kind}:${encodeURIComponent(owner.id)}:${week}`, run);
   }
   async function select(week: string) {
     requireMonday(week);
-    const target = store, request = ++generation;
+    const target = store;
     if (!target) return;
-    publish({ ...state, weekStart: week, plan: null, status: "loading", error: null });
+    const request = ++generation;
+    publish({ ...state, weekStart: week, plan: null, status: "loading", error: null, notice: null });
     try {
       const result = await target.select(week);
       if (request === generation && target === store && !result.stale) {
         publish({ ...state, plan: result.plan, status: "ready" });
       }
-    } catch (error) {
-      if (request === generation && target === store) publish({ ...state, status: "error", error: error instanceof Error ? error.message : "Unable to load week" });
+    } catch {
+      if (request === generation && target === store) publish({ ...state, status: "error", error: state.owner?.kind === "account" ? "Unable to load your saved meals. Please check your connection and try again." : "Unable to load meals. Please try again." });
     }
   }
   return {
@@ -49,6 +54,11 @@ export function createWeeklyPlanContext(initialWeek: string, locks?: LockPort) {
         try { sample = await next.load(state.weekStart); }
         catch (error) {
           if (request !== generation) { next.dispose(); return; }
+          if (owner.kind === "account") {
+            store = next;
+            publish({ ...state, plan: null, status: "error", error: "Unable to load your saved meals. Please check your connection and try again." });
+            return;
+          }
           const draft = next.getDraft(state.weekStart);
           if (!draft || JSON.stringify(draft.owner) !== JSON.stringify(owner)) { next.dispose(); throw error; }
           store = next;
@@ -58,6 +68,8 @@ export function createWeeklyPlanContext(initialWeek: string, locks?: LockPort) {
         if (request !== generation) { next.dispose(); return; }
         if (JSON.stringify(sample.owner) !== JSON.stringify(owner)) { next.dispose(); throw new Error("Provider owner mismatch"); }
         store = next;
+        publish({ ...state, plan: sample, status: "ready", error: null });
+        return;
       }
       publish({ owner: owner ? { ...owner } : null, weekStart: state.weekStart, plan: null, status: owner ? "loading" : "signed-out", error: null });
       if (store) await select(state.weekStart);
@@ -74,18 +86,19 @@ export function createWeeklyPlanContext(initialWeek: string, locks?: LockPort) {
         async patch(transform: (plan: WeeklyPlan) => WeeklyPlan) {
           return coordinate(owner, week, async () => {
             if (target !== store) throw new Error("Account changed; pending change retained for recovery");
-            if (state.weekStart === week && state.status === "error") throw new Error("Resolve the week conflict before applying further queued changes");
-            const current = target.getDraft(week) ?? await target.load(week);
+            if (owner.kind !== "account" && state.weekStart === week && state.status === "error") throw new Error("Unable to save meals. Please reload and try again.");
+            const current = owner.kind === "account" ? await target.load(week) : target.getDraft(week) ?? await target.load(week);
             if (target !== store) throw new Error("Account changed; pending change retained for recovery");
             const changed = transform(copy(current));
             if (JSON.stringify(changed) === JSON.stringify(current)) return;
             try {
               target.edit(changed);
-              if (state.weekStart === week) publish({ ...state, plan: changed });
+              if (state.weekStart === week && owner.kind !== "account") publish({ ...state, plan: changed });
               const saved = await target.save(week);
-              if (target === store && state.weekStart === week) publish({ ...state, plan: saved, status: "ready" });
+              if (target === store && state.weekStart === week) publish({ ...state, plan: saved, status: "ready", error: null,
+                notice: "getSaveNotice" in target ? target.getSaveNotice(week) : null });
             } catch (error) {
-              if (target === store && state.weekStart === week) publish({ ...state, plan: changed, status: "error", error: error instanceof Error ? error.message : "Save failed" });
+              if (target === store && state.weekStart === week) publish({ ...state, plan: owner.kind === "account" ? target.getDraft(week) : changed, status: "error", error: "Unable to save your meals. Please check your connection and try again." });
               throw error;
             }
           });
@@ -100,7 +113,7 @@ export function createWeeklyPlanContext(initialWeek: string, locks?: LockPort) {
         if (target !== store) throw new Error("Account changed");
         target.edit(copy(plan));
       });
-      if (target === store && state.weekStart === plan.weekStart) publish({ ...state, plan: copy(plan) });
+      if (target === store && state.weekStart === plan.weekStart && owner.kind !== "account") publish({ ...state, plan: copy(plan) });
     },
     async save() {
       const target = store, owner = state.owner, week = state.weekStart, request = generation;
@@ -108,9 +121,12 @@ export function createWeeklyPlanContext(initialWeek: string, locks?: LockPort) {
       publish({ ...state, status: "saving", error: null });
       try {
         const saved = await coordinate(owner, week, () => target.save(week));
-        if (target === store && request === generation) publish({ ...state, plan: saved, status: "ready" });
+        if (target === store && request === generation) publish({ ...state, plan: saved, status: "ready", error: null,
+          notice: "getSaveNotice" in target ? target.getSaveNotice(week) : null });
       } catch (error) {
-        if (target === store && request === generation) publish({ ...state, status: "error", error: error instanceof Error ? error.message : "Unable to save week" });
+        if (target === store && request === generation) publish({ ...state,
+          plan: owner.kind === "account" ? target.getDraft(week) : state.plan,
+          status: "error", error: "Unable to save your meals. Please check your connection and try again." });
         throw error;
       }
     },

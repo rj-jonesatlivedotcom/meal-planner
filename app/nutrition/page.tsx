@@ -2,6 +2,10 @@
 
 import { useWeeklyPageStorage, datedDayDate } from "@/lib/weeklyPageStorage";
 
+import PlannerSnacks from "@/components/food/PlannerSnacks";
+import { useFoodAccount } from "@/lib/useFoodAccount";
+import { snackNutrients, snackSummary, snackTotalLabel, type SnackNutrient } from "@/lib/foodSnacks";
+
 import { createClient } from "@/lib/supabase/client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { recipes, type Recipe } from "@/data/RecipeData";
@@ -338,6 +342,7 @@ function formatRange(
 
 export default function NutritionPage() {
   const weeklyPageStorage = useWeeklyPageStorage();
+  const snackAccount = useFoodAccount(getCurrentWeekDate(0), getCurrentWeekDate(6));
 const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   try {
     const raw = weeklyPageStorage.getItem(FLUID_LOG_STORAGE_KEY);
@@ -682,15 +687,17 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   const dayTotals = useMemo(() => {
     const totals = {} as Record<Day, NutrientTotals>;
 
-    days.forEach((day) => {
+    days.forEach((day, index) => {
       totals[day] = getDayTotals(
         plannerMeals ?? {},
         day
       );
+      const snacks = snackSummary(snackAccount.snacks, getCurrentWeekDate(index));
+      snackNutrients.forEach(key => { totals[day][key] += snacks[key].value ?? 0; });
     });
 
     return totals;
-  }, [plannerMeals]);
+  }, [plannerMeals, snackAccount.snacks, weeklyPageStorage]);
 
   const weeklyTotals = useMemo(() => {
     const totals = emptyTotals();
@@ -848,7 +855,38 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     },
   ];
 
+
+  // Extend existing meal totals with saved snack snapshots; never refresh historical nutrition.
+  function snackQuality(day?: Day) {
+    return snackSummary(snackAccount.snacks, day ? getCurrentWeekDate(days.indexOf(day)) : undefined);
+  }
+  function incompleteSnacks(day: Day | undefined, key: SnackNutrient) {
+    return Boolean(snackAccount.loading || snackAccount.error || snackQuality(day)[key].missing);
+  }
+  function labelTotal(text: string, key: SnackNutrient, day?: Day) {
+    const hasMeals = (day ? [day] : days).some(d => mealTypes.some(meal => getRecipe(plannerMeals ?? {}, d, meal)));
+    const label = snackTotalLabel(text, snackQuality(day)[key], hasMeals);
+    return snackAccount.error || snackAccount.loading ? label + " (snacks unavailable; incomplete)" : label;
+  }
+  function formatDayNutrient(day: Day, key: NutrientKey, unit: "g" | "mg" | "kcal" | "salt") {
+    const value = dayTotals[day][key];
+    return labelTotal(unit === "salt" ? formatSalt(value) : formatNutrient(value, unit), key, day);
+  }
+  function formatAverageNutrient(key: NutrientKey, unit: "g" | "mg" | "kcal" | "salt") {
+    const value = dailyAverage[key];
+    return labelTotal(unit === "salt" ? formatSalt(value) : formatNutrient(value, unit), key);
+  }
+
+  weeklySummaryRows.forEach((row, index) => {
+    const key = snackNutrients[index];
+    if (!key) return;
+    row.total = labelTotal(row.total, key);
+    row.average = labelTotal(row.average, key);
+    if (incompleteSnacks(undefined, key)) row.status = "pending";
+  });
+
   function getDailyStatusForDay(day: Day): Status {
+    if (snackNutrients.some(key => incompleteSnacks(day, key))) return "pending";
 
 
     return getDailyStatus(
@@ -1365,6 +1403,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
               })}
             </div>
 
+            <PlannerSnacks date={getCurrentWeekDate(days.indexOf(selectedDay))} snacks={snackAccount.snacks} error={snackAccount.error} report />
             <div className="nutrition-mobile-daily-total mt-4 rounded-2xl bg-pink-50 p-4">
               <div className="flex items-center justify-between gap-3">
                 <span className="font-bold text-slate-900">
@@ -1384,42 +1423,42 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                 <div className="flex min-w-0 items-center justify-between gap-2">
                   <span className="min-w-0 break-words text-slate-600">Energy</span>
                   <strong className="shrink-0 whitespace-nowrap text-slate-900">
-                    {formatNutrient(dayTotals[selectedDay].calories, "kcal")}
+                    {formatDayNutrient(selectedDay, "calories", "kcal")}
                   </strong>
                 </div>
 
                 <div className="flex min-w-0 items-center justify-between gap-2">
                   <span className="min-w-0 break-words text-slate-600">Protein</span>
                   <strong className="shrink-0 whitespace-nowrap text-slate-900">
-                    {formatNutrient(dayTotals[selectedDay].protein, "g")}
+                    {formatDayNutrient(selectedDay, "protein", "g")}
                   </strong>
                 </div>
 
                 <div className="flex min-w-0 items-center justify-between gap-2">
                   <span className="min-w-0 break-words text-slate-600">Carbohydrate</span>
                   <strong className="shrink-0 whitespace-nowrap text-slate-900">
-                    {formatNutrient(dayTotals[selectedDay].carbohydrates, "g")}
+                    {formatDayNutrient(selectedDay, "carbohydrates", "g")}
                   </strong>
                 </div>
 
                 <div className="flex min-w-0 items-center justify-between gap-2">
                   <span className="min-w-0 break-words text-slate-600">Fat</span>
                   <strong className="shrink-0 whitespace-nowrap text-slate-900">
-                    {formatNutrient(dayTotals[selectedDay].fat, "g")}
+                    {formatDayNutrient(selectedDay, "fat", "g")}
                   </strong>
                 </div>
 
                 <div className="flex min-w-0 items-center justify-between gap-2">
                   <span className="min-w-0 break-words text-slate-600">Fibre</span>
                   <strong className="shrink-0 whitespace-nowrap text-slate-900">
-                    {formatNutrient(dayTotals[selectedDay].fibre, "g")}
+                    {formatDayNutrient(selectedDay, "fibre", "g")}
                   </strong>
                 </div>
 
                 <div className="flex min-w-0 items-center justify-between gap-2">
                   <span className="min-w-0 break-words text-slate-600">Salt (g)</span>
                   <strong className="shrink-0 whitespace-nowrap text-slate-900">
-                    {formatSalt(dayTotals[selectedDay].sodium)}
+                    {formatDayNutrient(selectedDay, "sodium", "salt")}
                   </strong>
                 </div>
 
@@ -1428,14 +1467,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                        numericLimitStatus(
-                          dayTotals[selectedDay].potassium,
-                          null,
-                          requirements.potassiumLimitMg
-                        )
+                        incompleteSnacks(selectedDay, "potassium") ? "pending" : numericLimitStatus(dayTotals[selectedDay].potassium, null, requirements.potassiumLimitMg)
                       )}`}
                     />
-                    {formatPotassiumMg(dayTotals[selectedDay].potassium)}
+                    {formatDayNutrient(selectedDay, "potassium", "mg")}
                   </span>
                 </div>
 
@@ -1444,14 +1479,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                        numericLimitStatus(
-                          dayTotals[selectedDay].phosphate,
-                          null,
-                          requirements.phosphateLimitMg
-                        )
+                        incompleteSnacks(selectedDay, "phosphate") ? "pending" : numericLimitStatus(dayTotals[selectedDay].phosphate, null, requirements.phosphateLimitMg)
                       )}`}
                     />
-                    {formatNutrient(dayTotals[selectedDay].phosphate, "mg")}
+                    {formatDayNutrient(selectedDay, "phosphate", "mg")}
                   </span>
                 </div>
 
@@ -1529,19 +1560,20 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                         })}
                         <tr className="bg-green-50 font-bold">
                           <th className="text-left">Daily total</th>
-                          <td>All planned meals</td>
-                          <td>{formatNutrient(dayTotals[day].calories, "kcal")}</td>
-                          <td>{formatNutrient(dayTotals[day].protein, "g")}</td>
-                          <td>{formatNutrient(dayTotals[day].carbohydrates, "g")}</td>
-                          <td>{formatNutrient(dayTotals[day].fat, "g")}</td>
-                          <td>{formatNutrient(dayTotals[day].fibre, "g")}</td>
-                          <td>{formatSalt(dayTotals[day].sodium)}</td>
-                          <td>{formatPotassiumMg(dayTotals[day].potassium)}</td>
-                          <td>{formatNutrient(dayTotals[day].phosphate, "mg")}</td>
+                          <td>All planned meals and snacks</td>
+                          <td>{formatDayNutrient(day, "calories", "kcal")}</td>
+                          <td>{formatDayNutrient(day, "protein", "g")}</td>
+                          <td>{formatDayNutrient(day, "carbohydrates", "g")}</td>
+                          <td>{formatDayNutrient(day, "fat", "g")}</td>
+                          <td>{formatDayNutrient(day, "fibre", "g")}</td>
+                          <td>{formatDayNutrient(day, "sodium", "salt")}</td>
+                          <td>{formatDayNutrient(day, "potassium", "mg")}</td>
+                          <td>{formatDayNutrient(day, "phosphate", "mg")}</td>
 
                         </tr>
                       </tbody>
                     </table>
+                    <PlannerSnacks date={getCurrentWeekDate(days.indexOf(day))} snacks={snackAccount.snacks} error={snackAccount.error} report />
                   </section>
                 );
               })}
@@ -1596,14 +1628,14 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                     <tr className="bg-blue-50 font-bold">
                       <th className="text-left">Daily total</th>
                       <td>Average across the week</td>
-                      <td>{formatNutrient(dailyAverage.calories, "kcal")}</td>
-                      <td>{formatNutrient(dailyAverage.protein, "g")}</td>
-                      <td>{formatNutrient(dailyAverage.carbohydrates, "g")}</td>
-                      <td>{formatNutrient(dailyAverage.fat, "g")}</td>
-                      <td>{formatNutrient(dailyAverage.fibre, "g")}</td>
-                      <td>{formatSalt(dailyAverage.sodium)}</td>
-                      <td>{formatPotassiumMg(dailyAverage.potassium)}</td>
-                      <td>{formatNutrient(dailyAverage.phosphate, "mg")}</td>
+                      <td>{formatAverageNutrient("calories", "kcal")}</td>
+                      <td>{formatAverageNutrient("protein", "g")}</td>
+                      <td>{formatAverageNutrient("carbohydrates", "g")}</td>
+                      <td>{formatAverageNutrient("fat", "g")}</td>
+                      <td>{formatAverageNutrient("fibre", "g")}</td>
+                      <td>{formatAverageNutrient("sodium", "salt")}</td>
+                      <td>{formatAverageNutrient("potassium", "mg")}</td>
+                      <td>{formatAverageNutrient("phosphate", "mg")}</td>
 
                     </tr>
                   </tbody>
@@ -1844,6 +1876,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                     </tr>
                   ))}
 
+                  <tr><th className="px-3 py-4 text-left text-sm font-bold">Snacks</th>
+                    {days.map((day, index) => <td key={`snacks-${day}`} className="min-w-0 px-1 align-top"><PlannerSnacks date={getCurrentWeekDate(index)} snacks={snackAccount.snacks} error={snackAccount.error} report /></td>)}
+                    <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 p-3 text-xs">Planned snacks are included below. Estimates are labelled; missing values make totals incomplete.</td>
+                  </tr>
                   <tr className="bg-green-50">
                     <td className="px-5 py-5">
                       <div className="flex items-center gap-3">
@@ -1869,45 +1905,42 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                   <div className="flex items-center justify-between gap-2">
                                     <span className="text-slate-500">Energy</span>
                                     <strong className="text-slate-900">
-                                      {formatNutrient(dayTotals[day].calories, "kcal")}
+                                      {formatDayNutrient(day, "calories", "kcal")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
                                     <span className="text-slate-500">Protein</span>
                                     <strong className="text-slate-900">
-                                      {formatNutrient(dayTotals[day].protein, "g")}
+                                      {formatDayNutrient(day, "protein", "g")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
                                     <span className="text-slate-500">Carbohydrate</span>
                                     <strong className="text-slate-900">
-                                      {formatNutrient(
-                                        dayTotals[day].carbohydrates,
-                                        "g"
-                                      )}
+                                      {formatDayNutrient(day, "carbohydrates", "g")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
                                     <span className="text-slate-500">Fat</span>
                                     <strong className="text-slate-900">
-                                      {formatNutrient(dayTotals[day].fat, "g")}
+                                      {formatDayNutrient(day, "fat", "g")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
                                     <span className="text-slate-500">Fibre</span>
                                     <strong className="text-slate-900">
-                                      {formatNutrient(dayTotals[day].fibre, "g")}
+                                      {formatDayNutrient(day, "fibre", "g")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
                                     <span className="text-slate-500">Salt (g)</span>
                                     <strong className="text-slate-900">
-                                      {formatSalt(dayTotals[day].sodium)}
+                                      {formatDayNutrient(day, "sodium", "salt")}
                                     </strong>
                                   </div>
 
@@ -1916,14 +1949,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
                                         className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          numericLimitStatus(
-                                            dayTotals[day].potassium,
-                                            null,
-                                            requirements.potassiumLimitMg
-                                          )
+                                          incompleteSnacks(day, "potassium") ? "pending" : numericLimitStatus(dayTotals[day].potassium, null, requirements.potassiumLimitMg)
                                         )}`}
                                       />
-                                      {formatPotassiumMg(dayTotals[day].potassium)}
+                                      {formatDayNutrient(day, "potassium", "mg")}
                                     </span>
                                   </div>
 
@@ -1932,14 +1961,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
                                         className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          numericLimitStatus(
-                                            dayTotals[day].phosphate,
-                                            null,
-                                            requirements.phosphateLimitMg
-                                          )
+                                          incompleteSnacks(day, "phosphate") ? "pending" : numericLimitStatus(dayTotals[day].phosphate, null, requirements.phosphateLimitMg)
                                         )}`}
                                       />
-                                      {formatNutrient(dayTotals[day].phosphate, "mg")}
+                                      {formatDayNutrient(day, "phosphate", "mg")}
                                     </span>
                                   </div>
 
@@ -1962,45 +1987,42 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                               <div className="flex items-center justify-between gap-2">
                                 <span className="text-slate-500">Energy</span>
                                 <strong className="text-slate-900">
-                                  {formatNutrient(dailyAverage.calories, "kcal")}
+                                  {formatAverageNutrient("calories", "kcal")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
                                 <span className="text-slate-500">Protein</span>
                                 <strong className="text-slate-900">
-                                  {formatNutrient(dailyAverage.protein, "g")}
+                                  {formatAverageNutrient("protein", "g")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
                                 <span className="text-slate-500">Carbohydrate</span>
                                 <strong className="text-slate-900">
-                                  {formatNutrient(
-                                    dailyAverage.carbohydrates,
-                                    "g"
-                                  )}
+                                  {formatAverageNutrient("carbohydrates", "g")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
                                 <span className="text-slate-500">Fat</span>
                                 <strong className="text-slate-900">
-                                  {formatNutrient(dailyAverage.fat, "g")}
+                                  {formatAverageNutrient("fat", "g")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
                                 <span className="text-slate-500">Fibre</span>
                                 <strong className="text-slate-900">
-                                  {formatNutrient(dailyAverage.fibre, "g")}
+                                  {formatAverageNutrient("fibre", "g")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
                                 <span className="text-slate-500">Salt (g)</span>
                                 <strong className="text-slate-900">
-                                  {formatSalt(dailyAverage.sodium)}
+                                  {formatAverageNutrient("sodium", "salt")}
                                 </strong>
                               </div>
 
@@ -2009,14 +2031,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
                                     className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      numericLimitStatus(
-                                        dailyAverage.potassium,
-                                        null,
-                                        requirements.potassiumLimitMg
-                                      )
+                                      incompleteSnacks(undefined, "potassium") ? "pending" : numericLimitStatus(dailyAverage.potassium, null, requirements.potassiumLimitMg)
                                     )}`}
                                   />
-                                  {formatPotassiumMg(dailyAverage.potassium)}
+                                  {formatAverageNutrient("potassium", "mg")}
                                 </span>
                               </div>
 
@@ -2025,14 +2043,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
                                     className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      numericLimitStatus(
-                                        dailyAverage.phosphate,
-                                        null,
-                                        requirements.phosphateLimitMg
-                                      )
+                                      incompleteSnacks(undefined, "phosphate") ? "pending" : numericLimitStatus(dailyAverage.phosphate, null, requirements.phosphateLimitMg)
                                     )}`}
                                   />
-                                  {formatNutrient(dailyAverage.phosphate, "mg")}
+                                  {formatAverageNutrient("phosphate", "mg")}
                                 </span>
                               </div>
 

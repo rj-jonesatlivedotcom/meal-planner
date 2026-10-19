@@ -5,6 +5,9 @@ import { MobileCalendarTile } from "@/components/calendar/CalendarToolbar";
 import { formatWeek, shortCalendarDate } from "@/lib/calendar";
 import { datedPlannerEnabled } from "@/lib/supabase/config";
 
+import PlannerSnacks from "@/components/food/PlannerSnacks";
+import { useFoodAccount } from "@/lib/useFoodAccount";
+import { snackSummary } from "@/lib/foodSnacks";
 import Link from "next/link";
 import Image from "next/image";
 import { Suspense, useMemo, useEffect, useRef, useState } from "react";
@@ -130,6 +133,7 @@ function createEmptyMealPeople(): MealPeople {
 
 function WeeklyPlannerPageContent() {
   const weeklyPageStorage = useWeeklyPageStorage();
+  const snackAccount = useFoodAccount(getDateForPlannerDay("Monday"), getDateForPlannerDay("Sunday"));
   const router = useRouter();
 const { readFluidLog, getHouseholdPeople, syncPlannerWithShoppingList } = useMemo(() => {
 function readFluidLog(): FluidEntry[] {
@@ -1563,14 +1567,9 @@ function formatPotassiumMg(mg: number): string {
         return getNutritionNumber(recipe!.nutrition.phosphate ?? "0");
       });
 
-    if (values.length === 0) {
-      return null;
-    }
-
-    return values.reduce(
-      (total, value) => total + value,
-      0
-    );
+    const snacks = snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[field];
+    if (values.length === 0 && snacks.value === null) return null;
+    return values.reduce((total, value) => total + value, 0) + (snacks.value ?? 0);
   }
 
   function getDailyNutritionLimit(
@@ -1609,7 +1608,8 @@ function formatPotassiumMg(mg: number): string {
   function getDailyNutritionStatus(
     day: string,
     field: DailyNumericField
-  ): "Within" | "Over" | "No limit" | "No meals" {
+  ): "Within" | "Over" | "No limit" | "No meals" | "Incomplete" {
+    if (snackAccount.loading || snackAccount.error || snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[field].missing) return "Incomplete";
     const total = getDailyNutritionTotal(day, field);
 
     if (total === null) {
@@ -1663,23 +1663,7 @@ function formatPotassiumMg(mg: number): string {
   }
 
   function getDailySodiumTotal(day: string) {
-    const meals = getDayMealRecipes(day);
-
-    const values = mealTypes
-      .map((meal) => meals[meal as keyof typeof meals])
-      .filter(Boolean)
-      .map((recipe) =>
-        getNutritionNumber(recipe!.nutrition.sodium)
-      );
-
-    if (values.length === 0) {
-      return null;
-    }
-
-    return values.reduce(
-      (total, value) => total + value,
-      0
-    );
+    return getDailyNutritionTotal(day, "sodium");
   }
 
   function getDailySodiumStatus(day: string) {
@@ -1851,6 +1835,9 @@ function formatPotassiumMg(mg: number): string {
                   : null;
 
     if (numericField) {
+      const snackQuality = snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[numericField];
+      const totalNote = `${snackQuality.estimated ? "ESTIMATE" : ""}${statusIncomplete() ? " (incomplete)" : ""}`;
+      function statusIncomplete() { return Boolean(snackAccount.loading || snackAccount.error || snackQuality.missing); }
       const total = getDailyNutritionTotal(day, numericField);
       const limit =
         getDailyNutritionLimit(numericField);
@@ -1904,7 +1891,7 @@ function formatPotassiumMg(mg: number): string {
                   }`;
 
       if (!desktop) {
-        const hasLimit = limit !== null && status !== "No limit";
+        const hasLimit = limit !== null && status !== "No limit" && status !== "Incomplete";
         const indicatorColour =
           status === "Over" ? "#ef4444" :
           status === "Within" ? "#16a34a" : "#64748b";
@@ -1913,12 +1900,12 @@ function formatPotassiumMg(mg: number): string {
           <div
             className="flex flex-col items-center justify-center"
             title={
-              limit !== null
+              limit !== null && status !== "Incomplete"
                 ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
                 : `${day} ${nutritionView}: daily total ${displayTotal}`
             }
             aria-label={
-              limit !== null
+              limit !== null && status !== "Incomplete"
                 ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
                 : `${day} ${nutritionView}: daily total ${displayTotal}`
             }
@@ -1941,6 +1928,7 @@ function formatPotassiumMg(mg: number): string {
                 )}
               </div>
             </div>
+            {totalNote && <span className="mt-1 max-w-[100px] text-center text-[9px] font-bold text-amber-800 dark:text-amber-300">{totalNote}</span>}
             {hasLimit && (
               <span
                 className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
@@ -1957,12 +1945,12 @@ function formatPotassiumMg(mg: number): string {
         <div
           className="flex flex-col items-center justify-center"
           aria-label={
-            limit !== null
+            limit !== null && status !== "Incomplete"
               ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
               : `${day} ${nutritionView}: daily total ${displayTotal}`
           }
           title={
-            limit !== null
+            limit !== null && status !== "Incomplete"
               ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
               : `${day} ${nutritionView}: ${displayTotal}`
           }
@@ -1986,7 +1974,8 @@ function formatPotassiumMg(mg: number): string {
             </div>
           </div>
 
-          {limit !== null && (
+          {totalNote && <span className="mt-1 max-w-[100px] text-center text-[9px] font-bold text-amber-800 dark:text-amber-300">{totalNote}</span>}
+          {limit !== null && status !== "Incomplete" && (
             <span
               className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
               style={{ color: statusColour }}
@@ -2747,6 +2736,8 @@ html[data-theme="dark"] main .planner-remove-button {
 
           </section>
 
+          <div className="mt-3"><PlannerSnacks date={getDateForPlannerDay(selectedDay)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} /></div>
+
           {/* MOBILE FLUID TRACKER */}
           <section className="mt-3 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
             <div className="grid grid-cols-[minmax(0,1fr)_140px] items-center gap-3 border-t border-slate-100 px-4 py-3">
@@ -3253,6 +3244,11 @@ html[data-theme="dark"] main .planner-remove-button {
 
               })}
 
+            </div>
+
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200">
+              <div className="flex items-center justify-center border-r border-slate-100 p-3 text-sm font-bold">Snacks</div>
+              {days.map(day => <div key={`snacks-${day}`} className="min-w-0 border-r border-slate-100"><PlannerSnacks date={getDateForPlannerDay(day)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} /></div>)}
             </div>
 
             {/* DAILY FLUID ROW */}

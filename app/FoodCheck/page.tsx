@@ -4,6 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { createBarcodeScanner } from "./barcodeScanner";
 import { scrollToFoodCheckResults } from "./resultScrolling";
+import { resolveCuratedMinerals, singleMineralText, isSingleEstimate, mineralSourceExplanation, mineralSourceReferences, foodPreparationTips, foodBasisDescription, type MineralResults } from "./curatedMinerals";
+import { barcodePortion, portionNutrition, type BarcodePortion } from "./barcodePortions";
+import type { UsdaFood } from "./usdaData";
+import { MyFoods, AddSnack } from "@/components/food/AccountFoods";
+import { useFoodAccount, notifyFoodAccount } from "@/lib/useFoodAccount";
+import { foodSnapshot } from "@/lib/foodSnacks";
 
 type CofidRow = Record<string, unknown>;
 
@@ -31,6 +37,8 @@ type Food = {
   zinc: number | null;
   source: string;
   imageUrl?: string;
+  minerals?: MineralResults;
+  portion?: BarcodePortion;
 };
 
 function optionalNumberValue(
@@ -218,11 +226,16 @@ function mapFood(row: CofidRow): Food {
 
 export default function FoodCheckPage() {
   const supabase = createClient();
+  const myFoods = useFoodAccount();
+  const [snackDialogOpen, setSnackDialogOpen] = useState(false);
+  const [myFoodsError, setMyFoodsError] = useState("");
 
   const [search, setSearch] = useState("");
   const [results, setResults] = useState<Food[]>([]);
   const [selectedFood, setSelectedFood] =
     useState<Food | null>(null);
+  const [referenceView, setReferenceView] = useState(false);
+  const [wholePackView, setWholePackView] = useState(false);
 
   const [searching, setSearching] =
     useState(false);
@@ -545,6 +558,7 @@ export default function FoodCheckPage() {
   }
 
   async function lookupBarcode(value: string) {
+    const accountForScan = myFoods.repository;
     if (barcodeLookupBusyRef.current) return;
     const code = value.replace(/\D/g, "");
 
@@ -659,8 +673,32 @@ export default function FoodCheckPage() {
         imageUrl: product.image_front_url || product.image_url || undefined,
       };
 
+      food.portion = barcodePortion(code, product);
+      food.minerals = await resolveCuratedMinerals(code, {
+        potassium: food.potassium,
+        phosphorus: food.phosphorus,
+      }, async foodCode => {
+        const { data, error } = await supabase.from("cofid_foods")
+          .select("food_code,food_name,potassium_mg,phosphorus_mg")
+          .eq("food_code", foodCode).maybeSingle();
+        return error ? null : data;
+      }, {
+        basis: food.portion.basis, unit: food.portion.unit, singleOnly: true,
+        loadUsda: async fdcId => {
+          const response = await fetch(`/api/food-check/usda?fdcId=${fdcId}`);
+          if (!response.ok) return null;
+          const payload = await response.json();
+          return (payload.food ?? null) as UsdaFood | null;
+        },
+      });
+      if (requestId !== searchRequestRef.current) return;
+
       // Share post-render nutrition scrolling with normal food selection.
       selectFood(food);
+      if (accountForScan) void accountForScan.library("scan", code, food.name.slice(0, 240))
+        .then(() => { notifyFoodAccount(); setMyFoodsError(""); })
+        .catch(() => setMyFoodsError("Product loaded, but it could not be saved to My Foods. Please try again."));
+      return food;
     } catch (lookupError) {
       if (requestId !== searchRequestRef.current) return;
       console.error("Barcode lookup failed:", lookupError);
@@ -737,7 +775,10 @@ export default function FoodCheckPage() {
    */
 
   function selectFood(food: Food) {
+    setSnackDialogOpen(false);
     setSelectedFood(food);
+    setReferenceView(false);
+    setWholePackView(false);
 
     requestResultsScroll("nutrition");
   }
@@ -771,6 +812,10 @@ export default function FoodCheckPage() {
    * WAIT FOR LOGIN CHECK
    * ---------------------------------------------------------
    */
+
+  const activePortion = referenceView ? undefined : wholePackView && selectedFood?.portion?.wholePack
+    ? { ...selectedFood.portion, ...selectedFood.portion.wholePack } : selectedFood?.portion;
+  const nutritionFood = selectedFood ? portionNutrition(selectedFood, activePortion) : null;
 
   if (!userChecked) {
     return (
@@ -1022,6 +1067,9 @@ export default function FoodCheckPage() {
               </div>
             </section>
 
+            <MyFoods account={myFoods} onOpen={(code, add) => { void lookupBarcode(code).then(food => { if (food && add) setSnackDialogOpen(true); }); }} />
+            {myFoodsError && <p role="status" className="mt-2 text-sm text-rose-700">{myFoodsError}</p>}
+
             {/* =================================================
                 SEARCH RESULTS
                 DIRECTLY UNDER BARCODE BUTTONS
@@ -1215,7 +1263,7 @@ export default function FoodCheckPage() {
 
             <div className="food-check-nutrition-card overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
 
-              {!selectedFood ? (
+              {!selectedFood || !nutritionFood ? (
 
                 <div className="flex min-h-[620px] items-center justify-center px-8 text-center">
 
@@ -1295,11 +1343,41 @@ export default function FoodCheckPage() {
 
                   <div className="p-6">
 
+                    {selectedFood.source === "Open Food Facts" && <div className="mb-4">
+                      <div className="flex flex-wrap gap-2">
+                        <button type="button" disabled={!myFoods.repository || selectedFood.portion?.referenceLabel.includes("unconfirmed")}
+                          onClick={() => setSnackDialogOpen(true)} className="rounded-xl bg-orange-600 px-4 py-2 font-bold text-white disabled:opacity-50">Add to Planner</button>
+                        <button type="button" disabled={!myFoods.repository} className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold"
+                          onClick={() => { const repository = myFoods.repository; if (!repository) return; const favourite = !myFoods.foods.find(f => f.barcode === selectedFood.code)?.favourite;
+                            void repository.library("scan", selectedFood.code, selectedFood.name.slice(0, 240)).then(() => repository.library("favourite", selectedFood.code, "", favourite)).then(notifyFoodAccount).catch(() => setMyFoodsError("Unable to update this favourite. Please try again.")); }}>
+                          {myFoods.foods.find(f => f.barcode === selectedFood.code)?.favourite ? "Unfavourite" : "Favourite"}
+                        </button>
+                      </div>
+                      {snackDialogOpen && myFoods.owner && selectedFood.portion && <AddSnack key={`${myFoods.owner}:${selectedFood.code}`} open owner={myFoods.owner} barcode={selectedFood.code} name={selectedFood.name}
+                        snapshot={foodSnapshot(selectedFood, selectedFood.portion.unit, selectedFood.portion.basis, `${selectedFood.source}: https://world.openfoodfacts.org/product/${selectedFood.code}. ${mineralSourceExplanation(selectedFood.minerals)}`)}
+                        quantity={activePortion?.amount ?? selectedFood.portion.amount} onClose={() => setSnackDialogOpen(false)} />}
+                    </div>}
+
                     <div className="rounded-2xl border border-blue-100 bg-blue-50 px-5 py-4">
 
                       <h3 className="text-xl font-extrabold text-blue-900">
-                        Nutritional information per 100 g
+                        {selectedFood.source === "Open Food Facts"
+                          ? activePortion?.amount ? activePortion.label : `Nutritional information ${selectedFood.portion?.referenceLabel ?? "per 100g"}`
+                          : "Nutritional information per 100 g"}
                       </h3>
+
+                      {selectedFood.source === "Open Food Facts" && selectedFood.portion?.amount && (
+                        <div className="mt-2 flex flex-wrap gap-2 text-sm">
+                          <button type="button" aria-pressed={!referenceView && !wholePackView} onClick={() => { setReferenceView(false); setWholePackView(false); }}
+                            className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.wholePack ? "Manufacturer serving" : "Whole product / one unit"}</button>
+                          {selectedFood.portion.wholePack && <button type="button" aria-pressed={!referenceView && wholePackView}
+                            onClick={() => { setReferenceView(false); setWholePackView(true); }}
+                            className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.wholePack.label}</button>}
+                          <button type="button" aria-pressed={referenceView} onClick={() => setReferenceView(true)}
+                            className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.referenceLabel} reference</button>
+                        </div>
+                      )}
+                      {selectedFood.portion?.limitation && <p className="mt-2 text-sm leading-6 text-slate-600">{selectedFood.portion.limitation}</p>}
 
                     </div>
 
@@ -1312,16 +1390,16 @@ export default function FoodCheckPage() {
                         <NutritionRow
                           label="Energy"
                           value={
-                            selectedFood.energyKj !== null
+                            nutritionFood.energyKj !== null
                               ? `${formatNumber(
-                                  selectedFood.energyKj
+                                  nutritionFood.energyKj
                                 )} kJ`
                               : "Not available"
                           }
                           secondary={
-                            selectedFood.energyKcal !== null
+                            nutritionFood.energyKcal !== null
                               ? `${formatNumber(
-                                  selectedFood.energyKcal
+                                  nutritionFood.energyKcal
                                 )} kcal`
                               : "Not available"
                           }
@@ -1329,34 +1407,34 @@ export default function FoodCheckPage() {
 
                         <NutritionRow
                           label="Protein"
-                          value={displayNutrient(selectedFood.protein, "g")}
+                          value={displayNutrient(nutritionFood.protein, "g")}
                         />
 
                         <NutritionRow
                           label="Carbohydrate"
-                          value={displayNutrient(selectedFood.carbohydrate, "g")}
+                          value={displayNutrient(nutritionFood.carbohydrate, "g")}
                         />
 
                         <NutritionRow
                           label="of which sugars"
-                          value={displayNutrient(selectedFood.sugars, "g")}
+                          value={displayNutrient(nutritionFood.sugars, "g")}
                           muted
                         />
 
                         <NutritionRow
                           label="Fat"
-                          value={displayNutrient(selectedFood.fat, "g")}
+                          value={displayNutrient(nutritionFood.fat, "g")}
                         />
 
                         <NutritionRow
                           label="of which saturates"
-                          value={displayNutrient(selectedFood.saturates, "g")}
+                          value={displayNutrient(nutritionFood.saturates, "g")}
                           muted
                         />
 
                         <NutritionRow
                           label="Fibre"
-                          value={displayNutrient(selectedFood.fibre, "g")}
+                          value={displayNutrient(nutritionFood.fibre, "g")}
                         />
 
                       </div>
@@ -1367,63 +1445,84 @@ export default function FoodCheckPage() {
 
                         <NutritionRow
                           label="Salt"
-                          value={displayNutrient(selectedFood.salt, "g")}
+                          value={displayNutrient(nutritionFood.salt, "g")}
                           emphasis="red"
                         />
 
                         <NutritionRow
                           label="Sodium"
-                          value={displayNutrient(selectedFood.sodium, "mg")}
+                          value={displayNutrient(nutritionFood.sodium, "mg")}
                           emphasis="blue"
                         />
 
                         <NutritionRow
                           label="Potassium"
+                          estimated={isSingleEstimate(nutritionFood.minerals?.potassium)}
                           value={
-                            selectedFood.potassium === null
+                            nutritionFood.minerals
+                              ? singleMineralText(nutritionFood.minerals.potassium, formatNumber)
+                              : nutritionFood.potassium === null
                               ? "Not available"
-                              : `${formatNumber(selectedFood.potassium)} mg`
+                              : `${formatNumber(nutritionFood.potassium)} mg`
                           }
                           emphasis="green"
                         />
 
                         <NutritionRow
                           label="Phosphorus"
+                          estimated={isSingleEstimate(nutritionFood.minerals?.phosphorus)}
                           value={
-                            selectedFood.phosphorus === null
+                            nutritionFood.minerals
+                              ? singleMineralText(nutritionFood.minerals.phosphorus, formatNumber)
+                              : nutritionFood.phosphorus === null
                               ? "Not available"
-                              : `${formatNumber(selectedFood.phosphorus)} mg`
+                              : `${formatNumber(nutritionFood.phosphorus)} mg`
                           }
                           emphasis="orange"
                         />
 
                         <NutritionRow
                           label="Calcium"
-                          value={displayNutrient(selectedFood.calcium, "mg")}
+                          value={displayNutrient(nutritionFood.calcium, "mg")}
                           emphasis="blue"
                         />
 
                         <NutritionRow
                           label="Magnesium"
-                          value={displayNutrient(selectedFood.magnesium, "mg")}
+                          value={displayNutrient(nutritionFood.magnesium, "mg")}
                           emphasis="blue"
                         />
 
                         <NutritionRow
                           label="Iron"
-                          value={displayNutrient(selectedFood.iron, "mg")}
+                          value={displayNutrient(nutritionFood.iron, "mg")}
                           emphasis="blue"
                         />
 
                         <NutritionRow
                           label="Zinc"
-                          value={displayNutrient(selectedFood.zinc, "mg")}
+                          value={displayNutrient(nutritionFood.zinc, "mg")}
                           emphasis="blue"
                         />
 
                       </div>
 
                     </div>
+
+                    {selectedFood.source === "Open Food Facts" && foodBasisDescription(selectedFood.code) && (
+                      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                        {foodBasisDescription(selectedFood.code)}
+                      </p>
+                    )}
+
+                    {selectedFood.source === "Open Food Facts" && foodPreparationTips(selectedFood.code).length > 0 && (
+                      <section className="food-check-preparation-tips mt-4 border-t border-slate-100 pt-4" aria-labelledby="food-preparation-tips">
+                        <h3 id="food-preparation-tips" className="text-sm font-semibold text-slate-900">Food preparation tips</h3>
+                        <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-600">
+                          {foodPreparationTips(selectedFood.code).map(tip => <li key={tip}>{tip}</li>)}
+                        </ul>
+                      </section>
+                    )}
 
                     {/* SOURCE */}
 
@@ -1448,8 +1547,15 @@ export default function FoodCheckPage() {
                           <p className="mt-1 text-sm leading-6 text-slate-600">
                             {selectedFood.source === "CoFID 2021"
                               ? "Values are presented per 100g of edible portion."
+                              : selectedFood.portion
+                              ? `Nutritional information comes from the Open Food Facts product database. Reference basis: ${selectedFood.portion.referenceLabel}. ${activePortion?.amount ? `Figures shown for ${activePortion.label}. ` : ""}Product information may be incomplete or contributed by users. 'Not available' does not mean zero.`
                               : "Nutritional information comes from the Open Food Facts product database and is displayed per 100g. Product information may be incomplete or contributed by users. 'Not available' does not mean zero."}
                           </p>
+                          {mineralSourceExplanation(selectedFood.minerals, activePortion) && (
+                            <p className="mt-1 text-sm leading-6 text-slate-600">
+                              {mineralSourceExplanation(selectedFood.minerals, activePortion)}
+                            </p>
+                          )}
                           <a
                             href={selectedFood.source === "CoFID 2021"
                               ? "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
@@ -1462,6 +1568,12 @@ export default function FoodCheckPage() {
                               ? "Find out more about CoFID 2021 ?"
                               : "View product on Open Food Facts"}
                           </a>
+                          {mineralSourceReferences(selectedFood.minerals).map(reference => (
+                            <a key={reference.url} href={reference.url} target="_blank" rel="noreferrer"
+                              className="mt-2 block text-sm font-bold text-blue-700 hover:underline">
+                              {reference.label}{reference.foodCode ? ` (${reference.foodCode})` : ""}
+                            </a>
+                          ))}
                         </div>
 
                       </div>
@@ -1529,6 +1641,25 @@ export default function FoodCheckPage() {
       )}
 
       <style jsx global>{`
+        html[data-theme="dark"] .food-check-preparation-tips {
+          border-color: #334155;
+        }
+        .food-check-estimate {
+          display: inline-block;
+          margin-left: 0.5rem;
+          color: #92400e;
+          font-size: 0.65rem;
+          font-weight: 700;
+        }
+        html[data-theme="dark"] .food-check-estimate {
+          color: #fbbf24 !important;
+        }
+        html[data-theme="dark"] .food-check-preparation-tips h3 {
+          color: #f1f5f9;
+        }
+        html[data-theme="dark"] .food-check-preparation-tips ul {
+          color: #cbd5e1;
+        }
         /* Keep Food Check's restricted-access popup consistent with the
            My Diet and Nutrition popups while preserving the mobile
            navigation fix. */
@@ -1566,12 +1697,14 @@ function NutritionRow({
   label,
   value,
   secondary,
+  estimated = false,
   muted = false,
   emphasis,
 }: {
   label: string;
   value: string;
   secondary?: string;
+  estimated?: boolean;
   muted?: boolean;
   emphasis?:
     | "red"
@@ -1628,6 +1761,7 @@ function NutritionRow({
           }`}
         >
           {value}
+          {estimated && <span className="food-check-estimate">ESTIMATE</span>}
         </div>
 
         {secondary && (

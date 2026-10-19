@@ -1,0 +1,45 @@
+diff --git a/lib/weeklyPageStorage.ts b/lib/weeklyPageStorage.ts
+--- a/lib/weeklyPageStorage.ts
++++ b/lib/weeklyPageStorage.ts
+@@ -131,6 +131,27 @@ export function createWeeklyPageStorage() {
+ }
+ 
+ export function useWeeklyPageStorage() {
+-  const [storage] = useState(createWeeklyPageStorage);
++  // Do not capture the selected week during React render. Auth verification and
++  // week loading are asynchronous, and capture() correctly rejects an unready
++  // week. Resolve the storage binding when each operation actually runs.
++  const [storage] = useState(() => ({
++    getItem(key: string) {
++      try {
++        return createWeeklyPageStorage().getItem(key);
++      } catch (error) {
++        // Dashboard summaries may be empty while the signed-in week loads.
++        // Never fall back to unscoped legacy data or another account's cache.
++        if (error instanceof Error && error.message === "Week not loaded" &&
++            (key === "weekly-planner" || key === "shopping-data")) return null;
++        throw error;
++      }
++    },
++    setItem(key: string, value: string) {
++      return createWeeklyPageStorage().setItem(key, value);
++    },
++    removeItem(key: string) {
++      return createWeeklyPageStorage().removeItem(key);
++    },
++  }));
+   return storage;
+ }
+diff --git a/components/calendar/DatedPlannerBoundary.tsx b/components/calendar/DatedPlannerBoundary.tsx
+--- a/components/calendar/DatedPlannerBoundary.tsx
++++ b/components/calendar/DatedPlannerBoundary.tsx
+@@ -39,5 +39,9 @@ function TestRuntime({ children }: { children: ReactNode }) {
+ 
+   useEffect(() => {
+     if (state.status !== "ready") return;
++    // Refresh read-only dashboard/shopping summaries once the correct
++    // account's week has finished loading.
++    window.dispatchEvent(new Event("weekly-planner-updated"));
++    window.dispatchEvent(new Event("shopping-list-updated"));
+     void Promise.resolve().then(() => {
+       setPending(pendingWeeklyChanges());

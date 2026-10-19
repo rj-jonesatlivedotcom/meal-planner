@@ -91,7 +91,7 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
     {!state.plan ? (!recovery && <p role="status" className="p-5">Loading saved meals...</p>) :
       <div key={`${state.owner.kind}:${state.owner.id}:${state.weekStart}`} inert={state.status === "error"}>{!isRecoveryRoute && children}</div>}
   </div>;
-  return isPlannerRoute(path) ? <CalendarToolbar key={`toolbar:${state.owner.kind}:${state.owner.id}:${state.weekStart}`} plan={shownPlan}
+  return isPlannerRoute(path) ? <CalendarToolbar key={`toolbar:${state.owner.kind}:${state.owner.id}`} plan={shownPlan}
     shift={shift} thisWeek={() => void context.select(currentMonday())}
     readPlan={() => context.getSnapshot().status === "ready" ? context.getSnapshot().plan : null}>{content}</CalendarToolbar> : content;
 }

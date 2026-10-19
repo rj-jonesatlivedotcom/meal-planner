@@ -8,7 +8,7 @@ import { recipes } from "@/data/RecipeData";
 import { liveCalendarEnabled } from "@/lib/supabase/config";
 
 type Props = { plan: WeeklyPlan; shift: (days: number) => void; thisWeek: () => void; readPlan: () => WeeklyPlan | null; children?: ReactNode };
-type MobileControls = Pick<Props, "shift" | "thisWeek"> & { week: string; openPanel: (panel: "connect" | "times") => void };
+type MobileControls = Pick<Props, "shift" | "thisWeek"> & { week: string; openPanel: (panel: "connect" | "times") => void; calendarOpen: boolean; setCalendarOpen: (open: boolean | ((previous: boolean) => boolean)) => void };
 const MobileCalendarContext = createContext<MobileControls | null>(null);
 // Unmodified provider artwork, served locally (no third-party image requests):
 // Google: https://www.gstatic.com/calendar/images/manifest/logo_2020q4_192.png
@@ -18,8 +18,9 @@ const button = "rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-semi
 
 export default function CalendarToolbar(props: Props) {
   const [panel, setPanel] = useState<"connect" | "times" | null>(null);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   const isThisWeek = props.plan.weekStart === currentMonday();
-  return <MobileCalendarContext.Provider value={{ shift: props.shift, thisWeek: props.thisWeek, week: formatWeek(props.plan.weekStart), openPanel: setPanel }}>
+  return <MobileCalendarContext.Provider value={{ shift: props.shift, thisWeek: props.thisWeek, week: formatWeek(props.plan.weekStart), openPanel: setPanel, calendarOpen, setCalendarOpen }}>
     <style jsx>{`
       .planner-toolbar { display: flex; align-items: center; gap: 8px; width: 100%; max-width: 1448px; margin: 0 auto; padding: 8px 24px; }
       .planner-week { display: flex; align-items: center; gap: 8px; }
@@ -59,23 +60,24 @@ export default function CalendarToolbar(props: Props) {
 
 export function MobileCalendarTile() {
   const controls = useContext(MobileCalendarContext);
-  const [open, setOpen] = useState(false);
+  const open = controls?.calendarOpen ?? false;
+  const setOpen = controls?.setCalendarOpen;
   const root = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const first = useRef<HTMLButtonElement>(null);
   const id = useId();
-  function close() { setOpen(false); trigger.current?.focus(); }
+  function close() { setOpen?.(false); trigger.current?.focus(); }
   useEffect(() => {
     if (!open) return;
     first.current?.focus();
-    const outside = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setOpen(false); };
-    const escape = (event: KeyboardEvent) => { if (event.key === "Escape") { event.preventDefault(); setOpen(false); trigger.current?.focus(); } };
+    const outside = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setOpen?.(false); };
+    const escape = (event: KeyboardEvent) => { if (event.key === "Escape") { event.preventDefault(); setOpen?.(false); trigger.current?.focus(); } };
     document.addEventListener("pointerdown", outside);
     document.addEventListener("keydown", escape);
     return () => { document.removeEventListener("pointerdown", outside); document.removeEventListener("keydown", escape); };
-  }, [open]);
+  }, [open, setOpen]);
   return <div ref={root} className="mobile-calendar-slot" onBlur={event => {
-    if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget as Node)) setOpen(false);
+    if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget as Node)) setOpen?.(false);
   }}>
     <style jsx>{`
       .mobile-calendar-slot { position: relative; min-width: 0; }
@@ -92,7 +94,7 @@ export function MobileCalendarTile() {
       button:active { background-color: #f1f5f9; }
     `}</style>
     <button ref={trigger} type="button" className="planner-mobile-tile planner-mobile-calendar" disabled={!controls}
-      aria-expanded={open} aria-controls={id} aria-haspopup="dialog" onClick={() => setOpen(value => !value)}>
+      aria-expanded={open} aria-controls={id} aria-haspopup="dialog" onClick={() => setOpen?.(value => !value)}>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18m-13 4h1m3 0h1m3 0h1M8 18h1m3 0h1" /></svg>
       <span>Calendar <span aria-hidden="true">⌄</span></span>
     </button>

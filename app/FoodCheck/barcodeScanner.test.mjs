@@ -16,6 +16,9 @@ const flush = async () => { await new Promise(setImmediate); };
 const mineralModule = { exports: {} };
 vm.runInNewContext(compile(fs.readFileSync(new URL("./curatedMinerals.ts", import.meta.url), "utf8")), { exports: mineralModule.exports });
 const mineralHelpers = mineralModule.exports;
+const categoryModule = { exports: {} };
+vm.runInNewContext(compile(fs.readFileSync(new URL("./categoryMinerals.ts", import.meta.url), "utf8")), { exports: categoryModule.exports, require: () => mineralHelpers });
+const categoryHelpers = categoryModule.exports;
 const portionModule = { exports: {} };
 vm.runInNewContext(compile(fs.readFileSync(new URL("./barcodePortions.ts", import.meta.url), "utf8")), { exports: portionModule.exports, require: () => mineralHelpers });
 const portionHelpers = portionModule.exports;
@@ -237,7 +240,7 @@ function pageFunction(name) {
 
 function lookupHarness(fetch, reviewMappings, cofidRow, repository = null) {
   const state = { errors: [], selected: [], stops: 0, loading: [], cofidReads: [] };
-  const context = { myFoods: { repository }, notifyFoodAccount() {}, setMyFoodsError() {}, ...mineralHelpers, ...portionHelpers, Error, console: { error() {} }, fetch, requestResultsScroll() {}, setSearching() {}, searchRequestRef: { current: 0 }, searchDebounceRef: { current: null }, barcodeLookupBusyRef: { current: false },
+  const context = { myFoods: { repository }, notifyFoodAccount() {}, setMyFoodsError() {}, ...mineralHelpers, ...portionHelpers, ...categoryHelpers, Error, console: { error() {} }, fetch, requestResultsScroll() {}, setSearching() {}, searchRequestRef: { current: 0 }, searchDebounceRef: { current: null }, barcodeLookupBusyRef: { current: false },
     resolveCuratedMinerals: (code, reported, loader, options) => mineralHelpers.resolveCuratedMinerals(code, reported, loader, { ...options, mappings: reviewMappings }),
     supabase: { from: table => ({ select: columns => ({ eq: (column, code) => ({ maybeSingle: async () => {
       state.cofidReads.push({ table, columns, column, code }); return { data: cofidRow, error: null };
@@ -293,7 +296,7 @@ test("Open camera synchronous guard prevents concurrent React startup requests",
 
 test("selection requests a post-render nutrition scroll for every selection", () => {
   const requests = []; let selected;
-  const context = { setSnackDialogOpen() {}, setWholePackView() {}, setReferenceView() {}, setSelectedFood: f => { selected = f; }, requestResultsScroll: target => requests.push(target) };
+  const context = { setFoodQuantity() {}, setSnackDialogOpen() {}, setWholePackView() {}, setReferenceView() {}, setSelectedFood: f => { selected = f; }, requestResultsScroll: target => requests.push(target) };
   vm.runInNewContext(compile(pageFunction("selectFood")), context);
   context.selectFood({ code: "0012345678905" }); context.selectFood(selected);
   assert.equal(selected.code, "0012345678905");
@@ -727,7 +730,7 @@ test('public barcode pipeline keeps ranges dormant even when a range-only candid
 });
 test('portion reference toggle resets on selection and the estimate badge supports dark mode', () => {
   let reference;
-  const context = { setSnackDialogOpen() {}, setWholePackView() {}, setSelectedFood() {}, setReferenceView: value => { reference = value; }, requestResultsScroll() {} };
+  const context = { setFoodQuantity() {}, setSnackDialogOpen() {}, setWholePackView() {}, setSelectedFood() {}, setReferenceView: value => { reference = value; }, requestResultsScroll() {} };
   vm.runInNewContext(compile(pageFunction('selectFood')), context);
   context.selectFood({ code: 'test' }); assert.equal(reference, false);
   assert.match(page, /onClick=\{\(\) => setReferenceView\(true\)\}/);

@@ -133,6 +133,9 @@ export type CofidMinerals = {
   phosphorus_mg: number | null;
 };
 export type MineralResult = {
+  sourceState?: "reported" | "missing" | "questionable";
+  reason?: string;
+  categoryId?: string;
   sourceValueMg: number | null;
   valueMg: number | null;
   provenance: "reported" | "estimated" | "unavailable";
@@ -167,6 +170,7 @@ export async function resolveCuratedMinerals(
     singleOnly?: boolean;
     unit?: "g" | "ml";
     loadUsda?: (fdcId: number) => Promise<UsdaFood | null>;
+    questionableZero?: Partial<Record<Mineral, boolean>>;
   } = {},
 ): Promise<MineralResults> {
   const mapping = (options.mappings ?? CURATED_MINERALS).find(m => m.barcode === barcode);
@@ -174,9 +178,11 @@ export async function resolveCuratedMinerals(
   const results = {} as MineralResults;
   for (const nutrient of minerals) {
     const raw = reported[nutrient];
-    const usable = valid(raw) && !(raw === 0 && mapping?.questionableZero[nutrient]);
+    const questionable = raw === 0 && Boolean(mapping?.questionableZero[nutrient] || options.questionableZero?.[nutrient]);
+    const usable = valid(raw) && !questionable;
     results[nutrient] = {
       sourceValueMg: raw,
+      sourceState: questionable ? "questionable" : usable ? "reported" : "missing",
       valueMg: usable ? raw : null,
       provenance: usable ? "reported" : "unavailable",
       basis,
@@ -262,6 +268,15 @@ export function formatMineral(result: MineralResult, format: (n: number) => stri
 
 export function mineralSourceExplanation(results?: MineralResults, portion?: { amount: number | null; label: string }): string {
   if (!results) return "";
+  const categoryEstimates = minerals.filter(n => results[n].categoryId && results[n].provenance === "estimated");
+  const categoryText = categoryEstimates.map((n, index) => {
+    const result = results[n], ref = result.estimate!.references[0];
+    const combined = categoryEstimates.length === 2 && results[categoryEstimates[0]].categoryId === results[categoryEstimates[1]].categoryId;
+    if (index === 1 && combined) return "";
+    return `${combined ? "Potassium and phosphorus" : n === "potassium" ? "Potassium" : "Phosphorus"}: Estimated using ${ref.label} for ${ref.description}${ref.foodCode ? `, food code ${ref.foodCode}` : ""}${portion?.amount ? `, adjusted to ${portion.label}` : ", per 100g"}. ${result.estimate!.explanation} Actual branded-product values may differ.`;
+  }).filter(Boolean);
+  const unavailableText = minerals.filter(n => results[n].provenance === "unavailable" && results[n].reason)
+    .map(n => `${n === "potassium" ? "Potassium" : "Phosphorus"}: Not available. ${results[n].reason}`);
   const estimates = minerals.filter(n => results[n].provenance === "estimated" && results[n].match);
   const combined = estimates.length === 2 && results[estimates[0]].match?.code === results[estimates[1]].match?.code;
   return estimates.map((n, index) => {
@@ -272,12 +287,12 @@ export function mineralSourceExplanation(results?: MineralResults, portion?: { a
     const values = (combined ? estimates : [n]).map(key => `${key}: ${formatMineral(results[key], String)}`).join("; ");
     const scaled = portion?.amount ? ` Adjusted to ${portion.label} (reference value × ${portion.amount}/100): ${(combined ? estimates : [n]).map(key => `${key} approximately ${Math.round(results[key].valueMg! * portion.amount! / 100)} mg`).join("; ")}.` : "";
     return `${label}: Estimated using CoFID 2021 data for ${match.description}, food code ${match.code}. ${values} per 100g.${scaled} This is a comparable food, not a measurement of the scanned product. Actual values may differ. ${results[n].comparisonNote ?? ""}`;
-  }).filter(Boolean).concat(minerals.filter(n => results[n].provenance === "estimated" && results[n].estimate).map(n => {
+  }).filter(Boolean).concat(minerals.filter(n => results[n].provenance === "estimated" && results[n].estimate && !results[n].categoryId).map(n => {
     const estimate = results[n].estimate!;
     const references = estimate.references.map(r => `${r.label}${r.description ? `, ${r.description}` : ""}${r.foodCode ? `, food code ${r.foodCode}` : ""}`).join("; ");
     const scaled = portion?.amount && results[n].valueMg !== null ? ` Adjusted to ${portion.label} (reference × ${portion.amount}/100): approximately ${Math.round(results[n].valueMg! * portion.amount / 100)} mg.` : "";
     return `${n === "potassium" ? "Potassium" : "Phosphorus"}: ${formatMineral(results[n], String)} per 100g, using a ${estimate.method === "component-calculation" ? "component calculation" : "comparable food"} for the complete product.${scaled} Sources: ${references}. ${estimate.explanation} This is not a manufacturer measurement. Actual values may differ.`;
-  })).join(" ");
+  }), categoryText, unavailableText).join(" ");
 }
 
 export function singleMineralText(result: MineralResult, format: (n: number) => string): string {

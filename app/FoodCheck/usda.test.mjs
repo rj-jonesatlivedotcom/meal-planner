@@ -143,6 +143,7 @@ test("reference route accepts only fixed reviewed IDs and returns sanitized data
   let reads = 0;
   const route = load("../api/food-check/usda/route.ts", {
     "@/app/FoodCheck/curatedMinerals": curated,
+    "@/app/FoodCheck/categoryMinerals": { CATEGORY_USDA_IDS: [171546] },
     "@/app/FoodCheck/usda.server": { usdaClient: { food: async () => { reads++; return { status: "ok", data: cheese() }; } } },
   });
   assert.equal((await route.GET(new Request("http://localhost/api/food-check/usda?fdcId=bogus"))).status, 400);

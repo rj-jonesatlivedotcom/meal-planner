@@ -1,4 +1,5 @@
 import { scaleMineral, type MineralResults, type PreparationBasis } from "./curatedMinerals";
+import type { NaturalUnit } from "@/lib/foodSnacks";
 
 export type BarcodePortion = {
   amount: number | null;
@@ -8,6 +9,7 @@ export type BarcodePortion = {
   referenceLabel: string;
   limitation: string;
   wholePack?: { amount: number; label: string };
+  naturalUnit?: NaturalUnit;
 };
 
 type ProductQuantity = {
@@ -18,6 +20,8 @@ type ProductQuantity = {
   serving_size?: unknown;
   serving_quantity?: unknown;
   serving_quantity_unit?: unknown;
+  categories_tags?: string[];
+  nutriments?: Record<string, unknown>;
 };
 
 // Only the reviewed larger products opt into manufacturer-serving defaults.
@@ -45,7 +49,7 @@ const verified = {
   "4061464935198": { dry: 85, amount: 435, basis: "prepared", label: "Whole prepared bowl (435g; 85g dry pack)" },
 } as const;
 
-export function barcodePortion(code: string, product: ProductQuantity): BarcodePortion {
+function baseBarcodePortion(code: string, product: ProductQuantity): BarcodePortion {
   const quantity = typeof product.quantity === "string" ? product.quantity.trim() : "";
   const single = quantity.match(/^(\d+(?:\.\d+)?)\s*(kg|g|ml|l)$/i);
   const multi = quantity.match(/^(?:(\d+(?:\.\d+)?)\s*g\s*\()?\s*(\d+)\s*[x×]\s*(\d+(?:\.\d+)?)\s*(g|ml)\)?$/i);
@@ -84,6 +88,48 @@ export function barcodePortion(code: string, product: ProductQuantity): BarcodeP
       return { amount, unit, basis, label: `Whole pack (${amount}${unit})`, referenceLabel, limitation: "" };
   }
   return fallback("An individual pack or eating-unit quantity is not verified. Showing reference values only.");
+}
+
+export function barcodePortion(code: string, product: ProductQuantity): BarcodePortion {
+  const pack = baseBarcodePortion(code, product);
+  if (pack.referenceLabel.includes("unconfirmed")) return pack;
+  const name = `${product.product_name ?? ""} ${(product.categories_tags ?? []).join(" ")}`.toLowerCase();
+  const serving = typeof product.serving_size === "string" ? product.serving_size : "";
+  const servingMatch = /^(\d+(?:\.\d+)?)\s+(biscuits?|cookies?|bars?|bags?|pots?)\s*\((\d+(?:\.\d+)?)\s*g\)$/i.exec(serving);
+  const declared = product.serving_quantity;
+  const servingConsistent = declared === undefined || declared === null ||
+    (Number(declared) === Number(servingMatch?.[3]) && product.serving_quantity_unit === "g");
+  let natural: NaturalUnit | undefined;
+  const make = (unit: NaturalUnit["unit"], amount: number, source: string, approximate = false): NaturalUnit =>
+    ({ unit, amount, referenceUnit: pack.unit, basis: pack.basis, source, approximate });
+  if (pack.basis === "as-sold" && pack.unit === "g" && servingMatch && servingConsistent &&
+      Number(servingMatch[1]) > 0 && Number(servingMatch[3]) > 0 && (!pack.amount || Number(servingMatch[3]) <= pack.amount)) {
+    const noun = servingMatch[2].toLowerCase();
+    natural = make(/biscuit|cookie/.test(noun) ? "biscuits" : /bar/.test(noun) ? "bars" : /bag/.test(noun) ? "bags" : "pots",
+      Number(servingMatch[3]) / Number(servingMatch[1]), `Open Food Facts package serving: ${serving}`);
+  }
+  const quantity = typeof product.quantity === "string" ? product.quantity.trim() : "";
+  const countedPack = /^(\d+(?:\.\d+)?)\s*g\s*\(\s*(\d+)\s+(biscuits?|cookies?)\s*\)$/i.exec(quantity);
+  if (!natural && countedPack && pack.unit === "g" && pack.basis === "as-sold" && Number(countedPack[1]) > 0 && Number(countedPack[2]) > 0)
+    natural = make("biscuits", Number(countedPack[1]) / Number(countedPack[2]), `Declared pack weight and count: ${quantity}`);
+  if (!natural && pack.amount) {
+    if ((/canned|tinned/.test(name) && /soup|tomato|beans/.test(name) || code === "5000157024671") && pack.basis === "as-sold" && pack.unit === "g")
+      natural = make("tins", pack.wholePack?.amount ?? pack.amount, `Declared whole pack: ${quantity || pack.label}; include all contents`);
+    else if (/crisp|chips/.test(name)) natural = make("bags", pack.amount, `Verified individual pack: ${pack.label}`);
+    else if ((/\bbar\b|chocolate/.test(name) || /\bbar\b/i.test(pack.label)) && pack.amount <= 100) natural = make("bars", pack.amount, `Verified individual bar: ${pack.label}`);
+    else if (/noodle|\bpot\b/.test(name) && pack.basis === "prepared") natural = make("pots", pack.amount, `Verified complete prepared product: ${pack.label}`);
+  }
+  // A documented comparable portion is an approximation, never a fabricated pack count.
+  const kcal = Number(product.nutriments?.["energy-kcal_100g"]);
+  if (!natural && /\b(digestive|digestives)\b/.test(name) && !/chocolat|oat|cream|filled|gluten.free/.test(name) && kcal >= 380 && kcal <= 550)
+    natural = make("biscuits", 14.7, "Approximate comparable biscuit weight: McVitie's Original Digestive, 14.7g per biscuit (https://www.mcvities.ch/produkte/digestive-the-original/). This product's individual weight is not supplied.", true);
+  if (!natural || !Number.isFinite(natural.amount) || natural.amount <= 0) return pack;
+  if (natural.unit === "biscuits") {
+    const wholePack = pack.wholePack ?? (pack.amount ? { amount: pack.amount, label: pack.label } : undefined);
+    return { ...pack, naturalUnit: natural, amount: natural.amount, label: `One biscuit (${natural.approximate ? "approximately " : ""}${natural.amount}g)`,
+      wholePack, limitation: natural.approximate ? natural.source : "" };
+  }
+  return { ...pack, naturalUnit: natural };
 }
 
 const nutrientFields = ["energyKj", "energyKcal", "protein", "carbohydrate", "sugars", "fat", "saturates", "fibre", "salt", "sodium", "potassium", "phosphorus", "calcium", "magnesium", "iron", "zinc"] as const;

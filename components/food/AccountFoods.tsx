@@ -2,7 +2,8 @@
 import { useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { foodAccount } from "@/lib/foodAccount";
-import { localFoodDate, snapshotForQuantity, type FoodSnapshot, type SavedFood } from "@/lib/foodSnacks";
+import { localFoodDate, initialQuantityEntry, snapshotForEntry, type FoodSnapshot, type SavedFood } from "@/lib/foodSnacks";
+import QuantityFields from "./QuantityFields";
 import { notifyFoodAccount, type useFoodAccount } from "@/lib/useFoodAccount";
 type Account = ReturnType<typeof useFoodAccount>;
 
@@ -41,20 +42,21 @@ export function AddSnack({ owner, barcode, name, snapshot, quantity, open, onClo
   owner: string; barcode: string; name: string; snapshot: FoodSnapshot; quantity: number | null; open: boolean; onClose: () => void;
 }) {
   const [date, setDate] = useState(localFoodDate);
-  const [amount, setAmount] = useState(quantity?.toString() ?? "");
+  const [entry, setEntry] = useState(() => initialQuantityEntry(snapshot, quantity));
   const [message, setMessage] = useState("");
   const [saving, setSaving] = useState(false);
   const busy = useRef(false), id = useRef<string | null>(null);
+  let preview: FoodSnapshot | null = null;
+  try { preview = snapshotForEntry(snapshot, entry).snapshot; } catch { /* Wait for a valid quantity. */ }
   if (!open) return null;
   async function save() {
     if (busy.current) return;
     busy.current = true; setSaving(true); setMessage("");
     try {
-      const parsed = Number(amount);
       if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error("Choose a planner date.");
-      const scaled = snapshotForQuantity(snapshot, parsed);
+      const scaled = snapshotForEntry(snapshot, entry);
       id.current ??= crypto.randomUUID();
-      await foodAccount(createClient(), owner).save({ id: id.current, user_id: owner, planned_on: date, barcode, name, quantity: parsed, snapshot: scaled });
+      await foodAccount(createClient(), owner).save({ id: id.current, user_id: owner, planned_on: date, barcode, name, ...scaled });
       notifyFoodAccount(); setMessage(`Added to planned Snacks for ${date}. This does not record it as eaten.`);
     } catch (error) { setMessage(error instanceof Error ? error.message : "Unable to add this snack."); }
     finally { busy.current = false; setSaving(false); }
@@ -64,8 +66,9 @@ export function AddSnack({ owner, barcode, name, snapshot, quantity, open, onClo
     <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">Complete product, including supplied sauce or seasoning · {snapshot.basis} · planned, not recorded as eaten.</p>
     <div className="mt-3 flex flex-wrap gap-3">
       <label className="text-sm">Date<input aria-label="Snack planner date" type="date" value={date} onChange={e => setDate(e.target.value)} className="mt-1 block rounded-lg border bg-white dark:bg-slate-800 p-2 text-slate-900 dark:text-slate-100" /></label>
-      <label className="text-sm">Quantity ({snapshot.unit}, {snapshot.basis})<input aria-label="Snack quantity" type="number" min="0.01" max="100000" step="any" value={amount} onChange={e => setAmount(e.target.value)} className="mt-1 block w-36 rounded-lg border bg-white dark:bg-slate-800 p-2 text-slate-900 dark:text-slate-100" /></label>
+      <QuantityFields snapshot={snapshot} value={entry} onChange={setEntry} label="Snack quantity" />
     </div>
+    {preview && <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-700 dark:text-slate-200">{(["potassium", "phosphate"] as const).map(key => <span key={key}>{key === "potassium" ? "Potassium" : "Phosphorus"}: {preview!.nutrients[key].value === null ? "Not available" : `${Math.round(preview!.nutrients[key].value!)} mg`}{preview!.nutrients[key].kind === "estimated" && <span className="ml-1 font-bold text-amber-800 dark:text-amber-300">ESTIMATE</span>}</span>)}</div>}
     <div className="mt-3 flex gap-2"><button type="button" disabled={saving || Boolean(message.startsWith("Added to"))} onClick={() => void save()} className="rounded-xl bg-orange-600 px-4 py-2 font-bold text-white disabled:opacity-50">{saving ? "Adding…" : "Confirm addition"}</button><button type="button" disabled={saving} onClick={onClose} className="rounded-xl border px-4 py-2">Close</button></div>
     {message && <p role="status" className="mt-3 text-sm text-slate-700 dark:text-slate-200">{message}</p>}
   </div>;

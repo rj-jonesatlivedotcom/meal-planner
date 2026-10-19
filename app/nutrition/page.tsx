@@ -1877,7 +1877,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   ))}
 
                   <tr><th className="px-3 py-4 text-left text-sm font-bold">Snacks</th>
-                    {days.map((day, index) => <td key={`snacks-${day}`} className="min-w-0 px-1 align-top"><PlannerSnacks date={getCurrentWeekDate(index)} snacks={snackAccount.snacks} error={snackAccount.error} report /></td>)}
+                    {days.map((day, index) => <td key={`snacks-${day}`} className="min-w-0 px-1 align-top"><PlannerSnacks hideHeading date={getCurrentWeekDate(index)} snacks={snackAccount.snacks} error={snackAccount.error} report /></td>)}
                     <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 p-3 text-xs">Planned snacks are included below. Estimates are labelled; missing values make totals incomplete.</td>
                   </tr>
                   <tr className="bg-green-50">

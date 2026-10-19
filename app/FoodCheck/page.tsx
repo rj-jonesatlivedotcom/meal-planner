@@ -9,7 +9,9 @@ import { barcodePortion, portionNutrition, type BarcodePortion } from "./barcode
 import type { UsdaFood } from "./usdaData";
 import { MyFoods, AddSnack } from "@/components/food/AccountFoods";
 import { useFoodAccount, notifyFoodAccount } from "@/lib/useFoodAccount";
-import { foodSnapshot } from "@/lib/foodSnacks";
+import { foodSnapshot, initialQuantityEntry, quantityEquivalent, type QuantityEntry } from "@/lib/foodSnacks";
+import QuantityFields from "@/components/food/QuantityFields";
+import { resolveCategoryMinerals, questionableMineralZeros } from "./categoryMinerals";
 
 type CofidRow = Record<string, unknown>;
 
@@ -39,6 +41,7 @@ type Food = {
   imageUrl?: string;
   minerals?: MineralResults;
   portion?: BarcodePortion;
+  questionableMinerals?: string[];
 };
 
 function optionalNumberValue(
@@ -228,6 +231,7 @@ export default function FoodCheckPage() {
   const supabase = createClient();
   const myFoods = useFoodAccount();
   const [snackDialogOpen, setSnackDialogOpen] = useState(false);
+  const [foodQuantity, setFoodQuantity] = useState<QuantityEntry | null>(null);
   const [myFoodsError, setMyFoodsError] = useState("");
 
   const [search, setSearch] = useState("");
@@ -674,22 +678,28 @@ export default function FoodCheckPage() {
       };
 
       food.portion = barcodePortion(code, product);
+      const zeroFlags = questionableMineralZeros(product);
+      food.questionableMinerals = Object.keys(zeroFlags);
+      for (const key of ["calcium", "magnesium", "iron", "zinc"] as const) if (zeroFlags[key]) food[key] = null;
+      const loadCofid = async (foodCode: string) => {
+        const { data, error } = await supabase.from("cofid_foods").select("food_code,food_name,potassium_mg,phosphorus_mg").eq("food_code", foodCode).maybeSingle();
+        return error ? null : data;
+      };
+      const loadUsda = async (fdcId: number) => {
+        const response = await fetch(`/api/food-check/usda?fdcId=${fdcId}`);
+        if (!response.ok) return null;
+        return ((await response.json()).food ?? null) as UsdaFood | null;
+      };
       food.minerals = await resolveCuratedMinerals(code, {
         potassium: food.potassium,
         phosphorus: food.phosphorus,
-      }, async foodCode => {
-        const { data, error } = await supabase.from("cofid_foods")
-          .select("food_code,food_name,potassium_mg,phosphorus_mg")
-          .eq("food_code", foodCode).maybeSingle();
-        return error ? null : data;
-      }, {
+      }, loadCofid, {
         basis: food.portion.basis, unit: food.portion.unit, singleOnly: true,
-        loadUsda: async fdcId => {
-          const response = await fetch(`/api/food-check/usda?fdcId=${fdcId}`);
-          if (!response.ok) return null;
-          const payload = await response.json();
-          return (payload.food ?? null) as UsdaFood | null;
-        },
+        loadUsda,
+        questionableZero: { potassium: Boolean(zeroFlags.potassium), phosphorus: Boolean(zeroFlags.phosphorus) },
+      });
+      food.minerals = await resolveCategoryMinerals(code, product, food.minerals, loadCofid, {
+        basis: food.portion.basis, unit: food.portion.unit, loadUsda,
       });
       if (requestId !== searchRequestRef.current) return;
 
@@ -775,6 +785,7 @@ export default function FoodCheckPage() {
    */
 
   function selectFood(food: Food) {
+    setFoodQuantity(null);
     setSnackDialogOpen(false);
     setSelectedFood(food);
     setReferenceView(false);
@@ -813,8 +824,15 @@ export default function FoodCheckPage() {
    * ---------------------------------------------------------
    */
 
-  const activePortion = referenceView ? undefined : wholePackView && selectedFood?.portion?.wholePack
+  const basePortion = wholePackView && selectedFood?.portion?.wholePack
     ? { ...selectedFood.portion, ...selectedFood.portion.wholePack } : selectedFood?.portion;
+  const quantitySnapshot = selectedFood?.portion ? foodSnapshot(selectedFood, selectedFood.portion.unit, selectedFood.portion.basis,
+    selectedFood.source + ". " + mineralSourceExplanation(selectedFood.minerals), selectedFood.portion.naturalUnit) : null;
+  let enteredAmount: number | null = null;
+  try { if (foodQuantity && quantitySnapshot) enteredAmount = quantityEquivalent(quantitySnapshot, foodQuantity); } catch { /* Unfinished input */ }
+  const activePortion = referenceView ? undefined : foodQuantity && selectedFood?.portion
+    ? enteredAmount === null ? undefined : { ...selectedFood.portion, amount: enteredAmount, label: `${foodQuantity.amount} ${foodQuantity.unit} (${Number(enteredAmount.toFixed(2))}${selectedFood.portion.unit})` }
+    : basePortion;
   const nutritionFood = selectedFood ? portionNutrition(selectedFood, activePortion) : null;
 
   if (!userChecked) {
@@ -1354,7 +1372,7 @@ export default function FoodCheckPage() {
                         </button>
                       </div>
                       {snackDialogOpen && myFoods.owner && selectedFood.portion && <AddSnack key={`${myFoods.owner}:${selectedFood.code}`} open owner={myFoods.owner} barcode={selectedFood.code} name={selectedFood.name}
-                        snapshot={foodSnapshot(selectedFood, selectedFood.portion.unit, selectedFood.portion.basis, `${selectedFood.source}: https://world.openfoodfacts.org/product/${selectedFood.code}. ${mineralSourceExplanation(selectedFood.minerals)}`)}
+                        snapshot={{ ...foodSnapshot(selectedFood, selectedFood.portion.unit, selectedFood.portion.basis, `${selectedFood.source}: https://world.openfoodfacts.org/product/${selectedFood.code}. ${mineralSourceExplanation(selectedFood.minerals)}`, selectedFood.portion.naturalUnit), ...(foodQuantity ? { entry: foodQuantity } : {}) }}
                         quantity={activePortion?.amount ?? selectedFood.portion.amount} onClose={() => setSnackDialogOpen(false)} />}
                     </div>}
 
@@ -1368,16 +1386,20 @@ export default function FoodCheckPage() {
 
                       {selectedFood.source === "Open Food Facts" && selectedFood.portion?.amount && (
                         <div className="mt-2 flex flex-wrap gap-2 text-sm">
-                          <button type="button" aria-pressed={!referenceView && !wholePackView} onClick={() => { setReferenceView(false); setWholePackView(false); }}
-                            className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.wholePack ? "Manufacturer serving" : "Whole product / one unit"}</button>
+                          <button type="button" aria-pressed={!referenceView && !wholePackView} onClick={() => { setFoodQuantity(null); setReferenceView(false); setWholePackView(false); }}
+                            className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.naturalUnit?.unit === "biscuits" ? "One biscuit" : selectedFood.portion.wholePack ? "Manufacturer serving" : "Whole product / one unit"}</button>
                           {selectedFood.portion.wholePack && <button type="button" aria-pressed={!referenceView && wholePackView}
-                            onClick={() => { setReferenceView(false); setWholePackView(true); }}
+                            onClick={() => { setFoodQuantity(null); setReferenceView(false); setWholePackView(true); }}
                             className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.wholePack.label}</button>}
                           <button type="button" aria-pressed={referenceView} onClick={() => setReferenceView(true)}
                             className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.referenceLabel} reference</button>
                         </div>
                       )}
-                      {selectedFood.portion?.limitation && <p className="mt-2 text-sm leading-6 text-slate-600">{selectedFood.portion.limitation}</p>}
+                      {selectedFood.source === "Open Food Facts" && quantitySnapshot && <div className="mt-3">
+                        <QuantityFields snapshot={quantitySnapshot} value={foodQuantity ?? initialQuantityEntry(quantitySnapshot, basePortion?.amount ?? null)}
+                          onChange={entry => { setFoodQuantity(entry); setReferenceView(false); }} label="Eating quantity" />
+                      </div>}
+                      {selectedFood.portion?.limitation && !selectedFood.portion.naturalUnit?.approximate && <p className="mt-2 text-sm leading-6 text-slate-600">{selectedFood.portion.limitation}</p>}
 
                     </div>
 
@@ -1539,6 +1561,7 @@ export default function FoodCheckPage() {
                           <h3 className="text-sm font-semibold leading-6 text-blue-950">
                             Nutritional information source
                           </h3>
+                          {Boolean(selectedFood.questionableMinerals?.length) && <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Open Food Facts reports unverified zeros for {selectedFood.questionableMinerals?.join(", ")}. These are treated as questionable, not measured zeros.</p>}
                           <p className="mt-1 text-sm leading-6 text-slate-600">
                             {selectedFood.source === "CoFID 2021"
                               ? "McCance and Widdowson's Composition of Foods Integrated Dataset (CoFID), 2021."

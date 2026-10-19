@@ -1,4 +1,5 @@
 import { CURATED_MINERALS } from "@/app/FoodCheck/curatedMinerals";
+import { CATEGORY_USDA_IDS } from "@/app/FoodCheck/categoryMinerals";
 import { usdaClient } from "@/app/FoodCheck/usda.server";
 
 export const runtime = "nodejs";
@@ -9,7 +10,7 @@ export async function GET(request: Request) {
   const raw = new URL(request.url).searchParams.get("fdcId") ?? "";
   if (!/^\d{1,10}$/.test(raw)) return Response.json({ food: null }, { status: 400 });
   const id = Number(raw);
-  const reviewed = CURATED_MINERALS.some(mapping => mapping.usdaReview?.fdcIds.includes(id) ||
+  const reviewed = CATEGORY_USDA_IDS.includes(id) || CURATED_MINERALS.some(mapping => mapping.usdaReview?.fdcIds.includes(id) ||
     Object.values(mapping.usdaMatches ?? {}).some(match => match?.fdcId === id));
   if (!reviewed) return Response.json({ food: null }, { status: 404 });
   const result = await usdaClient.food(id);

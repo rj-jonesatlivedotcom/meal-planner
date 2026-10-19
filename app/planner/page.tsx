@@ -3248,7 +3248,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
             <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200">
               <div className="flex items-center justify-center border-r border-slate-100 p-3 text-sm font-bold">Snacks</div>
-              {days.map(day => <div key={`snacks-${day}`} className="min-w-0 border-r border-slate-100"><PlannerSnacks date={getDateForPlannerDay(day)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} /></div>)}
+              {days.map(day => <div key={`snacks-${day}`} className="min-w-0 border-r border-slate-100"><PlannerSnacks hideHeading date={getDateForPlannerDay(day)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} /></div>)}
             </div>
 
             {/* DAILY FLUID ROW */}

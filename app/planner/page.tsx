@@ -2169,6 +2169,14 @@ function formatPotassiumMg(mg: number): string {
   .planner-mobile-empty-copy strong { display: block; font-size: 15px; font-weight: 750; color: #10243e; }
   .planner-mobile-empty-copy > span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.4; color: #64748b; }
   .planner-mobile-empty > svg { width: 14px; height: 20px; color: #233c58; }
+  /* Dark-mode action tiles: retain distinct accents without pastel glare. */
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-tile { color: #f1f5f9; box-shadow: 0 2px 6px #07131d35; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-chef { background: #253c50; border-color: #52738c; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-chef svg { color: #a9d5f5; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-calendar { background: #49352b; border-color: #a36d49; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-calendar > svg { color: #ffac6c; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-clear { background: #203e35; border-color: #4c9070; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-clear svg { color: #83d8aa; }
   html[data-theme="dark"] .planner-mobile-week-heading, html[data-theme="dark"] .planner-mobile-empty-copy strong { color: #f1f5f9; }
   html[data-theme="dark"] .planner-mobile-empty { background: #172b3a; border-color: #8a6741; }
   html[data-theme="dark"] .planner-mobile-empty-copy > span { color: #cbd5e1; }

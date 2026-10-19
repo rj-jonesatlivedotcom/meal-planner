@@ -1,9 +1,15 @@
 "use client";
 
+import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
+import { MobileCalendarTile } from "@/components/calendar/CalendarToolbar";
+import { formatWeek, shortCalendarDate } from "@/lib/calendar";
+import { datedPlannerEnabled } from "@/lib/supabase/config";
+
 import Link from "next/link";
 import Image from "next/image";
-import { Suspense, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useMemo, useEffect, useRef, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { normalizePlannerNutrient, type PlannerNutrient } from "@/lib/plannerNutrients";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getStoredRequirements, type Requirements } from "@/lib/recipeRequirements";
@@ -23,62 +29,6 @@ const mealTypes = [
   "Lunch",
   "Dinner",
 ];
-
-function MealIcon({
-  type,
-}: {
-  type: "Breakfast" | "Lunch" | "Dinner" | "Nutrition";
-}) {
-  const common =
-    "h-5 w-5 stroke-current stroke-[1.8]";
-
-  if (type === "Breakfast") {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" className={common} aria-hidden="true">
-        <path d="M4 11h16" />
-        <path d="M5 11a7 7 0 0 1 14 0" />
-        <path d="M3 14h18" />
-        <path d="M6 17h12" />
-        <path d="M8 20h8" />
-      </svg>
-    );
-  }
-
-  if (type === "Lunch") {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" className={common} aria-hidden="true">
-        <path d="M4 8h16" />
-        <path d="M5 8h14l-1 10H6L5 8Z" />
-        <path d="M8 5h8" />
-        <path d="M8 12h8" />
-      </svg>
-    );
-  }
-
-  if (type === "Dinner") {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" className={common} aria-hidden="true">
-        <circle cx="12" cy="13" r="7" />
-        <path d="M5 6v5" />
-        <path d="M3.5 6v5" />
-        <path d="M6.5 6v5" />
-        <path d="M5 11v7" />
-        <path d="M19 6v12" />
-        <path d="M19 6c-2 1.5-2 4 0 5" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={common} aria-hidden="true">
-      <path d="M12 3v18" />
-      <path d="M3 12h18" />
-      <path d="M5.5 5.5l13 13" />
-      <path d="M18.5 5.5l-13 13" />
-      <circle cx="12" cy="12" r="8.5" />
-    </svg>
-  );
-}
 
 function MyChefIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
@@ -154,21 +104,6 @@ function getLocalDateKey(date = new Date()): string {
   return `${year}-${month}-${day}`;
 }
 
-function readFluidLog(): FluidEntry[] {
-  try {
-    const value = localStorage.getItem(FLUID_LOG_STORAGE_KEY);
-    if (!value) return [];
-    const parsed = JSON.parse(value);
-    return Array.isArray(parsed) ? parsed.filter((entry) =>
-      entry && typeof entry.id === "string" && typeof entry.date === "string" &&
-      typeof entry.drink === "string" && Number.isFinite(Number(entry.amountMl))
-    ) : [];
-  } catch {
-    return [];
-  }
-}
-
-
 function createEmptyPlanner(): PlannerMeals {
   const initial: PlannerMeals = {};
 
@@ -193,10 +128,30 @@ function createEmptyMealPeople(): MealPeople {
   return initial;
 }
 
+function WeeklyPlannerPageContent() {
+  const weeklyPageStorage = useWeeklyPageStorage();
+  const router = useRouter();
+const { readFluidLog, getHouseholdPeople, syncPlannerWithShoppingList } = useMemo(() => {
+function readFluidLog(): FluidEntry[] {
+  try {
+    const value = weeklyPageStorage.getItem(FLUID_LOG_STORAGE_KEY);
+    if (!value) return [];
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.filter((entry) =>
+      entry && typeof entry.id === "string" && typeof entry.date === "string" &&
+      typeof entry.drink === "string" && Number.isFinite(Number(entry.amountMl))
+    ) : [];
+  } catch {
+    return [];
+  }
+}
+
+
+
 function getHouseholdPeople(): number {
   try {
     const shoppingData =
-      localStorage.getItem("shopping-data");
+      weeklyPageStorage.getItem("shopping-data");
 
     if (shoppingData) {
       const parsed = JSON.parse(shoppingData);
@@ -245,7 +200,7 @@ function syncPlannerWithShoppingList(
   mealPeople: MealPeople
 ) {
   const saved =
-    localStorage.getItem("shopping-data");
+    weeklyPageStorage.getItem("shopping-data");
 
   let data: ShoppingData = {
     selectedRecipes: [],
@@ -299,8 +254,7 @@ function syncPlannerWithShoppingList(
     ]),
   ];
 
-  localStorage.setItem(
-    "shopping-data",
+  weeklyPageStorage.setItem("shopping-data",
     JSON.stringify({
       ...data,
       selectedRecipes:
@@ -319,7 +273,10 @@ function syncPlannerWithShoppingList(
   );
 }
 
-function WeeklyPlannerPageContent() {
+
+return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShoppingList };
+}, [weeklyPageStorage]);
+
   const [selectedDay, setSelectedDay] =
     useState("Monday");
   const [plannerMeals, setPlannerMeals] =
@@ -327,6 +284,7 @@ function WeeklyPlannerPageContent() {
 
   const [mealPeople, setMealPeople] =
     useState<MealPeople | null>(null);
+  const [loadedPlannerStorage, setLoadedPlannerStorage] = useState<typeof weeklyPageStorage | null>(null);
 
   const [peoplePicker, setPeoplePicker] =
     useState<{
@@ -385,7 +343,7 @@ function WeeklyPlannerPageContent() {
   const [fluidAmount, setFluidAmount] = useState("200");
   const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [emptyPlannerPromptDismissed, setEmptyPlannerPromptDismissed] = useState(false);
+  const [, setEmptyPlannerPromptDismissed] = useState(false);
   const plannerWasEmptyRef = useRef(false);
   // Prevent a mobile tap that dismisses the welcome prompt from being
   // retargeted to an underlying planner control by the browser.
@@ -440,6 +398,7 @@ function WeeklyPlannerPageContent() {
   }, [plannerMeals]);
 
   useEffect(() => {
+    if (!weeklyPageStorage.ready) return;
     setFluidEntries(readFluidLog());
     let cancelled = false;
     async function loadCloudFluidLog() {
@@ -461,7 +420,7 @@ function WeeklyPlannerPageContent() {
         [...cloudEntries, ...localEntries].forEach((entry) => byId.set(entry.id, entry));
         const merged = [...byId.values()];
         setFluidEntries(merged);
-        localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(merged));
+        weeklyPageStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(merged));
         const localOnly = localEntries.filter((entry) => !cloudEntries.some((cloud) => cloud.id === entry.id));
         if (localOnly.length) {
           await supabase.from("user_fluid_entries").upsert(localOnly.map((entry) => ({
@@ -497,12 +456,12 @@ function WeeklyPlannerPageContent() {
       window.removeEventListener("meal-planner-requirements-updated", reloadRequirements);
       window.removeEventListener("storage", reloadFluid);
     };
-  }, []);
+  }, [readFluidLog, weeklyPageStorage]);
 
   function saveFluidEntries(nextEntries: FluidEntry[]) {
     const previousEntries = fluidEntries;
     setFluidEntries(nextEntries);
-    localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(nextEntries));
+    weeklyPageStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(nextEntries));
     window.dispatchEvent(new Event("renalplan-fluid-log-updated"));
     void (async () => {
       try {
@@ -595,7 +554,7 @@ function WeeklyPlannerPageContent() {
   const accountHydratedRef = useRef(false);
 
   useEffect(() => {
-    if (!authChecked || !plannerInitialisedRef.current) return;
+    if (datedPlannerEnabled() || !authChecked || !plannerInitialisedRef.current) return;
 
     let cancelled = false;
 
@@ -607,7 +566,7 @@ function WeeklyPlannerPageContent() {
 
       if (!user) {
         setAccountUserId(null);
-        localStorage.removeItem("planner-recipe-add-pending");
+        weeklyPageStorage.removeItem("planner-recipe-add-pending");
         setAccountSyncReady(true);
         accountHydratedRef.current = true;
         return;
@@ -640,7 +599,7 @@ function WeeklyPlannerPageContent() {
       // navigating here. Treat that explicit change as newer than the saved account
       // plan, otherwise account hydration can immediately overwrite the new meal.
       const recipeAddPending =
-        localStorage.getItem("planner-recipe-add-pending") === "true";
+        weeklyPageStorage.getItem("planner-recipe-add-pending") === "true";
 
       if (recipeAddPending) {
         const { error: saveError } = await supabase
@@ -657,7 +616,7 @@ function WeeklyPlannerPageContent() {
           // Keep the marker so a later Planner load can retry rather than
           // silently reverting the user's explicit recipe selection.
         } else {
-          localStorage.removeItem("planner-recipe-add-pending");
+          weeklyPageStorage.removeItem("planner-recipe-add-pending");
         }
 
         if (!cancelled) {
@@ -696,7 +655,7 @@ function WeeklyPlannerPageContent() {
             console.error("Unable to save existing local meal plan:", saveError);
           }
         } else {
-          const shoppingSaved = localStorage.getItem("shopping-data");
+          const shoppingSaved = weeklyPageStorage.getItem("shopping-data");
           let shoppingData: ShoppingData = {
             selectedRecipes: [],
             shoppingList: [],
@@ -715,8 +674,7 @@ function WeeklyPlannerPageContent() {
             }
           }
 
-          localStorage.setItem(
-            "shopping-data",
+          weeklyPageStorage.setItem("shopping-data",
             JSON.stringify({ ...shoppingData, people: remotePeople })
           );
 
@@ -751,7 +709,7 @@ function WeeklyPlannerPageContent() {
     return () => {
       cancelled = true;
     };
-  }, [authChecked, plannerMeals, mealPeople]);
+  }, [authChecked, plannerMeals, mealPeople, getHouseholdPeople, weeklyPageStorage]);
 
   function handlePlannerTouchStart(
 
@@ -804,6 +762,7 @@ function WeeklyPlannerPageContent() {
   }
 
   useEffect(() => {
+    if (!weeklyPageStorage.ready) return;
     let cancelled = false;
 
     async function loadPlannerRequirements() {
@@ -883,13 +842,13 @@ function WeeklyPlannerPageContent() {
       createEmptyMealPeople();
 
     const saved =
-      localStorage.getItem(
-        "weekly-planner"
+      weeklyPageStorage.getItem("weekly-planner"
       );
 
     if (!saved) {
       setPlannerMeals(emptyPlanner);
       setMealPeople(createEmptyMealPeople());
+      setLoadedPlannerStorage(weeklyPageStorage);
       return;
     }
 
@@ -919,7 +878,7 @@ function WeeklyPlannerPageContent() {
       const householdPeople = getHouseholdPeople();
 
       if (
-        householdPeople > 1 &&
+        !datedPlannerEnabled() && householdPeople > 1 &&
         savedMealPeople
       ) {
         const savedValues = days.flatMap((day) =>
@@ -964,6 +923,7 @@ function WeeklyPlannerPageContent() {
     }
 
     plannerInitialisedRef.current = true;
+    setLoadedPlannerStorage(weeklyPageStorage);
 
     return () => {
       window.removeEventListener(
@@ -971,18 +931,18 @@ function WeeklyPlannerPageContent() {
         handleRequirementsUpdated
       );
     };
-  }, []);
+  }, [getHouseholdPeople, syncPlannerWithShoppingList, weeklyPageStorage]);
 
   useEffect(() => {
     if (
+      !weeklyPageStorage.ready || loadedPlannerStorage !== weeklyPageStorage ||
       plannerMeals === null ||
       mealPeople === null
     ) {
       return;
     }
 
-    localStorage.setItem(
-      "weekly-planner",
+    weeklyPageStorage.setItem("weekly-planner",
       JSON.stringify({
         ...plannerMeals,
         mealPeople,
@@ -994,7 +954,7 @@ function WeeklyPlannerPageContent() {
       mealPeople
     );
 
-    if (accountSyncReady && accountUserId && accountHydratedRef.current) {
+    if (!datedPlannerEnabled() && accountSyncReady && accountUserId && accountHydratedRef.current) {
       const supabase = createClient();
       const householdPeople = getHouseholdPeople();
 
@@ -1016,7 +976,7 @@ function WeeklyPlannerPageContent() {
     window.dispatchEvent(
       new Event("weekly-planner-updated")
     );
-  }, [plannerMeals, mealPeople, accountSyncReady, accountUserId]);
+  }, [plannerMeals, mealPeople, accountSyncReady, accountUserId, getHouseholdPeople, syncPlannerWithShoppingList, weeklyPageStorage, loadedPlannerStorage]);
 
   function getPeopleForMeal(
     day: string,
@@ -1263,15 +1223,21 @@ function WeeklyPlannerPageContent() {
           if (requirements?.potassiumLimitMg != null) {
             penalty(potassium - requirements.potassiumLimitMg, 100000);
           } else if (requirements?.potassium && requirements.potassium !== "Any") {
-            comboRecipes.forEach((recipe) => penalty((rank[recipe.potassium] ?? 1) - (rank[requirements.potassium] ?? 1), 50000));
+            comboRecipes.forEach((recipe) => {
+              if (!recipe.clinicalReviewPending) penalty((rank[recipe.potassium] ?? 1) - (rank[requirements.potassium] ?? 1), 50000);
+            });
           }
           if (requirements?.phosphateLimitMg != null) {
             penalty(phosphate - requirements.phosphateLimitMg, 100000);
           } else if (requirements?.phosphate && requirements.phosphate !== "Any") {
-            comboRecipes.forEach((recipe) => penalty((rank[recipe.phosphate] ?? 1) - (rank[requirements.phosphate] ?? 1), 50000));
+            comboRecipes.forEach((recipe) => {
+              if (!recipe.clinicalReviewPending) penalty((rank[recipe.phosphate] ?? 1) - (rank[requirements.phosphate] ?? 1), 50000);
+            });
           }
           if (requirements?.purines && requirements.purines !== "Any") {
-            comboRecipes.forEach((recipe) => penalty((rank[recipe.purines] ?? 1) - (rank[requirements.purines] ?? 1), 50000));
+            comboRecipes.forEach((recipe) => {
+              if (!recipe.clinicalReviewPending) penalty((rank[recipe.purines] ?? 1) - (rank[requirements.purines] ?? 1), 50000);
+            });
           }
           if (requirements?.proteinMinG != null) penalty(requirements.proteinMinG - protein, 2000);
           if (requirements?.proteinMaxG != null) penalty(protein - requirements.proteinMaxG, 100000);
@@ -1436,6 +1402,8 @@ openMyChefIntro();
 
     const currentWeekDates = new Set(
       days.map((_, index) => {
+        const selectedDate = datedDayDate(days[index]);
+        if (selectedDate) return selectedDate;
         const date = new Date(monday);
         date.setDate(monday.getDate() + index);
         return getLocalDateKey(date);
@@ -1448,15 +1416,14 @@ openMyChefIntro();
 
     setPlannerMeals(createEmptyPlanner());
     setMealPeople(createEmptyMealPeople());
-    localStorage.removeItem("planner-pending-slot");
+    weeklyPageStorage.removeItem("planner-pending-slot");
     setShowClearConfirm(false);
   }
 
   function browseRecipes() {
     if (!picker) return;
 
-    localStorage.setItem(
-      "planner-pending-slot",
+    weeklyPageStorage.setItem("planner-pending-slot",
       JSON.stringify({
         day: picker.day,
         meal: picker.meal,
@@ -1465,9 +1432,9 @@ openMyChefIntro();
 
     setPicker(null);
 
-    window.location.href = `/recipes?meal=${encodeURIComponent(
+    navigateWeeklyPage(`/recipes?meal=${encodeURIComponent(
       picker.meal
-    )}`;
+    )}`, url => router.push(url));
   }
 
   function getRecipe(
@@ -1506,18 +1473,10 @@ openMyChefIntro();
     });
   }
 
-  type NutritionView =
-    | "Calories"
-    | "Protein"
-    | "Carbohydrate"
-    | "Sodium"
-    | "Potassium"
-    | "Phosphate"
-    | "Purines"
-    | "Fluid";
+  type NutritionView = PlannerNutrient;
 
   const [nutritionView, setNutritionView] =
-    useState<NutritionView>("Fluid");
+    useState<NutritionView>("Calories");
 
   function getNutritionNumber(
     value: string
@@ -1550,6 +1509,8 @@ function formatPotassiumMg(mg: number): string {
   }
 
   function getDateForPlannerDay(day: string): string {
+    const dated = datedDayDate(day);
+    if (dated) return dated;
     const today = new Date();
     const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const weekday = monday.getDay();
@@ -1751,8 +1712,7 @@ function formatPotassiumMg(mg: number): string {
     if (
       nutritionView !== "Sodium" &&
       nutritionView !== "Potassium" &&
-      nutritionView !== "Phosphate" &&
-      nutritionView !== "Purines"
+      nutritionView !== "Phosphorus"
     ) {
       return "Empty";
     }
@@ -1764,14 +1724,14 @@ function formatPotassiumMg(mg: number): string {
     }
 
     if (nutritionView === "Potassium") {
-      return recipe.potassium;
+      return recipe.clinicalReviewPending ? "Pending review" : recipe.potassium;
     }
 
-    if (nutritionView === "Phosphate") {
-      return recipe.phosphate;
+    if (nutritionView === "Phosphorus") {
+      return recipe.clinicalReviewPending ? "Pending review" : recipe.phosphate;
     }
 
-    return recipe.purines;
+    return "Empty";
   }
 
   function getNutritionSegmentClass(
@@ -1795,11 +1755,13 @@ function formatPotassiumMg(mg: number): string {
   function Tricirculus({
     day,
     desktop = false,
+    fluidView = false,
   }: {
     day: string;
     desktop?: boolean;
+    fluidView?: boolean;
   }) {
-    if (nutritionView === "Fluid") {
+    if (fluidView) {
       const date = getDateForPlannerDay(day);
       const total = totalFluidForPlannerDay(day);
       const planned = plannedMealFluidForDay(day);
@@ -1884,7 +1846,7 @@ function formatPotassiumMg(mg: number): string {
               ? "sodium"
               : nutritionView === "Potassium"
                 ? "potassium"
-                : nutritionView === "Phosphate"
+                : nutritionView === "Phosphorus"
                   ? "phosphate"
                   : null;
 
@@ -1918,7 +1880,7 @@ function formatPotassiumMg(mg: number): string {
           ? formatSalt(total)
           : nutritionView === "Potassium"
             ? formatPotassiumMg(total)
-            : nutritionView === "Phosphate"
+            : nutritionView === "Phosphorus"
               ? `${total.toLocaleString()} mg`
               : `${total.toLocaleString()} ${
                   nutritionView === "Calories"
@@ -1933,7 +1895,7 @@ function formatPotassiumMg(mg: number): string {
             ? formatSalt(limit)
             : nutritionView === "Potassium"
               ? formatPotassiumMg(limit)
-              : nutritionView === "Phosphate"
+              : nutritionView === "Phosphorus"
                 ? `${limit.toLocaleString()} mg`
                 : `${limit.toLocaleString()} ${
                     nutritionView === "Calories"
@@ -2036,8 +1998,7 @@ function formatPotassiumMg(mg: number): string {
       );
     }
 
-    // Purines remain a meal-level RAG because recipe data stores purines
-    // as Low / Moderate / High rather than a numeric daily amount.
+    // Fallback meal ratings for non-numeric nutrient views.
     const breakfast = getMealNutritionRating(day, "Breakfast");
     const lunch = getMealNutritionRating(day, "Lunch");
     const dinner = getMealNutritionRating(day, "Dinner");
@@ -2068,7 +2029,9 @@ function formatPotassiumMg(mg: number): string {
 
     let overallStatus = "No meals";
 
-    if (ratings.includes("High")) {
+    if (ratings.includes("Pending review")) {
+      overallStatus = "Not assessed";
+    } else if (ratings.includes("High")) {
       overallStatus = "High";
     } else if (ratings.includes("Moderate")) {
       overallStatus = "Moderate";
@@ -2097,6 +2060,7 @@ function formatPotassiumMg(mg: number): string {
     function getShortRating(rating: string) {
       if (rating === "Moderate") return "Mod";
       if (rating === "Empty") return "—";
+      if (rating === "Pending review") return "N/A";
       return rating;
     }
 
@@ -2179,20 +2143,37 @@ function formatPotassiumMg(mg: number): string {
     mealTypes.every((meal) => !plannerMeals[day]?.[meal])
   );
 
-  const selectedDayIsEmpty = mealTypes.every(
-    (meal) => !plannerMeals[selectedDay]?.[meal]
-  );
-
-  // Desktop keeps the original behaviour: show the welcome prompt only when
-  // the entire week is empty. On mobile, show it when the day being viewed
-  // is empty as well, because mobile only displays one day at a time.
-  const showEmptyPlannerPrompt =
-    (plannerIsCompletelyEmpty || selectedDayIsEmpty) &&
-    !emptyPlannerPromptDismissed;
+  // The retired auto-fill welcome popup stays off in every Planner mode.
+  const showEmptyPlannerPrompt = false;
 
   return (
     <>
       <style>{`
+
+.planner-mobile-action-area { display: none; }
+@media (max-width: 767px) {
+  .planner-mobile-action-area { display: block; margin-bottom: 10px; }
+  .planner-mobile-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
+  .planner-mobile-actions .planner-mobile-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; width: 100%; height: 90px; min-width: 0; padding: 8px 5px; border: 1.5px solid; border-radius: 17px; box-shadow: 0 3px 7px #17344a12; color: #10243e; font-size: clamp(11px, 3.3vw, 14px); font-weight: 750; line-height: 1.2; text-align: center; cursor: pointer; transition: transform 120ms, box-shadow 120ms; }
+  .planner-mobile-actions .planner-mobile-tile svg { width: 30px; height: 30px; flex-shrink: 0; }
+  .planner-mobile-actions .planner-mobile-chef { background: #e8f5ff; border-color: #acdcfa; }
+  .planner-mobile-actions .planner-mobile-calendar { background: #fff1e5; border-color: #fdc692; }
+  .planner-mobile-actions .planner-mobile-calendar > svg { color: #fb781d; }
+  .planner-mobile-actions .planner-mobile-clear { background: #e2faed; border-color: #a0ecc3; }
+  .planner-mobile-actions .planner-mobile-clear svg { color: #168b54; }
+  .planner-mobile-actions .planner-mobile-tile:active { transform: scale(.97); box-shadow: 0 1px 3px #17344a12; }
+  .planner-mobile-actions .planner-mobile-tile:focus-visible { outline: 2px solid #0284c7; outline-offset: 3px; }
+  .planner-mobile-actions .planner-mobile-tile:disabled { opacity: .65; cursor: wait; }
+  .planner-mobile-week-heading { margin: 0; font-size: clamp(16px, 4.6vw, 20px); font-weight: 750; line-height: 1.3; color: #10243e; }
+  .planner-mobile-empty { display: grid; grid-template-columns: 44px minmax(0, 1fr) 14px; align-items: center; gap: 12px; width: 100%; min-height: 94px; padding: 12px; border: 1.5px dashed #fed7aa; border-radius: 16px; background: linear-gradient(135deg, #fff, #fff9f1); text-align: left; }
+  .planner-mobile-empty-copy strong { display: block; font-size: 15px; font-weight: 750; color: #10243e; }
+  .planner-mobile-empty-copy > span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.4; color: #64748b; }
+  .planner-mobile-empty > svg { width: 14px; height: 20px; color: #233c58; }
+  html[data-theme="dark"] .planner-mobile-week-heading, html[data-theme="dark"] .planner-mobile-empty-copy strong { color: #f1f5f9; }
+  html[data-theme="dark"] .planner-mobile-empty { background: #172b3a; border-color: #8a6741; }
+  html[data-theme="dark"] .planner-mobile-empty-copy > span { color: #cbd5e1; }
+}
+
 /* Planner meal-card remove buttons: keep the X black in dark mode. */
 html[data-theme="dark"] main .planner-remove-button,
 html[data-theme="dark"] main .planner-remove-button:hover,
@@ -2200,7 +2181,7 @@ html[data-theme="dark"] main .planner-remove-button:focus-visible {
   color: #000000 !important;
 }
 html[data-theme="dark"] main .planner-remove-button {
-  background-color: #ffffff !important;
+  background-color: #e2e8f0 !important;
 }
 
         html[data-theme="dark"] .planner-desktop-empty-slot {
@@ -2296,10 +2277,10 @@ html[data-theme="dark"] main .planner-remove-button {
           top: -35%;
           bottom: -35%;
           left: 0;
-          width: 34%;
+          width: 44%;
           transform: translateX(-180%) skewX(-18deg);
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.66), transparent);
-          animation: plannerMyChefShimmer 3s ease-in-out 0.5s infinite;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent);
+          animation: plannerMyChefShimmer 2.6s ease-in-out 0.2s infinite;
           pointer-events: none;
           z-index: 0;
         }
@@ -2320,10 +2301,10 @@ html[data-theme="dark"] main .planner-remove-button {
 
         .planner-remove-button {
           z-index: 30 !important;
-          background: #ffffff !important;
+          background: #f8fafc !important;
           color: #111827 !important;
-          border: 1px solid #94a3b8 !important;
-          box-shadow: 0 1px 4px rgba(15,23,42,0.24) !important;
+          border: 1px solid #cbd5e1 !important;
+          box-shadow: 0 1px 2px rgba(15,23,42,0.1) !important;
         }
 
         html[data-theme="dark"] .planner-mychef-panel {
@@ -2351,10 +2332,10 @@ html[data-theme="dark"] main .planner-remove-button {
         html[data-theme="dark"] main .planner-remove-button,
         html[data-theme="dark"] main .planner-remove-button:hover,
         html[data-theme="dark"] main .planner-remove-button:focus-visible {
-          background: #ffffff !important;
+          background: #e2e8f0 !important;
           color: #111827 !important;
-          border-color: #94a3b8 !important;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.5) !important;
+          border-color: #64748b !important;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
         }
         html[data-theme="dark"] main .planner-remove-button:hover,
         html[data-theme="dark"] main .planner-remove-button:focus-visible {
@@ -2362,7 +2343,7 @@ html[data-theme="dark"] main .planner-remove-button {
           border-color: #f87171 !important;
         }
 
-        html[data-theme="dark"] .planner-pick-for-me-button { background: #7c2d12 !important; color: #fff7ed !important; border-color: #9a3412 !important; }
+        html[data-theme="dark"] .planner-pick-for-me-button { background: #e0f2fe !important; color: #082f49 !important; border-color: #bae6fd !important; }
         html[data-theme="dark"] .planner-clear-week-button { background: #202e3a !important; color: #f8fafc !important; border-color: #9a6b24 !important; }
 
         @media (prefers-reduced-motion: reduce) {
@@ -2386,6 +2367,22 @@ html[data-theme="dark"] main .planner-remove-button {
       >
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
+
+        <div className="planner-mobile-action-area">
+          <div className="planner-mobile-actions">
+            <button type="button" className="planner-mobile-tile planner-mobile-chef" onClick={startPickForMe} disabled={isDiceRolling}
+              aria-label={isDiceRolling ? "MyChef is planning your meals" : "Open MyChef"}>
+              <MyChefIcon className="h-8 w-8" />
+              <span>{isDiceRolling ? "Planning..." : "Let MyChef plan"}</span>
+            </button>
+            <MobileCalendarTile />
+            <button type="button" className="planner-mobile-tile planner-mobile-clear" onClick={() => setShowClearConfirm(true)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7" /></svg>
+              <span>Clear Week</span>
+            </button>
+          </div>
+          {datedDayDate("Monday") && <h2 className="planner-mobile-week-heading" aria-live="polite">{formatWeek(datedDayDate("Monday")!)}</h2>}
+        </div>
 
         {/* MOBILE DAY SELECTOR */}
 
@@ -2421,7 +2418,7 @@ html[data-theme="dark"] main .planner-remove-button {
                       : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-emerald-50 hover:text-emerald-800"
                   }`}
                 >
-                  {day.slice(0, 3)}
+                  {day.slice(0, 3)}{datedDayDate(day) && <span className="block text-[10px]">{shortCalendarDate(datedDayDate(day)!)}</span>}
                   {isSelected && (
                     <span
                       aria-hidden="true"
@@ -2446,34 +2443,11 @@ html[data-theme="dark"] main .planner-remove-button {
           className="md:hidden"
           onTouchStart={handlePlannerTouchStart}
           onTouchEnd={handlePlannerTouchEnd}
+          onTouchCancel={() => {
+            touchStartX.current = null;
+            touchStartY.current = null;
+          }}
         >
-
-          {/* MOBILE MYCHEF */}
-          <button
-            type="button"
-            onClick={startPickForMe}
-            disabled={isDiceRolling}
-            aria-label={isDiceRolling ? "MyChef is planning your meals" : "Open MyChef"}
-            className={`planner-pick-for-me-button planner-mychef-button group mb-3 flex h-[72px] min-h-[72px] w-full flex-col items-center justify-center gap-1.5 rounded-2xl border-2 border-orange-500 bg-orange-500 px-3 py-2 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:border-orange-600 hover:shadow-lg ${
-              isDiceRolling
-                ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
-                : ""
-            }`}
-          >
-            <span
-              className={`relative z-10 inline-flex leading-none transition-transform ${
-                isDiceRolling
-                  ? "animate-pulse scale-110"
-                  : "group-hover:scale-110"
-              }`}
-              aria-hidden="true"
-            >
-              <MyChefIcon className="h-6 w-6" />
-            </span>
-            <span className="relative z-10">
-              {isDiceRolling ? "MyChef is planning..." : "Let MyChef plan"}
-            </span>
-          </button>
 
           <section className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/80">
 
@@ -2487,10 +2461,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
                   <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
 
-                    <span className="flex min-w-0 items-center gap-2 text-lg font-bold leading-none text-slate-800">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
-                        <MealIcon type="Breakfast" />
-                      </span>
+                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
                       Breakfast
                     </span>
 
@@ -2502,7 +2473,7 @@ html[data-theme="dark"] main .planner-remove-button {
                           meal: "Breakfast",
                         });
                       }}
-                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                      className="shrink-0 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
                     >
                       {getPeopleForMeal(
                         selectedDay,
@@ -2562,16 +2533,15 @@ html[data-theme="dark"] main .planner-remove-button {
                       meal: "Breakfast",
                     })
                   }
-                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  className="planner-empty-slot planner-mobile-empty group transition hover:border-orange-400"
                 >
 
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
                     +
                   </span>
 
-                  <span className="mt-3 text-sm font-bold text-slate-700">
-                    Add breakfast
-                  </span>
+                  <span className="planner-mobile-empty-copy"><strong>Add breakfast</strong><span>Choose a recipe or let MyChef plan it</span></span>
+                  <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="m3 3 7 7-7 7" /></svg>
 
                 </button>
 
@@ -2585,10 +2555,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
                   <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
 
-                    <span className="flex min-w-0 items-center gap-2 text-lg font-bold leading-none text-slate-800">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
-                        <MealIcon type="Lunch" />
-                      </span>
+                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
                       Lunch
                     </span>
 
@@ -2600,7 +2567,7 @@ html[data-theme="dark"] main .planner-remove-button {
                           meal: "Lunch",
                         });
                       }}
-                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                      className="shrink-0 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
                     >
                       {getPeopleForMeal(
                         selectedDay,
@@ -2660,16 +2627,15 @@ html[data-theme="dark"] main .planner-remove-button {
                       meal: "Lunch",
                     })
                   }
-                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  className="planner-empty-slot planner-mobile-empty group transition hover:border-orange-400"
                 >
 
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
                     +
                   </span>
 
-                  <span className="mt-3 text-sm font-bold text-slate-700">
-                    Add lunch
-                  </span>
+                  <span className="planner-mobile-empty-copy"><strong>Add lunch</strong><span>Choose a recipe or let MyChef plan it</span></span>
+                  <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="m3 3 7 7-7 7" /></svg>
 
                 </button>
 
@@ -2683,10 +2649,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
                   <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
 
-                    <span className="flex min-w-0 items-center gap-2 text-lg font-bold leading-none text-slate-800">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
-                        <MealIcon type="Dinner" />
-                      </span>
+                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
                       Dinner
                     </span>
 
@@ -2698,7 +2661,7 @@ html[data-theme="dark"] main .planner-remove-button {
                           meal: "Dinner",
                         });
                       }}
-                      className="shrink-0 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                      className="shrink-0 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
                     >
                       {getPeopleForMeal(
                         selectedDay,
@@ -2758,16 +2721,15 @@ html[data-theme="dark"] main .planner-remove-button {
                       meal: "Dinner",
                     })
                   }
-                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  className="planner-empty-slot planner-mobile-empty group transition hover:border-orange-400"
                 >
 
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
                     +
                   </span>
 
-                  <span className="mt-3 text-sm font-bold text-slate-700">
-                    Add dinner
-                  </span>
+                  <span className="planner-mobile-empty-copy"><strong>Add dinner</strong><span>Choose a recipe or let MyChef plan it</span></span>
+                  <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="m3 3 7 7-7 7" /></svg>
 
                 </button>
 
@@ -2775,6 +2737,21 @@ html[data-theme="dark"] main .planner-remove-button {
 
             </div>
 
+          </section>
+
+          {/* MOBILE FLUID TRACKER */}
+          <section className="mt-3 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+            <div className="grid grid-cols-[minmax(0,1fr)_140px] items-center gap-3 border-t border-slate-100 px-4 py-3">
+              <div className="min-w-0">
+                <h2 className="text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">
+                  Fluid
+                </h2>
+                <p className="mt-1 text-xs leading-5 text-slate-600">
+                  Tap the day to log drinks
+                </p>
+              </div>
+              {Tricirculus({ day: selectedDay, fluidView: true })}
+            </div>
           </section>
 
           {/* MOBILE DAILY NUTRITION */}
@@ -2792,7 +2769,7 @@ html[data-theme="dark"] main .planner-remove-button {
                 <select
                   value={nutritionView}
                   onChange={(event) => {
-                    setNutritionView(event.target.value as NutritionView);
+                    setNutritionView(normalizePlannerNutrient(event.target.value));
                   }}
                   className="mt-1.5 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-700 outline-none transition focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"
                   aria-label="Choose daily nutrition"
@@ -2812,19 +2789,15 @@ html[data-theme="dark"] main .planner-remove-button {
                   <option value="Potassium">
                     Potassium
                   </option>
-                  <option value="Phosphate">
-                    Phosphate
+                  <option value="Phosphorus">
+                    Phosphorus
                   </option>
-                  <option value="Purines">
-                    Purines
-                  </option>
-                  <option value="Fluid">Fluid (tap to log drinks)</option>
                 </select>
 
               </div>
 
-              <div className="flex shrink-0 items-center justify-center pr-1">
-                <Tricirculus day={selectedDay} />
+              <div className="flex min-w-0 shrink-0 items-center justify-center pr-1">
+                {Tricirculus({ day: selectedDay })}
               </div>
 
             </div>
@@ -2843,12 +2816,24 @@ html[data-theme="dark"] main .planner-remove-button {
 
             <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-emerald-100 bg-emerald-50">
 
-              <div className="flex items-center bg-emerald-50 px-4 py-2">
-
-                <span className="text-[11px] font-bold uppercase tracking-wider text-green-700">
-                  Meals
-                </span>
-
+              <div className="flex items-center bg-emerald-50 px-2 py-0">
+                <button
+                  type="button"
+                  onClick={() => setShowClearConfirm(true)}
+                  aria-label="Clear Week"
+                  title="Clear Week"
+                  style={{
+                    backgroundColor: theme === "dark" ? "#38242a" : "#fff1f2",
+                    color: theme === "dark" ? "#fecdd3" : "#be123c",
+                    borderColor: theme === "dark" ? "#65404a" : "#fecdd3",
+                  }}
+                  className="planner-desktop-clear-week-button inline-flex h-8 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border px-2 text-[10px] font-bold shadow-sm transition hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                    <path d="M4 7h16M10 11v6M14 11v6M5 7l1 14h12l1-14M9 7V4h6v3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="whitespace-nowrap">Clear Week</span>
+                </button>
               </div>
 
               {days.map((day) => (
@@ -2857,7 +2842,7 @@ html[data-theme="dark"] main .planner-remove-button {
                   className="flex items-center justify-center border-l border-emerald-100 bg-emerald-50 py-2"
                 >
                   <span className="text-sm font-extrabold tracking-[0.08em] text-green-700">
-                    {day.slice(0, 3)}
+                    {day.slice(0, 3)}{datedDayDate(day) && <span className="block text-[10px]">{shortCalendarDate(datedDayDate(day)!)}</span>}
                   </span>
                 </div>
               ))}
@@ -2872,17 +2857,9 @@ html[data-theme="dark"] main .planner-remove-button {
 
                 <div>
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
-                    <MealIcon type="Breakfast" />
-                  </div>
-
-                  <h2 className="mt-2 text-base font-extrabold tracking-tight text-slate-900">
+                  <h2 className="text-base font-extrabold tracking-tight text-slate-900">
                     Breakfast
                   </h2>
-
-                  <p className="mt-1 max-w-[90px] text-xs leading-5 text-slate-500">
-                    Morning meal
-                  </p>
 
                 </div>
 
@@ -2949,7 +2926,7 @@ html[data-theme="dark"] main .planner-remove-button {
                               meal: "Breakfast",
                             });
                           }}
-                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                          className="mx-auto mt-1 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
                         >
                           {getPeopleForMeal(
                             day,
@@ -3012,17 +2989,9 @@ html[data-theme="dark"] main .planner-remove-button {
 
                 <div>
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
-                    <MealIcon type="Lunch" />
-                  </div>
-
-                  <h2 className="mt-2 text-base font-extrabold tracking-tight text-slate-900">
+                  <h2 className="text-base font-extrabold tracking-tight text-slate-900">
                     Lunch
                   </h2>
-
-                  <p className="mt-1 max-w-[90px] text-xs leading-5 text-slate-500">
-                    Midday meal
-                  </p>
 
                 </div>
 
@@ -3091,7 +3060,7 @@ html[data-theme="dark"] main .planner-remove-button {
                               meal: "Lunch",
                             });
                           }}
-                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                          className="mx-auto mt-1 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
                         >
                           {getPeopleForMeal(
                             day,
@@ -3153,17 +3122,9 @@ html[data-theme="dark"] main .planner-remove-button {
 
                 <div>
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-orange-600 shadow-sm ring-1 ring-orange-100">
-                    <MealIcon type="Dinner" />
-                  </div>
-
-                  <h2 className="mt-2 text-base font-extrabold tracking-tight text-slate-900">
+                  <h2 className="text-base font-extrabold tracking-tight text-slate-900">
                     Dinner
                   </h2>
-
-                  <p className="mt-1 max-w-[90px] text-xs leading-5 text-slate-500">
-                    Evening meal
-                  </p>
 
                 </div>
 
@@ -3232,7 +3193,7 @@ html[data-theme="dark"] main .planner-remove-button {
                               meal: "Dinner",
                             });
                           }}
-                          className="mx-auto mt-1 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-bold leading-none text-white shadow-sm"
+                          className="mx-auto mt-1 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
                         >
                           {getPeopleForMeal(
                             day,
@@ -3286,6 +3247,31 @@ html[data-theme="dark"] main .planner-remove-button {
 
             </div>
 
+            {/* DAILY FLUID ROW */}
+
+            <div className="planner-nutrition-row relative z-10 grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ pointerEvents: "auto" }}>
+              <div className="planner-nutrition-label flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
+                <div className="flex flex-col items-center gap-1.5 text-center">
+                  <h2 className="planner-nutrition-heading text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">
+                    Fluid
+                  </h2>
+                  <span className="text-[9px] font-semibold leading-tight text-slate-500">
+                    Tap a day to log drinks
+                  </span>
+                </div>
+              </div>
+
+              {days.map((day) => (
+                <div
+                  key={`fluid-${day}`}
+                  className="planner-nutrition-cell relative z-[9999] flex min-h-[136px] items-center justify-center border-l border-slate-100 px-1 py-3"
+                  style={{ isolation: "isolate", pointerEvents: "auto" }}
+                >
+                  <Tricirculus day={day} desktop fluidView />
+                </div>
+              ))}
+            </div>
+
             {/* DAILY NUTRITION ROW */}
 
             <div className="planner-nutrition-row relative z-10 grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ pointerEvents: "auto" }}>
@@ -3301,7 +3287,7 @@ html[data-theme="dark"] main .planner-remove-button {
                   <select
                     value={nutritionView}
                     onChange={(event) => {
-                      setNutritionView(event.target.value as NutritionView);
+                      setNutritionView(normalizePlannerNutrient(event.target.value));
                     }}
                     className="planner-nutrition-select w-full rounded-xl border border-slate-200 bg-white px-2 py-1.5 text-[10px] font-bold text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                     aria-label="Choose daily nutrition"
@@ -3321,46 +3307,23 @@ html[data-theme="dark"] main .planner-remove-button {
                     <option value="Potassium">
                       Potassium
                     </option>
-                    <option value="Phosphate">
-                      Phosphate
+                    <option value="Phosphorus">
+                      Phosphorus
                     </option>
-                    <option value="Purines">
-                      Purines
-                    </option>
-                    <option value="Fluid">Fluid (tap to log drinks)</option>
                   </select>
 
-                  {nutritionView !== "Fluid" && (
-                    <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
-                      {nutritionView === "Purines" ? (
-                        <>
-                          <span className="flex items-center gap-1.5">
-                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
-                            Low
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-amber-400" />
-                            Moderate
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />
-                            High
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="flex items-center gap-1.5">
-                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
-                            Within limit
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />
-                            Exceeds limit
-                          </span>
-                        </>
-                      )}
-                    </div>
-                  )}
+                  <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
+                    <>
+                        <span className="flex items-center gap-1.5">
+                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
+                          Within limit
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />
+                          Exceeds limit
+                        </span>
+                      </>
+                  </div>
 
                 </div>
 
@@ -3386,99 +3349,6 @@ html[data-theme="dark"] main .planner-remove-button {
 
         </div>
 
-        {/* MOBILE CLEAR WEEK */}
-        <button
-          type="button"
-          onClick={() => setShowClearConfirm(true)}
-          aria-label="Clear Week"
-          style={{
-            backgroundColor: theme === "dark" ? "#202e3a" : "#d1fae5",
-            color: theme === "dark" ? "#f8fafc" : "#12396b",
-            borderColor: theme === "dark" ? "#9a6b24" : "#a7f3d0",
-          }}
-          className="planner-clear-week-button mt-3 flex w-full items-center justify-center gap-3 rounded-3xl border-2 p-4 text-sm font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:hidden"
-        >
-          <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/70 text-xl leading-none" aria-hidden="true">🗑️</span>
-          <span className="whitespace-nowrap">Clear Week</span>
-        </button>
-
-        {/* SHOPPING LIST / CLEAR */}
-
-        <div className="hidden md:mt-5 md:flex md:flex-row md:items-stretch md:gap-3">
-
-          <div className="order-1 flex w-full min-w-0 self-stretch items-stretch gap-3 md:order-3 md:w-auto md:flex-1 md:justify-end md:self-stretch">
-
-            <button
-              type="button"
-              onClick={() => setShowClearConfirm(true)}
-              aria-label="Clear Week"
-              style={{
-                backgroundColor: theme === "dark" ? "#202e3a" : "#d1fae5",
-                color: theme === "dark" ? "#f8fafc" : "#12396b",
-                borderColor: theme === "dark" ? "#9a6b24" : "#a7f3d0",
-              }}
-              className="planner-clear-week-button hidden md:flex flex h-[120px] min-h-[120px] min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-2xl border-2 px-2 py-4 text-sm font-bold shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:w-[130px] md:flex-none md:px-4 md:py-4 md:text-base"
-            >
-              <span className="inline-flex text-xl leading-none md:text-2xl" aria-hidden="true">🗑️</span>
-              <span className="whitespace-nowrap">Clear Week</span>
-            </button>
-
-          </div>
-
-          <Link
-            href="/shopping"
-            className="group order-2 flex w-full items-center justify-between rounded-3xl bg-white p-4 text-left shadow-md ring-1 ring-slate-200/80 transition hover:-translate-y-0.5 hover:bg-green-50/70 hover:ring-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 md:order-1 md:w-[36%] md:flex-none md:p-5"
-            aria-label="Go to Shopping List"
-          >
-
-            <div className="flex min-w-0 items-center gap-3">
-
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-green-100 text-xl transition group-hover:scale-105">
-                🛒
-              </span>
-
-              <div className="min-w-0">
-
-                <h2 className="text-base font-bold text-slate-900 md:text-lg">
-                  Go to Shopping List!
-                </h2>
-
-                <p className="mt-0.5 text-xs leading-5 text-slate-600 md:text-sm">
-                  Meals you select appear automatically in the Shopping List.
-                </p>
-
-              </div>
-
-            </div>
-
-            <span
-              className="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-xl font-bold text-green-600 transition group-hover:translate-x-1 group-hover:bg-green-600 group-hover:text-white"
-              aria-hidden="true"
-            >
-              →
-            </span>
-
-          </Link>
-
-          <Link
-            href="/nutrition"
-            aria-label="Go to Nutrition"
-            className="group order-3 flex w-full items-center justify-between rounded-3xl bg-sky-50 p-4 text-left text-slate-900 shadow-md ring-1 ring-sky-200 transition duration-200 hover:-translate-y-0.5 hover:bg-sky-100 hover:shadow-lg hover:ring-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 md:order-2 md:w-[30%] md:flex-none md:p-5"
-          >
-            <div className="flex min-w-0 items-center gap-3">
-              <span className="planner-nutrition-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-xl">📊</span>
-              <div className="min-w-0">
-                <h2 className="planner-nutrition-title text-base font-bold text-slate-900 md:text-lg">Go to Nutrition</h2>
-                <p className="planner-nutrition-description mt-0.5 text-xs leading-5 text-slate-700 md:text-sm">Review your weekly nutrition and fluid intake.</p>
-              </div>
-            </div>
-            <span className="planner-nutrition-arrow ml-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-100 text-xl font-bold text-sky-700 transition group-hover:translate-x-1 group-hover:bg-sky-600 group-hover:text-white" aria-hidden="true">→</span>
-          </Link>
-
-
-
-        </div>
-
       </div>
 
       {/* CLEAR CONFIRMATION */}
@@ -3494,7 +3364,7 @@ html[data-theme="dark"] main .planner-remove-button {
             </div>
 
             <h2 className="mt-4 text-xl font-bold text-slate-900">
-              Clear this week?
+              Clear this week? {datedDayDate("Monday") && <span>{formatWeek(datedDayDate("Monday")!)}</span>}
             </h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">

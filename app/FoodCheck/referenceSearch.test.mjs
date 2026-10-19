@@ -37,10 +37,77 @@ const rows=[
  ['17-671','Potato crisps, fried in sunflower oil',493,6.2,28.8,55.8,1328,135],
 ].map(([food_code,food_name,energy_kcal,protein_g,fat_g,carbohydrate_g,potassium_mg,phosphorus_mg])=>({food_code,food_name,energy_kcal,protein_g,fat_g,carbohydrate_g,potassium_mg,phosphorus_mg}));
 const soup={fdcId:171546,description:'Soup, chicken and vegetable, canned, ready-to-serve',dataset:'SR Legacy',unit:'g',preparation:'prepared',completeProductUnclear:false,potassiumMg:133,phosphorusMg:35,macros:{energyKcal:33,protein:1.97,fat:.73,carbohydrate:4.68},url:'https://fdc.nal.usda.gov/food-details/171546/nutrients'};
+// Additional reference rows verified with read-only CoFID SELECT and USDA
+// generic searches on 19 October 2026. Product descriptions below are deliberately
+// generic/unseen, not claims about a particular branded pack or barcode.
+rows.push(...[
+ ['11-788','Porridge oats, unfortified',381,10.9,8.1,70.7,372,387],
+ ['11-789','Porridge oats, unfortified, cooked, made up with semi-skimmed milk',84,4.6,2.3,12.1,202,145],
+ ['11-745','Breakfast cereal, cornflakes, unfortified',378,7.1,.8,91.4,93,53],
+ ['16-424','Sardines, canned in brine, drained',170,22.1,9.1,0,287,545],
+ ['16-439','Sardines, canned in sunflower oil, drained',220,23.3,14.1,0,410,520],
+ ['16-422','Sardines, canned in tomato sauce, whole contents',175,18.5,10.8,.9,371,417],
+ ['13-565','Carrots, young, canned in water, re-heated, drained',20,.5,.3,4.2,110,14],
+ ['14-188','Peaches, canned in juice, whole contents',39,.6,null,9.7,170,19],
+ ['14-189','Peaches, canned in syrup, whole contents',55,.5,null,14,110,11],
+].map(([food_code,food_name,energy_kcal,protein_g,fat_g,carbohydrate_g,potassium_mg,phosphorus_mg])=>({food_code,food_name,energy_kcal,protein_g,fat_g,carbohydrate_g,potassium_mg,phosphorus_mg})));
+const genericUsda=[
+ [169340,'Carrots, canned, no salt added, solids and liquids',23,.59,.14,5.36,158,20],
+ [170512,'Peas and carrots, canned, no salt added, solids and liquids',38,2.17,.27,8.48,100,46],
+ [169930,'Peaches, canned, juice pack, solids and liquids',44,.63,.03,11.6,128,17],
+ [169936,'Pears, canned, juice pack, solids and liquids',50,.34,.07,12.9,96,12],
+].map(([fdcId,description,energyKcal,protein,fat,carbohydrate,potassiumMg,phosphorusMg])=>({fdcId,description,macros:{energyKcal,protein,fat,carbohydrate},potassiumMg,phosphorusMg,dataset:'SR Legacy',unit:'g',preparation:'unspecified',completeProductUnclear:false,url:`https://fdc.nal.usda.gov/food-details/${fdcId}/nutrients`}));
 function service(extra={}) {const calls=[];const resolve=search.createReferenceSearch({cofid:async term=>{calls.push(['cofid',term]);return rows.filter(r=>r.food_name.toLowerCase().includes(term.toLowerCase()));},usda:async query=>{calls.push(['usda',query]);return{status:'ok',data:/soup/.test(query)?[soup]:[]};},...extra});return{resolve,calls};}
 async function result(code,svc=service()) {const p=products[code],flags=categories.questionableMineralZeros(p);const current=await minerals.resolveCuratedMinerals(code,{potassium:null,phosphorus:p.nutriments.phosphorus_100g===0?0:null},async()=>null,{basis:'as-sold',questionableZero:{phosphorus:!!flags.phosphorus}});const resolved=await categories.resolveCategoryMinerals(code,p,current,async()=>null,{basis:'as-sold',unit:'g',searchReferences:svc.resolve});return{p,resolved,portion:portions.barcodePortion(code,p),svc};}
 
+const examples = [
+ ['Marlow rolled porridge oats','1kg','40g',[381,10.9,8.1,70.7],{},'11-788',40,149,155],
+ ['Unfortified corn flakes','750g','30g',[378,7.1,.8,91.4],{},'11-745',30,28,16],
+ ['Sardines in brine, drained','125g','60g',[170,22.1,9.1,0],{},'16-424',60,172,327],
+ ['Sliced carrots in water','400g','200g',[23,.59,.14,5.36],{},'169340',200,316,40],
+ ['Pêches en conserve in fruit juice','410g','125g',[39,.6,.1,9.7],{},'14-188',125,213,24],
+ ['Larkspur pear slices in juice','410g','100g',[50,.34,.07,12.9],{},'169936',100,96,12],
+ ['Milk chocolate','200g','25g',[519,7.3,31.1,56],{},'17-648',25,113,56],
+];
 if(!process.env.RENALPLAN_UI_PREVIEW) {
+for (const [name,quantity,serving,macros,extra,expected,grams,k,p] of examples) test('unseen food identity, state, live-shaped searches and serving: '+name,async()=>{
+ const product={product_name:name,quantity,serving_size:serving,nutriments:profile(...macros),...extra};
+ const calls=[];const resolve=search.createReferenceSearch({cofid:async term=>{calls.push(['CoFID',term]);return rows.filter(r=>r.food_name.toLowerCase().includes(term));},usda:async query=>{calls.push(['USDA',query]);return{status:'ok',data:genericUsda};}});
+ const portion=portions.barcodePortion('never-mapped',product),r=await resolve(product,portion.basis,portion.unit);
+ assert.ok(calls.some(c=>c[0]==='CoFID')&&calls.some(c=>c[0]==='USDA'));assert.equal(r.matches.potassium?.code,expected);assert.equal(r.matches.phosphorus?.code,expected);assert.equal(portion.amount,grams);
+ assert.equal(Math.round(r.matches.potassium.potassiumMg*grams/100),k);assert.equal(Math.round(r.matches.phosphorus.phosphorusMg*grams/100),p);
+ console.log(JSON.stringify({food:name,identity:r.classification,basis:portion.basis,searches:r.searches,reference:expected,source:r.matches.potassium.source,grams,K:k,P:p}));
+});
+test('unknown or incompatible can contents abstain; broader queries do not relax preparation',async()=>{
+ const svc=service({usda:async()=>({status:'ok',data:genericUsda})});
+ for(const name of ['Sardines in brine','Sardines in oil','Carrots in water, drained']){
+  const r=await svc.resolve({product_name:name,nutriments:profile(170,22,9,0)},'as-sold','g');assert.equal(Object.keys(r.matches).length,0);assert.ok(r.searches.length);assert.match(r.reasons.potassium,/identity|basis/);
+ }
+ const peaches={product_name:'Peach slices in juice',nutriments:profile(55,.5,.1,14)};const id=matching.identifyFood(peaches);
+ const syrup=rows.find(r=>r.food_code==='14-189');assert.equal(matching.rankReferences(peaches,id,[{source:'CoFID 2021',code:syrup.food_code,description:syrup.food_name,macros:{energyKcal:55,protein:.5,fat:.1,carbohydrate:14},potassiumMg:110,phosphorusMg:11}],'as-sold').length,0);
+});
+test('bulk, missing/contradictory servings and dry/prepared/drained quantities stay consistent',()=>{
+ const oats={product_name:'Rolled oats',quantity:'1kg',nutriments:profile(381,10.9,8.1,70.7)};
+ const fallback=portions.barcodePortion('unseen',oats);assert.equal(fallback.amount,100);assert.equal(fallback.basis,'dry');assert.equal(fallback.wholePack.amount,1000);assert.match(fallback.label,/Grams entry/);
+ assert.equal(portions.barcodePortion('unseen',{...oats,serving_size:'Prepared portion (250g)'}).amount,100);
+ assert.equal(portions.barcodePortion('unseen',{...oats,serving_size:'40g',serving_quantity:50,serving_quantity_unit:'g'}).amount,100);
+ assert.equal(portions.barcodePortion('unseen',{...oats,serving_quantity:40,serving_quantity_unit:'g'}).amount,40);
+ assert.equal(portions.barcodePortion('unseen',{...oats,serving_size:'40g dry oats'}).amount,40);
+ assert.equal(portions.barcodePortion('unseen',{product_name:'Milk chocolate',quantity:'200g',serving_size:'25g'}).naturalUnit.unit,'servings');
+ const drained=portions.barcodePortion('unseen',{product_name:'Carrots in water, drained',quantity:'400g (drained 240g)',serving_size:'120g'});assert.equal(drained.amount,120);assert.equal(drained.wholePack.amount,240);assert.match(drained.referenceLabel,/drained/);
+ const unknown=portions.barcodePortion('unseen',{product_name:'Sardines in brine, drained',quantity:'125g'});assert.equal(unknown.amount,null);
+ const actual=portions.barcodePortion('unseen',{...oats,serving_size:'40g'});const nutrient={value:372,kind:'estimated'};const values=Object.fromEntries(snapshots.snackNutrients.map(k=>[k,nutrient]));const snap={version:1,unit:'g',basis:'dry',source:'CoFID',reference:values,nutrients:values,naturalUnit:actual.naturalUnit};const saved=snapshots.snapshotForEntry(snap,{amount:3,unit:'servings'});assert.equal(saved.quantity,120);assert.equal(saved.snapshot.nutrients.potassium.value,446.4);assert.equal(saved.snapshot.basis,'dry');
+});
+test('preparation and identity beat even identical macros; questionable zeros retain the raw source',async()=>{
+ const product={product_name:'Porridge oats',nutriments:profile(381,10.9,8.1,70.7)};const identity=matching.identifyFood(product);
+ const fake={source:'CoFID 2021',code:'wrong-state',description:'Porridge oats, cooked with milk',macros:matching.productMacros(product),potassiumMg:202,phosphorusMg:145};assert.equal(matching.rankReferences(product,identity,[fake],'dry').length,0);
+ const carrots={product_name:'Carrots in water',nutriments:{...profile(23,.59,.14,5.36),potassium_100g:0,phosphorus_100g:0,calcium_100g:0}};
+ const flags=categories.questionableMineralZeros(carrots);assert.ok(flags.potassium&&flags.phosphorus);
+ const raw=await minerals.resolveCuratedMinerals('unseen',{potassium:0,phosphorus:0},async()=>null,{basis:'as-sold',questionableZero:{potassium:true,phosphorus:true}});
+ const resolved=await categories.resolveCategoryMinerals('unseen',carrots,raw,async()=>null,{basis:'as-sold',unit:'g',searchReferences:search.createReferenceSearch({cofid:async()=>rows,usda:async()=>({status:'ok',data:genericUsda})})});
+ assert.equal(resolved.potassium.sourceValueMg,0);assert.equal(resolved.potassium.sourceState,'questionable');assert.equal(resolved.potassium.valueMg,158);
+ const zero=await minerals.resolveCuratedMinerals('unseen',{potassium:0,phosphorus:0},async()=>null,{basis:'as-sold'});assert.equal(zero.potassium.provenance,'reported');assert.equal(zero.potassium.valueMg,0);
+});
 for(const [code,foodCode,grams,k,p] of [['20203269','11-800',12.5,24,16],['4088600148588','11-807',17,44,21],['4088600107936','11-809',21,72,43]]) {
  test('runtime candidate searches and ranked comparison: '+code,async()=>{const r=await result(code);assert.ok(r.svc.calls.some(c=>c[0]==='cofid'));assert.ok(r.svc.calls.some(c=>c[0]==='usda'));assert.equal(r.resolved.potassium.estimate.references[0].foodCode,foodCode);assert.equal(r.resolved.phosphorus.estimate.references[0].foodCode,foodCode);assert.equal(r.portion.amount,grams);assert.equal(Math.round(r.resolved.potassium.valueMg*grams/100),k);assert.equal(Math.round(r.resolved.phosphorus.valueMg*grams/100),p);console.log(JSON.stringify({barcode:code,searches:r.svc.calls,reference:foodCode,K:k,P:p,grams}));});
 }

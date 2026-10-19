@@ -1,6 +1,6 @@
 import "server-only";
 import { additiveConcern, type CategoryProduct } from "./categoryMinerals";
-import { identifyFood, rankReferences, referenceNumber, type ReferenceCandidate, type ReferenceResolution } from "./referenceMatching";
+import { identifyFood, normaliseFood, rankReferences, referenceNumber, type ReferenceCandidate, type ReferenceResolution } from "./referenceMatching";
 import type { PreparationBasis } from "./curatedMinerals";
 import type { UsdaFood } from "./usdaData";
 
@@ -17,15 +17,17 @@ export function createReferenceSearch(deps: {
     const key = JSON.stringify({ product, basis, unit });
     const hit = cache.get(key); if (hit && hit.expires > now()) return hit.result;
     const result = (async () => {
-      const identity = identifyFood(product);
+      const identity = identifyFood(product, basis);
       const resolution: ReferenceResolution = { classification: identity?.label ?? null, matches: {}, reasons: {}, searches: [], note: identity?.note };
       if (!identity || unit !== "g" || basis === "unknown") {
         for (const key of ["potassium", "phosphorus"] as const) resolution.reasons[key] = "The food type or preparation/weight basis is not sufficiently described to select a comparable food.";
         return resolution;
       }
       const candidates: ReferenceCandidate[] = [];
-      await Promise.all([
-        ...identity.terms.slice(0, 2).map(async term => {
+      const seenTerms = new Set<string>(), seenQueries = new Set<string>();
+      const cofidSearch = async (term: string) => {
+          if (seenTerms.has(term)) return;
+          seenTerms.add(term);
           try {
             const rows = await deps.cofid(term);
             resolution.searches.push({ source: "CoFID 2021", query: term, candidates: rows.length, status: "ok" });
@@ -34,21 +36,34 @@ export function createReferenceSearch(deps: {
               macros: { energyKcal: referenceNumber(row.energy_kcal), protein: referenceNumber(row.protein_g), fat: referenceNumber(row.fat_g), carbohydrate: referenceNumber(row.carbohydrate_g) },
               url: "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid" });
           } catch { resolution.searches.push({ source: "CoFID 2021", query: term, candidates: 0, status: "unavailable" }); }
-        }),
-        (async () => {
+      };
+      const usdaSearch = async (query: string) => {
+          if (seenQueries.has(query)) return;
+          seenQueries.add(query);
           try {
-            const result = await deps.usda(identity.query);
-            resolution.searches.push({ source: "USDA", query: identity.query, candidates: result.data?.length ?? 0, status: result.status });
+            const result = await deps.usda(query);
+            resolution.searches.push({ source: "USDA", query, candidates: result.data?.length ?? 0, status: result.status });
             for (const row of result.data ?? []) {
               if (row.unit !== "g" || row.dataset === "Branded" || row.completeProductUnclear || !row.macros) continue;
               candidates.push({ source: "USDA", code: String(row.fdcId), description: row.description,
                 potassiumMg: row.potassiumMg, phosphorusMg: row.phosphorusMg, macros: row.macros, basis: row.preparation, url: row.url });
             }
-          } catch { resolution.searches.push({ source: "USDA", query: identity.query, candidates: 0, status: "unavailable" }); }
-        })(),
-      ]);
-      const unique = [...new Map(candidates.map(c => [c.source + c.code, c])).values()];
-      const ranked = rankReferences(product, identity, unique, basis);
+          } catch { resolution.searches.push({ source: "USDA", query, candidates: 0, status: "unavailable" }); }
+      };
+      const rank = () => rankReferences(product, identity, [...new Map(candidates.map(c => [c.source + c.code, c])).values()], basis);
+      await Promise.all([cofidSearch(identity.terms[0]), usdaSearch(identity.query)]);
+      let ranked = rank();
+      // Broaden the food words, never the preparation/contents acceptance rules.
+      // At most four CoFID name queries and two USDA queries per uncached food.
+      if (!ranked.some(r => r.candidate.source === "CoFID 2021") || !ranked.some(r => r.candidate.potassiumMg !== null) || !ranked.some(r => r.candidate.phosphorusMg !== null)) {
+        await Promise.all(identity.terms.slice(1, 4).map(cofidSearch));
+        if (!ranked.some(r => r.candidate.source === "USDA")) {
+          const evidenced = identity.tokens?.filter(t => candidates.some(c => normaliseFood(c.description).split(" ").includes(t)));
+          const broad = evidenced?.length ? identity.query.replace(identity.tokens!.join(" "), evidenced.join(" ")) : identity.terms[0];
+          if (broad !== identity.query) await usdaSearch(broad);
+        }
+        ranked = rank();
+      }
       for (const nutrient of ["potassium", "phosphorus"] as const) {
         const concern = additiveConcern(product, nutrient);
         if (concern) { resolution.reasons[nutrient] = concern; continue; }
@@ -59,7 +74,8 @@ export function createReferenceSearch(deps: {
         if (selected) resolution.matches[nutrient] = selected.candidate;
         else resolution.reasons[nutrient] = resolution.searches.some(s => s.status !== "ok")
           ? "A reference search was unavailable, and the remaining candidates did not support this mineral."
-          : "Reference candidates were searched, but none matched the food type, preparation and available nutrition closely enough.";
+          : ranked.length ? "Comparable foods were found, but this mineral was not supplied by those references."
+          : `Reference candidates were searched, but none matched the food identity, preparation and ${identity.state?.contents === "drained" ? "drained" : "whole edible contents including liquid"} basis closely enough.`;
       }
       return resolution;
     })();

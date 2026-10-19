@@ -1,11 +1,12 @@
 import { CURATED_MINERALS, type CofidMinerals, type Mineral, type MineralResults, type PreparationBasis } from "./curatedMinerals";
 import type { UsdaFood } from "./usdaData";
-import type { ReferenceResolution } from "./referenceMatching";
+import { identifyFood, type ReferenceResolution } from "./referenceMatching";
 
 export type CategoryProduct = {
   product_name?: string; product_name_en?: string; categories_tags?: string[]; categories?: string;
   ingredients_text?: string; additives_tags?: string[]; data_sources?: string;
   generic_name?: string;
+  nutrition_basis?: string;
   nutriments?: Record<string, unknown>;
 };
 type Rule = {
@@ -63,11 +64,11 @@ export function questionableMineralZeros(p: CategoryProduct): Partial<Record<Min
   // Source-aware abstention: a cluster of unverified OFF mineral zeros,
   // not a blanket assumption that every zero or every food must be mineral-rich.
   const name = description(p), ingredients = (p.ingredients_text ?? "").toLowerCase();
-  if (!/chicken|vegetable|milk|cheese|chocolat|biscuit|digestive|wafer|cornet/.test(name + " " + ingredients) ||
-      (number(p.nutriments?.proteins_100g) ?? 0) <= 1 || /producers|manufacturer/i.test(p.data_sources ?? "") ||
+  if (!identifyFood(p) || !name.trim() && !ingredients.trim() ||
+      (number(p.nutriments?.proteins_100g) ?? 0) <= 0 || /producers|manufacturer/i.test(p.data_sources ?? "") ||
       fields.filter(key => number(p.nutriments?.[key + "_100g"]) === 0).length < 3) return flags;
   for (const key of fields) if (number(p.nutriments?.[key + "_100g"]) === 0)
-    flags[key] = "Unverified Open Food Facts zero in a cluster of mineral zeros for a food containing protein; not established as a measured zero.";
+    flags[key] = "Unverified Open Food Facts zero in a cluster of mineral zeros for an identified food containing protein; not established as a measured zero.";
   return flags;
 }
 export function additiveConcern(p: CategoryProduct, nutrient: Mineral): string | null {

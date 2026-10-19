@@ -1,6 +1,6 @@
 import { scaleMineral, type MineralResults, type PreparationBasis } from "./curatedMinerals";
 import type { NaturalUnit } from "@/lib/foodSnacks";
-import { identifyFood } from "./referenceMatching";
+import { foodState, identifyFood } from "./referenceMatching";
 
 export type BarcodePortion = {
   amount: number | null;
@@ -18,28 +18,35 @@ type ProductQuantity = {
   nutrition_data_per?: unknown;
   nutrition_data_prepared?: unknown;
   product_name?: unknown;
+  product_name_en?: string;
   serving_size?: unknown;
   serving_quantity?: unknown;
   serving_quantity_unit?: unknown;
   categories_tags?: string[];
   nutriments?: Record<string, unknown>;
   ingredients_text?: string;
+  nutrition_basis?: string;
 };
 
-// Only the reviewed larger products opt into manufacturer-serving defaults.
-// Snack bars/bags keep one eating unit; USDA reference portions never replace UK labels.
-function manufacturerServing(code: string, product: ProductQuantity, pack: BarcodePortion): BarcodePortion {
-  if (!["5000295141599", "5000157024671"].includes(code) || !pack.amount || pack.basis !== "as-sold" || pack.unit !== "g") return pack;
+// Manufacturer servings have priority for every product, not selected barcodes.
+function manufacturerServing(product: ProductQuantity, pack: BarcodePortion): BarcodePortion {
+  if (pack.unit !== "g" || pack.referenceLabel.includes("unconfirmed")) return pack;
   const label = typeof product.serving_size === "string" ? product.serving_size.trim() : "";
-  const match = /\b(?:serving|portion|can)\b.*\((\d+(?:\.\d+)?)\s*g\)$/i.exec(label);
-  if (!match) return pack;
-  const amount = Number(match[1]);
-  if (!Number.isFinite(amount) || amount <= 0 || amount > pack.amount) return pack;
+  const weights = [...label.matchAll(/\b(\d+(?:[.,]\d+)?)\s*g\b/gi)];
+  if (weights.length > 1 || !weights.length && (label || product.serving_quantity_unit !== "g")) return pack;
+  const amount = weights.length ? Number(weights[0][1].replace(",", ".")) : Number(product.serving_quantity);
+  if (!Number.isFinite(amount) || amount <= 0 || amount > 100000 || pack.amount && amount > pack.amount) return pack;
+  const state = foodState({ product_name: typeof product.product_name === "string" ? product.product_name : undefined,
+    product_name_en: product.product_name_en,
+    categories_tags: product.categories_tags, ingredients_text: product.ingredients_text, nutrition_basis: product.nutrition_basis }, pack.basis);
+  if (/drained/i.test(label) && state.contents !== "drained" || /prepared|cooked|with milk|with water/i.test(label) && pack.basis !== "prepared") return pack;
+  if (pack.basis === "prepared" && !/prepared|cooked/i.test(label)) return pack;
   if (product.serving_quantity !== undefined && product.serving_quantity !== null) {
     const supplied = typeof product.serving_quantity === "number" || typeof product.serving_quantity === "string" && /^\d+(?:\.\d+)?$/.test(product.serving_quantity.trim()) ? Number(product.serving_quantity) : NaN;
     if (!Number.isFinite(supplied) || Math.abs(supplied - amount) > 0.01 || product.serving_quantity_unit !== "g") return pack;
   }
-  return { ...pack, amount, label: `Manufacturer serving (${amount}g)`, wholePack: { amount: pack.amount, label: pack.label } };
+  return { ...pack, amount, label: `Manufacturer serving (${amount}g${pack.basis === "dry" ? " dry" : state.contents === "drained" ? " drained" : ""})`,
+    wholePack: pack.amount && pack.amount !== amount ? { amount: pack.amount, label: pack.label } : undefined };
 }
 
 // Exact-barcode label evidence from the existing research. Prepared yield is the
@@ -59,13 +66,23 @@ function baseBarcodePortion(code: string, product: ProductQuantity): BarcodePort
   const isVolume = /(?:ml|l)$/i.test(quantity) || multi?.[4].toLowerCase() === "ml" || product.nutrition_data_per === "100ml";
   const unit = isVolume ? "ml" : "g";
   const prepared = known?.basis === "prepared" || product.nutrition_data_prepared === "on";
-  const basis: PreparationBasis = prepared ? "prepared" : "as-sold";
-  const referenceLabel = `Per 100${unit}${prepared ? " prepared" : ""}`;
+  const state = foodState({ product_name: typeof product.product_name === "string" ? product.product_name : undefined,
+    product_name_en: product.product_name_en,
+    categories_tags: product.categories_tags, ingredients_text: product.ingredients_text, nutrition_basis: product.nutrition_basis });
+  const basis: PreparationBasis = prepared ? "prepared" : state.preparation === "dry" ? "dry" : "as-sold";
+  const referenceLabel = `Per 100${unit}${prepared ? " prepared" : basis === "dry" ? " dry" : state.contents === "drained" ? " drained" : ""}`;
   const fallback = (limitation: string): BarcodePortion => ({ amount: null, unit, basis, label: referenceLabel, referenceLabel, limitation });
   if (product.nutrition_data_per === "100ml" && (single && /^(g|kg)$/i.test(single[2]) || multi?.[4].toLowerCase() === "g"))
     return fallback("Nutrition is per 100ml but the pack quantity is a mass. No mass/volume conversion has been made.");
   if (isVolume && product.nutrition_data_per !== "100ml")
     return { ...fallback("Pack quantity is a volume; the source nutrition mass/volume basis is unconfirmed. No pack conversion has been made."), referenceLabel: "Per 100g as recorded (volume basis unconfirmed)", label: "Per 100g as recorded (volume basis unconfirmed)" };
+  if (state.contents === "drained") {
+    const drained = /\bdrained(?: weight)?\s*[:(]?\s*(\d+(?:\.\d+)?)\s*g\b/i.exec(quantity);
+    if (!drained) return fallback("Nutrition is for drained contents; the pack's total weight cannot be used as a drained weight. Enter drained grams or use a declared drained serving.");
+    const amount = Number(drained[1]);
+    if (!(amount > 0) || single && amount > Number(single[1])) return fallback("The drained weight is not verified.");
+    return { amount, unit, basis, label: `Whole drained contents (${amount}g)`, referenceLabel, limitation: "" };
+  }
   if (known && !/[x×]/i.test(quantity)) {
     const supplied = single ? Number(single[1]) * (/^kg$/i.test(single[2]) ? 1000 : 1)
       : /^\d+(?:\.\d+)?$/.test(quantity) ? Number(quantity) : null;
@@ -73,7 +90,7 @@ function baseBarcodePortion(code: string, product: ProductQuantity): BarcodePort
       return fallback("The source quantity differs from the reviewed pack. Showing the source reference values until the pack quantity is verified.");
     if (quantity && supplied === null) return fallback("The current pack quantity cannot be verified against the reviewed quantity.");
     if (prepared && known.basis !== "prepared") return fallback("The prepared serving weight is not verified.");
-    return manufacturerServing(code, product, { amount: known.amount, unit: "g", basis: known.basis, label: known.label, referenceLabel, limitation: "" });
+    return { amount: known.amount, unit: "g", basis: known.basis, label: known.label, referenceLabel, limitation: "" };
   }
   const namedCount = typeof product.product_name === "string" ? /\b(\d+)\s*(?:pk|pack)\b/i.exec(product.product_name) : null;
   if (!multi && single && namedCount && !prepared && Number(namedCount[1]) > 0) {
@@ -98,10 +115,12 @@ function baseBarcodePortion(code: string, product: ProductQuantity): BarcodePort
 }
 
 export function barcodePortion(code: string, product: ProductQuantity): BarcodePortion {
-  const pack = baseBarcodePortion(code, product);
+  const base = baseBarcodePortion(code, product);
+  let pack = manufacturerServing(product, base);
   if (pack.referenceLabel.includes("unconfirmed")) return pack;
   const name = `${product.product_name ?? ""} ${(product.categories_tags ?? []).join(" ")}`.toLowerCase();
   const identity = identifyFood({ product_name: typeof product.product_name === "string" ? product.product_name : undefined,
+    product_name_en: product.product_name_en,
     categories_tags: product.categories_tags, ingredients_text: product.ingredients_text, nutriments: product.nutriments });
   const serving = typeof product.serving_size === "string" ? product.serving_size : "";
   const servingMatch = /^(\d+(?:\.\d+)?)\s+(biscuits?|cookies?|bars?|bags?|pots?)\s*\((\d+(?:\.\d+)?)\s*g\)$/i.exec(serving);
@@ -111,6 +130,13 @@ export function barcodePortion(code: string, product: ProductQuantity): BarcodeP
   let natural: NaturalUnit | undefined;
   const make = (unit: NaturalUnit["unit"], amount: number, source: string, approximate = false): NaturalUnit =>
     ({ unit, amount, referenceUnit: pack.unit, basis: pack.basis, source, approximate });
+  // A total pack weight does not establish one normal eating portion.
+  if (pack === base && pack.amount && pack.amount > 100 && pack.basis !== "prepared" &&
+      !/^One (?:unit|pack unit)/.test(pack.label) && !verified[code as keyof typeof verified] &&
+      !/soup|tomato|beans/.test(name)) {
+    pack = { ...pack, amount: 100, label: `Grams entry (100${pack.unit}${pack.basis === "dry" ? " dry" : ""}; adjust quantity)`,
+      wholePack: { amount: pack.amount, label: pack.label }, limitation: "No reliable serving is supplied. Enter the amount you intend to eat; the whole pack is available separately." };
+  }
   if (pack.basis === "as-sold" && pack.unit === "g" && servingMatch && servingConsistent &&
       Number(servingMatch[1]) > 0 && Number(servingMatch[3]) > 0 && (!pack.amount || Number(servingMatch[3]) <= pack.amount)) {
     const noun = servingMatch[2].toLowerCase();
@@ -124,14 +150,14 @@ export function barcodePortion(code: string, product: ProductQuantity): BarcodeP
   if (!natural && pack.amount) {
     if ((/canned|tinned/.test(name) && /soup|tomato|beans/.test(name) || code === "5000157024671") && pack.basis === "as-sold" && pack.unit === "g")
       natural = make("tins", pack.wholePack?.amount ?? pack.amount, `Declared whole pack: ${quantity || pack.label}; include all contents`);
-    else if (/crisp|chips/.test(name)) natural = make("bags", pack.amount, `Verified individual pack: ${pack.label}`);
-    else if ((/\bbar\b|chocolate/.test(name) || /\bbar\b/i.test(pack.label)) && pack.amount <= 100) natural = make("bars", pack.amount, `Verified individual bar: ${pack.label}`);
+    else if (/crisp|chips/.test(name) && !pack.wholePack && !pack.label.startsWith("Grams entry")) natural = make("bags", pack.amount, `Verified individual pack: ${pack.label}`);
+    else if ((/\bbar\b|chocolate/.test(name) || /\bbar\b/i.test(pack.label)) && !/biscuit|digestive|cookie|cereal/.test(name) && pack.amount <= 100 && !pack.wholePack && !pack.label.startsWith("Grams entry")) natural = make("bars", pack.amount, `Verified individual bar: ${pack.label}`);
     else if (/noodle|\bpot\b/.test(name) && pack.basis === "prepared") natural = make("pots", pack.amount, `Verified complete prepared product: ${pack.label}`);
   }
   // A documented comparable portion is an approximation, never a fabricated pack count.
   const kcal = Number(product.nutriments?.["energy-kcal_100g"]);
   const scalarServing = /^\s*(\d+(?:\.\d+)?)\s*g\s*$/i.exec(serving);
-  if (!natural && scalarServing && pack.unit === "g" && pack.basis === "as-sold" &&
+  if (!natural && scalarServing && pack.unit === "g" && pack.basis !== "prepared" &&
       Number(scalarServing[1]) > 0 && (!pack.amount || Number(scalarServing[1]) <= pack.amount) &&
       (declared === undefined || declared === null || Number(declared) === Number(scalarServing[1]) && product.serving_quantity_unit === "g")) {
     const amount = Number(scalarServing[1]);
@@ -144,7 +170,7 @@ export function barcodePortion(code: string, product: ProductQuantity): BarcodeP
   if (!natural && /\b(digestive|digestives)\b/.test(name) && !/chocolat|oat|cream|filled|gluten.free/.test(name) && kcal >= 380 && kcal <= 550)
     natural = make("biscuits", 14.7, "Approximate comparable biscuit weight: McVitie's Original Digestive, 14.7g per biscuit (https://www.mcvities.ch/produkte/digestive-the-original/). This product's individual weight is not supplied.", true);
   if (!natural || !Number.isFinite(natural.amount) || natural.amount <= 0) return pack;
-  if (natural.unit === "biscuits" || natural.unit === "servings" || !pack.amount) {
+  if ((natural.unit === "biscuits" || natural.unit === "servings" || !pack.amount) && !pack.label.startsWith("Manufacturer serving")) {
     const wholePack = pack.wholePack ?? (pack.amount ? { amount: pack.amount, label: pack.label } : undefined);
     const noun = natural.unit === "biscuits" ? "biscuit" : natural.unit === "bars" ? "bar" : "serving";
     return { ...pack, naturalUnit: natural, amount: natural.amount, label: `One ${noun} (${natural.approximate ? "approximately " : ""}${natural.amount}g)`,

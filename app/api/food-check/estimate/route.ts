@@ -21,7 +21,9 @@ export async function POST(request: Request) {
   const string = (value: unknown, max: number) => typeof value === "string" ? value.slice(0, max) : "";
   const product: CategoryProduct = {
     product_name: string(p.product_name ?? p.product_name_en, 240), generic_name: string(p.generic_name, 240), categories: string(p.categories, 1000),
+    product_name_en: string(p.product_name_en, 240),
     ingredients_text: string(p.ingredients_text, 6000), categories_tags: Array.isArray(p.categories_tags) ? p.categories_tags.filter((s: unknown) => typeof s === "string").slice(0, 40) : [],
+    nutrition_basis: string(p.nutrition_basis, 240),
     additives_tags: Array.isArray(p.additives_tags) ? p.additives_tags.filter((s: unknown) => typeof s === "string").slice(0, 40) : [],
     nutriments: Object.fromEntries(["energy-kcal_100g", "proteins_100g", "fat_100g", "carbohydrates_100g"].map(key => [key, p.nutriments?.[key]])),
   };

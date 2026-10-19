@@ -702,8 +702,9 @@ export default function FoodCheckPage() {
         basis: food.portion.basis, unit: food.portion.unit, loadUsda,
         searchReferences: async (p, basis, unit) => {
           const response = await fetch("/api/food-check/estimate", { method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ basis, unit, product: { product_name: p.product_name ?? p.product_name_en, generic_name: p.generic_name,
+            body: JSON.stringify({ basis, unit, product: { product_name: p.product_name ?? p.product_name_en, product_name_en: p.product_name_en, generic_name: p.generic_name,
               categories: p.categories, categories_tags: p.categories_tags, ingredients_text: p.ingredients_text, additives_tags: p.additives_tags,
+              nutrition_basis: p.nutrition_basis,
               nutriments: Object.fromEntries(["energy-kcal_100g", "proteins_100g", "fat_100g", "carbohydrates_100g"].map(key => [key, p.nutriments?.[key]])) } }),
             signal: AbortSignal.timeout(25000) });
           if (!response.ok) return null;
@@ -1399,7 +1400,7 @@ export default function FoodCheckPage() {
                       {selectedFood.source === "Open Food Facts" && selectedFood.portion?.amount && (
                         <div className="mt-2 flex flex-wrap gap-2 text-sm">
                           <button type="button" aria-pressed={!referenceView && !wholePackView} onClick={() => { setFoodQuantity(null); setReferenceView(false); setWholePackView(false); }}
-                            className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.naturalUnit?.unit === "biscuits" ? "One biscuit" : selectedFood.portion.wholePack ? "Manufacturer serving" : "Whole product / one unit"}</button>
+                            className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.label.startsWith("Manufacturer serving") ? "Manufacturer serving" : selectedFood.portion.label.startsWith("Grams entry") ? "Enter grams" : selectedFood.portion.naturalUnit?.unit === "biscuits" ? "One biscuit" : "Whole product / one unit"}</button>
                           {selectedFood.portion.wholePack && <button type="button" aria-pressed={!referenceView && wholePackView}
                             onClick={() => { setFoodQuantity(null); setReferenceView(false); setWholePackView(true); }}
                             className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.wholePack.label}</button>}

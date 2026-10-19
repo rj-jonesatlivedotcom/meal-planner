@@ -9,7 +9,7 @@ import { barcodePortion, portionNutrition, type BarcodePortion } from "./barcode
 import type { UsdaFood } from "./usdaData";
 import { MyFoods, AddSnack } from "@/components/food/AccountFoods";
 import { useFoodAccount, notifyFoodAccount } from "@/lib/useFoodAccount";
-import { foodSnapshot, initialQuantityEntry, quantityEquivalent, type QuantityEntry } from "@/lib/foodSnacks";
+import { foodSnapshot, initialQuantityEntry, quantityEquivalent, displayQuantity, type QuantityEntry } from "@/lib/foodSnacks";
 import QuantityFields from "@/components/food/QuantityFields";
 import { resolveCategoryMinerals, questionableMineralZeros } from "./categoryMinerals";
 
@@ -700,6 +700,18 @@ export default function FoodCheckPage() {
       });
       food.minerals = await resolveCategoryMinerals(code, product, food.minerals, loadCofid, {
         basis: food.portion.basis, unit: food.portion.unit, loadUsda,
+        searchReferences: async (p, basis, unit) => {
+          const response = await fetch("/api/food-check/estimate", { method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ basis, unit, product: { product_name: p.product_name ?? p.product_name_en, generic_name: p.generic_name,
+              categories: p.categories, categories_tags: p.categories_tags, ingredients_text: p.ingredients_text, additives_tags: p.additives_tags,
+              nutriments: Object.fromEntries(["energy-kcal_100g", "proteins_100g", "fat_100g", "carbohydrates_100g"].map(key => [key, p.nutriments?.[key]])) } }),
+            signal: AbortSignal.timeout(25000) });
+          if (!response.ok) return null;
+          const result = await response.json();
+          if (!result?.matches || !result?.reasons || !Array.isArray(result.searches)) return null;
+          if (result.classification) food.category = result.classification;
+          return result;
+        },
       });
       if (requestId !== searchRequestRef.current) return;
 
@@ -831,7 +843,7 @@ export default function FoodCheckPage() {
   let enteredAmount: number | null = null;
   try { if (foodQuantity && quantitySnapshot) enteredAmount = quantityEquivalent(quantitySnapshot, foodQuantity); } catch { /* Unfinished input */ }
   const activePortion = referenceView ? undefined : foodQuantity && selectedFood?.portion
-    ? enteredAmount === null ? undefined : { ...selectedFood.portion, amount: enteredAmount, label: `${foodQuantity.amount} ${foodQuantity.unit} (${Number(enteredAmount.toFixed(2))}${selectedFood.portion.unit})` }
+    ? enteredAmount === null ? undefined : { ...selectedFood.portion, amount: enteredAmount, label: `${displayQuantity(foodQuantity.amount)} ${foodQuantity.unit} (${Number(enteredAmount.toFixed(2))}${selectedFood.portion.unit})` }
     : basePortion;
   const nutritionFood = selectedFood ? portionNutrition(selectedFood, activePortion) : null;
 
@@ -1561,6 +1573,7 @@ export default function FoodCheckPage() {
                           <h3 className="text-sm font-semibold leading-6 text-blue-950">
                             Nutritional information source
                           </h3>
+                          <details className="mt-2"><summary className="cursor-pointer text-sm font-semibold text-blue-800 dark:text-blue-200">View sources and comparison</summary>
                           {Boolean(selectedFood.questionableMinerals?.length) && <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Open Food Facts reports unverified zeros for {selectedFood.questionableMinerals?.join(", ")}. These are treated as questionable, not measured zeros.</p>}
                           <p className="mt-1 text-sm leading-6 text-slate-600">
                             {selectedFood.source === "CoFID 2021"
@@ -1597,6 +1610,7 @@ export default function FoodCheckPage() {
                               {reference.label}{reference.foodCode ? ` (${reference.foodCode})` : ""}
                             </a>
                           ))}
+                          </details>
                         </div>
 
                       </div>

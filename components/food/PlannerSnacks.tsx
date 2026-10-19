@@ -7,11 +7,11 @@ import { barcodePortion } from "@/app/FoodCheck/barcodePortions";
 import type { foodAccount } from "@/lib/foodAccount";
 import { notifyFoodAccount } from "@/lib/useFoodAccount";
 
-export function SnackValues({ snack }: { snack: PlannedSnack }) {
+export function SnackValues({ snack, keys = snackNutrients }: { snack: PlannedSnack; keys?: readonly typeof snackNutrients[number][] }) {
   return <dl className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-700 dark:text-slate-200">
-    {snackNutrients.map(key => {
+    {keys.map(key => {
       const nutrient = snack.snapshot.nutrients[key];
-      const displayValue = nutrient.value === null ? null : nutrient.kind === "estimated" && ["potassium", "phosphate"].includes(key)
+      const displayValue = nutrient.value === null ? null : key === "calories" ? Math.round(nutrient.value) : nutrient.kind === "estimated" && ["potassium", "phosphate"].includes(key)
         ? nutrient.value > 0 && nutrient.value < 1 ? Number(nutrient.value.toPrecision(1)) : Math.round(nutrient.value)
         : Math.round(nutrient.value * 10) / 10;
       return <div key={key}><dt className="inline">{key === "phosphate" ? "Phosphorus" : key === "calories" ? "Energy" : key.charAt(0).toUpperCase() + key.slice(1)}: </dt><dd className="inline font-semibold">{displayValue === null ? "Not available" : `${displayValue} ${key === "calories" ? "kcal" : ["sodium", "potassium", "phosphate"].includes(key) ? "mg" : "g"}`}{nutrient.kind === "estimated" && <span className="ml-1 font-bold text-amber-800 dark:text-amber-300">ESTIMATE</span>}</dd></div>;
@@ -53,11 +53,24 @@ function SnackRow({ snack, repository }: { snack: PlannedSnack; repository?: Ret
     } catch { setError("Unable to update this snack. Please try again."); }
     finally { busy.current = false; setSaving(false); }
   }
-  return <div className="border-t border-slate-100 dark:border-slate-700 py-3">
+  const estimated = snackNutrients.some(key => snack.snapshot.nutrients[key].kind === "estimated");
+  return <div className="my-2 min-w-0 rounded-xl border border-slate-200 bg-slate-50/70 p-3 dark:border-slate-700 dark:bg-slate-900/40">
     <p className="break-words text-sm font-bold text-slate-900 dark:text-slate-100">{snack.name}</p>
-    <p className="text-xs text-slate-600 dark:text-slate-300">{snackQuantityLabel(snack)} · {snack.snapshot.basis} · planned</p>
-    <SnackValues snack={snack} />
-    <details className="mt-2 text-xs text-slate-600 dark:text-slate-300"><summary className="cursor-pointer">Nutritional source</summary><p className="mt-1 break-words">{snack.snapshot.source}</p></details>
+    <p className="mt-0.5 text-xs text-slate-600 dark:text-slate-300">{snackQuantityLabel(snack)} · planned</p>
+    {estimated && <span className="mt-1 inline-block text-[10px] font-bold text-amber-800 dark:text-amber-300">ESTIMATE</span>}
+    <dl className="mt-2 grid grid-cols-3 gap-2 text-xs">
+      {(["calories", "potassium", "phosphate"] as const).map(key => {
+        const n = snack.snapshot.nutrients[key];
+        const value = n.value === null ? "Not available" : `${n.value > 0 && n.value < 1 ? Number(n.value.toPrecision(1)) : Math.round(n.value)} ${key === "calories" ? "kcal" : "mg"}`;
+        return <div key={key} className="min-w-0"><dt className="whitespace-nowrap text-[10px] text-slate-500 dark:text-slate-400">{key === "calories" ? "Energy" : key === "potassium" ? "Potassium" : "Phosphorus"}</dt><dd className="mt-0.5 font-bold text-slate-900 dark:text-slate-100">{value}</dd></div>;
+      })}
+    </dl>
+    <details className="mt-2 text-xs text-slate-600 dark:text-slate-300"><summary className="cursor-pointer font-semibold">View nutrition</summary>
+      <SnackValues snack={snack} keys={["protein", "carbohydrates", "fat", "fibre", "sodium"]} />
+      <p className="mt-2">Reference basis: {snack.snapshot.basis}. Estimated values use a comparable food, not a measurement of this product.</p>
+      <p className="mt-1 break-words">{snack.snapshot.source}</p>
+      {snack.snapshot.naturalUnit && <p className="mt-1 break-words">{snack.snapshot.naturalUnit.source}</p>}
+    </details>
     {repository && <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
       {editing ? <><QuantityFields snapshot={unitSnapshot} value={entry} onChange={setEntry} label={`Quantity for ${snack.name}`} /><button disabled={saving} onClick={() => void change()} className="rounded border px-2 py-2">Save quantity</button></> : <button disabled={saving} onClick={() => void editQuantity()} className="rounded border px-2 py-2">Edit quantity</button>}
       <button disabled={saving} onClick={() => void change(true)} className="rounded px-2 py-2 text-rose-700 dark:text-rose-300">Remove</button>

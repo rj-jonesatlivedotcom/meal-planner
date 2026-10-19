@@ -1,9 +1,11 @@
 import { CURATED_MINERALS, type CofidMinerals, type Mineral, type MineralResults, type PreparationBasis } from "./curatedMinerals";
 import type { UsdaFood } from "./usdaData";
+import type { ReferenceResolution } from "./referenceMatching";
 
 export type CategoryProduct = {
   product_name?: string; product_name_en?: string; categories_tags?: string[]; categories?: string;
   ingredients_text?: string; additives_tags?: string[]; data_sources?: string;
+  generic_name?: string;
   nutriments?: Record<string, unknown>;
 };
 type Rule = {
@@ -57,15 +59,15 @@ export function categoryRule(p: CategoryProduct): Rule | undefined {
 export type OtherMineral = "calcium" | "magnesium" | "iron" | "zinc";
 export function questionableMineralZeros(p: CategoryProduct): Partial<Record<Mineral | OtherMineral, string>> {
   const flags: Partial<Record<Mineral | OtherMineral, string>> = {};
-  const fields = ["phosphorus", "calcium", "magnesium", "iron", "zinc"] as const;
-  // Source-aware abstention: a cluster of unverified OFF zeros in a meat soup,
+  const fields = ["potassium", "phosphorus", "calcium", "magnesium", "iron", "zinc"] as const;
+  // Source-aware abstention: a cluster of unverified OFF mineral zeros,
   // not a blanket assumption that every zero or every food must be mineral-rich.
   const name = description(p), ingredients = (p.ingredients_text ?? "").toLowerCase();
-  if (!/soup/.test(name) || !/chicken/.test(name) || !/vegetable|\bveg\b/.test(name) || !/chicken/.test(ingredients) ||
-      (number(p.nutriments?.proteins_100g) ?? 0) <= 0 || /producers|manufacturer/i.test(p.data_sources ?? "") ||
+  if (!/chicken|vegetable|milk|cheese|chocolat|biscuit|digestive|wafer|cornet/.test(name + " " + ingredients) ||
+      (number(p.nutriments?.proteins_100g) ?? 0) <= 1 || /producers|manufacturer/i.test(p.data_sources ?? "") ||
       fields.filter(key => number(p.nutriments?.[key + "_100g"]) === 0).length < 3) return flags;
   for (const key of fields) if (number(p.nutriments?.[key + "_100g"]) === 0)
-    flags[key] = "Unverified Open Food Facts zero in a cluster of mineral zeros for a chicken-and-vegetable soup; not established as a measured zero.";
+    flags[key] = "Unverified Open Food Facts zero in a cluster of mineral zeros for a food containing protein; not established as a measured zero.";
   return flags;
 }
 export function additiveConcern(p: CategoryProduct, nutrient: Mineral): string | null {
@@ -79,7 +81,8 @@ export function additiveConcern(p: CategoryProduct, nutrient: Mineral): string |
 
 export async function resolveCategoryMinerals(code: string, p: CategoryProduct, current: MineralResults,
   loadCofid: (code: string) => Promise<CofidMinerals | null>,
-  options: { basis: PreparationBasis; unit: "g" | "ml"; loadUsda?: (id: number) => Promise<UsdaFood | null> },
+  options: { basis: PreparationBasis; unit: "g" | "ml"; loadUsda?: (id: number) => Promise<UsdaFood | null>;
+    searchReferences?: (product: CategoryProduct, basis: PreparationBasis, unit: "g" | "ml") => Promise<ReferenceResolution | null> },
 ): Promise<MineralResults> {
   // Reviewed barcode overrides, including explicit holds, always take precedence.
   if (CURATED_MINERALS.some(mapping => mapping.barcode === code)) return current;
@@ -87,8 +90,28 @@ export async function resolveCategoryMinerals(code: string, p: CategoryProduct, 
   const rule = categoryRule(p);
   const wanted = (["potassium", "phosphorus"] as const).filter(key => results[key].provenance === "unavailable");
   if (!wanted.length) return results;
+  if (options.searchReferences) {
+    let resolution: ReferenceResolution | null = null;
+    try { resolution = await options.searchReferences(p, options.basis, options.unit); } catch { /* Existing reviewed comparisons remain a fallback. */ }
+    if (resolution) {
+      for (const key of wanted) {
+        const candidate = resolution.matches[key], concern = additiveConcern(p, key);
+        const value = key === "potassium" ? candidate?.potassiumMg : candidate?.phosphorusMg;
+        if (!concern && candidate && typeof value === "number" && Number.isFinite(value) && value >= 0 && options.unit === "g" && options.basis !== "unknown") {
+          results[key] = { ...results[key], valueMg: value, provenance: "estimated", categoryId: `reference-search:${candidate.source}:${candidate.code}`, reason: undefined,
+            estimate: { kind: "single", valueMg: value, method: "comparable-food", basis: options.basis, completeProduct: true,
+              explanation: resolution.note || "Generic complete-food comparison; ingredients and formulations may differ.",
+              references: [{ label: candidate.source === "USDA" ? `USDA FoodData Central FDC ID ${candidate.code}` : "CoFID 2021",
+                foodCode: candidate.source === "CoFID 2021" ? candidate.code : undefined, description: candidate.description, url: candidate.url }] } };
+        } else results[key].reason = concern ?? resolution.reasons[key] ?? "No suitable reference nutrient was available.";
+      }
+      return results;
+    }
+  }
   if (!rule || options.unit !== "g" || options.basis !== "as-sold") {
-    for (const key of wanted) results[key].reason = "No approved comparable food for this product type and preparation basis.";
+    for (const key of wanted) results[key].reason = options.searchReferences
+      ? "The reference search is temporarily unavailable; no comparison has been assumed."
+      : "No approved comparable food for this product type and preparation basis.";
     return results;
   }
   const eligible = wanted.filter(key => {

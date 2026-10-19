@@ -19,8 +19,10 @@ const mineralHelpers = mineralModule.exports;
 const categoryModule = { exports: {} };
 vm.runInNewContext(compile(fs.readFileSync(new URL("./categoryMinerals.ts", import.meta.url), "utf8")), { exports: categoryModule.exports, require: () => mineralHelpers });
 const categoryHelpers = categoryModule.exports;
+const matchingModule = { exports: {} };
+vm.runInNewContext(compile(fs.readFileSync(new URL("./referenceMatching.ts", import.meta.url), "utf8")), { exports: matchingModule.exports });
 const portionModule = { exports: {} };
-vm.runInNewContext(compile(fs.readFileSync(new URL("./barcodePortions.ts", import.meta.url), "utf8")), { exports: portionModule.exports, require: () => mineralHelpers });
+vm.runInNewContext(compile(fs.readFileSync(new URL("./barcodePortions.ts", import.meta.url), "utf8")), { exports: portionModule.exports, require: name => name === "./referenceMatching" ? matchingModule.exports : mineralHelpers });
 const portionHelpers = portionModule.exports;
 const error = (name) => Object.assign(new Error(name), { name });
 
@@ -693,7 +695,7 @@ test('single bags, volume packs and conflicting units are handled without densit
   assert.equal(barcodePortion('drink', { quantity: '330ml', nutrition_data_per: '100g' }).amount, null);
   assert.equal(barcodePortion('drink', { quantity: '330g', nutrition_data_per: '100ml' }).amount, null);
 });
-for (const product of [{}, { quantity: '6 bags' }, { quantity: '150g', product_name: 'Ready Salted Crisps 6pk' }, { quantity: '160g(6x25g)' }, { quantity: '0g' }]) {
+for (const product of [{}, { quantity: '6 bags' }, { quantity: '160g(6x25g)' }, { quantity: '0g' }]) {
   test('unverified or contradictory eating quantities fall back to reference: ' + JSON.stringify(product), () => {
     const portion = barcodePortion('unknown', product);
     assert.equal(portion.amount, null); assert.ok(portion.limitation.length > 0);

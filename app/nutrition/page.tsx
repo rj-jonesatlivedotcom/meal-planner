@@ -1419,52 +1419,52 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                 </span>
               </div>
 
-              <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-xs sm:text-sm">
-                <div className="flex min-w-0 items-center justify-between gap-2">
-                  <span className="min-w-0 break-words text-slate-600">Energy</span>
-                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
+              <div className="mt-3 grid grid-cols-1 gap-y-2 text-xs sm:text-sm">
+                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                  <span className="whitespace-nowrap text-slate-600">Energy</span>
+                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "calories", "kcal")}
                   </strong>
                 </div>
 
-                <div className="flex min-w-0 items-center justify-between gap-2">
-                  <span className="min-w-0 break-words text-slate-600">Protein</span>
-                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
+                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                  <span className="whitespace-nowrap text-slate-600">Protein</span>
+                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "protein", "g")}
                   </strong>
                 </div>
 
-                <div className="flex min-w-0 items-center justify-between gap-2">
-                  <span className="min-w-0 break-words text-slate-600">Carbohydrate</span>
-                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
+                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                  <span className="whitespace-nowrap text-slate-600">Carbohydrate</span>
+                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "carbohydrates", "g")}
                   </strong>
                 </div>
 
-                <div className="flex min-w-0 items-center justify-between gap-2">
-                  <span className="min-w-0 break-words text-slate-600">Fat</span>
-                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
+                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                  <span className="whitespace-nowrap text-slate-600">Fat</span>
+                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "fat", "g")}
                   </strong>
                 </div>
 
-                <div className="flex min-w-0 items-center justify-between gap-2">
-                  <span className="min-w-0 break-words text-slate-600">Fibre</span>
-                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
+                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                  <span className="whitespace-nowrap text-slate-600">Fibre</span>
+                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "fibre", "g")}
                   </strong>
                 </div>
 
-                <div className="flex min-w-0 items-center justify-between gap-2">
-                  <span className="min-w-0 break-words text-slate-600">Salt (g)</span>
-                  <strong className="shrink-0 whitespace-nowrap text-slate-900">
+                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                  <span className="whitespace-nowrap text-slate-600">Salt (g)</span>
+                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "sodium", "salt")}
                   </strong>
                 </div>
 
-                <div className="flex min-w-0 items-center justify-between gap-2">
-                  <span className="min-w-0 break-words text-slate-600">Potassium</span>
-                  <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap font-semibold text-slate-900">
+                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                  <span className="whitespace-nowrap text-slate-600">Potassium</span>
+                  <span className="flex min-w-0 flex-wrap items-center justify-end gap-1.5 font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
                         incompleteSnacks(selectedDay, "potassium") ? "pending" : numericLimitStatus(dayTotals[selectedDay].potassium, null, requirements.potassiumLimitMg)
@@ -1474,9 +1474,9 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   </span>
                 </div>
 
-                <div className="flex min-w-0 items-center justify-between gap-2">
-                  <span className="min-w-0 break-words text-slate-600">Phosphorus</span>
-                  <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap font-semibold text-slate-900">
+                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                  <span className="whitespace-nowrap text-slate-600">Phosphorus</span>
+                  <span className="flex min-w-0 flex-wrap items-center justify-end gap-1.5 font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
                         incompleteSnacks(selectedDay, "phosphate") ? "pending" : numericLimitStatus(dayTotals[selectedDay].phosphate, null, requirements.phosphateLimitMg)

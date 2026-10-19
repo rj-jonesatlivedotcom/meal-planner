@@ -1,5 +1,6 @@
 import { scaleMineral, type MineralResults, type PreparationBasis } from "./curatedMinerals";
 import type { NaturalUnit } from "@/lib/foodSnacks";
+import { identifyFood } from "./referenceMatching";
 
 export type BarcodePortion = {
   amount: number | null;
@@ -22,6 +23,7 @@ type ProductQuantity = {
   serving_quantity_unit?: unknown;
   categories_tags?: string[];
   nutriments?: Record<string, unknown>;
+  ingredients_text?: string;
 };
 
 // Only the reviewed larger products opt into manufacturer-serving defaults.
@@ -73,6 +75,11 @@ function baseBarcodePortion(code: string, product: ProductQuantity): BarcodePort
     if (prepared && known.basis !== "prepared") return fallback("The prepared serving weight is not verified.");
     return manufacturerServing(code, product, { amount: known.amount, unit: "g", basis: known.basis, label: known.label, referenceLabel, limitation: "" });
   }
+  const namedCount = typeof product.product_name === "string" ? /\b(\d+)\s*(?:pk|pack)\b/i.exec(product.product_name) : null;
+  if (!multi && single && namedCount && !prepared && Number(namedCount[1]) > 0) {
+    const amount = Number(single[1]) * (/^(kg|l)$/i.test(single[2]) ? 1000 : 1) / Number(namedCount[1]);
+    if (Number.isFinite(amount) && amount > 0) return { amount, unit, basis, label: `One pack unit (${amount}${unit}; declared ${namedCount[1]}-pack)`, referenceLabel, limitation: "" };
+  }
   if (!multi && typeof product.product_name === "string" && /multipack|\b\d+\s*(?:pk|pack)\b/i.test(product.product_name))
     return fallback("The individual multipack unit weight is not verified. Showing reference values only.");
   if (prepared) return fallback("Prepared serving weight is not verified. Dry pack weight cannot be used with prepared nutrition.");
@@ -94,6 +101,8 @@ export function barcodePortion(code: string, product: ProductQuantity): BarcodeP
   const pack = baseBarcodePortion(code, product);
   if (pack.referenceLabel.includes("unconfirmed")) return pack;
   const name = `${product.product_name ?? ""} ${(product.categories_tags ?? []).join(" ")}`.toLowerCase();
+  const identity = identifyFood({ product_name: typeof product.product_name === "string" ? product.product_name : undefined,
+    categories_tags: product.categories_tags, ingredients_text: product.ingredients_text, nutriments: product.nutriments });
   const serving = typeof product.serving_size === "string" ? product.serving_size : "";
   const servingMatch = /^(\d+(?:\.\d+)?)\s+(biscuits?|cookies?|bars?|bags?|pots?)\s*\((\d+(?:\.\d+)?)\s*g\)$/i.exec(serving);
   const declared = product.serving_quantity;
@@ -121,12 +130,24 @@ export function barcodePortion(code: string, product: ProductQuantity): BarcodeP
   }
   // A documented comparable portion is an approximation, never a fabricated pack count.
   const kcal = Number(product.nutriments?.["energy-kcal_100g"]);
+  const scalarServing = /^\s*(\d+(?:\.\d+)?)\s*g\s*$/i.exec(serving);
+  if (!natural && scalarServing && pack.unit === "g" && pack.basis === "as-sold" &&
+      Number(scalarServing[1]) > 0 && (!pack.amount || Number(scalarServing[1]) <= pack.amount) &&
+      (declared === undefined || declared === null || Number(declared) === Number(scalarServing[1]) && product.serving_quantity_unit === "g")) {
+    const amount = Number(scalarServing[1]);
+    if (identity?.family === "chocolate-digestive" && amount >= 12 && amount <= 22)
+      natural = make("biscuits", amount, `Approximate biscuit weight using the declared ${serving} serving. Comparable chocolate digestives use a 17g biscuit (https://www.tesco.com/groceries/en-GB/products/254924572). Individual count is not supplied.`, true);
+    else if (identity?.family === "coated-biscuit")
+      natural = make("bars", amount, `Approximate biscuit-bar weight using the declared ${serving} serving; individual count is not supplied.`, true);
+    else natural = make("servings", amount, `Declared serving: ${serving}. ${identity?.family === "empty-cone" ? "Cone count/individual cone weight is not supplied; this is a serving, not an assumed cone count." : "No individual item count has been assumed."}`);
+  }
   if (!natural && /\b(digestive|digestives)\b/.test(name) && !/chocolat|oat|cream|filled|gluten.free/.test(name) && kcal >= 380 && kcal <= 550)
     natural = make("biscuits", 14.7, "Approximate comparable biscuit weight: McVitie's Original Digestive, 14.7g per biscuit (https://www.mcvities.ch/produkte/digestive-the-original/). This product's individual weight is not supplied.", true);
   if (!natural || !Number.isFinite(natural.amount) || natural.amount <= 0) return pack;
-  if (natural.unit === "biscuits") {
+  if (natural.unit === "biscuits" || natural.unit === "servings" || !pack.amount) {
     const wholePack = pack.wholePack ?? (pack.amount ? { amount: pack.amount, label: pack.label } : undefined);
-    return { ...pack, naturalUnit: natural, amount: natural.amount, label: `One biscuit (${natural.approximate ? "approximately " : ""}${natural.amount}g)`,
+    const noun = natural.unit === "biscuits" ? "biscuit" : natural.unit === "bars" ? "bar" : "serving";
+    return { ...pack, naturalUnit: natural, amount: natural.amount, label: `One ${noun} (${natural.approximate ? "approximately " : ""}${natural.amount}g)`,
       wholePack, limitation: natural.approximate ? natural.source : "" };
   }
   return { ...pack, naturalUnit: natural };

@@ -8,6 +8,7 @@ export type UsdaFood = {
   completeProductUnclear: boolean;
   potassiumMg: number | null;
   phosphorusMg: number | null;
+  macros?: { energyKcal: number | null; protein: number | null; fat: number | null; carbohydrate: number | null };
   ingredients: string | null;
   brand: string | null;
   barcode: string | null;
@@ -37,6 +38,14 @@ export function parseUsdaFood(value: unknown): UsdaFood | null {
   const unit = dataset !== "Branded" ? "g" : servingUnit === "g" || servingUnit === "ml" ? servingUnit : "unknown";
   const portions = (Array.isArray(row.foodPortions) ? row.foodPortions : []).map(p => { const item = object(p); return { grams: number(item.gramWeight), description: text(item.portionDescription ?? item.modifier) ?? "" }; });
   const provenance: UsdaFood["provenance"] = [];
+  function macro(id: number, unit: string): number | null {
+    for (const entry of Array.isArray(row.foodNutrients) ? row.foodNutrients : []) {
+      const n = object(entry), nutrient = object(n.nutrient);
+      if (Number(nutrient.id ?? n.nutrientId) === id && String(nutrient.unitName ?? n.unitName).toLowerCase() === unit)
+        return number(n.amount ?? n.value);
+    }
+    return null;
+  }
   function mineral(nutrientId: number, nutrientNumber: string): number | null {
     for (const entry of Array.isArray(row.foodNutrients) ? row.foodNutrients : []) {
       const n = object(entry), nutrient = object(n.nutrient);
@@ -53,6 +62,7 @@ export function parseUsdaFood(value: unknown): UsdaFood | null {
   }
   return {
     fdcId: id, description, dataset, unit, potassiumMg: mineral(1092, "306"), phosphorusMg: mineral(1091, "305"),
+    macros: { energyKcal: macro(1008, "kcal"), protein: macro(1003, "g"), fat: macro(1004, "g"), carbohydrate: macro(1005, "g") },
     preparation: /\b(dry|raw|dehydrated)\b/i.test(description) ? "dry" : /\b(water added|prepared|cooked|ready.to.serve)\b/i.test(description) ? "prepared" : "unspecified",
     completeProductUnclear: portions.some(p => /without (?:flavo[u]?r packet|seasoning|sauce)/i.test(p.description)),
     ingredients: text(row.ingredients), brand: text(row.brandName ?? row.brandOwner), barcode: text(row.gtinUpc),

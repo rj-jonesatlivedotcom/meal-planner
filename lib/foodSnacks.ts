@@ -3,7 +3,7 @@ export type SnackNutrient = typeof snackNutrients[number];
 export type NutrientValue = { value: number | null; kind: "reported" | "estimated" | "unavailable"; sourceState?: string; sourceValueMg?: number | null };
 export type SnackNutrition = Record<SnackNutrient, NutrientValue>;
 export type NaturalUnit = {
-  unit: "biscuits" | "tins" | "bars" | "bags" | "pots" | "units";
+  unit: "biscuits" | "tins" | "bars" | "bags" | "pots" | "units" | "cones" | "servings";
   amount: number; referenceUnit: "g" | "ml"; basis: string;
   approximate: boolean; source: string;
 };
@@ -38,7 +38,7 @@ export function foodSnapshot(food: FoodInput, unit: "g" | "ml", basis: string, s
 }
 export function validNaturalUnit(value: unknown, unit: string, basis: string): value is NaturalUnit {
   const n = value as NaturalUnit;
-  return Boolean(n && ["biscuits", "tins", "bars", "bags", "pots", "units"].includes(n.unit) &&
+  return Boolean(n && ["biscuits", "tins", "bars", "bags", "pots", "units", "cones", "servings"].includes(n.unit) &&
     Number.isFinite(n.amount) && n.amount > 0 && n.amount <= 100000 && n.referenceUnit === unit && n.basis === basis &&
     typeof n.approximate === "boolean" && typeof n.source === "string" && n.source.length <= 2000);
 }
@@ -52,6 +52,7 @@ export function initialQuantityEntry(snapshot: FoodSnapshot, quantity: number | 
   }
   return { amount: quantity ?? 0, unit: snapshot.unit };
 }
+export function displayQuantity(value: number): number { return Number(value.toFixed(6)); }
 export function quantityEquivalent(snapshot: FoodSnapshot, entry: QuantityEntry): number {
   if (!Number.isFinite(entry.amount) || entry.amount <= 0) throw new Error("Choose a valid quantity");
   if (entry.unit === snapshot.unit) return entry.amount;

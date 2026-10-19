@@ -13,48 +13,25 @@ type Food = {
   category: string;
   code: string;
   description: string;
-  energyKj: number;
-  energyKcal: number;
-  protein: number;
-  carbohydrate: number;
-  sugars: number;
-  fat: number;
-  saturates: number;
-  fibre: number;
-  salt: number;
-  sodium: number;
+  energyKj: number | null;
+  energyKcal: number | null;
+  protein: number | null;
+  carbohydrate: number | null;
+  sugars: number | null;
+  fat: number | null;
+  saturates: number | null;
+  fibre: number | null;
+  salt: number | null;
+  sodium: number | null;
   potassium: number | null;
   phosphorus: number | null;
-  calcium: number;
-  magnesium: number;
-  iron: number;
-  zinc: number;
+  calcium: number | null;
+  magnesium: number | null;
+  iron: number | null;
+  zinc: number | null;
   source: string;
   imageUrl?: string;
 };
-
-function numberValue(
-  row: CofidRow,
-  ...keys: string[]
-): number {
-  for (const key of keys) {
-    const value = row[key];
-
-    if (
-      value !== null &&
-      value !== undefined &&
-      value !== ""
-    ) {
-      const number = Number(value);
-
-      if (Number.isFinite(number)) {
-        return number;
-      }
-    }
-  }
-
-  return 0;
-}
 
 function optionalNumberValue(
   row: CofidRow,
@@ -63,7 +40,7 @@ function optionalNumberValue(
   for (const key of keys) {
     const value = row[key];
 
-    if (value !== null && value !== undefined && value !== "") {
+    if (typeof value === "number" || (typeof value === "string" && /^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(value.trim()))) {
       const number = Number(value);
 
       if (Number.isFinite(number)) {
@@ -132,67 +109,67 @@ function mapFood(row: CofidRow): Food {
         "food_description"
       ) || "CoFID 2021 food entry",
 
-    energyKj: numberValue(
+    energyKj: optionalNumberValue(
       row,
       "energy_kj",
       "energy_kj_100g",
       "energy_kj_per_100g"
     ),
 
-    energyKcal: numberValue(
+    energyKcal: optionalNumberValue(
       row,
       "energy_kcal",
       "energy_kcal_100g",
       "energy_kcal_per_100g"
     ),
 
-    protein: numberValue(
+    protein: optionalNumberValue(
       row,
       "protein_g",
       "protein"
     ),
 
-    carbohydrate: numberValue(
+    carbohydrate: optionalNumberValue(
       row,
       "carbohydrate_g",
       "carbohydrates_g",
       "carbohydrate"
     ),
 
-    sugars: numberValue(
+    sugars: optionalNumberValue(
       row,
       "sugars_g",
       "sugar_g",
       "sugars"
     ),
 
-    fat: numberValue(
+    fat: optionalNumberValue(
       row,
       "fat_g",
       "fat"
     ),
 
-    saturates: numberValue(
+    saturates: optionalNumberValue(
       row,
       "saturates_g",
       "saturated_fat_g",
       "saturates"
     ),
 
-    fibre: numberValue(
+    fibre: optionalNumberValue(
       row,
       "fibre_g",
       "fiber_g",
       "fibre"
     ),
 
-    salt: numberValue(
+    salt: optionalNumberValue(
       row,
       "salt_g",
       "salt"
     ),
 
-    sodium: numberValue(
+    sodium: optionalNumberValue(
       row,
       "sodium_mg",
       "sodium"
@@ -212,25 +189,25 @@ function mapFood(row: CofidRow): Food {
       "phosphate"
     ),
 
-    calcium: numberValue(
+    calcium: optionalNumberValue(
       row,
       "calcium_mg",
       "calcium"
     ),
 
-    magnesium: numberValue(
+    magnesium: optionalNumberValue(
       row,
       "magnesium_mg",
       "magnesium"
     ),
 
-    iron: numberValue(
+    iron: optionalNumberValue(
       row,
       "iron_mg",
       "iron"
     ),
 
-    zinc: numberValue(
+    zinc: optionalNumberValue(
       row,
       "zinc_mg",
       "zinc"
@@ -628,15 +605,8 @@ export default function FoodCheckPage() {
       }
 
       const n = product.nutriments ?? {};
-      const numeric = (value: unknown) => {
-        const number = Number(value);
-        return value !== null && value !== undefined && value !== "" && Number.isFinite(number)
-          ? number
-          : 0;
-      };
-
       const optionalNumeric = (value: unknown): number | null => {
-        if (value === null || value === undefined || value === "") {
+        if (typeof value !== "number" && !(typeof value === "string" && /^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(value.trim()))) {
           return null;
         }
 
@@ -661,30 +631,30 @@ export default function FoodCheckPage() {
           product.brands
             ? `${product.brands} · Barcode ${code}`
             : `Barcode ${code}`,
-        energyKj: numeric(n["energy-kj_100g"]),
-        energyKcal: numeric(
+        energyKj: optionalNumeric(n["energy-kj_100g"]),
+        energyKcal: optionalNumeric(
           n["energy-kcal_100g"] ?? n["energy-kcal"]
         ),
-        protein: numeric(n.proteins_100g),
-        carbohydrate: numeric(n.carbohydrates_100g),
-        sugars: numeric(n.sugars_100g),
-        fat: numeric(n.fat_100g),
-        saturates: numeric(
+        protein: optionalNumeric(n.proteins_100g),
+        carbohydrate: optionalNumeric(n.carbohydrates_100g),
+        sugars: optionalNumeric(n.sugars_100g),
+        fat: optionalNumeric(n.fat_100g),
+        saturates: optionalNumeric(
           n["saturated-fat_100g"] ?? n.saturated_fat_100g
         ),
-        fibre: numeric(n.fiber_100g ?? n.fibers_100g),
-        salt: numeric(n.salt_100g),
-        sodium: numeric(n.sodium_100g) * 1000,
+        fibre: optionalNumeric(n.fiber_100g ?? n.fibers_100g),
+        salt: optionalNumeric(n.salt_100g),
+        sodium: optionalNumeric(n.sodium_100g) === null ? null : optionalNumeric(n.sodium_100g)! * 1000,
         potassium: optionalNumeric(n.potassium_100g) === null
           ? null
           : optionalNumeric(n.potassium_100g)! * 1000,
         phosphorus: optionalNumeric(n.phosphorus_100g) === null
           ? null
           : optionalNumeric(n.phosphorus_100g)! * 1000,
-        calcium: numeric(n.calcium_100g) * 1000,
-        magnesium: numeric(n.magnesium_100g) * 1000,
-        iron: numeric(n.iron_100g) * 1000,
-        zinc: numeric(n.zinc_100g) * 1000,
+        calcium: optionalNumeric(n.calcium_100g) === null ? null : optionalNumeric(n.calcium_100g)! * 1000,
+        magnesium: optionalNumeric(n.magnesium_100g) === null ? null : optionalNumeric(n.magnesium_100g)! * 1000,
+        iron: optionalNumeric(n.iron_100g) === null ? null : optionalNumeric(n.iron_100g)! * 1000,
+        zinc: optionalNumeric(n.zinc_100g) === null ? null : optionalNumeric(n.zinc_100g)! * 1000,
         source: "Open Food Facts",
         imageUrl: product.image_front_url || product.image_url || undefined,
       };
@@ -778,8 +748,8 @@ export default function FoodCheckPage() {
    * ---------------------------------------------------------
    */
 
-  function formatNumber(value: number) {
-    if (!Number.isFinite(value)) {
+  function formatNumber(value: number | null) {
+    if (value === null || !Number.isFinite(value)) {
       return "—";
     }
 
@@ -790,6 +760,10 @@ export default function FoodCheckPage() {
     return value
       .toFixed(1)
       .replace(/\.0$/, "");
+  }
+
+  function displayNutrient(value: number | null, unit: string) {
+    return value === null ? "Not available" : `${formatNumber(value)} ${unit}`;
   }
 
   /*
@@ -1338,63 +1312,51 @@ export default function FoodCheckPage() {
                         <NutritionRow
                           label="Energy"
                           value={
-                            selectedFood.energyKj
+                            selectedFood.energyKj !== null
                               ? `${formatNumber(
                                   selectedFood.energyKj
                                 )} kJ`
-                              : "—"
+                              : "Not available"
                           }
                           secondary={
-                            selectedFood.energyKcal
+                            selectedFood.energyKcal !== null
                               ? `${formatNumber(
                                   selectedFood.energyKcal
                                 )} kcal`
-                              : undefined
+                              : "Not available"
                           }
                         />
 
                         <NutritionRow
                           label="Protein"
-                          value={`${formatNumber(
-                            selectedFood.protein
-                          )} g`}
+                          value={displayNutrient(selectedFood.protein, "g")}
                         />
 
                         <NutritionRow
                           label="Carbohydrate"
-                          value={`${formatNumber(
-                            selectedFood.carbohydrate
-                          )} g`}
+                          value={displayNutrient(selectedFood.carbohydrate, "g")}
                         />
 
                         <NutritionRow
                           label="of which sugars"
-                          value={`${formatNumber(
-                            selectedFood.sugars
-                          )} g`}
+                          value={displayNutrient(selectedFood.sugars, "g")}
                           muted
                         />
 
                         <NutritionRow
                           label="Fat"
-                          value={`${formatNumber(
-                            selectedFood.fat
-                          )} g`}
+                          value={displayNutrient(selectedFood.fat, "g")}
                         />
 
                         <NutritionRow
                           label="of which saturates"
-                          value={`${formatNumber(
-                            selectedFood.saturates
-                          )} g`}
+                          value={displayNutrient(selectedFood.saturates, "g")}
                           muted
                         />
 
                         <NutritionRow
                           label="Fibre"
-                          value={`${formatNumber(
-                            selectedFood.fibre
-                          )} g`}
+                          value={displayNutrient(selectedFood.fibre, "g")}
                         />
 
                       </div>
@@ -1405,17 +1367,13 @@ export default function FoodCheckPage() {
 
                         <NutritionRow
                           label="Salt"
-                          value={`${formatNumber(
-                            selectedFood.salt
-                          )} g`}
+                          value={displayNutrient(selectedFood.salt, "g")}
                           emphasis="red"
                         />
 
                         <NutritionRow
                           label="Sodium"
-                          value={`${formatNumber(
-                            selectedFood.sodium
-                          )} mg`}
+                          value={displayNutrient(selectedFood.sodium, "mg")}
                           emphasis="blue"
                         />
 
@@ -1441,33 +1399,25 @@ export default function FoodCheckPage() {
 
                         <NutritionRow
                           label="Calcium"
-                          value={`${formatNumber(
-                            selectedFood.calcium
-                          )} mg`}
+                          value={displayNutrient(selectedFood.calcium, "mg")}
                           emphasis="blue"
                         />
 
                         <NutritionRow
                           label="Magnesium"
-                          value={`${formatNumber(
-                            selectedFood.magnesium
-                          )} mg`}
+                          value={displayNutrient(selectedFood.magnesium, "mg")}
                           emphasis="blue"
                         />
 
                         <NutritionRow
                           label="Iron"
-                          value={`${formatNumber(
-                            selectedFood.iron
-                          )} mg`}
+                          value={displayNutrient(selectedFood.iron, "mg")}
                           emphasis="blue"
                         />
 
                         <NutritionRow
                           label="Zinc"
-                          value={`${formatNumber(
-                            selectedFood.zinc
-                          )} mg`}
+                          value={displayNutrient(selectedFood.zinc, "mg")}
                           emphasis="blue"
                         />
 
@@ -1487,29 +1437,31 @@ export default function FoodCheckPage() {
 
                         <div>
 
-                          <p className="text-sm font-semibold leading-6 text-blue-950">
-                            Source: McCance and
-                            Widdowson&apos;s
-                            Composition of Foods
-                            Integrated Dataset
-                            (CoFID), 2021.
-                          </p>
-
+                          <h3 className="text-sm font-semibold leading-6 text-blue-950">
+                            Nutritional information source
+                          </h3>
                           <p className="mt-1 text-sm leading-6 text-slate-600">
-                            Values are presented per
-                            100 g of edible portion.
+                            {selectedFood.source === "CoFID 2021"
+                              ? "McCance and Widdowson's Composition of Foods Integrated Dataset (CoFID), 2021."
+                              : "Open Food Facts"}
                           </p>
-
+                          <p className="mt-1 text-sm leading-6 text-slate-600">
+                            {selectedFood.source === "CoFID 2021"
+                              ? "Values are presented per 100g of edible portion."
+                              : "Nutritional information comes from the Open Food Facts product database and is displayed per 100g. Product information may be incomplete or contributed by users. 'Not available' does not mean zero."}
+                          </p>
                           <a
-                            href="https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+                            href={selectedFood.source === "CoFID 2021"
+                              ? "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+                              : "https://world.openfoodfacts.org/product/" + selectedFood.code}
                             target="_blank"
                             rel="noreferrer"
                             className="mt-2 inline-block text-sm font-bold text-blue-700 hover:underline"
                           >
-                            Find out more about
-                            CoFID 2021 →
+                            {selectedFood.source === "CoFID 2021"
+                              ? "Find out more about CoFID 2021 ?"
+                              : "View product on Open Food Facts"}
                           </a>
-
                         </div>
 
                       </div>

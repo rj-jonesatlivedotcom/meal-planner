@@ -289,3 +289,69 @@ test("selection requests a post-render nutrition scroll for every selection", ()
   assert.equal(selected.code, "0012345678905");
   assert.deepEqual(requests, ["nutrition", "nutrition"]);
 });
+
+const nutrientKeys = ['energyKj', 'energyKcal', 'protein', 'carbohydrate', 'sugars', 'fat', 'saturates', 'fibre', 'salt', 'sodium', 'potassium', 'phosphorus', 'calcium', 'magnesium', 'iron', 'zinc'];
+const sourceKeys = ['energy-kj', 'energy-kcal', 'proteins', 'carbohydrates', 'sugars', 'fat', 'saturated-fat', 'fiber', 'salt', 'sodium', 'potassium', 'phosphorus', 'calcium', 'magnesium', 'iron', 'zinc'];
+const cofidKeys = ['energy_kj', 'energy_kcal', 'protein_g', 'carbohydrate_g', 'sugars_g', 'fat_g', 'saturates_g', 'fibre_g', 'salt_g', 'sodium_mg', 'potassium_mg', 'phosphorus_mg', 'calcium_mg', 'magnesium_mg', 'iron_mg', 'zinc_mg'];
+const nutritionContext = {};
+vm.runInNewContext(compile(['optionalNumberValue', 'textValue', 'mapFood', 'formatNumber', 'displayNutrient'].map(pageFunction).join('\n')), nutritionContext);
+
+for (const value of [undefined, null, '', '  ', 'unknown', '1mg', false, true, [], {}, NaN, Infinity]) {
+  test('all nutrients reject missing or invalid input: ' + String(value), async () => {
+    const h = lookupHarness(async () => ({ ok: true, json: async () => ({ status: 1, product: { nutriments: Object.fromEntries(sourceKeys.map(k => [k + '_100g', value])) } }) }));
+    await h.lookup('0012345678905');
+    const cofid = nutritionContext.mapFood(Object.fromEntries(cofidKeys.map(k => [k, value])));
+    for (const key of nutrientKeys) {
+      assert.equal(h.state.selected[0][key], null, 'OFF ' + key);
+      assert.equal(cofid[key], null, 'CoFID ' + key);
+      assert.equal(nutritionContext.displayNutrient(cofid[key], 'mg'), 'Not available');
+    }
+  });
+}
+for (const value of [0, '0', 1.25, '1.25']) {
+  test('all nutrients preserve valid values and source units: ' + JSON.stringify(value), async () => {
+    const h = lookupHarness(async () => ({ ok: true, json: async () => ({ status: 1, product: { nutriments: Object.fromEntries(sourceKeys.map(k => [k + '_100g', value])) } }) }));
+    await h.lookup('0012345678905');
+    const cofid = nutritionContext.mapFood(Object.fromEntries(cofidKeys.map(k => [k, value])));
+    nutrientKeys.forEach((key, i) => {
+      assert.equal(cofid[key], Number(value));
+      assert.equal(h.state.selected[0][key], Number(value) * (i >= 9 ? 1000 : 1));
+    });
+    assert.equal(nutritionContext.displayNutrient(Number(value), 'g'), (Number(value) === 0 ? '0' : '1.3') + ' g');
+    assert.equal(nutritionContext.displayNutrient(Number(value), 'mg'), (Number(value) === 0 ? '0' : '1.3') + ' mg');
+  });
+}
+
+function renderSource(selectedFood) {
+  const section = page.slice(page.indexOf('{/* SOURCE */}'), page.indexOf('{/* SOURCE */}') + 4000);
+  const content = section.slice(section.indexOf('<h3'), section.indexOf('</a>') + 4);
+  const context = { React: load('react'), selectedFood };
+  const js = ts.transpileModule('result = <div>' + content + '</div>;', { compilerOptions: { jsx: ts.JsxEmit.React, target: ts.ScriptTarget.ES2017 } }).outputText;
+  vm.runInNewContext(js, context);
+  return load('react-dom/server').renderToStaticMarkup(context.result);
+}
+test('name-search mapping retains CoFID attribution and edible-portion source link', () => {
+  const html = renderSource(nutritionContext.mapFood({ food_code: 'test' }));
+  assert.match(html, /Nutritional information source/);
+  assert.match(html, /McCance and Widdowson&#x27;s Composition of Foods Integrated Dataset \(CoFID\), 2021\./);
+  assert.match(html, /per 100g of edible portion/);
+  assert.match(html, /https:\/\/www.gov.uk\/government\/publications\/composition-of-foods-integrated-dataset-cofid/);
+  assert.doesNotMatch(html, /Open Food Facts/);
+});
+test('barcode source renders OFF warning and exact leading-zero product link', async () => {
+  const h = lookupHarness(async () => ({ ok: true, json: async () => ({ status: 1, product: { nutriments: {} } }) }));
+  await h.lookup('0012345678905');
+  const html = renderSource(h.state.selected[0]);
+  assert.match(html, /Nutritional information source/);
+  assert.match(html, /Open Food Facts product database and is displayed per 100g/);
+  assert.match(html, /Product information may be incomplete or contributed by users. &#x27;Not available&#x27; does not mean zero\./);
+  assert.match(html, /href="https:\/\/world.openfoodfacts.org\/product\/0012345678905"/);
+  assert.match(html, /View product on Open Food Facts/);
+  assert.doesNotMatch(html, /CoFID|edible portion/);
+});
+test('manual entry and camera both use the tested barcode lookup', () => {
+  assert.match(page, /void lookupBarcode\(barcode\)/);
+  assert.match(page, /lookupBarcodeRef.current = lookupBarcode/);
+  assert.match(page, /void lookupBarcodeRef.current\(value\)/);
+  assert.match(page, /value=\{displayNutrient\(selectedFood.sodium, "mg"\)\}/);
+});

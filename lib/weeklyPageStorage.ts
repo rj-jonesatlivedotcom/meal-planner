@@ -163,8 +163,9 @@ export function useWeeklyPageStorage() {
   // A mounted page's callbacks retain their original account/week. Resolving a
   // fresh binding inside each write would send a delayed old effect to a new week.
   return useMemo(() => {
-    if (!datedPlannerEnabled() || (loaded && owner && week)) return createWeeklyPageStorage();
-    const unavailable: Pick<Storage, "getItem" | "setItem" | "removeItem"> = {
+    if (!datedPlannerEnabled() || (loaded && owner && week)) return { ...createWeeklyPageStorage(), ready: true };
+    const unavailable: Pick<Storage, "getItem" | "setItem" | "removeItem"> & { ready: boolean } = {
+      ready: false,
       getItem: () => null,
       setItem: () => { throw new Error("Week not loaded"); },
       removeItem: () => { throw new Error("Week not loaded"); },

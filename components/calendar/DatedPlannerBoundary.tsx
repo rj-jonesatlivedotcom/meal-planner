@@ -69,9 +69,9 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
   </div>;
   const shift = (amount: number) => { void context.select(shiftWeek(state.weekStart, amount / 7)); };
   const shownPlan = state.plan ?? emptyWeeklyPlan(state.owner, state.weekStart);
-  return <div>
+  const content = <div>
     {isRecoveryRoute && children}
-    {(isPlannerRoute(path) || isRecoveryRoute) && <CalendarToolbar key={`toolbar:${state.owner.kind}:${state.owner.id}:${state.weekStart}`} plan={shownPlan}
+    {isRecoveryRoute && <CalendarToolbar key={`toolbar:${state.owner.kind}:${state.owner.id}:${state.weekStart}`} plan={shownPlan}
       shift={shift} thisWeek={() => void context.select(currentMonday())}
       readPlan={() => context.getSnapshot().status === "ready" ? context.getSnapshot().plan : null} />}
     {recovery}
@@ -91,6 +91,9 @@ function PlannerRuntime({ children }: { children: ReactNode }) {
     {!state.plan ? (!recovery && <p role="status" className="p-5">Loading saved meals...</p>) :
       <div key={`${state.owner.kind}:${state.owner.id}:${state.weekStart}`} inert={state.status === "error"}>{!isRecoveryRoute && children}</div>}
   </div>;
+  return isPlannerRoute(path) ? <CalendarToolbar key={`toolbar:${state.owner.kind}:${state.owner.id}:${state.weekStart}`} plan={shownPlan}
+    shift={shift} thisWeek={() => void context.select(currentMonday())}
+    readPlan={() => context.getSnapshot().status === "ready" ? context.getSnapshot().plan : null}>{content}</CalendarToolbar> : content;
 }
 
 /** Read-only discovery; importing still requires an explicit week assignment. */

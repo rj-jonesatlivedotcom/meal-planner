@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { createContext, useContext, useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { buildCalendar, calendarDefaults, calendarNamespace, calendarPreferences, formatWeek, type CalendarPreferences } from "@/lib/calendar";
 import { currentMonday, type WeeklyPlan } from "@/lib/weeklyPlans";
 import { flushWeeklyPageWrites } from "@/lib/weeklyPageStorage";
 import { recipes } from "@/data/RecipeData";
 import { liveCalendarEnabled } from "@/lib/supabase/config";
 
-type Props = { plan: WeeklyPlan; shift: (days: number) => void; thisWeek: () => void; readPlan: () => WeeklyPlan | null };
+type Props = { plan: WeeklyPlan; shift: (days: number) => void; thisWeek: () => void; readPlan: () => WeeklyPlan | null; children?: ReactNode };
+type MobileControls = Pick<Props, "shift" | "thisWeek"> & { week: string; openPanel: (panel: "connect" | "times") => void };
+const MobileCalendarContext = createContext<MobileControls | null>(null);
 // Unmodified provider artwork, served locally (no third-party image requests):
 // Google: https://www.gstatic.com/calendar/images/manifest/logo_2020q4_192.png
 // Outlook: https://res.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/brand-icons/product/svg/outlook_48x1.svg
@@ -17,7 +19,7 @@ const button = "rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-semi
 export default function CalendarToolbar(props: Props) {
   const [panel, setPanel] = useState<"connect" | "times" | null>(null);
   const isThisWeek = props.plan.weekStart === currentMonday();
-  return <>
+  return <MobileCalendarContext.Provider value={{ shift: props.shift, thisWeek: props.thisWeek, week: formatWeek(props.plan.weekStart), openPanel: setPanel }}>
     <style jsx>{`
       .planner-toolbar { display: flex; align-items: center; gap: 8px; width: 100%; max-width: 1448px; margin: 0 auto; padding: 8px 24px; }
       .planner-week { display: flex; align-items: center; gap: 8px; }
@@ -34,8 +36,11 @@ export default function CalendarToolbar(props: Props) {
         .planner-actions button { min-height: 44px; }
         .planner-actions button, .planner-this-week { padding: 6px clamp(4px, 1.6vw, 8px); font-size: clamp(11px, 3.2vw, 14px); white-space: nowrap; }
       }
+      @media (max-width: 767px) {
+        .planner-toolbar[data-mobile-planner="true"] { display: none; }
+      }
     `}</style>
-    <nav aria-label="Planner week" className="planner-toolbar text-slate-800 dark:text-slate-100">
+    <nav aria-label="Planner week" data-mobile-planner={props.children ? "true" : undefined} className="planner-toolbar text-slate-800 dark:text-slate-100">
       <div className="planner-week">
         <button type="button" className={`${button} planner-week-arrow`} aria-label="Previous week" onClick={() => props.shift(-7)}>&#8592;</button>
         <span className="planner-week-label" aria-live="polite">{formatWeek(props.plan.weekStart)}</span>
@@ -47,8 +52,61 @@ export default function CalendarToolbar(props: Props) {
         <button type="button" className={button} onClick={() => setPanel("times")}>Meal times</button>
       </div>
     </nav>
+    {props.children}
     {panel && <CalendarPanel {...props} initialPanel={panel} onClose={() => setPanel(null)} />}
-  </>;
+  </MobileCalendarContext.Provider>;
+}
+
+export function MobileCalendarTile() {
+  const controls = useContext(MobileCalendarContext);
+  const [open, setOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const first = useRef<HTMLButtonElement>(null);
+  const id = useId();
+  function close() { setOpen(false); trigger.current?.focus(); }
+  useEffect(() => {
+    if (!open) return;
+    first.current?.focus();
+    const outside = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setOpen(false); };
+    const escape = (event: KeyboardEvent) => { if (event.key === "Escape") { event.preventDefault(); setOpen(false); trigger.current?.focus(); } };
+    document.addEventListener("pointerdown", outside);
+    document.addEventListener("keydown", escape);
+    return () => { document.removeEventListener("pointerdown", outside); document.removeEventListener("keydown", escape); };
+  }, [open]);
+  return <div ref={root} className="mobile-calendar-slot" onBlur={event => {
+    if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget as Node)) setOpen(false);
+  }}>
+    <style jsx>{`
+      .mobile-calendar-slot { position: relative; min-width: 0; }
+      .mobile-calendar-popover { position: absolute; z-index: 100; top: calc(100% + 12px); left: 50%; transform: translateX(-50%); width: min(380px, calc(100vw - 40px)); padding: 12px; border: 1px solid #e2e8f0; border-radius: 18px; background: white; color: #10243e; box-shadow: 0 14px 35px #14263b26; }
+      .mobile-calendar-popover::before { content: ""; position: absolute; top: -8px; left: calc(50% - 8px); width: 16px; height: 16px; transform: rotate(45deg); background: white; border-left: 1px solid #e2e8f0; border-top: 1px solid #e2e8f0; }
+      .mobile-calendar-week { display: grid; grid-template-columns: 40px minmax(0, 1fr) 40px; gap: 6px; align-items: center; padding-bottom: 10px; }
+      .mobile-calendar-week span { font-size: 13px; font-weight: 700; text-align: center; }
+      .mobile-calendar-week button { min-height: 44px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 20px; }
+      .mobile-calendar-action { display: flex; align-items: center; gap: 12px; min-height: 46px; width: 100%; padding: 9px 4px; border-top: 1px solid #e2e8f0; text-align: left; font-size: 14px; }
+      .mobile-calendar-action svg { width: 21px; height: 21px; flex-shrink: 0; }
+      .mobile-calendar-action span:last-child { margin-left: auto; color: #64748b; font-size: 22px; }
+      button { cursor: pointer; }
+      button:focus-visible { outline: 2px solid #0284c7; outline-offset: 2px; }
+      button:active { background-color: #f1f5f9; }
+    `}</style>
+    <button ref={trigger} type="button" className="planner-mobile-tile planner-mobile-calendar" disabled={!controls}
+      aria-expanded={open} aria-controls={id} aria-haspopup="dialog" onClick={() => setOpen(value => !value)}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18m-13 4h1m3 0h1m3 0h1M8 18h1m3 0h1" /></svg>
+      <span>Calendar <span aria-hidden="true">⌄</span></span>
+    </button>
+    {open && controls && <div id={id} role="dialog" aria-label="Calendar controls" className="mobile-calendar-popover">
+      <div className="mobile-calendar-week">
+        <button ref={first} type="button" aria-label="Previous week" onClick={() => controls.shift(-7)}>&#8592;</button>
+        <span aria-live="polite">{controls.week}</span>
+        <button type="button" aria-label="Next week" onClick={() => controls.shift(7)}>&#8594;</button>
+      </div>
+      <button type="button" className="mobile-calendar-action" onClick={() => { close(); controls.thisWeek(); }}><span aria-hidden="true">↶</span><span>This week</span><span aria-hidden="true">›</span></button>
+      <button type="button" className="mobile-calendar-action" onClick={() => { close(); controls.openPanel("connect"); }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg><span>Add to calendar</span><span aria-hidden="true">›</span></button>
+      <button type="button" className="mobile-calendar-action" onClick={() => { close(); controls.openPanel("times"); }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 6v6l4 2" /></svg><span>Meal times</span><span aria-hidden="true">›</span></button>
+    </div>}
+  </div>;
 }
 
 function CalendarPanel({ plan, readPlan, initialPanel, onClose }: Props & { initialPanel: "connect" | "times"; onClose: () => void }) {

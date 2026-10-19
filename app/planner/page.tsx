@@ -1,6 +1,7 @@
 "use client";
 
 import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
+import { MobileCalendarTile } from "@/components/calendar/CalendarToolbar";
 import { formatWeek, shortCalendarDate } from "@/lib/calendar";
 import { datedPlannerEnabled } from "@/lib/supabase/config";
 
@@ -283,6 +284,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
 
   const [mealPeople, setMealPeople] =
     useState<MealPeople | null>(null);
+  const [loadedPlannerStorage, setLoadedPlannerStorage] = useState<typeof weeklyPageStorage | null>(null);
 
   const [peoplePicker, setPeoplePicker] =
     useState<{
@@ -396,6 +398,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
   }, [plannerMeals]);
 
   useEffect(() => {
+    if (!weeklyPageStorage.ready) return;
     setFluidEntries(readFluidLog());
     let cancelled = false;
     async function loadCloudFluidLog() {
@@ -759,6 +762,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
   }
 
   useEffect(() => {
+    if (!weeklyPageStorage.ready) return;
     let cancelled = false;
 
     async function loadPlannerRequirements() {
@@ -844,6 +848,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     if (!saved) {
       setPlannerMeals(emptyPlanner);
       setMealPeople(createEmptyMealPeople());
+      setLoadedPlannerStorage(weeklyPageStorage);
       return;
     }
 
@@ -918,6 +923,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     }
 
     plannerInitialisedRef.current = true;
+    setLoadedPlannerStorage(weeklyPageStorage);
 
     return () => {
       window.removeEventListener(
@@ -929,6 +935,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
 
   useEffect(() => {
     if (
+      !weeklyPageStorage.ready || loadedPlannerStorage !== weeklyPageStorage ||
       plannerMeals === null ||
       mealPeople === null
     ) {
@@ -969,7 +976,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     window.dispatchEvent(
       new Event("weekly-planner-updated")
     );
-  }, [plannerMeals, mealPeople, accountSyncReady, accountUserId, getHouseholdPeople, syncPlannerWithShoppingList, weeklyPageStorage]);
+  }, [plannerMeals, mealPeople, accountSyncReady, accountUserId, getHouseholdPeople, syncPlannerWithShoppingList, weeklyPageStorage, loadedPlannerStorage]);
 
   function getPeopleForMeal(
     day: string,
@@ -2142,6 +2149,31 @@ function formatPotassiumMg(mg: number): string {
   return (
     <>
       <style>{`
+
+.planner-mobile-action-area { display: none; }
+@media (max-width: 767px) {
+  .planner-mobile-action-area { display: block; margin-bottom: 10px; }
+  .planner-mobile-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
+  .planner-mobile-actions .planner-mobile-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; width: 100%; height: 90px; min-width: 0; padding: 8px 5px; border: 1.5px solid; border-radius: 17px; box-shadow: 0 3px 7px #17344a12; color: #10243e; font-size: clamp(11px, 3.3vw, 14px); font-weight: 750; line-height: 1.2; text-align: center; cursor: pointer; transition: transform 120ms, box-shadow 120ms; }
+  .planner-mobile-actions .planner-mobile-tile svg { width: 30px; height: 30px; flex-shrink: 0; }
+  .planner-mobile-actions .planner-mobile-chef { background: #e8f5ff; border-color: #acdcfa; }
+  .planner-mobile-actions .planner-mobile-calendar { background: #fff1e5; border-color: #fdc692; }
+  .planner-mobile-actions .planner-mobile-calendar > svg { color: #fb781d; }
+  .planner-mobile-actions .planner-mobile-clear { background: #e2faed; border-color: #a0ecc3; }
+  .planner-mobile-actions .planner-mobile-clear svg { color: #168b54; }
+  .planner-mobile-actions .planner-mobile-tile:active { transform: scale(.97); box-shadow: 0 1px 3px #17344a12; }
+  .planner-mobile-actions .planner-mobile-tile:focus-visible { outline: 2px solid #0284c7; outline-offset: 3px; }
+  .planner-mobile-actions .planner-mobile-tile:disabled { opacity: .65; cursor: wait; }
+  .planner-mobile-week-heading { margin: 0; font-size: clamp(16px, 4.6vw, 20px); font-weight: 750; line-height: 1.3; color: #10243e; }
+  .planner-mobile-empty { display: grid; grid-template-columns: 44px minmax(0, 1fr) 14px; align-items: center; gap: 12px; width: 100%; min-height: 94px; padding: 12px; border: 1.5px dashed #fed7aa; border-radius: 16px; background: linear-gradient(135deg, #fff, #fff9f1); text-align: left; }
+  .planner-mobile-empty-copy strong { display: block; font-size: 15px; font-weight: 750; color: #10243e; }
+  .planner-mobile-empty-copy > span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.4; color: #64748b; }
+  .planner-mobile-empty > svg { width: 14px; height: 20px; color: #233c58; }
+  html[data-theme="dark"] .planner-mobile-week-heading, html[data-theme="dark"] .planner-mobile-empty-copy strong { color: #f1f5f9; }
+  html[data-theme="dark"] .planner-mobile-empty { background: #172b3a; border-color: #8a6741; }
+  html[data-theme="dark"] .planner-mobile-empty-copy > span { color: #cbd5e1; }
+}
+
 /* Planner meal-card remove buttons: keep the X black in dark mode. */
 html[data-theme="dark"] main .planner-remove-button,
 html[data-theme="dark"] main .planner-remove-button:hover,
@@ -2336,6 +2368,22 @@ html[data-theme="dark"] main .planner-remove-button {
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
 
+        <div className="planner-mobile-action-area">
+          <div className="planner-mobile-actions">
+            <button type="button" className="planner-mobile-tile planner-mobile-chef" onClick={startPickForMe} disabled={isDiceRolling}
+              aria-label={isDiceRolling ? "MyChef is planning your meals" : "Open MyChef"}>
+              <MyChefIcon className="h-8 w-8" />
+              <span>{isDiceRolling ? "Planning..." : "Let MyChef plan"}</span>
+            </button>
+            <MobileCalendarTile />
+            <button type="button" className="planner-mobile-tile planner-mobile-clear" onClick={() => setShowClearConfirm(true)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7" /></svg>
+              <span>Clear Week</span>
+            </button>
+          </div>
+          {datedDayDate("Monday") && <h2 className="planner-mobile-week-heading" aria-live="polite">{formatWeek(datedDayDate("Monday")!)}</h2>}
+        </div>
+
         {/* MOBILE DAY SELECTOR */}
 
         <div className="mb-4 md:hidden">
@@ -2400,50 +2448,6 @@ html[data-theme="dark"] main .planner-remove-button {
             touchStartY.current = null;
           }}
         >
-
-          {/* MOBILE MYCHEF + CLEAR WEEK */}
-          <div className="mb-3 grid grid-cols-2 gap-3">
-            <button
-              type="button"
-              onClick={startPickForMe}
-              disabled={isDiceRolling}
-              aria-label={isDiceRolling ? "MyChef is planning your meals" : "Open MyChef"}
-              className={`planner-pick-for-me-button planner-mychef-button group flex h-[72px] min-h-[72px] min-w-0 flex-col items-center justify-center gap-1 rounded-2xl border-2 border-sky-200 bg-sky-100 px-2 py-2 text-sm font-bold text-sky-950 shadow-sm transition hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-200 hover:shadow-lg ${
-                isDiceRolling
-                  ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
-                  : ""
-              }`}
-            >
-              <span
-                className={`relative z-10 inline-flex leading-none transition-transform ${
-                  isDiceRolling
-                    ? "animate-pulse scale-110"
-                    : "group-hover:scale-110"
-                }`}
-                aria-hidden="true"
-              >
-                <MyChefIcon className="h-6 w-6" />
-              </span>
-              <span className="relative z-10 text-center leading-tight">
-                {isDiceRolling ? "MyChef is planning..." : "Let MyChef plan"}
-              </span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setShowClearConfirm(true)}
-              aria-label="Clear Week"
-              style={{
-                backgroundColor: theme === "dark" ? "#202e3a" : "#d1fae5",
-                color: theme === "dark" ? "#f8fafc" : "#12396b",
-                borderColor: theme === "dark" ? "#9a6b24" : "#a7f3d0",
-              }}
-              className="planner-clear-week-button flex h-[72px] min-h-[72px] min-w-0 flex-col items-center justify-center gap-1 rounded-2xl border-2 px-2 py-2 text-sm font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:hidden"
-            >
-              <span className="inline-flex text-xl leading-none" aria-hidden="true">🗑️</span>
-              <span className="whitespace-nowrap">Clear Week</span>
-            </button>
-          </div>
 
           <section className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/80">
 
@@ -2529,16 +2533,15 @@ html[data-theme="dark"] main .planner-remove-button {
                       meal: "Breakfast",
                     })
                   }
-                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  className="planner-empty-slot planner-mobile-empty group transition hover:border-orange-400"
                 >
 
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
                     +
                   </span>
 
-                  <span className="mt-3 text-sm font-bold text-slate-700">
-                    Add breakfast
-                  </span>
+                  <span className="planner-mobile-empty-copy"><strong>Add breakfast</strong><span>Choose a recipe or let MyChef plan it</span></span>
+                  <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="m3 3 7 7-7 7" /></svg>
 
                 </button>
 
@@ -2624,16 +2627,15 @@ html[data-theme="dark"] main .planner-remove-button {
                       meal: "Lunch",
                     })
                   }
-                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  className="planner-empty-slot planner-mobile-empty group transition hover:border-orange-400"
                 >
 
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
                     +
                   </span>
 
-                  <span className="mt-3 text-sm font-bold text-slate-700">
-                    Add lunch
-                  </span>
+                  <span className="planner-mobile-empty-copy"><strong>Add lunch</strong><span>Choose a recipe or let MyChef plan it</span></span>
+                  <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="m3 3 7 7-7 7" /></svg>
 
                 </button>
 
@@ -2719,16 +2721,15 @@ html[data-theme="dark"] main .planner-remove-button {
                       meal: "Dinner",
                     })
                   }
-                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                  className="planner-empty-slot planner-mobile-empty group transition hover:border-orange-400"
                 >
 
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
                     +
                   </span>
 
-                  <span className="mt-3 text-sm font-bold text-slate-700">
-                    Add dinner
-                  </span>
+                  <span className="planner-mobile-empty-copy"><strong>Add dinner</strong><span>Choose a recipe or let MyChef plan it</span></span>
+                  <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="m3 3 7 7-7 7" /></svg>
 
                 </button>
 

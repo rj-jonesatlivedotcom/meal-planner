@@ -635,7 +635,7 @@ export default function RecipeDetailPage() {
 
   return (
     <main className={styles.detail}>
-      <Link href="/recipes" className={styles.backLink}>&larr; Back to recipes</Link>
+      <Link href="/recipes" className={styles.backLink}><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m11 5-7 7 7 7M4 12h16" /></svg>Back to recipes</Link>
       <section className={styles.hero} aria-label="Recipe overview">
         <div className={styles.heroPhoto}><RecipePhoto src={recipe.image} name={recipe.name} priority /></div>
         <div className={styles.heroContent}>

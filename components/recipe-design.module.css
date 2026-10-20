@@ -4,11 +4,13 @@
   color: var(--recipe-ink); font-family: Arial, Helvetica, sans-serif;
   background: #f8f8f3; border-radius: 24px;
 }
-.detail { max-width: 1200px; margin: 0 auto; padding: 20px 20px 64px; }
+.detail { max-width: 1280px; margin: 0 auto; padding: 20px 20px 64px; }
 .detail h1, .discoveryTitle { font-family: inherit; font-size: clamp(1.65rem, 3vw, 2.5rem); font-weight: 800; line-height: 1.13; letter-spacing: -.035em; }
 .detail h2 { font-size: 1.3rem; line-height: 1.25; font-weight: 750; letter-spacing: -.025em; }
 .detail button, .categories button { min-height: 44px; }
-.backLink { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 10px; color: var(--recipe-muted); font-size: .85rem; }
+.backLink { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-bottom: 14px; padding: 8px 13px; border: 1px solid var(--recipe-line); border-radius: 12px; background: var(--recipe-surface); color: var(--recipe-muted); font-size: .85rem; font-weight: 600; }
+.backLink:hover { border-color: #a4bca9; background: #edf5ee; }
+.backLink:focus-visible { outline: 3px solid #16a34a; outline-offset: 3px; }
 .hero { display: grid; overflow: hidden; border: 1px solid var(--recipe-line); border-radius: 22px; background: var(--recipe-surface); box-shadow: 0 3px 14px #223b2610; }
 .heroPhoto { position: relative; aspect-ratio: 4 / 3; min-width: 0; }
 .heroContent { min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 16px; }
@@ -56,6 +58,9 @@
 .method li > span { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #dcf2e5; color: #007344; font-size: .78rem; font-weight: 750; }
 .method p { margin: 0; overflow-wrap: anywhere; }
 .guidePanel { background: #edf9f1; border-color: #ceebdc; }
+.lowerSections { grid-template-columns: minmax(0, 1fr); }
+.lowerSections > .guidePanel { display: grid; gap: 8px; padding: 16px 20px; }
+.lowerSections > .guidePanel p { margin: 0; }
 .guidePanel h2 svg { color: #258a56; }
 .evidence { margin-top: 20px; color: var(--recipe-muted); font-size: .8rem; line-height: 1.6; }
 .evidence summary { min-height: 44px; cursor: pointer; padding: 10px 0; font-weight: 600; }
@@ -97,6 +102,9 @@
 .categories { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 4px; margin-bottom: 12px; }
 .resultsBar { display: none; align-items: center; justify-content: space-between; gap: 16px; margin: 12px 0; }
 .resultsBar > p { color: var(--recipe-muted); font-size: .85rem; }
+.discovery .countPill { display: inline-flex; align-items: center; gap: 7px; width: fit-content; max-width: 100%; padding: 7px 12px; border: 1px solid #cce7d6; border-radius: 999px; background: #eaf7ee; color: #246341; font-size: .8rem; font-weight: 600; line-height: 1.4; }
+.countPill svg { width: 17px; height: 17px; flex-shrink: 0; }
+.countPill span { overflow-wrap: anywhere; }
 .recipeGrid { display: grid; gap: 22px; grid-template-columns: minmax(0,1fr); }
 .recipeGrid > :global(.col-span-full) { grid-column: 1 / -1; }
 @media (min-width: 768px) { .recipeGrid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
@@ -107,10 +115,11 @@
  .heroContent { padding:26px; gap:18px; } .heroContent > .nutrition { grid-template-columns:repeat(4,minmax(0,1fr)); }
  .heroContent > .nutrition > div { display:flex; flex-direction:column; text-align:center; padding:14px 6px; gap:5px; }
  .heroContent > .nutrition dt { order:2; margin:0; } .heroContent > .nutrition dd { order:1; }
- .sections { grid-template-columns:.95fr 1.05fr; } .lowerSections { grid-template-columns:1.15fr .95fr; }
- .detailedNutrition { grid-template-columns:repeat(6,minmax(0,1fr)); }
- .detailedNutrition > div { grid-column:span 2; } .detailedNutrition > div:nth-last-child(-n+2) { grid-column:span 3; }
+ .sections { grid-template-columns:.95fr 1.05fr; background-image: url('/images/recipe-herb-sprig.svg'), url('/images/recipe-herb-sprig.svg'); background-repeat: no-repeat; background-size: 220px 85px; background-position: left 18% bottom 12px, right 18% bottom 12px; }
+ .lowerSections > .guidePanel { grid-template-columns: 180px minmax(0, 1fr); align-items: center; gap: 20px; }
 }
+@media (min-width:640px) { .lowerSections .detailedNutrition { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media (min-width:1152px) { .lowerSections .detailedNutrition { grid-template-columns:repeat(8,minmax(0,1fr)); } }
 @media (max-width:374px) { .detail { padding:12px 12px 48px; } .heroContent,.panel,.guidePanel,.related { padding:16px; } .nutrition { gap:8px; } .nutrition > div { padding:11px 9px; column-gap:6px; } .nutrition dd { font-size:.92rem; } .panelHeading h2 { font-size:1.15rem; } }
 @media (hover:hover) and (prefers-reduced-motion:no-preference) { .card:hover { transform:translateY(-2px); box-shadow:0 8px 22px #253e2915; } .card:hover .cardImage img { transform:scale(1.02); } .relatedCard:hover { border-color:#72b997; } }
 @media (prefers-reduced-motion:reduce) { .card,.cardImage img,.primary { transition:none; } }
@@ -127,3 +136,5 @@
 :global(html[data-theme="dark"]) .card { background:#19252e; border-color:#34434b; color:#edf2f7; }
 :global(html[data-theme="dark"]) .cardTime { color: #bacbd5; }
 :global(html[data-theme="dark"]) .cardFavourite { background:#24323bf2; border-color:#3d4b52; color:#edf2f7; }
+:global(html[data-theme="dark"]) .discovery .countPill { background: #203c2e; border-color: #3b6350; color: #b2e4c5; }
+:global(html[data-theme="dark"]) .backLink:hover { background: #243b30; border-color: #63836c; }

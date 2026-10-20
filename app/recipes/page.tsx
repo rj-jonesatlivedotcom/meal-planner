@@ -1230,8 +1230,8 @@ export default function RecipesPage() {
           </div>
 
           {/* Mobile helper text */}
-          <p className="mt-3 text-sm text-slate-500">
-            {helperText}
+          <p className={`${styles.countPill} mt-3`} aria-live="polite">
+            <RecipeIcon name="ingredients" /><span>{helperText}</span>
           </p>
         </div>
 
@@ -1239,7 +1239,7 @@ export default function RecipesPage() {
             DESKTOP RECIPE COUNT BAR
             ===================================================== */}
         <div className={styles.resultsBar}>
-          <p aria-live="polite">{filteredRecipeCount} {filteredRecipeCount === 1 ? "recipe" : "recipes"}</p>
+          <p className={styles.countPill} aria-live="polite"><RecipeIcon name="ingredients" /><span>{filteredRecipeCount} {filteredRecipeCount === 1 ? "recipe" : "recipes"}</span></p>
 
           {/* Meal type quick filters */}
           <div className="flex shrink-0 items-center gap-2">

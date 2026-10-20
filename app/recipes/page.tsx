@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import styles from "@/components/recipe-design.module.css";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
@@ -717,8 +718,22 @@ export default function RecipesPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 px-4 py-5 md:px-6 md:py-6">
+    <main className={`${styles.discovery} min-h-screen bg-[#f8f7f2] px-4 py-5 md:px-6 md:py-6 dark:bg-[#111b16]`}>
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
+        <header className="mb-6 pt-2 sm:mb-8 sm:pt-4">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-green-700 dark:text-green-300">The RenalPlan kitchen</p>
+          <h1 className={styles.discoveryTitle}>Good food. Something for every day.</h1>
+          <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300">Find your next favourite, explore the nutrition and make it part of your week.</p>
+        </header>
+        <nav aria-label="Recipe categories" className={styles.categories}>
+          {mealTypes.map((mealType) => (
+            <button key={mealType} type="button" aria-pressed={selectedMealType === mealType}
+              onClick={() => handleMealTypeChange(mealType)}
+              className={`min-h-11 rounded-full px-1 text-xs font-semibold transition ${selectedMealType === mealType ? "bg-green-700 !text-white" : "bg-white text-slate-600 dark:bg-slate-800 dark:text-slate-200"}`}>
+              {mealType}
+            </button>
+          ))}
+        </nav>
 
         {/* =====================================================
             DESKTOP SEARCH / FILTER CONTROLS
@@ -1282,7 +1297,7 @@ export default function RecipesPage() {
             RECIPES
             ===================================================== */}
         {filteredRecipes.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {filteredRecipes.map((recipe, index) => (
               <Fragment key={recipe.id}>
                 <RecipeCard

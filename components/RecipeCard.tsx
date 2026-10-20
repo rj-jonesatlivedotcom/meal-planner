@@ -2,7 +2,9 @@
 
 import { useWeeklyPageStorage, afterWeeklyPageWrites } from "@/lib/weeklyPageStorage";
 
-import Image from "next/image";
+import RecipePhoto from "./RecipePhoto";
+import styles from "./recipe-design.module.css";
+import RecipeNutrition from "./RecipeNutrition";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -81,32 +83,6 @@ function getMealTypeLabel(code: string) {
   }
 
   return "Dinner";
-}
-
-function formatSalt(
-  saltValue: string | undefined,
-  sodiumMg: string | undefined
-) {
-  if (saltValue) {
-    return saltValue;
-  }
-
-  if (!sodiumMg) {
-    return "—";
-  }
-
-  const sodiumNumber = parseFloat(
-    sodiumMg.replace(/[^0-9.]/g, "")
-  );
-
-  if (!Number.isFinite(sodiumNumber)) {
-    return "—";
-  }
-
-  const saltGrams =
-    (sodiumNumber * 2.5) / 1000;
-
-  return `${saltGrams.toFixed(2).replace(/\.00$/, "")} g`;
 }
 
 type Placement = {
@@ -677,33 +653,11 @@ export default function RecipeCard({
   }
 
   const mealType = getMealTypeLabel(recipe.code);
-  const hasRecipeImage =
-    typeof recipe.image === "string" &&
-    recipe.image.trim().length > 0;
+
 
   return (
     <article
-      className="
-        group
-        relative
-        flex
-        h-full
-        flex-col
-        overflow-visible
-        rounded-2xl
-        border
-        border-slate-200
-        bg-white
-        shadow-sm
-        transition-all
-        duration-200
-        hover:-translate-y-1
-        hover:shadow-lg
-
-        sm:flex-row
-
-        md:flex-col
-      "
+      className={styles.card}
     >
 
       {/* ===================================================
@@ -732,53 +686,9 @@ export default function RecipeCard({
       <Link
         href={`/recipes/${recipe.id}`}
         onClick={trackRecipeViewed}
-        className="
-          block
-          w-full
-          shrink-0
-
-          sm:w-28
-
-          md:w-full
-        "
+        className={styles.cardImage}
       >
-        {hasRecipeImage ? (
-          <Image
-            src={recipe.image}
-            alt={recipe.name}
-            width={600}
-            height={420}
-            sizes="
-            (max-width: 639px) 100vw,
-            (max-width: 1023px) 112px,
-            50vw
-          "
-          className="
-            h-52
-            w-full
-            rounded-t-2xl
-            object-cover
-
-            sm:h-full
-            sm:min-h-[150px]
-            sm:w-28
-            sm:rounded-l-2xl
-            sm:rounded-t-none
-
-            md:h-48
-            md:w-full
-            md:rounded-l-none
-            md:rounded-t-2xl
-          "
-          />
-        ) : (
-          <div
-            className="flex h-52 w-full items-center justify-center rounded-t-2xl bg-slate-100 sm:h-full sm:min-h-[150px] sm:w-28 sm:rounded-l-2xl sm:rounded-t-none md:h-48 md:w-full md:rounded-l-none md:rounded-t-2xl"
-            aria-label="Recipe image coming soon"
-          >
-            <span className="text-4xl" aria-hidden="true">🍽️</span>
-          </div>
-        )}
+        <RecipePhoto src={recipe.image} name={recipe.name} />
       </Link>
 
       {/* ===================================================
@@ -850,44 +760,11 @@ export default function RecipeCard({
             {recipe.description}
           </p>
 
-          <div
-            className="
-              mt-4
-              grid
-              grid-cols-2
-              gap-2
-              xl:grid-cols-4
-              xl:gap-1.5
-            "
-          >
-            <div className="min-w-0 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Cooking time</div>
-              <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100 xl:text-xs">
-                ⏱️ {recipe.cookingTime.replace(/\bminutes\b/gi, "mins")}
-              </div>
-            </div>
-
-            <div className="min-w-0 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Salt</div>
-              <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100 xl:text-xs">
-                {formatSalt(recipe.nutrition?.salt, recipe.nutrition?.sodium)}
-              </div>
-            </div>
-
-            <div className="min-w-0 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Potassium</div>
-              <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100 xl:text-xs">
-                {recipe.nutrition?.potassium ?? "—"}
-              </div>
-            </div>
-
-            <div className="min-w-0 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200 xl:text-[11px]">Phosphorus</div>
-              <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100 xl:text-xs">
-                {recipe.nutrition?.phosphate ?? "—"}
-              </div>
-            </div>
-          </div>
+          <p className="mt-3 text-xs font-semibold text-slate-500"><span aria-hidden="true">◷</span> {recipe.cookingTime}</p>
+          <RecipeNutrition values={[
+            ["Calories", recipe.calories], ["Protein", recipe.protein],
+            ["Potassium", recipe.nutrition?.potassium], ["Phosphorus", recipe.nutrition?.phosphate],
+          ]} />
 
         </Link>
 
@@ -912,13 +789,7 @@ export default function RecipeCard({
           "
         >
 
-          {/* Protein amount fills the available space on mobile, matching the nutrient cards. */}
-          <div className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-slate-50 px-2 py-2 md:hidden dark:border-slate-700 dark:bg-slate-800">
-            <div className="break-words text-xs font-semibold leading-tight text-slate-800 dark:text-slate-200">Protein</div>
-            <div className="nutrition-badge-value mt-0.5 min-w-0 break-words text-sm font-bold leading-snug text-slate-900 dark:text-slate-100">
-              {recipe.protein || "—"}
-            </div>
-          </div>
+          <Link href={`/recipes/${recipe.id}`} onClick={trackRecipeViewed} className="mr-auto py-3 text-sm font-semibold text-slate-600 hover:text-green-700">View recipe <span aria-hidden="true">↗</span></Link>
 
           {/* Add to Planner */}
           <button
@@ -926,7 +797,7 @@ export default function RecipeCard({
             onClick={openPlanner}
             className="
               inline-flex
-              h-10
+              min-h-11
               items-center
               justify-center
               whitespace-nowrap

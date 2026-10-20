@@ -122,6 +122,7 @@ function CalendarPanel({ plan, readPlan, initialPanel, onClose }: Props & { init
   const [subscription, setSubscription] = useState({ active: false, generation: 0 });
   const [url, setUrl] = useState("");
   const [ready, setReady] = useState(false);
+  const [subscriptionReady, setSubscriptionReady] = useState(false);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [provider, setProvider] = useState<string | null>(null);
@@ -151,7 +152,7 @@ function CalendarPanel({ plan, readPlan, initialPanel, onClose }: Props & { init
       const response = await fetch("/api/calendar/subscription", { cache: "no-store", signal: controller.signal, headers: { "X-RenalPlan-Owner": ownerId } });
       const status = await response.json();
       if (!response.ok) throw new Error(status.error);
-      if (!controller.signal.aborted) setSubscription(status);
+      if (!controller.signal.aborted) { setSubscription(status); setSubscriptionReady(true); }
     })().catch(error => { if (!controller.signal.aborted) setMessage(error instanceof Error ? error.message : "Calendar settings unavailable"); });
     return () => controller.abort();
   }, [guest, ownerId, storageKey]);
@@ -202,7 +203,7 @@ function CalendarPanel({ plan, readPlan, initialPanel, onClose }: Props & { init
       <h2 id="calendar-title" className="text-lg font-bold">{tab === "times" ? "Meal times & reminders" : "Add to calendar"}</h2>
       <button type="button" disabled={busy} onClick={onClose} className={button} aria-label="Close calendar settings">×</button>
     </header>
-    <div className="mb-4 flex gap-2"><button type="button" className={button} aria-pressed={tab === "connect"} onClick={() => setTab("connect")}>Add to calendar</button><button type="button" className={button} aria-pressed={tab === "times"} onClick={() => setTab("times")}>Meal times</button></div>
+    {tab === "times" && <button type="button" className={`${button} mb-4`} onClick={() => setTab("connect")}>Back to calendars</button>}
     {message && <p role="status" className="mb-3 rounded-lg bg-slate-100 p-3 text-sm dark:bg-slate-800">{message}</p>}
     {!ready && !message && <p role="status">Loading calendar settings…</p>}
     {tab === "times" ? <form onSubmit={save} className="space-y-4">
@@ -219,43 +220,51 @@ function CalendarPanel({ plan, readPlan, initialPanel, onClose }: Props & { init
         <button type="submit" className={button}>Save meal times</button>
       </fieldset>
     </form> : <div className="space-y-4 text-sm">
-      <p className="text-base text-slate-600 dark:text-slate-300">Choose where you&apos;d like to see your planned meals.</p>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3" aria-label="Choose a calendar">
-        {["Google", "Outlook", "Apple"].map(name => <button key={name} type="button" aria-pressed={provider === name} onClick={() => setProvider(name)}
-          className={`flex min-h-32 flex-col items-center justify-center gap-3 rounded-2xl border-2 p-4 text-center font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 ${provider === name ? "border-emerald-600 bg-emerald-50 text-emerald-900 dark:border-emerald-400 dark:bg-emerald-950 dark:text-emerald-100" : "border-slate-200 bg-white text-slate-800 hover:border-emerald-400 hover:bg-emerald-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:hover:border-emerald-400 dark:hover:bg-emerald-950"}`}>
-          <span className="flex h-16 w-16 items-center justify-center rounded-xl bg-white p-2">
+      <p className="text-slate-600 dark:text-slate-300">Subscribe to keep your meals in your calendar. Choose your calendar:</p>
+      <div className="grid grid-cols-3 gap-2" role="group" aria-label="Choose a calendar">
+        {["Google", "Outlook", "Apple"].map(name => <button key={name} type="button" aria-label={name + " Calendar"} aria-pressed={provider === name} onClick={() => setProvider(name)}
+          className={`flex min-h-24 min-w-0 flex-col items-center justify-center gap-2 rounded-xl border-2 p-2 text-center font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 ${provider === name ? "border-emerald-600 bg-emerald-50 text-emerald-900 dark:border-emerald-400 dark:bg-emerald-950 dark:text-emerald-100" : "border-slate-200 bg-white text-slate-800 hover:border-emerald-400 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:hover:border-emerald-400"}`}>
+          <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-white p-1">
             {/* Official artwork is kept unmodified and served locally, without third-party requests. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/calendar-brands/${name === "Google" ? "google.png" : name === "Outlook" ? "outlook.svg" : "apple.png"}`} alt="" width={48} height={48} className="h-12 w-12 object-contain" />
+            <img src={`/calendar-brands/${name === "Google" ? "google.png" : name === "Outlook" ? "outlook.svg" : "apple.png"}`} alt="" width={32} height={32} className="h-8 w-8 object-contain" />
           </span>
-          <span>{name} Calendar</span>
+          <span>{name}</span>
         </button>)}
       </div>
-      <p>Your calendar can update automatically when you change your meal plan.</p>
-      {guest && <p className="rounded-xl bg-emerald-50 p-3 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100">Sign in to use automatic updates. You can download this week&apos;s meals below without signing in.</p>}
-      {provider && <section aria-label={`${provider} Calendar setup`} className="space-y-3 rounded-xl border border-emerald-200 p-4 dark:border-emerald-800">
-        <h3 className="font-bold">Add your meals to {provider} Calendar</h3>
-        {guest ? <p>After signing in, select your calendar here to create a link and see the setup steps.</p> : <>
-          <p>Create your calendar link below, copy it, then follow these steps.</p>
-        <div className="flex flex-wrap gap-2"><button type="button" disabled={!ready || busy} className={button} onClick={() => void run(async () => { const data = await request("subscription", "POST", { generation: subscription.generation }); setSubscription(data); setUrl(data.url); })}>{subscription.active ? "Regenerate private link" : "Create private link"}</button>
-          {subscription.active && <button type="button" disabled={busy} className={button} onClick={() => void run(async () => { const data = await request("subscription", "DELETE", { generation: subscription.generation }); setSubscription(data); setUrl(""); setMessage("Subscription revoked. The previous link no longer works."); })}>Revoke link</button>}</div>
-        {url && <label className="block text-xs font-semibold">Private subscription URL (shown only now)<input readOnly value={url} onFocus={e => e.target.select()} className="my-1 w-full rounded-lg border border-slate-300 bg-transparent p-2 text-xs font-normal" /><button type="button" className={button} onClick={() => void run(async () => { await navigator.clipboard.writeText(url); setMessage("Private link copied."); })}>Copy link</button></label>}
-        {provider === "Google" && <p>Open <a className="underline" href="https://calendar.google.com/" target="_blank" rel="noopener noreferrer">Google Calendar</a> in a desktop browser. Beside Other calendars, choose + → From URL. Paste the copied calendar link and choose Add calendar.</p>}
-        {provider === "Outlook" && <p>Open <a className="underline" href="https://outlook.live.com/calendar/" target="_blank" rel="noopener noreferrer">Outlook Calendar</a>. Choose Add calendar → Subscribe from web. Paste the copied calendar link, name the calendar and import it. Use Subscribe, rather than uploading the snapshot file.</p>}
-        {provider === "Apple" && <p>On iPhone/iPad, open Settings → Apps → Calendar → Calendar Accounts → Add Account → Other → Add Subscribed Calendar (older iOS: Settings → Calendar → Accounts). Paste your calendar link and keep SSL enabled. On Mac, Calendar → File → New Calendar Subscription.</p>}
+      {guest && <p className="rounded-xl bg-emerald-50 p-3 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100">Sign in to subscribe. You can still download this week below.</p>}
+      {provider && !guest && <section aria-label={`${provider} Calendar setup`} className="space-y-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
+        <h3 className="font-bold">Subscribe with {provider}</h3>
+        {!subscription.active && !url && <button type="button" disabled={!subscriptionReady || busy} className="min-h-11 w-full rounded-lg bg-emerald-700 px-4 py-2 font-semibold text-white hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 disabled:opacity-50" onClick={() => void run(async () => { const data = await request("subscription", "POST", { generation: subscription.generation }); setSubscription(data); setUrl(data.url); })}>{busy ? "Preparing subscription..." : "Set up subscription"}</button>}
+        {subscription.active && !url && <p>Your subscription link is active. If you already added it to your calendar, no further setup is needed. To connect another calendar without your saved link, use Advanced settings below.</p>}
+        {url && <>
+          {provider === "Apple" ? <>
+            <a className="flex min-h-11 items-center justify-center rounded-lg bg-emerald-700 px-4 py-2 font-semibold text-white hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600" href={url.replace(/^https:/, "webcal:")}>Open Apple Calendar to subscribe</a>
+            <details><summary className="cursor-pointer py-2">Need to add it manually?</summary><p className="my-2">In Calendar, choose Add Calendar, then Add Subscription Calendar and paste your link. On Mac, choose File, then New Calendar Subscription.</p><button type="button" disabled={busy} className={button} onClick={() => void run(async () => { await navigator.clipboard.writeText(url); setMessage("Calendar link copied."); })}>Copy link</button></details>
+          </> : <>
+            <p>{provider === "Google" ? <>On a computer, open <a className="underline" href="https://calendar.google.com/" target="_blank" rel="noopener noreferrer">Google Calendar</a>. Beside Other calendars, choose +, then From URL. Paste your link and choose Add calendar.</> : <>Open <a className="underline" href="https://outlook.live.com/calendar/" target="_blank" rel="noopener noreferrer">Outlook Calendar</a> in a browser. Choose Add calendar, then Subscribe from web. Paste your link, name the calendar and choose Import.</>}</p>
+            <button type="button" disabled={busy} className="min-h-11 w-full rounded-lg bg-emerald-700 px-4 py-2 font-semibold text-white hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 disabled:opacity-50" onClick={() => void run(async () => { await navigator.clipboard.writeText(url); setMessage("Calendar link copied. Paste it into your calendar's subscription settings."); })}>Copy link</button>
+          </>}
         </>}
       </section>}
+      <p className="text-xs text-slate-500 dark:text-slate-400">Meal-plan changes appear when your calendar provider refreshes the subscription. Updates are not instant.</p>
       <div className="border-t border-slate-200 pt-3 dark:border-slate-700">
         <button type="button" className="text-sm font-semibold text-emerald-700 underline underline-offset-4 disabled:opacity-50 dark:text-emerald-300" disabled={!ready || busy} onClick={download}>Download this week (.ics)</button>
         <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{formatWeek(plan.weekStart)}. A one-time copy; it won&apos;t update automatically.</p>
       </div>
       <details className="rounded-xl bg-slate-50 p-3 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-        <summary className="cursor-pointer font-semibold">Privacy &amp; technical details</summary>
-        <div className="mt-3 space-y-2">
+        <summary className="cursor-pointer font-semibold">Advanced settings</summary>
+        <div className="mt-3 space-y-3">
+          <button type="button" className={button} onClick={() => setTab("times")}>Meal times</button>
+          {!guest && subscription.active && <>
+            <p>Replacing your link stops the current link. You will need to subscribe again in every connected calendar.</p>
+            <div className="flex flex-wrap gap-2"><button type="button" disabled={!subscriptionReady || busy} className={button} onClick={() => void run(async () => { const data = await request("subscription", "POST", { generation: subscription.generation }); setSubscription(data); setUrl(data.url); setMessage("New link ready. Choose your calendar above to subscribe again."); })}>Replace subscription link</button>
+            <button type="button" disabled={!subscriptionReady || busy} className={button} onClick={() => void run(async () => { const data = await request("subscription", "DELETE", { generation: subscription.generation }); setSubscription(data); setUrl(""); setMessage("Subscription revoked. The previous link no longer works."); })}>Revoke link</button></div>
+          </>}
           <p>A read-only subscription includes all saved dated weeks. Anyone with its private link can view meal names and dates. Keep it private; regenerating or revoking stops the old link. Previously downloaded copies cannot be recalled.</p>
           <p>{liveCalendarEnabled() ? "Keep your private calendar link secure. Revoke it here to stop future access." : "Calendar Test only. Google, Outlook and Apple need a publicly reachable HTTPS feed. Production remains disabled."}</p>
           <p>Subscriptions update on your calendar provider&apos;s schedule, not immediately. Removing a meal publishes its event as cancelled. A downloaded file is a one-time snapshot.</p>
-          {!guest && subscription.active && !provider && <p>Select your calendar above to manage or revoke its private link.</p>}
+
         </div>
       </details>
 

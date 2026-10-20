@@ -35,8 +35,9 @@
 .nutrition [data-nutrient="Potassium"], .nutrition [data-nutrient="Fibre"] { --tile-bg: #eaf8ef; --tile-ink: #08713d; }
 .nutrition [data-nutrient="Phosphorus"], .nutrition [data-nutrient="Fat"] { --tile-bg: #f4eefd; --tile-ink: #7531b5; }
 .nutrition [data-nutrient="Carbohydrates"] { --tile-bg: #fff7e5; --tile-ink: #986000; }
-.sections, .lowerSections { display: grid; gap: 18px; margin-top: 18px; align-items: start; }
+.sections, .lowerSections { display: grid; gap: 18px; margin-top: 18px; align-items: start; align-content: start; }
 .panel, .guidePanel, .related { background: var(--recipe-surface); border: 1px solid var(--recipe-line); border-radius: 20px; padding: 22px; box-shadow: 0 3px 12px #223b2608; }
+.sections > .panel, .lowerSections > .panel, .lowerSections > .guidePanel { align-self: start; height: auto; min-height: 0; }
 .panelHeading { margin-bottom: 20px; }
 .panelHeading h2, .guidePanel h2, .equipment h3 { display: flex; align-items: center; gap: 10px; margin: 0; }
 .panelHeading > span { background: #eaf8ef; border-radius: 20px; padding: 7px 12px; font-size: .72rem; white-space: nowrap; }
@@ -66,9 +67,9 @@
 .relatedCard strong { padding: 12px 12px 6px; font-size: .83rem; line-height: 1.4; }
 .relatedCard small { display: flex; align-items: center; gap: 5px; padding: 0 12px 12px; color: var(--recipe-muted); font-size: .7rem; }
 .relatedCard small svg { width: 14px; height: 14px; }
-.card { display: flex; position: relative; height: 100%; min-width: 0; flex-direction: column; border: 1px solid #e7ece7; border-radius: 20px; background: #fff; box-shadow: 0 4px 14px #253e290b; transition: transform 200ms, box-shadow 200ms; color: #102235; }
+.card { display: flex; position: relative; height: 100%; min-width: 0; flex-direction: column; border: 1px solid #e7ece7; border-radius: 20px; background: #fff; box-shadow: 0 4px 14px #253e290b; transition: transform 220ms ease, box-shadow 220ms ease; color: #102235; }
 .cardImage { position: relative; display: block; aspect-ratio: 3/2; overflow: hidden; border-radius: 19px 19px 0 0; background: #f0eee7; }
-.cardImage img { transition: transform 400ms; }
+.cardImage img { transition: transform 350ms ease; }
 .cardFavourite { position: absolute; right: 12px; top: 12px; z-index: 1; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #fffffff2; border: 1px solid #e7ece7; color: #253b42; box-shadow: 0 2px 8px #243b2318; }
 .cardFavourite[aria-pressed="true"] { color: #c23e60; }
 .cardFavourite[aria-pressed="true"] svg { fill: currentColor; }
@@ -93,8 +94,8 @@
 .discoveryTitle { max-width: 800px; }
 .discovery input, .discovery select { border-radius: 12px; }
 .discovery > div > header { background: transparent !important; }
-.categories { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 4px; margin-bottom: 20px; }
-.resultsBar { display: none; align-items: center; justify-content: space-between; gap: 16px; margin: 22px 0; }
+.categories { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 4px; margin-bottom: 12px; }
+.resultsBar { display: none; align-items: center; justify-content: space-between; gap: 16px; margin: 12px 0; }
 .resultsBar > p { color: var(--recipe-muted); font-size: .85rem; }
 .recipeGrid { display: grid; gap: 22px; grid-template-columns: minmax(0,1fr); }
 .recipeGrid > :global(.col-span-full) { grid-column: 1 / -1; }
@@ -111,7 +112,7 @@
  .detailedNutrition > div { grid-column:span 2; } .detailedNutrition > div:nth-last-child(-n+2) { grid-column:span 3; }
 }
 @media (max-width:374px) { .detail { padding:12px 12px 48px; } .heroContent,.panel,.guidePanel,.related { padding:16px; } .nutrition { gap:8px; } .nutrition > div { padding:11px 9px; column-gap:6px; } .nutrition dd { font-size:.92rem; } .panelHeading h2 { font-size:1.15rem; } }
-@media (hover:hover) and (prefers-reduced-motion:no-preference) { .card:hover { transform:translateY(-3px); box-shadow:0 10px 26px #253e2918; } .card:hover .cardImage img { transform:scale(1.025); } .relatedCard:hover { border-color:#72b997; } }
+@media (hover:hover) and (prefers-reduced-motion:no-preference) { .card:hover { transform:translateY(-2px); box-shadow:0 8px 22px #253e2915; } .card:hover .cardImage img { transform:scale(1.02); } .relatedCard:hover { border-color:#72b997; } }
 @media (prefers-reduced-motion:reduce) { .card,.cardImage img,.primary { transition:none; } }
 :global(html[data-theme="dark"]) .detail, :global(html[data-theme="dark"]) .discovery { --recipe-ink:#edf2f7; --recipe-muted:#b9c7d1; --recipe-line:#34434b; --recipe-surface:#19252e; background:#111b22; color:var(--recipe-ink); }
 :global(html[data-theme="dark"]) .nutrition > div { background:var(--dark-bg,#243440); color:var(--dark-ink,#d0dfeb); }

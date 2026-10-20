@@ -719,12 +719,12 @@ export default function RecipesPage() {
   }
 
   return (
-    <main className={`${styles.discovery} min-h-screen bg-[#f8f7f2] px-4 py-5 md:px-6 md:py-6 dark:bg-[#111b16]`}>
+    <main className={`${styles.discovery} min-h-screen bg-[#f8f7f2] px-4 py-3 md:px-6 md:py-4 dark:bg-[#111b16]`}>
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
-        <header className="mb-6 pt-2 sm:mb-8 sm:pt-4">
+        <header className="mb-4 pt-1 sm:mb-5 sm:pt-2">
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-green-700 dark:text-green-300">The RenalPlan kitchen</p>
           <h1 className={styles.discoveryTitle}>Find your next favourite recipe.</h1>
-          <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300">Find your next favourite, explore the nutrition and make it part of your week.</p>
+          <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300">Find your next favourite, explore the nutrition and make it part of your week.</p>
         </header>
         <nav aria-label="Recipe categories" className={styles.categories}>
           {mealTypes.map((mealType) => (
@@ -739,7 +739,7 @@ export default function RecipesPage() {
         {/* =====================================================
             DESKTOP SEARCH / FILTER CONTROLS
             ===================================================== */}
-        <div className="mb-4 hidden md:block">
+        <div className="mb-2 hidden md:block">
           <div className="flex flex-row items-center gap-3">
 
             {/* Expanded search */}
@@ -986,7 +986,7 @@ export default function RecipesPage() {
             MOBILE SEARCH / FILTER CONTROLS
             RESTORED TO THE PREVIOUS MOBILE LAYOUT
             ===================================================== */}
-        <div className="mb-4 md:hidden">
+        <div className="mb-3 md:hidden">
           <div className="flex items-center gap-3">
 
             <div
@@ -1230,7 +1230,7 @@ export default function RecipesPage() {
           </div>
 
           {/* Mobile helper text */}
-          <p className="mt-4 text-sm text-slate-500">
+          <p className="mt-3 text-sm text-slate-500">
             {helperText}
           </p>
         </div>

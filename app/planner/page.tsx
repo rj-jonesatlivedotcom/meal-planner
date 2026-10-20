@@ -5,7 +5,7 @@ import { MobileCalendarTile } from "@/components/calendar/CalendarToolbar";
 import { formatWeek, shortCalendarDate } from "@/lib/calendar";
 import { datedPlannerEnabled } from "@/lib/supabase/config";
 
-import PlannerSnacks from "@/components/food/PlannerSnacks";
+import PlannerSnacks, { mobileMealCardClass, mobileMealHeadingClass } from "@/components/food/PlannerSnacks";
 import { useFoodAccount } from "@/lib/useFoodAccount";
 import { snackSummary } from "@/lib/foodSnacks";
 import Link from "next/link";
@@ -2455,11 +2455,11 @@ html[data-theme="dark"] main .planner-remove-button {
 
               {mobileBreakfast ? (
 
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 ring-1 ring-orange-100">
+                <div className={mobileMealCardClass}>
 
                   <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
 
-                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
+                    <span className={mobileMealHeadingClass}>
                       Breakfast
                     </span>
 
@@ -2549,11 +2549,11 @@ html[data-theme="dark"] main .planner-remove-button {
 
               {mobileLunch ? (
 
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 ring-1 ring-orange-100">
+                <div className={mobileMealCardClass}>
 
                   <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
 
-                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
+                    <span className={mobileMealHeadingClass}>
                       Lunch
                     </span>
 
@@ -2643,11 +2643,11 @@ html[data-theme="dark"] main .planner-remove-button {
 
               {mobileDinner ? (
 
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 ring-1 ring-orange-100">
+                <div className={mobileMealCardClass}>
 
                   <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
 
-                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
+                    <span className={mobileMealHeadingClass}>
                       Dinner
                     </span>
 
@@ -2733,15 +2733,16 @@ html[data-theme="dark"] main .planner-remove-button {
 
               )}
 
+              <PlannerSnacks mobile date={getDateForPlannerDay(selectedDay)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} />
+
             </div>
 
           </section>
 
-          <div className="mt-3"><PlannerSnacks compact date={getDateForPlannerDay(selectedDay)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} /></div>
-
+          <div className="mt-3 grid gap-3" style={{ gridAutoRows: "1fr" }}>
           {/* MOBILE FLUID TRACKER */}
-          <section className="mt-3 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
-            <div className="grid grid-cols-[minmax(0,1fr)_140px] items-center gap-3 border-t border-slate-100 px-4 py-3">
+          <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+            <div className="grid h-full grid-cols-[minmax(0,1fr)_140px] items-center gap-3 border-t border-slate-100 px-4 py-3">
               <div className="min-w-0">
                 <h2 className="text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">
                   Fluid
@@ -2756,9 +2757,9 @@ html[data-theme="dark"] main .planner-remove-button {
 
           {/* MOBILE DAILY NUTRITION */}
 
-          <section className="mt-3 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+          <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
 
-            <div className="flex items-center justify-between gap-4 border-t border-slate-100 px-4 py-3">
+            <div className="flex h-full items-center justify-between gap-4 border-t border-slate-100 px-4 py-3">
 
               <div className="min-w-0">
 
@@ -2803,6 +2804,8 @@ html[data-theme="dark"] main .planner-remove-button {
             </div>
 
           </section>
+
+          </div>
 
         </div>
 

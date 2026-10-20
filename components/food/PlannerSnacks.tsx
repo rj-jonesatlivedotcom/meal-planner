@@ -7,6 +7,9 @@ import { barcodePortion } from "@/app/FoodCheck/barcodePortions";
 import type { foodAccount } from "@/lib/foodAccount";
 import { notifyFoodAccount } from "@/lib/useFoodAccount";
 
+export const mobileMealCardClass = "relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 ring-1 ring-orange-100";
+export const mobileMealHeadingClass = "min-w-0 text-lg font-bold leading-none text-slate-800";
+
 export function SnackValues({ snack, keys = snackNutrients }: { snack: PlannedSnack; keys?: readonly typeof snackNutrients[number][] }) {
   return <dl className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-700 dark:text-slate-200">
     {keys.map(key => {
@@ -18,7 +21,7 @@ export function SnackValues({ snack, keys = snackNutrients }: { snack: PlannedSn
     })}
   </dl>;
 }
-function SnackRow({ snack, repository, compact = false }: { snack: PlannedSnack; repository?: ReturnType<typeof foodAccount> | null; compact?: boolean }) {
+function SnackRow({ snack, repository, compact = false, mobile = false }: { snack: PlannedSnack; repository?: ReturnType<typeof foodAccount> | null; compact?: boolean; mobile?: boolean }) {
   const [unitSnapshot, setUnitSnapshot] = useState(snack.snapshot);
   const [entry, setEntry] = useState(() => initialQuantityEntry(snack.snapshot, snack.quantity));
   const [editing, setEditing] = useState(false), [error, setError] = useState("");
@@ -61,8 +64,8 @@ function SnackRow({ snack, repository, compact = false }: { snack: PlannedSnack;
     </div>
     {error && <p role="alert" className="mt-1 text-xs text-rose-700 dark:text-rose-300">{error}</p>}
   </div>;
-  return <div className="my-2 min-w-0 rounded-xl border border-slate-200 bg-slate-50/70 p-3 dark:border-slate-700 dark:bg-slate-900/40">
-    <p className="break-words text-sm font-bold text-slate-900 dark:text-slate-100">{snack.name}</p>
+  return <div className={mobile ? "min-w-0 space-y-2 border-t border-orange-100 pt-3" : "my-2 min-w-0 rounded-xl border border-slate-200 bg-slate-50/70 p-3 dark:border-slate-700 dark:bg-slate-900/40"}>
+    <p className={mobile ? "break-words text-base font-medium leading-5 text-slate-900" : "break-words text-sm font-bold text-slate-900 dark:text-slate-100"}>{snack.name}</p>
     <p className="mt-0.5 text-xs text-slate-600 dark:text-slate-300">{snackQuantityLabel(snack)} · planned</p>
     <dl className="mt-2 grid grid-cols-3 gap-2 text-xs">
       {(["calories", "potassium", "phosphate"] as const).map(key => {
@@ -81,8 +84,22 @@ function SnackRow({ snack, repository, compact = false }: { snack: PlannedSnack;
     {error && <p role="alert" className="mt-1 text-xs text-rose-700 dark:text-rose-300">{error}</p>}
   </div>;
 }
-export default function PlannerSnacks({ date, snacks, repository, error, report = false, hideHeading = false, compact = false }: { date: string; snacks: readonly PlannedSnack[]; repository?: ReturnType<typeof foodAccount> | null; error?: string; report?: boolean; hideHeading?: boolean; compact?: boolean }) {
+export default function PlannerSnacks({ date, snacks, repository, error, report = false, hideHeading = false, compact = false, mobile = false }: { date: string; snacks: readonly PlannedSnack[]; repository?: ReturnType<typeof foodAccount> | null; error?: string; report?: boolean; hideHeading?: boolean; compact?: boolean; mobile?: boolean }) {
   const selected = snacks.filter(s => s.planned_on === date);
+  if (mobile) return <section aria-label="Snacks" className="min-w-0 text-left">
+    {selected.length ? <div className={mobileMealCardClass}>
+      <div className="min-w-0 space-y-3 p-3">
+        <h3 className={mobileMealHeadingClass}>Snacks</h3>
+        {selected.map(snack => <SnackRow key={`${snack.id}:${snack.quantity}`} snack={snack} repository={report ? null : repository} mobile />)}
+        {!report && <Link href="/FoodCheck" className="inline-flex min-h-8 items-center text-xs font-bold text-orange-700 underline">+ Add snack</Link>}
+      </div>
+    </div> : <Link href="/FoodCheck" className="planner-empty-slot planner-mobile-empty group transition hover:border-orange-400">
+      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">+</span>
+      <span className="planner-mobile-empty-copy"><strong>Add snacks</strong><span>No snacks planned. Add food from Food Check</span></span>
+      <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="m3 3 7 7-7 7" /></svg>
+    </Link>}
+    {error && <p role="alert" className="mt-1 text-xs text-rose-700 dark:text-rose-300">{error} Totals may be incomplete.</p>}
+  </section>;
   return <section aria-label="Snacks" className={compact ? "min-w-0 space-y-2 p-2 text-left" : "rounded-2xl bg-white dark:bg-slate-800 p-3 text-left text-slate-900 dark:text-slate-100"}>
     {!hideHeading && <h3 className="text-sm font-extrabold">Snacks</h3>}
     {error && <p role="alert" className="mt-1 text-xs text-rose-700 dark:text-rose-300">{error} Totals may be incomplete.</p>}

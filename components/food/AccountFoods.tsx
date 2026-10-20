@@ -78,7 +78,7 @@ export function AddSnack({ owner, barcode, name, snapshot, quantity, open, onClo
       const scaled = snapshotForEntry(snapshot, entry);
       id.current ??= crypto.randomUUID();
       await foodAccount(createClient(), owner).save({ id: id.current, user_id: owner, planned_on: date, barcode, name, ...scaled });
-      notifyFoodAccount(); setMessage(`Added to planned Snacks for ${date}. This does not record it as eaten.`);
+      notifyFoodAccount(); setMessage(`Added to planned Snacks for ${date}.`);
     } catch (error) { setMessage(error instanceof Error ? error.message : "Unable to add this snack."); }
     finally { busy.current = false; setSaving(false); }
   }

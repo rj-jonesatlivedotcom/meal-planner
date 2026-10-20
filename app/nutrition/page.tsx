@@ -2,9 +2,8 @@
 
 import { useWeeklyPageStorage, datedDayDate } from "@/lib/weeklyPageStorage";
 
-import PlannerSnacks from "@/components/food/PlannerSnacks";
 import { useFoodAccount } from "@/lib/useFoodAccount";
-import { snackNutrients, snackSummary, snackTotalLabel, type SnackNutrient } from "@/lib/foodSnacks";
+import { snackNutrients, snackSummary, type SnackNutrient } from "@/lib/foodSnacks";
 
 import { createClient } from "@/lib/supabase/client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -21,6 +20,17 @@ const days = [
 ] as const;
 
 const mealTypes = ["Breakfast", "Lunch", "Dinner"] as const;
+
+const nutrientRows: { key: SnackNutrient; label: string; unit: "kcal" | "g" | "mg" | "salt" }[] = [
+  { key: "calories", label: "Energy", unit: "kcal" },
+  { key: "protein", label: "Protein", unit: "g" },
+  { key: "carbohydrates", label: "Carbohydrate", unit: "g" },
+  { key: "fat", label: "Fat", unit: "g" },
+  { key: "fibre", label: "Fibre", unit: "g" },
+  { key: "sodium", label: "Salt (g)", unit: "salt" },
+  { key: "potassium", label: "Potassium", unit: "mg" },
+  { key: "phosphate", label: "Phosphorus", unit: "mg" },
+];
 
 function MealIcon({
   type,
@@ -841,15 +851,15 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
     {
       label: "Total fluid (meals + drinks)",
-      total: `${weeklyFluidTotal.toLocaleString()} ml`,
-      average: `${Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day`,
+      total: `${weeklyFluidTotal.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml`,
+      average: `${Math.round(weeklyFluidTotal / 7).toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day`,
       requirement: "—",
       status: null,
     },
     {
       label: "Personal fluid allowance",
-      total: fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`,
-      average: fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString()} ml/day`,
+      total: fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day`,
+      average: fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day`,
       requirement: "—",
       status: null,
     },
@@ -863,36 +873,65 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   function incompleteSnacks(day: Day | undefined, key: SnackNutrient) {
     return Boolean(snackAccount.loading || snackAccount.error || snackQuality(day)[key].missing);
   }
-  function labelTotal(text: string, key: SnackNutrient, day?: Day) {
-    const hasMeals = (day ? [day] : days).some(d => mealTypes.some(meal => getRecipe(plannerMeals ?? {}, d, meal)));
-    const label = snackTotalLabel(text, snackQuality(day)[key], hasMeals);
-    return snackAccount.error || snackAccount.loading ? label + " (snacks unavailable; incomplete)" : label;
+  // Estimates are usable numbers. Missing contributions affect certainty,
+  // but a known amount above an upper limit is already a definite exceedance.
+  function assessedNutrientStatus(day: Day | undefined, key: SnackNutrient, actual: number, limit: number | null | undefined): Status {
+    const measured = numericLimitStatus(actual, null, limit);
+    if (measured === "red") return "red";
+    return incompleteSnacks(day, key) ? "pending" : measured;
+  }
+  // Show known contributions even if another snack lacks this nutrient.
+  // An asterisk flags estimates or partial totals; it never implies completeness.
+  function flaggedNutrient(text: string, key: SnackNutrient, day?: Day) {
+    const quality = snackQuality(day)[key];
+    return `${text}${quality.estimated || incompleteSnacks(day, key) ? "*" : ""}`;
   }
   function formatDayNutrient(day: Day, key: NutrientKey, unit: "g" | "mg" | "kcal" | "salt") {
     const value = dayTotals[day][key];
-    return labelTotal(unit === "salt" ? formatSalt(value) : formatNutrient(value, unit), key, day);
+    return flaggedNutrient(unit === "salt" ? formatSalt(value) : formatNutrient(value, unit), key, day);
   }
   function formatAverageNutrient(key: NutrientKey, unit: "g" | "mg" | "kcal" | "salt") {
     const value = dailyAverage[key];
-    return labelTotal(unit === "salt" ? formatSalt(value) : formatNutrient(value, unit), key);
+    return flaggedNutrient(unit === "salt" ? formatSalt(value) : formatNutrient(value, unit), key);
+  }
+  function formatSnackNutrient(key: SnackNutrient, unit: "g" | "mg" | "kcal" | "salt", day?: Day) {
+    const quality = snackQuality(day)[key];
+    if (quality.value === null) return "—";
+    const value = quality.value / (day ? 1 : 7);
+    return flaggedNutrient(unit === "salt" ? formatSalt(value) : formatNutrient(value, unit), key, day);
+  }
+  function nutrientLabel(label: string, _key: SnackNutrient, _day?: Day) {
+    return <>{label}</>;
+  }
+  function renderSnackBreakdown(day?: Day, mobile = false) {
+    return <div className={mobile ? "mt-3 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-slate-200 pt-3 text-xs sm:text-sm" : "min-w-[125px] space-y-1.5 text-left text-xs"}>
+      {nutrientRows.map(({ key, label, unit }) => <div key={key} className="flex min-w-0 items-center justify-between gap-2">
+        <span className="text-slate-500">{nutrientLabel(mobile && key === "carbohydrates" ? "Carbs" : label, key, day)}</span>
+        <strong className="min-w-0 break-words text-right text-slate-900">{formatSnackNutrient(key, unit, day)}</strong>
+      </div>)}
+    </div>;
   }
 
   weeklySummaryRows.forEach((row, index) => {
     const key = snackNutrients[index];
     if (!key) return;
-    row.total = labelTotal(row.total, key);
-    row.average = labelTotal(row.average, key);
-    if (incompleteSnacks(undefined, key)) row.status = "pending";
+    row.total = flaggedNutrient(row.total, key);
+    row.average = flaggedNutrient(row.average, key);
+    if (incompleteSnacks(undefined, key) && row.status !== null) {
+      const limit = key === "potassium" ? requirements.potassiumLimitMg : key === "phosphate" ? requirements.phosphateLimitMg : null;
+      const actual = key === "potassium" ? dailyAverage.potassium : key === "phosphate" ? dailyAverage.phosphate : 0;
+      row.status = limit == null ? row.status : assessedNutrientStatus(undefined, key, actual, limit);
+    }
   });
 
   function getDailyStatusForDay(day: Day): Status {
-    if (snackNutrients.some(key => incompleteSnacks(day, key))) return "pending";
-
-
-    return getDailyStatus(
-      dayTotals[day],
-      requirements
-    );
+    const totals = dayTotals[day];
+    const base = getDailyStatus(totals, requirements);
+    if (base === "red") return "red";
+    const uncertainLimitedNutrient =
+      (requirements.potassiumLimitMg != null && incompleteSnacks(day, "potassium")) ||
+      (requirements.phosphateLimitMg != null && incompleteSnacks(day, "phosphate"));
+    return uncertainLimitedNutrient ? "pending" : base;
   }
 
   if (plannerMeals === null) {
@@ -1403,7 +1442,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
               })}
             </div>
 
-            <PlannerSnacks date={getCurrentWeekDate(days.indexOf(selectedDay))} snacks={snackAccount.snacks} error={snackAccount.error} report />
+            <section className="mt-4 rounded-2xl border border-slate-200 bg-white p-4"><h3 className="font-bold text-slate-900">Snacks</h3>{renderSnackBreakdown(selectedDay, true)}</section>
             <div className="nutrition-mobile-daily-total mt-4 rounded-2xl bg-pink-50 p-4">
               <div className="flex items-center justify-between gap-3">
                 <span className="font-bold text-slate-900">
@@ -1421,53 +1460,53 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
               <div className="mt-3 grid grid-cols-1 gap-y-2 text-xs sm:text-sm">
                 <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">Energy</span>
+                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Energy", "calories", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "calories", "kcal")}
                   </strong>
                 </div>
 
                 <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">Protein</span>
+                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Protein", "protein", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "protein", "g")}
                   </strong>
                 </div>
 
                 <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">Carbohydrate</span>
+                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Carbohydrate", "carbohydrates", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "carbohydrates", "g")}
                   </strong>
                 </div>
 
                 <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">Fat</span>
+                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Fat", "fat", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "fat", "g")}
                   </strong>
                 </div>
 
                 <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">Fibre</span>
+                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Fibre", "fibre", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "fibre", "g")}
                   </strong>
                 </div>
 
                 <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">Salt (g)</span>
+                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Salt (g)", "sodium", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "sodium", "salt")}
                   </strong>
                 </div>
 
                 <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">Potassium</span>
+                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Potassium", "potassium", selectedDay)}</span>
                   <span className="flex min-w-0 flex-wrap items-center justify-end gap-1.5 font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                        incompleteSnacks(selectedDay, "potassium") ? "pending" : numericLimitStatus(dayTotals[selectedDay].potassium, null, requirements.potassiumLimitMg)
+                        assessedNutrientStatus(selectedDay, "potassium", dayTotals[selectedDay].potassium, requirements.potassiumLimitMg)
                       )}`}
                     />
                     {formatDayNutrient(selectedDay, "potassium", "mg")}
@@ -1475,11 +1514,11 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                 </div>
 
                 <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">Phosphorus</span>
+                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Phosphorus", "phosphate", selectedDay)}</span>
                   <span className="flex min-w-0 flex-wrap items-center justify-end gap-1.5 font-semibold text-slate-900">
                     <span
                       className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                        incompleteSnacks(selectedDay, "phosphate") ? "pending" : numericLimitStatus(dayTotals[selectedDay].phosphate, null, requirements.phosphateLimitMg)
+                        assessedNutrientStatus(selectedDay, "phosphate", dayTotals[selectedDay].phosphate, requirements.phosphateLimitMg)
                       )}`}
                     />
                     {formatDayNutrient(selectedDay, "phosphate", "mg")}
@@ -1499,14 +1538,14 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                 </div>
                 <div className="text-right">
                   <p className="text-xl font-extrabold text-slate-900">
-                    {totalFluidForDayIndex(days.indexOf(selectedDay)).toLocaleString()} ml
+                    {totalFluidForDayIndex(days.indexOf(selectedDay)).toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml
                   </p>
                   <p className="mt-1 text-xs text-slate-500">{selectedDay}</p>
                 </div>
               </div>
               {fluidAllowanceMl !== null && (
                 <p className="mt-3 border-t border-slate-200 pt-3 text-xs leading-5 text-slate-500">
-                  Personal allowance saved in My Diet: {fluidAllowanceMl.toLocaleString()} ml/day.
+                  Personal allowance saved in My Diet: {fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day.
                 </p>
               )}
             </section>
@@ -1558,6 +1597,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                             </tr>
                           );
                         })}
+                        <tr><th className="text-left">Snacks</th><td>All planned snacks</td>{nutrientRows.map(({key, unit}) => <td key={key}>{formatSnackNutrient(key, unit, day)}</td>)}</tr>
                         <tr className="bg-green-50 font-bold">
                           <th className="text-left">Daily total</th>
                           <td>All planned meals and snacks</td>
@@ -1573,7 +1613,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                         </tr>
                       </tbody>
                     </table>
-                    <PlannerSnacks date={getCurrentWeekDate(days.indexOf(day))} snacks={snackAccount.snacks} error={snackAccount.error} report />
+
                   </section>
                 );
               })}
@@ -1876,9 +1916,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                     </tr>
                   ))}
 
-                  <tr><th className="px-3 py-4 text-left text-sm font-bold">Snacks</th>
-                    {days.map((day, index) => <td key={`snacks-${day}`} className="min-w-0 px-1 align-top"><PlannerSnacks hideHeading date={getCurrentWeekDate(index)} snacks={snackAccount.snacks} error={snackAccount.error} report /></td>)}
-                    <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 p-3 text-xs">Planned snacks are included below. Estimates are labelled; missing values make totals incomplete.</td>
+                  <tr className="border-b border-slate-200">
+                    <td className="px-5 py-5 align-top"><span className="font-bold text-slate-900">Snacks</span></td>
+                    {days.map(day => <td key={day} className="px-2 py-5 align-top text-center">{renderSnackBreakdown(day)}</td>)}
+                    <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">{renderSnackBreakdown()}</td>
                   </tr>
                   <tr className="bg-green-50">
                     <td className="px-5 py-5">
@@ -1903,53 +1944,53 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                               return (
                                 <>
                                   <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Energy</span>
+                                    <span className="text-slate-500">{nutrientLabel("Energy", "calories", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "calories", "kcal")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Protein</span>
+                                    <span className="text-slate-500">{nutrientLabel("Protein", "protein", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "protein", "g")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Carbohydrate</span>
+                                    <span className="text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "carbohydrates", "g")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Fat</span>
+                                    <span className="text-slate-500">{nutrientLabel("Fat", "fat", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "fat", "g")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Fibre</span>
+                                    <span className="text-slate-500">{nutrientLabel("Fibre", "fibre", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "fibre", "g")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Salt (g)</span>
+                                    <span className="text-slate-500">{nutrientLabel("Salt (g)", "sodium", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "sodium", "salt")}
                                     </strong>
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Potassium</span>
+                                    <span className="text-slate-500">{nutrientLabel("Potassium", "potassium", day)}</span>
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
                                         className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          incompleteSnacks(day, "potassium") ? "pending" : numericLimitStatus(dayTotals[day].potassium, null, requirements.potassiumLimitMg)
+                                          assessedNutrientStatus(day, "potassium", dayTotals[day].potassium, requirements.potassiumLimitMg)
                                         )}`}
                                       />
                                       {formatDayNutrient(day, "potassium", "mg")}
@@ -1957,11 +1998,11 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                   </div>
 
                                   <div className="flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">Phosphorus</span>
+                                    <span className="text-slate-500">{nutrientLabel("Phosphorus", "phosphate", day)}</span>
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
                                         className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          incompleteSnacks(day, "phosphate") ? "pending" : numericLimitStatus(dayTotals[day].phosphate, null, requirements.phosphateLimitMg)
+                                          assessedNutrientStatus(day, "phosphate", dayTotals[day].phosphate, requirements.phosphateLimitMg)
                                         )}`}
                                       />
                                       {formatDayNutrient(day, "phosphate", "mg")}
@@ -1985,53 +2026,53 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                           return (
                             <>
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Energy</span>
+                                <span className="text-slate-500">{nutrientLabel("Energy", "calories")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("calories", "kcal")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Protein</span>
+                                <span className="text-slate-500">{nutrientLabel("Protein", "protein")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("protein", "g")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Carbohydrate</span>
+                                <span className="text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("carbohydrates", "g")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Fat</span>
+                                <span className="text-slate-500">{nutrientLabel("Fat", "fat")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("fat", "g")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Fibre</span>
+                                <span className="text-slate-500">{nutrientLabel("Fibre", "fibre")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("fibre", "g")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Salt (g)</span>
+                                <span className="text-slate-500">{nutrientLabel("Salt (g)", "sodium")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("sodium", "salt")}
                                 </strong>
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Potassium</span>
+                                <span className="text-slate-500">{nutrientLabel("Potassium", "potassium")}</span>
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
                                     className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      incompleteSnacks(undefined, "potassium") ? "pending" : numericLimitStatus(dailyAverage.potassium, null, requirements.potassiumLimitMg)
+                                      assessedNutrientStatus(undefined, "potassium", dailyAverage.potassium, requirements.potassiumLimitMg)
                                     )}`}
                                   />
                                   {formatAverageNutrient("potassium", "mg")}
@@ -2039,11 +2080,11 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                               </div>
 
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-slate-500">Phosphorus</span>
+                                <span className="text-slate-500">{nutrientLabel("Phosphorus", "phosphate")}</span>
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
                                     className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      incompleteSnacks(undefined, "phosphate") ? "pending" : numericLimitStatus(dailyAverage.phosphate, null, requirements.phosphateLimitMg)
+                                      assessedNutrientStatus(undefined, "phosphate", dailyAverage.phosphate, requirements.phosphateLimitMg)
                                     )}`}
                                   />
                                   {formatAverageNutrient("phosphate", "mg")}
@@ -2093,22 +2134,22 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       return (
                         <td key={day} className="px-2 py-4 text-center align-top">
                           <div className="mx-auto rounded-xl border border-slate-200 bg-slate-50 px-2 py-3 dark:border-slate-600 dark:bg-slate-700">
-                            <p className="text-lg font-extrabold text-slate-900 dark:text-white">{total.toLocaleString()} ml</p>
+                            <p className="text-lg font-extrabold text-slate-900 dark:text-white">{total.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml</p>
                             <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-300">{day}</p>
-                            <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-300">Meals {meals.toLocaleString()} ml · Drinks {drinks.toLocaleString()} ml</p>
+                            <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-300">Meals {meals.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml · Drinks {drinks.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml</p>
                           </div>
                         </td>
                       );
                     })}
                     <td className="border-l-2 border-slate-200 bg-slate-50 px-2 py-4 text-center align-top dark:border-slate-600 dark:bg-slate-700">
                       <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-300">Weekly daily average</p>
-                      <p className="mt-2 text-xl font-extrabold text-slate-900 dark:text-white">{Math.round(weeklyFluidTotal / 7).toLocaleString()} ml/day</p>
+                      <p className="mt-2 text-xl font-extrabold text-slate-900 dark:text-white">{Math.round(weeklyFluidTotal / 7).toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day</p>
                     </td>
                   </tr>
                   {fluidAllowanceMl !== null && (
                     <tr>
                       <td colSpan={9} className="px-2 pt-2 text-xs leading-5 text-slate-500 dark:text-slate-300">
-                        Personal allowance saved in My Diet: {fluidAllowanceMl.toLocaleString()} ml/day. This is your saved setting, not a target recommended by RenalPlan.
+                        Personal allowance saved in My Diet: {fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day. This is your saved setting, not a target recommended by RenalPlan.
                       </td>
                     </tr>
                   )}
@@ -2237,6 +2278,14 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                 <p className="mt-2 text-sm leading-5 text-slate-700">
                   These figures are calculated from the nutritional
                   content of the recipes in your weekly plan.
+                </p>
+
+                <p className="mt-3 text-sm leading-5 text-slate-700">
+                  An asterisk (*) indicates that a figure includes an estimated
+                  nutrient value or uses only the values available. An estimate
+                  can still be assessed against your saved limit; where values
+                  are missing, a below-limit total cannot confirm the full
+                  amount is within range.
                 </p>
 
                 <p className="mt-3 text-sm leading-5 text-slate-700">

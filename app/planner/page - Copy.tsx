@@ -1,0 +1,3927 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { recipes } from "@/data/RecipeData";
+import { createClient } from "@/lib/supabase/client";
+import { getStoredRequirements, type Requirements } from "@/lib/recipeRequirements";
+
+const days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
+const mealTypes = [
+  "Breakfast",
+  "Lunch",
+  "Dinner",
+];
+
+function MyChefIcon({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path
+        d="M7 14.5c-1.4-.7-2.3-2.1-2.3-3.6 0-2.3 1.9-4.1 4.2-4.1.3-3 2.8-5.3 5.8-5.3 2.3 0 4.3 1.3 5.3 3.2.5-.2 1-.3 1.6-.3 2.5 0 4.5 2 4.5 4.5 0 1.7-.9 3.1-2.3 3.9"
+        fill="currentColor"
+        fillOpacity="0.18"
+      />
+      <path d="M6.2 14.2h19.6v4.2H6.2z" fill="currentColor" fillOpacity="0.18" />
+      <path d="M8.2 18.4v6.1h15.6v-6.1" />
+      <path d="M10.8 21.3h10.4" />
+    </svg>
+  );
+}
+
+type PlannerMeals = {
+  [day: string]: {
+    [meal: string]: string | null;
+  };
+};
+
+type MealPeople = {
+  [day: string]: {
+    [meal: string]: number | undefined;
+  };
+};
+
+type ShoppingData = {
+  selectedRecipes: string[];
+  shoppingList: unknown[];
+  checkedItems: unknown[];
+  people: number;
+  plannerRecipes?: string[];
+  manualRecipes?: string[];
+  plannerCounts?: Record<string, number>;
+};
+
+type FluidEntry = {
+  id: string;
+  date: string;
+  drink: string;
+  amountMl: number;
+  createdAt: string;
+};
+
+const FLUID_LOG_STORAGE_KEY = "renalplan-fluid-log-v1";
+
+// Keep desktop Planner labels concise while preserving the full recipe name
+// everywhere else in RenalPlan. For long names with a side/serving description,
+// show the main dish descriptor in the compact weekly grid.
+function getPlannerDisplayName(name: string): string {
+  if (name.length > 25 && /\swith\s/i.test(name)) {
+    return name.split(/\swith\s/i)[0].trim();
+  }
+
+  return name;
+}
+
+function getLocalDateKey(date = new Date()): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function readFluidLog(): FluidEntry[] {
+  try {
+    const value = localStorage.getItem(FLUID_LOG_STORAGE_KEY);
+    if (!value) return [];
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.filter((entry) =>
+      entry && typeof entry.id === "string" && typeof entry.date === "string" &&
+      typeof entry.drink === "string" && Number.isFinite(Number(entry.amountMl))
+    ) : [];
+  } catch {
+    return [];
+  }
+}
+
+
+function createEmptyPlanner(): PlannerMeals {
+  const initial: PlannerMeals = {};
+
+  days.forEach((day) => {
+    initial[day] = {};
+
+    mealTypes.forEach((meal) => {
+      initial[day][meal] = null;
+    });
+  });
+
+  return initial;
+}
+
+function createEmptyMealPeople(): MealPeople {
+  const initial: MealPeople = {};
+
+  days.forEach((day) => {
+    initial[day] = {};
+  });
+
+  return initial;
+}
+
+function getHouseholdPeople(): number {
+  try {
+    const shoppingData =
+      localStorage.getItem("shopping-data");
+
+    if (shoppingData) {
+      const parsed = JSON.parse(shoppingData);
+
+      if (
+        typeof parsed.people === "number" &&
+        parsed.people > 0
+      ) {
+        return parsed.people;
+      }
+    }
+  } catch {
+    // Use the default below.
+  }
+
+  return 1;
+}
+
+function getPlannerCounts(
+  planner: PlannerMeals,
+  mealPeople: MealPeople
+): Record<string, number> {
+  const counts: Record<string, number> = {};
+  const householdPeople = getHouseholdPeople();
+
+  days.forEach((day) => {
+    mealTypes.forEach((meal) => {
+      const recipeId = planner[day]?.[meal];
+
+      if (!recipeId) return;
+
+      const people =
+        mealPeople[day]?.[meal] ??
+        householdPeople;
+
+      counts[recipeId] =
+        (counts[recipeId] ?? 0) + people;
+    });
+  });
+
+  return counts;
+}
+
+function syncPlannerWithShoppingList(
+  planner: PlannerMeals,
+  mealPeople: MealPeople
+) {
+  const saved =
+    localStorage.getItem("shopping-data");
+
+  let data: ShoppingData = {
+    selectedRecipes: [],
+    shoppingList: [],
+    checkedItems: [],
+    people: 1,
+    plannerRecipes: [],
+    manualRecipes: [],
+    plannerCounts: {},
+  };
+
+  if (saved) {
+    try {
+      data = {
+        ...data,
+        ...JSON.parse(saved),
+      };
+    } catch {
+      // Use defaults.
+    }
+  }
+
+  const selectedRecipes =
+    data.selectedRecipes ?? [];
+
+  const existingPlannerRecipes =
+    data.plannerRecipes ?? [];
+
+  const existingManualRecipes =
+    data.manualRecipes ??
+    selectedRecipes.filter(
+      (recipeId) =>
+        !existingPlannerRecipes.includes(
+          recipeId
+        )
+    );
+
+  const counts =
+    getPlannerCounts(
+      planner,
+      mealPeople
+    );
+
+  const uniquePlannedRecipeIds =
+    Object.keys(counts);
+
+  const updatedSelectedRecipes = [
+    ...new Set([
+      ...existingManualRecipes,
+      ...uniquePlannedRecipeIds,
+    ]),
+  ];
+
+  localStorage.setItem(
+    "shopping-data",
+    JSON.stringify({
+      ...data,
+      selectedRecipes:
+        updatedSelectedRecipes,
+      plannerRecipes:
+        uniquePlannedRecipeIds,
+      manualRecipes:
+        existingManualRecipes,
+      plannerCounts:
+        counts,
+    })
+  );
+
+  window.dispatchEvent(
+    new Event("shopping-list-updated")
+  );
+}
+
+function WeeklyPlannerPageContent() {
+  const [selectedDay, setSelectedDay] =
+    useState("Monday");
+  const [plannerMeals, setPlannerMeals] =
+    useState<PlannerMeals | null>(null);
+
+  const [mealPeople, setMealPeople] =
+    useState<MealPeople | null>(null);
+
+  const [peoplePicker, setPeoplePicker] =
+    useState<{
+      day: string;
+      meal: string;
+    } | null>(null);
+
+  const [picker, setPicker] =
+    useState<{
+      day: string;
+      meal: string;
+    } | null>(null);
+
+  const [showClearConfirm, setShowClearConfirm] =
+    useState(false);
+
+  const [showPickConfirm, setShowPickConfirm] =
+    useState(false);
+  const [pendingReplaceAll, setPendingReplaceAll] =
+    useState(false);
+  const [isDiceRolling, setIsDiceRolling] =
+    useState(false);
+  const [showMyChef, setShowMyChef] =
+    useState(false);
+  const [myChefStage, setMyChefStage] =
+    useState<"intro" | "cooking">("intro");
+  const [myChefFading, setMyChefFading] =
+    useState(false);
+
+  const searchParams = useSearchParams();
+  const myChefNavHandledRef = useRef(false);
+
+  type PlannerRequirements = Requirements & {
+    ckdStage?: string | null;
+    proteinMinG?: number | null;
+    proteinMaxG?: number | null;
+    potassiumLimitMg?: number | null;
+    phosphateLimitMg?: number | null;
+    fluidLimitMl?: number | null;
+  };
+
+  const [requirements, setRequirements] =
+    useState<PlannerRequirements | null>(null);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [premiumPrompt, setPremiumPrompt] =
+    useState<"pick" | null>(null);
+  const [accountSyncReady, setAccountSyncReady] = useState(false);
+  const [accountUserId, setAccountUserId] = useState<string | null>(null);
+  const [fluidModalOpen, setFluidModalOpen] = useState(false);
+  const [fluidEntries, setFluidEntries] = useState<FluidEntry[]>([]);
+  const [fluidDate, setFluidDate] = useState(getLocalDateKey());
+  const [fluidDrink, setFluidDrink] = useState("Water");
+  const [fluidCustomDrink, setFluidCustomDrink] = useState("");
+  const [fluidAmount, setFluidAmount] = useState("200");
+  const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [emptyPlannerPromptDismissed, setEmptyPlannerPromptDismissed] = useState(false);
+  const plannerWasEmptyRef = useRef(false);
+  // Prevent a mobile tap that dismisses the welcome prompt from being
+  // retargeted to an underlying planner control by the browser.
+  const suppressPlannerClickUntilRef = useRef(0);
+
+  function dismissEmptyPlannerPrompt() {
+    // Mobile browsers can finish a touch with a click after React has
+    // already removed the popup. Keep the planner click-blocked briefly
+    // so that same physical tap cannot open an empty-slot picker underneath.
+    suppressPlannerClickUntilRef.current = Date.now() + 600;
+    setEmptyPlannerPromptDismissed(true);
+  }
+
+
+  useEffect(() => {
+    const currentTheme = document.documentElement.dataset.theme;
+    if (currentTheme === "dark" || currentTheme === "light") {
+      setTheme(currentTheme);
+    }
+
+    const observer = new MutationObserver(() => {
+      const nextTheme = document.documentElement.dataset.theme;
+      if (nextTheme === "dark" || nextTheme === "light") {
+        setTheme(nextTheme);
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (plannerMeals === null) return;
+
+    const isEmpty = days.every((day) =>
+      mealTypes.every((meal) => !plannerMeals[day]?.[meal])
+    );
+
+    if (isEmpty && !plannerWasEmptyRef.current) {
+      setEmptyPlannerPromptDismissed(false);
+    }
+
+    if (!isEmpty) {
+      setEmptyPlannerPromptDismissed(false);
+    }
+
+    plannerWasEmptyRef.current = isEmpty;
+  }, [plannerMeals]);
+
+  useEffect(() => {
+    setFluidEntries(readFluidLog());
+    let cancelled = false;
+    async function loadCloudFluidLog() {
+      try {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user || cancelled) return;
+        const { data, error } = await supabase
+          .from("user_fluid_entries")
+          .select("id, consumed_on, drink, amount_ml, created_at")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: true });
+        if (error || cancelled || !data) return;
+        const cloudEntries: FluidEntry[] = data.map((row: { id: string; consumed_on: string; drink: string; amount_ml: number; created_at: string }) => ({
+          id: row.id, date: row.consumed_on, drink: row.drink, amountMl: row.amount_ml, createdAt: row.created_at,
+        }));
+        const localEntries = readFluidLog();
+        const byId = new Map<string, FluidEntry>();
+        [...cloudEntries, ...localEntries].forEach((entry) => byId.set(entry.id, entry));
+        const merged = [...byId.values()];
+        setFluidEntries(merged);
+        localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(merged));
+        const localOnly = localEntries.filter((entry) => !cloudEntries.some((cloud) => cloud.id === entry.id));
+        if (localOnly.length) {
+          await supabase.from("user_fluid_entries").upsert(localOnly.map((entry) => ({
+            id: entry.id, user_id: user.id, consumed_on: entry.date, drink: entry.drink, amount_ml: entry.amountMl, created_at: entry.createdAt,
+          })), { onConflict: "id" });
+        }
+      } catch { /* Browser storage remains available if cloud sync is unavailable. */ }
+    }
+    void loadCloudFluidLog();
+    try {
+      const saved = localStorage.getItem("meal-planner-requirements");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const allowance = Number(parsed?.fluidLimitMl);
+        setFluidAllowanceMl(parsed?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
+      }
+    } catch { /* Keep the allowance unset if saved settings are unreadable. */ }
+    const reloadFluid = () => setFluidEntries(readFluidLog());
+    const reloadRequirements = () => {
+      try {
+        const saved = localStorage.getItem("meal-planner-requirements");
+        const parsed = saved ? JSON.parse(saved) : {};
+        const allowance = Number(parsed?.fluidLimitMl);
+        setFluidAllowanceMl(parsed?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
+      } catch { setFluidAllowanceMl(null); }
+    };
+    window.addEventListener("renalplan-fluid-log-updated", reloadFluid);
+    window.addEventListener("meal-planner-requirements-updated", reloadRequirements);
+    window.addEventListener("storage", reloadFluid);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("renalplan-fluid-log-updated", reloadFluid);
+      window.removeEventListener("meal-planner-requirements-updated", reloadRequirements);
+      window.removeEventListener("storage", reloadFluid);
+    };
+  }, []);
+
+  function saveFluidEntries(nextEntries: FluidEntry[]) {
+    const previousEntries = fluidEntries;
+    setFluidEntries(nextEntries);
+    localStorage.setItem(FLUID_LOG_STORAGE_KEY, JSON.stringify(nextEntries));
+    window.dispatchEvent(new Event("renalplan-fluid-log-updated"));
+    void (async () => {
+      try {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return;
+        const retainedIds = new Set(nextEntries.map((entry) => entry.id));
+        const removedIds = previousEntries.filter((entry) => !retainedIds.has(entry.id)).map((entry) => entry.id);
+        if (removedIds.length) {
+          await supabase.from("user_fluid_entries").delete().eq("user_id", user.id).in("id", removedIds);
+        }
+        if (nextEntries.length) {
+          await supabase.from("user_fluid_entries").upsert(nextEntries.map((entry) => ({
+            id: entry.id, user_id: user.id, consumed_on: entry.date, drink: entry.drink, amount_ml: entry.amountMl, created_at: entry.createdAt,
+          })), { onConflict: "id" });
+        }
+      } catch { /* Keep the local log; cloud sync can retry on a later save. */ }
+    })();
+  }
+
+  function addFluidEntry() {
+    const amount = Number(fluidAmount);
+    const drink = fluidDrink === "Other" ? fluidCustomDrink.trim() : fluidDrink;
+    if (!drink || !Number.isFinite(amount) || amount <= 0 || amount > 10000) return;
+    const entry: FluidEntry = {
+      id: typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (char) => { const random = Math.random() * 16 | 0; return (char === "x" ? random : (random & 0x3 | 0x8)).toString(16); }),
+      date: fluidDate,
+      drink,
+      amountMl: Math.round(amount),
+      createdAt: new Date().toISOString(),
+    };
+    saveFluidEntries([...fluidEntries, entry]);
+    setFluidAmount("200");
+    setFluidCustomDrink("");
+    setFluidDrink("Water");
+  }
+
+  function fluidTotalForDate(date: string) {
+    return fluidEntries.filter((entry) => entry.date === date).reduce((sum, entry) => sum + Number(entry.amountMl || 0), 0);
+  }
+
+  // Count the recipe-level fluid estimate for the meals planned on a given day.
+  // Recipe fluidMl values are per serving, so account for the planned meal portions.
+  function plannedMealFluidForDay(day: string) {
+    return mealTypes.reduce((total, meal) => {
+      const recipe = getRecipe(plannerMeals?.[day]?.[meal] ?? null);
+      if (!recipe) return total;
+      const recipeFluid = Number((recipe as typeof recipe & { fluidMl?: number }).fluidMl ?? 0);
+      const people = Number(mealPeople?.[day]?.[meal] ?? getHouseholdPeople());
+      return total + (Number.isFinite(recipeFluid) ? recipeFluid : 0) * (Number.isFinite(people) && people > 0 ? people : 1);
+    }, 0);
+  }
+
+  function plannedMealFluidForDate(date: string) {
+    const day = days.find((candidate) => getDateForPlannerDay(candidate) === date);
+    return day ? plannedMealFluidForDay(day) : 0;
+  }
+
+  function totalFluidForPlannerDay(day: string) {
+    return plannedMealFluidForDay(day) + fluidTotalForDate(getDateForPlannerDay(day));
+  }
+
+
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function checkAuth() {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!mounted) return;
+
+      setIsLoggedIn(Boolean(user));
+      setAuthChecked(true);
+    }
+
+    void checkAuth();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const plannerInitialisedRef = useRef(false);
+  const accountHydratedRef = useRef(false);
+
+  useEffect(() => {
+    if (!authChecked || !plannerInitialisedRef.current) return;
+
+    let cancelled = false;
+
+    async function syncAccountPlanner() {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (cancelled) return;
+
+      if (!user) {
+        setAccountUserId(null);
+        localStorage.removeItem("planner-recipe-add-pending");
+        setAccountSyncReady(true);
+        accountHydratedRef.current = true;
+        return;
+      }
+
+      setAccountUserId(user.id);
+
+      const { data, error } = await supabase
+        .from("user_meal_plans")
+        .select("planner, meal_people, household_people")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (cancelled) return;
+
+      if (error) {
+        console.error("Unable to load saved meal plan:", error);
+        setAccountSyncReady(true);
+        accountHydratedRef.current = true;
+        return;
+      }
+
+      const localPlanner = plannerMeals ?? createEmptyPlanner();
+      const localMealPeople = mealPeople ?? createEmptyMealPeople();
+      const localHasMeals = days.some((day) =>
+        mealTypes.some((meal) => Boolean(localPlanner[day]?.[meal]))
+      );
+
+      // Recipe cards and recipe-detail pages save the chosen slot locally before
+      // navigating here. Treat that explicit change as newer than the saved account
+      // plan, otherwise account hydration can immediately overwrite the new meal.
+      const recipeAddPending =
+        localStorage.getItem("planner-recipe-add-pending") === "true";
+
+      if (recipeAddPending) {
+        const { error: saveError } = await supabase
+          .from("user_meal_plans")
+          .upsert({
+            user_id: user.id,
+            planner: localPlanner,
+            meal_people: localMealPeople,
+            household_people: getHouseholdPeople(),
+          }, { onConflict: "user_id" });
+
+        if (saveError) {
+          console.error("Unable to save recipe added from recipe page:", saveError);
+          // Keep the marker so a later Planner load can retry rather than
+          // silently reverting the user's explicit recipe selection.
+        } else {
+          localStorage.removeItem("planner-recipe-add-pending");
+        }
+
+        if (!cancelled) {
+          accountHydratedRef.current = true;
+          setAccountSyncReady(true);
+        }
+        return;
+      }
+
+      if (data) {
+        const remotePlanner = (data.planner ?? createEmptyPlanner()) as PlannerMeals;
+        const remoteMealPeople = (data.meal_people ?? createEmptyMealPeople()) as MealPeople;
+        const remoteHasMeals = days.some((day) =>
+          mealTypes.some((meal) => Boolean(remotePlanner[day]?.[meal]))
+        );
+
+        const remotePeople =
+          typeof data.household_people === "number" && data.household_people > 0
+            ? data.household_people
+            : getHouseholdPeople();
+
+        // If this browser already contains a real plan and the account does not,
+        // keep the local plan and make it the account's first saved plan.
+        // Otherwise, the saved account plan is the source of truth and is restored.
+        if (localHasMeals && !remoteHasMeals) {
+          const { error: saveError } = await supabase
+            .from("user_meal_plans")
+            .upsert({
+              user_id: user.id,
+              planner: localPlanner,
+              meal_people: localMealPeople,
+              household_people: getHouseholdPeople(),
+            }, { onConflict: "user_id" });
+
+          if (saveError) {
+            console.error("Unable to save existing local meal plan:", saveError);
+          }
+        } else {
+          const shoppingSaved = localStorage.getItem("shopping-data");
+          let shoppingData: ShoppingData = {
+            selectedRecipes: [],
+            shoppingList: [],
+            checkedItems: [],
+            people: remotePeople,
+            plannerRecipes: [],
+            manualRecipes: [],
+            plannerCounts: {},
+          };
+
+          if (shoppingSaved) {
+            try {
+              shoppingData = { ...shoppingData, ...JSON.parse(shoppingSaved) };
+            } catch {
+              // Keep defaults.
+            }
+          }
+
+          localStorage.setItem(
+            "shopping-data",
+            JSON.stringify({ ...shoppingData, people: remotePeople })
+          );
+
+          setPlannerMeals(remotePlanner);
+          setMealPeople(remoteMealPeople);
+        }
+      } else {
+        // No account plan exists yet. Save the planner that was already loaded
+        // from this browser instead of saving an empty planner.
+        const { error: saveError } = await supabase
+          .from("user_meal_plans")
+          .upsert({
+            user_id: user.id,
+            planner: localPlanner,
+            meal_people: localMealPeople,
+            household_people: getHouseholdPeople(),
+          }, { onConflict: "user_id" });
+
+        if (saveError) {
+          console.error("Unable to create saved meal plan:", saveError);
+        }
+      }
+
+      if (!cancelled) {
+        accountHydratedRef.current = true;
+        setAccountSyncReady(true);
+      }
+    }
+
+    void syncAccountPlanner();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authChecked, plannerMeals, mealPeople]);
+
+  function handlePlannerTouchStart(
+
+    event: React.TouchEvent<HTMLDivElement>
+  ) {
+    const touch = event.touches[0];
+
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+  }
+
+  function handlePlannerTouchEnd(
+    event: React.TouchEvent<HTMLDivElement>
+  ) {
+    if (
+      touchStartX.current === null ||
+      touchStartY.current === null
+    ) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+    const deltaX =
+      touch.clientX - touchStartX.current;
+    const deltaY =
+      touch.clientY - touchStartY.current;
+
+    touchStartX.current = null;
+    touchStartY.current = null;
+
+    if (
+      Math.abs(deltaX) < 50 ||
+      Math.abs(deltaX) <= Math.abs(deltaY)
+    ) {
+      return;
+    }
+
+    const currentIndex =
+      days.indexOf(selectedDay);
+
+    if (deltaX < 0) {
+      if (currentIndex < days.length - 1) {
+        setSelectedDay(days[currentIndex + 1]);
+      }
+    } else {
+      if (currentIndex > 0) {
+        setSelectedDay(days[currentIndex - 1]);
+      }
+    }
+  }
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadPlannerRequirements() {
+      // My Diet is the single source of truth for the user's daily
+      // requirements. Load the full current record rather than relying on
+      // the legacy recipeRequirements type, which does not contain the
+      // numeric potassium/phosphate/protein limits.
+      try {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (user) {
+          const { data } = await supabase
+            .from("user_requirements")
+            .select(
+              "ckd_stage, sodium_limit, protein_min_g, protein_max_g, potassium_limit_mg, phosphate_limit_mg, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml"
+            )
+            .eq("user_id", user.id)
+            .maybeSingle();
+
+          if (!cancelled && data) {
+            setRequirements({
+              sodiumLimit: data.sodium_limit ?? null,
+              potassium: (data.potassium ?? "Any") as Requirements["potassium"],
+              phosphate: (data.phosphate ?? "Any") as Requirements["phosphate"],
+              purines: (data.purines ?? "Any") as Requirements["purines"],
+              carbohydrateMin: data.carbohydrate_min ?? null,
+              carbohydrateMax: data.carbohydrate_max ?? null,
+              ckdStage: data.ckd_stage ?? null,
+              proteinMinG: data.protein_min_g ?? null,
+              proteinMaxG: data.protein_max_g ?? null,
+              potassiumLimitMg: data.potassium_limit_mg ?? null,
+              phosphateLimitMg: data.phosphate_limit_mg ?? null,
+              fluidLimitMl: data.fluid_limit_ml ?? null,
+            });
+            return;
+          }
+        }
+      } catch {
+        // Fall through to the locally saved My Diet requirements.
+      }
+
+      if (cancelled) return;
+
+      try {
+        const raw = window.localStorage.getItem(
+          "meal-planner-requirements"
+        );
+
+        if (!raw) {
+          setRequirements(getStoredRequirements() as PlannerRequirements | null);
+          return;
+        }
+
+        const parsed = JSON.parse(raw) as PlannerRequirements;
+        setRequirements(parsed);
+      } catch {
+        setRequirements(getStoredRequirements() as PlannerRequirements | null);
+      }
+    }
+
+    void loadPlannerRequirements();
+
+    const handleRequirementsUpdated = () => {
+      void loadPlannerRequirements();
+    };
+
+    window.addEventListener(
+      "meal-planner-requirements-updated",
+      handleRequirementsUpdated
+    );
+
+    const emptyPlanner =
+      createEmptyPlanner();
+
+    const defaultMealPeople =
+      createEmptyMealPeople();
+
+    const saved =
+      localStorage.getItem(
+        "weekly-planner"
+      );
+
+    if (!saved) {
+      setPlannerMeals(emptyPlanner);
+      setMealPeople(createEmptyMealPeople());
+      return;
+    }
+
+    try {
+      const savedPlanner =
+        JSON.parse(saved);
+
+      const loadedPlanner: PlannerMeals = {
+        ...emptyPlanner,
+        ...savedPlanner,
+      };
+
+      const loadedMealPeople: MealPeople = {
+        ...createEmptyMealPeople(),
+      };
+
+      const savedMealPeople =
+        savedPlanner.mealPeople ?? null;
+
+      days.forEach((day) => {
+        loadedMealPeople[day] = {
+          ...defaultMealPeople[day],
+          ...(savedMealPeople?.[day] ?? {}),
+        };
+      });
+
+      const householdPeople = getHouseholdPeople();
+
+      if (
+        householdPeople > 1 &&
+        savedMealPeople
+      ) {
+        const savedValues = days.flatMap((day) =>
+          mealTypes.map(
+            (meal) =>
+              savedMealPeople?.[day]?.[meal]
+          )
+        );
+
+        const definedSavedValues =
+          savedValues.filter(
+            (value): value is number =>
+              typeof value === "number"
+          );
+
+        const allDefinedSavedValuesAreOne =
+          definedSavedValues.length > 0 &&
+          definedSavedValues.every(
+            (value) => value === 1
+          );
+
+        if (allDefinedSavedValuesAreOne) {
+          days.forEach((day) => {
+            mealTypes.forEach((meal) => {
+              loadedMealPeople[day][meal] =
+                householdPeople;
+            });
+          });
+        }
+      }
+
+      setPlannerMeals(loadedPlanner);
+      setMealPeople(loadedMealPeople);
+
+      syncPlannerWithShoppingList(
+        loadedPlanner,
+        loadedMealPeople
+      );
+    } catch {
+      setPlannerMeals(emptyPlanner);
+      setMealPeople(createEmptyMealPeople());
+    }
+
+    plannerInitialisedRef.current = true;
+
+    return () => {
+      window.removeEventListener(
+        "meal-planner-requirements-updated",
+        handleRequirementsUpdated
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    if (
+      plannerMeals === null ||
+      mealPeople === null
+    ) {
+      return;
+    }
+
+    localStorage.setItem(
+      "weekly-planner",
+      JSON.stringify({
+        ...plannerMeals,
+        mealPeople,
+      })
+    );
+
+    syncPlannerWithShoppingList(
+      plannerMeals,
+      mealPeople
+    );
+
+    if (accountSyncReady && accountUserId && accountHydratedRef.current) {
+      const supabase = createClient();
+      const householdPeople = getHouseholdPeople();
+
+      void supabase
+        .from("user_meal_plans")
+        .upsert({
+          user_id: accountUserId,
+          planner: plannerMeals,
+          meal_people: mealPeople,
+          household_people: householdPeople,
+        }, { onConflict: "user_id" })
+        .then(({ error }) => {
+          if (error) {
+            console.error("Unable to save meal plan:", error);
+          }
+        });
+    }
+
+    window.dispatchEvent(
+      new Event("weekly-planner-updated")
+    );
+  }, [plannerMeals, mealPeople, accountSyncReady, accountUserId]);
+
+  function getPeopleForMeal(
+    day: string,
+    meal: string
+  ) {
+    return (
+      mealPeople?.[day]?.[meal] ??
+      getHouseholdPeople()
+    );
+  }
+
+  function setPeopleForMeal(
+    day: string,
+    meal: string,
+    people: number
+  ) {
+    setMealPeople((current) => {
+      if (!current) return current;
+
+      return {
+        ...current,
+        [day]: {
+          ...current[day],
+          [meal]: Math.max(
+            1,
+            Math.min(8, people)
+          ),
+        },
+      };
+    });
+  }
+
+  function chooseRecipe(
+    recipeId: string
+  ) {
+    if (
+      !picker ||
+      plannerMeals === null
+    ) {
+      return;
+    }
+
+    setPlannerMeals((current) => {
+      if (!current) return current;
+
+      return {
+        ...current,
+        [picker.day]: {
+          ...current[picker.day],
+          [picker.meal]: recipeId,
+        },
+      };
+    });
+
+    if (typeof window !== "undefined") {
+      const gtag = (window as typeof window & {
+        gtag?: (...args: any[]) => void;
+      }).gtag;
+
+      if (gtag) {
+        gtag("event", "meal_added", {
+          meal_type: picker.meal,
+        });
+      }
+    }
+
+    setPicker(null);
+  }
+
+  function removeRecipe(
+    day: string,
+    meal: string
+  ) {
+    setPlannerMeals((current) => {
+      if (!current) return current;
+
+      return {
+        ...current,
+        [day]: {
+          ...current[day],
+          [meal]: null,
+        },
+      };
+    });
+
+    setMealPeople((current) => {
+      if (!current) return current;
+
+      const updatedDay = {
+        ...current[day],
+      };
+
+      delete updatedDay[meal];
+
+      return {
+        ...current,
+        [day]: updatedDay,
+      };
+    });
+  }
+
+  function shuffleRecipeIds(recipeIds: string[]) {
+    const shuffled = [...recipeIds];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled;
+  }
+
+  function pickForMe(
+    replaceAll = false
+  ) {
+    setPlannerMeals((current) => {
+      if (!current) return current;
+
+      const nextPlanner: PlannerMeals =
+        replaceAll
+          ? createEmptyPlanner()
+          : JSON.parse(JSON.stringify(current));
+
+      const usedByMeal: Record<string, Set<string>> = {
+        Breakfast: new Set<string>(),
+        Lunch: new Set<string>(),
+        Dinner: new Set<string>(),
+      };
+
+      if (!replaceAll) {
+        days.forEach((day) => {
+          mealTypes.forEach((meal) => {
+            const recipeId = current[day]?.[meal];
+            if (recipeId) usedByMeal[meal].add(recipeId);
+          });
+        });
+      }
+
+      type Recipe = typeof recipes[number];
+      type DayCombo = {
+        Breakfast: Recipe;
+        Lunch: Recipe;
+        Dinner: Recipe;
+      };
+
+      // mealFamily is a variety label (for example, sandwich, pasta or rice
+      // bowl), not a nutritional restriction. Older recipes without a family
+      // remain eligible and simply do not trigger a family-repeat penalty.
+      const getMealFamily = (recipe: Recipe | null | undefined): string => {
+        const family = recipe && "mealFamily" in recipe
+          ? (recipe as Recipe & { mealFamily?: string }).mealFamily
+          : undefined;
+        return typeof family === "string" ? family.trim().toLowerCase() : "";
+      };
+
+      const numeric = (recipe: Recipe, field: "protein" | "carbohydrates" | "sodium" | "potassium" | "phosphate") => {
+        if (field === "protein") return getNutritionNumber(recipe.protein);
+        return getNutritionNumber(recipe.nutrition[field] ?? "0");
+      };
+
+      const rank: Record<string, number> = {
+        Low: 1,
+        Moderate: 2,
+        High: 3,
+      };
+
+      const getPool = (meal: string, fixedRecipeId: string | null): Recipe[] => {
+        if (fixedRecipeId) {
+          const fixed = recipes.find((recipe) => recipe.id === fixedRecipeId);
+          return fixed ? [fixed] : [];
+        }
+
+        const codePrefix = meal === "Breakfast" ? "B" : meal === "Lunch" ? "L" : "D";
+        return recipes.filter((recipe) =>
+          (recipe.code?.toUpperCase() ?? "").startsWith(codePrefix)
+        );
+      };
+
+      const shuffleRecipes = (pool: Recipe[]): Recipe[] => {
+        const shuffled = [...pool];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      };
+
+      // Evaluate a bounded shortlist rather than the full Cartesian product
+      // of every recipe. This keeps MyChef responsive as the catalogue grows.
+      const MAX_CANDIDATES_PER_MEAL = 16;
+
+      days.forEach((day, dayIndex) => {
+        const previousDay = dayIndex > 0 ? days[dayIndex - 1] : null;
+
+        const getVariedPool = (meal: string): Recipe[] => {
+          const fixedId = !replaceAll ? current[day]?.[meal] ?? null : null;
+          const pool = getPool(meal, fixedId);
+          if (pool.length <= 1 || !previousDay) return pool;
+
+          const previousRecipeId = nextPlanner[previousDay]?.[meal] ?? null;
+          const previousRecipe = previousRecipeId
+            ? recipes.find((recipe) => recipe.id === previousRecipeId)
+            : undefined;
+          const previousFamily = getMealFamily(previousRecipe);
+
+          // Avoid the same family in adjacent days whenever the catalogue
+          // offers another family. If there is no alternative, allow it.
+          if (previousFamily && !fixedId) {
+            const alternatives = pool.filter(
+              (recipe) => getMealFamily(recipe) !== previousFamily
+            );
+            if (alternatives.length > 0) {
+              return shuffleRecipes(alternatives).slice(0, MAX_CANDIDATES_PER_MEAL);
+            }
+          }
+
+          return pool.length > MAX_CANDIDATES_PER_MEAL
+            ? shuffleRecipes(pool).slice(0, MAX_CANDIDATES_PER_MEAL)
+            : pool;
+        };
+
+        const breakfastPool = getVariedPool("Breakfast");
+        const lunchPool = getVariedPool("Lunch");
+        const dinnerPool = getVariedPool("Dinner");
+
+        if (!breakfastPool.length || !lunchPool.length || !dinnerPool.length) return;
+
+        const dailyScore = (combo: DayCombo): number => {
+          const comboRecipes = [combo.Breakfast, combo.Lunch, combo.Dinner];
+          const protein = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "protein"), 0);
+          const carbohydrates = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "carbohydrates"), 0);
+          const sodium = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "sodium"), 0);
+          const potassium = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "potassium"), 0);
+          const phosphate = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "phosphate"), 0);
+
+          let score = 0;
+          const penalty = (amount: number, weight: number) => {
+            score += Math.max(0, amount) * weight;
+          };
+
+          // My Diet targets are daily totals. Hard upper limits carry the
+          // strongest penalty; mealFamily only influences variety.
+          if (requirements?.sodiumLimit != null) penalty(sodium - requirements.sodiumLimit, 100000);
+          if (requirements?.potassiumLimitMg != null) {
+            penalty(potassium - requirements.potassiumLimitMg, 100000);
+          } else if (requirements?.potassium && requirements.potassium !== "Any") {
+            comboRecipes.forEach((recipe) => penalty((rank[recipe.potassium] ?? 1) - (rank[requirements.potassium] ?? 1), 50000));
+          }
+          if (requirements?.phosphateLimitMg != null) {
+            penalty(phosphate - requirements.phosphateLimitMg, 100000);
+          } else if (requirements?.phosphate && requirements.phosphate !== "Any") {
+            comboRecipes.forEach((recipe) => penalty((rank[recipe.phosphate] ?? 1) - (rank[requirements.phosphate] ?? 1), 50000));
+          }
+          if (requirements?.purines && requirements.purines !== "Any") {
+            comboRecipes.forEach((recipe) => penalty((rank[recipe.purines] ?? 1) - (rank[requirements.purines] ?? 1), 50000));
+          }
+          if (requirements?.proteinMinG != null) penalty(requirements.proteinMinG - protein, 2000);
+          if (requirements?.proteinMaxG != null) penalty(protein - requirements.proteinMaxG, 100000);
+          if (requirements?.carbohydrateMin != null) penalty(requirements.carbohydrateMin - carbohydrates, 500);
+          if (requirements?.carbohydrateMax != null) penalty(carbohydrates - requirements.carbohydrateMax, 100000);
+
+          const mealEntries: [string, Recipe][] = [
+            ["Breakfast", combo.Breakfast],
+            ["Lunch", combo.Lunch],
+            ["Dinner", combo.Dinner],
+          ];
+          mealEntries.forEach(([meal, recipe]) => {
+            if (usedByMeal[meal].has(recipe.id)) score += 25;
+            if (previousDay) {
+              const previousId = nextPlanner[previousDay]?.[meal] ?? null;
+              const previousRecipe = previousId
+                ? recipes.find((candidate) => candidate.id === previousId)
+                : undefined;
+              const family = getMealFamily(recipe);
+              if (family && family === getMealFamily(previousRecipe)) score += 1000;
+            }
+          });
+
+          score += Math.random() * 2;
+          return score;
+        };
+
+        let bestCombo: DayCombo | null = null;
+        let bestScore = Number.POSITIVE_INFINITY;
+
+        for (const Breakfast of breakfastPool) {
+          for (const Lunch of lunchPool) {
+            for (const Dinner of dinnerPool) {
+              const combo: DayCombo = { Breakfast, Lunch, Dinner };
+              const score = dailyScore(combo);
+              if (score < bestScore) {
+                bestScore = score;
+                bestCombo = combo;
+              }
+            }
+          }
+        }
+
+        if (!bestCombo) return;
+
+        nextPlanner[day].Breakfast = bestCombo.Breakfast.id;
+        nextPlanner[day].Lunch = bestCombo.Lunch.id;
+        nextPlanner[day].Dinner = bestCombo.Dinner.id;
+
+        usedByMeal.Breakfast.add(bestCombo.Breakfast.id);
+        usedByMeal.Lunch.add(bestCombo.Lunch.id);
+        usedByMeal.Dinner.add(bestCombo.Dinner.id);
+      });
+
+      return nextPlanner;
+    });
+
+    setShowPickConfirm(false);
+  }
+
+  function openMyChefIntro() {
+    if (isDiceRolling) return;
+    setShowPickConfirm(false);
+    setMyChefFading(false);
+    setMyChefStage("intro");
+    setShowMyChef(true);
+  }
+
+  function animatePickForMe(replaceAll = false) {
+    if (isDiceRolling) return;
+
+    setMyChefStage("cooking");
+    setMyChefFading(false);
+    setShowMyChef(true);
+    setIsDiceRolling(true);
+
+    window.setTimeout(() => {
+      pickForMe(replaceAll);
+      setMyChefFading(true);
+
+      window.setTimeout(() => {
+        setShowMyChef(false);
+        setMyChefFading(false);
+        setIsDiceRolling(false);
+        setMyChefStage("intro");
+      }, 700);
+    }, 1500);
+  }
+
+  function confirmMyChef() {
+    if (isDiceRolling) return;
+    setShowPickConfirm(false);
+    animatePickForMe(pendingReplaceAll);
+  }
+
+  function startPickForMe() {
+    if (!authChecked || !isLoggedIn) {
+      setPremiumPrompt("pick");
+      return;
+    }
+
+    if (
+      plannerMeals === null ||
+      mealPeople === null
+    ) {
+      return;
+    }
+
+    const hasEmptySlots =
+      days.some((day) =>
+        mealTypes.some(
+          (meal) =>
+            !plannerMeals[day]?.[meal]
+        )
+      );
+
+    setPendingReplaceAll(!hasEmptySlots);
+
+if (typeof window !== "undefined") {
+  const gtag = (window as typeof window & {
+    gtag?: (...args: any[]) => void;
+  }).gtag;
+
+  if (gtag) {
+    gtag("event", "mychef_used");
+  }
+}
+
+openMyChefIntro();
+  }
+
+  useEffect(() => {
+    const requested = searchParams.get("mychef") === "1";
+
+    if (!requested) {
+      myChefNavHandledRef.current = false;
+      return;
+    }
+
+    if (
+      myChefNavHandledRef.current ||
+      !authChecked ||
+      plannerMeals === null ||
+      mealPeople === null
+    ) {
+      return;
+    }
+
+    myChefNavHandledRef.current = true;
+    window.history.replaceState(null, "", "/planner");
+    startPickForMe();
+  }, [searchParams, authChecked, plannerMeals, mealPeople]);
+
+  function clearWeek() {
+    // Clear drinks logged for the current Monday–Sunday planner week as well
+    // as the planned meals. saveFluidEntries also syncs removed log entries
+    // to Supabase for signed-in users.
+    const today = new Date();
+    const monday = new Date(today);
+    const mondayOffset = (today.getDay() + 6) % 7;
+    monday.setDate(today.getDate() - mondayOffset);
+
+    const currentWeekDates = new Set(
+      days.map((_, index) => {
+        const date = new Date(monday);
+        date.setDate(monday.getDate() + index);
+        return getLocalDateKey(date);
+      })
+    );
+
+    saveFluidEntries(
+      fluidEntries.filter((entry) => !currentWeekDates.has(entry.date))
+    );
+
+    setPlannerMeals(createEmptyPlanner());
+    setMealPeople(createEmptyMealPeople());
+    localStorage.removeItem("planner-pending-slot");
+    setShowClearConfirm(false);
+  }
+
+  function browseRecipes() {
+    if (!picker) return;
+
+    localStorage.setItem(
+      "planner-pending-slot",
+      JSON.stringify({
+        day: picker.day,
+        meal: picker.meal,
+      })
+    );
+
+    setPicker(null);
+
+    window.location.href = `/recipes?meal=${encodeURIComponent(
+      picker.meal
+    )}`;
+  }
+
+  function getRecipe(
+    recipeId: string | null
+  ) {
+    if (!recipeId) return null;
+
+    return (
+      recipes.find(
+        (recipe) =>
+          recipe.id === recipeId
+      ) ?? null
+    );
+  }
+
+  function getMealRecipes(
+    meal: string
+  ) {
+    return recipes.filter((recipe) => {
+      const code =
+        recipe.code?.toUpperCase() ?? "";
+
+      const matchesMeal =
+        meal === "Breakfast"
+          ? code.startsWith("B")
+          : meal === "Lunch"
+            ? code.startsWith("L")
+            : meal === "Dinner"
+              ? code.startsWith("D")
+              : false;
+
+      // My Diet requirements are daily targets. Individual recipes are no
+      // longer filtered against a fraction of the daily allowance here.
+      // The Nutrition view and MyChef judge the complete day's combination.
+      return matchesMeal;
+    });
+  }
+
+  type NutritionView =
+    | "Calories"
+    | "Protein"
+    | "Carbohydrate"
+    | "Sodium"
+    | "Potassium"
+    | "Phosphate"
+    | "Purines";
+
+  const [nutritionView, setNutritionView] =
+    useState<NutritionView>("Calories");
+
+  function getNutritionNumber(
+    value: string
+  ) {
+    const match = value.match(/-?\d+(?:\.\d+)?/);
+    return match ? Number(match[0]) : 0;
+  }
+
+  function formatSalt(sodiumMg: number): string {
+  const saltGrams = (sodiumMg * 2.5) / 1000;
+  return `${saltGrams.toFixed(1)} g`;
+}
+
+function formatPotassiumMg(mg: number): string {
+  return `${Math.round(mg).toLocaleString("en-GB")} mg`;
+}
+
+  function getDayMealRecipes(day: string) {
+    return {
+      Breakfast: getRecipe(
+        plannerMeals?.[day]?.Breakfast ?? null
+      ),
+      Lunch: getRecipe(
+        plannerMeals?.[day]?.Lunch ?? null
+      ),
+      Dinner: getRecipe(
+        plannerMeals?.[day]?.Dinner ?? null
+      ),
+    };
+  }
+
+  function getDateForPlannerDay(day: string): string {
+    const today = new Date();
+    const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const weekday = monday.getDay();
+    monday.setDate(monday.getDate() + (weekday === 0 ? -6 : 1 - weekday));
+    const dayIndex = days.indexOf(day);
+    monday.setDate(monday.getDate() + Math.max(0, dayIndex));
+    return getLocalDateKey(monday);
+  }
+
+  type DailyNumericField =
+    | "calories"
+    | "protein"
+    | "carbohydrates"
+    | "sodium"
+    | "potassium"
+    | "phosphate";
+
+  type DailyRequirements = PlannerRequirements;
+
+  function getDailyNutritionTotal(
+    day: string,
+    field: DailyNumericField
+  ) {
+    const meals = getDayMealRecipes(day);
+
+    const values = mealTypes
+      .map((meal) => meals[meal as keyof typeof meals])
+      .filter(Boolean)
+      .map((recipe) => {
+        if (field === "calories") {
+          return getNutritionNumber(recipe!.calories);
+        }
+
+        if (field === "protein") {
+          return getNutritionNumber(recipe!.protein);
+        }
+
+        if (field === "carbohydrates") {
+          return getNutritionNumber(recipe!.nutrition.carbohydrates);
+        }
+
+        if (field === "sodium") {
+          return getNutritionNumber(recipe!.nutrition.sodium);
+        }
+
+        if (field === "potassium") {
+          return getNutritionNumber(recipe!.nutrition.potassium ?? "0");
+        }
+
+        return getNutritionNumber(recipe!.nutrition.phosphate ?? "0");
+      });
+
+    if (values.length === 0) {
+      return null;
+    }
+
+    return values.reduce(
+      (total, value) => total + value,
+      0
+    );
+  }
+
+  function getDailyNutritionLimit(
+    field: DailyNumericField
+  ): number | null {
+    const dailyRequirements =
+      requirements as DailyRequirements | null;
+
+    if (!dailyRequirements) {
+      return null;
+    }
+
+    if (field === "protein") {
+      return dailyRequirements.proteinMaxG ?? null;
+    }
+
+    if (field === "sodium") {
+      return dailyRequirements.sodiumLimit ?? null;
+    }
+
+    if (field === "potassium") {
+      return dailyRequirements.potassiumLimitMg ?? null;
+    }
+
+    if (field === "phosphate") {
+      return dailyRequirements.phosphateLimitMg ?? null;
+    }
+
+    if (field === "carbohydrates") {
+      return dailyRequirements.carbohydrateMax ?? null;
+    }
+
+    return null;
+  }
+
+  function getDailyNutritionStatus(
+    day: string,
+    field: DailyNumericField
+  ): "Within" | "Over" | "No limit" | "No meals" {
+    const total = getDailyNutritionTotal(day, field);
+
+    if (total === null) {
+      return "No meals";
+    }
+
+    const dailyRequirements = requirements as DailyRequirements | null;
+    const limit = getDailyNutritionLimit(field);
+
+    if (!dailyRequirements) {
+      return "No limit";
+    }
+
+    if (field === "protein") {
+      const min = dailyRequirements.proteinMinG ?? null;
+      const max = dailyRequirements.proteinMaxG ?? null;
+      if (min === null && max === null) return "No limit";
+      if (min !== null && total < min) return "Over";
+      if (max !== null && total > max) return "Over";
+      return "Within";
+    }
+
+    if (field === "carbohydrates") {
+      const min = dailyRequirements.carbohydrateMin ?? null;
+      const max = dailyRequirements.carbohydrateMax ?? null;
+      if (min === null && max === null) return "No limit";
+      if (min !== null && total < min) return "Over";
+      if (max !== null && total > max) return "Over";
+      return "Within";
+    }
+
+    if (limit === null) {
+      return "No limit";
+    }
+
+    return total <= limit ? "Within" : "Over";
+  }
+
+  function getSodiumRating(sodium: string) {
+    const value = getNutritionNumber(sodium);
+
+    if (value <= 500) {
+      return "Low";
+    }
+
+    if (value <= 767) {
+      return "Moderate";
+    }
+
+    return "High";
+  }
+
+  function getDailySodiumTotal(day: string) {
+    const meals = getDayMealRecipes(day);
+
+    const values = mealTypes
+      .map((meal) => meals[meal as keyof typeof meals])
+      .filter(Boolean)
+      .map((recipe) =>
+        getNutritionNumber(recipe!.nutrition.sodium)
+      );
+
+    if (values.length === 0) {
+      return null;
+    }
+
+    return values.reduce(
+      (total, value) => total + value,
+      0
+    );
+  }
+
+  function getDailySodiumStatus(day: string) {
+    const status = getDailyNutritionStatus(day, "sodium");
+
+    if (status === "Within") {
+      return "Low";
+    }
+
+    if (status === "Over") {
+      return "High";
+    }
+
+    return "No limit";
+  }
+
+
+  function getMealNutritionRating(
+    day: string,
+    meal: string
+  ) {
+    const recipe = getRecipe(
+      plannerMeals?.[day]?.[meal] ?? null
+    );
+
+    if (!recipe) {
+      return "Empty";
+    }
+
+    if (
+      nutritionView !== "Sodium" &&
+      nutritionView !== "Potassium" &&
+      nutritionView !== "Phosphate" &&
+      nutritionView !== "Purines"
+    ) {
+      return "Empty";
+    }
+
+    if (nutritionView === "Sodium") {
+      return getSodiumRating(
+        recipe.nutrition.sodium
+      );
+    }
+
+    if (nutritionView === "Potassium") {
+      return recipe.potassium;
+    }
+
+    if (nutritionView === "Phosphate") {
+      return recipe.phosphate;
+    }
+
+    return recipe.purines;
+  }
+
+  function getNutritionSegmentClass(
+    rating: string
+  ) {
+    if (rating === "Low") {
+      return "#4ade80";
+    }
+
+    if (rating === "Moderate") {
+      return "#fbbf24";
+    }
+
+    if (rating === "High") {
+      return "#f87171";
+    }
+
+    return "#e2e8f0";
+  }
+
+  function Tricirculus({
+    day,
+    desktop = false,
+    fluidView = false,
+  }: {
+    day: string;
+    desktop?: boolean;
+    fluidView?: boolean;
+  }) {
+    if (fluidView) {
+      const date = getDateForPlannerDay(day);
+      const total = totalFluidForPlannerDay(day);
+      const planned = plannedMealFluidForDay(day);
+      const drinks = fluidTotalForDate(date);
+      const shortDay = day.slice(0, 3).toUpperCase();
+
+      return (
+        <button
+          type="button"
+          onPointerDown={(event) => {
+            if (event.pointerType === "mouse") {
+              event.preventDefault();
+              event.stopPropagation();
+              setFluidDate(date);
+              setFluidModalOpen(true);
+            }
+          }}
+          onClick={(event) => {
+            event.stopPropagation();
+            setFluidDate(date);
+            setFluidModalOpen(true);
+          }}
+          style={{
+            pointerEvents: "auto",
+            touchAction: "manipulation",
+            position: "relative",
+            zIndex: 10000,
+            cursor: "pointer",
+          }}
+          className={`planner-fluid-card relative z-[10000] isolate flex min-h-[112px] w-full min-w-[82px] cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border px-2 py-3 text-center font-extrabold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+            desktop ? "sm:min-h-[124px] sm:px-2.5" : ""
+          }`}
+          aria-label={`${day}: ${total} ml estimated from planned meals and recorded drinks. Open fluid tracker`}
+          title={`${day}: ${planned} ml from planned meals + ${drinks} ml drinks recorded. Click to view or edit.`}
+        >
+          <span className="planner-fluid-card-day pointer-events-none text-[10px] uppercase tracking-[0.16em]">
+            {shortDay}
+          </span>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            className="planner-fluid-card-icon pointer-events-none h-5 w-5"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 3.25S5.5 10.15 5.5 14.25a6.5 6.5 0 0 0 13 0C18.5 10.15 12 3.25 12 3.25Z"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M9 15.2a3.1 3.1 0 0 0 3.1 3.1"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+          </svg>
+          <span className="planner-fluid-card-total pointer-events-none text-lg leading-none tracking-tight sm:text-xl">
+            {total.toLocaleString()}{" "}
+            <span className="planner-fluid-card-unit text-xs">ml</span>
+          </span>
+          <span
+            className="planner-fluid-card-meter pointer-events-none mt-0.5 h-1 w-10 rounded-full"
+            aria-hidden="true"
+          />
+          <span className="planner-fluid-card-action pointer-events-none text-[9px] uppercase tracking-[0.12em] sm:text-[10px]">
+            View / edit <span aria-hidden="true">›</span>
+          </span>
+        </button>
+      );
+    }
+
+    const numericField: DailyNumericField | null =
+      nutritionView === "Calories"
+        ? "calories"
+        : nutritionView === "Protein"
+          ? "protein"
+          : nutritionView === "Carbohydrate"
+            ? "carbohydrates"
+            : nutritionView === "Sodium"
+              ? "sodium"
+              : nutritionView === "Potassium"
+                ? "potassium"
+                : nutritionView === "Phosphate"
+                  ? "phosphate"
+                  : null;
+
+    if (numericField) {
+      const total = getDailyNutritionTotal(day, numericField);
+      const limit =
+        getDailyNutritionLimit(numericField);
+      const status =
+        getDailyNutritionStatus(day, numericField);
+
+      if (total === null) {
+        return (
+          <span className="text-sm font-bold text-slate-300">
+            —
+          </span>
+        );
+      }
+
+      // Numeric daily views compare the full day's total with the user's
+      // daily requirement: green when within the limit, red when over it.
+      // Calories has no daily requirement and therefore remains neutral.
+      const statusColour =
+        status === "Over"
+          ? "#ef4444"
+          : status === "Within"
+            ? "#16a34a"
+            : "#64748b";
+
+      const displayTotal =
+        nutritionView === "Sodium"
+          ? formatSalt(total)
+          : nutritionView === "Potassium"
+            ? formatPotassiumMg(total)
+            : nutritionView === "Phosphate"
+              ? `${total.toLocaleString()} mg`
+              : `${total.toLocaleString()} ${
+                  nutritionView === "Calories"
+                    ? "kcal"
+                    : "g"
+                }`;
+
+      const displayLimit =
+        limit === null
+          ? null
+          : nutritionView === "Sodium"
+            ? formatSalt(limit)
+            : nutritionView === "Potassium"
+              ? formatPotassiumMg(limit)
+              : nutritionView === "Phosphate"
+                ? `${limit.toLocaleString()} mg`
+                : `${limit.toLocaleString()} ${
+                    nutritionView === "Calories"
+                      ? "kcal"
+                      : "g"
+                  }`;
+
+      if (!desktop) {
+        const hasLimit = limit !== null && status !== "No limit";
+        const indicatorColour =
+          status === "Over" ? "#ef4444" :
+          status === "Within" ? "#16a34a" : "#64748b";
+
+        return (
+          <div
+            className="flex flex-col items-center justify-center"
+            title={
+              limit !== null
+                ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
+                : `${day} ${nutritionView}: daily total ${displayTotal}`
+            }
+            aria-label={
+              limit !== null
+                ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
+                : `${day} ${nutritionView}: daily total ${displayTotal}`
+            }
+          >
+            <div
+              className="flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] shadow-sm"
+              style={{
+                borderColor: indicatorColour,
+                backgroundColor: status === "Over" ? "#7f1d1d" : status === "Within" ? "#166534" : "#334155",
+              }}
+            >
+              <div className="text-center leading-tight">
+                <div className="text-[11px] font-extrabold text-white">
+                  {nutritionView === "Calories" ? total.toLocaleString() : displayTotal}
+                </div>
+                {hasLimit && (
+                  <div className="mt-0.5 text-[7px] font-bold text-white/90">
+                    / {displayLimit}
+                  </div>
+                )}
+              </div>
+            </div>
+            {hasLimit && (
+              <span
+                className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
+                style={{ color: indicatorColour }}
+              >
+                {status === "Over" ? "Exceeds limit" : "Within limit"}
+              </span>
+            )}
+          </div>
+        );
+      }
+
+      return (
+        <div
+          className="flex flex-col items-center justify-center"
+          aria-label={
+            limit !== null
+              ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
+              : `${day} ${nutritionView}: daily total ${displayTotal}`
+          }
+          title={
+            limit !== null
+              ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
+              : `${day} ${nutritionView}: ${displayTotal}`
+          }
+        >
+          <div
+            className="flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] bg-white shadow-sm"
+            style={{ borderColor: statusColour }}
+          >
+            <div className="text-center leading-tight">
+              <div
+                className="text-[11px] font-extrabold"
+                style={{ color: statusColour }}
+              >
+                {displayTotal}
+              </div>
+              {limit !== null && (
+                <div className="mt-0.5 text-[7px] font-bold text-slate-400">
+                  / {displayLimit}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {limit !== null && (
+            <span
+              className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
+              style={{ color: statusColour }}
+            >
+              {status}
+            </span>
+          )}
+        </div>
+      );
+    }
+
+    // Purines remain a meal-level RAG because recipe data stores purines
+    // as Low / Moderate / High rather than a numeric daily amount.
+    const breakfast = getMealNutritionRating(day, "Breakfast");
+    const lunch = getMealNutritionRating(day, "Lunch");
+    const dinner = getMealNutritionRating(day, "Dinner");
+
+    const breakfastColour =
+      getNutritionSegmentClass(breakfast);
+    const lunchColour =
+      getNutritionSegmentClass(lunch);
+    const dinnerColour =
+      getNutritionSegmentClass(dinner);
+
+    if (!desktop) {
+      return (
+        <span
+          className="h-11 w-11 shrink-0 rounded-full shadow-sm ring-1 ring-slate-200/90"
+          style={{
+            background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 118deg, #ffffff 118deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 242deg, ${dinnerColour} 242deg 358deg, #ffffff 358deg 360deg)`,
+          }}
+          aria-label={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+          title={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+        />
+      );
+    }
+
+    const ratings = [breakfast, lunch, dinner].filter(
+      (rating) => rating !== "Empty"
+    );
+
+    let overallStatus = "No meals";
+
+    if (ratings.includes("High")) {
+      overallStatus = "High";
+    } else if (ratings.includes("Moderate")) {
+      overallStatus = "Moderate";
+    } else if (ratings.includes("Low")) {
+      overallStatus = "Low";
+    }
+
+    const statusColour =
+      overallStatus === "High"
+        ? "#ef4444"
+        : overallStatus === "Moderate"
+          ? "#f59e0b"
+          : overallStatus === "Low"
+            ? "#16a34a"
+            : "#94a3b8";
+
+    const mealCount = ratings.length;
+
+    function getBadgeClass(rating: string) {
+      if (rating === "High") return "bg-red-500 text-white";
+      if (rating === "Moderate") return "bg-amber-400 text-white";
+      if (rating === "Low") return "bg-green-500 text-white";
+      return "bg-slate-200 text-slate-400";
+    }
+
+    function getShortRating(rating: string) {
+      if (rating === "Moderate") return "Mod";
+      if (rating === "Empty") return "—";
+      return rating;
+    }
+
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <div
+          className="relative flex h-[70px] w-[70px] items-center justify-center rounded-full shadow-sm"
+          style={{
+            background: `conic-gradient(from -90deg, ${breakfastColour} 0deg 116deg, #ffffff 116deg 122deg, ${lunchColour} 122deg 238deg, #ffffff 238deg 244deg, ${dinnerColour} 244deg 358deg, #ffffff 358deg 360deg)`,
+          }}
+          aria-label={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+          title={`${day} ${nutritionView}: breakfast ${breakfast.toLowerCase()}, lunch ${lunch.toLowerCase()}, dinner ${dinner.toLowerCase()}`}
+        >
+          <div className="flex h-[54px] w-[54px] flex-col items-center justify-center rounded-full bg-white shadow-inner">
+            <span
+              className="text-[10px] font-extrabold uppercase tracking-wide"
+              style={{ color: statusColour }}
+            >
+              {overallStatus}
+            </span>
+            <span className="mt-0.5 text-[9px] font-bold text-slate-500">
+              {mealCount} {mealCount === 1 ? "meal" : "meals"}
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-2 flex items-start justify-center gap-2">
+          {[
+            ["B", breakfast],
+            ["L", lunch],
+            ["D", dinner],
+          ].map(([label, rating]) => (
+            <div key={label} className="flex flex-col items-center">
+              <span
+                className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-extrabold shadow-sm ${getBadgeClass(rating)}`}
+              >
+                {label}
+              </span>
+              <span className="mt-1 text-[8px] font-semibold text-slate-400">
+                {getShortRating(rating)}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (plannerMeals === null) {
+    return (
+      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-8">
+        <div className="mx-auto max-w-6xl">
+
+          <h1 className="text-3xl font-bold text-slate-900">
+            Weekly Planner
+          </h1>
+
+          <p className="mt-2 text-slate-600">
+            Loading your planner...
+          </p>
+
+        </div>
+      </main>
+    );
+  }
+
+  const mobileBreakfast = getRecipe(
+    plannerMeals[selectedDay].Breakfast
+  );
+
+  const mobileLunch = getRecipe(
+    plannerMeals[selectedDay].Lunch
+  );
+
+  const mobileDinner = getRecipe(
+    plannerMeals[selectedDay].Dinner
+  );
+
+  const plannerIsCompletelyEmpty = days.every((day) =>
+    mealTypes.every((meal) => !plannerMeals[day]?.[meal])
+  );
+
+  const selectedDayIsEmpty = mealTypes.every(
+    (meal) => !plannerMeals[selectedDay]?.[meal]
+  );
+
+  // Desktop keeps the original behaviour: show the welcome prompt only when
+  // the entire week is empty. On mobile, show it when the day being viewed
+  // is empty as well, because mobile only displays one day at a time.
+  const showEmptyPlannerPrompt =
+    (plannerIsCompletelyEmpty || selectedDayIsEmpty) &&
+    !emptyPlannerPromptDismissed;
+
+  return (
+    <>
+      <style>{`
+/* Planner meal-card remove buttons: keep the X black in dark mode. */
+html[data-theme="dark"] main .planner-remove-button,
+html[data-theme="dark"] main .planner-remove-button:hover,
+html[data-theme="dark"] main .planner-remove-button:focus-visible {
+  color: #000000 !important;
+}
+html[data-theme="dark"] main .planner-remove-button {
+  background-color: #e2e8f0 !important;
+}
+
+        html[data-theme="dark"] .planner-desktop-empty-slot {
+          background: linear-gradient(135deg, #162b3a 0%, #1b3445 100%) !important;
+          border-color: #52697a !important;
+          color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .planner-empty-slot:hover {
+          background: linear-gradient(135deg, #1b3445 0%, #203d50 100%) !important;
+          border-color: #6b8293 !important;
+        }
+
+        html[data-theme="dark"] .planner-desktop-empty-slot > span:first-child {
+          background: #263d4d !important;
+          color: #d7e4ee !important;
+        }
+
+        html[data-theme="dark"] .planner-empty-slot > span:last-child {
+          color: #d5dee7 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-link {
+          background: #1f2d38 !important;
+          color: #f1f5f9 !important;
+          border-color: #405363 !important;
+        }
+        html[data-theme="dark"] .planner-nutrition-title { color: #f8fafc !important; }
+        html[data-theme="dark"] .planner-nutrition-description { color: #cbd5e1 !important; }
+        html[data-theme="dark"] .planner-nutrition-icon,
+        html[data-theme="dark"] .planner-nutrition-arrow { background: #334451 !important; color: #7dd3fc !important; }
+        html[data-theme="dark"] .planner-nutrition-row {
+          background: #101b26 !important;
+          border-color: #334155 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-label,
+        html[data-theme="dark"] .planner-nutrition-cell {
+          background: #101b26 !important;
+          border-color: #334155 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-heading {
+          color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-select {
+          background: #1e293b !important;
+          color: #f8fafc !important;
+          border-color: #475569 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-legend {
+          color: #cbd5e1 !important;
+        }
+
+        html[data-theme="dark"] .planner-nutrition-row .text-slate-400 {
+          color: #cbd5e1 !important;
+        }
+
+
+        @keyframes plannerMyChefShimmer {
+          0% { transform: translateX(-180%) skewX(-18deg); }
+          100% { transform: translateX(360%) skewX(-18deg); }
+        }
+        @keyframes plannerMyChefFloat {
+          0%, 100% { transform: translateY(0) rotate(-1deg); }
+          50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        @keyframes plannerMyChefWandWave {
+          0%, 100% { transform: translateY(0) rotate(-1deg); }
+          25% { transform: translateY(-5px) rotate(2deg); }
+          50% { transform: translateY(-2px) rotate(-2deg); }
+          75% { transform: translateY(-6px) rotate(2deg); }
+        }
+        @keyframes plannerMyChefFadeIn {
+          from { opacity: 0; transform: scale(0.96) translateY(8px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes plannerMyChefFadeOut {
+          from { opacity: 1; transform: scale(1); }
+          to { opacity: 0; transform: scale(0.96) translateY(8px); }
+        }
+
+        .planner-mychef-button {
+          position: relative;
+          overflow: hidden;
+          isolation: isolate;
+        }
+        .planner-mychef-button::after {
+          content: "";
+          position: absolute;
+          top: -35%;
+          bottom: -35%;
+          left: 0;
+          width: 44%;
+          transform: translateX(-180%) skewX(-18deg);
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent);
+          animation: plannerMyChefShimmer 2.6s ease-in-out 0.2s infinite;
+          pointer-events: none;
+          z-index: 0;
+        }
+        .planner-mychef-button > * { position: relative; z-index: 1; }
+        .planner-mychef-overlay { animation: plannerMyChefFadeIn 0.35s ease-out both; }
+        .planner-mychef-panel { animation: plannerMyChefFadeIn 0.45s cubic-bezier(.22,.8,.24,1) both; }
+        .planner-mychef-panel.mychef-fading { animation: plannerMyChefFadeOut 0.7s ease-in forwards; }
+        .planner-mychef-chef { animation: plannerMyChefFloat 2.6s ease-in-out infinite; }
+        .planner-mychef-chef.mychef-waving { animation: plannerMyChefWandWave 1.15s ease-in-out infinite; }
+        .planner-mychef-panel.mychef-fading .planner-mychef-chef { animation: none; }
+        @media (prefers-reduced-motion: reduce) {
+          .planner-mychef-button::after,
+          .planner-mychef-chef,
+          .planner-mychef-chef.mychef-waving {
+            animation: none !important;
+          }
+        }
+
+        .planner-remove-button {
+          z-index: 30 !important;
+          background: #f8fafc !important;
+          color: #111827 !important;
+          border: 1px solid #cbd5e1 !important;
+          box-shadow: 0 1px 2px rgba(15,23,42,0.1) !important;
+        }
+
+        html[data-theme="dark"] .planner-mychef-panel {
+          background: #1d2d3a !important;
+          border-color: #52697a !important;
+        }
+        html[data-theme="dark"] .planner-mychef-panel > div {
+          background: #203241 !important;
+        }
+        html[data-theme="dark"] .planner-mychef-panel #mychef-title {
+          color: #f8fafc !important;
+        }
+        html[data-theme="dark"] .planner-mychef-panel p {
+          color: #d7e2ea !important;
+        }
+        html[data-theme="dark"] .planner-mychef-panel .text-\[#067b3a\] {
+          color: #69d39a !important;
+        }
+        .planner-remove-button:hover,
+        .planner-remove-button:focus-visible {
+          background: #ffffff !important;
+          color: #dc2626 !important;
+          border-color: #f87171 !important;
+        }
+        html[data-theme="dark"] main .planner-remove-button,
+        html[data-theme="dark"] main .planner-remove-button:hover,
+        html[data-theme="dark"] main .planner-remove-button:focus-visible {
+          background: #e2e8f0 !important;
+          color: #111827 !important;
+          border-color: #64748b !important;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+        }
+        html[data-theme="dark"] main .planner-remove-button:hover,
+        html[data-theme="dark"] main .planner-remove-button:focus-visible {
+          color: #dc2626 !important;
+          border-color: #f87171 !important;
+        }
+
+        html[data-theme="dark"] .planner-pick-for-me-button { background: #e0f2fe !important; color: #082f49 !important; border-color: #bae6fd !important; }
+        html[data-theme="dark"] .planner-clear-week-button { background: #202e3a !important; color: #f8fafc !important; border-color: #9a6b24 !important; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .planner-mychef-button::after,
+          .planner-mychef-overlay,
+          .planner-mychef-panel,
+          .planner-mychef-chef {
+            animation: none !important;
+          }
+        }
+      `}</style>
+
+      <main
+        className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-5 md:px-6 md:py-6"
+        onClickCapture={(event) => {
+          if (Date.now() < suppressPlannerClickUntilRef.current) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }}
+      >
+
+      <div className="mx-auto max-w-7xl md:max-w-[1400px]">
+
+        {/* MOBILE DAY SELECTOR */}
+
+        <div className="mb-4 md:hidden">
+
+          <div
+            className="grid grid-cols-7 gap-1.5"
+            role="tablist"
+            aria-label="Choose day"
+          >
+
+            {days.map((day) => {
+
+              const isSelected =
+                selectedDay === day;
+
+              return (
+
+                <button
+                  key={day}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  onClick={() =>
+                    setSelectedDay(day)
+                  }
+                  title={`${day}${isSelected ? " — selected planner day" : ""}`}
+                  className={`relative min-w-0 rounded-xl px-1 py-2.5 text-[11px] font-bold transition ${
+                    isSelected
+                      ? theme === "dark"
+                        ? "bg-emerald-600 text-white ring-2 ring-emerald-300 shadow-sm"
+                        : "bg-sky-100 text-sky-800 ring-2 ring-sky-300 shadow-sm"
+                      : "bg-white text-slate-600 ring-1 ring-black/5 hover:bg-emerald-50 hover:text-emerald-800"
+                  }`}
+                >
+                  {day.slice(0, 3)}
+                  {isSelected && (
+                    <span
+                      aria-hidden="true"
+                      className={`mx-auto mt-1 block h-1 w-1 rounded-full ${
+                        theme === "dark" ? "bg-white" : "bg-sky-600"
+                      }`}
+                    />
+                  )}
+                </button>
+
+              );
+
+            })}
+
+          </div>
+
+        </div>
+
+        {/* MOBILE PLANNER */}
+
+        <div
+          className="md:hidden"
+          onTouchStart={handlePlannerTouchStart}
+          onTouchEnd={handlePlannerTouchEnd}
+          onTouchCancel={() => {
+            touchStartX.current = null;
+            touchStartY.current = null;
+          }}
+        >
+
+          {/* MOBILE MYCHEF + CLEAR WEEK */}
+          <div className="mb-3 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={startPickForMe}
+              disabled={isDiceRolling}
+              aria-label={isDiceRolling ? "MyChef is planning your meals" : "Open MyChef"}
+              className={`planner-pick-for-me-button planner-mychef-button group flex h-[72px] min-h-[72px] min-w-0 flex-col items-center justify-center gap-1 rounded-2xl border-2 border-sky-200 bg-sky-100 px-2 py-2 text-sm font-bold text-sky-950 shadow-sm transition hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-200 hover:shadow-lg ${
+                isDiceRolling
+                  ? "cursor-wait shadow-lg ring-4 ring-orange-900/60"
+                  : ""
+              }`}
+            >
+              <span
+                className={`relative z-10 inline-flex leading-none transition-transform ${
+                  isDiceRolling
+                    ? "animate-pulse scale-110"
+                    : "group-hover:scale-110"
+                }`}
+                aria-hidden="true"
+              >
+                <MyChefIcon className="h-6 w-6" />
+              </span>
+              <span className="relative z-10 text-center leading-tight">
+                {isDiceRolling ? "MyChef is planning..." : "Let MyChef plan"}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setShowClearConfirm(true)}
+              aria-label="Clear Week"
+              style={{
+                backgroundColor: theme === "dark" ? "#202e3a" : "#d1fae5",
+                color: theme === "dark" ? "#f8fafc" : "#12396b",
+                borderColor: theme === "dark" ? "#9a6b24" : "#a7f3d0",
+              }}
+              className="planner-clear-week-button flex h-[72px] min-h-[72px] min-w-0 flex-col items-center justify-center gap-1 rounded-2xl border-2 px-2 py-2 text-sm font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:hidden"
+            >
+              <span className="inline-flex text-xl leading-none" aria-hidden="true">🗑️</span>
+              <span className="whitespace-nowrap">Clear Week</span>
+            </button>
+          </div>
+
+          <section className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/80">
+
+            <div className="space-y-3 p-3">
+
+              {/* BREAKFAST */}
+
+              {mobileBreakfast ? (
+
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 ring-1 ring-orange-100">
+
+                  <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
+
+                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
+                      Breakfast
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPeoplePicker({
+                          day: selectedDay,
+                          meal: "Breakfast",
+                        });
+                      }}
+                      className="shrink-0 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
+                    >
+                      {getPeopleForMeal(
+                        selectedDay,
+                        "Breakfast"
+                      )} {getPeopleForMeal(
+                        selectedDay,
+                        "Breakfast"
+                      ) === 1 ? "person" : "people"}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        removeRecipe(
+                          selectedDay,
+                          "Breakfast"
+                        )
+                      }
+                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 transition hover:bg-white/80 hover:text-red-600"
+                      aria-label="Remove breakfast"
+                      title="Remove breakfast"
+                    >
+                      ×
+                    </button>
+
+                    <div className="col-span-3 flex items-center gap-3">
+
+                      <Link
+                        href={`/recipes/${mobileBreakfast.id}`}
+                        className="shrink-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                        aria-label={`View ${mobileBreakfast.name} recipe`}
+                      >
+                        <img
+                          src={mobileBreakfast.image}
+                          alt={mobileBreakfast.name}
+                          className="h-25 w-40 rounded-xl object-cover shadow-sm"
+                        />
+                      </Link>
+
+                      <h3 className="min-w-0 flex-1 text-base font-medium leading-5 text-slate-900">
+                        {mobileBreakfast.name}
+                      </h3>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              ) : (
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setPicker({
+                      day: selectedDay,
+                      meal: "Breakfast",
+                    })
+                  }
+                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                >
+
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
+                    +
+                  </span>
+
+                  <span className="mt-3 text-sm font-bold text-slate-700">
+                    Add breakfast
+                  </span>
+
+                </button>
+
+              )}
+
+              {/* LUNCH */}
+
+              {mobileLunch ? (
+
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 ring-1 ring-orange-100">
+
+                  <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
+
+                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
+                      Lunch
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPeoplePicker({
+                          day: selectedDay,
+                          meal: "Lunch",
+                        });
+                      }}
+                      className="shrink-0 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
+                    >
+                      {getPeopleForMeal(
+                        selectedDay,
+                        "Lunch"
+                      )} {getPeopleForMeal(
+                        selectedDay,
+                        "Lunch"
+                      ) === 1 ? "person" : "people"}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        removeRecipe(
+                          selectedDay,
+                          "Lunch"
+                        )
+                      }
+                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 transition hover:bg-white/80 hover:text-red-600"
+                      aria-label="Remove lunch"
+                      title="Remove lunch"
+                    >
+                      ×
+                    </button>
+
+                    <div className="col-span-3 flex items-center gap-3">
+
+                      <Link
+                        href={`/recipes/${mobileLunch.id}`}
+                        className="shrink-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                        aria-label={`View ${mobileLunch.name} recipe`}
+                      >
+                        <img
+                          src={mobileLunch.image}
+                          alt={mobileLunch.name}
+                          className="h-25 w-40 rounded-xl object-cover shadow-sm"
+                        />
+                      </Link>
+
+                      <h3 className="min-w-0 flex-1 text-base font-medium leading-5 text-slate-900">
+                        {mobileLunch.name}
+                      </h3>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              ) : (
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setPicker({
+                      day: selectedDay,
+                      meal: "Lunch",
+                    })
+                  }
+                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                >
+
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
+                    +
+                  </span>
+
+                  <span className="mt-3 text-sm font-bold text-slate-700">
+                    Add lunch
+                  </span>
+
+                </button>
+
+              )}
+
+              {/* DINNER */}
+
+              {mobileDinner ? (
+
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 ring-1 ring-orange-100">
+
+                  <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 p-3">
+
+                    <span className="min-w-0 text-lg font-bold leading-none text-slate-800">
+                      Dinner
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPeoplePicker({
+                          day: selectedDay,
+                          meal: "Dinner",
+                        });
+                      }}
+                      className="shrink-0 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
+                    >
+                      {getPeopleForMeal(
+                        selectedDay,
+                        "Dinner"
+                      )} {getPeopleForMeal(
+                        selectedDay,
+                        "Dinner"
+                      ) === 1 ? "person" : "people"}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        removeRecipe(
+                          selectedDay,
+                          "Dinner"
+                        )
+                      }
+                      className="planner-remove-button flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 transition hover:bg-white/80 hover:text-red-600"
+                      aria-label="Remove dinner"
+                      title="Remove dinner"
+                    >
+                      ×
+                    </button>
+
+                    <div className="col-span-3 flex items-center gap-3">
+
+                      <Link
+                        href={`/recipes/${mobileDinner.id}`}
+                        className="shrink-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                        aria-label={`View ${mobileDinner.name} recipe`}
+                      >
+                        <img
+                          src={mobileDinner.image}
+                          alt={mobileDinner.name}
+                          className="h-25 w-40 rounded-xl object-cover shadow-sm"
+                        />
+                      </Link>
+
+                      <h3 className="min-w-0 flex-1 text-base font-medium leading-5 text-slate-900">
+                        {mobileDinner.name}
+                      </h3>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              ) : (
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setPicker({
+                      day: selectedDay,
+                      meal: "Dinner",
+                    })
+                  }
+                  className="planner-empty-slot group flex min-h-[145px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/60 text-center transition hover:border-orange-400 hover:bg-orange-50"
+                >
+
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">
+                    +
+                  </span>
+
+                  <span className="mt-3 text-sm font-bold text-slate-700">
+                    Add dinner
+                  </span>
+
+                </button>
+
+              )}
+
+            </div>
+
+          </section>
+
+          {/* MOBILE FLUID TRACKER */}
+          <section className="mt-3 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+            <div className="grid grid-cols-[minmax(0,1fr)_140px] items-center gap-3 border-t border-slate-100 px-4 py-3">
+              <div className="min-w-0">
+                <h2 className="text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">
+                  Fluid
+                </h2>
+                <p className="mt-1 text-xs leading-5 text-slate-600">
+                  Tap the day to log drinks
+                </p>
+              </div>
+              {Tricirculus({ day: selectedDay, fluidView: true })}
+            </div>
+          </section>
+
+          {/* MOBILE DAILY NUTRITION */}
+
+          <section className="mt-3 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+
+            <div className="flex items-center justify-between gap-4 border-t border-slate-100 px-4 py-3">
+
+              <div className="min-w-0">
+
+                <h2 className="text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">
+                  Daily Nutrition
+                </h2>
+
+                <select
+                  value={nutritionView}
+                  onChange={(event) => {
+                    setNutritionView(event.target.value as NutritionView);
+                  }}
+                  className="mt-1.5 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-700 outline-none transition focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"
+                  aria-label="Choose daily nutrition"
+                >
+                  <option value="Calories">
+                    Calories
+                  </option>
+                  <option value="Protein">
+                    Protein
+                  </option>
+                  <option value="Carbohydrate">
+                    Carbohydrate
+                  </option>
+                  <option value="Sodium">
+                    Salt
+                  </option>
+                  <option value="Potassium">
+                    Potassium
+                  </option>
+                  <option value="Phosphate">
+                    Phosphate
+                  </option>
+                  <option value="Purines">
+                    Purines
+                  </option>
+                </select>
+
+              </div>
+
+              <div className="flex min-w-0 shrink-0 items-center justify-center pr-1">
+                {Tricirculus({ day: selectedDay })}
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+        {/* DESKTOP PLANNER */}
+
+        <div className="hidden md:block">
+
+          <section className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-200/80">
+
+            {/* WEEK HEADER */}
+
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-emerald-100 bg-emerald-50">
+
+              <div className="flex items-center bg-emerald-50 px-2 py-0">
+                <button
+                  type="button"
+                  onClick={() => setShowClearConfirm(true)}
+                  aria-label="Clear Week"
+                  title="Clear Week"
+                  style={{
+                    backgroundColor: theme === "dark" ? "#38242a" : "#fff1f2",
+                    color: theme === "dark" ? "#fecdd3" : "#be123c",
+                    borderColor: theme === "dark" ? "#65404a" : "#fecdd3",
+                  }}
+                  className="planner-desktop-clear-week-button inline-flex h-8 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border px-2 text-[10px] font-bold shadow-sm transition hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                    <path d="M4 7h16M10 11v6M14 11v6M5 7l1 14h12l1-14M9 7V4h6v3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="whitespace-nowrap">Clear Week</span>
+                </button>
+              </div>
+
+              {days.map((day) => (
+                <div
+                  key={day}
+                  className="flex items-center justify-center border-l border-emerald-100 bg-emerald-50 py-2"
+                >
+                  <span className="text-sm font-extrabold tracking-[0.08em] text-green-700">
+                    {day.slice(0, 3)}
+                  </span>
+                </div>
+              ))}
+
+            </div>
+
+            {/* BREAKFAST ROW */}
+
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
+
+              <div className="flex items-start border-r border-emerald-100 bg-emerald-50 px-4 py-4">
+
+                <div>
+
+                  <h2 className="text-base font-extrabold tracking-tight text-slate-900">
+                    Breakfast
+                  </h2>
+
+                </div>
+
+              </div>
+
+              {days.map((day) => {
+
+                const recipe =
+                  getRecipe(
+                    plannerMeals[
+                      day
+                    ].Breakfast
+                  );
+
+                return (
+
+                  <div
+                    key={`${day}-Breakfast-${plannerMeals[day].Breakfast ?? "empty"}`}
+                    className={`border-l border-slate-100 p-1.5 md:p-2 ${
+                      recipe
+                        ? "bg-orange-50/35"
+                        : "planner-empty-slot"
+                    }`}
+                  >
+
+                    {recipe ? (
+
+                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:ring-orange-200">
+
+                        <div className="relative px-2 pt-2">
+  <Link
+    href={`/recipes/${recipe.id}`}
+    className="block w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+    aria-label={`View ${recipe.name} recipe`}
+  >
+    <img
+      src={recipe.image}
+      alt={recipe.name}
+      className="h-[88px] w-full rounded-xl object-cover shadow-sm ring-1 ring-black/5"
+    />
+  </Link>
+
+  <button
+    type="button"
+    onClick={() =>
+      removeRecipe(
+        day,
+        "Breakfast"
+      )
+    }
+    className="planner-remove-button absolute bottom-1.5 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
+    aria-label={`Remove ${recipe.name}`}
+    title={`Remove ${recipe.name}`}
+  >
+    ×
+  </button>
+</div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPeoplePicker({
+                              day,
+                              meal: "Breakfast",
+                            });
+                          }}
+                          className="mx-auto mt-1 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
+                        >
+                          {getPeopleForMeal(
+                            day,
+                            "Breakfast"
+                          )} {getPeopleForMeal(
+                            day,
+                            "Breakfast"
+                          ) === 1 ? "person" : "people"}
+                        </button>
+
+
+                        <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
+
+                          <h3 title={recipe.name} className="line-clamp-2 w-full text-center text-xs font-medium leading-4 text-slate-900">
+                            {getPlannerDisplayName(recipe.name)}
+                          </h3>
+
+                        </div>
+
+                      </div>
+
+                    ) : (
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPicker({
+                            day,
+                            meal: "Breakfast",
+                          })
+                        }
+                        className="planner-desktop-empty-slot group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
+                      >
+
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
+                          +
+                        </span>
+
+                        <span className="mt-2 text-sm font-bold text-slate-500 group-hover:text-orange-700">
+                          Add breakfast
+                        </span>
+
+                      </button>
+
+                    )}
+
+                  </div>
+
+                );
+
+              })}
+
+            </div>
+
+            {/* LUNCH ROW */}
+
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-b border-slate-100">
+
+              <div className="flex items-start border-r border-emerald-100 bg-emerald-50 px-4 py-4">
+
+                <div>
+
+                  <h2 className="text-base font-extrabold tracking-tight text-slate-900">
+                    Lunch
+                  </h2>
+
+                </div>
+
+              </div>
+
+              {days.map((day) => {
+
+                const recipe =
+                  getRecipe(
+                    plannerMeals[
+                      day
+                    ].Lunch
+                  );
+
+                return (
+
+                  <div
+                    key={`${day}-Lunch-${plannerMeals[day].Lunch ?? "empty"}`}
+                    className={`border-l border-slate-100 p-1.5 md:p-2 ${
+                      recipe
+                        ? "bg-orange-50/35"
+                        : "planner-empty-slot"
+                    }`}
+                  >
+
+                    {recipe ? (
+
+                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:ring-orange-200">
+
+                        <div className="relative flex justify-center px-2 pt-2">
+
+                          <Link
+                            href={`/recipes/${recipe.id}`}
+                            className="rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                            aria-label={`View ${recipe.name} recipe`}
+                          >
+                            <img
+                              src={recipe.image}
+                              alt={recipe.name}
+                              className="h-[100px] w-full rounded-xl object-cover shadow-sm ring-1 ring-black/5"
+                            />
+                          </Link>
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              removeRecipe(
+                                day,
+                                "Lunch"
+                              )
+                            }
+                            className="planner-remove-button absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
+                            aria-label={`Remove ${recipe.name}`}
+                            title={`Remove ${recipe.name}`}
+                          >
+                            ×
+                          </button>
+
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPeoplePicker({
+                              day,
+                              meal: "Lunch",
+                            });
+                          }}
+                          className="mx-auto mt-1 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
+                        >
+                          {getPeopleForMeal(
+                            day,
+                            "Lunch"
+                          )} {getPeopleForMeal(
+                            day,
+                            "Lunch"
+                          ) === 1 ? "person" : "people"}
+                        </button>
+
+                        <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
+
+                          <h3 title={recipe.name} className="line-clamp-2 w-full text-center text-xs font-medium leading-4 text-slate-900">
+                            {getPlannerDisplayName(recipe.name)}
+                          </h3>
+
+                        </div>
+
+                      </div>
+
+                    ) : (
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPicker({
+                            day,
+                            meal: "Lunch",
+                          })
+                        }
+                        className="planner-desktop-empty-slot group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
+                      >
+
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
+                          +
+                        </span>
+
+                        <span className="mt-2 text-sm font-bold text-slate-500 group-hover:text-orange-700">
+                          Add lunch
+                        </span>
+
+                      </button>
+
+                    )}
+
+                  </div>
+
+                );
+
+              })}
+
+            </div>
+
+            {/* DINNER ROW */}
+
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))]">
+
+              <div className="flex items-start border-r border-emerald-100 bg-emerald-50 px-4 py-4">
+
+                <div>
+
+                  <h2 className="text-base font-extrabold tracking-tight text-slate-900">
+                    Dinner
+                  </h2>
+
+                </div>
+
+              </div>
+
+              {days.map((day) => {
+
+                const recipe =
+                  getRecipe(
+                    plannerMeals[
+                      day
+                    ].Dinner
+                  );
+
+                return (
+
+                  <div
+                    key={`${day}-Dinner-${plannerMeals[day].Dinner ?? "empty"}`}
+                    className={`border-l border-slate-100 p-1.5 md:p-2 ${
+                      recipe
+                        ? "bg-orange-50/35"
+                        : "planner-empty-slot"
+                    }`}
+                  >
+
+                    {recipe ? (
+
+                      <div className="relative flex h-[176px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:ring-orange-200">
+
+                        <div className="relative flex justify-center px-2 pt-2">
+
+                          <Link
+                            href={`/recipes/${recipe.id}`}
+                            className="rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                            aria-label={`View ${recipe.name} recipe`}
+                          >
+                            <img
+                              src={recipe.image}
+                              alt={recipe.name}
+                              className="h-[100px] w-full rounded-xl object-cover shadow-sm ring-1 ring-black/5"
+                            />
+                          </Link>
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              removeRecipe(
+                                day,
+                                "Dinner"
+                              )
+                            }
+                            className="planner-remove-button absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-base font-black leading-none text-slate-900 shadow-sm ring-1 ring-black/10 transition hover:bg-white hover:text-red-600"
+                            aria-label={`Remove ${recipe.name}`}
+                            title={`Remove ${recipe.name}`}
+                          >
+                            ×
+                          </button>
+
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPeoplePicker({
+                              day,
+                              meal: "Dinner",
+                            });
+                          }}
+                          className="mx-auto mt-1 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-bold leading-none text-sky-950 shadow-sm"
+                        >
+                          {getPeopleForMeal(
+                            day,
+                            "Dinner"
+                          )} {getPeopleForMeal(
+                            day,
+                            "Dinner"
+                          ) === 1 ? "person" : "people"}
+                        </button>
+
+                        <div className="flex flex-1 items-center justify-center border-t border-slate-100 px-2 pb-2 pt-2 text-center">
+
+                          <h3 title={recipe.name} className="line-clamp-2 w-full text-center text-xs font-medium leading-4 text-slate-900">
+                            {getPlannerDisplayName(recipe.name)}
+                          </h3>
+
+                        </div>
+
+                      </div>
+
+                    ) : (
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPicker({
+                            day,
+                            meal: "Dinner",
+                          })
+                        }
+                        className="planner-desktop-empty-slot group flex min-h-[136px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-orange-200 bg-gradient-to-br from-white to-orange-50/40 px-3 text-center transition duration-200 hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50/70 hover:shadow-sm"
+                      >
+
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-2xl font-light text-orange-400 transition group-hover:bg-orange-100 group-hover:text-orange-500">
+                          +
+                        </span>
+
+                        <span className="mt-2 text-sm font-bold text-slate-500 group-hover:text-orange-700">
+                          Add dinner
+                        </span>
+
+                      </button>
+
+                    )}
+
+                  </div>
+
+                );
+
+              })}
+
+            </div>
+
+            {/* DAILY FLUID ROW */}
+
+            <div className="planner-nutrition-row relative z-10 grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ pointerEvents: "auto" }}>
+              <div className="planner-nutrition-label flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
+                <div className="flex flex-col items-center gap-1.5 text-center">
+                  <h2 className="planner-nutrition-heading text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">
+                    Fluid
+                  </h2>
+                  <span className="text-[9px] font-semibold leading-tight text-slate-500">
+                    Tap a day to log drinks
+                  </span>
+                </div>
+              </div>
+
+              {days.map((day) => (
+                <div
+                  key={`fluid-${day}`}
+                  className="planner-nutrition-cell relative z-[9999] flex min-h-[136px] items-center justify-center border-l border-slate-100 px-1 py-3"
+                  style={{ isolation: "isolate", pointerEvents: "auto" }}
+                >
+                  <Tricirculus day={day} desktop fluidView />
+                </div>
+              ))}
+            </div>
+
+            {/* DAILY NUTRITION ROW */}
+
+            <div className="planner-nutrition-row relative z-10 grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ pointerEvents: "auto" }}>
+
+              <div className="planner-nutrition-label flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
+
+                <div className="flex flex-col items-center gap-1.5">
+
+                  <h2 className="planner-nutrition-heading text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500 text-center">
+                    Daily Nutrition
+                  </h2>
+
+                  <select
+                    value={nutritionView}
+                    onChange={(event) => {
+                      setNutritionView(event.target.value as NutritionView);
+                    }}
+                    className="planner-nutrition-select w-full rounded-xl border border-slate-200 bg-white px-2 py-1.5 text-[10px] font-bold text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                    aria-label="Choose daily nutrition"
+                  >
+                    <option value="Calories">
+                      Calories
+                    </option>
+                    <option value="Protein">
+                      Protein
+                    </option>
+                    <option value="Carbohydrate">
+                      Carbohydrate
+                    </option>
+                    <option value="Sodium">
+                      Salt
+                    </option>
+                    <option value="Potassium">
+                      Potassium
+                    </option>
+                    <option value="Phosphate">
+                      Phosphate
+                    </option>
+                    <option value="Purines">
+                      Purines
+                    </option>
+                  </select>
+
+                  <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
+                    {nutritionView === "Purines" ? (
+                      <>
+                        <span className="flex items-center gap-1.5">
+                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
+                          Low
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-amber-400" />
+                          Moderate
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />
+                          High
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="flex items-center gap-1.5">
+                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
+                          Within limit
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />
+                          Exceeds limit
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                </div>
+
+              </div>
+
+              {days.map((day) => (
+
+                <div
+                  key={`nutrition-${day}-${nutritionView}`}
+                  className="planner-nutrition-cell relative z-[9999] flex min-h-[118px] items-center justify-center border-l border-slate-100 px-1 py-3" style={{ isolation: "isolate", pointerEvents: "auto" }}
+                >
+                  <Tricirculus
+                    day={day}
+                    desktop
+                  />
+                </div>
+
+              ))}
+
+            </div>
+
+          </section>
+
+        </div>
+
+      </div>
+
+      {/* CLEAR CONFIRMATION */}
+
+      {showClearConfirm && (
+
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+
+          <div className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-2xl">
+
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-red-50 text-xl">
+              🗑️
+            </div>
+
+            <h2 className="mt-4 text-xl font-bold text-slate-900">
+              Clear this week?
+            </h2>
+
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              This will remove all meals from your Weekly Planner, clear drinks logged for this Monday–Sunday week, and update your Shopping List. Older fluid records will be kept.
+            </p>
+
+            <div className="mt-6 grid grid-cols-2 gap-3">
+
+              <button
+                type="button"
+                onClick={() =>
+                  setShowClearConfirm(false)
+                }
+                className="rounded-2xl bg-slate-100 px-4 py-3 font-bold text-slate-700 transition hover:bg-slate-200"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                onClick={clearWeek}
+                className="rounded-2xl bg-red-500 px-4 py-3 font-bold text-white transition hover:bg-red-600"
+              >
+                Clear Week
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
+      {/* EMPTY PLANNER WELCOME PROMPT */}
+      {showEmptyPlannerPrompt && (
+        <div
+          className={`${
+            plannerIsCompletelyEmpty
+              ? "fixed inset-0 z-[30000] flex items-center justify-center bg-black/25 p-4 backdrop-blur-[2px]"
+              : "fixed inset-0 z-[30000] flex items-center justify-center bg-black/25 p-4 backdrop-blur-[2px] md:hidden"
+          }`}
+          onPointerDown={(event) => event.stopPropagation()}
+          onClick={(event) => event.stopPropagation()}
+        >
+          <div
+            className="w-full max-w-md rounded-3xl border p-6 text-center shadow-2xl"
+            style={{
+              backgroundColor: theme === "dark" ? "#102331" : "#ffffff",
+              borderColor: theme === "dark" ? "#31566d" : "#e2e8f0",
+              color: theme === "dark" ? "#f8fafc" : "#0f172a",
+            }}
+          >
+            <div
+              className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl text-2xl shadow-sm"
+              style={{ backgroundColor: theme === "dark" ? "#1d3a4c" : "#fff7ed" }}
+              aria-hidden="true"
+            >
+              🍽️
+            </div>
+
+            <h2
+              className="mt-4 text-xl font-extrabold tracking-tight sm:text-2xl"
+              style={{ color: theme === "dark" ? "#f8fafc" : "#12396b" }}
+            >
+              Your week is ready to fill
+            </h2>
+
+            <p
+              className="mx-auto mt-2 max-w-sm text-sm leading-6"
+              style={{ color: theme === "dark" ? "#cbd5e1" : "#475569" }}
+            >
+              Choose your meals here, or let RenalPlan pick them for you.
+            </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <button
+                type="button"
+                onClick={dismissEmptyPlannerPrompt}
+                className="rounded-2xl border-2 px-4 py-3.5 text-sm font-extrabold transition hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: theme === "dark" ? "#172f3f" : "#ffffff",
+                  borderColor: theme === "dark" ? "#42657a" : "#cbd5e1",
+                  color: theme === "dark" ? "#f8fafc" : "#17385f",
+                }}
+              >
+                Choose my meals
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  dismissEmptyPlannerPrompt();
+                  startPickForMe();
+                }}
+                disabled={isDiceRolling}
+                className="rounded-2xl border-2 px-4 py-3.5 text-sm font-extrabold transition hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: theme === "dark" ? "#7c2d12" : "#ff6b00",
+                  borderColor: theme === "dark" ? "#9a3412" : "#ff6b00",
+                  color: theme === "dark" ? "#fff7ed" : "#000000",
+                }}
+              >
+                <span className="mr-2 inline-flex align-middle"><MyChefIcon className="h-5 w-5" /></span>
+                Let MyChef choose for me
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={dismissEmptyPlannerPrompt}
+              className="mt-4 text-xs font-bold underline underline-offset-4 transition"
+              style={{ color: theme === "dark" ? "#a9c3d4" : "#64748b" }}
+            >
+              Not now
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* PREMIUM LOGIN PROMPT */}
+      {premiumPrompt && (
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-xl">
+              {premiumPrompt === "pick" ? <MyChefIcon className="h-7 w-7" /> : "👥"}
+            </div>
+
+            <h2 className="mt-4 text-xl font-bold text-slate-900">
+              {premiumPrompt === "pick"
+                ? "MyChef is an account feature"
+                : "Choose the number of people"}
+            </h2>
+
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Log in to your RenalPlan account to use MyChef.
+            </p>
+
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setPremiumPrompt(null)}
+                className="rounded-2xl bg-slate-100 px-4 py-3 font-bold text-slate-700 transition hover:bg-slate-200"
+              >
+                Cancel
+              </button>
+
+              <a
+                href="/auth/login"
+                className="rounded-2xl bg-blue-600 px-4 py-3 text-center font-bold text-white transition hover:bg-blue-700"
+              >
+                Log in
+              </a>
+            </div>
+
+            <a
+              href="/signup"
+              className="mt-3 block text-sm font-bold text-blue-600 hover:text-blue-700"
+            >
+              Create an account
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* MYCHEF EXPERIENCE */}
+      {showMyChef && (
+        <div className="planner-mychef-overlay fixed inset-0 z-[40000] flex items-center justify-center bg-[#071a30]/68 p-4 backdrop-blur-sm">
+          <section
+            className={`planner-mychef-panel ${myChefFading ? "mychef-fading" : ""} w-full max-w-md max-h-[calc(100dvh-1.5rem)] overflow-y-auto rounded-[2rem] border border-white/80 bg-white p-3 text-center shadow-2xl sm:p-5`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mychef-title"
+          >
+            <div className="rounded-[1.5rem] bg-gradient-to-br from-[#effbf5] via-white to-[#fff7ed] px-3 py-3 sm:px-5 sm:py-4">
+              <div className="mx-auto w-full max-w-[320px] sm:max-w-[420px]">
+                <Image
+                  src="/images/kidney-chef.png"
+                  alt="RenalPlan MyChef kidney chef"
+                  width={512}
+                  height={512}
+                  sizes="(max-width: 640px) 300px, 420px"
+                  className={`planner-mychef-chef ${myChefStage === "cooking" ? "mychef-waving" : ""} h-[13rem] w-full object-contain sm:h-[19rem]`}
+                  priority
+                />
+              </div>
+
+              {myChefStage === "intro" ? (
+                <>
+                  <div className="mt-1 flex items-center justify-center gap-2 text-[#067b3a]">
+                    <span className="text-lg" aria-hidden="true">✦</span>
+                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">Meet MyChef</span>
+                    <span className="text-lg" aria-hidden="true">✦</span>
+                  </div>
+                  <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Want MyChef to plan your week?</h2>
+                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">MyChef will plan your meals that fit your saved dietary requirements and create a personalised plan for your week.</p>
+
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowMyChef(false)}
+                      className="rounded-2xl border-2 border-slate-200 bg-white px-4 py-3.5 text-sm font-extrabold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
+                    >
+                      Not now
+                    </button>
+                    <button
+                      type="button"
+                      onClick={confirmMyChef}
+                      className="planner-mychef-button relative overflow-hidden rounded-2xl border-2 border-orange-500 bg-orange-500 px-4 py-3.5 text-sm font-extrabold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
+                    >
+                      <span className="relative z-10 inline-flex items-center gap-2">
+                        <MyChefIcon className="h-5 w-5" />
+                        Yes — let MyChef plan
+                      </span>
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="mt-1 flex items-center justify-center gap-2 text-[#067b3a]">
+                    <span className="text-lg" aria-hidden="true">✦</span>
+                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">MyChef is planning</span>
+                    <span className="text-lg" aria-hidden="true">✦</span>
+                  </div>
+                  <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Choosing meals just for you.</h2>
+                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">A little MyChef magic, then your new meals will appear in the Planner.</p>
+                </>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
+
+      {/* PICK FOR ME CONFIRMATION */}
+
+      {showPickConfirm && (
+
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+
+          <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl">
+
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-orange-700">
+              <MyChefIcon className="h-7 w-7" />
+            </div>
+
+            <h2 className="mt-4 text-xl font-bold text-slate-900">
+              Let MyChef plan a new week?
+            </h2>
+
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Your week is already full. This will replace all of your current meals with new choices.
+            </p>
+
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <button type="button" onClick={() => setShowPickConfirm(false)} className="rounded-2xl bg-slate-100 px-4 py-3 font-bold text-slate-700 transition hover:bg-slate-200">Cancel</button>
+              <button type="button" onClick={confirmMyChef} disabled={isDiceRolling} className="planner-mychef-button relative overflow-hidden rounded-2xl bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600">
+                <span className="relative z-10 inline-flex items-center gap-2"><MyChefIcon className="h-5 w-5" /> MyChef</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
+      {/* PEOPLE PICKER */}
+
+      {peoplePicker && (
+
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+
+          <div className="w-full max-w-xs rounded-3xl bg-white p-6 shadow-2xl">
+
+            <p className="text-xs font-bold uppercase tracking-wider text-orange-600">
+              {peoplePicker.meal}
+            </p>
+
+            <h2 className="mt-1 text-xl font-bold text-slate-900">
+              How many people?
+            </h2>
+
+            <div className="mt-5 flex items-center justify-center gap-5">
+
+              <button
+                type="button"
+                onClick={() =>
+                  setPeopleForMeal(
+                    peoplePicker.day,
+                    peoplePicker.meal,
+                    getPeopleForMeal(
+                      peoplePicker.day,
+                      peoplePicker.meal
+                    ) - 1
+                  )
+                }
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-2xl font-bold text-slate-700 hover:bg-slate-200"
+                aria-label="Decrease people"
+              >
+                −
+              </button>
+
+              <div className="min-w-[90px] text-center">
+
+                <div className="text-3xl font-extrabold text-slate-900">
+                  {getPeopleForMeal(
+                    peoplePicker.day,
+                    peoplePicker.meal
+                  )}
+                </div>
+
+                <div className="text-sm text-slate-500">
+                  {getPeopleForMeal(
+                    peoplePicker.day,
+                    peoplePicker.meal
+                  ) === 1
+                    ? "person"
+                    : "people"}
+                </div>
+
+              </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setPeopleForMeal(
+                    peoplePicker.day,
+                    peoplePicker.meal,
+                    getPeopleForMeal(
+                      peoplePicker.day,
+                      peoplePicker.meal
+                    ) + 1
+                  )
+                }
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 text-2xl font-bold text-orange-700 hover:bg-orange-200"
+                aria-label="Increase people"
+              >
+                +
+              </button>
+
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setPeoplePicker(null)}
+              className="mt-6 w-full rounded-2xl bg-orange-500 px-4 py-3 font-bold text-white hover:bg-orange-600"
+            >
+              Done
+            </button>
+
+          </div>
+
+        </div>
+
+      )}
+
+      {/* RECIPE PICKER */}
+
+      {picker && (
+
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+
+          <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
+
+            <div className="flex shrink-0 items-center justify-between border-b border-slate-100 px-5 py-5">
+
+              <div>
+
+                <p className="text-xs font-bold uppercase tracking-wider text-orange-600">
+                  Choose {picker.meal.toLowerCase()}
+                </p>
+
+                <h2 className="mt-1 text-xl font-bold text-slate-900">
+                  {picker.day}
+                </h2>
+
+              </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setPicker(null)
+                }
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-xl text-slate-500 transition hover:bg-slate-200"
+                aria-label="Close"
+              >
+                ×
+              </button>
+
+            </div>
+
+            <div className="shrink-0 border-b border-slate-100 p-5">
+
+              <button
+                type="button"
+                onClick={browseRecipes}
+                className="group w-full rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-5 text-left text-white shadow-sm transition hover:shadow-md"
+              >
+
+                <div className="flex items-center gap-3">
+
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-xl">
+                    🔎
+                  </span>
+
+                  <div>
+
+                    <div className="text-base font-bold">
+                      Browse Recipes
+                    </div>
+
+                    <div className="mt-1 text-sm text-orange-50">
+                      See photos, cooking times and nutrition information.
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </button>
+
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-5">
+
+              {requirements && (
+                <div className="mb-4 rounded-2xl bg-purple-50 p-4 text-sm leading-6 text-purple-900 ring-1 ring-purple-100">
+                  Showing recipes that match your saved requirements.
+                </div>
+              )}
+
+              <div className="grid gap-3 sm:grid-cols-2">
+
+                {getMealRecipes(
+                  picker.meal
+                ).map((recipe) => (
+
+                  <button
+                    key={recipe.id}
+                    type="button"
+                    onClick={() =>
+                      chooseRecipe(
+                        recipe.id
+                      )
+                    }
+                    className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3 text-left ring-1 ring-slate-100 transition hover:bg-orange-50 hover:ring-orange-200"
+                  >
+
+                    <img
+                      src={recipe.image}
+                      alt={recipe.name}
+                      className="h-16 w-16 shrink-0 rounded-xl object-cover"
+                    />
+
+                    <span className="min-w-0 text-sm font-bold leading-5 text-slate-800">
+                      {recipe.name}
+                    </span>
+
+                  </button>
+
+                ))}
+
+                {getMealRecipes(picker.meal).length === 0 && (
+                  <div className="col-span-full rounded-2xl bg-slate-50 p-5 text-center text-sm leading-6 text-slate-500">
+                    There are no recipes for this meal that meet your saved requirements.
+                  </div>
+                )}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
+      {fluidModalOpen && (
+        <div className="fixed inset-0 z-[20000] flex items-end justify-center bg-slate-950/60 p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="fluid-tracker-title">
+          <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl sm:rounded-3xl sm:p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2 id="fluid-tracker-title" className="text-xl font-extrabold text-slate-900">Fluid Tracker</h2>
+                <p className="mt-1 text-sm text-slate-500">Record drinks against the date consumed.</p>
+              </div>
+              <button type="button" onClick={() => setFluidModalOpen(false)} aria-label="Close fluid tracker" className="rounded-full bg-slate-100 px-3 py-2 text-lg font-bold text-slate-600 hover:bg-slate-200">×</button>
+            </div>
+            <label className="mt-5 block text-sm font-bold text-slate-700">Date
+              <input type="date" value={fluidDate} onChange={(event) => setFluidDate(event.target.value)} className="mt-1 block w-full rounded-xl border border-slate-200 px-3 py-2.5 text-slate-900" />
+            </label>
+            <div className="mt-4 rounded-2xl bg-slate-800 p-4 ring-1 ring-slate-700">
+              <p className="text-sm font-semibold !text-slate-100">Fluid estimate for this day</p>
+              <div className="mt-2 grid grid-cols-2 gap-3">
+                <div className="rounded-xl bg-slate-700/70 p-3">
+                  <p className="text-xs font-semibold !text-slate-200">Planned meals</p>
+                  <p className="mt-1 text-xl font-extrabold !text-white">{plannedMealFluidForDate(fluidDate).toLocaleString()} <span className="text-sm !text-slate-200">ml</span></p>
+                </div>
+                <div className="rounded-xl bg-slate-700/70 p-3">
+                  <p className="text-xs font-semibold !text-slate-200">Drinks recorded</p>
+                  <p className="mt-1 text-xl font-extrabold !text-white">{fluidTotalForDate(fluidDate).toLocaleString()} <span className="text-sm !text-slate-200">ml</span></p>
+                </div>
+              </div>
+              <p className="mt-3 text-sm font-semibold !text-slate-100">Combined estimate</p>
+              <p className="mt-1 text-3xl font-extrabold !text-white">{(plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)).toLocaleString()} <span className="text-base !text-slate-200">ml</span></p>
+              {fluidAllowanceMl !== null && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString()} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, (plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)) / fluidAllowanceMl * 100) : plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
+              <p className="mt-2 text-xs leading-5 !text-slate-300">Meal fluid is an estimate from recipe ingredients. Drinks are recorded separately. Follow your renal team's fluid guidance; this is not a recommendation to drink more.</p>
+            </div>
+            <h3 className="mt-5 text-sm font-extrabold text-slate-800">Add a drink</h3>
+            <div className="mt-2 grid grid-cols-2 gap-3">
+              <label className="text-sm font-semibold text-slate-700">Drink
+                <select value={fluidDrink} onChange={(event) => setFluidDrink(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900">
+                  <option>Water</option><option>Tea</option><option>Coffee</option><option>Milk</option><option>Juice</option><option>Soft drink</option><option>Soup</option><option>Other</option>
+                </select>
+              </label>
+              <label className="text-sm font-semibold text-slate-700">Amount (ml)
+                <input type="number" min="1" max="10000" step="1" inputMode="numeric" value={fluidAmount} onChange={(event) => setFluidAmount(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-slate-900" />
+              </label>
+            </div>
+            {fluidDrink === "Other" && <label className="mt-3 block text-sm font-semibold text-slate-700">Description<input value={fluidCustomDrink} onChange={(event) => setFluidCustomDrink(event.target.value)} placeholder="Describe the drink" className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-slate-900" /></label>}
+            <button type="button" onClick={addFluidEntry} disabled={!Number.isFinite(Number(fluidAmount)) || Number(fluidAmount) <= 0 || Number(fluidAmount) > 10000 || (fluidDrink === "Other" && !fluidCustomDrink.trim())} className="mt-3 w-full rounded-xl bg-sky-700 px-4 py-3 font-bold text-white hover:bg-sky-800 disabled:cursor-not-allowed disabled:opacity-50">+ Add drink</button>
+            <h3 className="mt-6 text-sm font-extrabold text-slate-800">Drinks on {fluidDate}</h3>
+            <div className="mt-2 divide-y divide-slate-100 rounded-xl border border-slate-100">
+              {fluidEntries.filter((entry) => entry.date === fluidDate).length === 0 ? <p className="p-4 text-sm text-slate-500">No drinks recorded for this date yet.</p> : fluidEntries.filter((entry) => entry.date === fluidDate).map((entry) => <div key={entry.id} className="flex items-center justify-between gap-3 p-3"><div><p className="font-bold text-slate-800">{entry.drink}</p><p className="text-xs text-slate-500">{new Date(entry.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p></div><div className="flex items-center gap-3"><span className="text-sm font-bold text-slate-800">{entry.amountMl} ml</span><button type="button" onClick={() => saveFluidEntries(fluidEntries.filter((item) => item.id !== entry.id))} className="rounded-lg px-2 py-1 text-sm font-bold text-rose-600 hover:bg-rose-50" aria-label={`Remove ${entry.drink}, ${entry.amountMl} ml`}>Remove</button></div></div>)}
+            </div>
+            <button type="button" onClick={() => setFluidModalOpen(false)} className="mt-5 w-full rounded-xl border border-slate-200 px-4 py-3 font-bold text-slate-700 hover:bg-slate-50">Done</button>
+          </div>
+        </div>
+      )}
+
+    </main>
+    </>
+  );
+}
+
+export default function WeeklyPlannerPage() {
+  return (
+    <Suspense fallback={null}>
+      <WeeklyPlannerPageContent />
+    </Suspense>
+  );
+}

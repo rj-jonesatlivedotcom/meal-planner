@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { foodAccount } from "@/lib/foodAccount";
 import { localFoodDate, initialQuantityEntry, snapshotForEntry, type FoodSnapshot, type SavedFood } from "@/lib/foodSnacks";
@@ -68,7 +68,13 @@ export function AddSnack({ owner, barcode, name, snapshot, quantity, open, onClo
   const [entry, setEntry] = useState(() => initialQuantityEntry(snapshot, quantity));
   const [message, setMessage] = useState("");
   const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const successTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const busy = useRef(false), id = useRef<string | null>(null);
+  useEffect(() => () => {
+    if (successTimer.current !== null) clearTimeout(successTimer.current);
+  }, []);
   if (!open) return null;
   async function save() {
     if (busy.current) return;
@@ -78,7 +84,14 @@ export function AddSnack({ owner, barcode, name, snapshot, quantity, open, onClo
       const scaled = snapshotForEntry(snapshot, entry);
       id.current ??= crypto.randomUUID();
       await foodAccount(createClient(), owner).save({ id: id.current, user_id: owner, planned_on: date, barcode, name, ...scaled });
-      notifyFoodAccount(); setMessage(`Added to planned Snacks for ${date}.`);
+      notifyFoodAccount();
+      setSaved(true);
+      setShowSuccess(true);
+      if (successTimer.current !== null) clearTimeout(successTimer.current);
+      successTimer.current = setTimeout(() => {
+        setShowSuccess(false);
+        successTimer.current = null;
+      }, 4000);
     } catch (error) { setMessage(error instanceof Error ? error.message : "Unable to add this snack."); }
     finally { busy.current = false; setSaving(false); }
   }
@@ -89,7 +102,11 @@ export function AddSnack({ owner, barcode, name, snapshot, quantity, open, onClo
       <label className="text-sm">Date<input aria-label="Snack planner date" type="date" value={date} onChange={e => setDate(e.target.value)} className="mt-1 block rounded-lg border bg-white dark:bg-slate-800 p-2 text-slate-900 dark:text-slate-100" /></label>
       <QuantityFields snapshot={snapshot} value={entry} onChange={setEntry} label="Quantity" />
     </div>
-    <div className={resultStyles.formActions}><button type="button" disabled={saving || Boolean(message.startsWith("Added to"))} onClick={() => void save()} className={`${foodActionStyles.primary} ${resultStyles.confirm}`}>{saving ? "Adding…" : "Confirm addition"}</button>{onClose && <button type="button" disabled={saving} onClick={onClose} className="rounded-xl border px-4 py-2">Close</button>}</div>
-    {message && <p role="status" className="mt-3 text-sm text-slate-700 dark:text-slate-200">{message}</p>}
+    <div className={resultStyles.formActions}><button type="button" disabled={saving || saved} onClick={() => void save()} className={`${foodActionStyles.primary} ${resultStyles.confirm}`}>{saving ? "Adding…" : saved ? "Snack added ✓" : "Confirm addition"}</button>{onClose && <button type="button" disabled={saving} onClick={onClose} className="rounded-xl border px-4 py-2">Close</button>}</div>
+    {message && <p role="alert" className="mt-3 text-sm font-medium text-rose-700 dark:text-rose-300">{message}</p>}
+    {showSuccess && <div role="status" aria-live="polite" className="fixed bottom-5 left-1/2 z-[70] w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 rounded-2xl border border-green-300 bg-green-50 px-5 py-4 text-center text-green-900 shadow-xl dark:border-green-700 dark:bg-green-950 dark:text-green-100 sm:bottom-8">
+      <p className="text-base font-extrabold">✓ Snack added!</p>
+      <p className="mt-1 text-sm">Successfully added to your Planner for {date}.</p>
+    </div>}
   </div>;
 }

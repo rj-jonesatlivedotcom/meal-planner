@@ -1838,7 +1838,7 @@ function formatPotassiumMg(mg: number): string {
 
     if (numericField) {
       const snackQuality = snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[numericField];
-      const totalNote = snackQuality.estimated ? "ESTIMATE" : "";
+      const totalNote = snackQuality.estimated ? "*" : "";
       const total = getDailyNutritionTotal(day, numericField);
       const limit =
         getDailyNutritionLimit(numericField);
@@ -2737,7 +2737,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
           </section>
 
-          <div className="mt-3"><PlannerSnacks date={getDateForPlannerDay(selectedDay)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} /></div>
+          <div className="mt-3"><PlannerSnacks compact date={getDateForPlannerDay(selectedDay)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} /></div>
 
           {/* MOBILE FLUID TRACKER */}
           <section className="mt-3 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">

@@ -5,6 +5,9 @@ import { MobileCalendarTile } from "@/components/calendar/CalendarToolbar";
 import { formatWeek, shortCalendarDate } from "@/lib/calendar";
 import { datedPlannerEnabled } from "@/lib/supabase/config";
 
+import PlannerSnacks from "@/components/food/PlannerSnacks";
+import { useFoodAccount } from "@/lib/useFoodAccount";
+import { snackSummary } from "@/lib/foodSnacks";
 import Link from "next/link";
 import Image from "next/image";
 import { Suspense, useMemo, useEffect, useRef, useState } from "react";
@@ -130,6 +133,7 @@ function createEmptyMealPeople(): MealPeople {
 
 function WeeklyPlannerPageContent() {
   const weeklyPageStorage = useWeeklyPageStorage();
+  const snackAccount = useFoodAccount(getDateForPlannerDay("Monday"), getDateForPlannerDay("Sunday"));
   const router = useRouter();
 const { readFluidLog, getHouseholdPeople, syncPlannerWithShoppingList } = useMemo(() => {
 function readFluidLog(): FluidEntry[] {
@@ -1487,7 +1491,7 @@ openMyChefIntro();
 
   function formatSalt(sodiumMg: number): string {
   const saltGrams = (sodiumMg * 2.5) / 1000;
-  return `${saltGrams.toFixed(1)} g`;
+  return `${saltGrams.toFixed(0)} g`;
 }
 
 function formatPotassiumMg(mg: number): string {
@@ -1563,14 +1567,9 @@ function formatPotassiumMg(mg: number): string {
         return getNutritionNumber(recipe!.nutrition.phosphate ?? "0");
       });
 
-    if (values.length === 0) {
-      return null;
-    }
-
-    return values.reduce(
-      (total, value) => total + value,
-      0
-    );
+    const snacks = snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[field];
+    if (values.length === 0 && snacks.value === null) return null;
+    return values.reduce((total, value) => total + value, 0) + (snacks.value ?? 0);
   }
 
   function getDailyNutritionLimit(
@@ -1609,7 +1608,10 @@ function formatPotassiumMg(mg: number): string {
   function getDailyNutritionStatus(
     day: string,
     field: DailyNumericField
-  ): "Within" | "Over" | "No limit" | "No meals" {
+  ): "Within" | "Over" | "No limit" | "No meals" | "Incomplete" {
+    // Compare the recorded total shown in the Planner. Missing nutrient values
+    // remain missing in snack snapshots and are not rewritten as zero.
+    if (snackAccount.loading || snackAccount.error) return "Incomplete";
     const total = getDailyNutritionTotal(day, field);
 
     if (total === null) {
@@ -1663,23 +1665,7 @@ function formatPotassiumMg(mg: number): string {
   }
 
   function getDailySodiumTotal(day: string) {
-    const meals = getDayMealRecipes(day);
-
-    const values = mealTypes
-      .map((meal) => meals[meal as keyof typeof meals])
-      .filter(Boolean)
-      .map((recipe) =>
-        getNutritionNumber(recipe!.nutrition.sodium)
-      );
-
-    if (values.length === 0) {
-      return null;
-    }
-
-    return values.reduce(
-      (total, value) => total + value,
-      0
-    );
+    return getDailyNutritionTotal(day, "sodium");
   }
 
   function getDailySodiumStatus(day: string) {
@@ -1821,7 +1807,7 @@ function formatPotassiumMg(mg: number): string {
             />
           </svg>
           <span className="planner-fluid-card-total pointer-events-none text-lg leading-none tracking-tight sm:text-xl">
-            {total.toLocaleString()}{" "}
+            {total.toLocaleString("en-GB", { maximumFractionDigits: 0 })}{" "}
             <span className="planner-fluid-card-unit text-xs">ml</span>
           </span>
           <span
@@ -1851,6 +1837,8 @@ function formatPotassiumMg(mg: number): string {
                   : null;
 
     if (numericField) {
+      const snackQuality = snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[numericField];
+      const totalNote = snackQuality.estimated ? "ESTIMATE" : "";
       const total = getDailyNutritionTotal(day, numericField);
       const limit =
         getDailyNutritionLimit(numericField);
@@ -1881,8 +1869,8 @@ function formatPotassiumMg(mg: number): string {
           : nutritionView === "Potassium"
             ? formatPotassiumMg(total)
             : nutritionView === "Phosphorus"
-              ? `${total.toLocaleString()} mg`
-              : `${total.toLocaleString()} ${
+              ? `${total.toLocaleString("en-GB", { maximumFractionDigits: 0 })} mg`
+              : `${total.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ${
                   nutritionView === "Calories"
                     ? "kcal"
                     : "g"
@@ -1896,15 +1884,15 @@ function formatPotassiumMg(mg: number): string {
             : nutritionView === "Potassium"
               ? formatPotassiumMg(limit)
               : nutritionView === "Phosphorus"
-                ? `${limit.toLocaleString()} mg`
-                : `${limit.toLocaleString()} ${
+                ? `${limit.toLocaleString("en-GB", { maximumFractionDigits: 0 })} mg`
+                : `${limit.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ${
                     nutritionView === "Calories"
                       ? "kcal"
                       : "g"
                   }`;
 
       if (!desktop) {
-        const hasLimit = limit !== null && status !== "No limit";
+        const hasLimit = limit !== null && status !== "No limit" && status !== "Incomplete";
         const indicatorColour =
           status === "Over" ? "#ef4444" :
           status === "Within" ? "#16a34a" : "#64748b";
@@ -1913,12 +1901,12 @@ function formatPotassiumMg(mg: number): string {
           <div
             className="flex flex-col items-center justify-center"
             title={
-              limit !== null
+              limit !== null && status !== "Incomplete"
                 ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
                 : `${day} ${nutritionView}: daily total ${displayTotal}`
             }
             aria-label={
-              limit !== null
+              limit !== null && status !== "Incomplete"
                 ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
                 : `${day} ${nutritionView}: daily total ${displayTotal}`
             }
@@ -1932,7 +1920,7 @@ function formatPotassiumMg(mg: number): string {
             >
               <div className="text-center leading-tight">
                 <div className="text-[11px] font-extrabold text-white">
-                  {nutritionView === "Calories" ? total.toLocaleString() : displayTotal}
+                  {nutritionView === "Calories" ? total.toLocaleString("en-GB", { maximumFractionDigits: 0 }) : displayTotal}
                 </div>
                 {hasLimit && (
                   <div className="mt-0.5 text-[7px] font-bold text-white/90">
@@ -1941,6 +1929,7 @@ function formatPotassiumMg(mg: number): string {
                 )}
               </div>
             </div>
+            {totalNote && <span className="mt-1 max-w-[100px] text-center text-[9px] font-bold text-amber-800 dark:text-amber-300">{totalNote}</span>}
             {hasLimit && (
               <span
                 className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
@@ -1957,12 +1946,12 @@ function formatPotassiumMg(mg: number): string {
         <div
           className="flex flex-col items-center justify-center"
           aria-label={
-            limit !== null
+            limit !== null && status !== "Incomplete"
               ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
               : `${day} ${nutritionView}: daily total ${displayTotal}`
           }
           title={
-            limit !== null
+            limit !== null && status !== "Incomplete"
               ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
               : `${day} ${nutritionView}: ${displayTotal}`
           }
@@ -1986,7 +1975,8 @@ function formatPotassiumMg(mg: number): string {
             </div>
           </div>
 
-          {limit !== null && (
+          {totalNote && <span className="mt-1 max-w-[100px] text-center text-[9px] font-bold text-amber-800 dark:text-amber-300">{totalNote}</span>}
+          {limit !== null && status !== "Incomplete" && (
             <span
               className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
               style={{ color: statusColour }}
@@ -2169,6 +2159,14 @@ function formatPotassiumMg(mg: number): string {
   .planner-mobile-empty-copy strong { display: block; font-size: 15px; font-weight: 750; color: #10243e; }
   .planner-mobile-empty-copy > span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.4; color: #64748b; }
   .planner-mobile-empty > svg { width: 14px; height: 20px; color: #233c58; }
+  /* Dark-mode action tiles: retain distinct accents without pastel glare. */
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-tile { color: #f1f5f9; box-shadow: 0 2px 6px #07131d35; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-chef { background: #253c50; border-color: #52738c; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-chef svg { color: #a9d5f5; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-calendar { background: #49352b; border-color: #a36d49; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-calendar > svg { color: #ffac6c; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-clear { background: #203e35; border-color: #4c9070; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-clear svg { color: #83d8aa; }
   html[data-theme="dark"] .planner-mobile-week-heading, html[data-theme="dark"] .planner-mobile-empty-copy strong { color: #f1f5f9; }
   html[data-theme="dark"] .planner-mobile-empty { background: #172b3a; border-color: #8a6741; }
   html[data-theme="dark"] .planner-mobile-empty-copy > span { color: #cbd5e1; }
@@ -2739,6 +2737,8 @@ html[data-theme="dark"] main .planner-remove-button {
 
           </section>
 
+          <div className="mt-3"><PlannerSnacks date={getDateForPlannerDay(selectedDay)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} /></div>
+
           {/* MOBILE FLUID TRACKER */}
           <section className="mt-3 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
             <div className="grid grid-cols-[minmax(0,1fr)_140px] items-center gap-3 border-t border-slate-100 px-4 py-3">
@@ -3245,6 +3245,11 @@ html[data-theme="dark"] main .planner-remove-button {
 
               })}
 
+            </div>
+
+            <div className="grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200">
+              <div className="flex items-start border-r border-emerald-100 bg-emerald-50 px-4 py-4"><h2 className="text-base font-extrabold tracking-tight text-slate-900">Snacks</h2></div>
+              {days.map(day => <div key={`snacks-${day}`} className="min-w-0 border-r border-slate-100"><PlannerSnacks compact hideHeading date={getDateForPlannerDay(day)} snacks={snackAccount.snacks} repository={snackAccount.repository} error={snackAccount.error} /></div>)}
             </div>
 
             {/* DAILY FLUID ROW */}
@@ -3861,16 +3866,16 @@ html[data-theme="dark"] main .planner-remove-button {
               <div className="mt-2 grid grid-cols-2 gap-3">
                 <div className="rounded-xl bg-slate-700/70 p-3">
                   <p className="text-xs font-semibold !text-slate-200">Planned meals</p>
-                  <p className="mt-1 text-xl font-extrabold !text-white">{plannedMealFluidForDate(fluidDate).toLocaleString()} <span className="text-sm !text-slate-200">ml</span></p>
+                  <p className="mt-1 text-xl font-extrabold !text-white">{plannedMealFluidForDate(fluidDate).toLocaleString("en-GB", { maximumFractionDigits: 0 })} <span className="text-sm !text-slate-200">ml</span></p>
                 </div>
                 <div className="rounded-xl bg-slate-700/70 p-3">
                   <p className="text-xs font-semibold !text-slate-200">Drinks recorded</p>
-                  <p className="mt-1 text-xl font-extrabold !text-white">{fluidTotalForDate(fluidDate).toLocaleString()} <span className="text-sm !text-slate-200">ml</span></p>
+                  <p className="mt-1 text-xl font-extrabold !text-white">{fluidTotalForDate(fluidDate).toLocaleString("en-GB", { maximumFractionDigits: 0 })} <span className="text-sm !text-slate-200">ml</span></p>
                 </div>
               </div>
               <p className="mt-3 text-sm font-semibold !text-slate-100">Combined estimate</p>
-              <p className="mt-1 text-3xl font-extrabold !text-white">{(plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)).toLocaleString()} <span className="text-base !text-slate-200">ml</span></p>
-              {fluidAllowanceMl !== null && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString()} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, (plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)) / fluidAllowanceMl * 100) : plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
+              <p className="mt-1 text-3xl font-extrabold !text-white">{(plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)).toLocaleString("en-GB", { maximumFractionDigits: 0 })} <span className="text-base !text-slate-200">ml</span></p>
+              {fluidAllowanceMl !== null && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, (plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)) / fluidAllowanceMl * 100) : plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
               <p className="mt-2 text-xs leading-5 !text-slate-300">Meal fluid is an estimate from recipe ingredients. Drinks are recorded separately. Follow your renal team's fluid guidance; this is not a recommendation to drink more.</p>
             </div>
             <h3 className="mt-5 text-sm font-extrabold text-slate-800">Add a drink</h3>
@@ -3888,7 +3893,7 @@ html[data-theme="dark"] main .planner-remove-button {
             <button type="button" onClick={addFluidEntry} disabled={!Number.isFinite(Number(fluidAmount)) || Number(fluidAmount) <= 0 || Number(fluidAmount) > 10000 || (fluidDrink === "Other" && !fluidCustomDrink.trim())} className="mt-3 w-full rounded-xl bg-sky-700 px-4 py-3 font-bold text-white hover:bg-sky-800 disabled:cursor-not-allowed disabled:opacity-50">+ Add drink</button>
             <h3 className="mt-6 text-sm font-extrabold text-slate-800">Drinks on {fluidDate}</h3>
             <div className="mt-2 divide-y divide-slate-100 rounded-xl border border-slate-100">
-              {fluidEntries.filter((entry) => entry.date === fluidDate).length === 0 ? <p className="p-4 text-sm text-slate-500">No drinks recorded for this date yet.</p> : fluidEntries.filter((entry) => entry.date === fluidDate).map((entry) => <div key={entry.id} className="flex items-center justify-between gap-3 p-3"><div><p className="font-bold text-slate-800">{entry.drink}</p><p className="text-xs text-slate-500">{new Date(entry.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p></div><div className="flex items-center gap-3"><span className="text-sm font-bold text-slate-800">{entry.amountMl} ml</span><button type="button" onClick={() => saveFluidEntries(fluidEntries.filter((item) => item.id !== entry.id))} className="rounded-lg px-2 py-1 text-sm font-bold text-rose-600 hover:bg-rose-50" aria-label={`Remove ${entry.drink}, ${entry.amountMl} ml`}>Remove</button></div></div>)}
+              {fluidEntries.filter((entry) => entry.date === fluidDate).length === 0 ? <p className="p-4 text-sm text-slate-500">No drinks recorded for this date yet.</p> : fluidEntries.filter((entry) => entry.date === fluidDate).map((entry) => <div key={entry.id} className="flex items-center justify-between gap-3 p-3"><div><p className="font-bold text-slate-800">{entry.drink}</p><p className="text-xs text-slate-500">{new Date(entry.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p></div><div className="flex items-center gap-3"><span className="text-sm font-bold text-slate-800">{Math.round(entry.amountMl)} ml</span><button type="button" onClick={() => saveFluidEntries(fluidEntries.filter((item) => item.id !== entry.id))} className="rounded-lg px-2 py-1 text-sm font-bold text-rose-600 hover:bg-rose-50" aria-label={`Remove ${entry.drink}, ${Math.round(entry.amountMl)} ml`}>Remove</button></div></div>)}
             </div>
             <button type="button" onClick={() => setFluidModalOpen(false)} className="mt-5 w-full rounded-xl border border-slate-200 px-4 py-3 font-bold text-slate-700 hover:bg-slate-50">Done</button>
           </div>

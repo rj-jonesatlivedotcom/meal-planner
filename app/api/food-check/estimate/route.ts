@@ -29,11 +29,18 @@ export async function POST(request: Request) {
   };
   const resolve = createReferenceSearch({ cache,
     cofid: async term => {
-      const { data, error } = await client.from("cofid_foods")
-        .select("food_code,food_name,energy_kcal,protein_g,fat_g,carbohydrate_g,potassium_mg,phosphorus_mg")
-        .ilike("food_name", `%${term}%`).order("food_code").limit(40);
-      if (error) throw error;
-      return data ?? [];
+      // Usually one page. Rank all matches, not the first 40 food codes.
+      const rows = [];
+      for (let offset = 0; offset < 4000; offset += 500) {
+        const { data, error } = await client.from("cofid_foods")
+          .select("food_code,food_name,energy_kcal,protein_g,fat_g,carbohydrate_g,potassium_mg,phosphorus_mg")
+          .ilike("food_name", `%${term}%`).order("food_code").range(offset, offset + 499);
+        if (error) throw error;
+        rows.push(...(data ?? []));
+        if (!data || data.length < 500) return rows;
+      }
+      // Never silently rank a truncated subset.
+      throw new Error("Reference search is too broad");
     },
     usda: query => usdaClient.search(query, ["SR Legacy", "Foundation", "Survey (FNDDS)"]),
   });

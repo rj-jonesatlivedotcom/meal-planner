@@ -69,12 +69,12 @@ test("tomatoes use whole contents and one/half verified 400g tin",async()=>{
   assert.equal(half.quantity,200);assert.equal(half.snapshot.nutrients.potassium.value,424);assert.equal(half.snapshot.nutrients.phosphate.value,34);
   assert.match(curated.mineralSourceExplanation(f.minerals,{amount:400,label:"1 tin (400g)"}),/13-530.*400g/);
 });
-test("Oreo defaults to one 14.25g biscuit, scales three biscuits, and abstains only for potassium salt",async()=>{
-  const f=await lookup("7622202830990");assert.equal(f.portion.amount,14.25);assert.equal(f.portion.wholePack.amount,157);
-  assert.equal(f.portion.naturalUnit.approximate,false);assert.equal(f.minerals.potassium.valueMg,null);assert.match(f.minerals.potassium.reason,/Potassium salts/);
+test("Oreo retains its declared 28.5g serving and 14.25g biscuit conversion, scales three biscuits, and retains the baseline with a potassium additive warning",async()=>{
+  const f=await lookup("7622202830990");assert.equal(f.portion.amount,28.5);assert.equal(f.portion.naturalUnit.amount,14.25);assert.equal(f.portion.wholePack.amount,157);
+  assert.equal(f.portion.naturalUnit.approximate,false);assert.ok(f.minerals.potassium.valueMg>0);assert.match(f.minerals.potassium.additiveUncertainty,/Potassium-containing additive/);
   const entry=planned(f,3,"biscuits");assert.equal(entry.quantity,42.75);assert.equal(Math.round(entry.snapshot.nutrients.phosphate.value),44);
-  assert.equal(entry.snapshot.nutrients.potassium.kind,"unavailable");assert.equal(entry.snapshot.nutrients.phosphate.kind,"estimated");
-  assert.match(entry.snapshot.source,/11-813/);assert.match(entry.snapshot.source,/Potassium salts/);
+  assert.equal(entry.snapshot.nutrients.potassium.kind,"estimated");assert.equal(entry.snapshot.nutrients.phosphate.kind,"estimated");
+  assert.match(entry.snapshot.source,/11-813/);assert.match(entry.snapshot.reference.potassium.additiveUncertainty,/significantly higher/);
 });
 test("soup keeps reported zero evidence but treats P/Mg/iron/zinc as questionable; calcium is missing",async()=>{
   const f=await lookup("5000157062772"), entry=planned(f,1,"tins");
@@ -97,7 +97,7 @@ test("additive gates and nutrient approval act independently; reliable positive/
   const p={...products["4088600475851"],ingredients_text:"Tomatoes, sodium phosphate"};
   const initial=await curated.resolveCuratedMinerals("unknown",{potassium:0,phosphorus:null},async()=>null,{basis:"as-sold"});
   const result=await category.resolveCategoryMinerals("unknown",p,initial,async()=>cofid["13-530"],{basis:"as-sold",unit:"g"});
-  assert.equal(result.potassium.valueMg,0);assert.equal(result.potassium.provenance,"reported");assert.equal(result.phosphorus.valueMg,null);assert.match(result.phosphorus.reason,/additives/);
+  assert.equal(result.potassium.valueMg,0);assert.equal(result.potassium.provenance,"reported");assert.equal(result.phosphorus.valueMg,17);assert.match(result.phosphorus.additiveUncertainty,/additive/);
   assert.ok(category.additiveConcern({additives_tags:["en:e450i"]},"phosphorus"));
   const verified={...products["5000157062772"],data_sources:"Producers"};assert.equal(Object.keys(category.questionableMineralZeros(verified)).length,0);
   assert.equal(Object.keys(category.questionableMineralZeros({product_name:"Refined sugar",nutriments:{phosphorus_100g:0,iron_100g:0,zinc_100g:0}})).length,0);
@@ -120,7 +120,7 @@ test("natural-entry edits preserve historical references and feed daily/weekly r
   const edited={...original,...snapshots.snapshotForEntry(original.snapshot,{amount:3,unit:"biscuits"})};
   assert.equal(original.quantity,28.5);assert.equal(edited.quantity,42.75);assert.equal(edited.snapshot.reference,original.snapshot.reference);
   const daily=snapshots.snackSummary([edited],"2026-10-19"), weekly=snapshots.snackSummary([edited]);
-  assert.equal(daily.phosphate.value,weekly.phosphate.value);assert.equal(daily.phosphate.estimated,true);assert.equal(daily.potassium.value,null);assert.equal(daily.potassium.missing,1);
+  assert.equal(daily.phosphate.value,weekly.phosphate.value);assert.equal(daily.phosphate.estimated,true);assert.equal(daily.potassium.value,253*42.75/100);assert.equal(daily.potassium.missing,0);
   assert.match(snapshots.snackQuantityLabel(edited),/3 biscuits.*42.75g/);assert.equal(snapshots.snackSummary([]).phosphate.value,null);
   assert.equal(snapshots.validFoodSnapshot(edited.snapshot),true);assert.equal(snapshots.validFoodSnapshot({...edited.snapshot,naturalUnit:{...edited.snapshot.naturalUnit,basis:"dry"}}),false);
 });
@@ -132,7 +132,7 @@ test("legacy snapshots remain grams-only; shared controls and report preserve na
   assert.match(html,/200/);assert.match(html,/tins/);assert.match(html,/grams/);assert.match(html,/flex-wrap/);assert.match(html,/dark:bg-slate-800/);
   const Report=load("components/food/PlannerSnacks.tsx",{"next/link":{default:({children})=>children},"@/lib/useFoodAccount":{notifyFoodAccount(){}}}).default;
   const report=render(React.createElement(Report,{date:"2026-10-19",snacks:[planned(f,0.5,"tins")],hideHeading:true,report:true}));
-  assert.match(report,/0.5 tins/);assert.match(report,/200g/);assert.match(report,/ESTIMATE/);assert.doesNotMatch(report,/<h3[^>]*>Snacks/);
+  assert.match(report,/0.5 tins/);assert.match(report,/200g/);assert.match(report,/mg\*/);assert.doesNotMatch(report,/<h3[^>]*>Snacks/);
 });
 test("USDA category endpoint stays restricted to reviewed IDs and server-only credentials",async()=>{
   const route=load("app/api/food-check/usda/route.ts",{"@/app/FoodCheck/usda.server":{usdaClient:{food:async()=>({status:"ok",data:soup})}}});

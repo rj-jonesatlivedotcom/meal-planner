@@ -1,5 +1,5 @@
 import "server-only";
-import { additiveConcern, type CategoryProduct } from "./categoryMinerals";
+import { type CategoryProduct } from "./categoryMinerals";
 import { identifyFood, normaliseFood, rankReferences, referenceNumber, type ReferenceCandidate, type ReferenceResolution } from "./referenceMatching";
 import type { PreparationBasis } from "./curatedMinerals";
 import type { UsdaFood } from "./usdaData";
@@ -18,7 +18,7 @@ export function createReferenceSearch(deps: {
     const hit = cache.get(key); if (hit && hit.expires > now()) return hit.result;
     const result = (async () => {
       const identity = identifyFood(product, basis);
-      const resolution: ReferenceResolution = { classification: identity?.label ?? null, matches: {}, reasons: {}, searches: [], note: identity?.note };
+      const resolution: ReferenceResolution = { classification: identity?.label ?? null, matches: {}, comparables: {}, reasons: {}, searches: [], note: identity?.note };
       if (!identity || unit !== "g" || basis === "unknown") {
         for (const key of ["potassium", "phosphorus"] as const) resolution.reasons[key] = "The food type or preparation/weight basis is not sufficiently described to select a comparable food.";
         return resolution;
@@ -55,7 +55,7 @@ export function createReferenceSearch(deps: {
       let ranked = rank();
       // Broaden the food words, never the preparation/contents acceptance rules.
       // At most four CoFID name queries and two USDA queries per uncached food.
-      if (!ranked.some(r => r.candidate.source === "CoFID 2021") || !ranked.some(r => r.candidate.potassiumMg !== null) || !ranked.some(r => r.candidate.phosphorusMg !== null)) {
+      if (ranked.filter(r => r.candidate.source === "CoFID 2021").length < 2 || !ranked.some(r => r.candidate.potassiumMg !== null) || !ranked.some(r => r.candidate.phosphorusMg !== null)) {
         await Promise.all(identity.terms.slice(1, 4).map(cofidSearch));
         if (!ranked.some(r => r.candidate.source === "USDA")) {
           const evidenced = identity.tokens?.filter(t => candidates.some(c => normaliseFood(c.description).split(" ").includes(t)));
@@ -65,13 +65,17 @@ export function createReferenceSearch(deps: {
         ranked = rank();
       }
       for (const nutrient of ["potassium", "phosphorus"] as const) {
-        const concern = additiveConcern(product, nutrient);
-        if (concern) { resolution.reasons[nutrient] = concern; continue; }
         const selected = ranked.find(({ candidate }) => {
           const value = nutrient === "potassium" ? candidate.potassiumMg : candidate.phosphorusMg;
           return typeof value === "number" && Number.isFinite(value) && value >= 0;
         });
-        if (selected) resolution.matches[nutrient] = selected.candidate;
+        if (selected) {
+          resolution.matches[nutrient] = selected.candidate;
+          // Every entry passes the same identity, preparation and macro gates.
+          // These are observed reference values, not branded-product bounds.
+          resolution.comparables![nutrient] = ranked.map(r => r.candidate).filter(c =>
+            referenceNumber(nutrient === "potassium" ? c.potassiumMg : c.phosphorusMg) !== null).slice(0, 4);
+        }
         else resolution.reasons[nutrient] = resolution.searches.some(s => s.status !== "ok")
           ? "A reference search was unavailable, and the remaining candidates did not support this mineral."
           : ranked.length ? "Comparable foods were found, but this mineral was not supplied by those references."

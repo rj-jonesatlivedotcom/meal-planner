@@ -703,7 +703,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
         day
       );
       const snacks = snackSummary(snackAccount.snacks, getCurrentWeekDate(index));
-      snackNutrients.forEach(key => { totals[day][key] += snacks[key].value ?? 0; });
+      snackNutrients.forEach(key => { if (snacks[key].value !== null) totals[day][key] += snacks[key].value; });
     });
 
     return totals;
@@ -884,6 +884,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   // An asterisk flags estimates or partial totals; it never implies completeness.
   function flaggedNutrient(text: string, key: SnackNutrient, day?: Day) {
     const quality = snackQuality(day)[key];
+    if (quality.missing && !quality.known && !(day ? [day] : days).some(d => mealTypes.some(meal => getRecipe(plannerMeals ?? {}, d, meal)))) return "Not available*";
     return `${text}${quality.estimated || incompleteSnacks(day, key) ? "*" : ""}`;
   }
   function formatDayNutrient(day: Day, key: NutrientKey, unit: "g" | "mg" | "kcal" | "salt") {
@@ -2278,14 +2279,6 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                 <p className="mt-2 text-sm leading-5 text-slate-700">
                   These figures are calculated from the nutritional
                   content of the recipes in your weekly plan.
-                </p>
-
-                <p className="mt-3 text-sm leading-5 text-slate-700">
-                  An asterisk (*) indicates that a figure includes an estimated
-                  nutrient value or uses only the values available. An estimate
-                  can still be assessed against your saved limit; where values
-                  are missing, a below-limit total cannot confirm the full
-                  amount is within range.
                 </p>
 
                 <p className="mt-3 text-sm leading-5 text-slate-700">

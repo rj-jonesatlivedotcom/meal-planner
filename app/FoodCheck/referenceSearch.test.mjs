@@ -115,13 +115,90 @@ test('cone rejects filled ice cream even with misleading matching macros',()=>{c
 test('plain digestives, whole soup and tomato tin regressions remain useful',async()=>{for(const [code,k,p]of[['4061463055286',215,119],['5000157062772',133,35],['4088600475851',212,17]]){const r=await result(code);assert.equal(r.resolved.potassium.valueMg,k);assert.equal(r.resolved.phosphorus.valueMg,p);if(code==='5000157062772'){assert.equal(r.resolved.phosphorus.sourceState,'questionable');assert.equal(r.resolved.phosphorus.sourceValueMg,0);}}});
 test('additional unmapped real product finds potato-crisp comparison and 25g bag',async()=>{const r=await result('5000328376677');assert.equal(r.portion.amount,25);assert.equal(r.portion.naturalUnit.unit,'bags');assert.equal(r.resolved.potassium.valueMg,1328);assert.equal(Math.round(r.resolved.phosphorus.valueMg/4),34);assert.ok(r.svc.calls.length>=2);});
 test('selection follows candidate data, not a preselected food code; K/P resolve independently',async()=>{const changed={...rows[0],food_code:'new-live-row',potassium_mg:null,phosphorus_mg:130};const svc=service({cofid:async()=>[changed]});const r=await svc.resolve(products['20203269'],'as-sold','g');assert.equal(r.matches.potassium,undefined);assert.equal(r.matches.phosphorus.code,'new-live-row');assert.equal(r.matches.phosphorus.phosphorusMg,130);});
-test('additives, major ingredients, preparation mismatches and missing profiles abstain',async()=>{const svc=service();const base=products['4088600148588'];const salts=await svc.resolve({...base,ingredients_text:base.ingredients_text+', potassium phosphate'},'as-sold','g');assert.equal(Object.keys(salts.matches).length,0);const nuts=await svc.resolve({...base,ingredients_text:'Peanuts, wheat flour, milk chocolate'},'as-sold','g');assert.equal(Object.keys(nuts.matches).length,0);const prepared=await svc.resolve(products['20203269'],'prepared','g');assert.equal(Object.keys(prepared.matches).length,0);assert.equal(Object.keys((await svc.resolve({product_name:'Wacko'},'as-sold','g')).matches).length,0);});
+test('additives, major ingredients, preparation mismatches and missing profiles abstain',async()=>{const svc=service();const base=products['4088600148588'];const salts=await svc.resolve({...base,ingredients_text:base.ingredients_text+', potassium phosphate'},'as-sold','g');assert.equal(Object.keys(salts.matches).length,2);const nuts=await svc.resolve({...base,ingredients_text:'Peanuts, wheat flour, milk chocolate'},'as-sold','g');assert.equal(Object.keys(nuts.matches).length,0);const prepared=await svc.resolve(products['20203269'],'prepared','g');assert.equal(Object.keys(prepared.matches).length,0);assert.equal(Object.keys((await svc.resolve({product_name:'Wacko'},'as-sold','g')).matches).length,0);});
 test('repeated comparisons share bounded cached searches; failures are not numerical zeros',async()=>{const svc=service();await svc.resolve(products['20203269'],'as-sold','g');const count=svc.calls.length;await svc.resolve(products['20203269'],'as-sold','g');assert.equal(svc.calls.length,count);const failed=service({cofid:async()=>{throw Error('offline');},usda:async()=>({status:'unavailable',data:null})});const r=await failed.resolve(products['20203269'],'as-sold','g');assert.equal(Object.keys(r.matches).length,0);assert.match(r.reasons.potassium,/unavailable/);});
 test('natural units and display rounding preserve precise stored calculations',async()=>{const r=await result('4088600148588');const food={energyKcal:496,protein:6.7,carbohydrate:62.8,fat:23.4,fibre:null,sodium:0,potassium:null,phosphorus:null,minerals:r.resolved};const s=snapshots.foodSnapshot(food,'g','as-sold','CoFID comparison',r.portion.naturalUnit);const entered=snapshots.snapshotForEntry(s,{amount:2.999999999,unit:'biscuits'});assert.equal(snapshots.displayQuantity(entered.snapshot.entry.amount),3);assert.equal(entered.quantity,2.999999999*17);assert.equal(snapshots.snackSummary([{planned_on:'2026-10-19',snapshot:entered.snapshot}],'2026-10-19').potassium.estimated,true);assert.equal(snapshots.snapshotForEntry(s,{amount:0.5,unit:'g'}).quantity,.5);assert.equal(portions.barcodePortion('20203269',products['20203269']).naturalUnit.unit,'servings');});
-test('signed-in route performs live-shaped food-name queries; signed-out requests cannot use cached results',async()=>{let user={id:'alice'},dbReads=0,usdaReads=0;const client={auth:{getUser:async()=>({data:{user},error:null})},from:table=>{assert.equal(table,'cofid_foods');return{select:()=>({ilike:(_,term)=>({order:()=>({limit:async n=>{dbReads++;assert.equal(n,40);return{data:rows.filter(r=>r.food_name.toLowerCase().includes(term.slice(1,-1))),error:null};}})})})};}};
+test('signed-in route performs live-shaped food-name queries; signed-out requests cannot use cached results',async()=>{let user={id:'alice'},dbReads=0,usdaReads=0;const client={auth:{getUser:async()=>({data:{user},error:null})},from:table=>{assert.equal(table,'cofid_foods');return{select:()=>({ilike:(_,term)=>({order:()=>({range:async (from,to)=>{dbReads++;assert.equal(from,0);assert.equal(to,499);return{data:rows.filter(r=>r.food_name.toLowerCase().includes(term.slice(1,-1))),error:null};}})})})};}};
  const route=load('app/api/food-check/estimate/route.ts',{'@/lib/supabase/server':{createClient:async()=>client},'@/app/FoodCheck/usda.server':{usdaClient:{search:async()=>{usdaReads++;return{status:'ok',data:[]};}}}});const request=()=>new Request('https://example.test/api/food-check/estimate',{method:'POST',body:JSON.stringify({product:products['20203269'],basis:'as-sold',unit:'g'})});const response=await route.POST(request());assert.equal(response.status,200);assert.ok(dbReads>0&&usdaReads>0);assert.equal((await response.json()).matches.potassium.code,'11-800');user=null;assert.equal((await route.POST(request())).status,401);});
-test('compact card and mobile total markup keep detail text out of the default layout',()=>{const React=require('react'),render=require('react-dom/server').renderToStaticMarkup;const Card=load('components/food/PlannerSnacks.tsx',{'@/lib/useFoodAccount':{notifyFoodAccount(){}}}).default;const values=Object.fromEntries(snapshots.snackNutrients.map(k=>[k,{value:k==='calories'?131.32:63.21,kind:['potassium','phosphate'].includes(k)?'estimated':'reported'}]));const s={id:'ui',name:'Biscuit bar',planned_on:'2026-10-19',quantity:21,snapshot:{version:1,unit:'g',basis:'as-sold',reference:values,nutrients:values,source:'Original source'}};const html=render(React.createElement(Card,{date:s.planned_on,snacks:[s],hideHeading:true,report:true}));assert.match(html,/131 kcal/);assert.doesNotMatch(html,/131\.32/);assert.match(html,/<summary[^>]*>View nutrition/);assert.ok(html.indexOf('Protein')>html.indexOf('View nutrition'));assert.equal((html.match(/>ESTIMATE</g)||[]).length,1);const page=read('app/nutrition/page.tsx');const part=page.slice(page.indexOf('nutrition-mobile-daily-total'),page.indexOf('{/* MOBILE FLUID INTAKE'));assert.match(part,/grid-cols-1/);assert.doesNotMatch(part,/grid-cols-2|break-words|shrink-0 whitespace-nowrap/);});
+test('compact card and mobile total markup keep detail text out of the default layout',()=>{const React=require('react'),render=require('react-dom/server').renderToStaticMarkup;const Card=load('components/food/PlannerSnacks.tsx',{'@/lib/useFoodAccount':{notifyFoodAccount(){}}}).default;const values=Object.fromEntries(snapshots.snackNutrients.map(k=>[k,{value:k==='calories'?131.32:63.21,kind:['potassium','phosphate'].includes(k)?'estimated':'reported'}]));const s={id:'ui',name:'Biscuit bar',planned_on:'2026-10-19',quantity:21,snapshot:{version:1,unit:'g',basis:'as-sold',reference:values,nutrients:values,source:'Original source'}};const html=render(React.createElement(Card,{date:s.planned_on,snacks:[s],hideHeading:true,report:true}));assert.match(html,/131 kcal/);assert.doesNotMatch(html,/131\.32/);assert.match(html,/<summary[^>]*>View nutrition/);assert.ok(html.indexOf('Protein')>html.indexOf('View nutrition'));assert.doesNotMatch(html,/ESTIMATE|Original source|comparable food/);assert.match(html,/mg\*/);const page=read('app/nutrition/page.tsx');const part=page.slice(page.indexOf('nutrition-mobile-daily-total'),page.indexOf('{/* MOBILE FLUID INTAKE'));assert.match(part,/grid-cols-1/);assert.doesNotMatch(part,/grid-cols-2|break-words|shrink-0 whitespace-nowrap/);});
 }
+
+
+test('comparable references derive independent observed ranges and preserve upper planning values', async () => {
+  const first=rows.find(r=>r.food_code==='11-799');
+  // Synthetic nutrient variation verifies derivation; these are not new source data.
+  const second={...first,food_code:'test-comparable',food_name:'Biscuits, digestive, plain, average',potassium_mg:240,phosphorus_mg:null};
+  const svc=service({cofid:async()=>[first,second,first],usda:async()=>({status:'ok',data:[]})});
+  const {resolved}=await result('4061463055286',svc);
+  assert.equal(resolved.potassium.valueMg,240);assert.equal(resolved.potassium.rangeMg.lower,215);assert.equal(resolved.potassium.rangeMg.upper,240);
+  assert.equal(resolved.potassium.estimate.references.length,2);assert.equal(resolved.phosphorus.valueMg,119);assert.equal(resolved.phosphorus.estimate.kind,'single');
+  assert.match(resolved.potassium.estimate.explanation,/minimum and maximum.*not guaranteed bounds.*upper endpoint/);
+  assert.match(minerals.mineralSourceExplanation(resolved),/test-comparable/);
+  assert.equal(minerals.mineralSourceReferences(resolved).length,2);
+  const base={energyKcal:460,protein:6,carbohydrate:65,fat:21,fibre:null,sodium:null,potassium:null,phosphorus:null,minerals:resolved};
+  const snapshot=snapshots.foodSnapshot(base,'g','as-sold','CoFID');
+  const scaled=snapshots.snapshotForQuantity(snapshot,30);
+  assert.equal(scaled.nutrients.potassium.value,72);assert.equal(scaled.nutrients.potassium.rangeMg.lower,64.5);
+  assert.equal(scaled.reference.potassium.rangeMg.upper,240);assert.equal(scaled.nutrients.potassium.kind,'estimated');
+  assert.equal(snapshots.snapshotForQuantity(scaled,50).nutrients.potassium.value,120);
+  assert.equal(snapshots.snackSummary([{planned_on:'2026-10-20',snapshot:scaled}]).potassium.value,72);
+  assert.equal(snapshots.validFoodSnapshot(JSON.parse(JSON.stringify(scaled))),true);
+  assert.equal(snapshots.foodSnapshot(base,'g','prepared','CoFID').reference.potassium.value,null);
+  const portion=portions.portionNutrition(base,{amount:30,unit:'g',basis:'as-sold'});
+  assert.equal(portion.minerals.potassium.rangeMg.upper,72);assert.match(minerals.singleMineralText(portion.minerals.potassium,String),/64.*72/);
+});
+
+test('CoFID remains preferred while credible USDA references contribute to the baseline range', async () => {
+  const first=rows.find(r=>r.food_code==='11-799');
+  const comparison={...soup,fdcId:999,description:'Cookies, digestive, plain',preparation:'unspecified',macros:{energyKcal:463,protein:6.2,fat:21.3,carbohydrate:65.6},potassiumMg:200,phosphorusMg:125};
+  const svc=service({cofid:async()=>[first],usda:async()=>({status:'ok',data:[comparison,{...comparison,fdcId:998,dataset:'Branded',potassiumMg:9999}]})});
+  const r=await svc.resolve(products['4061463055286'],'as-sold','g');
+  assert.equal(r.matches.potassium.source,'CoFID 2021');assert.equal(r.comparables.potassium.length,2);
+});
+
+test('additives retain valid baseline values with independent identified uncertainty metadata', async () => {
+  const product={...products['4061463055286'],ingredients_text:'Wheat flour, sugar, potassium phosphate (E340)'};
+  const current=await minerals.resolveCuratedMinerals('unseen',{potassium:null,phosphorus:null},async()=>null,{basis:'as-sold'});
+  const resolved=await categories.resolveCategoryMinerals('unseen',product,current,async()=>null,{basis:'as-sold',unit:'g',searchReferences:service().resolve});
+  for(const key of ['potassium','phosphorus']) {
+    assert.equal(resolved[key].provenance,'estimated');assert.match(resolved[key].additiveUncertainty,/potassium phosphate.*significantly higher.*not calculated or included/);
+  }
+  assert.equal(categories.additiveConcern({ingredients_text:'sodium phosphate'},'potassium'),null);
+  assert.equal(categories.additiveConcern({ingredients_text:'potassium chloride'},'phosphorus'),null);
+  assert.match(categories.additiveConcern({additives_tags:['en:e202']},'potassium'),/e202/);
+  const snap=snapshots.foodSnapshot({potassium:null,phosphorus:null,minerals:resolved},'g','as-sold','test');
+  assert.equal(snapshots.snapshotForQuantity(snap,40).nutrients.potassium.additiveUncertainty,resolved.potassium.additiveUncertainty);
+  const page=read('app/FoodCheck/page.tsx');
+  assert.ok(page.indexOf('role="alert" className="m-4 rounded-xl border-2 border-red-700')<page.indexOf('<div className={resultStyles.heading}>'));
+});
+
+test('curated complete-seasoned-bowl hold cannot be bypassed by generic dry noodle matches',async()=>{
+  let calls=0;
+  const current=await minerals.resolveCuratedMinerals('4061464935198',{potassium:null,phosphorus:null},async()=>null,{basis:'prepared'});
+  const r=await categories.resolveCategoryMinerals('4061464935198',{product_name:'Chicken noodle bowl',ingredients_text:'potassium iodate'},current,async()=>null,{basis:'prepared',unit:'g',searchReferences:async()=>{calls++;throw Error('must not search');}});
+  assert.equal(calls,0);assert.equal(r.potassium.valueMg,null);assert.equal(r.phosphorus.valueMg,null);assert.match(r.potassium.additiveUncertainty,/iodate/);
+});
+
+test('relaxed matching tolerates unused brand tokens and moderate macro differences, but keeps complete-food distinctions',()=>{
+  const product={product_name:'Marlow oat flakes',nutriments:profile(381,10.9,8.1,70.7)};
+  const id=matching.identifyFood(product,'dry');
+  const candidate={source:'CoFID 2021',code:'oat',description:'Porridge oats, unfortified',potassiumMg:372,phosphorusMg:387,macros:{energyKcal:390,protein:16,fat:8,carbohydrate:68}};
+  assert.equal(matching.rankReferences(product,id,[candidate],'dry').length,1);
+  for(const [name,description,basis] of [['Chicken curry','Chicken, cooked','prepared'],['Seasoned noodle bowl','Noodles, cooked','prepared'],['Dry noodles','Noodles, cooked','dry']]) {
+    const p={product_name:name,nutriments:profile(150,5,4,23)},i=matching.identifyFood(p,basis);
+    assert.equal(matching.rankReferences(p,i,[{...candidate,description,macros:matching.productMacros(p)}],basis).length,0);
+  }
+});
+
+test('authenticated CoFID search reaches relevant candidates beyond the first page',async()=>{
+  const relevant=rows.find(r=>r.food_code==='11-800');
+  const records=Array.from({length:500},(_,i)=>({...relevant,food_code:'test-'+i,food_name:'Ice cream with wafers, vanilla'})).concat(relevant);
+  const pages=[];
+  const client={auth:{getUser:async()=>({data:{user:{id:'pagination'}},error:null})},from:()=>({select:()=>({ilike:()=>({order:()=>({range:async(a,b)=>{pages.push(a);return {data:records.slice(a,b+1),error:null};}})})})})};
+  const route=load('app/api/food-check/estimate/route.ts',{'@/lib/supabase/server':{createClient:async()=>client},'@/app/FoodCheck/usda.server':{usdaClient:{search:async()=>({status:'ok',data:[]})}}});
+  const response=await route.POST(new Request('https://test/api/food-check/estimate',{method:'POST',body:JSON.stringify({product:products['20203269'],basis:'as-sold',unit:'g'})}));
+  assert.equal(response.status,200);assert.equal((await response.json()).matches.potassium.code,'11-800');assert.ok(pages.includes(500));assert.ok(pages.length<=4);
+});
 
 // Optional, account-free visual fixture using the actual components and stylesheet.
 if(process.env.RENALPLAN_UI_PREVIEW) {

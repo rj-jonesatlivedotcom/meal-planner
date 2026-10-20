@@ -50,6 +50,7 @@ function generalIdentity(p: CategoryProduct, basis: PreparationBasis): FoodIdent
 }
 export type SearchTrace = { source: string; query: string; candidates: number; status: string };
 export type ReferenceResolution = { classification: string | null; matches: Partial<Record<Mineral, ReferenceCandidate>>;
+  comparables?: Partial<Record<Mineral, ReferenceCandidate[]>>;
   reasons: Partial<Record<Mineral, string>>; searches: SearchTrace[]; note?: string };
 export const referenceNumber = (value: unknown): number | null => {
   if (typeof value !== "number" && !(typeof value === "string" && /^\d+(?:\.\d+)?$/.test(value.trim()))) return null;
@@ -103,12 +104,21 @@ function generalCompatible(identity: FoodIdentity, candidate: ReferenceCandidate
   if (!identity.tokens?.some(t => tokens.has(t))) return false;
   const broadHeads = new Set(["fish", "cereal", "breakfast", "fruit", "vegetable"]);
   const head = normaliseFood(candidate.description.split(",")[0]).split(" ").filter(t => !nameNoise.has(t) && !broadHeads.has(t));
-  if (head.some(t => !identity.tokens?.includes(t))) return false;
+  if (head.length && !head.some(t => identity.tokens?.includes(t))) return false;
+  for (const form of ["soup", "salad", "pie", "sandwich", "puree", "juice", "flour", "butter", "curry", "stew", "pizza", "sauce"]) {
+    if (identity.tokens?.includes(form) && !tokens.has(form)) return false;
+  }
+  // Keep mixed dishes distinct from their isolated ingredients in both directions.
+  for (const component of ["pea", "carrot", "pear", "peach", "sardine", "chicken", "noodle"]) {
+    if (new RegExp(`\\b${component}\\b`).test(normaliseFood(identity.ingredients)) !== tokens.has(component)) return false;
+  }
+  if (/season|flavou?r|sauce/.test(identity.ingredients) && /noodle|rice|pasta/.test(identity.ingredients) && !/season|flavou?r|sauce/.test(text)) return false;
   // A carrot in a cake, or sardines in a mixed dish, is not the named food.
   for (const modifier of ["cake", "soup", "salad", "sauce", "pie", "sandwich", "puree", "juice", "flour", "butter", "frosted", "honey", "chocolate", "nut"]) {
     if (tokens.has(modifier) && !normaliseFood(identity.ingredients).includes(modifier) && modifier !== identity.state?.medium) return false;
   }
   const state = identity.state!;
+  if (state.preparation === "cooked" && candidate.basis === "dry") return false;
   const canned = /\bcanned\b/.test(text);
   if ((state.preparation === "canned") !== canned) return false;
   if (state.preparation === "dry" && (/\b(?:cooked|prepared|boiled|steamed|grilled|fried|microwaved|made with|water added)\b/.test(text) || candidate.basis === "prepared")) return false;
@@ -157,10 +167,8 @@ function compatible(identity: FoodIdentity, candidate: ReferenceCandidate, basis
 }
 export function rankReferences(p: CategoryProduct, identity: FoodIdentity, candidates: ReferenceCandidate[], basis: PreparationBasis) {
   const macros = productMacros(p);
-  const evidencedTokens = identity.tokens?.filter(token => candidates.some(c => normaliseFood(c.description).split(" ").includes(token)));
   return candidates.flatMap(candidate => {
     if (!compatible(identity, candidate, basis)) return [];
-    if (evidencedTokens?.some(token => !normaliseFood(candidate.description).split(" ").includes(token))) return [];
     const fields = ["energyKcal", "protein", "fat", "carbohydrate"] as const;
     const floors = { energyKcal: 100, protein: 5, fat: 8, carbohydrate: 15 };
     let distance = 0, count = 0;
@@ -168,14 +176,16 @@ export function rankReferences(p: CategoryProduct, identity: FoodIdentity, candi
       const a = macros[key], b = candidate.macros[key];
       if (a === null || b === null) continue;
       const difference = Math.abs(a - b) / Math.max(floors[key], a);
-      if (difference > (key === "energyKcal" ? 0.45 : 0.8)) return [];
+      if (difference > (key === "energyKcal" ? 0.6 : 1.2)) return [];
       distance += difference; count++;
     }
-    if (count < 3 || macros.energyKcal === null || candidate.macros.energyKcal === null) return [];
+    if (count < 2 || macros.energyKcal === null || candidate.macros.energyKcal === null) return [];
     // This is a ranking cost, never a clinical confidence score or accuracy claim.
     const identityCost = identity.tokens ? 1 - identity.tokens.filter(t => normaliseFood(candidate.description).split(" ").includes(t)).length / identity.tokens.length : 0;
-    const cost = distance / count + (candidate.source === "USDA" ? 0.12 : 0) +
+    const ingredientTokens = normaliseFood(p.ingredients_text ?? "").split(" ").filter(t => t.length > 3 && !nameNoise.has(t));
+    const ingredientCost = ingredientTokens.length ? 1 - ingredientTokens.filter(t => normaliseFood(candidate.description).split(" ").includes(t)).length / ingredientTokens.length : 0;
+    const cost = distance / count + ingredientCost * 0.05 + (candidate.source === "USDA" ? 0.12 : 0) +
       (identity.family === "coated-biscuit" && /half coated|caramel/i.test(candidate.description) ? 0.08 : 0);
-    return cost <= 0.5 ? [{ candidate, cost, identityCost }] : [];
-  }).sort((a, b) => a.identityCost - b.identityCost || a.cost - b.cost || a.candidate.code.localeCompare(b.candidate.code));
+    return cost <= 0.6 ? [{ candidate, cost, identityCost }] : [];
+  }).sort((a, b) => (a.candidate.source === "USDA" ? 1 : 0) - (b.candidate.source === "USDA" ? 1 : 0) || a.identityCost - b.identityCost || a.cost - b.cost || a.candidate.code.localeCompare(b.candidate.code));
 }

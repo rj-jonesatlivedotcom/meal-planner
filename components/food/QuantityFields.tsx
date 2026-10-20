@@ -1,8 +1,8 @@
 "use client";
 import { displayQuantity, quantityEquivalent, type FoodSnapshot, type QuantityEntry } from "@/lib/foodSnacks";
 
-export default function QuantityFields({ snapshot, value, onChange, label = "Quantity" }: {
-  snapshot: FoodSnapshot; value: QuantityEntry; onChange: (value: QuantityEntry) => void; label?: string;
+export default function QuantityFields({ snapshot, value, onChange, label = "Quantity", showSource = false }: {
+  snapshot: FoodSnapshot; value: QuantityEntry; onChange: (value: QuantityEntry) => void; label?: string; showSource?: boolean;
 }) {
   let equivalent: number | null = null;
   try { equivalent = quantityEquivalent(snapshot, value); } catch { /* An unfinished entry is not a zero amount. */ }
@@ -22,7 +22,7 @@ export default function QuantityFields({ snapshot, value, onChange, label = "Qua
       </select></label>
       {equivalent !== null && <output aria-live="polite" className="pb-2 text-sm text-slate-700 dark:text-slate-200">{value.unit !== snapshot.unit && natural?.approximate ? "Approximately " : ""}{Number(equivalent.toFixed(2))}{snapshot.unit}</output>}
     </div>
-    {natural && value.unit !== snapshot.unit && <p className="mt-1 break-words text-xs text-slate-500 dark:text-slate-400">{natural.source}</p>}
+    {showSource && natural && value.unit !== snapshot.unit && <p className="mt-1 break-words text-xs text-slate-500 dark:text-slate-400">{natural.source}</p>}
     {!natural && <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">An individual item weight is unavailable. Enter {snapshot.unit === "g" ? "grams" : "millilitres"} from the pack.</p>}
   </div>;
 }

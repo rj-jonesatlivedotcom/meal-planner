@@ -1,6 +1,9 @@
+import type { ReviewedEstimate } from "@/app/FoodCheck/curatedMinerals";
+
 export const snackNutrients = ["calories", "protein", "carbohydrates", "fat", "fibre", "sodium", "potassium", "phosphate"] as const;
 export type SnackNutrient = typeof snackNutrients[number];
-export type NutrientValue = { value: number | null; kind: "reported" | "estimated" | "unavailable"; sourceState?: string; sourceValueMg?: number | null };
+export type NutrientValue = { value: number | null; kind: "reported" | "estimated" | "unavailable"; sourceState?: string; sourceValueMg?: number | null;
+  rangeMg?: { lower: number; upper: number }; estimate?: ReviewedEstimate; additiveUncertainty?: string };
 export type SnackNutrition = Record<SnackNutrient, NutrientValue>;
 export type NaturalUnit = {
   unit: "biscuits" | "tins" | "bars" | "bags" | "pots" | "units" | "cones" | "servings";
@@ -20,7 +23,7 @@ export type SavedFood = { user_id: string; barcode: string; name: string; favour
 type FoodInput = {
   energyKcal: number | null; protein: number | null; carbohydrate: number | null; fat: number | null;
   fibre: number | null; sodium: number | null; potassium: number | null; phosphorus: number | null;
-  minerals?: Record<"potassium" | "phosphorus", { valueMg: number | null; provenance: string; rangeMg?: unknown; sourceState?: string; sourceValueMg?: number | null }>;
+  minerals?: Record<"potassium" | "phosphorus", { valueMg: number | null; provenance: string; basis?: string; rangeMg?: { lower: number; upper: number }; estimate?: ReviewedEstimate; additiveUncertainty?: string; sourceState?: string; sourceValueMg?: number | null }>;
 };
 export function localFoodDate(date = new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
@@ -29,10 +32,16 @@ export function foodSnapshot(food: FoodInput, unit: "g" | "ml", basis: string, s
   const fields = { calories: food.energyKcal, protein: food.protein, carbohydrates: food.carbohydrate, fat: food.fat, fibre: food.fibre, sodium: food.sodium, potassium: food.potassium, phosphate: food.phosphorus };
   const reference = Object.fromEntries(snackNutrients.map(key => {
     const mineral = key === "potassium" ? food.minerals?.potassium : key === "phosphate" ? food.minerals?.phosphorus : undefined;
-    const raw = mineral ? mineral.rangeMg ? null : mineral.valueMg : fields[key];
+    const range = mineral?.rangeMg;
+    const validRange = range && Number.isFinite(range.lower) && Number.isFinite(range.upper) && range.lower >= 0 && range.upper > range.lower;
+    const raw = mineral?.basis && mineral.basis !== basis ? null
+      : mineral ? range ? validRange && mineral.provenance === "estimated" ? range.upper : null : mineral.valueMg : fields[key];
     const value = typeof raw === "number" && Number.isFinite(raw) && raw >= 0 ? raw : null;
     return [key, { value, kind: value === null ? "unavailable" : mineral?.provenance === "estimated" ? "estimated" : "reported",
-      ...(mineral?.sourceState ? { sourceState: mineral.sourceState, sourceValueMg: mineral.sourceValueMg } : {}) }];
+      ...(mineral?.sourceState ? { sourceState: mineral.sourceState, sourceValueMg: mineral.sourceValueMg } : {}),
+      ...(validRange ? { rangeMg: { ...range } } : {}),
+      ...(mineral?.estimate ? { estimate: mineral.estimate } : {}),
+      ...(mineral?.additiveUncertainty ? { additiveUncertainty: mineral.additiveUncertainty } : {}) }];
   })) as SnackNutrition;
   return { version: 1, unit, basis, reference, nutrients: reference, source, ...(naturalUnit ? { naturalUnit } : {}) };
 }
@@ -78,6 +87,10 @@ export function snapshotForQuantity(snapshot: FoodSnapshot, quantity: number): F
   return { ...snapshot, ...(entry ? { entry } : {}), nutrients: Object.fromEntries(snackNutrients.map(key => [key, {
     ...snapshot.reference[key], kind: approximate && snapshot.reference[key].value !== null ? "estimated" : snapshot.reference[key].kind,
     value: snapshot.reference[key].value === null ? null : snapshot.reference[key].value! * quantity / 100,
+    ...(snapshot.reference[key].rangeMg ? { rangeMg: {
+      lower: snapshot.reference[key].rangeMg!.lower * quantity / 100,
+      upper: snapshot.reference[key].rangeMg!.upper * quantity / 100,
+    } } : {}),
   }])) as SnackNutrition };
 }
 export function validFoodSnapshot(value: unknown): value is FoodSnapshot {
@@ -102,5 +115,6 @@ export function snackSummary(snacks: readonly PlannedSnack[], date?: string) {
 }
 export function snackTotalLabel(text: string, quality: ReturnType<typeof snackSummary>[SnackNutrient], hasMeals: boolean) {
   if (quality.missing && !quality.known && !hasMeals) return "Not available (incomplete)";
-  return `${text}${quality.estimated ? " ESTIMATE" : ""}${quality.missing ? " (incomplete)" : ""}`;
+  return `${text}${quality.estimated ? "*" : ""}${quality.missing ? " (incomplete)" : ""}`;
 }
+

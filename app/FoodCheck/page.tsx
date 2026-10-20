@@ -695,7 +695,7 @@ export default function FoodCheckPage() {
         potassium: food.potassium,
         phosphorus: food.phosphorus,
       }, loadCofid, {
-        basis: food.portion.basis, unit: food.portion.unit, singleOnly: true,
+        basis: food.portion.basis, unit: food.portion.unit,
         loadUsda,
         questionableZero: { potassium: Boolean(zeroFlags.potassium), phosphorus: Boolean(zeroFlags.phosphorus) },
       });
@@ -1326,6 +1326,11 @@ export default function FoodCheckPage() {
 
                   {/* FOOD HEADING */}
 
+                  {selectedFood.source === "Open Food Facts" && (["potassium", "phosphorus"] as const).map(key =>
+                    selectedFood.minerals?.[key].additiveUncertainty ? <p key={key} role="alert" className="m-4 rounded-xl border-2 border-red-700 bg-red-50 p-4 font-bold text-red-800 dark:bg-red-950 dark:text-red-200">
+                      {selectedFood.minerals[key].additiveUncertainty}
+                    </p> : null)}
+
                   <div className={resultStyles.heading}>
                     <div className={resultStyles.foodIcon} aria-hidden="true">🍽️</div>
                     <div className={resultStyles.identity}>
@@ -1367,7 +1372,7 @@ export default function FoodCheckPage() {
                         </div>
                       )}
                       {selectedFood.source === "Open Food Facts" && quantitySnapshot && <div className="mt-3">
-                        <QuantityFields snapshot={quantitySnapshot} value={foodQuantity ?? initialQuantityEntry(quantitySnapshot, basePortion?.amount ?? null)}
+                        <QuantityFields showSource snapshot={quantitySnapshot} value={foodQuantity ?? initialQuantityEntry(quantitySnapshot, basePortion?.amount ?? null)}
                           onChange={entry => { setFoodQuantity(entry); setReferenceView(false); }} label="Serving quantity" />
                       </div>}
                       {selectedFood.portion?.limitation && !selectedFood.portion.naturalUnit?.approximate && <p className="mt-2 text-sm leading-6 text-slate-600">{selectedFood.portion.limitation}</p>}

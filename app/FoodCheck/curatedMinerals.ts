@@ -133,6 +133,7 @@ export type CofidMinerals = {
   phosphorus_mg: number | null;
 };
 export type MineralResult = {
+  additiveUncertainty?: string;
   sourceState?: "reported" | "missing" | "questionable";
   reason?: string;
   categoryId?: string;
@@ -196,7 +197,7 @@ export async function resolveCuratedMinerals(
     if (mapping?.approved[nutrient] && basis === mapping.sourceBasis && results[nutrient].provenance === "unavailable" &&
         estimate && (!options.singleOnly || estimate.kind === "single") && validEstimate(estimate, basis)) {
       results[nutrient] = { ...results[nutrient], provenance: "estimated", estimate,
-        valueMg: estimate.kind === "single" ? estimate.valueMg : null,
+        valueMg: estimate.kind === "single" ? estimate.valueMg : estimate.upperMg,
         ...(estimate.kind === "range" ? { rangeMg: { lower: estimate.lowerMg, upper: estimate.upperMg } } : {}),
       };
     }
@@ -270,10 +271,11 @@ export function mineralSourceExplanation(results?: MineralResults, portion?: { a
   if (!results) return "";
   const categoryEstimates = minerals.filter(n => results[n].categoryId && results[n].provenance === "estimated");
   const categoryText = categoryEstimates.map((n, index) => {
-    const result = results[n], ref = result.estimate!.references[0];
+    const result = results[n];
+    const references = result.estimate!.references.map(ref => `${ref.label} for ${ref.description}${ref.foodCode ? `, food code ${ref.foodCode}` : ""}`).join("; ");
     const combined = categoryEstimates.length === 2 && results[categoryEstimates[0]].categoryId === results[categoryEstimates[1]].categoryId;
     if (index === 1 && combined) return "";
-    return `${combined ? "Potassium and phosphorus" : n === "potassium" ? "Potassium" : "Phosphorus"}: Estimated using ${ref.label} for ${ref.description}${ref.foodCode ? `, food code ${ref.foodCode}` : ""}${portion?.amount ? `, adjusted to ${portion.label}` : ", per 100g"}. ${result.estimate!.explanation} Actual branded-product values may differ.`;
+    return `${combined ? "Potassium and phosphorus" : n === "potassium" ? "Potassium" : "Phosphorus"}: Estimated using ${references}${portion?.amount ? `, adjusted to ${portion.label}` : ", per 100g"}. ${result.estimate!.explanation} Actual branded-product values may differ.`;
   }).filter(Boolean);
   const unavailableText = minerals.filter(n => results[n].provenance === "unavailable" && results[n].reason)
     .map(n => `${n === "potassium" ? "Potassium" : "Phosphorus"}: Not available. ${results[n].reason}`);
@@ -296,17 +298,17 @@ export function mineralSourceExplanation(results?: MineralResults, portion?: { a
 }
 
 export function singleMineralText(result: MineralResult, format: (n: number) => string): string {
-  if (result.rangeMg || result.valueMg === null) return "Not available";
+  if (result.valueMg === null) return "Not available";
   return formatMineral(result, format).replace(/^Estimated /, "");
 }
 
 export function isSingleEstimate(result?: MineralResult): boolean {
-  return result?.provenance === "estimated" && result.valueMg !== null && !result.rangeMg;
+  return result?.provenance === "estimated" && result.valueMg !== null;
 }
 
 export function mineralSourceReferences(results?: MineralResults): EstimateReference[] {
   return [...new Map(minerals.flatMap(n => results?.[n].provenance === "estimated"
-    ? results[n].estimate?.references ?? [] : []).map(r => [r.url, r])).values()];
+    ? results[n].estimate?.references ?? [] : []).map(r => [r.url + r.foodCode + r.description, r])).values()];
 }
 
 export function foodPreparationTips(barcode: string, mappings = CURATED_MINERALS): readonly string[] {

@@ -49,7 +49,7 @@ export function categoryRule(p: CategoryProduct): Rule | undefined {
       /wheat/.test(ingredients) && /sugar/.test(ingredients) &&
       profile(p, [["energy-kcal",400,550],["proteins",2,8],["fat",15,30],["carbohydrates",50,80]])) return FOOD_CATEGORY_RULES[1];
   if (/tomato/.test(name) && /canned|tinned/.test(name) && !/soup|sauce|paste|puree|purée|dried|concentrat|beans|chilli|chili|roasted/.test(name) &&
-      !/meat|chicken|cheese|oil|potassium chloride/.test(ingredients) &&
+      !/meat|chicken|cheese|oil/.test(ingredients) &&
       profile(p, [["energy-kcal",10,40],["proteins",0.5,2.5],["fat",0,1],["carbohydrates",1,8]])) return FOOD_CATEGORY_RULES[2];
   if (/soup/.test(name) && /chicken/.test(name) && /vegetable|\bveg\b/.test(name) &&
       !/cream|condensed|dried|powder|noodle|rice|cheese/.test(name + " " + ingredients) &&
@@ -73,11 +73,14 @@ export function questionableMineralZeros(p: CategoryProduct): Partial<Record<Min
 }
 export function additiveConcern(p: CategoryProduct, nutrient: Mineral): string | null {
   const text = `${p.ingredients_text ?? ""} ${(p.additives_tags ?? []).join(" ")}`.toLowerCase();
-  if (nutrient === "potassium" && /potassium|\be(?:340|501|508|515|525)(?:i{1,3})?\b/.test(text))
-    return "Potassium salts are listed, but their quantity is unknown; the generic comparison cannot account for them.";
-  if (nutrient === "phosphorus" && /phosphat|phosphoric|\be(?:338|339|340|341|343|442|450|451|452|1410|1412|1413|1414|1442)(?:i{1,3})?\b/.test(text))
-    return "Phosphorus-containing additives are listed, but their quantity is unknown; the generic comparison cannot account for them.";
-  return null;
+  // Identity only, never a quantity or absorption calculation. E-number names:
+  // https://www.gov.uk/government/publications/approved-additives-and-e-numbers/approved-additives-and-e-numbers
+  const pattern = nutrient === "potassium"
+    ? /potassium(?:[ -]+[a-z]+){0,2}|acesulfa?me[ -]+k\b|\be[ -]?(?:202|212|224|228|249|252|261|283|303|326|332|336|337|340|351|357|402|501|508|515|522|525|536|555|577|622|628|632|950)(?:[ivx]+)?\b/g
+    : /(?:[a-z]+[ -]+)?(?:[a-z]*phosphat[a-z]*|phosphoric acid|lecithin[s]?|ribonucleotide[s]?|guanylate[s]?|inosinate[s]?)|\be[ -]?(?:322|338|339|340|341|343|442|450|451|452|541|626|627|628|629|630|631|632|633|634|635|1410|1412|1413|1414|1442)(?:[ivx]+)?\b/g;
+  const found = [...new Set(text.match(pattern) ?? [])];
+  if (!found.length) return null;
+  return `${nutrient === "potassium" ? "Potassium" : "Phosphorus"}-containing additive listed: ${found.join(", ")}. Actual ${nutrient} may be significantly higher than the baseline estimate. The additive quantity is unknown; its contribution is not calculated or included in the reference range.`;
 }
 
 export async function resolveCategoryMinerals(code: string, p: CategoryProduct, current: MineralResults,
@@ -85,9 +88,13 @@ export async function resolveCategoryMinerals(code: string, p: CategoryProduct, 
   options: { basis: PreparationBasis; unit: "g" | "ml"; loadUsda?: (id: number) => Promise<UsdaFood | null>;
     searchReferences?: (product: CategoryProduct, basis: PreparationBasis, unit: "g" | "ml") => Promise<ReferenceResolution | null> },
 ): Promise<MineralResults> {
-  // Reviewed barcode overrides, including explicit holds, always take precedence.
-  if (CURATED_MINERALS.some(mapping => mapping.barcode === code)) return current;
   const results = { potassium: { ...current.potassium }, phosphorus: { ...current.phosphorus } };
+  for (const key of ["potassium", "phosphorus"] as const) {
+    const concern = additiveConcern(p, key);
+    if (concern) results[key].additiveUncertainty = concern;
+  }
+  // Reviewed barcode overrides, including complete-product holds, take precedence.
+  if (CURATED_MINERALS.some(mapping => mapping.barcode === code)) return results;
   const rule = categoryRule(p);
   const wanted = (["potassium", "phosphorus"] as const).filter(key => results[key].provenance === "unavailable");
   if (!wanted.length) return results;
@@ -96,15 +103,21 @@ export async function resolveCategoryMinerals(code: string, p: CategoryProduct, 
     try { resolution = await options.searchReferences(p, options.basis, options.unit); } catch { /* Existing reviewed comparisons remain a fallback. */ }
     if (resolution) {
       for (const key of wanted) {
-        const candidate = resolution.matches[key], concern = additiveConcern(p, key);
+        const candidate = resolution.matches[key];
         const value = key === "potassium" ? candidate?.potassiumMg : candidate?.phosphorusMg;
-        if (!concern && candidate && typeof value === "number" && Number.isFinite(value) && value >= 0 && options.unit === "g" && options.basis !== "unknown") {
-          results[key] = { ...results[key], valueMg: value, provenance: "estimated", categoryId: `reference-search:${candidate.source}:${candidate.code}`, reason: undefined,
-            estimate: { kind: "single", valueMg: value, method: "comparable-food", basis: options.basis, completeProduct: true,
-              explanation: resolution.note || "Generic complete-food comparison; ingredients and formulations may differ.",
-              references: [{ label: candidate.source === "USDA" ? `USDA FoodData Central FDC ID ${candidate.code}` : "CoFID 2021",
-                foodCode: candidate.source === "CoFID 2021" ? candidate.code : undefined, description: candidate.description, url: candidate.url }] } };
-        } else results[key].reason = concern ?? resolution.reasons[key] ?? "No suitable reference nutrient was available.";
+        if (candidate && typeof value === "number" && Number.isFinite(value) && value >= 0 && options.unit === "g" && options.basis !== "unknown") {
+          const references = [...new Map([candidate, ...(resolution.comparables?.[key] ?? [])].map(c => [c.source + c.code, c])).values()]
+            .filter(c => { const n = key === "potassium" ? c.potassiumMg : c.phosphorusMg; return typeof n === "number" && Number.isFinite(n) && n >= 0; });
+          const values = references.map(c => (key === "potassium" ? c.potassiumMg : c.phosphorusMg)!);
+          const lower = Math.min(...values), upper = Math.max(...values);
+          const range = lower < upper;
+          results[key] = { ...results[key], valueMg: upper, provenance: "estimated", categoryId: `reference-search:${key}:${references.map(c => c.source + c.code).join(":")}`, reason: undefined,
+            ...(range ? { rangeMg: { lower, upper } } : {}),
+            estimate: { ...(range ? { kind: "range", lowerMg: lower, upperMg: upper } : { kind: "single", valueMg: upper }), method: "comparable-food", basis: options.basis, completeProduct: true,
+              explanation: `${resolution.note || "Generic complete-food comparison; ingredients and formulations may differ."} ${range ? `Observed comparable-reference range: ${lower}–${upper} mg per 100g; derived from the minimum and maximum of the listed references on the same preparation basis. These are not guaranteed bounds for this branded product. The upper endpoint is used for numerical planning.` : "Single-value baseline estimate; no supported reference range is available."}`,
+              references: references.map(c => ({ label: c.source === "USDA" ? `USDA FoodData Central FDC ID ${c.code}` : "CoFID 2021",
+                foodCode: c.source === "CoFID 2021" ? c.code : undefined, description: c.description, url: c.url })) } };
+        } else results[key].reason = resolution.reasons[key] ?? "No suitable reference nutrient was available.";
       }
       return results;
     }
@@ -115,11 +128,7 @@ export async function resolveCategoryMinerals(code: string, p: CategoryProduct, 
       : "No approved comparable food for this product type and preparation basis.";
     return results;
   }
-  const eligible = wanted.filter(key => {
-    const concern = additiveConcern(p, key);
-    if (concern) results[key].reason = concern;
-    return rule.approved[key] && !concern;
-  });
+  const eligible = wanted.filter(key => rule.approved[key]);
   if (!eligible.length) return results;
   const ref = rule.reference;
   try {

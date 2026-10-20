@@ -191,8 +191,8 @@ export function portionNutrition<T extends Nutrition>(food: T, portion?: Barcode
     ...mineral,
     valueMg: mineral.provenance === "reported" && mineral.valueMg !== null ? mineral.valueMg * portion.amount! / 100
       : portion.unit === "g" ? scaleMineral(mineral, portion.amount!, portion.basis) : null,
-    // Range support remains available in the helper, but is dormant in this UI.
-    rangeMg: undefined,
+    rangeMg: portion.unit === "g" && portion.basis === mineral.basis && mineral.rangeMg
+      ? { lower: mineral.rangeMg.lower * portion.amount! / 100, upper: mineral.rangeMg.upper * portion.amount! / 100 } : undefined,
   }])) as MineralResults;
   return result;
 }

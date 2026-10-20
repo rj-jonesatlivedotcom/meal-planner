@@ -11,6 +11,7 @@ import { MyFoods, AddSnack } from "@/components/food/AccountFoods";
 import { useFoodAccount, notifyFoodAccount } from "@/lib/useFoodAccount";
 import { foodSnapshot, initialQuantityEntry, quantityEquivalent, displayQuantity, type QuantityEntry } from "@/lib/foodSnacks";
 import QuantityFields from "@/components/food/QuantityFields";
+import resultStyles from "@/components/food/FoodResult.module.css";
 import { resolveCategoryMinerals, questionableMineralZeros } from "./categoryMinerals";
 
 type CofidRow = Record<string, unknown>;
@@ -230,7 +231,7 @@ function mapFood(row: CofidRow): Food {
 export default function FoodCheckPage() {
   const supabase = createClient();
   const myFoods = useFoodAccount();
-  const [snackDialogOpen, setSnackDialogOpen] = useState(false);
+
   const [foodQuantity, setFoodQuantity] = useState<QuantityEntry | null>(null);
   const [myFoodsError, setMyFoodsError] = useState("");
 
@@ -799,7 +800,7 @@ export default function FoodCheckPage() {
 
   function selectFood(food: Food) {
     setFoodQuantity(null);
-    setSnackDialogOpen(false);
+
     setSelectedFood(food);
     setReferenceView(false);
     setWholePackView(false);
@@ -1098,7 +1099,7 @@ export default function FoodCheckPage() {
               </div>
             </section>
 
-            <MyFoods account={myFoods} onOpen={(code, add) => { void lookupBarcode(code).then(food => { if (food && add) setSnackDialogOpen(true); }); }} />
+            <MyFoods account={myFoods} onOpen={(code) => { void lookupBarcode(code); }} />
             {myFoodsError && <p role="status" className="mt-2 text-sm text-rose-700">{myFoodsError}</p>}
 
             {/* =================================================
@@ -1292,7 +1293,7 @@ export default function FoodCheckPage() {
             className="min-w-0 scroll-mt-6"
           >
 
-            <div className="food-check-nutrition-card overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
+            <div className={`${resultStyles.result} food-check-nutrition-card overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm`}>
 
               {!selectedFood || !nutritionFood ? (
 
@@ -1325,80 +1326,37 @@ export default function FoodCheckPage() {
 
                   {/* FOOD HEADING */}
 
-                  <div className="border-b border-slate-200 p-6">
-
-                    <div className="flex flex-col gap-5 sm:flex-row">
-
-                      <div className="flex h-32 w-full shrink-0 items-center justify-center rounded-2xl bg-green-50 text-6xl sm:w-36">
-                        🍽️
-                      </div>
-
-                      <div className="min-w-0 flex-1">
-
-                        <h2 className="text-2xl font-extrabold leading-tight text-blue-950">
-                          {selectedFood.name}
-                        </h2>
-
-                        <p className="mt-1 text-sm font-semibold text-blue-700">
-                          {selectedFood.category}
-                        </p>
-
-                        {selectedFood.code && (
-                          <p className="mt-2 text-sm text-slate-600">
-                            Food code:{" "}
-                            {selectedFood.code}
-                          </p>
-                        )}
-
-                        <p className="mt-1 text-sm leading-6 text-slate-600">
-                          {selectedFood.description}
-                        </p>
-
-                        <div className="mt-4 inline-block rounded-xl bg-blue-50 px-4 py-3 text-sm">
-                          <div className="font-bold text-blue-900">
-                            Source
-                          </div>
-
-                          <div className="mt-1 text-blue-700">
-                            {selectedFood.source}
-                          </div>
-                        </div>
-
-                      </div>
-
+                  <div className={resultStyles.heading}>
+                    <div className={resultStyles.foodIcon} aria-hidden="true">🍽️</div>
+                    <div className={resultStyles.identity}>
+                      <h2>{selectedFood.name}</h2>
+                      <p>{selectedFood.source === "Open Food Facts" ? [selectedFood.description.split(" · Barcode ")[0], selectedFood.code].filter(Boolean).join(" · ") : selectedFood.description}</p>
+                      <p>Source: {selectedFood.source}</p>
                     </div>
-
+                    {selectedFood.source === "Open Food Facts" && (<button type="button" disabled={!myFoods.repository} className={resultStyles.favourite} aria-label={myFoods.foods.find(f => f.barcode === selectedFood.code)?.favourite ? "Unfavourite this food" : "Favourite this food"} aria-pressed={Boolean(myFoods.foods.find(f => f.barcode === selectedFood.code)?.favourite)}
+                          onClick={() => { const repository = myFoods.repository; if (!repository) return; const favourite = !myFoods.foods.find(f => f.barcode === selectedFood.code)?.favourite;
+                            void repository.library("scan", selectedFood.code, selectedFood.name.slice(0, 240)).then(() => repository.library("favourite", selectedFood.code, "", favourite)).then(notifyFoodAccount).catch(() => setMyFoodsError("Unable to update this favourite. Please try again.")); }}>
+                          {myFoods.foods.find(f => f.barcode === selectedFood.code)?.favourite ? "★" : "☆"}
+                        </button>)}
                   </div>
 
                   {/* NUTRITION */}
 
-                  <div className="p-6">
+                  <div className={resultStyles.content}>
 
-                    {selectedFood.source === "Open Food Facts" && <div className="mb-4">
-                      <div className="flex flex-wrap gap-2">
-                        <button type="button" disabled={!myFoods.repository || selectedFood.portion?.referenceLabel.includes("unconfirmed")}
-                          onClick={() => setSnackDialogOpen(true)} className="rounded-xl bg-orange-600 px-4 py-2 font-bold text-white disabled:opacity-50">Add to Planner</button>
-                        <button type="button" disabled={!myFoods.repository} className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold"
-                          onClick={() => { const repository = myFoods.repository; if (!repository) return; const favourite = !myFoods.foods.find(f => f.barcode === selectedFood.code)?.favourite;
-                            void repository.library("scan", selectedFood.code, selectedFood.name.slice(0, 240)).then(() => repository.library("favourite", selectedFood.code, "", favourite)).then(notifyFoodAccount).catch(() => setMyFoodsError("Unable to update this favourite. Please try again.")); }}>
-                          {myFoods.foods.find(f => f.barcode === selectedFood.code)?.favourite ? "Unfavourite" : "Favourite"}
-                        </button>
-                      </div>
-                      {snackDialogOpen && myFoods.owner && selectedFood.portion && <AddSnack key={`${myFoods.owner}:${selectedFood.code}`} open owner={myFoods.owner} barcode={selectedFood.code} name={selectedFood.name}
+                    {selectedFood.source === "Open Food Facts" && <div className={resultStyles.plannerWrap}>
+
+                      {myFoods.owner && selectedFood.portion && !selectedFood.portion.referenceLabel.includes("unconfirmed") && <AddSnack key={`${myFoods.owner}:${selectedFood.code}`} open owner={myFoods.owner} barcode={selectedFood.code} name={selectedFood.name}
                         snapshot={{ ...foodSnapshot(selectedFood, selectedFood.portion.unit, selectedFood.portion.basis, `${selectedFood.source}: https://world.openfoodfacts.org/product/${selectedFood.code}. ${mineralSourceExplanation(selectedFood.minerals)}`, selectedFood.portion.naturalUnit), ...(foodQuantity ? { entry: foodQuantity } : {}) }}
-                        quantity={activePortion?.amount ?? selectedFood.portion.amount} onClose={() => setSnackDialogOpen(false)} />}
+                        quantity={activePortion?.amount ?? selectedFood.portion.amount} />}
                     </div>}
 
-                    <div className="rounded-2xl border border-blue-100 bg-blue-50 px-5 py-4">
+                    <div className={resultStyles.nutritionPanel}>
 
-                      <h3 className="text-xl font-extrabold text-blue-900">
-                        {selectedFood.source === "Open Food Facts"
-                          ? activePortion?.amount ? activePortion.label : `Nutritional information ${selectedFood.portion?.referenceLabel ?? "per 100g"}`
-                          : "Nutritional information per 100 g"}
-                      </h3>
+                      <div className={resultStyles.nutritionHeading}><h3><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 13h4v9H3zm7-7h4v16h-4zm7-5h4v21h-4z" /></svg>Nutritional information</h3><span>{selectedFood.source === "Open Food Facts" ? activePortion?.amount ? "Per selected quantity" : selectedFood.portion?.referenceLabel : "Per 100 g"}</span></div>
 
                       {selectedFood.source === "Open Food Facts" && selectedFood.portion?.amount && (
-                        <div className="mt-2 flex flex-wrap gap-2 text-sm">
+                        <div className={resultStyles.portionTabs}>
                           <button type="button" aria-pressed={!referenceView && !wholePackView} onClick={() => { setFoodQuantity(null); setReferenceView(false); setWholePackView(false); }}
                             className="rounded-lg border border-blue-200 px-3 py-2 font-semibold">{selectedFood.portion.label.startsWith("Manufacturer serving") ? "Manufacturer serving" : selectedFood.portion.label.startsWith("Grams entry") ? "Enter grams" : selectedFood.portion.naturalUnit?.unit === "biscuits" ? "One biscuit" : "Whole product / one unit"}</button>
                           {selectedFood.portion.wholePack && <button type="button" aria-pressed={!referenceView && wholePackView}
@@ -1410,13 +1368,40 @@ export default function FoodCheckPage() {
                       )}
                       {selectedFood.source === "Open Food Facts" && quantitySnapshot && <div className="mt-3">
                         <QuantityFields snapshot={quantitySnapshot} value={foodQuantity ?? initialQuantityEntry(quantitySnapshot, basePortion?.amount ?? null)}
-                          onChange={entry => { setFoodQuantity(entry); setReferenceView(false); }} label="Eating quantity" />
+                          onChange={entry => { setFoodQuantity(entry); setReferenceView(false); }} label="Serving quantity" />
                       </div>}
                       {selectedFood.portion?.limitation && !selectedFood.portion.naturalUnit?.approximate && <p className="mt-2 text-sm leading-6 text-slate-600">{selectedFood.portion.limitation}</p>}
 
-                    </div>
+                      <div className={resultStyles.mineralHighlights}>
+                        <NutritionRow highlight
+                          label="Potassium"
+                          estimated={isSingleEstimate(nutritionFood.minerals?.potassium)}
+                          value={
+                            nutritionFood.minerals
+                              ? singleMineralText(nutritionFood.minerals.potassium, formatNumber)
+                              : nutritionFood.potassium === null
+                              ? "Not available"
+                              : `${formatNumber(nutritionFood.potassium)} mg`
+                          }
+                          emphasis="green"
+                        />
 
-                    <div className="mt-4 grid gap-5 md:grid-cols-2">
+                        <NutritionRow highlight
+                          label="Phosphorus"
+                          estimated={isSingleEstimate(nutritionFood.minerals?.phosphorus)}
+                          value={
+                            nutritionFood.minerals
+                              ? singleMineralText(nutritionFood.minerals.phosphorus, formatNumber)
+                              : nutritionFood.phosphorus === null
+                              ? "Not available"
+                              : `${formatNumber(nutritionFood.phosphorus)} mg`
+                          }
+                          emphasis="orange"
+                        />
+
+
+                      </div>
+                    <div className={resultStyles.nutrientGrid}>
 
                       {/* MAIN NUTRIENTS */}
 
@@ -1425,17 +1410,17 @@ export default function FoodCheckPage() {
                         <NutritionRow
                           label="Energy"
                           value={
-                            nutritionFood.energyKj !== null
-                              ? `${formatNumber(
-                                  nutritionFood.energyKj
-                                )} kJ`
-                              : "Not available"
-                          }
-                          secondary={
                             nutritionFood.energyKcal !== null
                               ? `${formatNumber(
                                   nutritionFood.energyKcal
                                 )} kcal`
+                              : "Not available"
+                          }
+                          secondary={
+                            nutritionFood.energyKj !== null
+                              ? `${formatNumber(
+                                  nutritionFood.energyKj
+                                )} kJ`
                               : "Not available"
                           }
                         />
@@ -1491,32 +1476,6 @@ export default function FoodCheckPage() {
                         />
 
                         <NutritionRow
-                          label="Potassium"
-                          estimated={isSingleEstimate(nutritionFood.minerals?.potassium)}
-                          value={
-                            nutritionFood.minerals
-                              ? singleMineralText(nutritionFood.minerals.potassium, formatNumber)
-                              : nutritionFood.potassium === null
-                              ? "Not available"
-                              : `${formatNumber(nutritionFood.potassium)} mg`
-                          }
-                          emphasis="green"
-                        />
-
-                        <NutritionRow
-                          label="Phosphorus"
-                          estimated={isSingleEstimate(nutritionFood.minerals?.phosphorus)}
-                          value={
-                            nutritionFood.minerals
-                              ? singleMineralText(nutritionFood.minerals.phosphorus, formatNumber)
-                              : nutritionFood.phosphorus === null
-                              ? "Not available"
-                              : `${formatNumber(nutritionFood.phosphorus)} mg`
-                          }
-                          emphasis="orange"
-                        />
-
-                        <NutritionRow
                           label="Calcium"
                           value={displayNutrient(nutritionFood.calcium, "mg")}
                           emphasis="blue"
@@ -1544,6 +1503,8 @@ export default function FoodCheckPage() {
 
                     </div>
 
+                    </div>
+
                     {selectedFood.source === "Open Food Facts" && foodBasisDescription(selectedFood.code) && (
                       <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
                         {foodBasisDescription(selectedFood.code)}
@@ -1561,7 +1522,7 @@ export default function FoodCheckPage() {
 
                     {/* SOURCE */}
 
-                    <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-5">
+                    <div className={resultStyles.sources}>
 
                       <div className="flex items-start gap-3">
 
@@ -1571,10 +1532,7 @@ export default function FoodCheckPage() {
 
                         <div>
 
-                          <h3 className="text-sm font-semibold leading-6 text-blue-950">
-                            Nutritional information source
-                          </h3>
-                          <details className="mt-2"><summary className="cursor-pointer text-sm font-semibold text-blue-800 dark:text-blue-200">View sources and comparison</summary>
+<details className="mt-2"><summary className="cursor-pointer text-sm font-semibold text-blue-800 dark:text-blue-200">Other nutrients &amp; source information</summary>
                           {Boolean(selectedFood.questionableMinerals?.length) && <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Open Food Facts reports unverified zeros for {selectedFood.questionableMinerals?.join(", ")}. These are treated as questionable, not measured zeros.</p>}
                           <p className="mt-1 text-sm leading-6 text-slate-600">
                             {selectedFood.source === "CoFID 2021"
@@ -1732,6 +1690,7 @@ export default function FoodCheckPage() {
    ============================================================ */
 
 function NutritionRow({
+  highlight = false,
   label,
   value,
   secondary,
@@ -1739,6 +1698,7 @@ function NutritionRow({
   muted = false,
   emphasis,
 }: {
+  highlight?: boolean;
   label: string;
   value: string;
   secondary?: string;
@@ -1764,9 +1724,13 @@ function NutritionRow({
       "border-slate-100 bg-white text-blue-950",
   };
 
+  if (highlight) return <div className={resultStyles.mineralCard}>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M9 3C3 1 1 8 3 13c2 5 7 4 7 0V9C10 6 12 5 9 3Zm6 0c6-2 8 5 6 10-2 5-7 4-7 0V9c0-3-2-4 1-6Z" /></svg>
+    <div><span>{label}</span><strong>{value}</strong>{estimated && <small>ESTIMATE</small>}</div>
+  </div>;
   return (
     <div
-      className={`flex items-center justify-between gap-4 rounded-xl border px-4 py-3 ${
+      className={`${resultStyles.nutrientRow} flex items-center justify-between gap-4 rounded-xl border px-4 py-3 ${
         emphasis
           ? emphasisClasses[emphasis]
           : muted

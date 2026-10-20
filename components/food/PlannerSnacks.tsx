@@ -6,6 +6,7 @@ import QuantityFields from "./QuantityFields";
 import { barcodePortion } from "@/app/FoodCheck/barcodePortions";
 import type { foodAccount } from "@/lib/foodAccount";
 import { notifyFoodAccount } from "@/lib/useFoodAccount";
+import styles from "./PlannerSnacks.module.css";
 
 export function SnackValues({ snack, keys = snackNutrients }: { snack: PlannedSnack; keys?: readonly typeof snackNutrients[number][] }) {
   return <dl className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-700 dark:text-slate-200">
@@ -18,7 +19,7 @@ export function SnackValues({ snack, keys = snackNutrients }: { snack: PlannedSn
     })}
   </dl>;
 }
-function SnackRow({ snack, repository }: { snack: PlannedSnack; repository?: ReturnType<typeof foodAccount> | null }) {
+function SnackRow({ snack, repository, compact = false }: { snack: PlannedSnack; repository?: ReturnType<typeof foodAccount> | null; compact?: boolean }) {
   const [unitSnapshot, setUnitSnapshot] = useState(snack.snapshot);
   const [entry, setEntry] = useState(() => initialQuantityEntry(snack.snapshot, snack.quantity));
   const [editing, setEditing] = useState(false), [error, setError] = useState("");
@@ -53,6 +54,13 @@ function SnackRow({ snack, repository }: { snack: PlannedSnack; repository?: Ret
     } catch { setError("Unable to update this snack. Please try again."); }
     finally { busy.current = false; setSaving(false); }
   }
+  if (compact) return <div>
+    <div className={styles.snack}>
+      <span className={styles.name}>{snack.name}</span>
+      {repository && <button type="button" disabled={saving} onClick={() => void change(true)} className={styles.remove} aria-label={`Remove ${snack.name}`} title={`Remove ${snack.name}`}>×</button>}
+    </div>
+    {error && <p role="alert" className="mt-1 text-xs text-rose-700 dark:text-rose-300">{error}</p>}
+  </div>;
   const estimated = snackNutrients.some(key => snack.snapshot.nutrients[key].kind === "estimated");
   return <div className="my-2 min-w-0 rounded-xl border border-slate-200 bg-slate-50/70 p-3 dark:border-slate-700 dark:bg-slate-900/40">
     <p className="break-words text-sm font-bold text-slate-900 dark:text-slate-100">{snack.name}</p>
@@ -78,13 +86,13 @@ function SnackRow({ snack, repository }: { snack: PlannedSnack; repository?: Ret
     {error && <p role="alert" className="mt-1 text-xs text-rose-700 dark:text-rose-300">{error}</p>}
   </div>;
 }
-export default function PlannerSnacks({ date, snacks, repository, error, report = false, hideHeading = false }: { date: string; snacks: readonly PlannedSnack[]; repository?: ReturnType<typeof foodAccount> | null; error?: string; report?: boolean; hideHeading?: boolean }) {
+export default function PlannerSnacks({ date, snacks, repository, error, report = false, hideHeading = false, compact = false }: { date: string; snacks: readonly PlannedSnack[]; repository?: ReturnType<typeof foodAccount> | null; error?: string; report?: boolean; hideHeading?: boolean; compact?: boolean }) {
   const selected = snacks.filter(s => s.planned_on === date);
-  return <section aria-label="Snacks" className="rounded-2xl bg-white dark:bg-slate-800 p-3 text-left text-slate-900 dark:text-slate-100">
+  return <section aria-label="Snacks" className={compact ? styles.compact : "rounded-2xl bg-white dark:bg-slate-800 p-3 text-left text-slate-900 dark:text-slate-100"}>
     {!hideHeading && <h3 className="text-sm font-extrabold">Snacks</h3>}
     {error && <p role="alert" className="mt-1 text-xs text-rose-700 dark:text-rose-300">{error} Totals may be incomplete.</p>}
-    {selected.map(snack => <SnackRow key={`${snack.id}:${snack.quantity}`} snack={snack} repository={report ? null : repository} />)}
-    {!selected.length && <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">No snacks planned.</p>}
-    {!report && <Link href="/FoodCheck" className="mt-2 inline-block text-xs font-bold text-orange-700 dark:text-orange-300 underline">Add food from Food Check</Link>}
+    {selected.map(snack => <SnackRow key={`${snack.id}:${snack.quantity}`} snack={snack} repository={report ? null : repository} compact={compact} />)}
+    {!selected.length && !compact && <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">No snacks planned.</p>}
+    {!report && <Link href="/FoodCheck" className={compact ? styles.addLink : "mt-2 inline-block text-xs font-bold text-orange-700 dark:text-orange-300 underline"}>Add food from Food Check</Link>}
   </section>;
 }

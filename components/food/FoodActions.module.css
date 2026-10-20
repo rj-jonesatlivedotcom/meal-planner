@@ -1,0 +1,27 @@
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #9a3412;
+  border-radius: 12px;
+  background: #c2410c;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font-weight: 700;
+}
+.primary:hover { background: #9a3412; }
+.primary:disabled { opacity: .5; cursor: not-allowed; }
+.libraryControls { display: grid; gap: 12px; margin-top: 16px; }
+.libraryControls label { min-width: 0; font-size: 12px; font-weight: 600; }
+.libraryField { display: block; width: 100%; min-width: 0; min-height: 44px; margin-top: 6px; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: #0f172a; font-size: 14px; font-weight: 400; }
+@media (min-width: 640px) { .libraryControls { grid-template-columns: minmax(0, 1fr) minmax(0, 180px); } }
+:global(html[data-theme="dark"]) .libraryField { border-color: #526575; background: #172838; color: #edf2f7; }
+/* Override the existing generic dark-mode styling for result-card buttons. */
+:global(html[data-theme="dark"]) :global(.food-check-results-card) button.primary.primary {
+  background: #c2410c !important;
+  border-color: #fb923c !important;
+  color: #fff !important;
+}
+:global(html[data-theme="dark"]) :global(.food-check-results-card) button.primary.primary:hover { background: #9a3412 !important; }

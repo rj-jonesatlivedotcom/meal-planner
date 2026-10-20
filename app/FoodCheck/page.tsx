@@ -706,6 +706,7 @@ export default function FoodCheckPage() {
             body: JSON.stringify({ basis, unit, product: { product_name: p.product_name ?? p.product_name_en, product_name_en: p.product_name_en, generic_name: p.generic_name,
               categories: p.categories, categories_tags: p.categories_tags, ingredients_text: p.ingredients_text, additives_tags: p.additives_tags,
               nutrition_basis: p.nutrition_basis,
+              preparationYield: p.preparationYield,
               nutriments: Object.fromEntries(["energy-kcal_100g", "proteins_100g", "fat_100g", "carbohydrates_100g"].map(key => [key, p.nutriments?.[key]])) } }),
             signal: AbortSignal.timeout(25000) });
           if (!response.ok) return null;
@@ -1326,11 +1327,6 @@ export default function FoodCheckPage() {
 
                   {/* FOOD HEADING */}
 
-                  {selectedFood.source === "Open Food Facts" && (["potassium", "phosphorus"] as const).map(key =>
-                    selectedFood.minerals?.[key].additiveUncertainty ? <p key={key} role="alert" className="m-4 rounded-xl border-2 border-red-700 bg-red-50 p-4 font-bold text-red-800 dark:bg-red-950 dark:text-red-200">
-                      {selectedFood.minerals[key].additiveUncertainty}
-                    </p> : null)}
-
                   <div className={resultStyles.heading}>
                     <div className={resultStyles.foodIcon} aria-hidden="true">🍽️</div>
                     <div className={resultStyles.identity}>
@@ -1344,6 +1340,28 @@ export default function FoodCheckPage() {
                           {myFoods.foods.find(f => f.barcode === selectedFood.code)?.favourite ? "★" : "☆"}
                         </button>)}
                   </div>
+
+                  {/* Compact additive notice: full warnings remain available on this Food Check card. */}
+                  {selectedFood.source === "Open Food Facts" && (() => {
+                    const warnings = (["potassium", "phosphorus"] as const)
+                      .map(key => ({ key, text: selectedFood.minerals?.[key].additiveUncertainty }))
+                      .filter((warning): warning is { key: "potassium" | "phosphorus"; text: string } => Boolean(warning.text));
+                    if (!warnings.length) return null;
+                    const nutrients = warnings.map(warning => warning.key);
+                    const names = nutrients.length === 2 ? "Potassium and phosphorus" : nutrients[0] === "potassium" ? "Potassium" : "Phosphorus";
+                    return (
+                      <details className="mx-4 mb-3 rounded-xl border border-amber-200 bg-amber-50/70 px-3 py-2 text-amber-950 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100">
+                        <summary className="cursor-pointer text-sm font-semibold leading-5 marker:text-amber-700 dark:marker:text-amber-300">
+                          <span className="ml-1">⚠ {names} additives detected</span>
+                          <span className="ml-2 font-normal text-amber-800 dark:text-amber-200">Actual amounts may exceed estimates.</span>
+                          <span className="ml-2 text-xs font-medium underline underline-offset-2">Details</span>
+                        </summary>
+                        <div className="mt-2 space-y-2 border-t border-amber-200 pt-2 text-xs leading-5 dark:border-amber-800">
+                          {warnings.map(warning => <p key={warning.key}>{warning.text}</p>)}
+                        </div>
+                      </details>
+                    );
+                  })()}
 
                   {/* NUTRITION */}
 

@@ -1,0 +1,65 @@
+{
+  "method": "Preselected unrelated categories; primary retailer/manufacturer labels used after OFF search returned HTTP 503. No holdout-specific barcode, nutrient override or reference selection.",
+  "products": [
+    {
+      "name": "Tesco 0% Fat Natural Yoghurt 4 x 100g",
+      "unit": "g",
+      "basis": "as-sold",
+      "source": "https://www.tesco.com/shop/en-GB/products/299770344",
+      "product": {
+        "product_name": "Tesco 0% Fat Natural Yoghurt",
+        "categories": "Plain yogurts",
+        "ingredients_text": "Milk",
+        "quantity": "4 x 100g",
+        "serving_size": "100g",
+        "nutriments": {
+          "energy-kcal_100g": 52,
+          "proteins_100g": 5.5,
+          "fat_100g": 0.3,
+          "carbohydrates_100g": 6.8
+        }
+      }
+    },
+    {
+      "name": "Tropicana Original Orange with Juicy Bits",
+      "unit": "ml",
+      "basis": "as-sold",
+      "source": "https://tropicana.co.uk/juice/orange-bits-value-pack",
+      "manufacturerPotassiumMg": 200,
+      "product": {
+        "product_name": "Tropicana Original Orange with Juicy Bits",
+        "categories": "Orange juices",
+        "ingredients_text": "Orange juice, not from concentrate",
+        "quantity": "1.5L",
+        "nutrition_data_per": "100ml",
+        "serving_size": "150ml",
+        "nutriments": {
+          "energy-kcal_100g": 41,
+          "proteins_100g": 0.8,
+          "fat_100g": 0,
+          "carbohydrates_100g": 9.3,
+          "potassium_100g": 0.2
+        }
+      }
+    },
+    {
+      "name": "Meridian Smooth Peanut Butter 280g",
+      "unit": "g",
+      "basis": "as-sold",
+      "source": "https://www.sainsburys.co.uk/groceries/product/meridian-smooth-peanut-butter-280g",
+      "product": {
+        "product_name": "Meridian Smooth Peanut Butter",
+        "categories": "Peanut butters",
+        "ingredients_text": "Roasted peanuts skins on (100%)",
+        "quantity": "280g",
+        "serving_size": "15g",
+        "nutriments": {
+          "energy-kcal_100g": 606,
+          "proteins_100g": 26,
+          "fat_100g": 47,
+          "carbohydrates_100g": 16
+        }
+      }
+    }
+  ]
+}

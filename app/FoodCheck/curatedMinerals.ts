@@ -1,7 +1,8 @@
 import type { UsdaFood } from "./usdaData";
 export type Mineral = "potassium" | "phosphorus";
 export type PreparationBasis = "as-sold" | "dry" | "prepared" | "unknown";
-export type EstimateReference = { label: string; url: string; foodCode?: string; description?: string };
+export type EstimateReference = { label: string; url: string; foodCode?: string; description?: string;
+  valueMg?: number; basis?: PreparationBasis; originalValueMg?: number; originalBasis?: PreparationBasis; factor?: number };
 export type ReviewedEstimate = {
   method: "comparable-food" | "component-calculation";
   basis: PreparationBasis;
@@ -11,6 +12,7 @@ export type ReviewedEstimate = {
 } & ({ kind: "single"; valueMg: number } | { kind: "range"; lowerMg: number; upperMg: number });
 
 export type CuratedMapping = {
+  allowReferenceSearch?: boolean;
   barcode: string;
   product: string;
   source: "CoFID 2021";
@@ -28,7 +30,8 @@ export type CuratedMapping = {
 };
 
 // K/P approvals explicitly authorised for Cheddar, Heinz and Ripple.
-// Bramwell's and preparation tips remain unapproved.
+// Bramwells' rejected USDA comparisons and preparation tips remain unapproved;
+// a fresh complete-product reference search is explicitly allowed below.
 // Comparable CoFID values are read from existing records. Other reviewed results
 // must document their complete-product derivation and nutrient-specific references.
 export const CURATED_MINERALS: readonly CuratedMapping[] = [
@@ -70,6 +73,7 @@ export const CURATED_MINERALS: readonly CuratedMapping[] = [
   },
   {
     barcode: "4061464935198",
+    allowReferenceSearch: true,
     product: "Bramwells Express Chicken Flavour Noodle Bowl, 85g",
     usdaReview: { retrieved: "2026-10-19", fdcIds: [171615, 2709152], potassium: "Hold", phosphorus: "Hold", notes: "USDA SR Legacy 171615 chicken ramen dry reports K183/P115 mg per 100g but lists an 81g package without flavor packet and a separate 6g packet portion. This does not establish complete Bramwells seasoning mineral contributions. FNDDS 2709152 water-added ramen reports K27/P17 and 66kcal per 100g, unlike Bramwells 91kcal/100g prepared; its dilution/seasoning cannot be silently adopted. Branded comparisons found potassium carbonate and/or sodium tripolyphosphate, or omitted K/P. Hold both until a complete seasoned comparator or packet mineral data is available; do not apply dry noodles alone to the 435g bowl." },
     source: "CoFID 2021",
@@ -114,7 +118,7 @@ export const CURATED_MINERALS: readonly CuratedMapping[] = [
         "https://cdn.who.int/media/docs/default-source/micronutrients/gff-part-4-en.pdf?sfvrsn=cdd21d48_2",
       ],
     },
-    explanation: "No comparable CoFID instant-noodle entry. Prepared bowl includes seasoning and retained water; dry egg noodles and dilute chicken-noodle soup are unsuitable substitutes.",
+    explanation: "Prepared bowl includes seasoning and retained water. Old USDA flavour-packet comparisons remain unapproved. A fresh search may use AFCD complete seasoned instant noodles, with declared 85g dry / 435g prepared yield. Plain dry egg noodles remain unsuitable.",
     references: [
       "https://world.openfoodfacts.org/api/v2/product/4061464935198.json",
       "https://images.openfoodfacts.org/images/products/406/146/493/5198/ingredients_en.17.full.jpg",

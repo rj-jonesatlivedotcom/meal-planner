@@ -1,8 +1,9 @@
 import "server-only";
 import { type CategoryProduct } from "./categoryMinerals";
-import { identifyFood, normaliseFood, rankReferences, referenceNumber, type ReferenceCandidate, type ReferenceResolution } from "./referenceMatching";
+import { identifyFood, normaliseFood, rankReferences, selectReferenceGroup, referenceNumber, type ReferenceCandidate, type ReferenceResolution } from "./referenceMatching";
 import type { PreparationBasis } from "./curatedMinerals";
 import type { UsdaFood } from "./usdaData";
+import { supplementalReferences } from "./supplementalReferences";
 
 export type CofidReferenceRow = { food_code: string; food_name: string; energy_kcal: number | null; protein_g: number | null;
   fat_g: number | null; carbohydrate_g: number | null; potassium_mg: number | null; phosphorus_mg: number | null };
@@ -23,7 +24,7 @@ export function createReferenceSearch(deps: {
         for (const key of ["potassium", "phosphorus"] as const) resolution.reasons[key] = "The food type or preparation/weight basis is not sufficiently described to select a comparable food.";
         return resolution;
       }
-      const candidates: ReferenceCandidate[] = [];
+      const candidates: ReferenceCandidate[] = supplementalReferences(product, basis);
       const seenTerms = new Set<string>(), seenQueries = new Set<string>();
       const cofidSearch = async (term: string) => {
           if (seenTerms.has(term)) return;
@@ -46,7 +47,9 @@ export function createReferenceSearch(deps: {
             for (const row of result.data ?? []) {
               if (row.unit !== "g" || row.dataset === "Branded" || row.completeProductUnclear || !row.macros) continue;
               candidates.push({ source: "USDA", code: String(row.fdcId), description: row.description,
-                potassiumMg: row.potassiumMg, phosphorusMg: row.phosphorusMg, macros: row.macros, basis: row.preparation, url: row.url });
+                potassiumMg: row.potassiumMg, phosphorusMg: row.phosphorusMg, macros: row.macros,
+                basis: row.preparation === "unspecified" && row.dataset === "Survey (FNDDS)" ? "prepared" : row.preparation,
+                completeProduct: row.componentDescriptions?.some(t => /seasoning|flavou?r sachet/i.test(t)), url: row.url });
             }
           } catch { resolution.searches.push({ source: "USDA", query, candidates: 0, status: "unavailable" }); }
       };
@@ -57,6 +60,7 @@ export function createReferenceSearch(deps: {
       // At most four CoFID name queries and two USDA queries per uncached food.
       if (ranked.filter(r => r.candidate.source === "CoFID 2021").length < 2 || !ranked.some(r => r.candidate.potassiumMg !== null) || !ranked.some(r => r.candidate.phosphorusMg !== null)) {
         await Promise.all(identity.terms.slice(1, 4).map(cofidSearch));
+        ranked = rank();
         if (!ranked.some(r => r.candidate.source === "USDA")) {
           const evidenced = identity.tokens?.filter(t => candidates.some(c => normaliseFood(c.description).split(" ").includes(t)));
           const broad = evidenced?.length ? identity.query.replace(identity.tokens!.join(" "), evidenced.join(" ")) : identity.terms[0];
@@ -73,8 +77,18 @@ export function createReferenceSearch(deps: {
           resolution.matches[nutrient] = selected.candidate;
           // Every entry passes the same identity, preparation and macro gates.
           // These are observed reference values, not branded-product bounds.
-          resolution.comparables![nutrient] = ranked.map(r => r.candidate).filter(c =>
-            referenceNumber(nutrient === "potassium" ? c.potassiumMg : c.phosphorusMg) !== null).slice(0, 4);
+          const available = ranked.filter(r => referenceNumber(nutrient === "potassium" ? r.candidate.potassiumMg : r.candidate.phosphorusMg) !== null);
+          // Broader categories fill gaps; they do not displace available close
+          // comparisons or widen a range with a different food formulation.
+          const supported = selectReferenceGroup(available).map(r => r.candidate);
+          resolution.matches[nutrient] = supported[0];
+          const amount = (c: ReferenceCandidate) => (nutrient === "potassium" ? c.potassiumMg : c.phosphorusMg)!;
+          const sorted = [...supported].sort((a, b) => amount(a) - amount(b));
+          // Bound stored metadata, not the observed extrema. Never discard a
+          // valid upper endpoint merely because its food code ranks later.
+          resolution.comparables![nutrient] = [...new Map([supported[0], sorted[0], sorted[sorted.length - 1], ...supported.slice(1, 3)]
+            .filter(Boolean).map(c => [c.source + c.code, c])).values()];
+          resolution.note = [identity.note, ...new Set(supported.map(c => c.comparisonNote).filter(Boolean))].join(" ");
         }
         else resolution.reasons[nutrient] = resolution.searches.some(s => s.status !== "ok")
           ? "A reference search was unavailable, and the remaining candidates did not support this mineral."

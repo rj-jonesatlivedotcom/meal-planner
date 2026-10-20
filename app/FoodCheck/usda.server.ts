@@ -56,7 +56,8 @@ export function createUsdaClient(options: {
     async search(query: string, datasets: readonly string[] = USDA_DATASETS): Promise<Result<UsdaFood[]>> {
       const clean = query.trim();
       if (!clean || clean.length > 120 || datasets.some(d => !(USDA_DATASETS as readonly string[]).includes(d))) return { status: "unavailable", data: null };
-      const result = await request("foods/search", { query: clean, dataType: [...datasets], pageSize: 10 });
+      // More candidates in the same cached request; ranking happens after search.
+      const result = await request("foods/search", { query: clean, dataType: [...datasets], pageSize: 40 });
       const foods = (result.data as { foods?: unknown[] } | null)?.foods;
       return { status: result.status, data: result.status === "ok" && Array.isArray(foods) ? foods.map(parseUsdaFood).filter((f): f is UsdaFood => f !== null) : null };
     },

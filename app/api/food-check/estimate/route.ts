@@ -24,6 +24,13 @@ export async function POST(request: Request) {
     product_name_en: string(p.product_name_en, 240),
     ingredients_text: string(p.ingredients_text, 6000), categories_tags: Array.isArray(p.categories_tags) ? p.categories_tags.filter((s: unknown) => typeof s === "string").slice(0, 40) : [],
     nutrition_basis: string(p.nutrition_basis, 240),
+    ...(p.preparationYield?.retainsAllContents === true && Number.isFinite(p.preparationYield.dryGrams) &&
+        Number.isFinite(p.preparationYield.preparedGrams) && p.preparationYield.dryGrams > 0 &&
+        p.preparationYield.preparedGrams > p.preparationYield.dryGrams && p.preparationYield.preparedGrams <= 100000 &&
+        /^https:\/\//.test(string(p.preparationYield.source, 500)) ? { preparationYield: {
+          dryGrams: p.preparationYield.dryGrams, preparedGrams: p.preparationYield.preparedGrams,
+          retainsAllContents: true, source: string(p.preparationYield.source, 500),
+        } } : {}),
     additives_tags: Array.isArray(p.additives_tags) ? p.additives_tags.filter((s: unknown) => typeof s === "string").slice(0, 40) : [],
     nutriments: Object.fromEntries(["energy-kcal_100g", "proteins_100g", "fat_100g", "carbohydrates_100g"].map(key => [key, p.nutriments?.[key]])),
   };

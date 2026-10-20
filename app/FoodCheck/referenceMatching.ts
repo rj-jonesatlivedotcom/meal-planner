@@ -2,9 +2,11 @@ import type { CategoryProduct } from "./categoryMinerals";
 import type { Mineral, PreparationBasis } from "./curatedMinerals";
 
 export type ReferenceMacros = { energyKcal: number | null; protein: number | null; fat: number | null; carbohydrate: number | null };
-export type ReferenceCandidate = { source: "CoFID 2021" | "USDA"; code: string; description: string;
-  potassiumMg: number | null; phosphorusMg: number | null; macros: ReferenceMacros; basis?: string; url: string };
-export type FoodIdentity = { family: string; label: string; terms: string[]; query: string; note: string; ingredients: string; tokens?: string[]; state?: FoodState };
+export type ReferenceCandidate = { source: "CoFID 2021" | "USDA" | "AFCD 3.0"; code: string; description: string;
+  potassiumMg: number | null; phosphorusMg: number | null; macros: ReferenceMacros; basis?: string;
+  completeProduct?: boolean; comparisonNote?: string;
+  original?: { basis: PreparationBasis; potassiumMg: number; phosphorusMg: number; factor: number }; url: string };
+export type FoodIdentity = { family: string; label: string; terms: string[]; query: string; note: string; ingredients: string; tokens?: string[]; state?: FoodState; primary?: string };
 type FoodState = { preparation: string; medium: string; contents: string; fortified: boolean | null };
 
 // Vocabulary normalisation, not barcode mappings or a list of permitted foods.
@@ -17,6 +19,8 @@ export function normaliseFood(value: string): string {
     .replace(/\b(tinned|conserve[sd]?)\b/g, "canned").replace(/\bmaize\b/g, "corn")
     .replace(/\bnot fortified\b/g, "unfortified")
     .replace(/\bpeaches\b/g, "peach").replace(/\bberries\b/g, "berry").replace(/\btomatoes\b/g, "tomato")
+    .replace(/\b(?:chick peas?|chickpeas?|garbanzo(?: beans?)?)\b/g, "chickpea").replace(/\bfish sticks?\b/g, "fish finger")
+    .replace(/\byoghurt\b/g, "yogurt").replace(/\bgroundnut\b/g, "peanut").replace(/\bsweet corn\b/g, "sweetcorn")
     .replace(/\bcorn flakes\b/g, "cornflake").replace(/\b([a-z]{3,})s\b/g, "$1").replace(/[^a-z0-9]+/g, " ").trim();
 }
 export function foodState(p: CategoryProduct, basis: PreparationBasis = "as-sold"): FoodState {
@@ -26,10 +30,11 @@ export function foodState(p: CategoryProduct, basis: PreparationBasis = "as-sold
   const medium = /\bin (?:olive |sunflower |vegetable )?oil\b/.test(text) ? "oil" : /\bbrine\b/.test(text) ? "brine"
     : /\b(?:in |tomato )sauce\b/.test(text) ? (/tomato/.test(text) ? "tomato sauce" : "sauce")
     : /\bsyrup\b/.test(text) ? "syrup" : /\bin (?:fruit |natural |own )?juice\b/.test(text) ? "juice" : /\bin water\b/.test(text) ? "water" : "";
-  const contents = /\b(?:undrained|whole content|solid and liquid|including liquid)\b/.test(name) ? "whole"
-    : /\bdrained\b/.test(name + " " + normaliseFood(p.nutrition_basis ?? "")) ? "drained" : "whole";
-  const preparation = basis === "prepared" || /\b(?:cooked|prepared|boiled|steamed|grilled|fried|microwaved|made with)\b/.test(name) ? "cooked"
-    : basis === "dry" || /\bdry|dried|dehydrated\b/.test(name + " " + normaliseFood(p.categories ?? "")) || /\b(?:rolled |porridge )?oat\b/.test(name) && !/\bcooked\b/.test(name) ? "dry"
+  const basisText = normaliseFood(`${p.nutrition_basis ?? ""} ${(p.ingredients_text ?? "").split(/nutrition/i)[1] ?? ""}`);
+  const contents = /\b(?:undrained|whole content|solid and liquid|including liquid)\b/.test(name + " " + basisText) ? "whole"
+    : /\bdrained\b/.test(name + " " + basisText) ? "drained" : "whole";
+  const preparation = basis === "prepared" || /\bprepared|cooked|heated\b/.test(basisText) || /\b(?:cooked|prepared|boiled|steamed|grilled|fried|microwaved|made with)\b/.test(name) ? "cooked"
+    : basis === "dry" || /\b(?:dry|dried|dehydrated)\b/.test(name + " " + normaliseFood(`${p.categories ?? ""} ${(p.categories_tags ?? []).join(" ")}`)) || /\b(?:rolled |porridge )?oat\b/.test(name) && !/\bcooked\b/.test(name) ? "dry"
     : /\bcanned\b/.test(text) || medium ? "canned" : /\braw|fresh\b/.test(name) ? "raw" : "";
   return { preparation, medium, contents, fortified: /\bunfortified\b/.test(text) ? false : /\bfortified|vitamin|niacin|thiamin\b/.test(text) ? true : null };
 }
@@ -41,6 +46,8 @@ function generalIdentity(p: CategoryProduct, basis: PreparationBasis): FoodIdent
   // Meaningful category terms can recover a vague product name; never rank on
   // macro similarity alone. Unknown brands are tried, then broadened away.
   if (!tokens.length) tokens = [...new Set(tags.split(" ").filter(t => t.length > 2 && !nameNoise.has(t)))].slice(-3);
+  const categoryWords = tags.split(" ").filter(t => t.length > 3 && !nameNoise.has(t) && !new Set(["plant", "based", "beverage", "meal", "product", "food", "vegetable", "fruit", "snack"]).has(t));
+  tokens = [...new Set([...tokens, ...categoryWords.slice(-2)])];
   if (!tokens.length) return null;
   const categoryTokens = new Set(tags.split(" "));
   const searchTokens = [...tokens].sort((a, b) => Number(categoryTokens.has(b)) - Number(categoryTokens.has(a)));
@@ -67,7 +74,18 @@ export function identifyFood(p: CategoryProduct, basis: PreparationBasis = "as-s
   const name = `${p.product_name_en ?? ""} ${p.product_name ?? ""} ${p.generic_name ?? ""}`.toLowerCase();
   const tags = `${(p.categories_tags ?? []).join(" ")} ${p.categories ?? ""}`.toLowerCase();
   const ingredients = (p.ingredients_text ?? "").toLowerCase(), text = name + " " + tags, m = productMacros(p);
-  const make = (family: string, label: string, terms: string[], query: string, note = "") => ({ family, label, terms, query, note, ingredients: name + " " + ingredients });
+  const make = (family: string, label: string, terms: string[], query: string, note = "") => ({ family, label, terms, query, note, ingredients: name + " " + ingredients.replace(/may contain[\s\S]*/i, ""), state: foodState(p, basis) });
+  const normal = normaliseFood(text);
+  const hydrated = ["cooked", "canned"].includes(foodState(p, basis).preparation);
+  const simple = !/soup|cake|juice|puree|salad|curry|sandwich|spread|hummu|rissol|falafel/.test(normal);
+  const legume = /\b(chickpea|lentil|kidney bean|butter bean|black bean|cannellini bean|haricot bean|borlotti bean|pea)\b/.exec(normal)?.[1];
+  const vegetable = /\b(carrot|broccoli|cauliflower|spinach|beetroot|asparagu|green bean|sweetcorn)\b/.exec(normal)?.[1];
+  if (simple && hydrated && legume) return { ...make("hydrated-legumes", "Canned / cooked " + legume, legume === "chickpea" ? ["chick peas", "chickpea", "garbanzo"] : [legume, legume.split(" ").at(-1)!], "+" + legume.split(" ").join(" +") + " +canned", "Hydrated legume comparison; varieties, rinsing and processing differ. Drained and whole contents are kept separate."), primary: legume };
+  if (simple && hydrated && vegetable) return { ...make("vegetables", "Canned / cooked " + vegetable, [vegetable, vegetable + "s"], "+" + vegetable.split(" ").join(" +") + " +canned", "Plain hydrated vegetable comparison; drained and whole contents are kept separate. Canning, heating and varieties differ."), primary: vegetable };
+  const fish = /\b(sardine|mackerel|herring|tuna|salmon|anchovy)\b/.exec(normal)?.[1];
+  if (fish && /canned|brine|in water|in oil|in sauce/.test(normal)) return { ...make("canned-fish", "Canned " + fish, [fish, fish + "s"], "+" + fish + " +canned", "Canned fish comparison; neighbouring fish only where edible bone, contents and composition are compatible. Packing medium and residual oil may differ."), primary: fish };
+  if (/fish finger|fish stick|breaded.*(?:pollock|fish)|(?:pollock|fish).*breaded/.test(normal)) return make("breaded-fish", "Complete breaded white fish", ["fish fingers", "breaded", "fish sticks"], "+fish +sticks", "Complete breaded fish including coating; white-fish species and cooking methods may differ. Label macros screen for major moisture/oil differences; no cooking-weight conversion is assumed.");
+  if (/instant.?noodle|ramen|noodle.?bowl|noodle.?pot/.test(normal)) return make("instant-noodles", "Complete seasoned instant noodles", ["noodles", "ramen"], "+ramen", "Complete seasoned instant noodles including retained water. Whole-product coverage comes from source metadata; plain noodles and ambiguous flavour-packet records are excluded.");
   // Ingredients/profile take precedence over broad OFF frozen-dessert tags.
   if (/cone|cornet|wafer/.test(name) && !/chocolat|filled|sundae/.test(name) && /^\s*wheat flour/.test(ingredients) && (m.carbohydrate ?? 0) > 65 && (m.fat ?? 100) < 12)
     return make("empty-cone", "Empty wafer / ice-cream cone", ["wafer"], "ice cream cones cake wafer", "Empty baked wafer only; excludes ice cream, coatings and fillings.");
@@ -83,8 +101,8 @@ export function identifyFood(p: CategoryProduct, basis: PreparationBasis = "as-s
     return make("coated-biscuit", "Chocolate-coated biscuit bar", ["biscuits", "chocolate covered"], "chocolate coated cookies", "Generic coated biscuit, not plain chocolate. Filling details and additive quantities may be incomplete.");
   if (/tomato/.test(text) && /canned|tinned/.test(text) && !/soup|sauce|paste|puree|purée|dried|beans/.test(name))
     return make("canned-tomatoes", "Canned tomatoes with juice", ["tomatoes"], "tomatoes canned whole contents", "Includes all juice; not drained or concentrated tomato paste.");
-  if (/soup/.test(text) && /chicken/.test(text) && /vegetable|\bveg\b/.test(text))
-    return make("chicken-vegetable-soup", "Complete chicken-and-vegetable soup", ["soup"], "soup chicken vegetable canned ready to serve", "Complete soup including broth, chicken and vegetables. Their proportions may differ; no dilution or cooking-loss adjustment is assumed.");
+  if (/soup/.test(text) && foodState(p, basis).preparation !== "dry")
+    return make("prepared-soup", "Complete prepared soup", ["soup"], /chicken/.test(text) && /vegetable|\bveg\b/.test(text) ? "soup chicken vegetable canned ready to serve" : `+soup +${/chicken/.test(text) ? "chicken" : /tomato/.test(text) ? "tomato" : "vegetable"}`, "Complete prepared soup including supplied broth and solids. Their proportions may differ; no dilution or cooking-loss adjustment is assumed.");
   if (/baked.beans/.test(text)) return make("baked-beans", "Baked beans with sauce", ["baked beans"], "baked beans canned tomato sauce", "Whole contents including sauce, not drained beans.");
   if (/crisp|potato.chips/.test(text) && /potato/.test(ingredients) && !/cheese|barbecue|bacon|vinegar/.test(text + ingredients))
     return make("potato-crisps", "Plain salted potato crisps", ["potato crisps"], "potato chips plain salted", "Generic fried potato crisps; potatoes, oils and processing vary between brands.");
@@ -116,7 +134,7 @@ function generalCompatible(identity: FoodIdentity, candidate: ReferenceCandidate
   }
   if (/season|flavou?r|sauce/.test(identity.ingredients) && /noodle|rice|pasta/.test(identity.ingredients) && !/season|flavou?r|sauce/.test(text)) return false;
   // A carrot in a cake, or sardines in a mixed dish, is not the named food.
-  for (const modifier of ["cake", "soup", "salad", "sauce", "pie", "sandwich", "puree", "juice", "flour", "butter", "frosted", "honey", "chocolate", "nut"]) {
+  for (const modifier of ["cake", "soup", "salad", "sauce", "pie", "sandwich", "puree", "juice", "flour", "butter", "frosted", "honey", "chocolate", "nut", "fruit", "strawberry", "vanilla", "toffee", "soya", "soy", "coconut"]) {
     if (tokens.has(modifier) && !normaliseFood(identity.ingredients).includes(modifier) && modifier !== identity.state?.medium) return false;
   }
   const state = identity.state!;
@@ -141,7 +159,85 @@ function generalCompatible(identity: FoodIdentity, candidate: ReferenceCandidate
   return true;
 }
 
-function compatible(identity: FoodIdentity, candidate: ReferenceCandidate, basis: PreparationBasis): boolean {
+// Composition families accept alternative names and neighbouring products.
+// Tier 0 is the closest food; tier 1 is a documented category comparison.
+function familyComparison(identity: FoodIdentity, c: ReferenceCandidate): number | null | undefined {
+  const t = normaliseFood(c.description), state = identity.state!;
+  const cooked = c.basis === "prepared" || /\b(?:cooked|boiled|heated|grilled|baked|fried|as served|ready to serve|water added|prepared)\b/.test(t);
+  const dry = c.basis !== "prepared" && !cooked && /\b(?:dry|dried|dehydrated|raw|powder)\b/.test(t);
+  const canned = /\bcanned\b/.test(t);
+  const drained = /\bdrained\b/.test(t) && !/\bundrained\b/.test(t);
+  const whole = /whole content|solid and liquid|undrained/.test(t);
+  if (["hydrated-legumes", "vegetables"].includes(identity.family)) {
+    const noun = identity.primary!;
+    if (!t.includes(noun) || dry || !canned && !cooked || /soup|cake|juice|flour|hummu|curry|salad|puree|rissol|pakora|bhaji/.test(t)) return null;
+    if (noun !== "pea" && /\bpea\b/.test(t) || /fat added|with oil|with butter|with margarine/.test(t)) return null;
+    if (state.contents === "drained") {
+      if (whole || canned && !drained && !cooked) return null;
+      return canned && drained ? 0 : 1;
+    }
+    return whole && !drained ? 0 : null;
+  }
+  if (identity.family === "canned-fish") {
+    if (!canned || /sandwich|paste|roe|soup/.test(t)) return null;
+    if (/sauce/.test(t) !== state.medium.includes("sauce")) return null;
+    if (state.medium === "tomato sauce" && !/tomato sauce/.test(t)) return null;
+    if (state.contents === "drained" ? !drained : !whole || drained) return null;
+    if (/boneless|skinless|fillet/.test(identity.ingredients) && !/boneless|skinless|fillet/.test(t)) return null;
+    if (t.includes(identity.primary!)) return state.medium && !t.includes(state.medium) ? 1 : 0;
+    return ["sardine", "herring", "mackerel"].includes(identity.primary!) && /\b(?:sardine|herring|mackerel)\b/.test(t) && /with bone/.test(t) ? 1 : null;
+  }
+  if (identity.family === "breaded-fish") {
+    if (!/fish finger|fish.*breaded|breaded.*fish/.test(t) || /salmon|fishcake|croaker|catfish/.test(t)) return null;
+    if (/raw/.test(t) && state.preparation === "cooked") return null;
+    return 0;
+  }
+  if (identity.family === "instant-noodles") {
+    // Metadata can establish complete seasoning coverage without exact title words.
+    if (!c.completeProduct || c.basis !== (state.preparation === "dry" ? "dry" : "prepared") || drained || !/noodle|ramen/.test(t)) return null;
+    return 0;
+  }
+  if (identity.family === "prepared-soup") {
+    if (!/soup/.test(t) || dry || /stock|broth/.test(t) || /condensed/.test(t) && !cooked) return null;
+    if (!canned && !cooked && c.basis !== "prepared") return null;
+    const product = normaliseFood(identity.ingredients.split(/water|ingredient/i)[0]);
+    const creamy = /cream/.test(product);
+    if (creamy !== /cream/.test(t)) return null;
+    const main = /chicken/.test(product) ? "chicken" : /tomato/.test(product) ? "tomato" : /vegetable/.test(product) ? "vegetable" : "";
+    return main && t.includes(main) && (!/vegetable/.test(product) || /vegetable/.test(t)) ? 0 : 1;
+  }
+  return undefined;
+}
+
+// These checks precede every family path. Trace-allergen notices are not recipes.
+function formulation(text: string) {
+  const t = normaliseFood(text.replace(/may contain[\s\S]*/i, "").replace(/\b(?:no|not|without) (?:added )?(?:nuts?|fruit|chocolate)\b/gi, ""))
+    .replace(/\b(?:plain )?caramel(?= and beta carotene| colour| color)/g, "")
+    .replace(/\bcoconut (?:fat|oil)\b/g, "")
+    .replace(/\bcocoa\b/g, "chocolate").replace(/\b(?:strawberry|raspberry|blueberry|banana|peach|raisin|sultana)\b/g, "fruit");
+  const additions = ["peanut", "hazelnut", "almond", "cashew", "walnut", "pecan", "pistachio", "macadamia", "brazil nut", "nut",
+    "fruit", "coconut", "chocolate",
+    "vanilla", "toffee", "caramel", "honey", "marshmallow", "cheese"].filter(x => new RegExp(`\\b${x}\\b`).test(t));
+  const fat = /\b(?:fat free|0 fat|zero fat|skimmed)\b/.test(t) ? "free"
+    : /\b(?:low fat|reduced fat|semi skimmed)\b/.test(t) ? "low"
+    : /\b(?:full fat|whole milk|full cream)\b/.test(t) ? "full" : "unspecified";
+  return { additions, fat, plain: /\bplain|unflavoured\b/.test(t), flavoured: /\bflavou?r(?:ed)?\b/.test(t) };
+}
+function formulationCompatible(p: CategoryProduct, identity: FoodIdentity, candidate: ReferenceCandidate) {
+  const product = formulation(identity.ingredients + " " + identity.label), reference = formulation(candidate.description);
+  // Variant claims describe the product, not incidental whole-milk powder in a recipe.
+  const claims = formulation(`${p.product_name_en || p.product_name || ""} ${p.generic_name ?? ""}`);
+  if (product.additions.some(x => !reference.additions.includes(x)) || reference.additions.some(x => !product.additions.includes(x))) return false;
+  if (claims.plain && reference.flavoured) return false;
+  if (reference.plain && product.flavoured) return false;
+  return claims.fat === "unspecified" || reference.fat === "unspecified" || claims.fat === reference.fat;
+}
+
+function compatible(p: CategoryProduct, identity: FoodIdentity, candidate: ReferenceCandidate, basis: PreparationBasis): boolean {
+  if (basis === "unknown") return false;
+  if (!formulationCompatible(p, identity, candidate)) return false;
+  const family = familyComparison(identity, candidate);
+  if (family !== undefined) return family !== null;
   const t = candidate.description.toLowerCase();
   for (const ingredient of ["peanut", "hazelnut", "almond", "cashew", "walnut", "raisin", "marshmallow"]) {
     if (new RegExp(`\\b${ingredient}s?\\b`).test(identity.ingredients) && !t.includes(ingredient)) return false;
@@ -150,7 +246,6 @@ function compatible(identity: FoodIdentity, candidate: ReferenceCandidate, basis
   if (identity.family === "food-name") return generalCompatible(identity, candidate, basis);
   if (/condensed|powder|dehydrated|dried/.test(t) && basis !== "dry") return false;
   if (basis === "prepared" && !/as served|ready.to.serve|cooked|prepared/.test(t)) return false;
-  if (basis === "unknown") return false;
   switch (identity.family) {
     case "empty-cone": return /^(?:wafers?\b)|cones.*(?:cake|wafer)|cake.*cones/.test(t) && !/chocolat|sundae|scooped|filled|sandwich|prepackaged/.test(t.replace("not filled", ""));
     case "chocolate-digestive": return /digestive/.test(t) && /chocolat/.test(t) && !/\boat\b|cream|marshmallow/.test(t);
@@ -170,24 +265,48 @@ function compatible(identity: FoodIdentity, candidate: ReferenceCandidate, basis
 export function rankReferences(p: CategoryProduct, identity: FoodIdentity, candidates: ReferenceCandidate[], basis: PreparationBasis) {
   const macros = productMacros(p);
   return candidates.flatMap(candidate => {
-    if (!compatible(identity, candidate, basis)) return [];
+    if (!compatible(p, identity, candidate, basis)) return [];
     const fields = ["energyKcal", "protein", "fat", "carbohydrate"] as const;
     const floors = { energyKcal: 100, protein: 5, fat: 8, carbohydrate: 15 };
     let distance = 0, count = 0;
+    const differences: Partial<Record<typeof fields[number], number>> = {};
     for (const key of fields) {
       const a = macros[key], b = candidate.macros[key];
       if (a === null || b === null) continue;
       const difference = Math.abs(a - b) / Math.max(floors[key], a);
-      if (difference > (key === "energyKcal" ? 0.6 : 1.2)) return [];
+      differences[key] = difference;
+      // Reject major density incompatibility, not every individual macro variation.
+      if (key === "energyKcal" && a > 0 && (b / a < 0.5 || b / a > 2)) return [];
       distance += difference; count++;
     }
-    if (count < 2 || macros.energyKcal === null || candidate.macros.energyKcal === null) return [];
+    if (count < 2) return [];
     // This is a ranking cost, never a clinical confidence score or accuracy claim.
     const identityCost = identity.tokens ? 1 - identity.tokens.filter(t => normaliseFood(candidate.description).split(" ").includes(t)).length / identity.tokens.length : 0;
     const ingredientTokens = normaliseFood(p.ingredients_text ?? "").split(" ").filter(t => t.length > 3 && !nameNoise.has(t));
     const ingredientCost = ingredientTokens.length ? 1 - ingredientTokens.filter(t => normaliseFood(candidate.description).split(" ").includes(t)).length / ingredientTokens.length : 0;
     const cost = distance / count + ingredientCost * 0.05 + (candidate.source === "USDA" ? 0.12 : 0) +
       (identity.family === "coated-biscuit" && /half coated|caramel/i.test(candidate.description) ? 0.08 : 0);
-    return cost <= 0.6 ? [{ candidate, cost, identityCost }] : [];
-  }).sort((a, b) => (a.candidate.source === "USDA" ? 1 : 0) - (b.candidate.source === "USDA" ? 1 : 0) || a.identityCost - b.identityCost || a.cost - b.cost || a.candidate.code.localeCompare(b.candidate.code));
+    const tier = familyComparison(identity, candidate) ?? 0;
+    return cost <= 0.8 ? [{ candidate, cost, identityCost, tier, differences }] : [];
+  }).sort((a, b) => a.tier - b.tier || (a.candidate.source === "CoFID 2021" ? 0 : 1) - (b.candidate.source === "CoFID 2021" ? 0 : 1) || a.identityCost - b.identityCost || a.cost - b.cost || a.candidate.code.localeCompare(b.candidate.code));
+}
+
+// Keep one formulation/identity group, then remove references that are no closer
+// on any observed macro and strictly worse on at least one. No mineral values or
+// arbitrary score window determine membership. Incomplete macro evidence cannot
+// displace a reference with more observed fields.
+export function selectReferenceGroup(ranked: ReturnType<typeof rankReferences>) {
+  if (!ranked.length) return [];
+  const best = ranked[0];
+  const signature = (c: ReferenceCandidate) => {
+    const f = formulation(c.description);
+    return JSON.stringify([f.fat, f.additions, f.plain, f.flavoured]);
+  };
+  const group = ranked.filter(r => r.tier === best.tier && r.identityCost === best.identityCost && signature(r.candidate) === signature(best.candidate));
+  return group.filter(r => !group.some(other => {
+    if (other === r) return false;
+    const keys = Object.keys(r.differences) as (keyof typeof r.differences)[];
+    return keys.every(k => other.differences[k] !== undefined && other.differences[k]! <= r.differences[k]!) &&
+      keys.some(k => other.differences[k]! < r.differences[k]!);
+  }));
 }

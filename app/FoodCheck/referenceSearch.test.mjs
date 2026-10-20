@@ -169,14 +169,14 @@ test('additives retain valid baseline values with independent identified uncerta
   const snap=snapshots.foodSnapshot({potassium:null,phosphorus:null,minerals:resolved},'g','as-sold','test');
   assert.equal(snapshots.snapshotForQuantity(snap,40).nutrients.potassium.additiveUncertainty,resolved.potassium.additiveUncertainty);
   const page=read('app/FoodCheck/page.tsx');
-  assert.ok(page.indexOf('role="alert" className="m-4 rounded-xl border-2 border-red-700')<page.indexOf('<div className={resultStyles.heading}>'));
+  assert.match(page,/Compact additive notice/);assert.match(page,/<details className="mx-4 mb-3/);assert.doesNotMatch(page,/border-2 border-red-700/);
 });
 
-test('curated complete-seasoned-bowl hold cannot be bypassed by generic dry noodle matches',async()=>{
+test('reviewed bowl allows a fresh evidence search but never assumes a value after query failure',async()=>{
   let calls=0;
   const current=await minerals.resolveCuratedMinerals('4061464935198',{potassium:null,phosphorus:null},async()=>null,{basis:'prepared'});
   const r=await categories.resolveCategoryMinerals('4061464935198',{product_name:'Chicken noodle bowl',ingredients_text:'potassium iodate'},current,async()=>null,{basis:'prepared',unit:'g',searchReferences:async()=>{calls++;throw Error('must not search');}});
-  assert.equal(calls,0);assert.equal(r.potassium.valueMg,null);assert.equal(r.phosphorus.valueMg,null);assert.match(r.potassium.additiveUncertainty,/iodate/);
+  assert.equal(calls,1);assert.equal(r.potassium.valueMg,null);assert.equal(r.phosphorus.valueMg,null);assert.match(r.potassium.additiveUncertainty,/iodate/);
 });
 
 test('relaxed matching tolerates unused brand tokens and moderate macro differences, but keeps complete-food distinctions',()=>{

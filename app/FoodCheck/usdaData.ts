@@ -6,6 +6,7 @@ export type UsdaFood = {
   unit: "g" | "ml" | "unknown";
   preparation: "dry" | "prepared" | "unspecified";
   completeProductUnclear: boolean;
+  componentDescriptions?: string[];
   potassiumMg: number | null;
   phosphorusMg: number | null;
   macros?: { energyKcal: number | null; protein: number | null; fat: number | null; carbohydrate: number | null };
@@ -62,8 +63,9 @@ export function parseUsdaFood(value: unknown): UsdaFood | null {
   }
   return {
     fdcId: id, description, dataset, unit, potassiumMg: mineral(1092, "306"), phosphorusMg: mineral(1091, "305"),
-    macros: { energyKcal: macro(1008, "kcal"), protein: macro(1003, "g"), fat: macro(1004, "g"), carbohydrate: macro(1005, "g") },
-    preparation: /\b(dry|raw|dehydrated)\b/i.test(description) ? "dry" : /\b(water added|prepared|cooked|ready.to.serve)\b/i.test(description) ? "prepared" : "unspecified",
+    macros: { energyKcal: macro(1008, "kcal") ?? macro(2047, "kcal") ?? macro(2048, "kcal"), protein: macro(1003, "g"), fat: macro(1004, "g"), carbohydrate: macro(1005, "g") },
+    preparation: /\b(water added|prepared|cooked|ready.to.serve)\b/i.test(description) ? "prepared" : /\b(dry|raw|dehydrated)\b/i.test(description) ? "dry" : "unspecified",
+    componentDescriptions: (Array.isArray(row.inputFoods) ? row.inputFoods : []).map(f => text(object(f).ingredientDescription ?? object(f).foodDescription)).filter((s): s is string => s !== null),
     completeProductUnclear: portions.some(p => /without (?:flavo[u]?r packet|seasoning|sauce)/i.test(p.description)),
     ingredients: text(row.ingredients), brand: text(row.brandName ?? row.brandOwner), barcode: text(row.gtinUpc),
     marketCountry: text(row.marketCountry), dataSource: text(row.dataSource),

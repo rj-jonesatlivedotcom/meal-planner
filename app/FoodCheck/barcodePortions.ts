@@ -1,6 +1,7 @@
 import { scaleMineral, type MineralResults, type PreparationBasis } from "./curatedMinerals";
 import type { NaturalUnit } from "@/lib/foodSnacks";
 import { foodState, identifyFood } from "./referenceMatching";
+import { reviewedLabelBasis } from "./reviewedLabelBasis";
 
 export type BarcodePortion = {
   amount: number | null;
@@ -46,7 +47,7 @@ function manufacturerServing(product: ProductQuantity, pack: BarcodePortion): Ba
     if (!Number.isFinite(supplied) || Math.abs(supplied - amount) > 0.01 || product.serving_quantity_unit !== "g") return pack;
   }
   return { ...pack, amount, label: `Manufacturer serving (${amount}g${pack.basis === "dry" ? " dry" : state.contents === "drained" ? " drained" : ""})`,
-    wholePack: pack.amount && pack.amount !== amount ? { amount: pack.amount, label: pack.label } : undefined };
+    limitation: "", wholePack: pack.amount && pack.amount !== amount ? { amount: pack.amount, label: pack.label } : undefined };
 }
 
 // Exact-barcode label evidence from the existing research. Prepared yield is the
@@ -115,6 +116,7 @@ function baseBarcodePortion(code: string, product: ProductQuantity): BarcodePort
 }
 
 export function barcodePortion(code: string, product: ProductQuantity): BarcodePortion {
+  product = reviewedLabelBasis(code, product);
   const base = baseBarcodePortion(code, product);
   let pack = manufacturerServing(product, base);
   if (pack.referenceLabel.includes("unconfirmed")) return pack;

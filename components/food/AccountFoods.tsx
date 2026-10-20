@@ -100,7 +100,7 @@ export function AddSnack({ owner, barcode, name, snapshot, quantity, open, onClo
     <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">Complete product, including supplied sauce or seasoning · {snapshot.basis} · planned, not recorded as eaten.</p>
     <div className={resultStyles.plannerFields}>
       <label className="text-sm">Date<input aria-label="Snack planner date" type="date" value={date} onChange={e => setDate(e.target.value)} className="mt-1 block rounded-lg border bg-white dark:bg-slate-800 p-2 text-slate-900 dark:text-slate-100" /></label>
-      <QuantityFields snapshot={snapshot} value={entry} onChange={setEntry} label="Quantity" />
+      <QuantityFields snapshot={snapshot} value={entry} onChange={setEntry} label="Quantity" showSource />
     </div>
     <div className={resultStyles.formActions}><button type="button" disabled={saving || saved} onClick={() => void save()} className={`${foodActionStyles.primary} ${resultStyles.confirm}`}>{saving ? "Adding…" : saved ? "Snack added ✓" : "Confirm addition"}</button>{onClose && <button type="button" disabled={saving} onClick={onClose} className="rounded-xl border px-4 py-2">Close</button>}</div>
     {message && <p role="alert" className="mt-3 text-sm font-medium text-rose-700 dark:text-rose-300">{message}</p>}

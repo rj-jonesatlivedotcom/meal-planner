@@ -37,12 +37,14 @@ const nameNoise = new Set("a an the and with in of for from natural organic esse
 function generalIdentity(p: CategoryProduct, basis: PreparationBasis): FoodIdentity | null {
   const name = normaliseFood(`${p.product_name_en || p.product_name || ""} ${p.generic_name ?? ""}`);
   const tags = normaliseFood(`${p.categories ?? ""} ${(p.categories_tags ?? []).join(" ")}`);
-  let tokens = [...new Set(name.split(" ").filter(t => t.length > 2 && !nameNoise.has(t) && !/^\d/.test(t)))].slice(0, 4);
+  let tokens = [...new Set(name.split(" ").filter(t => t.length > 2 && !nameNoise.has(t) && !/^\d/.test(t)))].slice(-6);
   // Meaningful category terms can recover a vague product name; never rank on
   // macro similarity alone. Unknown brands are tried, then broadened away.
   if (!tokens.length) tokens = [...new Set(tags.split(" ").filter(t => t.length > 2 && !nameNoise.has(t)))].slice(-3);
   if (!tokens.length) return null;
-  const state = foodState(p, basis), terms = [tokens.join(" "), ...tokens].filter((t, i, a) => a.indexOf(t) === i);
+  const categoryTokens = new Set(tags.split(" "));
+  const searchTokens = [...tokens].sort((a, b) => Number(categoryTokens.has(b)) - Number(categoryTokens.has(a)));
+  const state = foodState(p, basis), terms = [tokens.join(" "), ...searchTokens].filter((t, i, a) => a.indexOf(t) === i);
   const qualifier = [state.preparation, state.medium, state.contents === "drained" ? "drained" : state.preparation === "canned" ? "solids and liquid" : ""].filter(Boolean).join(" ");
   return { family: "food-name", label: `${tokens.join(" ")} ${qualifier}`.trim(), terms,
     query: `${tokens.join(" ")} ${qualifier}`.trim(), tokens, state, ingredients: `${name} ${normaliseFood(p.ingredients_text ?? "")}`,

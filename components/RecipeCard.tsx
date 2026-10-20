@@ -5,6 +5,7 @@ import { useWeeklyPageStorage, afterWeeklyPageWrites } from "@/lib/weeklyPageSto
 import RecipePhoto from "./RecipePhoto";
 import styles from "./recipe-design.module.css";
 import RecipeNutrition from "./RecipeNutrition";
+import RecipeIcon from "./RecipeIcon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -674,11 +675,7 @@ export default function RecipeCard({
         }
         aria-pressed={isFavourite}
         disabled={!userId}
-        className={`absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border bg-white/95 text-2xl shadow-md backdrop-blur-sm transition ${
-          isFavourite
-            ? "border-red-200 text-red-500"
-            : "border-slate-200 text-slate-500 hover:border-red-200 hover:text-red-400"
-        } ${!userId ? "cursor-not-allowed opacity-70" : ""}`}
+        className={styles.cardFavourite}
       >
         {isFavourite ? "♥" : "♡"}
       </button>
@@ -768,63 +765,10 @@ export default function RecipeCard({
 
         </Link>
 
-        {/* =================================================
-            BOTTOM CONTROLS
-            ================================================= */}
-
-        <div
-          className="
-            mt-4
-            flex
-            flex-wrap
-            items-center
-            justify-end
-            gap-2
-
-            sm:mt-auto
-            sm:pt-4
-
-            md:mt-auto
-            md:pt-5
-          "
-        >
-
-          <Link href={`/recipes/${recipe.id}`} onClick={trackRecipeViewed} className="mr-auto py-3 text-sm font-semibold text-slate-600 hover:text-green-700">View recipe <span aria-hidden="true">↗</span></Link>
-
-          {/* Add to Planner */}
-          <button
-            type="button"
-            onClick={openPlanner}
-            className="
-              inline-flex
-              min-h-11
-              items-center
-              justify-center
-              whitespace-nowrap
-              rounded-xl
-              bg-green-700
-              px-4
-              text-sm
-              font-semibold
-              text-white
-              shadow-sm
-              transition
-              hover:bg-green-800
-              hover:shadow-md
-              !text-white
-            "
-            style={{ color: "#ffffff" }}
-          >
-            <span
-              className="!text-white"
-              style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
-            >
-              📅 Add to Planner
-            </span>
-          </button>
-
+        <div className={styles.cardActions}>
+          <Link href={`/recipes/${recipe.id}`} onClick={trackRecipeViewed}>View recipe <span aria-hidden="true">&rarr;</span></Link>
+          <button type="button" onClick={openPlanner} className={styles.primary}><RecipeIcon name="planner" />Add to Planner</button>
         </div>
-
       </div>
 
       {/* ===================================================

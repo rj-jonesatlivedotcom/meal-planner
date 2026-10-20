@@ -5,6 +5,9 @@ import { useWeeklyPageStorage, navigateWeeklyPage } from "@/lib/weeklyPageStorag
 import RecipePhoto from "@/components/RecipePhoto";
 import styles from "@/components/recipe-design.module.css";
 import RecipeNutrition from "@/components/RecipeNutrition";
+import RecipeIcon from "@/components/RecipeIcon";
+import IngredientIcon from "@/components/IngredientIcon";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
@@ -628,191 +631,85 @@ export default function RecipeDetailPage() {
     );
   }
 
+  const relatedRecipes = recipes.filter((item) => item.id !== recipe.id && item.category === recipe.category).slice(0, 4);
+
   return (
-    <main className={`${styles.detail} mx-auto max-w-6xl px-4 pb-20 pt-4 sm:px-6 sm:pb-24 sm:pt-6`}>
-
-      {/* Shared responsive recipe detail */}
-      <div>
-
-        <div className="mb-6">
-          <button
-            type="button"
-            onClick={() => window.history.back()}
-            className="inline-flex items-center rounded-lg px-1 py-1 text-sm font-semibold text-slate-600 transition hover:text-orange-600"
-          >
-            ← Back
+    <main className={styles.detail}>
+      <Link href="/recipes" className={styles.backLink}>&larr; Back to recipes</Link>
+      <section className={styles.hero} aria-label="Recipe overview">
+        <div className={styles.heroPhoto}><RecipePhoto src={recipe.image} name={recipe.name} priority /></div>
+        <div className={styles.heroContent}>
+          <div className={styles.heroTop}>
+            <span className={styles.category}>{getDefaultMealType(recipe.code)}</span>
+            <button type="button" onClick={toggleFavourite} aria-pressed={isFavourite} className={styles.favourite}>
+              <RecipeIcon name="heart" /> {isFavourite ? "Favourited" : "Favourite"}
+            </button>
+          </div>
+          {showLoginMessage && <p role="status">Please log in to save favourite recipes.</p>}
+          <h1>{recipe.name}</h1>
+          <p>{recipe.description}</p>
+          <div className={styles.meta}>
+            <span><RecipeIcon name="time" />{recipe.cookingTime}</span>
+            <span><RecipeIcon name="servings" />{recipe.servings} {recipe.servings === 1 ? "serving" : "servings"}</span>
+          </div>
+          <RecipeNutrition values={[
+            ["Calories", recipe.nutrition.calories], ["Protein", recipe.nutrition.protein],
+            ["Potassium", recipe.nutrition.potassium], ["Phosphorus", recipe.nutrition.phosphate],
+          ]} />
+          <button type="button" onClick={openPlanner} className={styles.primary}>
+            <RecipeIcon name="planner" />{placements.length > 0 ? "Add Another to Planner" : "Add to Planner"}
           </button>
         </div>
-
-        <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-          <div className={styles.hero}>
-
-            <div className={styles.heroPhoto}>
-              <RecipePhoto src={recipe.image} name={recipe.name} priority />
-            </div>
-
-            <div className="flex flex-col p-5 sm:p-8 lg:p-10">
-              <div className="mb-5 flex items-start justify-between gap-6">
-                <span className="inline-flex rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-600">
-                  {getDefaultMealType(recipe.code ?? "")}
-                </span>
-
-                <button
-                  type="button"
-                  onClick={toggleFavourite}
-                  aria-pressed={isFavourite}
-                  className={`rounded-xl px-4 py-2 text-sm font-semibold shadow-sm transition ${
-                    isFavourite
-                      ? "bg-orange-500 text-white hover:bg-orange-600"
-                      : "border border-orange-300 bg-orange-50 text-orange-700 hover:bg-orange-100"
-                  }`}
-                >
-                  {isFavourite
-                    ? "★ Favourite"
-                    : "☆ Favourite"}
-                </button>
-
-              </div>
-
-              {showLoginMessage && (
-                <div
-                  role="status"
-                  className="mb-4 rounded-xl bg-[#0B3B75] px-4 py-3 text-sm font-semibold text-white"
-                >
-                  🔒 Please log in to save favourite recipes.
-                </div>
-              )}
-
-              <h1 className="max-w-xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl text-slate-900">
-                {recipe.name}
-              </h1>
-
-              <p className="mt-5 max-w-xl text-base leading-7 text-slate-600">
-                {recipe.description}
-              </p>
-
-               <div className="mt-7 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
-                 <div className="grid grid-cols-2 divide-x divide-slate-200">
-
-                   <div className="px-4 py-5 text-center">
-                     <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Time</div>
-                     <div className="mt-1 text-base font-bold text-slate-900">{recipe.cookingTime}</div>
-                   </div>
-
-                   <div className="px-4 py-5 text-center">
-                     <div className="text-[10px] font-bold uppercase tracking-wide text-orange-500">Servings</div>
-                     <div className="mt-1 text-base font-bold text-slate-900">{recipe.servings}</div>
-                   </div>
-
-                 </div>
-               </div>
-
-              <RecipeNutrition values={[
-                ["Calories", recipe.nutrition.calories], ["Protein", recipe.nutrition.protein],
-                ["Potassium", recipe.nutrition.potassium], ["Phosphorus", recipe.nutrition.phosphate],
-              ]} />
-              <button
-                type="button"
-                onClick={openPlanner}
-                className={`${styles.primary} mt-6 min-h-12 w-full rounded-xl bg-green-700 px-5 py-3.5 text-base font-bold shadow-sm transition hover:bg-green-800`}
-                style={{ color: "#ffffff" }}
-              >
-                {placements.length > 0
-                  ? "📅 Add Another to Planner"
-                  : "📅 Add to Planner"}
-              </button>
-            </div>
-
+      </section>
+      <div className={styles.sections}>
+        <section className={styles.panel} aria-labelledby="recipe-ingredients">
+          <div className={styles.panelHeading}>
+            <h2 id="recipe-ingredients"><RecipeIcon name="ingredients" />Ingredients</h2>
+            <span>{recipe.servings} {recipe.servings === 1 ? "serving" : "servings"}</span>
+          </div>
+          <ul className={styles.ingredients}>
+            {recipe.ingredients.map((ingredient, index) => <li key={index}>
+              <IngredientIcon item={ingredient.item} />
+              <div><strong>{ingredient.item}</strong><small>{ingredient.quantity}</small></div>
+            </li>)}
+          </ul>
+          <div className={styles.equipment}>
+            <h3><RecipeIcon name="method" />Equipment</h3>
+            <p>{recipe.equipment}</p>
           </div>
         </section>
-
-        <section className={styles.sections}>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
-            <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
-              Ingredients
-            </h2>
-
-            <ul className="space-y-3">
-              {recipe.ingredients.map((ingredient, index) => (
-                <li
-                  key={index}
-                  className="flex gap-3 border-b border-slate-100 pb-3 last:border-0 last:pb-0"
-                >
-                  <span className="mt-1 text-orange-500">•</span>
-                  <span className="text-base leading-7 text-slate-700">
-                    <strong className="font-semibold text-slate-900">
-                      {ingredient.quantity}
-                    </strong>{" "}
-                    {ingredient.item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-7 rounded-xl bg-slate-50 p-4">
-              <h3 className="mb-1 text-sm font-bold text-slate-900">Equipment</h3>
-              <p className="text-sm leading-6 text-slate-600">{recipe.equipment}</p>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
-            <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
-              Method
-            </h2>
-
-            <ol className="space-y-6">
-              {recipe.method.map((step, index) => (
-                <li key={index} className="flex gap-4">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-50 text-xs font-extrabold text-orange-600">
-                    {index + 1}
-                  </span>
-                  <span className="pt-0.5 text-base leading-7 text-slate-700">
-                    {step}
-                  </span>
-                </li>
-              ))}
-            </ol>
-          </div>
-
+        <section className={styles.panel} aria-labelledby="recipe-method">
+          <div className={styles.panelHeading}><h2 id="recipe-method"><RecipeIcon name="method" />Method</h2></div>
+          <ol className={styles.method}>
+            {recipe.method.map((step, index) => <li key={index}><span aria-hidden="true">{index + 1}</span><p>{step}</p></li>)}
+          </ol>
         </section>
-
-        <section className={styles.sections}>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
-            <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
-              Nutrition
-            </h2>
-
-            <div className="grid grid-cols-2 gap-3 text-sm">
-              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Calories</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.calories}</strong></div>
-              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Protein</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.protein}</strong></div>
-              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Carbohydrates</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.carbohydrates}</strong></div>
-              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Fat</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.fat}</strong></div>
-              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Fibre</span><strong className="text-slate-900 dark:text-slate-100">{recipe.nutrition.fibre}</strong></div>
-              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"><span className="block text-xs font-semibold text-slate-800 dark:text-slate-200">Salt (g)</span><strong className="text-slate-900 dark:text-slate-100">{formatSalt(recipe.nutrition.sodium)}</strong></div>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
-            <h2 className="mb-5 text-2xl font-extrabold text-slate-900">
-              Dietary Guide
-            </h2>
-
-            <div className="space-y-3">
-              <div className="rounded-xl border border-slate-300 bg-slate-50 p-4 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
-                <p className="leading-6">{getDietaryGuide(recipe)}</p>
-              </div>
-              <details className="text-xs leading-5 text-slate-500 dark:text-slate-400">
-                <summary className="cursor-pointer py-2 font-semibold">Nutrition information</summary>
-                <p className="mt-1">{getNutritionEvidenceText(recipe)}</p>
-              </details>
-            </div>
-          </div>
-
-        </section>
-
       </div>
+      <div className={styles.lowerSections}>
+        <section className={styles.panel} aria-labelledby="recipe-nutrition">
+          <div className={styles.panelHeading}><h2 id="recipe-nutrition">Nutrition <small style={{fontSize: ".7rem", fontWeight: 400}}>(per serving)</small></h2></div>
+          <RecipeNutrition detailed values={[
+            ["Calories", recipe.nutrition.calories], ["Protein", recipe.nutrition.protein],
+            ["Carbohydrates", recipe.nutrition.carbohydrates], ["Fat", recipe.nutrition.fat],
+            ["Fibre", recipe.nutrition.fibre], ["Salt", recipe.nutrition.salt ?? formatSalt(recipe.nutrition.sodium)],
+            ["Potassium", recipe.nutrition.potassium], ["Phosphorus", recipe.nutrition.phosphate],
+          ]} />
+          <details className={styles.evidence}><summary>About this nutrition information</summary><p>{getNutritionEvidenceText(recipe)}</p></details>
+        </section>
+        <section className={styles.guidePanel} aria-labelledby="recipe-guide">
+          <h2 id="recipe-guide"><RecipeIcon name="Potassium" />Dietary Guide</h2>
+          <p>{getDietaryGuide(recipe)}</p>
+        </section>
+      </div>
+      {relatedRecipes.length > 0 && <section className={styles.related} aria-labelledby="related-recipes">
+        <div className={styles.panelHeading}><h2 id="related-recipes"><RecipeIcon name="star" />You might also like</h2><Link href="/recipes">View all recipes &rarr;</Link></div>
+        <div className={styles.relatedGrid}>
+          {relatedRecipes.map((item) => <Link className={styles.relatedCard} href={`/recipes/${item.id}`} key={item.id}>
+            <div className={styles.relatedPhoto}><RecipePhoto src={item.image} name={item.name} /></div>
+            <strong>{item.name}</strong><small><RecipeIcon name="time" />{item.cookingTime}</small>
+          </Link>)}
+        </div>
+      </section>}
 
       {showPlanner && (
         <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 p-4 sm:items-center">

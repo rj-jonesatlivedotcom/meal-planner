@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "@/components/recipe-design.module.css";
+import RecipeIcon from "@/components/RecipeIcon";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
@@ -722,7 +723,7 @@ export default function RecipesPage() {
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
         <header className="mb-6 pt-2 sm:mb-8 sm:pt-4">
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-green-700 dark:text-green-300">The RenalPlan kitchen</p>
-          <h1 className={styles.discoveryTitle}>Good food. Something for every day.</h1>
+          <h1 className={styles.discoveryTitle}>Find your next favourite recipe.</h1>
           <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300">Find your next favourite, explore the nutrition and make it part of your week.</p>
         </header>
         <nav aria-label="Recipe categories" className={styles.categories}>
@@ -769,7 +770,7 @@ export default function RecipesPage() {
                 }
                 className="flex h-14 w-[210px] items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-5 font-semibold text-slate-900 shadow-sm transition hover:bg-blue-50"
               >
-                <span aria-hidden="true">☷</span>
+                <RecipeIcon name="filters" />
                 Filters &amp; Sort
                 <span
                   className="text-sm"
@@ -999,7 +1000,7 @@ export default function RecipesPage() {
                 }
                 className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-3 font-semibold shadow-sm transition hover:bg-gray-50"
               >
-                🔎 Search &amp; Sort
+                <RecipeIcon name="filters" /> Search &amp; Sort
                 <span className="text-sm">
                   {showFilters ? "▲" : "▼"}
                 </span>
@@ -1237,24 +1238,8 @@ export default function RecipesPage() {
         {/* =====================================================
             DESKTOP RECIPE COUNT BAR
             ===================================================== */}
-        <div className="mb-4 hidden rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 md:flex md:items-center md:justify-between md:gap-4 md:px-5">
-
-          {/* Requirement count */}
-          <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-green-600 text-2xl font-bold text-white shadow-sm">
-              ✓
-            </div>
-
-            <div className="min-w-0">
-              <div className="font-bold text-green-700">
-                {filteredRecipeCount} {filteredRecipeCount === 1 ? "recipe" : "recipes"} found with your current filters
-              </div>
-
-              <div className="text-sm text-slate-500">
-                Results update as you search, filter by meal type or protein, choose favourites, or change the sort order.
-              </div>
-            </div>
-          </div>
+        <div className={styles.resultsBar}>
+          <p aria-live="polite">{filteredRecipeCount} {filteredRecipeCount === 1 ? "recipe" : "recipes"}</p>
 
           {/* Meal type quick filters */}
           <div className="flex shrink-0 items-center gap-2">
@@ -1297,7 +1282,7 @@ export default function RecipesPage() {
             RECIPES
             ===================================================== */}
         {filteredRecipes.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className={styles.recipeGrid}>
             {filteredRecipes.map((recipe, index) => (
               <Fragment key={recipe.id}>
                 <RecipeCard

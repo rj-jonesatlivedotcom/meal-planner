@@ -2,6 +2,7 @@ import type { UsdaFood } from "./usdaData";
 export type Mineral = "potassium" | "phosphorus";
 export type PreparationBasis = "as-sold" | "dry" | "prepared" | "unknown";
 export type EstimateReference = { label: string; url: string; foodCode?: string; description?: string;
+  unit?: "g" | "ml"; conversion?: { from: "g"; to: "ml"; factor: number; evidence: string; url: string };
   valueMg?: number; basis?: PreparationBasis; originalValueMg?: number; originalBasis?: PreparationBasis; factor?: number };
 export type ReviewedEstimate = {
   method: "comparable-food" | "component-calculation";
@@ -137,6 +138,7 @@ export type CofidMinerals = {
   phosphorus_mg: number | null;
 };
 export type MineralResult = {
+  diagnostics?: import("./referenceMatching").MineralDiagnostic;
   additiveUncertainty?: string;
   sourceState?: "reported" | "missing" | "questionable";
   reason?: string;

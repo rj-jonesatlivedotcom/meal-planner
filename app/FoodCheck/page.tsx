@@ -12,7 +12,7 @@ import { useFoodAccount, notifyFoodAccount } from "@/lib/useFoodAccount";
 import { foodSnapshot, initialQuantityEntry, quantityEquivalent, displayQuantity, type QuantityEntry } from "@/lib/foodSnacks";
 import QuantityFields from "@/components/food/QuantityFields";
 import resultStyles from "@/components/food/FoodResult.module.css";
-import { resolveCategoryMinerals, questionableMineralZeros } from "./categoryMinerals";
+import { resolveCategoryMinerals, questionableMineralZeros, referenceSearchFailure } from "./categoryMinerals";
 
 type CofidRow = Record<string, unknown>;
 
@@ -702,18 +702,23 @@ export default function FoodCheckPage() {
       food.minerals = await resolveCategoryMinerals(code, product, food.minerals, loadCofid, {
         basis: food.portion.basis, unit: food.portion.unit, loadUsda,
         searchReferences: async (p, basis, unit) => {
+          try {
           const response = await fetch("/api/food-check/estimate", { method: "POST", headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ basis, unit, product: { product_name: p.product_name ?? p.product_name_en, product_name_en: p.product_name_en, generic_name: p.generic_name,
               categories: p.categories, categories_tags: p.categories_tags, ingredients_text: p.ingredients_text, additives_tags: p.additives_tags,
               nutrition_basis: p.nutrition_basis,
+              nutrition_data_per: p.nutrition_data_per,
               preparationYield: p.preparationYield,
               nutriments: Object.fromEntries(["energy-kcal_100g", "proteins_100g", "fat_100g", "carbohydrates_100g"].map(key => [key, p.nutriments?.[key]])) } }),
             signal: AbortSignal.timeout(25000) });
-          if (!response.ok) return null;
+          if (!response.ok) return referenceSearchFailure(`estimate-api-http-${response.status}`);
           const result = await response.json();
-          if (!result?.matches || !result?.reasons || !Array.isArray(result.searches)) return null;
+          if (!result?.matches || !result?.reasons || !Array.isArray(result.searches)) return referenceSearchFailure("estimate-api-invalid-response");
           if (result.classification) food.category = result.classification;
           return result;
+          } catch (error) {
+            return referenceSearchFailure(error instanceof Error && error.name === "TimeoutError" ? "estimate-api-timeout" : "estimate-api-network-or-json-failure");
+          }
         },
       });
       if (requestId !== searchRequestRef.current) return;

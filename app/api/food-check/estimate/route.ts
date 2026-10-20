@@ -24,6 +24,7 @@ export async function POST(request: Request) {
     product_name_en: string(p.product_name_en, 240),
     ingredients_text: string(p.ingredients_text, 6000), categories_tags: Array.isArray(p.categories_tags) ? p.categories_tags.filter((s: unknown) => typeof s === "string").slice(0, 40) : [],
     nutrition_basis: string(p.nutrition_basis, 240),
+    nutrition_data_per: string(p.nutrition_data_per, 20),
     ...(p.preparationYield?.retainsAllContents === true && Number.isFinite(p.preparationYield.dryGrams) &&
         Number.isFinite(p.preparationYield.preparedGrams) && p.preparationYield.dryGrams > 0 &&
         p.preparationYield.preparedGrams > p.preparationYield.dryGrams && p.preparationYield.preparedGrams <= 100000 &&
@@ -50,6 +51,7 @@ export async function POST(request: Request) {
       throw new Error("Reference search is too broad");
     },
     usda: query => usdaClient.search(query, ["SR Legacy", "Foundation", "Survey (FNDDS)"]),
+    usdaFood: id => usdaClient.food(id),
   });
   return Response.json(await resolve(product, body.basis, body.unit), { headers: { "Cache-Control": "private, no-store" } });
 }

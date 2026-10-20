@@ -1,4 +1,4 @@
-import { CURATED_MINERALS, type CofidMinerals, type Mineral, type MineralResults, type PreparationBasis } from "./curatedMinerals";
+import { type CofidMinerals, type Mineral, type MineralResults, type PreparationBasis } from "./curatedMinerals";
 import type { UsdaFood } from "./usdaData";
 import { identifyFood, type ReferenceResolution } from "./referenceMatching";
 import { reviewedLabelBasis, type PreparationYield } from "./reviewedLabelBasis";
@@ -8,9 +8,20 @@ export type CategoryProduct = {
   ingredients_text?: string; additives_tags?: string[]; data_sources?: string;
   generic_name?: string;
   nutrition_basis?: string;
+  nutrition_data_per?: string;
   preparationYield?: PreparationYield;
   nutriments?: Record<string, unknown>;
 };
+// Technical accountability stays in metadata, never in user-facing banners.
+export function referenceSearchFailure(code: string): ReferenceResolution {
+  const result: ReferenceResolution = { classification: null, matches: {}, reasons: {}, searches: [], diagnostics: {} };
+  for (const key of ["potassium", "phosphorus"] as const) {
+    result.reasons[key] = "The reference search is temporarily unavailable; no comparison has been assumed.";
+    result.diagnostics![key] = { attemptedLevels: [2], candidates: 0, admitted: 0, missingMineral: 0,
+      rejections: {}, limitations: [code], outcome: "reference-service-unavailable" };
+  }
+  return result;
+}
 type Rule = {
   id: string; approved: Readonly<Record<Mineral, boolean>>;
   reference: { source: "CoFID 2021" | "USDA"; code: string; description: string };
@@ -96,32 +107,36 @@ export async function resolveCategoryMinerals(code: string, p: CategoryProduct, 
     const concern = additiveConcern(p, key);
     if (concern) results[key].additiveUncertainty = concern;
   }
-  // Approved comparisons stay first; a reviewed hold may allow a new search,
-  // without authorising the previously rejected reference.
-  if (CURATED_MINERALS.some(mapping => mapping.barcode === code && !mapping.allowReferenceSearch)) return results;
+  // Supplied and verified values stay first. If a reviewed reference could not
+  // be loaded, continue discovery without authorising that failed reference.
   const rule = categoryRule(p);
   const wanted = (["potassium", "phosphorus"] as const).filter(key => results[key].provenance === "unavailable");
   if (!wanted.length) return results;
   if (options.searchReferences) {
     let resolution: ReferenceResolution | null = null;
-    try { resolution = await options.searchReferences(p, options.basis, options.unit); } catch { /* Existing reviewed comparisons remain a fallback. */ }
+    try { resolution = await options.searchReferences(p, options.basis, options.unit); }
+    catch { resolution = referenceSearchFailure("estimate-request-failed"); }
+    resolution ??= referenceSearchFailure("estimate-response-unavailable");
     if (resolution) {
       for (const key of wanted) {
+        const diagnostic = resolution.diagnostics?.[key];
+        if (diagnostic) results[key].diagnostics = { ...diagnostic, attemptedLevels: [1, ...diagnostic.attemptedLevels] };
         const candidate = resolution.matches[key];
         const value = key === "potassium" ? candidate?.potassiumMg : candidate?.phosphorusMg;
-        if (candidate && typeof value === "number" && Number.isFinite(value) && value >= 0 && options.unit === "g" && options.basis !== "unknown") {
+        if (candidate && typeof value === "number" && Number.isFinite(value) && value >= 0 && (candidate.unit ?? "g") === options.unit && options.basis !== "unknown") {
           const references = [...new Map([candidate, ...(resolution.comparables?.[key] ?? [])].map(c => [c.source + c.code, c])).values()]
-            .filter(c => { const n = key === "potassium" ? c.potassiumMg : c.phosphorusMg; return typeof n === "number" && Number.isFinite(n) && n >= 0; });
+            .filter(c => { const n = key === "potassium" ? c.potassiumMg : c.phosphorusMg; return (c.unit ?? "g") === options.unit && typeof n === "number" && Number.isFinite(n) && n >= 0; });
           const values = references.map(c => (key === "potassium" ? c.potassiumMg : c.phosphorusMg)!);
           const lower = Math.min(...values), upper = Math.max(...values);
           const range = lower < upper;
           results[key] = { ...results[key], valueMg: upper, provenance: "estimated", categoryId: `reference-search:${key}:${references.map(c => c.source + c.code).join(":")}`, reason: undefined,
             ...(range ? { rangeMg: { lower, upper } } : {}),
             estimate: { ...(range ? { kind: "range", lowerMg: lower, upperMg: upper } : { kind: "single", valueMg: upper }), method: "comparable-food", basis: options.basis, completeProduct: true,
-              explanation: `${resolution.note || "Generic complete-food comparison; ingredients and formulations may differ."} ${range ? `Observed comparable-reference range: ${lower}–${upper} mg per 100g; derived from the minimum and maximum of the listed references on the same preparation basis. These are not guaranteed bounds for this branded product. The upper endpoint is used for numerical planning.` : "Single-value baseline estimate; no supported reference range is available."}`,
+              explanation: `${resolution.note || "Generic complete-food comparison; ingredients and formulations may differ."} ${range ? `Observed comparable-reference range: ${lower}–${upper} mg per 100${options.unit}; derived from the minimum and maximum of the listed references on the same preparation basis. These are not guaranteed bounds for this branded product. The upper endpoint is used for numerical planning.` : "Single-value baseline estimate; no supported reference range is available."}`,
               references: references.map(c => ({ label: c.source === "USDA" ? `USDA FoodData Central FDC ID ${c.code}` : c.source,
                 foodCode: c.source !== "USDA" ? c.code : undefined, description: c.description, url: c.url,
                 valueMg: (key === "potassium" ? c.potassiumMg : c.phosphorusMg)!, basis: options.basis,
+                unit: options.unit, ...(c.conversion ? { conversion: c.conversion } : {}),
                 ...(c.original ? { originalValueMg: key === "potassium" ? c.original.potassiumMg : c.original.phosphorusMg,
                   originalBasis: c.original.basis, factor: c.original.factor } : {}) })) } };
         } else results[key].reason = resolution.reasons[key] ?? "No suitable reference nutrient was available.";
@@ -130,9 +145,12 @@ export async function resolveCategoryMinerals(code: string, p: CategoryProduct, 
     }
   }
   if (!rule || options.unit !== "g" || options.basis !== "as-sold") {
-    for (const key of wanted) results[key].reason ??= options.searchReferences
-      ? "The reference search is temporarily unavailable; no comparison has been assumed."
-      : "No approved comparable food for this product type and preparation basis.";
+    for (const key of wanted) {
+      results[key].reason ??= options.searchReferences ? "The reference search is temporarily unavailable; no comparison has been assumed."
+        : "No approved comparable food for this product type and preparation basis.";
+      results[key].diagnostics ??= { attemptedLevels: [1], candidates: 0, admitted: 0, missingMineral: 0,
+        rejections: {}, limitations: ["reference-search-not-provided"], outcome: "reference-service-unavailable" };
+    }
     return results;
   }
   const eligible = wanted.filter(key => rule.approved[key] && results[key].provenance === "unavailable");
@@ -150,6 +168,7 @@ export async function resolveCategoryMinerals(code: string, p: CategoryProduct, 
         results[key].reason = "The comparable reference nutrient could not be loaded; no value has been assumed."; continue;
       }
       results[key] = { ...results[key], valueMg: value, provenance: "estimated", categoryId: rule.id, reason: undefined,
+        ...(results[key].diagnostics ? { diagnostics: { ...results[key].diagnostics!, outcome: "estimated", selectedLevel: 3 } } : {}),
         estimate: { kind: "single", valueMg: value, method: "comparable-food", basis: "as-sold", completeProduct: true,
           explanation: rule.explanation,
           references: [{ label: ref.source === "USDA" ? `USDA FoodData Central FDC ID ${ref.code}` : "CoFID 2021",
@@ -158,5 +177,9 @@ export async function resolveCategoryMinerals(code: string, p: CategoryProduct, 
       };
     }
   } catch { for (const key of eligible) results[key].reason = "The comparable reference is temporarily unavailable."; }
+  for (const key of wanted) if (results[key].provenance === "unavailable") {
+    results[key].diagnostics ??= { attemptedLevels: [1, 3], candidates: 1, admitted: 0, missingMineral: 0,
+      rejections: {}, limitations: ["reviewed-reference-unavailable-or-incompatible"], outcome: "reviewed-reference-unavailable" };
+  }
   return results;
 }

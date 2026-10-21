@@ -9,7 +9,8 @@ import RecipeNutrition from "./RecipeNutrition";
 import RecipeIcon from "./RecipeIcon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { createClient } from "@/lib/supabase/client";
 
 type RecipeCardProps = {
@@ -124,6 +125,47 @@ export default function RecipeCard({
 
   const [showPlanner, setShowPlanner] =
     useState(false);
+
+  const plannerDialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showPlanner) return;
+    const dialog = plannerDialogRef.current;
+    if (!dialog) return;
+    const origin = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const focusable = () => Array.from(dialog.querySelectorAll<HTMLElement>(
+      'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])'
+    )).filter(element => element.getClientRects().length > 0);
+    const focusFirst = () => (focusable()[0] ?? dialog).focus();
+    const keepFocus = (event: FocusEvent) => {
+      if (!dialog.contains(event.target as Node)) focusFirst();
+    };
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopPropagation();
+        setShowPlanner(false);
+      } else if (event.key === "Tab") {
+        const controls = focusable();
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (!first || !dialog.contains(document.activeElement) ||
+            (event.shiftKey && (document.activeElement === first || document.activeElement === dialog)) ||
+            (!event.shiftKey && document.activeElement === last)) {
+          event.preventDefault();
+          (event.shiftKey ? last ?? dialog : first ?? dialog).focus();
+        }
+      }
+    };
+    focusFirst();
+    document.addEventListener("keydown", handleKey, true);
+    document.addEventListener("focusin", keepFocus);
+    return () => {
+      document.removeEventListener("keydown", handleKey, true);
+      document.removeEventListener("focusin", keepFocus);
+      if (origin?.isConnected) origin.focus();
+    };
+  }, [showPlanner]);
 
   const [placements, setPlacements] =
     useState<Placement[]>([]);
@@ -777,7 +819,7 @@ export default function RecipeCard({
           PLANNER POPUP
           =================================================== */}
 
-      {showPlanner && (
+      {showPlanner && createPortal(
         <div
           className="
             fixed
@@ -794,6 +836,12 @@ export default function RecipeCard({
         >
 
           <div
+            ref={plannerDialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`planner-title-${recipe.id}`}
+            aria-describedby={`planner-recipe-${recipe.id}`}
+            tabIndex={-1}
             className="
               max-h-[85vh]
               w-full
@@ -820,6 +868,7 @@ export default function RecipeCard({
               <div>
 
                 <h2
+                  id={`planner-title-${recipe.id}`}
                   className="
                     text-lg
                     font-bold
@@ -830,6 +879,7 @@ export default function RecipeCard({
                 </h2>
 
                 <p
+                  id={`planner-recipe-${recipe.id}`}
                   className="
                     mt-1
                     text-sm
@@ -1110,7 +1160,8 @@ export default function RecipeCard({
 
           </div>
 
-        </div>
+        </div>,
+        document.body
       )}
 
     </article>

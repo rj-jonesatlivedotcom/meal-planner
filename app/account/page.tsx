@@ -165,8 +165,6 @@ export default function AccountPage() {
               </p>
             </div>
 
-            <p className="mb-4"><Link href="/saved-meals/recovery" className="font-semibold text-green-700 underline">Recover saved meals</Link></p>
-
             <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
 
               {/* EMAIL */}

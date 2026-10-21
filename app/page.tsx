@@ -299,10 +299,30 @@ const benefits = [
   "Automatic shopping lists",
 ];
 
+function useDemoMotion(enabled: boolean) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // Avoid autoplay until the visitor's motion preference is known.
+  const [reducedMotion, setReducedMotion] = useState(true);
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(preference.matches);
+    update();
+    preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
+  }, []);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (!enabled || reducedMotion) video.pause();
+    else void video.play().catch(() => { /* Native controls remain available. */ });
+  }, [enabled, reducedMotion]);
+  return { videoRef, autoPlay: enabled && !reducedMotion };
+}
+
 function ShowcaseVideo({ mobile }: { mobile: boolean }) {
   const [shouldRender, setShouldRender] = useState<boolean | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
-const [soundOn, setSoundOn] = useState(false);
+  const { videoRef, autoPlay } = useDemoMotion(shouldLoad && shouldRender === true);
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
@@ -349,13 +369,15 @@ const [soundOn, setSoundOn] = useState(false);
   return (
     <div className="relative w-full">
       <video
+        ref={videoRef}
         className={
           mobile
             ? "block h-full w-full object-contain object-center"
             : "block h-auto w-full object-contain"
         }
-        autoPlay
-        muted={mobile || !soundOn}
+        autoPlay={autoPlay}
+        controls
+        muted
         loop
         playsInline
         preload="metadata"
@@ -376,24 +398,13 @@ const [soundOn, setSoundOn] = useState(false);
         Your browser does not support the video element.
       </video>
 
-      {!mobile && (
-        <button
-          type="button"
-          onClick={() => setSoundOn((current) => !current)}
-          aria-pressed={soundOn}
-          aria-label={soundOn ? "Turn sound off" : "Turn sound on"}
-          className="absolute bottom-4 right-4 z-10 rounded-full bg-slate-900/85 px-4 py-2 text-sm font-semibold text-white shadow-lg transition hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-        >
-          {soundOn ? "🔊 Sound on" : "🔇 Turn sound on"}
-        </button>
-      )}
     </div>
   );
 }
 
 function LazyFoodCheckVideo() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const { videoRef, autoPlay } = useDemoMotion(shouldLoad);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -414,20 +425,12 @@ function LazyFoodCheckVideo() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (!shouldLoad) return;
-
-    videoRef.current?.play().catch(() => {
-      // Some browsers may still block autoplay. The video remains usable
-      // without controls if the browser requires a user gesture.
-    });
-  }, [shouldLoad]);
-
   return (
     <video
       ref={videoRef}
       className="block aspect-[9/16] h-auto w-full object-contain"
-      autoPlay={shouldLoad}
+      autoPlay={autoPlay}
+      controls={shouldLoad}
       muted
       loop
       playsInline

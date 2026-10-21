@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import { withTarget, targetDisplayValue } from "@/lib/myDietOnboarding";
 import MyAllergies from "@/components/my-diet/MyAllergies";
 import MyDietOnboarding from "@/components/my-diet/MyDietOnboarding";
+import dietActionStyles from "@/components/my-diet/MyDietActions.module.css";
 import {
   type CkdStage, type Requirements, defaultRequirements, isTargetEnabled, visibleMonitoredNutrients,
   hasPendingRequirementsSave, readStoredRequirements, loadRequirements,
@@ -372,7 +373,7 @@ export default function RequirementsPage() {
               )}
 
               {isLoggedIn && <button ref={guidedSetupButtonRef} type="button" disabled={!requirementsReady || loadError || saveStatus === "saving"}
-                onClick={() => openGuidedSetup()} className="mt-4 min-h-11 rounded-xl bg-[#067b3a] px-4 py-3 text-sm font-bold text-white hover:bg-[#056b32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#067b3a] disabled:opacity-60">
+                onClick={() => openGuidedSetup()} className={`${dietActionStyles.startGuidedSetup} mt-4 min-h-11 rounded-xl px-4 py-3 text-sm font-bold`}>
                 Start guided setup
               </button>}
               {isLoggedIn && <button type="button" disabled={!requirementsReady || loadError || saveStatus === "saving"} onClick={() => openGuidedSetup(2)} className="ml-3 mt-4 min-h-11 rounded-xl border border-emerald-300 px-4 py-3 text-sm font-bold text-emerald-800 dark:text-emerald-200">Change monitored nutrients</button>}

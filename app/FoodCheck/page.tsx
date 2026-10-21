@@ -1,4 +1,5 @@
 "use client";
+import { displayFoodName } from "@/lib/foodDisplay";
 
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -1221,8 +1222,8 @@ export default function FoodCheckPage() {
 
                         <div className="min-w-0 flex-1">
 
-                          <div className="font-bold text-blue-950">
-                            {food.name}
+                          <div className="break-words [overflow-wrap:anywhere] font-bold leading-relaxed text-blue-950">
+                            {displayFoodName(food.name)}
                           </div>
 
                           <div className="mt-1 text-sm text-slate-500">
@@ -1335,7 +1336,7 @@ export default function FoodCheckPage() {
                   <div className={resultStyles.heading}>
                     <div className={resultStyles.foodIcon} aria-hidden="true">🍽️</div>
                     <div className={resultStyles.identity}>
-                      <h2>{selectedFood.name}</h2>
+                      <h2>{displayFoodName(selectedFood.name)}</h2>
                       <p>{selectedFood.source === "Open Food Facts" ? [selectedFood.description.split(" · Barcode ")[0], selectedFood.code].filter(Boolean).join(" · ") : selectedFood.description}</p>
                       <p>Source: {selectedFood.source}</p>
                     </div>

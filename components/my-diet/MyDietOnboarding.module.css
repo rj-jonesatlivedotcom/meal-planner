@@ -19,6 +19,7 @@
 .tile.selected { border-color: #067b3a; box-shadow: inset 0 0 0 1px #067b3a; }
 .tile:focus-within { outline: 2px solid #12396b; outline-offset: 2px; }
 .nutrientIcon { font-size: 23px; line-height: 1; flex-shrink: 0; }
+.nutrientName { min-width: 0; overflow-wrap: anywhere; }
 .tileHelp { font-size: 12px; line-height: 1.5; color: #355270; }
 .tileHelp summary { position: absolute; top: 12px; right: 5px; width: 30px; height: 36px; display: grid; place-content: center; cursor: pointer; font-weight: 700; border-radius: 50%; list-style: none; }
 .tileHelp summary::-webkit-details-marker { display: none; }

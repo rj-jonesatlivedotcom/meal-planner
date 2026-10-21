@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
 export default function SignupPage() {
@@ -127,6 +128,14 @@ export default function SignupPage() {
           {message && (
             <div className="rounded-lg bg-green-50 p-3 text-sm text-green-700">{message}</div>
           )}
+
+          <p className="text-sm leading-6 text-gray-600">
+            Read our{" "}
+            <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="font-semibold text-orange-700 underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+              Privacy Policy<span className="sr-only"> (opens in a new tab)</span>
+            </Link>{" "}
+            before creating your account.
+          </p>
 
           <button
             type="submit"

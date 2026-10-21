@@ -7,6 +7,7 @@ import QuantityFields from "./QuantityFields";
 import foodActionStyles from "./FoodActions.module.css";
 import resultStyles from "./FoodResult.module.css";
 import { notifyFoodAccount, type useFoodAccount } from "@/lib/useFoodAccount";
+import { displayFoodName } from "@/lib/foodDisplay";
 type Account = ReturnType<typeof useFoodAccount>;
 
 export function MyFoods({ account, onOpen }: { account: Account; onOpen: (barcode: string, add: boolean) => void }) {
@@ -37,11 +38,15 @@ export function MyFoods({ account, onOpen }: { account: Account; onOpen: (barcod
   const shownFavourites = visibleFoods(favourites);
   const shownRecent = visibleFoods(recent);
   function row(food: SavedFood) {
-    return <li key={food.barcode} className="flex flex-wrap items-center gap-2 border-t border-slate-100 dark:border-slate-700 py-2 text-sm">
-      <button type="button" className="min-w-0 flex-1 text-left font-semibold text-slate-900 dark:text-slate-100" onClick={() => onOpen(food.barcode, false)}>{food.name}</button>
-      <button type="button" disabled={busy} aria-label={`${food.favourite ? "Unfavourite" : "Favourite"} ${food.name}`} aria-pressed={food.favourite} onClick={() => void change("favourite", food)} className="rounded-lg border px-2 py-2">{food.favourite ? "★" : "☆"}</button>
-      <button type="button" className="rounded-lg border px-2 py-2 font-semibold" onClick={() => onOpen(food.barcode, true)}>Add to Planner</button>
-      <button type="button" disabled={busy} className="rounded-lg px-2 py-2 text-rose-700 dark:text-rose-300" onClick={() => void change("remove", food)}>Remove</button>
+    return <li key={food.barcode} className={foodActionStyles.libraryRow}>
+      <button type="button" className={foodActionStyles.libraryName} onClick={() => onOpen(food.barcode, false)}>{displayFoodName(food.name)}</button>
+      <div className={foodActionStyles.libraryActions}>
+        <button type="button" disabled={busy} aria-label={`${food.favourite ? "Unfavourite" : "Favourite"} ${food.name}`} aria-pressed={food.favourite} onClick={() => void change("favourite", food)} className={`${foodActionStyles.libraryAction} ${foodActionStyles.libraryIconAction}`}>{food.favourite ? "★" : "☆"}</button>
+        <button type="button" className={foodActionStyles.libraryAction} onClick={() => onOpen(food.barcode, true)}>Add to Planner</button>
+        <button type="button" disabled={busy} aria-label={`Remove ${food.name}`} title={`Remove ${food.name}`} className={`${foodActionStyles.libraryAction} ${foodActionStyles.libraryIconAction} ${foodActionStyles.libraryRemove}`} onClick={() => void change("remove", food)}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 6h18M9 6V4h6v2M5 6l1 14h12l1-14M10 10v6m4-6v6" /></svg>
+        </button>
+      </div>
     </li>;
   }
   return <details className="mt-4 rounded-2xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3">
@@ -54,10 +59,14 @@ export function MyFoods({ account, onOpen }: { account: Account; onOpen: (barcod
         <option value="recent">Most recent first</option><option value="oldest">Oldest first</option><option value="name-asc">Name A–Z</option><option value="name-desc">Name Z–A</option>
       </select></label>
     </div>
-    <h3 className="mt-3 text-sm font-bold text-slate-800 dark:text-slate-200">Favourites</h3>
+    <section aria-label="Favourites" className="mt-4 rounded-xl border border-amber-200 bg-amber-50/60 p-3 dark:border-amber-900 dark:bg-amber-950/20">
+    <h3 className="flex items-center gap-2 text-base font-extrabold text-slate-900 dark:text-slate-100"><span aria-hidden="true" className="text-amber-600">★</span>Favourites <span className="rounded-full bg-white px-2 py-0.5 text-xs font-bold text-slate-600 dark:bg-slate-800 dark:text-slate-300">{favourites.length}</span></h3>
     {shownFavourites.length ? <ul>{shownFavourites.map(row)}</ul> : <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{favourites.length ? "No matching favourites." : "No favourites yet."}</p>}
-    <div className="mt-3 flex items-center justify-between gap-2"><h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">Recently scanned</h3><button type="button" disabled={busy || !recent.length} onClick={() => void change("clear")} className="text-sm underline">Clear recent history</button></div>
+    </section>
+    <section aria-label="Recently Scanned" className="mt-4 rounded-xl border border-sky-200 bg-sky-50/60 p-3 dark:border-sky-900 dark:bg-sky-950/20">
+    <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1"><h3 className="flex items-center gap-2 text-base font-extrabold text-slate-900 dark:text-slate-100"><span aria-hidden="true" className="text-sky-700 dark:text-sky-300">◷</span>Recently Scanned <span className="rounded-full bg-white px-2 py-0.5 text-xs font-bold text-slate-600 dark:bg-slate-800 dark:text-slate-300">{recent.length}</span></h3><button type="button" disabled={busy || !recent.length} onClick={() => void change("clear")} className="ml-auto min-h-11 text-xs font-semibold underline underline-offset-2 disabled:opacity-50">Clear recent history</button></div>
     {shownRecent.length ? <ul>{shownRecent.map(row)}</ul> : <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{recent.length ? "No matching recent foods." : "No recent scans."}</p>}
+    </section>
   </details>;
 }
 

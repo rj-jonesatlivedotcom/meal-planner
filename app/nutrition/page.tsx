@@ -1,4 +1,5 @@
 "use client";
+import { classifyTargetRange, type EnergyTargetStatus } from "@/lib/energyTarget";
 import { activeRequirements, defaultRequirements as sharedDefaultRequirements, type MonitoredNutrient, type NutrientTargetSettings } from "@/lib/myDiet";
 import { useMyDiet } from "@/components/my-diet/MyDietProvider";
 
@@ -130,7 +131,7 @@ type NutrientKey =
 
 type NutrientTotals = Record<NutrientKey, number>;
 
-type Status = "green" | "red" | "pending";
+type Status = "green" | "red" | "pending" | EnergyTargetStatus;
 
 type FluidEntry = { id: string; date: string; drink: string; amountMl: number; createdAt?: string };
 const FLUID_LOG_STORAGE_KEY = "renalplan-fluid-log-v1";
@@ -237,6 +238,10 @@ function addTotals(
 
 function worstStatus(statuses: Status[]): Status {
   if (statuses.includes("red")) return "red";
+  if (statuses.includes("Exceeds target")) return "Exceeds target";
+  if (statuses.includes("pending")) return "pending";
+  if (statuses.includes("Below target")) return "Below target";
+  if (statuses.includes("Within target")) return "Within target";
   return statuses.includes("pending") ? "pending" : "green";
 }
 
@@ -260,12 +265,14 @@ function getDailyStatus(
   requirements: Requirements
 ): Status {
   const statuses: Status[] = [
-    numericLimitStatus(totals.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal),
+    classifyTargetRange(totals.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal) ?? "green",
     numericLimitStatus(totals.protein, requirements.proteinMinG, requirements.proteinMaxG),
     numericLimitStatus(totals.sodium, null, requirements.sodiumLimit),
     numericLimitStatus(totals.potassium, null, requirements.potassiumLimitMg),
     numericLimitStatus(totals.phosphate, null, requirements.phosphateLimitMg),
-    numericLimitStatus(totals.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax),
+    (requirements.carbohydrateMin != null && requirements.carbohydrateMax != null
+      ? classifyTargetRange(totals.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax) ?? "green"
+      : numericLimitStatus(totals.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)),
   ];
 
   return worstStatus(statuses);
@@ -273,11 +280,14 @@ function getDailyStatus(
 
 function getStatusText(status: Status): string {
   if (status === "pending") return "Not assessed";
+  if (status === "Below target" || status === "Within target" || status === "Exceeds target") return status;
   return status === "green" ? "Within limit" : "Exceeds limit";
 }
 
 function getStatusDotClass(status: Status): string {
   if (status === "pending") return "bg-slate-400";
+  if (status === "Below target") return "bg-amber-600";
+  if (status === "Within target") return "bg-green-600";
   return status === "green" ? "bg-green-600" : "!bg-red-600";
 }
 
@@ -289,7 +299,7 @@ function NutritionStatusLabel({ status }: { status: Status | null }) {
   return (
     <span
       className={`inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-semibold ${
-        status === "pending" ? "text-slate-500" : status === "green" ? "text-green-700" : "text-red-700"
+        status === "pending" ? "text-slate-500" : status === "Below target" ? "text-amber-700" : status === "green" || status === "Within target" ? "text-green-700" : "text-red-700"
       }`}
     >
       <span
@@ -675,7 +685,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       average: formatNumber(dailyAverage.calories),
       requirement: formatRange(requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal, "kcal/day"),
       status: requirements.nutrientTargetSettings?.energyMinKcal != null || requirements.nutrientTargetSettings?.energyMaxKcal != null
-        ? numericLimitStatus(dailyAverage.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal) : null,
+        ? classifyTargetRange(dailyAverage.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal) : null,
     },
     {
       label: "Protein (g)",
@@ -694,7 +704,9 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       requirement: formatRange(requirements.carbohydrateMin, requirements.carbohydrateMax, "g/day"),
       status:
         requirements.carbohydrateMin != null || requirements.carbohydrateMax != null
-          ? numericLimitStatus(dailyAverage.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)
+          ? requirements.carbohydrateMin != null && requirements.carbohydrateMax != null
+            ? classifyTargetRange(dailyAverage.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)
+            : numericLimitStatus(dailyAverage.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)
           : null,
     },
     {
@@ -830,7 +842,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   function getDailyStatusForDay(day: Day): Status {
     const totals = dayTotals[day];
     const base = getDailyStatus(totals, requirements);
-    if (base === "red") return "red";
+    if (base === "red" || base === "Exceeds target") return base;
     const uncertainLimitedNutrient =
       (requirements.potassiumLimitMg != null && incompleteSnacks(day, "potassium")) ||
       (requirements.phosphateLimitMg != null && incompleteSnacks(day, "phosphate"));
@@ -1366,6 +1378,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Energy", "calories", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "calories", "kcal")}
+                    <span className="block"><NutritionStatusLabel status={classifyTargetRange(dayTotals[selectedDay].calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal)} /></span>
                   </strong>
                 </div>
 
@@ -1380,6 +1393,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Carbohydrate", "carbohydrates", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "carbohydrates", "g")}
+                    {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={classifyTargetRange(dayTotals[selectedDay].carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)} /></span>}
                   </strong>
                 </div>
 
@@ -1850,6 +1864,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                     <span className="text-slate-500">{nutrientLabel("Energy", "calories", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "calories", "kcal")}
+                    <span className="block"><NutritionStatusLabel status={classifyTargetRange(dayTotals[day].calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal)} /></span>
                                     </strong>
                                   </div>
 
@@ -1864,6 +1879,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                     <span className="text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "carbohydrates", "g")}
+                    {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={classifyTargetRange(dayTotals[day].carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)} /></span>}
                                     </strong>
                                   </div>
 
@@ -1932,6 +1948,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                 <span className="text-slate-500">{nutrientLabel("Energy", "calories")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("calories", "kcal")}
+                                  <span className="block"><NutritionStatusLabel status={classifyTargetRange(dailyAverage.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal)} /></span>
                                 </strong>
                               </div>
 
@@ -1946,6 +1963,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                 <span className="text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("carbohydrates", "g")}
+                                  {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={classifyTargetRange(dailyAverage.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)} /></span>}
                                 </strong>
                               </div>
 
@@ -2212,7 +2230,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
                 <p className="mt-3 border-t border-green-200 pt-3 text-xs leading-5 text-slate-600">
                   Green means the daily figure is within the saved limit;
-                  red means it exceeds the saved limit. Individual meal
+                  red means it exceeds the saved limit. Energy and carbohydrate ranges use Below target, Within target or Exceeds target; amber indicates below the minimum. Individual meal
                   figures are shown for information only and are not judged
                   against the full daily allowance. Potassium is displayed
                   in mg from food data, phosphorus in mg and salt in g.

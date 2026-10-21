@@ -14,6 +14,29 @@
 .primary:hover { background: #9a3412; }
 .primary:disabled { opacity: .5; cursor: not-allowed; }
 .libraryControls { display: grid; gap: 12px; margin-top: 16px; }
+.libraryRow { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 8px 0; font-size: 13px; }
+.libraryRow + .libraryRow { border-top: 1px solid #dce4e8; }
+.libraryName { min-width: 0; padding: 4px 0; text-align: left; font-weight: 600; line-height: 1.45; overflow-wrap: anywhere; color: #172b42; }
+.libraryActions { display: grid; grid-template-columns: 36px auto 36px; align-items: center; gap: 6px; justify-self: end; }
+.libraryAction { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 9px; background: #fff; color: #334155; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.libraryIconAction { width: 36px; padding: 0; font-size: 20px; }
+.libraryRemove { border-color: transparent; background: transparent; color: #be123c; }
+.libraryAction:hover { background: #f1f5f9; }
+.libraryIconAction[aria-pressed="true"] { color: #92400e; background: #fffbeb; border-color: #fcd34d; }
+.libraryName:focus-visible, .libraryAction:focus-visible { outline: 2px solid #067b3a; outline-offset: 2px; }
+.libraryAction:disabled { opacity: .5; cursor: not-allowed; }
+@media (max-width: 639px) {
+  .libraryRow { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .libraryActions { grid-template-columns: 40px auto 40px; }
+  .libraryAction { min-height: 40px; }
+  .libraryIconAction { width: 40px; }
+}
+:global(html[data-theme="dark"]) .libraryRow + .libraryRow { border-color: #41546a; }
+:global(html[data-theme="dark"]) .libraryName { color: #edf2f7; }
+:global(html[data-theme="dark"]) .libraryAction { background: #172838; color: #dbe7f0; border-color: #526575; }
+:global(html[data-theme="dark"]) .libraryAction:hover { background: #293946; }
+:global(html[data-theme="dark"]) .libraryIconAction[aria-pressed="true"] { color: #fde68a; border-color: #a16207; }
+:global(html[data-theme="dark"]) .libraryRemove { color: #fda4af; background: transparent; border-color: transparent; }
 .libraryControls label { min-width: 0; font-size: 12px; font-weight: 600; }
 .libraryField { display: block; width: 100%; min-width: 0; min-height: 44px; margin-top: 6px; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: #0f172a; font-size: 14px; font-weight: 400; }
 @media (min-width: 640px) { .libraryControls { grid-template-columns: minmax(0, 1fr) minmax(0, 180px); } }

@@ -4,6 +4,7 @@ import { useWeeklyPageStorage } from "@/lib/weeklyPageStorage";
 import { datedPlannerEnabled } from "@/lib/supabase/config";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 
@@ -2915,9 +2916,6 @@ ${checklistHtml}
           <div className="border-b border-emerald-100 bg-gradient-to-r from-emerald-50 via-white to-emerald-50 px-3 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5">
             {shoppingList.length === 0 ? (
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div className="text-sm text-slate-600">
-                  Add meals to your Weekly Planner and they will appear here automatically.
-                </div>
                 <div className="flex items-center gap-3">
                   <span className="text-sm font-medium text-slate-600">Cooking for:</span>
                   <select
@@ -3063,6 +3061,9 @@ ${checklistHtml}
               <p className="mt-3 text-slate-500">
                 Add meals to your Weekly Planner and they will appear here automatically.
               </p>
+              <Link href="/planner" className="mt-6 inline-flex min-h-11 items-center justify-center rounded-xl bg-emerald-700 px-6 py-3 font-bold text-white shadow-sm hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700">
+                Go to Planner
+              </Link>
             </div>
           ) : (
             <div className="p-4 sm:p-5 md:p-6">

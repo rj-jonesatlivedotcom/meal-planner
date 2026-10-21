@@ -1,0 +1,9 @@
+.startGuidedSetup {
+  background: #067b3a;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff;
+}
+.startGuidedSetup:hover:not(:disabled) { background: #056b32; }
+.startGuidedSetup:focus-visible { outline: 3px solid #12396b; outline-offset: 3px; }
+.startGuidedSetup:disabled { background: #52675c; opacity: 1; cursor: not-allowed; }
+:global(html[data-theme="dark"]) .startGuidedSetup:focus-visible { outline-color: #93c5fd; }

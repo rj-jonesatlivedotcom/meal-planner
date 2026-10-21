@@ -93,9 +93,9 @@ export default function PlannerSnacks({ date, snacks, repository, error, report 
         {selected.map(snack => <SnackRow key={`${snack.id}:${snack.quantity}`} snack={snack} repository={report ? null : repository} mobile />)}
         {!report && <Link href="/FoodCheck" className="inline-flex min-h-8 items-center text-xs font-bold text-orange-700 underline">+ Add snack</Link>}
       </div>
-    </div> : <Link href="/FoodCheck" className="planner-empty-slot planner-mobile-empty group transition hover:border-orange-400">
-      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">+</span>
-      <span className="planner-mobile-empty-copy"><strong>Add snacks</strong><span>No snacks planned. Add food from Food Check</span></span>
+    </div> : <Link href="/FoodCheck" aria-label="+ Add snack" className="planner-empty-slot planner-mobile-empty group transition hover:border-orange-400">
+      <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-2xl text-orange-600 shadow-sm transition group-hover:scale-105">+</span>
+      <span className="planner-mobile-empty-copy"><strong>Add snack</strong><span>No snacks planned</span></span>
       <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="m3 3 7 7-7 7" /></svg>
     </Link>}
     {error && <p role="alert" className="mt-1 text-xs text-rose-700 dark:text-rose-300">{error} Totals may be incomplete.</p>}
@@ -105,6 +105,6 @@ export default function PlannerSnacks({ date, snacks, repository, error, report 
     {error && <p role="alert" className="mt-1 text-xs text-rose-700 dark:text-rose-300">{error} Totals may be incomplete.</p>}
     {selected.map(snack => <SnackRow key={`${snack.id}:${snack.quantity}`} snack={snack} repository={report ? null : repository} compact={compact} />)}
     {!selected.length && !compact && <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">No snacks planned.</p>}
-    {!report && <Link href="/FoodCheck" className={compact ? "flex min-h-8 items-center gap-1 rounded-lg px-1 text-[11px] font-semibold text-emerald-700 hover:bg-emerald-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-600 dark:text-emerald-300 dark:hover:bg-emerald-900/20" : "mt-2 inline-block text-xs font-bold text-orange-700 dark:text-orange-300 underline"}>{compact ? "+ Add snack" : "Add food from Food Check"}</Link>}
+    {!report && <Link href="/FoodCheck" className={compact ? (!selected.length ? "flex min-h-11 w-full items-center justify-center gap-1 rounded-xl border border-dashed border-emerald-200 bg-emerald-50/50 px-2 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-600 dark:border-emerald-800 dark:bg-emerald-950/20 dark:text-emerald-200" : "flex min-h-8 items-center gap-1 rounded-lg px-1 text-[11px] font-semibold text-emerald-700 hover:bg-emerald-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-600 dark:text-emerald-300 dark:hover:bg-emerald-900/20") : "mt-2 inline-block text-xs font-bold text-orange-700 dark:text-orange-300 underline"}>{compact ? "+ Add snack" : "Add food from Food Check"}</Link>}
   </section>;
 }

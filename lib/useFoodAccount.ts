@@ -20,7 +20,8 @@ export function useFoodAccount(from?: string, to?: string) {
     try {
       const { data, error: authError } = await client.auth.getUser();
       if (token !== generation.current) return;
-      if (authError) throw authError;
+      // A signed-out browser normally has no session; that is not a failed read.
+      if (authError && !(authError.name === "AuthSessionMissingError" && !data.user)) throw authError;
       const id = data.user?.id ?? null;
       setOwner(id);
       if (!id) { setFoods([]); setSnacks([]); setError(""); return; }

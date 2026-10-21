@@ -195,7 +195,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
                           <input type="checkbox" name="monitoredNutrients" value={nutrient} checked={draft.monitoredNutrients?.includes(nutrient) ?? false}
                             className="h-5 w-5 accent-[#067b3a]" onChange={event => edit({ ...draft, monitoredNutrients: event.target.checked
                               ? [...(draft.monitoredNutrients ?? []).filter(item => item !== nutrient), nutrient] : (draft.monitoredNutrients ?? []).filter(item => item !== nutrient) })} />
-                          <span aria-hidden="true" className={styles.nutrientIcon}>{nutrientIcons[nutrient]}</span>{nutrientLabels[nutrient]}
+                          <span aria-hidden="true" className={styles.nutrientIcon}>{nutrientIcons[nutrient]}</span><span className={styles.nutrientName}>{nutrientLabels[nutrient]}</span>
                         </label>
                         <details className={styles.tileHelp}>
                           <summary title={nutrientExplanations[nutrient]} aria-label={`About ${nutrientLabels[nutrient].toLowerCase()}`}>i</summary>

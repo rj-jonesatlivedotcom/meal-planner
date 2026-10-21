@@ -1,4 +1,5 @@
 "use client";
+import { classifyTargetRange, type EnergyTargetStatus } from "@/lib/energyTarget";
 
 import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
 import { MobileCalendarTile } from "@/components/calendar/CalendarToolbar";
@@ -1535,7 +1536,7 @@ function formatPotassiumMg(mg: number): string {
   function getDailyNutritionStatus(
     day: string,
     field: DailyNumericField
-  ): "Within" | "Over" | "No limit" | "No meals" | "Incomplete" {
+  ): "Within" | "Over" | "No limit" | "No meals" | "Incomplete" | EnergyTargetStatus {
     // Compare the recorded total shown in the Planner. Missing nutrient values
     // remain missing in snack snapshots and are not rewritten as zero.
     if (snackAccount.loading || snackAccount.error) return "Incomplete";
@@ -1555,8 +1556,7 @@ function formatPotassiumMg(mg: number): string {
     if (field === "calories") {
       const min = dailyRequirements.nutrientTargetSettings?.energyMinKcal ?? null;
       const max = dailyRequirements.nutrientTargetSettings?.energyMaxKcal ?? null;
-      if (min === null && max === null) return "No limit";
-      return (min !== null && total < min) || (max !== null && total > max) ? "Over" : "Within";
+      return classifyTargetRange(total, min, max) ?? "No limit";
     }
 
     if (field === "protein") {
@@ -1571,6 +1571,7 @@ function formatPotassiumMg(mg: number): string {
     if (field === "carbohydrates") {
       const min = dailyRequirements.carbohydrateMin ?? null;
       const max = dailyRequirements.carbohydrateMax ?? null;
+      if (min !== null && max !== null) return classifyTargetRange(total, min, max) ?? "No limit";
       if (min === null && max === null) return "No limit";
       if (min !== null && total < min) return "Over";
       if (max !== null && total > max) return "Over";
@@ -1779,6 +1780,14 @@ function formatPotassiumMg(mg: number): string {
       const status =
         getDailyNutritionStatus(day, numericField);
 
+      const rangeTarget = (numericField === "calories" || (numericField === "carbohydrates" && requirements?.carbohydrateMin != null && requirements?.carbohydrateMax != null)) && status !== "No limit" && status !== "Incomplete" && status !== "No meals";
+      const targetMin = numericField === "calories" ? requirements?.nutrientTargetSettings?.energyMinKcal : requirements?.carbohydrateMin;
+      const targetMax = numericField === "calories" ? requirements?.nutrientTargetSettings?.energyMaxKcal : requirements?.carbohydrateMax;
+      const targetRange = rangeTarget ? (targetMin != null && targetMax != null
+        ? `${targetMin.toLocaleString("en-GB")}\u2013${targetMax.toLocaleString("en-GB")}`
+        : targetMin != null ? `at least ${targetMin.toLocaleString("en-GB")}` : `up to ${targetMax?.toLocaleString("en-GB")}`) + (numericField === "calories" ? " kcal/day" : " g/day") : null;
+      const rangeDescription = rangeTarget ? `${day} ${nutritionView}: daily total ${total?.toLocaleString("en-GB")} ${numericField === "calories" ? "kcal" : "g"}, ${status}; daily target ${targetRange}` : undefined;
+
       if (total === null) {
         return (
           <span className="text-sm font-bold text-slate-300">
@@ -1791,9 +1800,9 @@ function formatPotassiumMg(mg: number): string {
       // daily requirement: green when within the limit, red when over it.
       // Without an accepted target, calories remain neutral.
       const statusColour =
-        status === "Over"
+        (status === "Over" || status === "Exceeds target")
           ? "#ef4444"
-          : status === "Within"
+          : status === "Below target" ? "#b45309" : (status === "Within" || status === "Within target")
             ? "#16a34a"
             : "#64748b";
 
@@ -1826,30 +1835,30 @@ function formatPotassiumMg(mg: number): string {
                   }`;
 
       if (!desktop) {
-        const hasLimit = limit !== null && status !== "No limit" && status !== "Incomplete";
+        const hasLimit = (limit !== null || rangeTarget) && status !== "No limit" && status !== "Incomplete";
         const indicatorColour =
-          status === "Over" ? "#ef4444" :
-          status === "Within" ? "#16a34a" : "#64748b";
+          (status === "Over" || status === "Exceeds target") ? "#ef4444" :
+          status === "Below target" ? "#b45309" : (status === "Within" || status === "Within target") ? "#16a34a" : "#64748b";
 
         return (
           <div
             className="flex flex-col items-center justify-center"
-            title={
-              limit !== null && status !== "Incomplete"
-                ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
+            title={rangeDescription ?? (
+              (limit !== null || rangeTarget) && status !== "Incomplete"
+                ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${(status === "Over" || status === "Exceeds target") ? "exceeds limit" : "within limit"}`
                 : `${day} ${nutritionView}: daily total ${displayTotal}`
-            }
-            aria-label={
-              limit !== null && status !== "Incomplete"
-                ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
+            )}
+            aria-label={rangeDescription ?? (
+              (limit !== null || rangeTarget) && status !== "Incomplete"
+                ? `${day} ${nutritionView}: daily total ${displayTotal}, ${(status === "Over" || status === "Exceeds target") ? "exceeds" : "within"} the daily limit of ${displayLimit}`
                 : `${day} ${nutritionView}: daily total ${displayTotal}`
-            }
+            )}
           >
             <div
               className="flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] shadow-sm"
               style={{
                 borderColor: indicatorColour,
-                backgroundColor: status === "Over" ? "#7f1d1d" : status === "Within" ? "#166534" : "#334155",
+                backgroundColor: status === "Below target" ? "#78350f" : (status === "Over" || status === "Exceeds target") ? "#7f1d1d" : (status === "Within" || status === "Within target") ? "#166534" : "#334155",
               }}
             >
               <div className="text-center leading-tight">
@@ -1858,7 +1867,7 @@ function formatPotassiumMg(mg: number): string {
                 </div>
                 {hasLimit && (
                   <div className="mt-0.5 text-[7px] font-bold text-white/90">
-                    / {displayLimit}
+                    / {targetRange ?? displayLimit}
                   </div>
                 )}
               </div>
@@ -1869,7 +1878,7 @@ function formatPotassiumMg(mg: number): string {
                 className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
                 style={{ color: indicatorColour }}
               >
-                {status === "Over" ? "Exceeds limit" : "Within limit"}
+                {rangeTarget ? status : status === "Over" ? "Exceeds limit" : "Within limit"}
               </span>
             )}
           </div>
@@ -1879,16 +1888,16 @@ function formatPotassiumMg(mg: number): string {
       return (
         <div
           className="flex flex-col items-center justify-center"
-          aria-label={
-            limit !== null && status !== "Incomplete"
-              ? `${day} ${nutritionView}: daily total ${displayTotal}, ${status === "Over" ? "exceeds" : "within"} the daily limit of ${displayLimit}`
+          aria-label={rangeDescription ?? (
+            (limit !== null || rangeTarget) && status !== "Incomplete"
+              ? `${day} ${nutritionView}: daily total ${displayTotal}, ${(status === "Over" || status === "Exceeds target") ? "exceeds" : "within"} the daily limit of ${displayLimit}`
               : `${day} ${nutritionView}: daily total ${displayTotal}`
-          }
-          title={
-            limit !== null && status !== "Incomplete"
-              ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${status === "Over" ? "exceeds limit" : "within limit"}`
+          )}
+          title={rangeDescription ?? (
+            (limit !== null || rangeTarget) && status !== "Incomplete"
+              ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${(status === "Over" || status === "Exceeds target") ? "exceeds limit" : "within limit"}`
               : `${day} ${nutritionView}: ${displayTotal}`
-          }
+          )}
         >
           <div
             className="flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] bg-white shadow-sm"
@@ -1901,16 +1910,16 @@ function formatPotassiumMg(mg: number): string {
               >
                 {displayTotal}
               </div>
-              {limit !== null && (
+              {(limit !== null || rangeTarget) && (
                 <div className="mt-0.5 text-[7px] font-bold text-slate-400">
-                  / {displayLimit}
+                  / {targetRange ?? displayLimit}
                 </div>
               )}
             </div>
           </div>
 
           {totalNote && <span className="mt-1 max-w-[100px] text-center text-[9px] font-bold text-amber-800 dark:text-amber-300">{totalNote}</span>}
-          {limit !== null && status !== "Incomplete" && (
+          {(limit !== null || rangeTarget) && status !== "Incomplete" && (
             <span
               className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
               style={{ color: statusColour }}
@@ -2729,6 +2738,7 @@ html[data-theme="dark"] main .planner-remove-button {
                     Phosphorus
                   </option>
                 </select>
+                <NutritionLegend range={nutritionView === "Calories" || (nutritionView === "Carbohydrate" && requirements?.carbohydrateMin != null && requirements?.carbohydrateMax != null)} />
 
               </div>
 
@@ -3252,18 +3262,7 @@ html[data-theme="dark"] main .planner-remove-button {
                     </option>
                   </select>
 
-                  <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
-                    <>
-                        <span className="flex items-center gap-1.5">
-                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
-                          Within limit
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />
-                          Exceeds limit
-                        </span>
-                      </>
-                  </div>
+                  <NutritionLegend range={nutritionView === "Calories" || (nutritionView === "Carbohydrate" && requirements?.carbohydrateMin != null && requirements?.carbohydrateMax != null)} />
 
                 </div>
 
@@ -3837,6 +3836,14 @@ html[data-theme="dark"] main .planner-remove-button {
     </main>
     </>
   );
+}
+
+function NutritionLegend({ range }: { range: boolean }) {
+  return <div className="planner-nutrition-legend mt-2 flex flex-col gap-1 text-[9px] font-semibold text-slate-500">
+    {range && <span className="flex items-center gap-1.5"><span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-amber-600" />Below target</span>}
+    <span className="flex items-center gap-1.5"><span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-green-500" />{range ? "Within target" : "Within limit"}</span>
+    <span className="flex items-center gap-1.5"><span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red-500" />{range ? "Exceeds target" : "Exceeds limit"}</span>
+  </div>;
 }
 
 export default function WeeklyPlannerPage() {

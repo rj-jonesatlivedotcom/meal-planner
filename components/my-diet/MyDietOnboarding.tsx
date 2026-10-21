@@ -7,7 +7,7 @@ import styles from "./MyDietOnboarding.module.css";
 import {
   type Requirements, monitoredNutrients, nutrientLabels,
   isMonitoringWithoutTarget, monitoringWithoutTargetLabel,
-  isNutrientActive, targetNutrients, activeRequirements,
+  isNutrientActive, isTargetEnabled, withTargetChoice, targetNutrients, activeRequirements,
 } from "@/lib/myDiet";
 import {
   createOnboardingDraft, onboardingSteps, nutrientExplanations, onboardingTargets,
@@ -17,6 +17,7 @@ import {
 
 type Props = {
   initialRequirements: Requirements;
+  initialStep?: number;
   onDraftChange: (draft: Requirements) => void;
   onSave: (next: Requirements, pendingDraft?: Requirements) => Promise<void>;
   onExit: () => void;
@@ -27,9 +28,9 @@ const secondaryClass = `${styles.secondary} min-h-11 rounded-xl border border-sl
 const poses = ["hello", "point", "explain", "encourage", "celebrate"];
 const nutrientIcons = { sodium: "🧂", protein: "🥚", potassium: "🍌", phosphate: "🧀", calories: "🔥", carbohydrate: "🍞", fluid: "💧" };
 
-export default function MyDietOnboarding({ initialRequirements, onDraftChange, onSave, onExit }: Props) {
-  const [draft, setDraft] = useState(() => createOnboardingDraft(initialRequirements));
-  const [step, setStep] = useState(() => createOnboardingDraft(initialRequirements).onboardingStep ?? 1);
+export default function MyDietOnboarding({ initialRequirements, initialStep, onDraftChange, onSave, onExit }: Props) {
+  const [draft, setDraft] = useState<Requirements>(() => ({ ...createOnboardingDraft(initialRequirements), onboardingStep: initialStep ?? createOnboardingDraft(initialRequirements).onboardingStep }));
+  const [step, setStep] = useState(() => initialStep ?? createOnboardingDraft(initialRequirements).onboardingStep ?? 1);
   const [allergyAnswer, setAllergyAnswer] = useState<"unanswered" | "none" | "listed">(
     initialRequirements.foodAllergies == null ? "unanswered" : initialRequirements.foodAllergies.length ? "listed" : "none");
   const [allergyText, setAllergyText] = useState((initialRequirements.foodAllergies ?? []).join(", "));
@@ -55,10 +56,15 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
   }
 
   function navigateTo(nextStep: number) {
-    const current = { ...draft, ...(step === 2 && nextStep === 3 ? { monitoredNutrients: draft.monitoredNutrients ?? [] } : {}), onboardingStep: nextStep, onboardingStatus: "in_progress" as const };
+    const current = { ...(step === 3 && nextStep === 4 ? normaliseTargetChoices(draft) : draft), ...(step === 2 && nextStep === 3 ? { monitoredNutrients: draft.monitoredNutrients ?? [] } : {}), onboardingStep: nextStep, onboardingStatus: "in_progress" as const };
     setStep(nextStep);
     setDraft(current);
     onDraftChange(current);
+  }
+
+  function normaliseTargetChoices(value: Requirements) {
+    return monitoredNutrients.filter(nutrient => isNutrientActive(value, nutrient)).reduce((next, nutrient) => withTargetChoice(next, nutrient,
+      value.nutrientTargetSettings?.enabled?.[nutrient] ?? onboardingTargets.some(({ key }) => targetNutrients[key] === nutrient && targetDisplayValue(value, key) !== "")), value);
   }
 
   function leave(skip = false) {
@@ -84,6 +90,11 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
     }
     const validation = step >= 3 ? validateOnboardingTargets(activeRequirements(draft)) : null;
     if (validation) { setError(validation); setFailedAction(null); return; }
+    if (step === 3 && action === "continue") {
+      const unanswered = monitoredNutrients.find(nutrient => isNutrientActive(draft, nutrient) && draft.nutrientTargetSettings?.enabled?.[nutrient] === true &&
+        !onboardingTargets.some(({ key }) => targetNutrients[key] === nutrient && targetDisplayValue(draft, key) !== ""));
+      if (unanswered) { setError(`Enter a target for ${nutrientLabels[unanswered]}, or choose “No — just monitor it”.`); setFailedAction(null); return; }
+    }
     if (step === 4 && action === "continue" && allergyAnswer === "listed" && !draft.foodAllergies?.length) {
       setError("Enter an allergy, or choose another allergy answer."); setFailedAction(null); return;
     }
@@ -92,7 +103,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
     // Keep a resumable draft, never an optimistic completed state.
     onDraftChange(draft);
     try {
-      const acceptedDraft = step === 2 ? { ...draft, monitoredNutrients: draft.monitoredNutrients ?? [] } : draft;
+      const acceptedDraft = step === 2 ? { ...draft, monitoredNutrients: draft.monitoredNutrients ?? [] } : step === 3 ? normaliseTargetChoices(draft) : draft;
       const saved = await saveOnboardingAction(acceptedDraft, step, action, next => onSave(next, draft));
       if (leavingRef.current) return;
       setDraft(saved);
@@ -109,8 +120,8 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
   }
 
   const activeTargets = onboardingTargets.filter(({ key }) => isNutrientActive(draft, targetNutrients[key]));
-  const summaryTargets = activeTargets.filter(({ key }) => draft[key] != null);
-  const inactiveTargets = onboardingTargets.filter(({ key }) => !isNutrientActive(draft, targetNutrients[key]) && draft[key] != null);
+  const summaryTargets = activeTargets.filter(({ key }) => targetDisplayValue(activeRequirements(draft), key) !== "");
+  const inactiveTargets = onboardingTargets.filter(({ key }) => (!isNutrientActive(draft, targetNutrients[key]) || !isTargetEnabled(draft, targetNutrients[key])) && targetDisplayValue(draft, key) !== "");
   const preferences = (["potassium", "phosphate", "purines"] as const)
     .filter(key => draft[key] !== "Any");
 
@@ -183,7 +194,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
                         <label className="flex min-h-11 cursor-pointer items-center gap-3 text-sm font-bold text-slate-800 dark:text-slate-100">
                           <input type="checkbox" name="monitoredNutrients" value={nutrient} checked={draft.monitoredNutrients?.includes(nutrient) ?? false}
                             className="h-5 w-5 accent-[#067b3a]" onChange={event => edit({ ...draft, monitoredNutrients: event.target.checked
-                              ? [...(draft.monitoredNutrients ?? []), nutrient] : (draft.monitoredNutrients ?? []).filter(item => item !== nutrient) })} />
+                              ? [...(draft.monitoredNutrients ?? []).filter(item => item !== nutrient), nutrient] : (draft.monitoredNutrients ?? []).filter(item => item !== nutrient) })} />
                           <span aria-hidden="true" className={styles.nutrientIcon}>{nutrientIcons[nutrient]}</span>{nutrientLabels[nutrient]}
                         </label>
                         <details className={styles.tileHelp}>
@@ -200,20 +211,27 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
                     <textarea id={`${id}-advice`} rows={2} value={draft.dietaryAdvice ?? ""} className={fieldClass} placeholder="e.g. My dietitian advised me to choose lower-salt foods or avoid certain ingredients."
                       onChange={event => edit({ ...draft, dietaryAdvice: event.target.value || null })} />
                   </label>
-                  <details className={styles.group}>
-                  <summary>Daily targets <span className="font-normal">(optional{summaryTargets.length ? ` · ${summaryTargets.length} entered` : ""})</span></summary>
-                  <p className="my-2 text-xs leading-5 text-slate-600 dark:text-slate-300">Use targets you already have. Blank means no target; advice is kept as written and never interpreted.</p>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {activeTargets.map(({ key, label, unit }) => (
-                      <label key={key} htmlFor={`${id}-${key}`} className="block text-sm font-semibold text-slate-800 dark:text-slate-200">{label} <span className="font-normal text-slate-500 dark:text-slate-400">({unit})</span>
-                        <input id={`${id}-${key}`} type="number" min="0" step="any" inputMode="decimal" value={targetDisplayValue(draft, key)} placeholder="No target entered" className={fieldClass}
-                          onChange={event => edit(withTarget(draft, key, event.target.value))} />
-                      </label>
-                    ))}
-                  </div>
-                  <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Salt is entered in grams and stored as sodium. Energy has no numerical target. Your CKD setting is unchanged.</p>
-                  </details>
-                  {inactiveTargets.length > 0 && <p className="text-xs text-slate-500 dark:text-slate-400">Inactive targets retained: {inactiveTargets.map(({ label }) => label).join(", ")}. Re-select the nutrient in Step 2 to restore its fields and values.</p>}
+                  {monitoredNutrients.filter(nutrient => isNutrientActive(draft, nutrient)).map(nutrient => {
+                    const fields = activeTargets.filter(({ key }) => targetNutrients[key] === nutrient);
+                    const savedValues = fields.filter(({ key }) => targetDisplayValue(draft, key) !== "");
+                    const useTarget = draft.nutrientTargetSettings?.enabled?.[nutrient] ?? savedValues.length > 0;
+                    return <fieldset key={nutrient} className={styles.group}>
+                      <legend className="px-1 text-sm font-bold text-slate-800 dark:text-slate-100">{nutrientLabels[nutrient]}</legend>
+                      <p className="my-2 text-xs text-slate-600 dark:text-slate-300">Has your kidney team given you {nutrient === "protein" || nutrient === "calories" || nutrient === "carbohydrate" ? "a daily target or range" : "a daily maximum"}?</p>
+                      <div className="mb-2 flex flex-wrap gap-x-4">
+                        {[[true, "Yes — enter my limit"], [false, "No — just monitor it"]].map(([enabled, label]) => <label key={String(enabled)} className="flex min-h-11 cursor-pointer items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-200">
+                          <input type="radio" name={id + "-target-" + nutrient} value={String(enabled)} checked={useTarget === enabled} onChange={() => edit(withTargetChoice(draft, nutrient, enabled as boolean))} />{label as string}
+                        </label>)}
+                      </div>
+                      {savedValues.length > 0 && <p className="mb-2 text-xs text-slate-500 dark:text-slate-400">{useTarget ? "Saved target — accept by continuing, or change below" : "Saved target retained, inactive"}: {savedValues.map(({ key, unit }) => targetDisplayValue(draft, key) + " " + unit).join(" – ")}</p>}
+                      {useTarget && <div className="mb-3 grid gap-3 sm:grid-cols-2">{fields.map(({ key, label, unit }) => <label key={key} htmlFor={id + "-" + key} className="block text-xs font-semibold text-slate-800 dark:text-slate-200">{label} ({unit})
+                        <input id={id + "-" + key} type="number" min="0" step="any" inputMode="decimal" value={targetDisplayValue(draft, key)} placeholder="No target entered" className={fieldClass} onChange={event => edit(withTarget(draft, key, event.target.value))} />
+                        {key === "potassiumLimitMg" && draft.potassiumLimitMg != null && <span className="mt-1 block font-normal">≈ {(draft.potassiumLimitMg / 39.1).toFixed(1)} mmol/day</span>}
+                      </label>)}</div>}
+                    </fieldset>;
+                  })}
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Blank means no target. Salt is entered in grams and stored as sodium; your notes are never interpreted as restrictions.</p>
+                  {inactiveTargets.length > 0 && <p className="text-xs text-slate-500 dark:text-slate-400">Inactive targets retained: {inactiveTargets.map(({ label }) => label).join(", ")}. Re-select the nutrient to restore its card; choose Yes to use a retained target.</p>}
                 </>}
 
                 {step === 4 && <>

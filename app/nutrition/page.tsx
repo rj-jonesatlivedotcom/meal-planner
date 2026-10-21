@@ -1,5 +1,5 @@
 "use client";
-import { activeRequirements, defaultRequirements as sharedDefaultRequirements, type MonitoredNutrient } from "@/lib/myDiet";
+import { activeRequirements, defaultRequirements as sharedDefaultRequirements, type MonitoredNutrient, type NutrientTargetSettings } from "@/lib/myDiet";
 import { useMyDiet } from "@/components/my-diet/MyDietProvider";
 
 
@@ -102,6 +102,7 @@ type PlannerMeals = Record<
 type RequirementLevel = "Any" | "Low" | "Moderate";
 
 type Requirements = {
+  nutrientTargetSettings?: NutrientTargetSettings | null;
   monitoredNutrients?: MonitoredNutrient[] | null;
   sodiumLimit: number | null;
   potassium: RequirementLevel;
@@ -259,6 +260,7 @@ function getDailyStatus(
   requirements: Requirements
 ): Status {
   const statuses: Status[] = [
+    numericLimitStatus(totals.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal),
     numericLimitStatus(totals.protein, requirements.proteinMinG, requirements.proteinMaxG),
     numericLimitStatus(totals.sodium, null, requirements.sodiumLimit),
     numericLimitStatus(totals.potassium, null, requirements.potassiumLimitMg),
@@ -671,8 +673,9 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       label: "Energy (kcal)",
       total: formatNumber(weeklyTotals.calories),
       average: formatNumber(dailyAverage.calories),
-      requirement: "Not specified",
-      status: null,
+      requirement: formatRange(requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal, "kcal/day"),
+      status: requirements.nutrientTargetSettings?.energyMinKcal != null || requirements.nutrientTargetSettings?.energyMaxKcal != null
+        ? numericLimitStatus(dailyAverage.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal) : null,
     },
     {
       label: "Protein (g)",

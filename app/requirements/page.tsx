@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { withTarget, targetDisplayValue } from "@/lib/myDietOnboarding";
 import MyAllergies from "@/components/my-diet/MyAllergies";
 import MyDietOnboarding from "@/components/my-diet/MyDietOnboarding";
 import {
-  type CkdStage, type Requirements, defaultRequirements,
+  type CkdStage, type Requirements, defaultRequirements, isTargetEnabled, visibleMonitoredNutrients,
   hasPendingRequirementsSave, readStoredRequirements, loadRequirements,
   persistRequirements, cacheAccountRequirements, syncRequirementsToLocalStorage,
   monitoredNutrients, nutrientLabels, isNutrientActive, targetNutrients, isMonitoringWithoutTarget, monitoringWithoutTargetLabel,
@@ -84,6 +85,8 @@ export default function RequirementsPage() {
   const [loadError, setLoadError] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [onboardingEntryStep, setOnboardingEntryStep] = useState<number | undefined>();
+  function openGuidedSetup(step?: number) { setOnboardingEntryStep(step); setShowOnboarding(true); }
   const guidedSetupButtonRef = useRef<HTMLButtonElement>(null);
   const loadedAccountRef = useRef<string | null>(null);
 
@@ -236,6 +239,7 @@ export default function RequirementsPage() {
     const nextRequirements: Requirements = {
       ...requirements,
       ckdStage: stage,
+      nutrientTargetSettings: { ...requirements.nutrientTargetSettings, enabled: { ...requirements.nutrientTargetSettings?.enabled, sodium: false, protein: false, potassium: false, phosphate: false } },
       sodiumLimit: Math.round(preset.saltG * 400),
       proteinMinG: preset.proteinMinGPerKg,
       proteinMaxG: preset.proteinMaxGPerKg,
@@ -345,7 +349,7 @@ export default function RequirementsPage() {
   // Manual entry only. No first-login enrolment or rollout is enabled in Stage 2.
   if (showOnboarding && isLoggedIn) return (
     <main className="min-h-screen bg-slate-50 px-4 py-5 sm:px-6 sm:py-8 dark:bg-slate-950">
-      <MyDietOnboarding initialRequirements={requirements} onDraftChange={retainOnboardingDraft}
+      <MyDietOnboarding initialStep={onboardingEntryStep} initialRequirements={requirements} onDraftChange={retainOnboardingDraft}
         onSave={saveOnboarding} onExit={closeOnboarding} />
     </main>
   );
@@ -368,25 +372,14 @@ export default function RequirementsPage() {
               )}
 
               {isLoggedIn && <button ref={guidedSetupButtonRef} type="button" disabled={!requirementsReady || loadError || saveStatus === "saving"}
-                onClick={() => setShowOnboarding(true)} className="mt-4 min-h-11 rounded-xl bg-[#067b3a] px-4 py-3 text-sm font-bold text-white hover:bg-[#056b32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#067b3a] disabled:opacity-60">
+                onClick={() => openGuidedSetup()} className="mt-4 min-h-11 rounded-xl bg-[#067b3a] px-4 py-3 text-sm font-bold text-white hover:bg-[#056b32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#067b3a] disabled:opacity-60">
                 Start guided setup
               </button>}
+              {isLoggedIn && <button type="button" disabled={!requirementsReady || loadError || saveStatus === "saving"} onClick={() => openGuidedSetup(2)} className="ml-3 mt-4 min-h-11 rounded-xl border border-emerald-300 px-4 py-3 text-sm font-bold text-emerald-800 dark:text-emerald-200">Change monitored nutrients</button>}
               {loadError && <p role="alert" className="mt-3 text-sm text-amber-800">Your saved settings could not be loaded. Reopen My Diet before starting guided setup so existing settings are protected.</p>}
               {saveError && <p role="alert" className="mt-3 text-sm text-amber-800">{saveError}</p>}
 
             </div>
-
-            {requirements.monitoredNutrients?.length ? (
-              <div className="mt-4 rounded-xl border border-slate-200 p-4">
-                <h2 className="text-base font-bold text-slate-900">Nutrients you monitor</h2>
-                <ul className="mt-2 space-y-1 text-sm text-slate-600">
-                  {monitoredNutrients.filter(nutrient => requirements.monitoredNutrients?.includes(nutrient)).map(nutrient => (
-                    <li key={nutrient}>{nutrientLabels[nutrient]}: {isMonitoringWithoutTarget(requirements, nutrient)
-                      ? monitoringWithoutTargetLabel : "Monitoring with your saved target"}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
 
             {/* CKD STAGE */}
             <div className="mt-6 rounded-2xl border border-green-100 bg-green-50/40 p-4 sm:p-5">
@@ -396,7 +389,7 @@ export default function RequirementsPage() {
 
               <p className="mt-1 text-sm leading-6 text-slate-600">
                 Selecting a stage fills the daily requirements below with
-                suggested starting figures. You can change them at any time.
+                suggested starting figures. They stay inactive until you accept or change them in guided setup.
               </p>
 
               <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -443,13 +436,6 @@ export default function RequirementsPage() {
             <MyAllergies requirements={requirements} disabled={!requirementsReady || loadError} onSave={async next => {
               setRequirements(next); const result = await saveRequirements(next, isLoggedIn); return result.ok;
             }} />
-            <fieldset className="mt-5 rounded-2xl border border-slate-200 p-4"><legend className="text-sm font-bold">Nutrients to monitor</legend>
-              <p className="mb-3 text-xs text-slate-600">Targets for unticked nutrients are inactive. Saved values are kept for when you switch them back on.</p>
-              <div className="flex flex-wrap gap-3">{monitoredNutrients.map(nutrient => <label key={nutrient} className="flex min-h-11 items-center gap-2 text-sm font-bold"><input type="checkbox" checked={isNutrientActive(requirements, nutrient)} onChange={event => {
-                const selected = requirements.monitoredNutrients ?? [...monitoredNutrients];
-                updateRequirement("monitoredNutrients", event.target.checked ? [...selected.filter(item => item !== nutrient), nutrient] : selected.filter(item => item !== nutrient));
-              }} />{nutrientLabels[nutrient]}</label>)}</div>
-            </fieldset>
             {/* DAILY REQUIREMENTS */}
             <div className="mt-7">
               <div className="mb-4">
@@ -457,15 +443,17 @@ export default function RequirementsPage() {
                   Your daily requirements
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-slate-600">
-                  Only monitored nutrients have active targets. Disabled fields retain inactive values. The CKD stage
+                  Choose whether to use a target in guided setup. Inactive saved values stay available. The CKD stage
                   fills suggested figures for you, and you can change any of them.
                 </p>
               </div>
 
+              {visibleMonitoredNutrients(requirements).length === 0 && <p className="rounded-xl bg-emerald-50 p-4 text-sm text-emerald-900">Choose nutrients with Henle to personalise My Diet. <button type="button" onClick={() => openGuidedSetup(2)} className="min-h-11 font-bold underline">Choose nutrients</button></p>}
               <div className="grid gap-4 md:grid-cols-2">
+                {visibleMonitoredNutrients(requirements).includes("calories") && <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-4 sm:p-5"><h3 className="font-extrabold">Energy</h3><p className="my-2 text-xs">{isMonitoringWithoutTarget(requirements, "calories") ? "Monitoring only — no active target. Saved values are retained." : "Your daily energy target or range."}</p><div className="grid gap-3 sm:grid-cols-2">{(["energyMinKcal", "energyMaxKcal"] as const).map(key => <label key={key} className="text-sm font-bold">{key === "energyMinKcal" ? "Minimum" : "Maximum"} (kcal/day)<input type="number" min="0" disabled={!isTargetEnabled(requirements, "calories")} value={targetDisplayValue(requirements, key)} onChange={event => { const next = withTarget(requirements, key, event.target.value); setRequirements(next); void saveRequirements(next, isLoggedIn); }} className="mt-2 min-h-11 w-full rounded-xl border border-orange-200 bg-white px-3 text-sm" /></label>)}</div><button type="button" onClick={() => openGuidedSetup(3)} className="mt-2 min-h-11 text-xs font-bold underline">Change target choice with Henle</button></div>}
 
                 {/* SALT */}
-                <div className="rounded-2xl border border-blue-100 bg-blue-50/40 p-4 sm:p-5">
+                {visibleMonitoredNutrients(requirements).includes("sodium") && (<div className="rounded-2xl border border-blue-100 bg-blue-50/40 p-4 sm:p-5">{isMonitoringWithoutTarget(requirements, "sodium") && <p className="mb-3 text-xs font-semibold text-slate-600 dark:text-slate-300">Monitoring only — no active numerical target. Saved values, if shown, are inactive. <button type="button" onClick={() => openGuidedSetup(3)} className="min-h-11 underline">Set a target with Henle</button></p>}
                   <button
                     type="button"
                     onClick={() => toggleAdvice("salt")}
@@ -487,7 +475,7 @@ export default function RequirementsPage() {
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
-                    <input disabled={!isNutrientActive(requirements, targetNutrients.sodiumLimit)} aria-description={!isNutrientActive(requirements, targetNutrients.sodiumLimit) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                    <input disabled={!isTargetEnabled(requirements, targetNutrients.sodiumLimit)} aria-description={!isNutrientActive(requirements, targetNutrients.sodiumLimit) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                       type="number"
                       min="0"
                       step="0.1"
@@ -518,10 +506,10 @@ export default function RequirementsPage() {
                     5 g/day; change this if your renal team has given you a
                     different target.
                   </p>
-                </div>
+                </div>)}
 
                 {/* PROTEIN */}
-                <div className="rounded-2xl border border-rose-100 bg-rose-50/40 p-4 sm:p-5">
+                {visibleMonitoredNutrients(requirements).includes("protein") && (<div className="rounded-2xl border border-rose-100 bg-rose-50/40 p-4 sm:p-5">{isMonitoringWithoutTarget(requirements, "protein") && <p className="mb-3 text-xs font-semibold text-slate-600 dark:text-slate-300">Monitoring only — no active numerical target. Saved values, if shown, are inactive. <button type="button" onClick={() => openGuidedSetup(3)} className="min-h-11 underline">Set a target with Henle</button></p>}
                   <button
                     type="button"
                     onClick={() => toggleAdvice("protein")}
@@ -548,7 +536,7 @@ export default function RequirementsPage() {
                         Minimum
                       </label>
                       <div className="mt-1 flex items-center gap-2">
-                        <input disabled={!isNutrientActive(requirements, targetNutrients.proteinMinG)} aria-description={!isNutrientActive(requirements, targetNutrients.proteinMinG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                        <input disabled={!isTargetEnabled(requirements, targetNutrients.proteinMinG)} aria-description={!isNutrientActive(requirements, targetNutrients.proteinMinG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                           type="number"
                           min="0"
                           step="1"
@@ -571,7 +559,7 @@ export default function RequirementsPage() {
                         Maximum
                       </label>
                       <div className="mt-1 flex items-center gap-2">
-                        <input disabled={!isNutrientActive(requirements, targetNutrients.proteinMaxG)} aria-description={!isNutrientActive(requirements, targetNutrients.proteinMaxG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                        <input disabled={!isTargetEnabled(requirements, targetNutrients.proteinMaxG)} aria-description={!isNutrientActive(requirements, targetNutrients.proteinMaxG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                           type="number"
                           min="0"
                           step="1"
@@ -599,10 +587,10 @@ export default function RequirementsPage() {
                           ? "UK Kidney Association guidance is higher on dialysis and differs by dialysis type. These figures are a starting range only."
                           : "Enter the daily protein target supplied by your renal team."}
                   </p>
-                </div>
+                </div>)}
 
                 {/* POTASSIUM */}
-                <div className="rounded-2xl border border-green-100 bg-green-50/40 p-4 sm:p-5">
+                {visibleMonitoredNutrients(requirements).includes("potassium") && (<div className="rounded-2xl border border-green-100 bg-green-50/40 p-4 sm:p-5">{isMonitoringWithoutTarget(requirements, "potassium") && <p className="mb-3 text-xs font-semibold text-slate-600 dark:text-slate-300">Monitoring only — no active numerical target. Saved values, if shown, are inactive. <button type="button" onClick={() => openGuidedSetup(3)} className="min-h-11 underline">Set a target with Henle</button></p>}
                   <button
                     type="button"
                     onClick={() => toggleAdvice("potassium")}
@@ -624,7 +612,7 @@ export default function RequirementsPage() {
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
-                    <input disabled={!isNutrientActive(requirements, targetNutrients.potassiumLimitMg)} aria-description={!isNutrientActive(requirements, targetNutrients.potassiumLimitMg) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                    <input disabled={!isTargetEnabled(requirements, targetNutrients.potassiumLimitMg)} aria-description={!isNutrientActive(requirements, targetNutrients.potassiumLimitMg) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                       type="number"
                       min="0"
                       step="1"
@@ -655,10 +643,10 @@ export default function RequirementsPage() {
                       ? "No potassium restriction is set for this preset. If your renal team has advised a limit, enter it here."
                       : <>Your current limit is shown above. The usual starting preset is <span className="font-semibold">2,737 mg/day</span> (about <span className="font-semibold">70 mmol/day</span>). A commonly used restricted range is 1,955–2,737 mg/day (about 50–70 mmol/day). Enter potassium in mg/day; the mmol/day equivalent is shown above for reference. You can change or remove this figure to match your renal team's advice.</>}
                   </p>
-                </div>
+                </div>)}
 
                 {/* PHOSPHATE */}
-                <div className="rounded-2xl border border-purple-100 bg-purple-50/40 p-4 sm:p-5">
+                {visibleMonitoredNutrients(requirements).includes("phosphate") && (<div className="rounded-2xl border border-purple-100 bg-purple-50/40 p-4 sm:p-5">{isMonitoringWithoutTarget(requirements, "phosphate") && <p className="mb-3 text-xs font-semibold text-slate-600 dark:text-slate-300">Monitoring only — no active numerical target. Saved values, if shown, are inactive. <button type="button" onClick={() => openGuidedSetup(3)} className="min-h-11 underline">Set a target with Henle</button></p>}
                   <button
                     type="button"
                     onClick={() => toggleAdvice("phosphate")}
@@ -680,7 +668,7 @@ export default function RequirementsPage() {
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
-                    <input disabled={!isNutrientActive(requirements, targetNutrients.phosphateLimitMg)} aria-description={!isNutrientActive(requirements, targetNutrients.phosphateLimitMg) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                    <input disabled={!isTargetEnabled(requirements, targetNutrients.phosphateLimitMg)} aria-description={!isNutrientActive(requirements, targetNutrients.phosphateLimitMg) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                       type="number"
                       min="0"
                       step="1"
@@ -713,10 +701,10 @@ export default function RequirementsPage() {
                   <p className="mt-2 text-xs leading-5 text-slate-500">
                     Food composition data reports phosphorus (P), not the mass of phosphate (PO₄). Enter phosphorus in mg/day; the mmol/day figure is calculated using the atomic mass of phosphorus. Your renal team may recommend a different target or no restriction.
                   </p>
-                </div>
+                </div>)}
 
                 {/* FLUID */}
-                <div className="rounded-2xl border border-cyan-100 bg-cyan-50/40 p-4 sm:p-5">
+                {visibleMonitoredNutrients(requirements).includes("fluid") && (<div className="rounded-2xl border border-cyan-100 bg-cyan-50/40 p-4 sm:p-5">{isMonitoringWithoutTarget(requirements, "fluid") && <p className="mb-3 text-xs font-semibold text-slate-600 dark:text-slate-300">Monitoring only — no active numerical target. Saved values, if shown, are inactive. <button type="button" onClick={() => openGuidedSetup(3)} className="min-h-11 underline">Set a target with Henle</button></p>}
                   <button
                     type="button"
                     onClick={() => toggleAdvice("fluid")}
@@ -738,7 +726,7 @@ export default function RequirementsPage() {
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
-                    <input disabled={!isNutrientActive(requirements, targetNutrients.fluidLimitMl)} aria-description={!isNutrientActive(requirements, targetNutrients.fluidLimitMl) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                    <input disabled={!isTargetEnabled(requirements, targetNutrients.fluidLimitMl)} aria-description={!isNutrientActive(requirements, targetNutrients.fluidLimitMl) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                       type="number"
                       min="0"
                       max="10000"
@@ -763,9 +751,9 @@ export default function RequirementsPage() {
                   <p className="mt-2 text-xs leading-5 text-slate-500">
                     Enter the allowance given by your renal team.
                   </p>
-                </div>
+                </div>)}
             {/* CARBOHYDRATE */}
-            <div>
+            {visibleMonitoredNutrients(requirements).includes("carbohydrate") && (<div>{isMonitoringWithoutTarget(requirements, "carbohydrate") && <p className="mb-3 text-xs font-semibold text-slate-600 dark:text-slate-300">Monitoring only — no active numerical target. Saved values, if shown, are inactive. <button type="button" onClick={() => openGuidedSetup(3)} className="min-h-11 underline">Set a target with Henle</button></p>}
               <div className="mb-4">
                 <button
                   type="button"
@@ -795,7 +783,7 @@ export default function RequirementsPage() {
                       Minimum per day
                     </label>
                     <div className="mt-2 flex items-center gap-2">
-                      <input disabled={!isNutrientActive(requirements, targetNutrients.carbohydrateMin)} aria-description={!isNutrientActive(requirements, targetNutrients.carbohydrateMin) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                      <input disabled={!isTargetEnabled(requirements, targetNutrients.carbohydrateMin)} aria-description={!isNutrientActive(requirements, targetNutrients.carbohydrateMin) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                         type="number"
                         min="0"
                         step="1"
@@ -818,7 +806,7 @@ export default function RequirementsPage() {
                       Maximum per day
                     </label>
                     <div className="mt-2 flex items-center gap-2">
-                      <input disabled={!isNutrientActive(requirements, targetNutrients.carbohydrateMax)} aria-description={!isNutrientActive(requirements, targetNutrients.carbohydrateMax) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                      <input disabled={!isTargetEnabled(requirements, targetNutrients.carbohydrateMax)} aria-description={!isNutrientActive(requirements, targetNutrients.carbohydrateMax) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                         type="number"
                         min="0"
                         step="1"
@@ -844,7 +832,7 @@ export default function RequirementsPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div>)}
 
               </div>
             </div>

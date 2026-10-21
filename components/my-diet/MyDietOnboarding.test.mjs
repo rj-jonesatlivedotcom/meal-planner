@@ -9,7 +9,7 @@ const tick = () => new Promise(resolve => setImmediate(resolve));
 const deferred = () => { let resolve; const promise = new Promise(done => { resolve = done; }); return { promise, resolve }; };
 
 // Exercise the component's real event handlers with deterministic hook state, without a browser or account writes.
-function harness(initial = {}, save) {
+function harness(initial = {}, save, initialStep) {
   const states = [], saves = [], drafts = [], modules = new Map(); let cursor = 0, exits = 0;
   const hooks = {
     useState(initialValue) { const index = cursor++; if (!(index in states)) states[index] = typeof initialValue === 'function' ? initialValue() : initialValue;
@@ -30,6 +30,7 @@ function harness(initial = {}, save) {
       if (name === 'next/image' || name === 'next/link') return { __esModule: true, default: name === 'next/image' ? 'img' : 'a' };
       if (name === './MyDietOnboarding.module.css') return { __esModule: true, default: { layout: 'onboarding-layout', mascot: 'onboarding-mascot' } };
       if (name === '@/lib/myDiet') return load('../../lib/myDiet.ts');
+      if (name === './myDiet') return load('../../lib/myDiet.ts');
       if (name === '@/lib/myDietOnboarding') return load('../../lib/myDietOnboarding.ts');
       throw new Error(`Unexpected import ${name}`);
     };
@@ -37,7 +38,7 @@ function harness(initial = {}, save) {
   }
   const model = load('../../lib/myDiet.ts'), flow = load('../../lib/myDietOnboarding.ts');
   const Component = load('./MyDietOnboarding.tsx').default;
-  const props = { initialRequirements: { ...model.defaultRequirements, ...initial },
+  const props = { initialStep, initialRequirements: { ...model.defaultRequirements, ...initial },
     onDraftChange: draft => drafts.push(plain(draft)), onSave: async next => { saves.push(plain(next)); if (save) await save(next); },
     onExit: () => { exits++; } };
   let tree;
@@ -82,7 +83,7 @@ test('welcome uses the waving Henle asset, optional name and accessible progress
 });
 
 test('monitoring includes energy, is independent of targets and retains existing restrictions', async () => {
-  const h = harness({ onboardingStatus: 'in_progress', onboardingStep: 2, potassium: 'Low', proteinMinG: 50 });
+  const h = harness({ onboardingStatus: 'in_progress', onboardingStep: 2, monitoredNutrients: [], potassium: 'Low', proteinMinG: 50 });
   for (const value of ['potassium', 'calories']) {
     h.find(n => n.type === 'input' && n.props.type === 'checkbox' && n.props.value === value).props.onChange({ target: { checked: true } }); h.render();
   }
@@ -114,7 +115,7 @@ test('unticking nutrients hides their Step 3 fields without erasing targets, and
 });
 
 test('accepting no Step 2 choices makes the empty selection explicit and retains old targets as inactive', async()=>{
-  const h=harness({onboardingStatus:'in_progress',onboardingStep:2,monitoredNutrients:null,sodiumLimit:2000});await h.submit();assert.deepEqual(h.saves[0].monitoredNutrients,[]);assert.equal(h.saves[0].sodiumLimit,2000);assert.equal(h.nodes().some(n=>n.props?.id==='guide-sodiumLimit'),false);
+  const h=harness({onboardingStatus:'in_progress',onboardingStep:2,monitoredNutrients:[],sodiumLimit:2000});await h.submit();assert.deepEqual(h.saves[0].monitoredNutrients,[]);assert.equal(h.saves[0].sodiumLimit,2000);assert.equal(h.nodes().some(n=>n.props?.id==='guide-sodiumLimit'),false);
 });
 
 test('allergy answers stay separate from dislikes and existing favourites; skip retains entries', async () => {
@@ -327,4 +328,20 @@ test('the actual page save queue serializes writes and only acknowledges the new
   assert.equal((await first).ok, false); assert.equal((await second).ok, true);
   assert.deepEqual(writes, ['First', 'Second']);
   assert.deepEqual(h.cache.filter(entry => !entry.pending).map(entry => entry.value.preferredName), ['Second']);
+});
+
+
+test('direct Step 2 entry retains saved answers and declined target choices', async () => {
+ const h=harness({preferredName:'Alex',onboardingStatus:'completed',onboardingStep:5,monitoredNutrients:['potassium'],potassiumLimitMg:2737,nutrientTargetSettings:{enabled:{potassium:false}}},undefined,2);
+ assert.match(h.text(),/Step 2 of 5/); await h.submit(); assert.match(h.text(),/Step 3 of 5/);
+ assert.equal(h.find(n=>n.props?.name==='guide-target-potassium' && n.props.value==='false').props.checked,true);
+ await h.submit();assert.equal(h.saves.at(-1).potassiumLimitMg,2737);assert.equal(h.saves.at(-1).nutrientTargetSettings.enabled.potassium,false);assert.equal(h.saves.at(-1).preferredName,'Alex');
+});
+
+test('explicit energy target requires a value, validates ranges and persists kcal choices', async () => {
+ const h=harness({monitoredNutrients:['calories']},undefined,3);
+ h.find(n=>n.props?.name==='guide-target-calories' && n.props.value==='true').props.onChange();h.render();
+ await h.submit();assert.equal(h.saves.length,0);assert.match(h.text(),/Enter a target/);
+ h.change('energyMinKcal','1800');h.change('energyMaxKcal','2200');await h.submit();
+ assert.deepEqual(h.saves[0].nutrientTargetSettings,{enabled:{calories:true},energyMinKcal:1800,energyMaxKcal:2200});
 });

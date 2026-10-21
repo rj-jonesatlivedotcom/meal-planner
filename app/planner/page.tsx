@@ -1051,7 +1051,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
         return typeof family === "string" ? family.trim().toLowerCase() : "";
       };
 
-      const numeric = (recipe: Recipe, field: "protein" | "carbohydrates" | "sodium" | "potassium" | "phosphate") => {
+      const numeric = (recipe: Recipe, field: "calories" | "protein" | "carbohydrates" | "sodium" | "potassium" | "phosphate") => {
         if (field === "protein") return getNutritionNumber(recipe.protein);
         return getNutritionNumber(recipe.nutrition[field] ?? "0");
       };
@@ -1137,6 +1137,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
           const sodium = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "sodium"), 0);
           const potassium = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "potassium"), 0);
           const phosphate = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "phosphate"), 0);
+          const energy = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "calories"), 0);
 
           let score = 0;
           const penalty = (amount: number, weight: number) => {
@@ -1169,6 +1170,8 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
           if (requirements?.proteinMaxG != null) penalty(protein - requirements.proteinMaxG, 100000);
           if (requirements?.carbohydrateMin != null) penalty(requirements.carbohydrateMin - carbohydrates, 500);
           if (requirements?.carbohydrateMax != null) penalty(carbohydrates - requirements.carbohydrateMax, 100000);
+          if (requirements?.nutrientTargetSettings?.energyMinKcal != null) penalty(requirements.nutrientTargetSettings.energyMinKcal - energy, 500);
+          if (requirements?.nutrientTargetSettings?.energyMaxKcal != null) penalty(energy - requirements.nutrientTargetSettings.energyMaxKcal, 100000);
 
           const mealEntries: [string, Recipe][] = [
             ["Breakfast", combo.Breakfast],
@@ -1504,6 +1507,8 @@ function formatPotassiumMg(mg: number): string {
       return null;
     }
 
+    if (field === "calories") return dailyRequirements.nutrientTargetSettings?.energyMaxKcal ?? null;
+
     if (field === "protein") {
       return dailyRequirements.proteinMaxG ?? null;
     }
@@ -1545,6 +1550,13 @@ function formatPotassiumMg(mg: number): string {
 
     if (!dailyRequirements) {
       return "No limit";
+    }
+
+    if (field === "calories") {
+      const min = dailyRequirements.nutrientTargetSettings?.energyMinKcal ?? null;
+      const max = dailyRequirements.nutrientTargetSettings?.energyMaxKcal ?? null;
+      if (min === null && max === null) return "No limit";
+      return (min !== null && total < min) || (max !== null && total > max) ? "Over" : "Within";
     }
 
     if (field === "protein") {
@@ -1777,7 +1789,7 @@ function formatPotassiumMg(mg: number): string {
 
       // Numeric daily views compare the full day's total with the user's
       // daily requirement: green when within the limit, red when over it.
-      // Calories has no daily requirement and therefore remains neutral.
+      // Without an accepted target, calories remain neutral.
       const statusColour =
         status === "Over"
           ? "#ef4444"

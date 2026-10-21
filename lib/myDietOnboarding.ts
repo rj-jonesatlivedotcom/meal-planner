@@ -2,11 +2,11 @@ import type { Requirements, MonitoredNutrient } from "./myDiet";
 
 export const onboardingSteps = ["Meet Sidney", "Nutrients to monitor", "Your dietary guidance", "Foods you love and avoid", "You're ready!"];
 export const sidneyGuidance = [
-  { opening: "Hello, I'm Sidney!", text: "Let's make My Diet feel a little more like you. Setup is optional, and you can change your answers later." },
-  { opening: "Right, let's talk about what matters to you!", text: "Everyone's dietary needs are different. Pick anything you'd like me to help you keep an eye on. Don't know your limits? No problem! We can track things without setting targets." },
-  { opening: "Let's keep your advice in one place.", text: "If you already have guidance or daily targets, you can note them here. No numbers to hand? It's fine to leave the boxes blank." },
-  { opening: "What do you love — and what would you rather leave off the plate?", text: "We'll keep allergies separate from dislikes, and your favourites just where they are. Share as much or as little as you like." },
-  { opening: "That's a little more you!", text: "Take a look over your choices. You can go back and change anything before you finish." },
+  { opening: "Hi! I'm Sidney!", text: "I'll help make RenalPlan feel right for you." },
+  { opening: "Nutrients to monitor", text: "Pick what matters to you!" },
+  { opening: "Your dietary guidance", text: "What advice would you like to keep handy?" },
+  { opening: "Foods you love and avoid", text: "What should we know about your plate?" },
+  { opening: "A little more you", text: "Take a look. Does this feel right?" },
 ];
 export const nutrientExplanations: Record<MonitoredNutrient, string> = {
   potassium: "View the potassium amounts available for your planned meals. Selecting this does not set a restriction.",

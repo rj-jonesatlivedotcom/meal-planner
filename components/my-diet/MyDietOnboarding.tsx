@@ -20,9 +20,11 @@ type Props = {
   onSave: (next: Requirements, pendingDraft?: Requirements) => Promise<void>;
   onExit: () => void;
 };
-const fieldClass = "mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 focus:border-[#067b3a] focus:outline-none focus:ring-2 focus:ring-emerald-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100";
-const primaryClass = "min-h-11 rounded-xl bg-[#067b3a] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#056b32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#067b3a] disabled:opacity-60";
-const secondaryClass = "min-h-11 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-[#12396b] hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12396b] disabled:opacity-60 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100";
+const fieldClass = `${styles.field} mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 focus:border-[#067b3a] focus:outline-none focus:ring-2 focus:ring-emerald-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100`;
+const primaryClass = `${styles.primary} min-h-11 rounded-xl bg-[#067b3a] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#056b32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#067b3a] disabled:opacity-60`;
+const secondaryClass = `${styles.secondary} min-h-11 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-[#12396b] hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12396b] disabled:opacity-60 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100`;
+const poses = ["hello", "point", "explain", "encourage", "celebrate"];
+const nutrientIcons = { sodium: "🧂", protein: "🥚", potassium: "🍌", phosphate: "🧀", calories: "🔥", carbohydrate: "🍞", fluid: "💧" };
 
 export default function MyDietOnboarding({ initialRequirements, onDraftChange, onSave, onExit }: Props) {
   const [draft, setDraft] = useState(() => createOnboardingDraft(initialRequirements));
@@ -70,14 +72,13 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
     onExit();
   }
 
-  async function accept(action: OnboardingAction, showTour = false) {
+  async function accept(action: OnboardingAction) {
     if (action === "skip") { leave(true); return; }
     if (savingRef.current) return;
     if (preview) {
       setError(null); setFailedAction(null);
       if (action === "continue") navigateTo(Math.min(5, step + 1));
-      else if (showTour) setTour(true);
-      else leave();
+      else setTour(true);
       return;
     }
     const validation = step >= 3 ? validateOnboardingTargets(draft) : null;
@@ -95,8 +96,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
       setDraft(saved);
       setStep(saved.onboardingStep ?? step);
       if (action === "complete") {
-        if (showTour) setTour(true);
-        else onExit();
+        setTour(true);
       }
     } catch (cause) {
       if (!leavingRef.current) { setError(onboardingSaveError(cause)); setFailedAction(action); }
@@ -111,21 +111,17 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
     .filter(key => draft[key] !== "Any");
 
   return (
-    <section aria-labelledby={`${id}-heading`} className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <section aria-labelledby={`${id}-heading`} className={styles.journey}>
+      <p className={styles.journeyTitle}>Your RenalPlan Journey</p>
       <div className={styles.layout}>
-        <aside className="flex items-center gap-3 border-b border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-orange-50 p-4 md:flex-col md:justify-start md:border-b-0 md:border-r md:p-6 dark:border-slate-700 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800">
-          <Image src="/images/kidney-chef.png" alt="Sidney the Kidney, your friendly RenalPlan guide" width={1322} height={1190}
-            sizes="(max-width: 767px) 134px, 223px" priority className={styles.mascot} />
-          <div className="min-w-0 md:text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#067b3a] dark:text-emerald-300">My Diet, with Sidney</p>
-            <p className="mt-2 text-sm leading-6 text-[#355270] dark:text-slate-300">A little about you, at your pace. You can change your answers later.</p>
-            <p className="mt-3 hidden text-xs leading-5 text-slate-500 md:block dark:text-slate-400">Your choices support planning alongside advice from your healthcare team.</p>
-          </div>
-        </aside>
+        <div className={styles.character}>
+          <Image src={`/images/sidney-${poses[tour ? 4 : step - 1]}.png`} alt={`Sidney the Kidney ${["waving hello", "pointing to your choices", "explaining your guidance", "encouraging you", "celebrating"][tour ? 4 : step - 1]}`}
+            width={1323} height={1189} sizes="(max-width: 767px) 160px, 430px" priority className={styles.mascot} />
+        </div>
 
-        <div className="min-w-0 p-4 sm:p-6 lg:p-8">
+        <div className={styles.card}>
           {!tour && (
-            <div className="mb-5 flex items-center justify-between gap-3">
+            <div className="mb-4 flex items-center justify-between gap-3">
               <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Step {step} of 5</p>
               <ol aria-label="Setup progress" className="flex gap-1.5">
                 {onboardingSteps.map((title, index) => (
@@ -138,20 +134,17 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
             </div>
           )}
           <h1 ref={headingRef} id={`${id}-heading`} tabIndex={-1} className="text-2xl font-extrabold tracking-tight text-[#12396b] outline-none sm:text-3xl dark:text-slate-100">
-            {tour ? "A quick look around" : onboardingSteps[step - 1]}
+            {tour ? (preview ? "Keep exploring" : "You're all set!") : sidneyGuidance[step - 1].opening}
           </h1>
 
           {tour ? (
             <div className="mt-4">
-              <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{preview ? "You are exploring with unsaved answers. Setup is not complete." : "Your setup is saved."} Here are the places to explore whenever you are ready.</p>
-              <nav aria-label="Explore RenalPlan" className="mt-5 grid gap-3 sm:grid-cols-2">
-                {[["/", "Dashboard", "Your day and helpful next steps."], ["/recipes", "Recipes", "Browse meals and save your favourites."],
-                  ["/planner", "Planner", "Choose meals for your week."], ["/nutrition", "Nutrition", "View your planned nutritional amounts."],
-                  ["/shopping", "Shopping list", "See the ingredients for your plan."]].map(([href, title, description]) => (
-                  <Link key={href} href={href} className={`${secondaryClass} block`}><span className="block">{title} →</span><span className="mt-1 block text-xs font-normal leading-5">{description}</span></Link>
-                ))}
+              <p role="status" className="text-base leading-6 text-slate-600 dark:text-slate-300">{preview ? "Unsaved preview — setup is not complete. Your answers are kept in this browser." : "Ready to find something delicious? Your setup is saved."}</p>
+              <nav aria-label="Explore RenalPlan" className="mt-6 grid gap-3 sm:grid-cols-2">
+                <Link href="/recipes" className={styles.destination}><span aria-hidden="true">🥗</span>Explore Recipes</Link>
+                <Link href="/planner" className={styles.destination}><span aria-hidden="true">🗓️</span>Plan My Week</Link>
               </nav>
-              <button type="button" onClick={() => preview ? leave() : onExit()} className={`${primaryClass} mt-5`}>Go to My Diet</button>
+              {preview && <button type="button" onClick={() => leave()} className={`${secondaryClass} mt-4`}>Return to My Diet</button>}
             </div>
           ) : (
             <form noValidate={preview} onSubmit={event => { event.preventDefault(); void accept(step === 5 ? "complete" : "continue"); }} aria-busy={busy}>
@@ -169,33 +162,28 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
                 </div>
               )}
 
-              <fieldset disabled={busy} className="mt-4 min-w-0 space-y-5">
+              <fieldset disabled={busy} className="mt-3 min-w-0 space-y-3">
                 <legend className="sr-only">{onboardingSteps[step - 1]}</legend>
-                <div aria-label="A note from Sidney" className="space-y-2 text-slate-600 dark:text-slate-300">
-                  <p className="text-base font-semibold leading-7 text-[#12396b] dark:text-slate-100">{sidneyGuidance[step - 1].opening}</p>
-                  <p className="text-sm leading-6">{sidneyGuidance[step - 1].text}</p>
-                </div>
+                <p aria-label="A note from Sidney" className={styles.dialogue}>{sidneyGuidance[step - 1].text}</p>
                 {step === 1 && <>
-                  <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">We&apos;ll choose what you want to monitor, record advice you already have, and note your food preferences. No targets or restrictions are added automatically.</p>
-                  <label htmlFor={`${id}-name`} className="block text-sm font-bold text-slate-800 dark:text-slate-200">What would you like me to call you? <span className="font-normal">(optional)</span>
+                  <label htmlFor={`${id}-name`} className="block text-sm font-bold text-slate-800 dark:text-slate-200">What should I call you? <span className="font-normal">(optional)</span>
                     <input id={`${id}-name`} autoComplete="given-name" maxLength={120} value={draft.preferredName ?? ""} placeholder="Your preferred name" className={fieldClass}
                       onChange={event => edit({ ...draft, preferredName: event.target.value || null })} />
                   </label>
                 </>}
 
                 {step === 2 && <>
-                  <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Monitoring does not change your existing targets or restrictions.</p>
-                  <div className="grid gap-3 sm:grid-cols-2">
+                  <div className={styles.nutrientGrid}>
                     {monitoredNutrients.map(nutrient => (
-                      <div key={nutrient} className="rounded-xl border border-slate-200 p-3 dark:border-slate-700">
+                      <div key={nutrient} data-nutrient={nutrient} className={`${styles.tile} ${draft.monitoredNutrients?.includes(nutrient) ? styles.selected : ""}`}>
                         <label className="flex min-h-11 cursor-pointer items-center gap-3 text-sm font-bold text-slate-800 dark:text-slate-100">
                           <input type="checkbox" name="monitoredNutrients" value={nutrient} checked={draft.monitoredNutrients?.includes(nutrient) ?? false}
                             className="h-5 w-5 accent-[#067b3a]" onChange={event => edit({ ...draft, monitoredNutrients: event.target.checked
                               ? [...(draft.monitoredNutrients ?? []), nutrient] : (draft.monitoredNutrients ?? []).filter(item => item !== nutrient) })} />
-                          {nutrientLabels[nutrient]}
+                          <span aria-hidden="true" className={styles.nutrientIcon}>{nutrientIcons[nutrient]}</span>{nutrientLabels[nutrient]}
                         </label>
-                        <details className="text-xs leading-5 text-slate-600 dark:text-slate-300">
-                          <summary title={nutrientExplanations[nutrient]} className="min-h-8 cursor-pointer py-1 font-semibold text-[#1266c3] dark:text-blue-300">About {nutrientLabels[nutrient].toLowerCase()}</summary>
+                        <details className={styles.tileHelp}>
+                          <summary title={nutrientExplanations[nutrient]} aria-label={`About ${nutrientLabels[nutrient].toLowerCase()}`}>i</summary>
                           <p className="pt-1">{nutrientExplanations[nutrient]}</p>
                         </details>
                       </div>
@@ -205,11 +193,13 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
 
                 {step === 3 && <>
                   <label htmlFor={`${id}-advice`} className="block text-sm font-bold text-slate-800 dark:text-slate-200">Advice you have already received <span className="font-normal">(optional)</span>
-                    <textarea id={`${id}-advice`} rows={3} value={draft.dietaryAdvice ?? ""} className={fieldClass} placeholder="Anything you would like to keep a note of"
+                    <textarea id={`${id}-advice`} rows={2} value={draft.dietaryAdvice ?? ""} className={fieldClass} placeholder="Anything you would like to keep a note of"
                       onChange={event => edit({ ...draft, dietaryAdvice: event.target.value || null })} />
                   </label>
-                  <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">If you already have daily numerical targets, you can record them below. Leave a box blank when no target has been entered. Your notes are kept as written and do not automatically set limits.</p>
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <details className={styles.group}>
+                  <summary>Daily targets <span className="font-normal">(optional{summaryTargets.length ? ` · ${summaryTargets.length} entered` : ""})</span></summary>
+                  <p className="my-2 text-xs leading-5 text-slate-600 dark:text-slate-300">Use targets you already have. Blank means no target; advice is kept as written and never interpreted.</p>
+                  <div className="grid gap-3 sm:grid-cols-2">
                     {onboardingTargets.map(({ key, label, unit }) => (
                       <label key={key} htmlFor={`${id}-${key}`} className="block text-sm font-semibold text-slate-800 dark:text-slate-200">{label} <span className="font-normal text-slate-500 dark:text-slate-400">({unit})</span>
                         <input id={`${id}-${key}`} type="number" min="0" step="any" inputMode="decimal" value={targetDisplayValue(draft, key)} placeholder="No target entered" className={fieldClass}
@@ -217,7 +207,8 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
                       </label>
                     ))}
                   </div>
-                  <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">Salt uses the same grams-to-sodium conversion as My Diet. Energy can be monitored without a numerical target. Your CKD setting is unchanged.</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Salt is entered in grams and stored as sodium. Energy has no numerical target. Your CKD setting is unchanged.</p>
+                  </details>
                 </>}
 
                 {step === 4 && <>
@@ -242,16 +233,20 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
                       setDislikeText(event.target.value); const foods = parseFoodList(event.target.value); edit({ ...draft, dislikedFoods: foods.length ? foods : null });
                     }} />
                   </label>
-                  <div className="rounded-xl border border-emerald-100 bg-emerald-50/50 p-4 dark:border-slate-700 dark:bg-slate-800">
-                    <p className="text-sm font-bold text-[#12396b] dark:text-slate-100">Keep the foods you love in your favourites</p>
-                    <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">Use the stars on recipes to manage your existing favourites. They stay separate from allergies and dislikes.</p>
-                    <a href="/recipes?view=favourites" target="_blank" rel="noopener noreferrer" className="mt-2 inline-block min-h-11 py-2 text-sm font-bold text-[#1266c3] underline dark:text-blue-300">Open my favourites <span className="text-xs font-normal">(new tab)</span></a>
+                  <div className="text-xs leading-5 text-slate-600 dark:text-slate-300">
+                    Foods you love stay in your recipe favourites. <a href="/recipes?view=favourites" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-bold text-[#1266c3] underline dark:text-blue-300">Open my favourites <span className="ml-1 font-normal">(new tab)</span></a>
                   </div>
                 </>}
 
                 {step === 5 && <>
-                  <p className="break-words text-sm leading-6 text-slate-600 dark:text-slate-300">{draft.preferredName?.trim() ? `${draft.preferredName.trim()}, here` : "Here"} is what you have chosen. {preview ? "These answers remain unsaved. You can go Back to change them, return to My Diet, or explore the app." : "Finish below to save your setup, or go Back to change anything."}</p>
-                  <dl className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm dark:border-slate-700 dark:bg-slate-800">
+                  <div className={styles.reviewChips}>
+                    <span>{draft.preferredName?.trim() || "Name not provided"}</span>
+                    <span>{draft.monitoredNutrients == null ? "Monitoring not answered" : `${draft.monitoredNutrients.length} nutrient${draft.monitoredNutrients.length === 1 ? "" : "s"} selected`}</span>
+                    <span>{draft.foodAllergies == null ? "Allergies not answered" : draft.foodAllergies.length ? `${draft.foodAllergies.length} allergies reported` : "No allergies reported"}</span>
+                  </div>
+                  <details className={styles.group}>
+                  <summary>Review all your answers</summary>
+                  <dl className="mt-3 grid gap-3 text-sm sm:grid-cols-2">
                     <div><dt className="font-bold text-[#12396b] dark:text-slate-100">Preferred name</dt><dd className="mt-1 break-words text-slate-600 dark:text-slate-300">{draft.preferredName?.trim() || "Not provided"}</dd></div>
                     <div><dt className="font-bold text-[#12396b] dark:text-slate-100">Nutrients to monitor</dt><dd className="mt-1 text-slate-600 dark:text-slate-300">{draft.monitoredNutrients == null ? "Not answered" : !draft.monitoredNutrients.length ? "None selected" : (
                       <ul className="space-y-1">{draft.monitoredNutrients.map(nutrient => <li key={nutrient}>{nutrientLabels[nutrient]}: {isMonitoringWithoutTarget(draft, nutrient) ? monitoringWithoutTargetLabel : "Using your saved target"}</li>)}</ul>
@@ -263,21 +258,20 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
                     <div><dt className="font-bold text-[#12396b] dark:text-slate-100">Dislikes</dt><dd className="mt-1 break-words text-slate-600 dark:text-slate-300">{draft.dislikedFoods?.length ? draft.dislikedFoods.join(", ") : "Not provided"}</dd></div>
                     <div><dt className="font-bold text-[#12396b] dark:text-slate-100">Favourites</dt><dd className="mt-1 text-slate-600 dark:text-slate-300">Managed in your existing recipe favourites.</dd></div>
                   </dl>
+                  </details>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">{preview ? "These answers are unsaved. Setup is not complete." : "Finish to save your setup. Back lets you change anything."}</p>
                 </>}
               </fieldset>
 
-              <div className="mt-6 border-t border-slate-200 pt-4 dark:border-slate-700">
+              <div className="mt-4 border-t border-slate-200 pt-3 dark:border-slate-700">
                 <div className="flex flex-wrap items-center gap-2">
                   <button type="button" disabled={busy || step === 1} className={secondaryClass} onClick={() => { setError(null); setFailedAction(null); navigateTo(step - 1); }}>Back</button>
-                  {step < 5 ? <button type="submit" disabled={busy} className={`${primaryClass} ml-auto`}>{busy ? "Saving…" : "Continue"}</button> : <>
-                    <button type="submit" disabled={busy} className={`${primaryClass} sm:ml-auto`}>{busy ? "Saving…" : "Go to My Diet"}</button>
-                    <button type="button" disabled={busy} className={secondaryClass} onClick={() => void accept("complete", true)}>Show me around</button>
-                  </>}
+                  <button type="submit" disabled={busy} className={`${primaryClass} ml-auto`}>{busy ? "Saving…" : step === 1 ? "Let's go!" : step === 5 ? (preview ? "Explore without saving" : "Finish setup") : "Continue"}</button>
                 </div>
                 <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
                   <button type="button" onClick={() => leave(true)} className="min-h-11 px-1 text-sm font-semibold text-slate-600 underline dark:text-slate-300">Skip for now</button>
                   <button type="button" onClick={() => leave()} className="min-h-11 px-1 text-sm font-semibold text-slate-600 underline dark:text-slate-300">Return to My Diet</button>
-                  <p role="status" className="text-xs text-slate-500 dark:text-slate-400">{busy ? "Saving to your account…" : preview ? "Unsaved preview — account saving is off." : "Your choices save when you continue."}</p>
+                  <p role="status" className="sr-only">{busy ? "Saving to your account…" : preview ? "Unsaved preview — account saving is off." : ""}</p>
                 </div>
               </div>
             </form>

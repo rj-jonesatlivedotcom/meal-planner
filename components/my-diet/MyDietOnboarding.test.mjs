@@ -66,9 +66,11 @@ function harness(initial = {}, save) {
     saves, drafts, exits: () => exits };
 }
 
-test('welcome uses the original Sidney asset, optional name and accessible progress', async () => {
+test('welcome uses the waving Sidney asset, optional name and accessible progress', async () => {
   const h = harness();
-  assert.equal(h.find(n => n.type === 'img').props.src, '/images/kidney-chef.png');
+  assert.equal(h.find(n => n.type === 'img').props.src, '/images/sidney-hello.png');
+  assert.ok(h.button("Let's go!"));
+  assert.doesNotMatch(h.text(), /We'll choose what|Your choices save when/);
   assert.match(h.text(), /Step 1 of 5/);
   assert.equal(h.button('Back').props.disabled, true);
   assert.ok(h.nodes().some(n => n.props?.['aria-current'] === 'step'));
@@ -155,13 +157,11 @@ test('a failed accepted step can be retried successfully without losing entries'
   assert.ok(!h.nodes().some(node => node.props?.role === 'alert'));
 });
 
-test('failed completion never exits or opens the saved tour', async () => {
-  for (const action of ['Go to My Diet', 'Show me around']) {
+test('failed completion never exits or opens the saved completion screen', async () => {
     const h = harness({ onboardingStatus: 'in_progress', onboardingStep: 5 }, async () => { throw new Error('offline'); });
-    if (action === 'Go to My Diet') await h.submit(); else await h.click(action);
+    await h.submit();
     assert.equal(h.exits(), 0); assert.match(h.text(), /has not been marked complete/);
     assert.doesNotMatch(h.text(), /Your setup is saved/); assert.equal(h.drafts.at(-1).onboardingStatus, 'in_progress');
-  }
 });
 
 test('unsaved preview continues through every step without retrying saves; Back retains answers', async () => {
@@ -181,19 +181,22 @@ test('unsaved preview continues through every step without retrying saves; Back 
   assert.match(h.text(), /Unsaved preview/);
   await h.submit(); await h.submit(); await h.submit();
   assert.equal(h.saves.length, 1);
-  assert.equal(h.exits(), 1); assert.match(h.text(), /setup is not complete/i);
+  assert.equal(h.exits(), 0); assert.match(h.text(), /setup is not complete/i);
+  assert.doesNotMatch(h.text(), /You're all set/);
+  await h.click('Return to My Diet'); assert.equal(h.exits(), 1);
   assert.ok(h.drafts.every(draft => draft.onboardingStatus !== 'completed'));
 });
 
-test('preview Skip and tour never retry account saving or claim completion', async () => {
-  for (const action of ['Skip for now', 'Show me around']) {
+test('preview Skip and exploration never retry account saving or claim completion', async () => {
+  for (const action of ['Skip for now', 'Explore without saving']) {
     const h = harness({}, async () => { throw { code: 'PGRST204' }; });
     await h.submit(); await h.click('Continue reviewing without account saving');
     await h.submit(); await h.submit(); await h.submit();
     assert.equal(h.find(node => node.type === 'form').props.noValidate, true);
-    await h.click(action); assert.equal(h.saves.length, 1);
+    if (action === 'Skip for now') await h.click(action); else await h.submit();
+    assert.equal(h.saves.length, 1);
     assert.doesNotMatch(h.text(), /Your setup is saved/);
-    if (action === 'Show me around') { assert.match(h.text(), /exploring with unsaved answers/); await h.click('Go to My Diet'); }
+    if (action === 'Explore without saving') { assert.match(h.text(), /setup is not complete/i); await h.click('Return to My Diet'); }
     assert.equal(h.exits(), 1);
   }
 });
@@ -210,7 +213,7 @@ test('Skip and Return leave after failed saving and preserve entries without dec
 test('exit remains available during a pending save and ignores late navigation callbacks', async () => {
   for (const label of ['Skip for now', 'Return to My Diet']) {
     const pending = deferred(), h = harness({ onboardingStatus: 'in_progress', onboardingStep: 5 }, () => pending.promise);
-    await h.click('Show me around');
+    await h.submit();
     assert.notEqual(h.button(label).props.disabled, true);
     await h.click(label); assert.equal(h.exits(), 1);
     pending.resolve(); await tick(); h.render();
@@ -228,14 +231,16 @@ test('Skip and Return are not blocked by invalid or partially entered optional a
   }
 });
 
-test('Finish and tour acknowledge completion only after success; tour uses existing destinations', async () => {
+test('Finish acknowledges completion only after success and offers equally prominent Recipes and Planner links', async () => {
   const pending = deferred(), h = harness({ onboardingStatus: 'in_progress', onboardingStep: 5 }, () => pending.promise);
-  await h.click('Show me around'); assert.equal(h.exits(), 0); assert.doesNotMatch(h.text(), /Your setup is saved/);
+  await h.submit(); assert.equal(h.exits(), 0); assert.doesNotMatch(h.text(), /Your setup is saved/);
   assert.equal(h.drafts.at(-1).onboardingStatus, 'in_progress'); assert.equal(h.saves[0].onboardingStatus, 'completed');
   pending.resolve(); await tick(); h.render(); assert.match(h.text(), /Your setup is saved/);
-  assert.deepEqual(h.nodes().filter(n => n.type === 'a').map(n => n.props.href), ['/', '/recipes', '/planner', '/nutrition', '/shopping']);
-  await h.click('Go to My Diet'); assert.equal(h.exits(), 1);
-  const finish = harness({ onboardingStatus: 'in_progress', onboardingStep: 5 }); await finish.submit(); assert.equal(finish.exits(), 1);
+  const links = h.nodes().filter(n => n.type === 'a');
+  assert.deepEqual(links.map(n => n.props.href), ['/recipes', '/planner']);
+  assert.equal(links[0].props.className, links[1].props.className);
+  assert.equal(h.exits(), 0);
+  assert.equal(h.find(n => n.type === 'img').props.src, '/images/sidney-celebrate.png');
 });
 
 test('target validation rejects invalid ranges without inventing values; blank targets remain null', () => {

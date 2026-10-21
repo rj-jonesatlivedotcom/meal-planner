@@ -131,6 +131,28 @@ export const nutrientLabels: Record<MonitoredNutrient, string> = {
   phosphate: "Phosphorus", calories: "Energy / calories", carbohydrate: "Carbohydrates", fluid: "Fluid",
 };
 
+// Null/absent monitoring is a legacy account: preserve its explicitly saved limits.
+export function isNutrientActive(requirements: { monitoredNutrients?: MonitoredNutrient[] | null }, nutrient: MonitoredNutrient) {
+  return requirements.monitoredNutrients == null || requirements.monitoredNutrients.includes(nutrient);
+}
+
+export const targetNutrients = {
+  sodiumLimit: "sodium", proteinMinG: "protein", proteinMaxG: "protein",
+  potassiumLimitMg: "potassium", phosphateLimitMg: "phosphate",
+  carbohydrateMin: "carbohydrate", carbohydrateMax: "carbohydrate", fluidLimitMl: "fluid",
+} as const;
+
+/** An assessment-only projection. Never persist this over the saved profile. */
+export function activeRequirements<T extends { monitoredNutrients?: MonitoredNutrient[] | null }>(saved: T): T {
+  const active = { ...saved } as T & Record<string, unknown>;
+  for (const [key, nutrient] of Object.entries(targetNutrients)) {
+    if (!isNutrientActive(saved, nutrient)) (active as Record<string, unknown>)[key] = null;
+  }
+  if (!isNutrientActive(saved, "potassium")) (active as Record<string, unknown>).potassium = "Any";
+  if (!isNutrientActive(saved, "phosphate")) (active as Record<string, unknown>).phosphate = "Any";
+  return active;
+}
+
 export function isMonitoringWithoutTarget(requirements: Requirements, nutrient: MonitoredNutrient) {
   const targets = {
     sodium: [requirements.sodiumLimit], protein: [requirements.proteinMinG, requirements.proteinMaxG],

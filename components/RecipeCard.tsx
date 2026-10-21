@@ -3,6 +3,7 @@
 import { useWeeklyPageStorage, afterWeeklyPageWrites } from "@/lib/weeklyPageStorage";
 
 import RecipePhoto from "./RecipePhoto";
+import { RecipeAllergyNotice } from "./RecipeAllergy";
 import styles from "./recipe-design.module.css";
 import RecipeNutrition from "./RecipeNutrition";
 import RecipeIcon from "./RecipeIcon";
@@ -685,7 +686,7 @@ export default function RecipeCard({
         onClick={trackRecipeViewed}
         className={styles.cardImage}
       >
-        <RecipePhoto src={recipe.image} name={recipe.name} />
+        <RecipePhoto recipeId={recipe.id} src={recipe.image} name={recipe.name} />
       </Link>
 
       {/* ===================================================
@@ -704,6 +705,7 @@ export default function RecipeCard({
         "
       >
 
+        <RecipeAllergyNotice recipeId={recipe.id} />
         {/* Recipe content */}
         <Link
           href={`/recipes/${recipe.id}`}

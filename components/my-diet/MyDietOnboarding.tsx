@@ -7,11 +7,12 @@ import styles from "./MyDietOnboarding.module.css";
 import {
   type Requirements, monitoredNutrients, nutrientLabels,
   isMonitoringWithoutTarget, monitoringWithoutTargetLabel,
+  isNutrientActive, targetNutrients, activeRequirements,
 } from "@/lib/myDiet";
 import {
   createOnboardingDraft, onboardingSteps, nutrientExplanations, onboardingTargets,
   targetDisplayValue, withTarget, parseFoodList, validateOnboardingTargets,
-  saveOnboardingAction, onboardingSaveError, sidneyGuidance, type OnboardingAction,
+  saveOnboardingAction, onboardingSaveError, henleGuidance, type OnboardingAction,
 } from "@/lib/myDietOnboarding";
 
 type Props = {
@@ -54,7 +55,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
   }
 
   function navigateTo(nextStep: number) {
-    const current = { ...draft, onboardingStep: nextStep, onboardingStatus: "in_progress" as const };
+    const current = { ...draft, ...(step === 2 && nextStep === 3 ? { monitoredNutrients: draft.monitoredNutrients ?? [] } : {}), onboardingStep: nextStep, onboardingStatus: "in_progress" as const };
     setStep(nextStep);
     setDraft(current);
     onDraftChange(current);
@@ -81,7 +82,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
       else setTour(true);
       return;
     }
-    const validation = step >= 3 ? validateOnboardingTargets(draft) : null;
+    const validation = step >= 3 ? validateOnboardingTargets(activeRequirements(draft)) : null;
     if (validation) { setError(validation); setFailedAction(null); return; }
     if (step === 4 && action === "continue" && allergyAnswer === "listed" && !draft.foodAllergies?.length) {
       setError("Enter an allergy, or choose another allergy answer."); setFailedAction(null); return;
@@ -91,7 +92,8 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
     // Keep a resumable draft, never an optimistic completed state.
     onDraftChange(draft);
     try {
-      const saved = await saveOnboardingAction(draft, step, action, next => onSave(next, draft));
+      const acceptedDraft = step === 2 ? { ...draft, monitoredNutrients: draft.monitoredNutrients ?? [] } : draft;
+      const saved = await saveOnboardingAction(acceptedDraft, step, action, next => onSave(next, draft));
       if (leavingRef.current) return;
       setDraft(saved);
       setStep(saved.onboardingStep ?? step);
@@ -106,7 +108,9 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
     }
   }
 
-  const summaryTargets = onboardingTargets.filter(({ key }) => draft[key] != null);
+  const activeTargets = onboardingTargets.filter(({ key }) => isNutrientActive(draft, targetNutrients[key]));
+  const summaryTargets = activeTargets.filter(({ key }) => draft[key] != null);
+  const inactiveTargets = onboardingTargets.filter(({ key }) => !isNutrientActive(draft, targetNutrients[key]) && draft[key] != null);
   const preferences = (["potassium", "phosphate", "purines"] as const)
     .filter(key => draft[key] !== "Any");
 
@@ -115,7 +119,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
       <p className={styles.journeyTitle}>Your RenalPlan Journey</p>
       <div className={styles.layout}>
         <div className={styles.character}>
-          <Image src={`/images/sidney-${poses[tour ? 4 : step - 1]}.png`} alt={`Sidney the Kidney ${["waving hello", "pointing to your choices", "explaining your guidance", "encouraging you", "celebrating"][tour ? 4 : step - 1]}`}
+          <Image src={`/images/henle-${poses[tour ? 4 : step - 1]}.png`} alt={`Henle the Kidney ${["waving hello", "pointing to your choices", "explaining your guidance", "encouraging you", "celebrating"][tour ? 4 : step - 1]}`}
             width={1323} height={1189} sizes="(max-width: 767px) 160px, 430px" priority className={styles.mascot} />
         </div>
 
@@ -134,7 +138,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
             </div>
           )}
           <h1 ref={headingRef} id={`${id}-heading`} tabIndex={-1} className="text-2xl font-extrabold tracking-tight text-[#12396b] outline-none sm:text-3xl dark:text-slate-100">
-            {tour ? (preview ? "Keep exploring" : "You're all set!") : sidneyGuidance[step - 1].opening}
+            {tour ? (preview ? "Keep exploring" : "You're all set!") : henleGuidance[step - 1].opening}
           </h1>
 
           {tour ? (
@@ -164,7 +168,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
 
               <fieldset disabled={busy} className="mt-3 min-w-0 space-y-3">
                 <legend className="sr-only">{onboardingSteps[step - 1]}</legend>
-                <p aria-label="A note from Sidney" className={styles.dialogue}>{sidneyGuidance[step - 1].text}</p>
+                <p aria-label="A note from Henle" className={styles.dialogue}>{henleGuidance[step - 1].text}</p>
                 {step === 1 && <>
                   <label htmlFor={`${id}-name`} className="block text-sm font-bold text-slate-800 dark:text-slate-200">What should I call you? <span className="font-normal">(optional)</span>
                     <input id={`${id}-name`} autoComplete="given-name" maxLength={120} value={draft.preferredName ?? ""} placeholder="Your preferred name" className={fieldClass}
@@ -192,15 +196,15 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
                 </>}
 
                 {step === 3 && <>
-                  <label htmlFor={`${id}-advice`} className="block text-sm font-bold text-slate-800 dark:text-slate-200">Advice you have already received <span className="font-normal">(optional)</span>
-                    <textarea id={`${id}-advice`} rows={2} value={draft.dietaryAdvice ?? ""} className={fieldClass} placeholder="Anything you would like to keep a note of"
+                  <label htmlFor={`${id}-advice`} className="block text-sm font-bold text-slate-800 dark:text-slate-200">Advice from your kidney dietitian <span className="font-normal">(optional)</span>
+                    <textarea id={`${id}-advice`} rows={2} value={draft.dietaryAdvice ?? ""} className={fieldClass} placeholder="e.g. My dietitian advised me to choose lower-salt foods or avoid certain ingredients."
                       onChange={event => edit({ ...draft, dietaryAdvice: event.target.value || null })} />
                   </label>
                   <details className={styles.group}>
                   <summary>Daily targets <span className="font-normal">(optional{summaryTargets.length ? ` · ${summaryTargets.length} entered` : ""})</span></summary>
                   <p className="my-2 text-xs leading-5 text-slate-600 dark:text-slate-300">Use targets you already have. Blank means no target; advice is kept as written and never interpreted.</p>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    {onboardingTargets.map(({ key, label, unit }) => (
+                    {activeTargets.map(({ key, label, unit }) => (
                       <label key={key} htmlFor={`${id}-${key}`} className="block text-sm font-semibold text-slate-800 dark:text-slate-200">{label} <span className="font-normal text-slate-500 dark:text-slate-400">({unit})</span>
                         <input id={`${id}-${key}`} type="number" min="0" step="any" inputMode="decimal" value={targetDisplayValue(draft, key)} placeholder="No target entered" className={fieldClass}
                           onChange={event => edit(withTarget(draft, key, event.target.value))} />
@@ -209,6 +213,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
                   </div>
                   <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Salt is entered in grams and stored as sodium. Energy has no numerical target. Your CKD setting is unchanged.</p>
                   </details>
+                  {inactiveTargets.length > 0 && <p className="text-xs text-slate-500 dark:text-slate-400">Inactive targets retained: {inactiveTargets.map(({ label }) => label).join(", ")}. Re-select the nutrient in Step 2 to restore its fields and values.</p>}
                 </>}
 
                 {step === 4 && <>
@@ -252,6 +257,7 @@ export default function MyDietOnboarding({ initialRequirements, onDraftChange, o
                       <ul className="space-y-1">{draft.monitoredNutrients.map(nutrient => <li key={nutrient}>{nutrientLabels[nutrient]}: {isMonitoringWithoutTarget(draft, nutrient) ? monitoringWithoutTargetLabel : "Using your saved target"}</li>)}</ul>
                     )}</dd></div>
                     <div><dt className="font-bold text-[#12396b] dark:text-slate-100">Daily targets</dt><dd className="mt-1 text-slate-600 dark:text-slate-300">{summaryTargets.length ? <ul>{summaryTargets.map(({ key, label, unit }) => <li key={key}>{label}: {targetDisplayValue(draft, key)} {unit}</li>)}</ul> : "No numerical targets entered"}</dd></div>
+                    {inactiveTargets.length > 0 && <div><dt className="font-bold">Inactive targets retained</dt><dd>{inactiveTargets.map(({ key, label, unit }) => <p key={key}>{label}: {targetDisplayValue(draft, key)} {unit} (inactive)</p>)}</dd></div>}
                     {preferences.length > 0 && <div><dt className="font-bold text-[#12396b] dark:text-slate-100">Existing preferences retained</dt><dd className="mt-1 text-slate-600 dark:text-slate-300">{preferences.map(key => `${key === "phosphate" ? "Phosphorus" : key}: ${draft[key]}`).join("; ")}</dd></div>}
                     <div><dt className="font-bold text-[#12396b] dark:text-slate-100">Dietary advice</dt><dd className="mt-1 whitespace-pre-wrap break-words text-slate-600 dark:text-slate-300">{draft.dietaryAdvice?.trim() || "Not provided"}</dd></div>
                     <div><dt className="font-bold text-[#12396b] dark:text-slate-100">Allergies reported</dt><dd className="mt-1 break-words text-slate-600 dark:text-slate-300">{draft.foodAllergies == null ? "Not answered" : draft.foodAllergies.length ? draft.foodAllergies.join(", ") : "None reported"}</dd></div>

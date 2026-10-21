@@ -15,7 +15,10 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { normalizePlannerNutrient, type PlannerNutrient } from "@/lib/plannerNutrients";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
-import { getStoredRequirements, type Requirements } from "@/lib/recipeRequirements";
+import { activeRequirements, type Requirements } from "@/lib/myDiet";
+import { useMyDiet } from "@/components/my-diet/MyDietProvider";
+import { RecipeAllergyImage, RecipeAllergyNotice, PlannerAllergyWarnings } from "@/components/RecipeAllergy";
+import { eligibleForMyChef } from "@/lib/allergies";
 
 const days = [
   "Monday",
@@ -321,17 +324,11 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
   const searchParams = useSearchParams();
   const myChefNavHandledRef = useRef(false);
 
-  type PlannerRequirements = Requirements & {
-    ckdStage?: string | null;
-    proteinMinG?: number | null;
-    proteinMaxG?: number | null;
-    potassiumLimitMg?: number | null;
-    phosphateLimitMg?: number | null;
-    fluidLimitMl?: number | null;
-  };
-
-  const [requirements, setRequirements] =
-    useState<PlannerRequirements | null>(null);
+  const { requirements: savedDiet, ready: dietReady, error: dietError } = useMyDiet();
+  const latestDietRef = useRef({ savedDiet, dietReady, dietError });
+  latestDietRef.current = { savedDiet, dietReady, dietError };
+  const requirements = savedDiet ? activeRequirements(savedDiet) : null;
+  const [myChefNotice, setMyChefNotice] = useState<string | null>(null);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
@@ -345,7 +342,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
   const [fluidDrink, setFluidDrink] = useState("Water");
   const [fluidCustomDrink, setFluidCustomDrink] = useState("");
   const [fluidAmount, setFluidAmount] = useState("200");
-  const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
+  const fluidAllowanceMl = requirements?.fluidLimitMl ?? null;
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [, setEmptyPlannerPromptDismissed] = useState(false);
   const plannerWasEmptyRef = useRef(false);
@@ -434,30 +431,12 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
       } catch { /* Browser storage remains available if cloud sync is unavailable. */ }
     }
     void loadCloudFluidLog();
-    try {
-      const saved = localStorage.getItem("meal-planner-requirements");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        const allowance = Number(parsed?.fluidLimitMl);
-        setFluidAllowanceMl(parsed?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
-      }
-    } catch { /* Keep the allowance unset if saved settings are unreadable. */ }
     const reloadFluid = () => setFluidEntries(readFluidLog());
-    const reloadRequirements = () => {
-      try {
-        const saved = localStorage.getItem("meal-planner-requirements");
-        const parsed = saved ? JSON.parse(saved) : {};
-        const allowance = Number(parsed?.fluidLimitMl);
-        setFluidAllowanceMl(parsed?.fluidLimitMl != null && Number.isFinite(allowance) ? allowance : null);
-      } catch { setFluidAllowanceMl(null); }
-    };
     window.addEventListener("renalplan-fluid-log-updated", reloadFluid);
-    window.addEventListener("meal-planner-requirements-updated", reloadRequirements);
     window.addEventListener("storage", reloadFluid);
     return () => {
       cancelled = true;
       window.removeEventListener("renalplan-fluid-log-updated", reloadFluid);
-      window.removeEventListener("meal-planner-requirements-updated", reloadRequirements);
       window.removeEventListener("storage", reloadFluid);
     };
   }, [readFluidLog, weeklyPageStorage]);
@@ -769,76 +748,6 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     if (!weeklyPageStorage.ready) return;
     let cancelled = false;
 
-    async function loadPlannerRequirements() {
-      // My Diet is the single source of truth for the user's daily
-      // requirements. Load the full current record rather than relying on
-      // the legacy recipeRequirements type, which does not contain the
-      // numeric potassium/phosphate/protein limits.
-      try {
-        const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-
-        if (user) {
-          const { data } = await supabase
-            .from("user_requirements")
-            .select(
-              "ckd_stage, sodium_limit, protein_min_g, protein_max_g, potassium_limit_mg, phosphate_limit_mg, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml"
-            )
-            .eq("user_id", user.id)
-            .maybeSingle();
-
-          if (!cancelled && data) {
-            setRequirements({
-              sodiumLimit: data.sodium_limit ?? null,
-              potassium: (data.potassium ?? "Any") as Requirements["potassium"],
-              phosphate: (data.phosphate ?? "Any") as Requirements["phosphate"],
-              purines: (data.purines ?? "Any") as Requirements["purines"],
-              carbohydrateMin: data.carbohydrate_min ?? null,
-              carbohydrateMax: data.carbohydrate_max ?? null,
-              ckdStage: data.ckd_stage ?? null,
-              proteinMinG: data.protein_min_g ?? null,
-              proteinMaxG: data.protein_max_g ?? null,
-              potassiumLimitMg: data.potassium_limit_mg ?? null,
-              phosphateLimitMg: data.phosphate_limit_mg ?? null,
-              fluidLimitMl: data.fluid_limit_ml ?? null,
-            });
-            return;
-          }
-        }
-      } catch {
-        // Fall through to the locally saved My Diet requirements.
-      }
-
-      if (cancelled) return;
-
-      try {
-        const raw = window.localStorage.getItem(
-          "meal-planner-requirements"
-        );
-
-        if (!raw) {
-          setRequirements(getStoredRequirements() as PlannerRequirements | null);
-          return;
-        }
-
-        const parsed = JSON.parse(raw) as PlannerRequirements;
-        setRequirements(parsed);
-      } catch {
-        setRequirements(getStoredRequirements() as PlannerRequirements | null);
-      }
-    }
-
-    void loadPlannerRequirements();
-
-    const handleRequirementsUpdated = () => {
-      void loadPlannerRequirements();
-    };
-
-    window.addEventListener(
-      "meal-planner-requirements-updated",
-      handleRequirementsUpdated
-    );
-
     const emptyPlanner =
       createEmptyPlanner();
 
@@ -930,10 +839,6 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     setLoadedPlannerStorage(weeklyPageStorage);
 
     return () => {
-      window.removeEventListener(
-        "meal-planner-requirements-updated",
-        handleRequirementsUpdated
-      );
     };
   }, [getHouseholdPeople, syncPlannerWithShoppingList, weeklyPageStorage]);
 
@@ -1096,6 +1001,12 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
   function pickForMe(
     replaceAll = false
   ) {
+    const { savedDiet, dietReady, dietError } = latestDietRef.current;
+    const requirements = savedDiet ? activeRequirements(savedDiet) : null;
+    if (!dietReady || dietError) { setMyChefNotice("MyChef cannot read your allergy settings yet. Please retry after My Diet loads."); return; }
+    const chefRecipes = eligibleForMyChef(recipes, savedDiet?.foodAllergies);
+    const missing = ["B", "L", "D"].some(prefix => !chefRecipes.some(recipe => recipe.code.startsWith(prefix)));
+    setMyChefNotice(missing ? "Some slots may remain empty: too few recipes have ingredient details compatible with your allergy settings. MyChef never relaxes allergy exclusions." : null);
     setPlannerMeals((current) => {
       if (!current) return current;
 
@@ -1154,7 +1065,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
         }
 
         const codePrefix = meal === "Breakfast" ? "B" : meal === "Lunch" ? "L" : "D";
-        return recipes.filter((recipe) =>
+        return chefRecipes.filter((recipe) =>
           (recipe.code?.toUpperCase() ?? "").startsWith(codePrefix)
         );
       };
@@ -1206,7 +1117,14 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
         const lunchPool = getVariedPool("Lunch");
         const dinnerPool = getVariedPool("Dinner");
 
-        if (!breakfastPool.length || !lunchPool.length || !dinnerPool.length) return;
+        if (!breakfastPool.length || !lunchPool.length || !dinnerPool.length) {
+          for (const [meal, pool] of [["Breakfast", breakfastPool], ["Lunch", lunchPool], ["Dinner", dinnerPool]] as const) {
+            if (!replaceAll && current[day]?.[meal]) continue;
+            nextPlanner[day][meal] = pool[0]?.id ?? null;
+            if (pool[0]) usedByMeal[meal].add(pool[0].id);
+          }
+          return;
+        }
 
         const dailyScore = (combo: DayCombo): number => {
           const comboRecipes = [combo.Breakfast, combo.Lunch, combo.Dinner];
@@ -1532,7 +1450,7 @@ function formatPotassiumMg(mg: number): string {
     | "potassium"
     | "phosphate";
 
-  type DailyRequirements = PlannerRequirements;
+  type DailyRequirements = Requirements;
 
   function getDailyNutritionTotal(
     day: string,
@@ -2102,6 +2020,8 @@ function formatPotassiumMg(mg: number): string {
   if (plannerMeals === null) {
     return (
       <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-8">
+      <PlannerAllergyWarnings planner={plannerMeals} />
+      {myChefNotice && <p role="status" className="mx-auto mb-4 max-w-6xl rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950">{myChefNotice}</p>}
         <div className="mx-auto max-w-6xl">
 
           <h1 className="text-3xl font-bold text-slate-900">
@@ -2363,6 +2283,8 @@ html[data-theme="dark"] main .planner-remove-button {
           }
         }}
       >
+      <PlannerAllergyWarnings planner={plannerMeals} />
+      {myChefNotice && <p role="status" className="mx-auto mb-4 max-w-6xl rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950">{myChefNotice}</p>}
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
 
@@ -2504,8 +2426,7 @@ html[data-theme="dark"] main .planner-remove-button {
                         className="shrink-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                         aria-label={`View ${mobileBreakfast.name} recipe`}
                       >
-                        <img
-                          src={mobileBreakfast.image}
+                        <RecipeAllergyImage recipeId={mobileBreakfast.id} src={mobileBreakfast.image}
                           alt={mobileBreakfast.name}
                           className="h-25 w-40 rounded-xl object-cover shadow-sm"
                         />
@@ -2598,8 +2519,7 @@ html[data-theme="dark"] main .planner-remove-button {
                         className="shrink-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                         aria-label={`View ${mobileLunch.name} recipe`}
                       >
-                        <img
-                          src={mobileLunch.image}
+                        <RecipeAllergyImage recipeId={mobileLunch.id} src={mobileLunch.image}
                           alt={mobileLunch.name}
                           className="h-25 w-40 rounded-xl object-cover shadow-sm"
                         />
@@ -2692,8 +2612,7 @@ html[data-theme="dark"] main .planner-remove-button {
                         className="shrink-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                         aria-label={`View ${mobileDinner.name} recipe`}
                       >
-                        <img
-                          src={mobileDinner.image}
+                        <RecipeAllergyImage recipeId={mobileDinner.id} src={mobileDinner.image}
                           alt={mobileDinner.name}
                           className="h-25 w-40 rounded-xl object-cover shadow-sm"
                         />
@@ -2898,8 +2817,7 @@ html[data-theme="dark"] main .planner-remove-button {
     className="block w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
     aria-label={`View ${recipe.name} recipe`}
   >
-    <img
-      src={recipe.image}
+    <RecipeAllergyImage recipeId={recipe.id} src={recipe.image}
       alt={recipe.name}
       className="h-[88px] w-full rounded-xl object-cover shadow-sm ring-1 ring-black/5"
     />
@@ -3031,8 +2949,7 @@ html[data-theme="dark"] main .planner-remove-button {
                             className="rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                             aria-label={`View ${recipe.name} recipe`}
                           >
-                            <img
-                              src={recipe.image}
+                            <RecipeAllergyImage recipeId={recipe.id} src={recipe.image}
                               alt={recipe.name}
                               className="h-[100px] w-full rounded-xl object-cover shadow-sm ring-1 ring-black/5"
                             />
@@ -3164,8 +3081,7 @@ html[data-theme="dark"] main .planner-remove-button {
                             className="rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                             aria-label={`View ${recipe.name} recipe`}
                           >
-                            <img
-                              src={recipe.image}
+                            <RecipeAllergyImage recipeId={recipe.id} src={recipe.image}
                               alt={recipe.name}
                               className="h-[100px] w-full rounded-xl object-cover shadow-sm ring-1 ring-black/5"
                             />
@@ -3551,7 +3467,7 @@ html[data-theme="dark"] main .planner-remove-button {
               <div className="mx-auto w-full max-w-[320px] sm:max-w-[420px]">
                 <Image
                   src="/images/kidney-chef.png"
-                  alt="RenalPlan MyChef kidney chef"
+                  alt="Henle, RenalPlan MyChef kidney chef"
                   width={512}
                   height={512}
                   sizes="(max-width: 640px) 300px, 420px"
@@ -3564,7 +3480,7 @@ html[data-theme="dark"] main .planner-remove-button {
                 <>
                   <div className="mt-1 flex items-center justify-center gap-2 text-[#067b3a]">
                     <span className="text-lg" aria-hidden="true">✦</span>
-                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">Meet MyChef</span>
+                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">Meet Henle</span>
                     <span className="text-lg" aria-hidden="true">✦</span>
                   </div>
                   <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Want MyChef to plan your week?</h2>
@@ -3821,8 +3737,7 @@ html[data-theme="dark"] main .planner-remove-button {
                     className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3 text-left ring-1 ring-slate-100 transition hover:bg-orange-50 hover:ring-orange-200"
                   >
 
-                    <img
-                      src={recipe.image}
+                    <RecipeAllergyImage recipeId={recipe.id} src={recipe.image}
                       alt={recipe.name}
                       className="h-16 w-16 shrink-0 rounded-xl object-cover"
                     />

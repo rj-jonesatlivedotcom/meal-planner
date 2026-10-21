@@ -4,6 +4,8 @@ import { useWeeklyPageStorage } from "@/lib/weeklyPageStorage";
 
 import Link from "next/link";
 import Image from "next/image";
+import { AllergyOverlay, RecipeAllergyNotice } from "@/components/RecipeAllergy";
+import { activeRequirements } from "@/lib/myDiet";
 import { recipes } from "@/data/RecipeData";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -449,7 +451,8 @@ function LoggedInHome() {
   const [favouriteIds, setFavouriteIds] = useState<string[]>([]);
   const [shoppingCount, setShoppingCount] = useState(0);
   const [requirementsSet, setRequirementsSet] = useState(false);
-  const [dietRequirements, setDietRequirements] = useState<Requirements | null>(null);
+  const [savedDietRequirements, setDietRequirements] = useState<Requirements | null>(null);
+  const dietRequirements = savedDietRequirements ? activeRequirements(savedDietRequirements) : null;
   const [loaded, setLoaded] = useState(false);
   const [todayTipIndex, setTodayTipIndex] = useState(0);
 
@@ -772,19 +775,7 @@ function LoggedInHome() {
     carbohydrateMax: null,
   };
 
-  try {
-    const savedRequirements = localStorage.getItem(
-      "meal-planner-requirements",
-    );
-    if (savedRequirements) {
-      requirementFilters = {
-        ...requirementFilters,
-        ...JSON.parse(savedRequirements),
-      };
-    }
-  } catch {
-    // Keep broad recommendation filters.
-  }
+  if (dietRequirements) requirementFilters = { ...requirementFilters, ...dietRequirements };
 
   const recommendedRecipes =
     recipes.filter((recipe) => {
@@ -1527,11 +1518,11 @@ function LoggedInHome() {
                   <Link key={recipe.id} href={`/recipes/${recipe.id}`} className="renal-dashboard-recipe group w-full max-w-[280px] self-start overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
                     {recipe.image ? (
                       <div className="aspect-[4/3] overflow-hidden bg-slate-100">
-                        <Image src={recipe.image} alt={recipe.name} width={640} height={480} sizes="(max-width: 640px) 50vw, 240px" className="h-full w-full object-cover transition group-hover:scale-[1.02]" />
+                        <span className="relative block h-full w-full"><Image src={recipe.image} alt={recipe.name} width={640} height={480} sizes="(max-width: 640px) 50vw, 240px" className="h-full w-full object-cover transition group-hover:scale-[1.02]" /><AllergyOverlay recipeId={recipe.id} /></span>
                       </div>
                     ) : null}
                     <div className="p-3">
-                      <p className="font-bold leading-tight text-[#12396b]">{recipe.name}</p>
+                      <p className="font-bold leading-tight text-[#12396b]">{recipe.name}</p><RecipeAllergyNotice recipeId={recipe.id} />
                       <p className="renal-dashboard-muted mt-1 text-xs text-slate-500">K {recipe.nutrition?.potassium ?? "—"} · P {recipe.nutrition?.phosphate ?? "—"}</p>
                       <p className="renal-dashboard-muted text-xs text-slate-500">Salt {recipe.nutrition?.salt ?? "—"}</p>
                     </div>
@@ -1557,10 +1548,10 @@ function LoggedInHome() {
               <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <Link href={`/recipes/${recommendedRecipe.id}`} className="renal-dashboard-recipe block w-full min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
                 {recommendedRecipe.image ? (
-                  <Image src={recommendedRecipe.image} alt={recommendedRecipe.name} width={560} height={420} sizes="(max-width: 640px) 100vw, 280px" className="aspect-[4/3] w-full object-cover" />
+                  <span className="relative block h-full w-full"><Image src={recommendedRecipe.image} alt={recommendedRecipe.name} width={560} height={420} sizes="(max-width: 640px) 100vw, 280px" className="aspect-[4/3] w-full object-cover" /><AllergyOverlay recipeId={recommendedRecipe.id} /></span>
                 ) : null}
                 <div className="p-4">
-                  <p className="font-extrabold text-[#12396b]">{recommendedRecipe.name}</p>
+                  <p className="font-extrabold text-[#12396b]">{recommendedRecipe.name}</p><RecipeAllergyNotice recipeId={recommendedRecipe.id} />
                   <p className="mt-1 text-xs font-semibold text-[#067b3a]">Matches your numeric preferences</p>
                   <p className="mt-2 text-xs text-slate-500">K {recommendedRecipe.nutrition?.potassium ?? "—"} · P {recommendedRecipe.nutrition?.phosphate ?? "—"} · Salt {recommendedRecipe.nutrition?.salt ?? "—"}</p>
                 </div>
@@ -1568,10 +1559,10 @@ function LoggedInHome() {
               {secondRecommendedRecipe ? (
                 <Link href={`/recipes/${secondRecommendedRecipe.id}`} className="renal-dashboard-recipe hidden w-full min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:block">
                   {secondRecommendedRecipe.image ? (
-                    <Image src={secondRecommendedRecipe.image} alt={secondRecommendedRecipe.name} width={560} height={420} sizes="(max-width: 640px) 100vw, 280px" className="aspect-[4/3] w-full object-cover" />
+                    <span className="relative block h-full w-full"><Image src={secondRecommendedRecipe.image} alt={secondRecommendedRecipe.name} width={560} height={420} sizes="(max-width: 640px) 100vw, 280px" className="aspect-[4/3] w-full object-cover" /><AllergyOverlay recipeId={secondRecommendedRecipe.id} /></span>
                   ) : null}
                   <div className="p-4">
-                    <p className="font-extrabold text-[#12396b]">{secondRecommendedRecipe.name}</p>
+                    <p className="font-extrabold text-[#12396b]">{secondRecommendedRecipe.name}</p><RecipeAllergyNotice recipeId={secondRecommendedRecipe.id} />
                     <p className="mt-1 text-xs font-semibold text-[#067b3a]">Matches your numeric preferences</p>
                     <p className="mt-2 text-xs text-slate-500">K {secondRecommendedRecipe.nutrition?.potassium ?? "—"} · P {secondRecommendedRecipe.nutrition?.phosphate ?? "—"} · Salt {secondRecommendedRecipe.nutrition?.salt ?? "—"}</p>
                   </div>

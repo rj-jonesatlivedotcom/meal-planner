@@ -3,6 +3,7 @@
 import { useWeeklyPageStorage, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
 
 import RecipePhoto from "@/components/RecipePhoto";
+import { RecipeAllergyNotice } from "@/components/RecipeAllergy";
 import styles from "@/components/recipe-design.module.css";
 import RecipeNutrition from "@/components/RecipeNutrition";
 import RecipeIcon from "@/components/RecipeIcon";
@@ -637,7 +638,7 @@ export default function RecipeDetailPage() {
     <main className={styles.detail}>
       <Link href="/recipes" className={styles.backLink}><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m11 5-7 7 7 7M4 12h16" /></svg>Back to recipes</Link>
       <section className={styles.hero} aria-label="Recipe overview">
-        <div className={styles.heroPhoto}><RecipePhoto src={recipe.image} name={recipe.name} priority /></div>
+        <div><div className={styles.heroPhoto}><RecipePhoto recipeId={recipe.id} src={recipe.image} name={recipe.name} priority /></div><RecipeAllergyNotice recipeId={recipe.id} /></div>
         <div className={styles.heroContent}>
           <div className={styles.heroTop}>
             <span className={styles.category}>{getDefaultMealType(recipe.code)}</span>
@@ -705,7 +706,7 @@ export default function RecipeDetailPage() {
         <div className={styles.panelHeading}><h2 id="related-recipes"><RecipeIcon name="star" />You might also like</h2><Link href="/recipes">View all recipes &rarr;</Link></div>
         <div className={styles.relatedGrid}>
           {relatedRecipes.map((item) => <Link className={styles.relatedCard} href={`/recipes/${item.id}`} key={item.id}>
-            <div className={styles.relatedPhoto}><RecipePhoto src={item.image} name={item.name} /></div>
+            <div className={styles.relatedPhoto}><RecipePhoto recipeId={item.id} src={item.image} name={item.name} /></div><RecipeAllergyNotice recipeId={item.id} />
             <strong>{item.name}</strong><small><RecipeIcon name="time" />{item.cookingTime}</small>
           </Link>)}
         </div>

@@ -1,4 +1,7 @@
 "use client";
+import { activeRequirements, defaultRequirements as sharedDefaultRequirements, type MonitoredNutrient } from "@/lib/myDiet";
+import { useMyDiet } from "@/components/my-diet/MyDietProvider";
+
 
 import { useWeeklyPageStorage, datedDayDate } from "@/lib/weeklyPageStorage";
 
@@ -99,6 +102,7 @@ type PlannerMeals = Record<
 type RequirementLevel = "Any" | "Low" | "Moderate";
 
 type Requirements = {
+  monitoredNutrients?: MonitoredNutrient[] | null;
   sodiumLimit: number | null;
   potassium: RequirementLevel;
   phosphate: RequirementLevel;
@@ -141,22 +145,9 @@ function getCurrentWeekDate(dayIndex: number): string {
   monday.setDate(monday.getDate() + (weekday === 0 ? -6 : 1 - weekday) + dayIndex);
   return getLocalDateKey(monday);
 }
-const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
 
-const defaultRequirements: Requirements = {
-  sodiumLimit: 1500,
-  potassium: "Any",
-  phosphate: "Any",
-  purines: "Any",
-  carbohydrateMin: null,
-  carbohydrateMax: null,
-  ckdStage: null,
-  proteinMinG: null,
-  proteinMaxG: null,
-  potassiumLimitMg: null,
-  phosphateLimitMg: null,
-  fluidLimitMl: null,
-};
+
+const defaultRequirements: Requirements = sharedDefaultRequirements;
 
 const emptyTotals = (): NutrientTotals => ({
   calories: 0,
@@ -363,10 +354,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
   const [plannerMeals, setPlannerMeals] =
     useState<PlannerMeals | null>(null);
-  const [requirements, setRequirements] =
-    useState<Requirements>(defaultRequirements);
+  const { requirements: savedDiet } = useMyDiet();
+  const requirements = activeRequirements(savedDiet ?? defaultRequirements);
   const [fluidEntries, setFluidEntries] = useState<FluidEntry[]>([]);
-  const [fluidAllowanceMl, setFluidAllowanceMl] = useState<number | null>(null);
+  const fluidAllowanceMl = requirements.fluidLimitMl ?? null;
   const [selectedDay, setSelectedDay] =
     useState<Day>("Monday");
   const [authChecked, setAuthChecked] = useState(false);
@@ -529,80 +520,6 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     }
   }, [weeklyPageStorage]);
 
-  async function loadRequirements() {
-    try {
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (user) {
-        const { data, error } = await supabase
-          .from("user_requirements")
-          .select(
-            "ckd_stage, sodium_limit, protein_min_g, protein_max_g, potassium_limit_mg, phosphate_limit_mg, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml"
-          )
-          .eq("user_id", user.id)
-          .maybeSingle();
-
-        if (!error && data) {
-          const loadedRequirements: Requirements = {
-            sodiumLimit: data.sodium_limit ?? null,
-            potassium: (data.potassium ?? "Any") as RequirementLevel,
-            phosphate: (data.phosphate ?? "Any") as RequirementLevel,
-            purines: (data.purines ?? "Any") as RequirementLevel,
-            carbohydrateMin: data.carbohydrate_min ?? null,
-            carbohydrateMax: data.carbohydrate_max ?? null,
-            ckdStage: data.ckd_stage ?? null,
-            proteinMinG: data.protein_min_g ?? null,
-            proteinMaxG: data.protein_max_g ?? null,
-            potassiumLimitMg: data.potassium_limit_mg ?? null,
-            phosphateLimitMg: data.phosphate_limit_mg ?? null,
-            fluidLimitMl: data.fluid_limit_ml ?? null,
-          };
-
-          setRequirements(loadedRequirements);
-          setFluidAllowanceMl(loadedRequirements.fluidLimitMl ?? null);
-
-          try {
-            window.localStorage.setItem(
-              REQUIREMENTS_STORAGE_KEY,
-              JSON.stringify(loadedRequirements)
-            );
-          } catch {
-            // Ignore local storage errors.
-          }
-
-          return;
-        }
-      }
-    } catch {
-      // Fall through to local storage.
-    }
-
-    try {
-      const saved = window.localStorage.getItem(REQUIREMENTS_STORAGE_KEY);
-
-      if (!saved) {
-        setRequirements(defaultRequirements);
-        setFluidAllowanceMl(defaultRequirements.fluidLimitMl ?? null);
-        return;
-      }
-
-      const parsed = JSON.parse(saved) as Partial<Requirements>;
-      const loaded = { ...defaultRequirements, ...parsed };
-
-      setRequirements(loaded);
-      setFluidAllowanceMl(
-        loaded.fluidLimitMl != null && Number.isFinite(Number(loaded.fluidLimitMl))
-          ? Number(loaded.fluidLimitMl)
-          : null
-      );
-    } catch {
-      setRequirements(defaultRequirements);
-      setFluidAllowanceMl(null);
-    }
-  }
 
   useEffect(() => {
     let mounted = true;
@@ -645,7 +562,6 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
   useEffect(() => {
     loadPlanner();
-    void loadRequirements();
     setFluidEntries(readFluidLog());
 
     function handleFluidUpdate() {
@@ -656,9 +572,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       loadPlanner();
     }
 
-    function handleRequirementsUpdate() {
-      void loadRequirements();
-    }
+
 
     window.addEventListener(
       "weekly-planner-updated",
@@ -666,13 +580,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     );
     window.addEventListener("renalplan-fluid-log-updated", handleFluidUpdate);
 
-    window.addEventListener(
-      "meal-planner-requirements-updated",
-      handleRequirementsUpdate
-    );
-
     window.addEventListener("storage", handlePlannerUpdate);
-    window.addEventListener("storage", handleRequirementsUpdate);
 
     return () => {
       window.removeEventListener(
@@ -681,16 +589,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       );
       window.removeEventListener("renalplan-fluid-log-updated", handleFluidUpdate);
 
-      window.removeEventListener(
-        "meal-planner-requirements-updated",
-        handleRequirementsUpdate
-      );
-
       window.removeEventListener("storage", handlePlannerUpdate);
-      window.removeEventListener(
-        "storage",
-        handleRequirementsUpdate
-      );
     };
   }, [loadPlanner, readFluidLog]);
 

@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import MyAllergies from "@/components/my-diet/MyAllergies";
 import MyDietOnboarding from "@/components/my-diet/MyDietOnboarding";
 import {
   type CkdStage, type Requirements, defaultRequirements,
   hasPendingRequirementsSave, readStoredRequirements, loadRequirements,
   persistRequirements, cacheAccountRequirements, syncRequirementsToLocalStorage,
-  monitoredNutrients, nutrientLabels, isMonitoringWithoutTarget, monitoringWithoutTargetLabel,
+  monitoredNutrients, nutrientLabels, isNutrientActive, targetNutrients, isMonitoringWithoutTarget, monitoringWithoutTargetLabel,
 } from "@/lib/myDiet";
 
 type StagePreset = {
@@ -439,6 +440,16 @@ export default function RequirementsPage() {
               </p>
             </div>
 
+            <MyAllergies requirements={requirements} disabled={!requirementsReady || loadError} onSave={async next => {
+              setRequirements(next); const result = await saveRequirements(next, isLoggedIn); return result.ok;
+            }} />
+            <fieldset className="mt-5 rounded-2xl border border-slate-200 p-4"><legend className="text-sm font-bold">Nutrients to monitor</legend>
+              <p className="mb-3 text-xs text-slate-600">Targets for unticked nutrients are inactive. Saved values are kept for when you switch them back on.</p>
+              <div className="flex flex-wrap gap-3">{monitoredNutrients.map(nutrient => <label key={nutrient} className="flex min-h-11 items-center gap-2 text-sm font-bold"><input type="checkbox" checked={isNutrientActive(requirements, nutrient)} onChange={event => {
+                const selected = requirements.monitoredNutrients ?? [...monitoredNutrients];
+                updateRequirement("monitoredNutrients", event.target.checked ? [...selected.filter(item => item !== nutrient), nutrient] : selected.filter(item => item !== nutrient));
+              }} />{nutrientLabels[nutrient]}</label>)}</div>
+            </fieldset>
             {/* DAILY REQUIREMENTS */}
             <div className="mt-7">
               <div className="mb-4">
@@ -446,7 +457,7 @@ export default function RequirementsPage() {
                   Your daily requirements
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-slate-600">
-                  These are the daily targets RenalPlan will use. The CKD stage
+                  Only monitored nutrients have active targets. Disabled fields retain inactive values. The CKD stage
                   fills suggested figures for you, and you can change any of them.
                 </p>
               </div>
@@ -476,7 +487,7 @@ export default function RequirementsPage() {
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
-                    <input
+                    <input disabled={!isNutrientActive(requirements, targetNutrients.sodiumLimit)} aria-description={!isNutrientActive(requirements, targetNutrients.sodiumLimit) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                       type="number"
                       min="0"
                       step="0.1"
@@ -537,7 +548,7 @@ export default function RequirementsPage() {
                         Minimum
                       </label>
                       <div className="mt-1 flex items-center gap-2">
-                        <input
+                        <input disabled={!isNutrientActive(requirements, targetNutrients.proteinMinG)} aria-description={!isNutrientActive(requirements, targetNutrients.proteinMinG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                           type="number"
                           min="0"
                           step="1"
@@ -560,7 +571,7 @@ export default function RequirementsPage() {
                         Maximum
                       </label>
                       <div className="mt-1 flex items-center gap-2">
-                        <input
+                        <input disabled={!isNutrientActive(requirements, targetNutrients.proteinMaxG)} aria-description={!isNutrientActive(requirements, targetNutrients.proteinMaxG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                           type="number"
                           min="0"
                           step="1"
@@ -613,7 +624,7 @@ export default function RequirementsPage() {
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
-                    <input
+                    <input disabled={!isNutrientActive(requirements, targetNutrients.potassiumLimitMg)} aria-description={!isNutrientActive(requirements, targetNutrients.potassiumLimitMg) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                       type="number"
                       min="0"
                       step="1"
@@ -669,7 +680,7 @@ export default function RequirementsPage() {
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
-                    <input
+                    <input disabled={!isNutrientActive(requirements, targetNutrients.phosphateLimitMg)} aria-description={!isNutrientActive(requirements, targetNutrients.phosphateLimitMg) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                       type="number"
                       min="0"
                       step="1"
@@ -727,7 +738,7 @@ export default function RequirementsPage() {
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
-                    <input
+                    <input disabled={!isNutrientActive(requirements, targetNutrients.fluidLimitMl)} aria-description={!isNutrientActive(requirements, targetNutrients.fluidLimitMl) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                       type="number"
                       min="0"
                       max="10000"
@@ -784,7 +795,7 @@ export default function RequirementsPage() {
                       Minimum per day
                     </label>
                     <div className="mt-2 flex items-center gap-2">
-                      <input
+                      <input disabled={!isNutrientActive(requirements, targetNutrients.carbohydrateMin)} aria-description={!isNutrientActive(requirements, targetNutrients.carbohydrateMin) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                         type="number"
                         min="0"
                         step="1"
@@ -807,7 +818,7 @@ export default function RequirementsPage() {
                       Maximum per day
                     </label>
                     <div className="mt-2 flex items-center gap-2">
-                      <input
+                      <input disabled={!isNutrientActive(requirements, targetNutrients.carbohydrateMax)} aria-description={!isNutrientActive(requirements, targetNutrients.carbohydrateMax) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                         type="number"
                         min="0"
                         step="1"

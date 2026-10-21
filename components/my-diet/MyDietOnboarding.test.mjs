@@ -66,9 +66,9 @@ function harness(initial = {}, save) {
     saves, drafts, exits: () => exits };
 }
 
-test('welcome uses the waving Sidney asset, optional name and accessible progress', async () => {
+test('welcome uses the waving Henle asset, optional name and accessible progress', async () => {
   const h = harness();
-  assert.equal(h.find(n => n.type === 'img').props.src, '/images/sidney-hello.png');
+  assert.equal(h.find(n => n.type === 'img').props.src, '/images/henle-hello.png');
   assert.ok(h.button("Let's go!"));
   assert.doesNotMatch(h.text(), /We'll choose what|Your choices save when/);
   assert.match(h.text(), /Step 1 of 5/);
@@ -104,6 +104,17 @@ test('guidance preserves exact existing targets and units; notes never impose re
   assert.equal(saved.sodiumLimit, 2300); assert.equal(saved.proteinMinG, 51.5); assert.equal(saved.proteinMaxG, 80);
   assert.equal(saved.potassiumLimitMg, 2737); assert.equal(saved.phosphate, 'Moderate'); assert.equal(saved.ckdStage, 'stage4');
   assert.equal(saved.fluidLimitMl, null);
+});
+
+test('unticking nutrients hides their Step 3 fields without erasing targets, and re-enabling restores them', async () => {
+  const h=harness({onboardingStatus:'in_progress',onboardingStep:2,monitoredNutrients:['protein'],proteinMaxG:70,potassiumLimitMg:2737});
+  const toggle=checked=>{h.find(n=>n.type==='input'&&n.props.type==='checkbox'&&n.props.value==='protein').props.onChange({target:{checked}});h.render();};
+  toggle(false);await h.submit();assert.equal(h.nodes().some(n=>n.props?.id==='guide-proteinMaxG'),false);assert.equal(h.saves[0].proteinMaxG,70);assert.match(h.text(),/Inactive targets retained/);
+  await h.click('Back');toggle(true);await h.submit();assert.equal(h.input('proteinMaxG').props.value,70);assert.equal(h.nodes().some(n=>n.props?.id==='guide-potassiumLimitMg'),false);
+});
+
+test('accepting no Step 2 choices makes the empty selection explicit and retains old targets as inactive', async()=>{
+  const h=harness({onboardingStatus:'in_progress',onboardingStep:2,monitoredNutrients:null,sodiumLimit:2000});await h.submit();assert.deepEqual(h.saves[0].monitoredNutrients,[]);assert.equal(h.saves[0].sodiumLimit,2000);assert.equal(h.nodes().some(n=>n.props?.id==='guide-sodiumLimit'),false);
 });
 
 test('allergy answers stay separate from dislikes and existing favourites; skip retains entries', async () => {
@@ -240,7 +251,7 @@ test('Finish acknowledges completion only after success and offers equally promi
   assert.deepEqual(links.map(n => n.props.href), ['/recipes', '/planner']);
   assert.equal(links[0].props.className, links[1].props.className);
   assert.equal(h.exits(), 0);
-  assert.equal(h.find(n => n.type === 'img').props.src, '/images/sidney-celebrate.png');
+  assert.equal(h.find(n => n.type === 'img').props.src, '/images/henle-celebrate.png');
 });
 
 test('target validation rejects invalid ranges without inventing values; blank targets remain null', () => {

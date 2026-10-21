@@ -1,8 +1,8 @@
 import type { Requirements, MonitoredNutrient } from "./myDiet";
 
-export const onboardingSteps = ["Meet Sidney", "Nutrients to monitor", "Your dietary guidance", "Foods you love and avoid", "You're ready!"];
-export const sidneyGuidance = [
-  { opening: "Hi! I'm Sidney!", text: "I'll help make RenalPlan feel right for you." },
+export const onboardingSteps = ["Meet Henle", "Nutrients to monitor", "Your dietary guidance", "Foods you love and avoid", "You're ready!"];
+export const henleGuidance = [
+  { opening: "Hi! I'm Henle!", text: "I'll help make RenalPlan feel right for you." },
   { opening: "Nutrients to monitor", text: "Pick what matters to you!" },
   { opening: "Your dietary guidance", text: "What advice would you like to keep handy?" },
   { opening: "Foods you love and avoid", text: "What should we know about your plate?" },

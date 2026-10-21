@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ThemeSync from "@/components/ThemeSync";
+import { MyDietProvider } from "@/components/my-diet/MyDietProvider";
 import DatedPlannerBoundary from "@/components/calendar/DatedPlannerBoundary";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -63,7 +64,7 @@ export default function RootLayout({
 
         <ThemeSync />
         <Navbar />
-        <DatedPlannerBoundary>{children}</DatedPlannerBoundary>
+        <MyDietProvider><DatedPlannerBoundary>{children}</DatedPlannerBoundary></MyDietProvider>
         {process.env.VERCEL_ENV !== "preview" && <Analytics />}
         {process.env.VERCEL_ENV !== "preview" && <SpeedInsights />}
       </body>

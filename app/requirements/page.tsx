@@ -2,42 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-
-type RequirementLevel = "Any" | "Low" | "Moderate";
-type CkdStage = "stage3" | "stage4" | "stage5" | "dialysis" | "custom";
-
-type Requirements = {
-  ckdStage: CkdStage;
-  sodiumLimit: number | null;
-  proteinMinG: number | null;
-  proteinMaxG: number | null;
-  potassiumLimitMg: number | null;
-  phosphateLimitMg: number | null;
-  potassium: RequirementLevel;
-  phosphate: RequirementLevel;
-  purines: RequirementLevel;
-  carbohydrateMin: number | null;
-  carbohydrateMax: number | null;
-  fluidLimitMl: number | null;
-};
-
-const REQUIREMENTS_STORAGE_KEY = "meal-planner-requirements";
-const REQUIREMENTS_PENDING_SAVE_KEY = "meal-planner-requirements-pending-save";
-
-const defaultRequirements: Requirements = {
-  ckdStage: "custom",
-  sodiumLimit: null,
-  proteinMinG: null,
-  proteinMaxG: null,
-  potassiumLimitMg: null,
-  phosphateLimitMg: null,
-  potassium: "Any",
-  phosphate: "Any",
-  purines: "Any",
-  carbohydrateMin: null,
-  carbohydrateMax: null,
-  fluidLimitMl: null,
-};
+import MyDietOnboarding from "@/components/my-diet/MyDietOnboarding";
+import {
+  type CkdStage, type Requirements, defaultRequirements,
+  hasPendingRequirementsSave, readStoredRequirements, loadRequirements,
+  persistRequirements, cacheAccountRequirements, syncRequirementsToLocalStorage,
+  monitoredNutrients, nutrientLabels, isMonitoringWithoutTarget, monitoringWithoutTargetLabel,
+} from "@/lib/myDiet";
 
 type StagePreset = {
   saltG: number;
@@ -96,30 +67,6 @@ function phosphorusMgToMmol(mg: number | null) {
 
 
 
-function syncRequirementsToLocalStorage(
-  requirements: Requirements,
-  pendingSave = false
-) {
-  try {
-    window.localStorage.setItem(
-      REQUIREMENTS_STORAGE_KEY,
-      JSON.stringify(requirements)
-    );
-
-    if (pendingSave) {
-      window.localStorage.setItem(REQUIREMENTS_PENDING_SAVE_KEY, "true");
-    } else {
-      window.localStorage.removeItem(REQUIREMENTS_PENDING_SAVE_KEY);
-    }
-
-    window.dispatchEvent(
-      new Event("meal-planner-requirements-updated")
-    );
-  } catch {
-    // Ignore local storage errors.
-  }
-}
-
 export default function RequirementsPage() {
   const [requirements, setRequirements] =
     useState<Requirements>(defaultRequirements);
@@ -132,6 +79,12 @@ export default function RequirementsPage() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
+  const [requirementsReady, setRequirementsReady] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const guidedSetupButtonRef = useRef<HTMLButtonElement>(null);
+  const loadedAccountRef = useRef<string | null>(null);
 
   // Serialize account saves so an older request can never overwrite a newer
   // protein target or CKD-stage selection in Supabase.
@@ -139,89 +92,52 @@ export default function RequirementsPage() {
   const saveVersionRef = useRef(0);
 
   useEffect(() => {
-    async function loadRequirements() {
-      const supabase = createClient();
-
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      setIsLoggedIn(Boolean(user));
-      setAuthChecked(true);
-
-      // If a recent edit has not finished saving to Supabase, the browser's
-      // pending local copy is the latest source of truth. Do not replace it
-      // with older account data when this page is reopened.
+    async function loadPageRequirements() {
       try {
-        const hasPendingSave =
-          window.localStorage.getItem(REQUIREMENTS_PENDING_SAVE_KEY) === "true";
-        const saved = window.localStorage.getItem(REQUIREMENTS_STORAGE_KEY);
+        const supabase = createClient();
 
-        if (hasPendingSave && saved) {
-          const pendingRequirements = JSON.parse(saved) as Partial<Requirements>;
-          setRequirements({
-            ...defaultRequirements,
-            ...pendingRequirements,
-          });
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        setIsLoggedIn(Boolean(user));
+        setAuthChecked(true);
+        loadedAccountRef.current = user?.id ?? null;
+
+        // If a recent edit has not finished saving to Supabase, the browser's
+        // pending local copy is the latest source of truth. Do not replace it
+        // with older account data when this page is reopened.
+        const stored = readStoredRequirements();
+        if (hasPendingRequirementsSave() && stored) {
+          setRequirements(stored);
           return;
         }
-      } catch {
-        // Continue with the normal account/local settings load.
-      }
 
-      if (!user) {
-        try {
-          const saved = window.localStorage.getItem(
-            REQUIREMENTS_STORAGE_KEY
-          );
-
-          if (saved) {
-            const savedRequirements = JSON.parse(saved) as Partial<Requirements>;
-            setRequirements({
-              ...defaultRequirements,
-              ...savedRequirements,
-            });
-          }
-        } catch {
-          // Keep the default requirements.
+        if (!user) {
+          if (stored) setRequirements(stored);
+          return;
         }
 
-        return;
+        const { requirements: loadedRequirements, error } = await loadRequirements(supabase, user.id);
+
+        if (error) {
+          setLoadError(true);
+          return;
+        }
+        if (!loadedRequirements) {
+          return;
+        }
+
+        setRequirements(cacheAccountRequirements(loadedRequirements));
+      } catch {
+        setLoadError(true);
+        setAuthChecked(true);
+      } finally {
+        setRequirementsReady(true);
       }
-
-      const { data, error } = await supabase
-        .from("user_requirements")
-        .select(
-          "sodium_limit, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml, ckd_stage, protein_min_g, protein_max_g, potassium_limit_mg, phosphate_limit_mg"
-        )
-        .eq("user_id", user.id)
-        .maybeSingle();
-
-      if (error || !data) {
-        return;
-      }
-
-      const loadedRequirements: Requirements = {
-        ckdStage:
-          (data.ckd_stage as CkdStage | null) ?? "custom",
-        sodiumLimit: data.sodium_limit ?? null,
-        proteinMinG: data.protein_min_g ?? null,
-        proteinMaxG: data.protein_max_g ?? null,
-        potassiumLimitMg: data.potassium_limit_mg ?? null,
-        phosphateLimitMg: data.phosphate_limit_mg ?? null,
-        potassium: data.potassium as RequirementLevel,
-        phosphate: data.phosphate as RequirementLevel,
-        purines: data.purines as RequirementLevel,
-        carbohydrateMin: data.carbohydrate_min ?? null,
-        carbohydrateMax: data.carbohydrate_max ?? null,
-        fluidLimitMl: data.fluid_limit_ml ?? null,
-      };
-
-      setRequirements(loadedRequirements);
-      syncRequirementsToLocalStorage(loadedRequirements);
     }
 
-    loadRequirements();
+    loadPageRequirements();
   }, []);
 
   function trackDietUpdate(key: string) {
@@ -343,14 +259,16 @@ export default function RequirementsPage() {
     }
   }
 
-  async function saveRequirements(nextRequirements: Requirements) {
+  async function saveRequirements(nextRequirements: Requirements, accountRequired = false, pendingDraft = nextRequirements) {
     const saveVersion = ++saveVersionRef.current;
+    let outcome: { ok: boolean; error?: unknown } = { ok: false };
 
     // Keep the current browser's settings up to date immediately. The pending
     // flag tells MyChef to trust this latest local copy until the account save
     // has completed successfully.
-    syncRequirementsToLocalStorage(nextRequirements, true);
+    syncRequirementsToLocalStorage(pendingDraft, true);
     setSaveStatus("saving");
+    setSaveError(null);
 
     saveQueueRef.current = saveQueueRef.current.then(async () => {
       // Skip queued saves that have already been superseded by a newer edit.
@@ -363,55 +281,73 @@ export default function RequirementsPage() {
         } = await supabase.auth.getUser();
 
         if (!user) {
+          if (accountRequired || nextRequirements.onboardingStatus === "completed") {
+            throw new Error("Sign in to save completed onboarding.");
+          }
           if (saveVersion === saveVersionRef.current) {
             syncRequirementsToLocalStorage(nextRequirements);
             setSaveStatus("saved");
+            outcome = { ok: true };
           }
           return;
         }
 
-        const { error } = await supabase
-          .from("user_requirements")
-          .upsert(
-            {
-              user_id: user.id,
-              ckd_stage: nextRequirements.ckdStage,
-              sodium_limit: nextRequirements.sodiumLimit,
-              protein_min_g: nextRequirements.proteinMinG,
-              protein_max_g: nextRequirements.proteinMaxG,
-              potassium_limit_mg: nextRequirements.potassiumLimitMg,
-              phosphate_limit_mg: nextRequirements.phosphateLimitMg,
-              potassium: nextRequirements.potassium,
-              phosphate: nextRequirements.phosphate,
-              purines: nextRequirements.purines,
-              carbohydrate_min: nextRequirements.carbohydrateMin,
-              carbohydrate_max: nextRequirements.carbohydrateMax,
-              fluid_limit_ml: nextRequirements.fluidLimitMl,
-              updated_at: new Date().toISOString(),
-            },
-            { onConflict: "user_id" }
-          );
+        if (accountRequired && user.id !== loadedAccountRef.current) {
+          throw new Error("The signed-in account changed. Reopen My Diet before saving setup.");
+        }
 
-        if (error) throw error;
+        await persistRequirements(supabase, user.id, nextRequirements);
 
         // Only the newest successful save may clear the pending flag.
         if (saveVersion === saveVersionRef.current) {
           syncRequirementsToLocalStorage(nextRequirements);
           setSaveStatus("saved");
+          setSaveError(null);
+          outcome = { ok: true };
         }
-      } catch {
+      } catch (error) {
+        outcome = { ok: false, error };
         // Keep the pending local values usable in this browser. Do not silently
         // replace them with a stale account value while the save can be retried.
         if (saveVersion === saveVersionRef.current) {
           setSaveStatus("idle");
+          setSaveError("Your changes have not been saved to your account. Your pending answers are retained here; please try again.");
         }
       }
     });
 
     await saveQueueRef.current;
+    return outcome;
+  }
+
+  function closeOnboarding() {
+    setShowOnboarding(false);
+    if (hasPendingRequirementsSave()) {
+      setSaveError("Guided setup closed. Your unsaved answers are kept in this browser; setup is not complete.");
+    }
+    window.requestAnimationFrame(() => guidedSetupButtonRef.current?.focus());
+  }
+
+  function retainOnboardingDraft(draft: Requirements) {
+    setRequirements(draft);
+    syncRequirementsToLocalStorage(draft, true);
+  }
+
+  async function saveOnboarding(next: Requirements, pendingDraft?: Requirements) {
+    const result = await saveRequirements(next, true, pendingDraft);
+    if (!result.ok) throw result.error ?? new Error("A newer edit superseded this save. Please try again.");
+    setRequirements(next);
   }
 
   if (!authChecked) return null;
+
+  // Manual entry only. No first-login enrolment or rollout is enabled in Stage 2.
+  if (showOnboarding && isLoggedIn) return (
+    <main className="min-h-screen bg-slate-50 px-4 py-5 sm:px-6 sm:py-8 dark:bg-slate-950">
+      <MyDietOnboarding initialRequirements={requirements} onDraftChange={retainOnboardingDraft}
+        onSave={saveOnboarding} onExit={closeOnboarding} />
+    </main>
+  );
 
   return (
     <>
@@ -430,7 +366,26 @@ export default function RequirementsPage() {
                 </p>
               )}
 
+              {isLoggedIn && <button ref={guidedSetupButtonRef} type="button" disabled={!requirementsReady || loadError || saveStatus === "saving"}
+                onClick={() => setShowOnboarding(true)} className="mt-4 min-h-11 rounded-xl bg-[#067b3a] px-4 py-3 text-sm font-bold text-white hover:bg-[#056b32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#067b3a] disabled:opacity-60">
+                Start guided setup
+              </button>}
+              {loadError && <p role="alert" className="mt-3 text-sm text-amber-800">Your saved settings could not be loaded. Reopen My Diet before starting guided setup so existing settings are protected.</p>}
+              {saveError && <p role="alert" className="mt-3 text-sm text-amber-800">{saveError}</p>}
+
             </div>
+
+            {requirements.monitoredNutrients?.length ? (
+              <div className="mt-4 rounded-xl border border-slate-200 p-4">
+                <h2 className="text-base font-bold text-slate-900">Nutrients you monitor</h2>
+                <ul className="mt-2 space-y-1 text-sm text-slate-600">
+                  {monitoredNutrients.filter(nutrient => requirements.monitoredNutrients?.includes(nutrient)).map(nutrient => (
+                    <li key={nutrient}>{nutrientLabels[nutrient]}: {isMonitoringWithoutTarget(requirements, nutrient)
+                      ? monitoringWithoutTargetLabel : "Monitoring with your saved target"}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
             {/* CKD STAGE */}
             <div className="mt-6 rounded-2xl border border-green-100 bg-green-50/40 p-4 sm:p-5">

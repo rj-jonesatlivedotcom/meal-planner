@@ -7,6 +7,11 @@ import Image from "next/image";
 import { recipes } from "@/data/RecipeData";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import {
+  type Requirements, loadRequirements, readStoredRequirements, cacheAccountRequirements,
+  hasConfiguredRequirements, monitoredNutrients, nutrientLabels,
+  isMonitoringWithoutTarget, monitoringWithoutTargetLabel,
+} from "@/lib/myDiet";
 
 const freeSteps = [
   {
@@ -444,6 +449,7 @@ function LoggedInHome() {
   const [favouriteIds, setFavouriteIds] = useState<string[]>([]);
   const [shoppingCount, setShoppingCount] = useState(0);
   const [requirementsSet, setRequirementsSet] = useState(false);
+  const [dietRequirements, setDietRequirements] = useState<Requirements | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [todayTipIndex, setTodayTipIndex] = useState(0);
 
@@ -512,28 +518,9 @@ function LoggedInHome() {
       setShoppingCount(0);
     }
 
-    try {
-      const savedRequirements = localStorage.getItem(
-        "meal-planner-requirements",
-      );
-      if (savedRequirements) {
-        const parsed = JSON.parse(savedRequirements);
-        const meaningful =
-          parsed &&
-          (["Low", "Moderate", "High"].includes(parsed.potassium) ||
-            ["Low", "Moderate", "High"].includes(parsed.phosphate) ||
-            ["Low", "Moderate", "High"].includes(parsed.purines) ||
-            parsed.sodiumLimit != null ||
-            parsed.carbohydrateMin != null ||
-            parsed.carbohydrateMax != null ||
-            parsed.fluidLimitMl != null);
-        setRequirementsSet(Boolean(meaningful));
-      } else {
-        setRequirementsSet(false);
-      }
-    } catch {
-      setRequirementsSet(false);
-    }
+    const storedRequirements = readStoredRequirements();
+    setDietRequirements(storedRequirements);
+    setRequirementsSet(hasConfiguredRequirements(storedRequirements));
   }, [weeklyPageStorage]);
 
   useEffect(() => {
@@ -555,19 +542,13 @@ function LoggedInHome() {
         return;
       }
 
-      const [{ data: favourites, error: favouritesError }, { data: requirements }] =
+      const [{ data: favourites, error: favouritesError }, { requirements }] =
         await Promise.all([
           supabase
             .from("user_favourites")
             .select("recipe_id")
             .eq("user_id", user.id),
-          supabase
-            .from("user_requirements")
-            .select(
-              "sodium_limit, potassium, phosphate, purines, carbohydrate_min, carbohydrate_max, fluid_limit_ml",
-            )
-            .eq("user_id", user.id)
-            .maybeSingle(),
+          loadRequirements(supabase, user.id),
         ]);
 
       if (cancelled) return;
@@ -604,32 +585,9 @@ function LoggedInHome() {
       }
 
       if (requirements) {
-        const meaningful =
-          (requirements.potassium === "Low" || requirements.potassium === "Moderate" || requirements.potassium === "High") ||
-          (requirements.phosphate === "Low" || requirements.phosphate === "Moderate" || requirements.phosphate === "High") ||
-          (requirements.purines === "Low" || requirements.purines === "Moderate" || requirements.purines === "High") ||
-          requirements.sodium_limit != null ||
-          requirements.carbohydrate_min != null ||
-          requirements.carbohydrate_max != null ||
-          requirements.fluid_limit_ml != null;
-        setRequirementsSet(Boolean(meaningful));
-
-        try {
-          localStorage.setItem(
-            "meal-planner-requirements",
-            JSON.stringify({
-              sodiumLimit: requirements.sodium_limit,
-              potassium: requirements.potassium,
-              phosphate: requirements.phosphate,
-              purines: requirements.purines,
-              carbohydrateMin: requirements.carbohydrate_min,
-              carbohydrateMax: requirements.carbohydrate_max,
-              fluidLimitMl: requirements.fluid_limit_ml,
-            }),
-          );
-        } catch {
-          // Keep the dashboard usable if local storage is unavailable.
-        }
+        const currentRequirements = cacheAccountRequirements(requirements);
+        setDietRequirements(currentRequirements);
+        setRequirementsSet(hasConfiguredRequirements(currentRequirements));
       }
 
       setLoaded(true);
@@ -758,6 +716,22 @@ function LoggedInHome() {
   );
 
   const hasViewingNutrition = viewingMealCount > 0;
+
+  const monitoringNotes = monitoredNutrients
+    .filter(nutrient => dietRequirements && isMonitoringWithoutTarget(dietRequirements, nutrient))
+    .map(nutrient => {
+      if (nutrient === "fluid") return { nutrient, amount: "Amount unavailable on this dashboard" };
+      const nutritionKey = { sodium: "salt", calories: "calories", protein: "protein", potassium: "potassium",
+        phosphate: "phosphate", carbohydrate: "carbohydrates" } as const;
+      const values = viewingSlots.filter(slot => slot.recipe)
+        .map(slot => slot.recipe?.nutrition?.[nutritionKey[nutrient]]);
+      const available = values.filter((value): value is string => typeof value === "string" && /\d/.test(value));
+      const unit = nutrient === "calories" ? "kcal" : nutrient === "potassium" || nutrient === "phosphate" ? "mg" : "g";
+      const amount = available.length
+        ? `${available.reduce((total, value) => total + parseValue(value), 0).toLocaleString("en-GB", { maximumFractionDigits: 2 })} ${unit}${available.length < values.length ? " (available values; incomplete)" : ""}`
+        : "No planned amount available";
+      return { nutrient, amount };
+    });
 
   const favouriteRecipes = favouriteIds
     .map((id) => findRecipe(id))
@@ -1497,6 +1471,14 @@ function LoggedInHome() {
                     <div className="renal-dashboard-soft rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"><p className="text-[10px] font-bold text-slate-500">Salt</p><p className="mt-0.5 text-sm font-extrabold text-[#12396b]">{viewingNutrition.salt.toFixed(2).replace(/\.00$/, "")} g</p></div>
                   </div>
                 ) : <div className="renal-dashboard-soft mt-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-4"><p className="text-sm font-bold text-[#12396b]">Plan a meal for {viewingDay || "this day"} first.</p><p className="renal-dashboard-muted mt-1 text-xs text-slate-600">Your totals will appear here.</p></div>}
+                {monitoringNotes.length > 0 && (
+                  <ul className="renal-dashboard-muted mt-3 space-y-2 text-xs text-slate-600">
+                    {monitoringNotes.map(({ nutrient, amount }) => (
+                      <li key={nutrient}><span className="font-bold">{nutrientLabels[nutrient]}: {amount}</span>
+                        <span className="block">{monitoringWithoutTargetLabel}</span></li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
           </div>

@@ -1,0 +1,31 @@
+.layout {
+  display: grid;
+  min-width: 0;
+}
+
+.mascot {
+  display: block;
+  flex-shrink: 0;
+  width: auto;
+  height: 120px;
+  max-height: 120px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+
+  .mascot {
+    height: 200px;
+    max-height: 200px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+}

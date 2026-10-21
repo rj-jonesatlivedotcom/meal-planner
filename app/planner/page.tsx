@@ -1004,9 +1004,13 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     const { savedDiet, dietReady, dietError } = latestDietRef.current;
     const requirements = savedDiet ? activeRequirements(savedDiet) : null;
     if (!dietReady || dietError) { setMyChefNotice("MyChef cannot read your allergy settings yet. Please retry after My Diet loads."); return; }
-    const chefRecipes = eligibleForMyChef(recipes, savedDiet?.foodAllergies);
-    const missing = ["B", "L", "D"].some(prefix => !chefRecipes.some(recipe => recipe.code.startsWith(prefix)));
-    setMyChefNotice(missing ? "Some slots may remain empty: too few recipes have ingredient details compatible with your allergy settings. MyChef never relaxes allergy exclusions." : null);
+    let chefRecipes: typeof recipes;
+    try { chefRecipes = eligibleForMyChef(recipes, savedDiet?.foodAllergies); }
+    catch { setMyChefNotice("MyChef couldn't check recipe ingredients. Your existing plan has been kept. Please retry."); return; }
+    if (!chefRecipes.length) { setMyChefNotice("No eligible recipes remain after allergy checks. Your existing plan has been kept."); return; }
+    const missing = ["B", "L", "D"].filter(prefix => !chefRecipes.some(recipe => recipe.code.startsWith(prefix)))
+      .map(prefix => prefix === "B" ? "breakfast" : prefix === "L" ? "lunch" : "dinner");
+    setMyChefNotice(missing.length ? `No eligible ${missing.join(" or ")} recipes remain after allergy checks. Those slots may remain empty; existing meals in them are kept. MyChef never relaxes allergy exclusions.` : null);
     setPlannerMeals((current) => {
       if (!current) return current;
 
@@ -1120,7 +1124,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
         if (!breakfastPool.length || !lunchPool.length || !dinnerPool.length) {
           for (const [meal, pool] of [["Breakfast", breakfastPool], ["Lunch", lunchPool], ["Dinner", dinnerPool]] as const) {
             if (!replaceAll && current[day]?.[meal]) continue;
-            nextPlanner[day][meal] = pool[0]?.id ?? null;
+            nextPlanner[day][meal] = pool[0]?.id ?? current[day]?.[meal] ?? null;
             if (pool[0]) usedByMeal[meal].add(pool[0].id);
           }
           return;
@@ -1203,7 +1207,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
           }
         }
 
-        if (!bestCombo) return;
+        if (!bestCombo) { nextPlanner[day] = { ...current[day] }; return; }
 
         nextPlanner[day].Breakfast = bestCombo.Breakfast.id;
         nextPlanner[day].Lunch = bestCombo.Lunch.id;

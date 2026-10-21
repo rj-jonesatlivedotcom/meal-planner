@@ -2,6 +2,9 @@ export type AllergyRecipe = { ingredients?: readonly { item: string }[] };
 const normalise = (text: string) => text.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 const contains = (text: string, phrase: string) => (` ${text} `).includes(` ${phrase} `);
 const groups: Record<string, { names: string[]; ingredients: string[] }> = {
+  chicken: { names: ["chicken", "chickens"], ingredients: ["chicken", "hen", "cockerel", "capon", "poussin"] },
+  pork: { names: ["pork", "pig", "swine", "porcine"], ingredients: ["pork", "pig", "swine", "porcine", "ham", "bacon", "gammon", "pancetta", "prosciutto", "lard", "chorizo", "pepperoni", "salami", "guanciale", "mortadella"] },
+  paprika: { names: ["paprika", "pimenton"], ingredients: ["paprika", "pimenton", "e160c"] },
   milk: { names: ["milk", "dairy", "cow milk", "cows milk", "milk protein"], ingredients: ["milk", "cheese", "butter", "cream", "yoghurt", "yogurt", "whey", "casein", "caseinate", "ghee", "buttermilk", "curd", "quark", "paneer", "ricotta", "mozzarella", "cheddar", "parmesan", "feta", "halloumi", "mascarpone", "creme fraiche", "fromage frais", "lactalbumin", "lactoglobulin"] },
   peanut: { names: ["peanut", "peanuts", "groundnut", "groundnuts", "arachis"], ingredients: ["peanut", "groundnut", "arachis", "monkey nut"] },
   nuts: { names: ["tree nut", "tree nuts"], ingredients: ["almond", "hazelnut", "walnut", "cashew", "pecan", "brazil nut", "pistachio", "macadamia", "marzipan", "praline"] },
@@ -20,7 +23,28 @@ const groups: Record<string, { names: string[]; ingredients: string[] }> = {
 };
 const variants = (word: string) => [word, `${word}s`, ...(word.endsWith("y") ? [`${word.slice(0, -1)}ies`] : []), ...(word.endsWith("s") ? [`${word}es`] : [])];
 const hasIngredient = (text: string, word: string) => variants(word).some(value => contains(text, value));
-const compound = /\b(stock|broth|sauce|dressing|gravy|paste|pesto|bread|rolls?|pasta|noodles?|flour|margarine|spread|chocolate|sausage|sausages|seasoning|blend|mix|mixed nuts|vegetable oil|mayonnaise|mayo|yoghurt|yogurt|plant based|substitute)\b/;
+// Uncertainty requires an ingredient with a plausible connection to this allergen.
+// A free-text allergy or absent allergen metadata is not itself ingredient evidence.
+const uncertainFor: Record<string, RegExp> = {
+  milk: /\b(stock|broth|sauce|dressing|gravy|paste|pesto|bread|rolls?|pasta|noodles?|margarine|spread|chocolate|sausage|sausages|seasoning|mix|mayonnaise|mayo|yoghurt|yogurt|substitute)\b/,
+  peanut: /\b(satay|mixed nuts|nut butter|nut spread|groundnut)\b/,
+  nuts: /\b(pesto|mixed nuts|nut butter|nut spread|nougat)\b/,
+  egg: /\b(mayonnaise|mayo|pasta|noodles?|batter|pastry|cake|dressing|substitute)\b/,
+  soy: /\b(stock|broth|sauce|dressing|margarine|spread|sausage|sausages|vegetable oil|plant based|substitute)\b/,
+  wheat: /\b(flour|bread|rolls?|pasta|noodles?|stock|broth|sauce|gravy|batter|pastry|sausage|sausages)\b/,
+  gluten: /\b(flour|bread|rolls?|pasta|noodles?|stock|broth|sauce|gravy|batter|pastry|sausage|sausages)\b/,
+  fish: /\b(worcestershire|fish sauce|seafood|surimi)\b/,
+  crustaceans: /\b(seafood|shellfish|shrimp paste)\b/,
+  molluscs: /\b(seafood|shellfish|oyster sauce)\b/,
+  sesame: /\b(hummus|houmous|mixed seeds|seed mix)\b/,
+  celery: /\b(stock|broth|bouillon|soup mix|seasoning|mirepoix)\b/,
+  mustard: /\b(dressing|mayonnaise|mayo|piccalilli|curry powder|seasoning)\b/,
+  lupin: /\b(flour blend|gluten free flour|gluten free bread)\b/,
+  sulphites: /\b(wine|vinegar|dried fruit|dried apricot|dried apricots|sausage|sausages)\b/,
+  chicken: /\b(poultry|meat stock|meat broth)\b|^(?:stock|broth|bouillon|gravy|sausages?|meatballs?|burgers?|mince)(?: cube| cubes)?$/,
+  pork: /\b(gelatine?|collagen|meat stock|meat broth)\b|^(?:stock|broth|bouillon|gravy|sausages?|meatballs?|burgers?|mince)(?: cube| cubes)?$/,
+  paprika: /\b(spice mix|mixed spices|spice blend|seasoning|cajun|barbecue sauce|bbq sauce|chorizo|dry rub)\b/,
+};
 
 /** Ingredient evidence only. An absence of matches never establishes allergen freedom. */
 export function matchRecipeAllergies(recipe: AllergyRecipe, allergies: readonly string[] | null | undefined) {
@@ -34,7 +58,7 @@ export function matchRecipeAllergies(recipe: AllergyRecipe, allergies: readonly 
     const namedNut = groups.nuts.ingredients.find(nut => variants(nut).includes(name));
     const terms = namedNut ? [namedNut] : keys.flatMap(key => groups[key].ingredients);
     const recognised = keys.length > 0 || Boolean(namedNut);
-    let found = false, unknown = !recognised;
+    let found = false, unknown = false;
     if (!recipe.ingredients?.length) unknown = true;
     for (const ingredient of recipe.ingredients ?? []) {
       let item = normalise(ingredient.item);
@@ -49,10 +73,10 @@ export function matchRecipeAllergies(recipe: AllergyRecipe, allergies: readonly 
       }
       if (keys.includes("egg") && /\b(?:egg free|vegan)\b/.test(item)) item = item.replace(/\b(?:egg|mayonnaise)\b/g, "plant substitute");
       if (keys.includes("gluten") && /\bgluten free\b/.test(item)) item = item.replace(/\b(?:oat|oats|gluten)\b/g, "labelled substitute");
+      if (keys.includes("pork")) item = item.replace(/\b(?:turkey|chicken|beef|vegan|vegetarian|plant based) (?:bacon|ham|sausage|sausages)\b/g, "meat substitute");
       const matches = (recognised ? terms : [name]).some(term => hasIngredient(item, term));
       if (matches) found = true;
-      // Packaged/composite items need a full label; no inferred "safe" substitutions.
-      if (!matches && compound.test(item)) { unknown = true; uncertainIngredients.add(ingredient.item); }
+      if (!matches && (namedNut ? ["nuts"] : keys).some(key => uncertainFor[key]?.test(item))) { unknown = true; uncertainIngredients.add(ingredient.item); }
     }
     if (found) detected.push(declared);
     if (unknown) uncertain.push(declared);

@@ -1,6 +1,6 @@
 "use client";
-import { classifyTargetRange, type EnergyTargetStatus } from "@/lib/energyTarget";
-import { activeRequirements, defaultRequirements as sharedDefaultRequirements, type MonitoredNutrient, type NutrientTargetSettings } from "@/lib/myDiet";
+import { evaluateNutrientTarget, getNutrientTarget, nutrientStatusText, nutrientStatusTone, type NutrientTargetStatus } from "@/lib/nutrientTargets";
+import { defaultRequirements as sharedDefaultRequirements, type Requirements } from "@/lib/myDiet";
 import { useMyDiet } from "@/components/my-diet/MyDietProvider";
 
 
@@ -100,25 +100,6 @@ type PlannerMeals = Record<
   Record<string, string | null>
 >;
 
-type RequirementLevel = "Any" | "Low" | "Moderate";
-
-type Requirements = {
-  nutrientTargetSettings?: NutrientTargetSettings | null;
-  monitoredNutrients?: MonitoredNutrient[] | null;
-  sodiumLimit: number | null;
-  potassium: RequirementLevel;
-  phosphate: RequirementLevel;
-  purines: RequirementLevel;
-  carbohydrateMin?: number | null;
-  carbohydrateMax?: number | null;
-  ckdStage?: string | null;
-  proteinMinG?: number | null;
-  proteinMaxG?: number | null;
-  potassiumLimitMg?: number | null;
-  phosphateLimitMg?: number | null;
-  fluidLimitMl?: number | null;
-};
-
 type NutrientKey =
   | "calories"
   | "protein"
@@ -131,7 +112,7 @@ type NutrientKey =
 
 type NutrientTotals = Record<NutrientKey, number>;
 
-type Status = "green" | "red" | "pending" | EnergyTargetStatus;
+type Status = NutrientTargetStatus;
 
 type FluidEntry = { id: string; date: string; drink: string; amountMl: number; createdAt?: string };
 const FLUID_LOG_STORAGE_KEY = "renalplan-fluid-log-v1";
@@ -242,7 +223,7 @@ function worstStatus(statuses: Status[]): Status {
   if (statuses.includes("pending")) return "pending";
   if (statuses.includes("Below target")) return "Below target";
   if (statuses.includes("Within target")) return "Within target";
-  return statuses.includes("pending") ? "pending" : "green";
+  return statuses.includes("green") ? "green" : "pending";
 }
 
 
@@ -251,37 +232,26 @@ function numericLimitStatus(
   min: number | null | undefined,
   max: number | null | undefined
 ): Status {
-  const hasMin = min !== null && min !== undefined && Number.isFinite(min);
-  const hasMax = max !== null && max !== undefined && Number.isFinite(max);
-
-  if (hasMin && actual < min!) return "red";
-  if (hasMax && actual > max!) return "red";
-
-  return "green";
+  return evaluateNutrientTarget(actual, { proteinMinG: min, proteinMaxG: max }, "protein");
 }
 
 function getDailyStatus(
   totals: NutrientTotals,
-  requirements: Requirements
+  requirements: Requirements,
+  incomplete: (key: NutrientKey) => boolean = () => false,
 ): Status {
-  const statuses: Status[] = [
-    classifyTargetRange(totals.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal) ?? "green",
-    numericLimitStatus(totals.protein, requirements.proteinMinG, requirements.proteinMaxG),
-    numericLimitStatus(totals.sodium, null, requirements.sodiumLimit),
-    numericLimitStatus(totals.potassium, null, requirements.potassiumLimitMg),
-    numericLimitStatus(totals.phosphate, null, requirements.phosphateLimitMg),
-    (requirements.carbohydrateMin != null && requirements.carbohydrateMax != null
-      ? classifyTargetRange(totals.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax) ?? "green"
-      : numericLimitStatus(totals.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)),
-  ];
+  const statuses = (["calories", "protein", "carbohydrates", "sodium", "potassium", "phosphate"] as const)
+    .filter(key => {
+      const { min, max } = getNutrientTarget(requirements, key);
+      return min != null || max != null;
+    })
+    .map(key => evaluateNutrientTarget(totals[key], requirements, key, incomplete(key)));
 
   return worstStatus(statuses);
 }
 
 function getStatusText(status: Status): string {
-  if (status === "pending") return "Not assessed";
-  if (status === "Below target" || status === "Within target" || status === "Exceeds target") return status;
-  return status === "green" ? "Within limit" : "Exceeds limit";
+  return nutrientStatusText(status);
 }
 
 function getStatusDotClass(status: Status): string {
@@ -367,7 +337,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   const [plannerMeals, setPlannerMeals] =
     useState<PlannerMeals | null>(null);
   const { requirements: savedDiet } = useMyDiet();
-  const requirements = activeRequirements(savedDiet ?? defaultRequirements);
+  const requirements = savedDiet ?? defaultRequirements;
   const [fluidEntries, setFluidEntries] = useState<FluidEntry[]>([]);
   const fluidAllowanceMl = requirements.fluidLimitMl ?? null;
   const [selectedDay, setSelectedDay] =
@@ -684,30 +654,21 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       total: formatNumber(weeklyTotals.calories),
       average: formatNumber(dailyAverage.calories),
       requirement: formatRange(requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal, "kcal/day"),
-      status: requirements.nutrientTargetSettings?.energyMinKcal != null || requirements.nutrientTargetSettings?.energyMaxKcal != null
-        ? classifyTargetRange(dailyAverage.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal) : null,
+      status: evaluateNutrientTarget(dailyAverage.calories, requirements, "calories"),
     },
     {
       label: "Protein (g)",
       total: formatNumber(weeklyTotals.protein),
       average: formatNumber(dailyAverage.protein),
       requirement: formatRange(requirements.proteinMinG, requirements.proteinMaxG, "g/day"),
-      status:
-        requirements.proteinMinG != null || requirements.proteinMaxG != null
-          ? numericLimitStatus(dailyAverage.protein, requirements.proteinMinG, requirements.proteinMaxG)
-          : null,
+      status: evaluateNutrientTarget(dailyAverage.protein, requirements, "protein"),
     },
     {
       label: "Carbohydrate (g)",
       total: formatNumber(weeklyTotals.carbohydrates),
       average: formatNumber(dailyAverage.carbohydrates),
       requirement: formatRange(requirements.carbohydrateMin, requirements.carbohydrateMax, "g/day"),
-      status:
-        requirements.carbohydrateMin != null || requirements.carbohydrateMax != null
-          ? requirements.carbohydrateMin != null && requirements.carbohydrateMax != null
-            ? classifyTargetRange(dailyAverage.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)
-            : numericLimitStatus(dailyAverage.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)
-          : null,
+      status: evaluateNutrientTarget(dailyAverage.carbohydrates, requirements, "carbohydrates"),
     },
     {
       label: "Fat (g)",
@@ -731,10 +692,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
         requirements.sodiumLimit !== null && requirements.sodiumLimit !== undefined
           ? `≤ ${formatSalt(requirements.sodiumLimit)}/day`
           : "No limit set",
-      status:
-        requirements.sodiumLimit != null
-          ? numericLimitStatus(dailyAverage.sodium, null, requirements.sodiumLimit)
-          : null,
+      status: evaluateNutrientTarget(dailyAverage.sodium, requirements, "sodium"),
     },
     {
       label: "Potassium (mg)",
@@ -744,10 +702,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
         requirements.potassiumLimitMg != null
           ? `≤ ${formatPotassiumMg(requirements.potassiumLimitMg)}/day`
           : "No limit set",
-      status:
-        requirements.potassiumLimitMg != null
-          ? numericLimitStatus(dailyAverage.potassium, null, requirements.potassiumLimitMg)
-          : null,
+      status: evaluateNutrientTarget(dailyAverage.potassium, requirements, "potassium"),
     },
     {
       label: "Phosphorus",
@@ -757,10 +712,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
         requirements.phosphateLimitMg != null
           ? `≤ ${formatNumber(requirements.phosphateLimitMg)} mg/day`
           : "No limit set",
-      status:
-        requirements.phosphateLimitMg != null
-          ? numericLimitStatus(dailyAverage.phosphate, null, requirements.phosphateLimitMg)
-          : null,
+      status: evaluateNutrientTarget(dailyAverage.phosphate, requirements, "phosphate"),
     },
 
     {
@@ -787,12 +739,18 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   function incompleteSnacks(day: Day | undefined, key: SnackNutrient) {
     return Boolean(snackAccount.loading || snackAccount.error || snackQuality(day)[key].missing);
   }
+  function hasPlannedMeals(day?: Day) {
+    return (day ? [day] : days).some(d => mealTypes.some(meal => getRecipe(plannerMeals ?? {}, d, meal)));
+  }
   // Estimates are usable numbers. Missing contributions affect certainty,
   // but a known amount above an upper limit is already a definite exceedance.
-  function assessedNutrientStatus(day: Day | undefined, key: SnackNutrient, actual: number, limit: number | null | undefined): Status {
-    const measured = numericLimitStatus(actual, null, limit);
-    if (measured === "red") return "red";
-    return incompleteSnacks(day, key) ? "pending" : measured;
+  function assessedNutrientStatus(day: Day | undefined, key: SnackNutrient, actual: number, _limit?: number | null): Status {
+    if (key === "fat" || key === "fibre") return "pending";
+    if (!hasPlannedMeals(day) && snackQuality(day)[key].value === null) return "pending";
+    return evaluateNutrientTarget(actual, requirements, key, incompleteSnacks(day, key));
+  }
+  function totalNutrientStatus(day: Day | undefined, key: SnackNutrient): Status {
+    return assessedNutrientStatus(day, key, day ? dayTotals[day][key] : dailyAverage[key]);
   }
   // Show known contributions even if another snack lacks this nutrient.
   // An asterisk flags estimates or partial totals; it never implies completeness.
@@ -832,21 +790,12 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     if (!key) return;
     row.total = flaggedNutrient(row.total, key);
     row.average = flaggedNutrient(row.average, key);
-    if (incompleteSnacks(undefined, key) && row.status !== null) {
-      const limit = key === "potassium" ? requirements.potassiumLimitMg : key === "phosphate" ? requirements.phosphateLimitMg : null;
-      const actual = key === "potassium" ? dailyAverage.potassium : key === "phosphate" ? dailyAverage.phosphate : 0;
-      row.status = limit == null ? row.status : assessedNutrientStatus(undefined, key, actual, limit);
-    }
+    row.status = totalNutrientStatus(undefined, key);
   });
 
-  function getDailyStatusForDay(day: Day): Status {
-    const totals = dayTotals[day];
-    const base = getDailyStatus(totals, requirements);
-    if (base === "red" || base === "Exceeds target") return base;
-    const uncertainLimitedNutrient =
-      (requirements.potassiumLimitMg != null && incompleteSnacks(day, "potassium")) ||
-      (requirements.phosphateLimitMg != null && incompleteSnacks(day, "phosphate"));
-    return uncertainLimitedNutrient ? "pending" : base;
+  function getDailyStatusForDay(day?: Day): Status {
+    if (!hasPlannedMeals(day) && snackNutrients.every(key => snackQuality(day)[key].value === null)) return "pending";
+    return getDailyStatus(day ? dayTotals[day] : dailyAverage, requirements, key => incompleteSnacks(day, key));
   }
 
   if (plannerMeals === null) {
@@ -1358,7 +1307,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
             </div>
 
             <section className="mt-4 rounded-2xl border border-slate-200 bg-white p-4"><h3 className="font-bold text-slate-900">Snacks</h3>{renderSnackBreakdown(selectedDay, true)}</section>
-            <div className="nutrition-mobile-daily-total mt-4 rounded-2xl bg-pink-50 p-4">
+            <div data-nutrient-status={nutrientStatusTone(getDailyStatusForDay(selectedDay))} className="nutrient-target-surface nutrition-mobile-daily-total mt-4 rounded-2xl p-4">
               <div className="flex items-center justify-between gap-3">
                 <span className="font-bold text-slate-900">
                   Daily total
@@ -1374,51 +1323,51 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
               </div>
 
               <div className="mt-3 grid grid-cols-1 gap-y-2 text-xs sm:text-sm">
-                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "calories"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "calories"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Energy", "calories", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "calories", "kcal")}
-                    <span className="block"><NutritionStatusLabel status={classifyTargetRange(dayTotals[selectedDay].calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal)} /></span>
+                    <span className="block"><NutritionStatusLabel status={totalNutrientStatus(selectedDay, "calories")} /></span>
                   </strong>
                 </div>
 
-                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "protein"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "protein"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Protein", "protein", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "protein", "g")}
                   </strong>
                 </div>
 
-                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "carbohydrates"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "carbohydrates"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Carbohydrate", "carbohydrates", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "carbohydrates", "g")}
-                    {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={classifyTargetRange(dayTotals[selectedDay].carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)} /></span>}
+                    {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={totalNutrientStatus(selectedDay, "carbohydrates")} /></span>}
                   </strong>
                 </div>
 
-                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "fat"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "fat"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Fat", "fat", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "fat", "g")}
                   </strong>
                 </div>
 
-                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "fibre"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "fibre"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Fibre", "fibre", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "fibre", "g")}
                   </strong>
                 </div>
 
-                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "sodium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "sodium"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Salt (g)", "sodium", selectedDay)}</span>
                   <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
                     {formatDayNutrient(selectedDay, "sodium", "salt")}
                   </strong>
                 </div>
 
-                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "potassium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "potassium"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Potassium", "potassium", selectedDay)}</span>
                   <span className="flex min-w-0 flex-wrap items-center justify-end gap-1.5 font-semibold text-slate-900">
                     <span
@@ -1430,7 +1379,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   </span>
                 </div>
 
-                <div className="grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "phosphate"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "phosphate"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
                   <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Phosphorus", "phosphate", selectedDay)}</span>
                   <span className="flex min-w-0 flex-wrap items-center justify-end gap-1.5 font-semibold text-slate-900">
                     <span
@@ -1838,7 +1787,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                     {days.map(day => <td key={day} className="px-2 py-5 align-top text-center">{renderSnackBreakdown(day)}</td>)}
                     <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">{renderSnackBreakdown()}</td>
                   </tr>
-                  <tr className="bg-green-50">
+                  <tr className="bg-slate-50">
                     <td className="px-5 py-5">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">Σ</span>
@@ -1852,7 +1801,8 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       return (
                         <td
                           key={`total-${day}`}
-                          className="px-2 py-5 align-top"
+                          data-nutrient-status={nutrientStatusTone(getDailyStatusForDay(day))}
+                          className="nutrient-target-surface px-2 py-5 align-top"
                         >
                           <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                             {(() => {
@@ -1860,51 +1810,51 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
                               return (
                                 <>
-                                  <div className="flex items-center justify-between gap-2">
+                                  <div title={getStatusText(totalNutrientStatus(day, "calories"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "calories"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                     <span className="text-slate-500">{nutrientLabel("Energy", "calories", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "calories", "kcal")}
-                    <span className="block"><NutritionStatusLabel status={classifyTargetRange(dayTotals[day].calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal)} /></span>
+                    <span className="block"><NutritionStatusLabel status={totalNutrientStatus(day, "calories")} /></span>
                                     </strong>
                                   </div>
 
-                                  <div className="flex items-center justify-between gap-2">
+                                  <div title={getStatusText(totalNutrientStatus(day, "protein"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "protein"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                     <span className="text-slate-500">{nutrientLabel("Protein", "protein", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "protein", "g")}
                                     </strong>
                                   </div>
 
-                                  <div className="flex items-center justify-between gap-2">
+                                  <div title={getStatusText(totalNutrientStatus(day, "carbohydrates"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "carbohydrates"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                     <span className="text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "carbohydrates", "g")}
-                    {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={classifyTargetRange(dayTotals[day].carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)} /></span>}
+                    {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={totalNutrientStatus(day, "carbohydrates")} /></span>}
                                     </strong>
                                   </div>
 
-                                  <div className="flex items-center justify-between gap-2">
+                                  <div title={getStatusText(totalNutrientStatus(day, "fat"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "fat"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                     <span className="text-slate-500">{nutrientLabel("Fat", "fat", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "fat", "g")}
                                     </strong>
                                   </div>
 
-                                  <div className="flex items-center justify-between gap-2">
+                                  <div title={getStatusText(totalNutrientStatus(day, "fibre"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "fibre"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                     <span className="text-slate-500">{nutrientLabel("Fibre", "fibre", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "fibre", "g")}
                                     </strong>
                                   </div>
 
-                                  <div className="flex items-center justify-between gap-2">
+                                  <div title={getStatusText(totalNutrientStatus(day, "sodium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "sodium"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                     <span className="text-slate-500">{nutrientLabel("Salt (g)", "sodium", day)}</span>
                                     <strong className="text-slate-900">
                                       {formatDayNutrient(day, "sodium", "salt")}
                                     </strong>
                                   </div>
 
-                                  <div className="flex items-center justify-between gap-2">
+                                  <div title={getStatusText(totalNutrientStatus(day, "potassium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "potassium"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                     <span className="text-slate-500">{nutrientLabel("Potassium", "potassium", day)}</span>
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
@@ -1916,7 +1866,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                     </span>
                                   </div>
 
-                                  <div className="flex items-center justify-between gap-2">
+                                  <div title={getStatusText(totalNutrientStatus(day, "phosphate"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "phosphate"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                     <span className="text-slate-500">{nutrientLabel("Phosphorus", "phosphate", day)}</span>
                                     <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                       <span
@@ -1937,58 +1887,58 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       );
                     })}
 
-                    <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
+                    <td data-nutrient-status={nutrientStatusTone(getDailyStatusForDay())} className="nutrient-target-surface nutrition-weekly-average border-l-2 border-blue-200 px-2 py-5 align-top">
                       <div className="min-w-[125px] space-y-1.5 text-left text-xs">
                         {(() => {
 
 
                           return (
                             <>
-                              <div className="flex items-center justify-between gap-2">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "calories"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "calories"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                 <span className="text-slate-500">{nutrientLabel("Energy", "calories")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("calories", "kcal")}
-                                  <span className="block"><NutritionStatusLabel status={classifyTargetRange(dailyAverage.calories, requirements.nutrientTargetSettings?.energyMinKcal, requirements.nutrientTargetSettings?.energyMaxKcal)} /></span>
+                                  <span className="block"><NutritionStatusLabel status={totalNutrientStatus(undefined, "calories")} /></span>
                                 </strong>
                               </div>
 
-                              <div className="flex items-center justify-between gap-2">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "protein"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "protein"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                 <span className="text-slate-500">{nutrientLabel("Protein", "protein")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("protein", "g")}
                                 </strong>
                               </div>
 
-                              <div className="flex items-center justify-between gap-2">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "carbohydrates"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "carbohydrates"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                 <span className="text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("carbohydrates", "g")}
-                                  {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={classifyTargetRange(dailyAverage.carbohydrates, requirements.carbohydrateMin, requirements.carbohydrateMax)} /></span>}
+                                  {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={totalNutrientStatus(undefined, "carbohydrates")} /></span>}
                                 </strong>
                               </div>
 
-                              <div className="flex items-center justify-between gap-2">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "fat"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "fat"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                 <span className="text-slate-500">{nutrientLabel("Fat", "fat")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("fat", "g")}
                                 </strong>
                               </div>
 
-                              <div className="flex items-center justify-between gap-2">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "fibre"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "fibre"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                 <span className="text-slate-500">{nutrientLabel("Fibre", "fibre")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("fibre", "g")}
                                 </strong>
                               </div>
 
-                              <div className="flex items-center justify-between gap-2">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "sodium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "sodium"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                 <span className="text-slate-500">{nutrientLabel("Salt (g)", "sodium")}</span>
                                 <strong className="text-slate-900">
                                   {formatAverageNutrient("sodium", "salt")}
                                 </strong>
                               </div>
 
-                              <div className="flex items-center justify-between gap-2">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "potassium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "potassium"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                 <span className="text-slate-500">{nutrientLabel("Potassium", "potassium")}</span>
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
@@ -2000,7 +1950,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                 </span>
                               </div>
 
-                              <div className="flex items-center justify-between gap-2">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "phosphate"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "phosphate"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
                                 <span className="text-slate-500">{nutrientLabel("Phosphorus", "phosphate")}</span>
                                 <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                   <span
@@ -2133,7 +2083,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                     </thead>
                     <tbody>
                       {weeklySummaryRows.map((row) => (
-                        <tr key={row.label} className="border-b border-slate-100 last:border-b-0">
+                        <tr key={row.label} data-nutrient-status={nutrientStatusTone(row.status)} className="nutrient-target-surface border-b border-slate-100 last:border-b-0">
                           <td className="px-3 py-3 font-semibold text-slate-900">{row.label}</td>
                           <td className="px-3 py-3 text-slate-700">{row.total}</td>
                           <td className="px-3 py-3 text-slate-700">{row.average}</td>
@@ -2147,7 +2097,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
                 <div className="nutrition-print-hidden divide-y divide-slate-200 md:hidden">
                   {weeklySummaryRows.map((row) => (
-                    <article key={row.label} className="py-2.5 first:pt-0 last:pb-0">
+                    <article key={row.label} data-nutrient-status={nutrientStatusTone(row.status)} className="nutrient-target-surface rounded-lg px-2 py-2.5 first:pt-0 last:pb-0">
                       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
                         <div className="min-w-0">
                           <h3 className="break-words text-sm font-semibold leading-5 text-slate-900">{row.label}</h3>

@@ -1405,3 +1405,34 @@ html[data-theme="dark"] .carbohydrate-guidance-bar * {
   color: #e5edf5 !important;
   -webkit-text-fill-color: #e5edf5 !important;
 }
+
+/* Shared Planner/Nutrition target surfaces; status colours survive theme overrides. */
+[data-nutrient-status="neutral"] { --nutrient-bg: var(--surface-muted); --nutrient-ink: var(--muted-foreground); --nutrient-border: var(--border); }
+[data-nutrient-status="green"] { --nutrient-bg: #ecfdf5; --nutrient-ink: #166534; --nutrient-border: #16a34a; }
+[data-nutrient-status="red"] { --nutrient-bg: #fef2f2; --nutrient-ink: #991b1b; --nutrient-border: #dc2626; }
+[data-nutrient-status="amber"] { --nutrient-bg: #fffbeb; --nutrient-ink: #92400e; --nutrient-border: #d97706; }
+html[data-theme="dark"] [data-nutrient-status="green"] { --nutrient-bg: #143a2b; --nutrient-ink: #bbf7d0; --nutrient-border: #4ade80; }
+html[data-theme="dark"] [data-nutrient-status="red"] { --nutrient-bg: #451f29; --nutrient-ink: #fecaca; --nutrient-border: #f87171; }
+html[data-theme="dark"] [data-nutrient-status="amber"] { --nutrient-bg: #422f16; --nutrient-ink: #fde68a; --nutrient-border: #fbbf24; }
+html main .nutrient-target-surface[data-nutrient-status],
+html[data-theme="dark"] main .nutrient-target-surface[data-nutrient-status] {
+  background: var(--nutrient-bg) !important;
+  color: var(--nutrient-ink) !important;
+  border-color: var(--nutrient-border) !important;
+  box-shadow: inset 0 -3px var(--nutrient-border);
+}
+html main .nutrient-target-surface[data-nutrient-status] *,
+html[data-theme="dark"] main .nutrient-target-surface[data-nutrient-status] *,
+html main .nutrient-target-content[data-nutrient-status] *,
+html[data-theme="dark"] main .nutrient-target-content[data-nutrient-status] * {
+  color: var(--nutrient-ink) !important;
+}
+html main .nutrient-target-ring,
+html[data-theme="dark"] main .nutrient-target-ring {
+  background: var(--nutrient-bg) !important;
+  border-color: var(--nutrient-border) !important;
+}
+html main tr.nutrient-target-surface[data-nutrient-status] > td,
+html[data-theme="dark"] main tr.nutrient-target-surface[data-nutrient-status] > td {
+  background: var(--nutrient-bg) !important;
+}

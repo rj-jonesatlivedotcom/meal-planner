@@ -1,5 +1,5 @@
 "use client";
-import { classifyTargetRange, type EnergyTargetStatus } from "@/lib/energyTarget";
+import { evaluateNutrientTarget, getNutrientTarget, nutrientStatusText, nutrientStatusTone, type NutrientTargetStatus } from "@/lib/nutrientTargets";
 
 import { useWeeklyPageStorage, datedDayDate, navigateWeeklyPage } from "@/lib/weeklyPageStorage";
 import { MobileCalendarTile } from "@/components/calendar/CalendarToolbar";
@@ -329,6 +329,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
   const latestDietRef = useRef({ savedDiet, dietReady, dietError });
   latestDietRef.current = { savedDiet, dietReady, dietError };
   const requirements = savedDiet ? activeRequirements(savedDiet) : null;
+  const nutritionRequirements = savedDiet;
   const [myChefNotice, setMyChefNotice] = useState<string | null>(null);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -1460,6 +1461,8 @@ function formatPotassiumMg(mg: number): string {
 
   type DailyRequirements = Requirements;
 
+  const selectedNumericField: DailyNumericField = nutritionView === "Calories" ? "calories" : nutritionView === "Protein" ? "protein" : nutritionView === "Carbohydrate" ? "carbohydrates" : nutritionView === "Sodium" ? "sodium" : nutritionView === "Potassium" ? "potassium" : "phosphate";
+
   function getDailyNutritionTotal(
     day: string,
     field: DailyNumericField
@@ -1502,7 +1505,7 @@ function formatPotassiumMg(mg: number): string {
     field: DailyNumericField
   ): number | null {
     const dailyRequirements =
-      requirements as DailyRequirements | null;
+      nutritionRequirements as DailyRequirements | null;
 
     if (!dailyRequirements) {
       return null;
@@ -1536,54 +1539,14 @@ function formatPotassiumMg(mg: number): string {
   function getDailyNutritionStatus(
     day: string,
     field: DailyNumericField
-  ): "Within" | "Over" | "No limit" | "No meals" | "Incomplete" | EnergyTargetStatus {
+  ): NutrientTargetStatus {
     // Compare the recorded total shown in the Planner. Missing nutrient values
     // remain missing in snack snapshots and are not rewritten as zero.
-    if (snackAccount.loading || snackAccount.error) return "Incomplete";
     const total = getDailyNutritionTotal(day, field);
-
-    if (total === null) {
-      return "No meals";
-    }
-
-    const dailyRequirements = requirements as DailyRequirements | null;
-    const limit = getDailyNutritionLimit(field);
-
-    if (!dailyRequirements) {
-      return "No limit";
-    }
-
-    if (field === "calories") {
-      const min = dailyRequirements.nutrientTargetSettings?.energyMinKcal ?? null;
-      const max = dailyRequirements.nutrientTargetSettings?.energyMaxKcal ?? null;
-      return classifyTargetRange(total, min, max) ?? "No limit";
-    }
-
-    if (field === "protein") {
-      const min = dailyRequirements.proteinMinG ?? null;
-      const max = dailyRequirements.proteinMaxG ?? null;
-      if (min === null && max === null) return "No limit";
-      if (min !== null && total < min) return "Over";
-      if (max !== null && total > max) return "Over";
-      return "Within";
-    }
-
-    if (field === "carbohydrates") {
-      const min = dailyRequirements.carbohydrateMin ?? null;
-      const max = dailyRequirements.carbohydrateMax ?? null;
-      if (min !== null && max !== null) return classifyTargetRange(total, min, max) ?? "No limit";
-      if (min === null && max === null) return "No limit";
-      if (min !== null && total < min) return "Over";
-      if (max !== null && total > max) return "Over";
-      return "Within";
-    }
-
-    if (limit === null) {
-      return "No limit";
-    }
-
-    return total <= limit ? "Within" : "Over";
+    const quality = snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[field];
+    return evaluateNutrientTarget(total, nutritionRequirements, field, Boolean(snackAccount.loading || snackAccount.error || quality.missing));
   }
+
 
   function getSodiumRating(sodium: string) {
     const value = getNutritionNumber(sodium);
@@ -1606,11 +1569,11 @@ function formatPotassiumMg(mg: number): string {
   function getDailySodiumStatus(day: string) {
     const status = getDailyNutritionStatus(day, "sodium");
 
-    if (status === "Within") {
+    if (status === "green") {
       return "Low";
     }
 
-    if (status === "Over") {
+    if (status === "red") {
       return "High";
     }
 
@@ -1756,20 +1719,7 @@ function formatPotassiumMg(mg: number): string {
       );
     }
 
-    const numericField: DailyNumericField | null =
-      nutritionView === "Calories"
-        ? "calories"
-        : nutritionView === "Protein"
-          ? "protein"
-          : nutritionView === "Carbohydrate"
-            ? "carbohydrates"
-            : nutritionView === "Sodium"
-              ? "sodium"
-              : nutritionView === "Potassium"
-                ? "potassium"
-                : nutritionView === "Phosphorus"
-                  ? "phosphate"
-                  : null;
+    const numericField = selectedNumericField;
 
     if (numericField) {
       const snackQuality = snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[numericField];
@@ -1780,13 +1730,15 @@ function formatPotassiumMg(mg: number): string {
       const status =
         getDailyNutritionStatus(day, numericField);
 
-      const rangeTarget = (numericField === "calories" || (numericField === "carbohydrates" && requirements?.carbohydrateMin != null && requirements?.carbohydrateMax != null)) && status !== "No limit" && status !== "Incomplete" && status !== "No meals";
-      const targetMin = numericField === "calories" ? requirements?.nutrientTargetSettings?.energyMinKcal : requirements?.carbohydrateMin;
-      const targetMax = numericField === "calories" ? requirements?.nutrientTargetSettings?.energyMaxKcal : requirements?.carbohydrateMax;
+      const { min: targetMin, max: targetMax } = getNutrientTarget(nutritionRequirements, numericField);
+      const hasTarget = status !== "pending";
+      const rangeTarget = hasTarget && (numericField === "calories" || targetMin != null);
+      const statusLabel = nutrientStatusText(status);
+      const tone = nutrientStatusTone(status);
       const targetRange = rangeTarget ? (targetMin != null && targetMax != null
         ? `${targetMin.toLocaleString("en-GB")}\u2013${targetMax.toLocaleString("en-GB")}`
         : targetMin != null ? `at least ${targetMin.toLocaleString("en-GB")}` : `up to ${targetMax?.toLocaleString("en-GB")}`) + (numericField === "calories" ? " kcal/day" : " g/day") : null;
-      const rangeDescription = rangeTarget ? `${day} ${nutritionView}: daily total ${total?.toLocaleString("en-GB")} ${numericField === "calories" ? "kcal" : "g"}, ${status}; daily target ${targetRange}` : undefined;
+      const rangeDescription = rangeTarget ? `${day} ${nutritionView}: daily total ${total?.toLocaleString("en-GB")} ${numericField === "calories" ? "kcal" : "g"}, ${statusLabel}; daily target ${targetRange}` : undefined;
 
       if (total === null) {
         return (
@@ -1795,16 +1747,6 @@ function formatPotassiumMg(mg: number): string {
           </span>
         );
       }
-
-      // Numeric daily views compare the full day's total with the user's
-      // daily requirement: green when within the limit, red when over it.
-      // Without an accepted target, calories remain neutral.
-      const statusColour =
-        (status === "Over" || status === "Exceeds target")
-          ? "#ef4444"
-          : status === "Below target" ? "#b45309" : (status === "Within" || status === "Within target")
-            ? "#16a34a"
-            : "#64748b";
 
       const displayTotal =
         nutritionView === "Sodium"
@@ -1835,38 +1777,31 @@ function formatPotassiumMg(mg: number): string {
                   }`;
 
       if (!desktop) {
-        const hasLimit = (limit !== null || rangeTarget) && status !== "No limit" && status !== "Incomplete";
-        const indicatorColour =
-          (status === "Over" || status === "Exceeds target") ? "#ef4444" :
-          status === "Below target" ? "#b45309" : (status === "Within" || status === "Within target") ? "#16a34a" : "#64748b";
+        const hasLimit = hasTarget;
 
         return (
           <div
-            className="flex flex-col items-center justify-center"
+            className="nutrient-target-content flex flex-col items-center justify-center" data-nutrient-status={tone}
             title={rangeDescription ?? (
-              (limit !== null || rangeTarget) && status !== "Incomplete"
-                ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${(status === "Over" || status === "Exceeds target") ? "exceeds limit" : "within limit"}`
+              hasTarget
+                ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${(tone === "red") ? "exceeds limit" : "within limit"}`
                 : `${day} ${nutritionView}: daily total ${displayTotal}`
             )}
             aria-label={rangeDescription ?? (
-              (limit !== null || rangeTarget) && status !== "Incomplete"
-                ? `${day} ${nutritionView}: daily total ${displayTotal}, ${(status === "Over" || status === "Exceeds target") ? "exceeds" : "within"} the daily limit of ${displayLimit}`
+              hasTarget
+                ? `${day} ${nutritionView}: daily total ${displayTotal}, ${(tone === "red") ? "exceeds" : "within"} the daily limit of ${displayLimit}`
                 : `${day} ${nutritionView}: daily total ${displayTotal}`
             )}
           >
             <div
-              className="flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] shadow-sm"
-              style={{
-                borderColor: indicatorColour,
-                backgroundColor: status === "Below target" ? "#78350f" : (status === "Over" || status === "Exceeds target") ? "#7f1d1d" : (status === "Within" || status === "Within target") ? "#166534" : "#334155",
-              }}
+              className="nutrient-target-ring flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] shadow-sm"
             >
               <div className="text-center leading-tight">
-                <div className="text-[11px] font-extrabold text-white">
+                <div className="text-[11px] font-extrabold">
                   {nutritionView === "Calories" ? total.toLocaleString("en-GB", { maximumFractionDigits: 0 }) : displayTotal}
                 </div>
                 {hasLimit && (
-                  <div className="mt-0.5 text-[7px] font-bold text-white/90">
+                  <div className="mt-0.5 text-[7px] font-bold">
                     / {targetRange ?? displayLimit}
                   </div>
                 )}
@@ -1876,9 +1811,8 @@ function formatPotassiumMg(mg: number): string {
             {hasLimit && (
               <span
                 className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
-                style={{ color: indicatorColour }}
               >
-                {rangeTarget ? status : status === "Over" ? "Exceeds limit" : "Within limit"}
+                {statusLabel}
               </span>
             )}
           </div>
@@ -1887,30 +1821,28 @@ function formatPotassiumMg(mg: number): string {
 
       return (
         <div
-          className="flex flex-col items-center justify-center"
+          className="nutrient-target-content flex flex-col items-center justify-center" data-nutrient-status={tone}
           aria-label={rangeDescription ?? (
-            (limit !== null || rangeTarget) && status !== "Incomplete"
-              ? `${day} ${nutritionView}: daily total ${displayTotal}, ${(status === "Over" || status === "Exceeds target") ? "exceeds" : "within"} the daily limit of ${displayLimit}`
+            hasTarget
+              ? `${day} ${nutritionView}: daily total ${displayTotal}, ${(tone === "red") ? "exceeds" : "within"} the daily limit of ${displayLimit}`
               : `${day} ${nutritionView}: daily total ${displayTotal}`
           )}
           title={rangeDescription ?? (
-            (limit !== null || rangeTarget) && status !== "Incomplete"
-              ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${(status === "Over" || status === "Exceeds target") ? "exceeds limit" : "within limit"}`
+            hasTarget
+              ? `${day} ${nutritionView}: ${displayTotal} / ${displayLimit} daily limit — ${(tone === "red") ? "exceeds limit" : "within limit"}`
               : `${day} ${nutritionView}: ${displayTotal}`
           )}
         >
           <div
-            className="flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] bg-white shadow-sm"
-            style={{ borderColor: statusColour }}
+            className="nutrient-target-ring flex h-[70px] w-[70px] items-center justify-center rounded-full border-[5px] shadow-sm"
           >
             <div className="text-center leading-tight">
               <div
                 className="text-[11px] font-extrabold"
-                style={{ color: statusColour }}
               >
                 {displayTotal}
               </div>
-              {(limit !== null || rangeTarget) && (
+              {hasTarget && (
                 <div className="mt-0.5 text-[7px] font-bold text-slate-400">
                   / {targetRange ?? displayLimit}
                 </div>
@@ -1919,12 +1851,11 @@ function formatPotassiumMg(mg: number): string {
           </div>
 
           {totalNote && <span className="mt-1 max-w-[100px] text-center text-[9px] font-bold text-amber-800 dark:text-amber-300">{totalNote}</span>}
-          {(limit !== null || rangeTarget) && status !== "Incomplete" && (
+          {hasTarget && (
             <span
               className="mt-1 text-[8px] font-extrabold uppercase tracking-wide"
-              style={{ color: statusColour }}
             >
-              {status}
+              {statusLabel}
             </span>
           )}
         </div>
@@ -2701,7 +2632,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
           {/* MOBILE DAILY NUTRITION */}
 
-          <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+          <section data-nutrient-status={nutrientStatusTone(getDailyNutritionStatus(selectedDay, selectedNumericField))} className="nutrient-target-surface overflow-hidden rounded-3xl shadow-sm ring-1 ring-black/5">
 
             <div className="flex h-full items-center justify-between gap-4 border-t border-slate-100 px-4 py-3">
 
@@ -2738,7 +2669,7 @@ html[data-theme="dark"] main .planner-remove-button {
                     Phosphorus
                   </option>
                 </select>
-                <NutritionLegend range={nutritionView === "Calories" || (nutritionView === "Carbohydrate" && requirements?.carbohydrateMin != null && requirements?.carbohydrateMax != null)} />
+                <NutritionLegend range={nutritionView === "Calories" || getNutrientTarget(nutritionRequirements, selectedNumericField).min != null} />
 
               </div>
 
@@ -3262,7 +3193,7 @@ html[data-theme="dark"] main .planner-remove-button {
                     </option>
                   </select>
 
-                  <NutritionLegend range={nutritionView === "Calories" || (nutritionView === "Carbohydrate" && requirements?.carbohydrateMin != null && requirements?.carbohydrateMax != null)} />
+                  <NutritionLegend range={nutritionView === "Calories" || getNutrientTarget(nutritionRequirements, selectedNumericField).min != null} />
 
                 </div>
 
@@ -3272,7 +3203,8 @@ html[data-theme="dark"] main .planner-remove-button {
 
                 <div
                   key={`nutrition-${day}-${nutritionView}`}
-                  className="planner-nutrition-cell relative z-[9999] flex min-h-[118px] items-center justify-center border-l border-slate-100 px-1 py-3" style={{ isolation: "isolate", pointerEvents: "auto" }}
+                  data-nutrient-status={nutrientStatusTone(getDailyNutritionStatus(day, selectedNumericField))}
+                  className="nutrient-target-surface planner-nutrition-cell relative z-[9999] flex min-h-[118px] items-center justify-center border-l border-slate-100 px-1 py-3" style={{ isolation: "isolate", pointerEvents: "auto" }}
                 >
                   <Tricirculus
                     day={day}

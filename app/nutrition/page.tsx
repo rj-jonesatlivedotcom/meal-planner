@@ -1,5 +1,5 @@
 "use client";
-import { evaluateNutrientTarget, getNutrientTarget, nutrientStatusText, nutrientStatusTone, type NutrientTargetStatus } from "@/lib/nutrientTargets";
+import { evaluateNutrientTarget, getNutrientTarget, nutrientStatusText, type NutrientTargetStatus } from "@/lib/nutrientTargets";
 import { defaultRequirements as sharedDefaultRequirements, type Requirements } from "@/lib/myDiet";
 import { useMyDiet } from "@/components/my-diet/MyDietProvider";
 
@@ -261,6 +261,10 @@ function getStatusDotClass(status: Status): string {
   return status === "green" ? "bg-green-600" : "!bg-red-600";
 }
 
+function NutritionStatusDot({ status }: { status: Status }) {
+  return <span role="img" aria-label={getStatusText(status)} title={getStatusText(status)} className={`nutrition-status-dot h-2.5 w-2.5 shrink-0 rounded-full ${getStatusDotClass(status)}`} />;
+}
+
 function NutritionStatusLabel({ status }: { status: Status | null }) {
   if (!status) {
     return <span className="text-xs text-slate-500">Not assessed</span>;
@@ -268,9 +272,7 @@ function NutritionStatusLabel({ status }: { status: Status | null }) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-semibold ${
-        status === "pending" ? "text-slate-500" : status === "Below target" ? "text-amber-700" : status === "green" || status === "Within target" ? "text-green-700" : "text-red-700"
-      }`}
+      className="inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-semibold text-slate-600"
     >
       <span
         aria-hidden="true"
@@ -777,8 +779,8 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     return <>{label}</>;
   }
   function renderSnackBreakdown(day?: Day, mobile = false) {
-    return <div className={mobile ? "mt-3 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-slate-200 pt-3 text-xs sm:text-sm" : "min-w-[125px] space-y-1.5 text-left text-xs"}>
-      {nutrientRows.map(({ key, label, unit }) => <div key={key} className="flex min-w-0 items-center justify-between gap-2">
+    return <div className={mobile ? "mt-3 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-slate-200 pt-3 text-xs sm:text-sm" : "min-w-0 space-y-1.5 text-left text-xs"}>
+      {nutrientRows.map(({ key, label, unit }) => <div key={key} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
         <span className="text-slate-500">{nutrientLabel(mobile && key === "carbohydrates" ? "Carbs" : label, key, day)}</span>
         <strong className="min-w-0 break-words text-right text-slate-900">{formatSnackNutrient(key, unit, day)}</strong>
       </div>)}
@@ -1167,6 +1169,18 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
           background-color: #30495c !important;
         }
 
+        @media screen and (min-width: 768px) {
+          .nutrition-week-table .nutrition-meal-column { width: 88px; }
+          .nutrition-week-table th, .nutrition-week-table td { padding-left: 6px; padding-right: 6px; }
+          .nutrition-week-table .text-xs { font-size: 11px; }
+          .nutrition-week-table .nutrition-nutrient-line > :first-child { min-width: 0; overflow-wrap: anywhere; }
+          .nutrition-week-table .nutrition-nutrient-line > :last-child { flex-shrink: 0; white-space: nowrap; }
+        }
+        @media screen and (min-width: 768px) and (max-width: 1399px) {
+          .nutrition-week-table .nutrition-nutrient-line { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+          .nutrition-week-table .nutrition-nutrient-line > :last-child { justify-self: end; }
+        }
+
         .nutrition-pdf-shimmer {
           animation: nutrition-pdf-shimmer 2.6s ease-in-out infinite;
           opacity: 0.9;
@@ -1307,7 +1321,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
             </div>
 
             <section className="mt-4 rounded-2xl border border-slate-200 bg-white p-4"><h3 className="font-bold text-slate-900">Snacks</h3>{renderSnackBreakdown(selectedDay, true)}</section>
-            <div data-nutrient-status={nutrientStatusTone(getDailyStatusForDay(selectedDay))} className="nutrient-target-surface nutrition-mobile-daily-total mt-4 rounded-2xl p-4">
+            <div className="nutrition-mobile-daily-total mt-4 rounded-2xl bg-slate-50 p-4">
               <div className="flex items-center justify-between gap-3">
                 <span className="font-bold text-slate-900">
                   Daily total
@@ -1323,70 +1337,66 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
               </div>
 
               <div className="mt-3 grid grid-cols-1 gap-y-2 text-xs sm:text-sm">
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "calories"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "calories"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Energy", "calories", selectedDay)}</span>
-                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "calories"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                  <span className="min-w-0 text-slate-500">{nutrientLabel("Energy", "calories", selectedDay)}</span>
+                  <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                    <NutritionStatusDot status={totalNutrientStatus(selectedDay, "calories")} />
                     {formatDayNutrient(selectedDay, "calories", "kcal")}
-                    <span className="block"><NutritionStatusLabel status={totalNutrientStatus(selectedDay, "calories")} /></span>
-                  </strong>
+                  </span>
                 </div>
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "protein"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "protein"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Protein", "protein", selectedDay)}</span>
-                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "protein"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                  <span className="min-w-0 text-slate-500">{nutrientLabel("Protein", "protein", selectedDay)}</span>
+                  <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                    <NutritionStatusDot status={totalNutrientStatus(selectedDay, "protein")} />
                     {formatDayNutrient(selectedDay, "protein", "g")}
-                  </strong>
+                  </span>
                 </div>
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "carbohydrates"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "carbohydrates"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Carbohydrate", "carbohydrates", selectedDay)}</span>
-                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "carbohydrates"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                  <span className="min-w-0 text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates", selectedDay)}</span>
+                  <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                    <NutritionStatusDot status={totalNutrientStatus(selectedDay, "carbohydrates")} />
                     {formatDayNutrient(selectedDay, "carbohydrates", "g")}
-                    {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={totalNutrientStatus(selectedDay, "carbohydrates")} /></span>}
-                  </strong>
+                  </span>
                 </div>
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "fat"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "fat"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Fat", "fat", selectedDay)}</span>
-                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "fat"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                  <span className="min-w-0 text-slate-500">{nutrientLabel("Fat", "fat", selectedDay)}</span>
+                  <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                    <NutritionStatusDot status={totalNutrientStatus(selectedDay, "fat")} />
                     {formatDayNutrient(selectedDay, "fat", "g")}
-                  </strong>
+                  </span>
                 </div>
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "fibre"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "fibre"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Fibre", "fibre", selectedDay)}</span>
-                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "fibre"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                  <span className="min-w-0 text-slate-500">{nutrientLabel("Fibre", "fibre", selectedDay)}</span>
+                  <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                    <NutritionStatusDot status={totalNutrientStatus(selectedDay, "fibre")} />
                     {formatDayNutrient(selectedDay, "fibre", "g")}
-                  </strong>
+                  </span>
                 </div>
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "sodium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "sodium"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Salt (g)", "sodium", selectedDay)}</span>
-                  <strong className="min-w-0 whitespace-normal break-normal text-right text-slate-900">
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "sodium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                  <span className="min-w-0 text-slate-500">{nutrientLabel("Salt (g)", "sodium", selectedDay)}</span>
+                  <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                    <NutritionStatusDot status={totalNutrientStatus(selectedDay, "sodium")} />
                     {formatDayNutrient(selectedDay, "sodium", "salt")}
-                  </strong>
+                  </span>
                 </div>
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "potassium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "potassium"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Potassium", "potassium", selectedDay)}</span>
-                  <span className="flex min-w-0 flex-wrap items-center justify-end gap-1.5 font-semibold text-slate-900">
-                    <span
-                      className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                        assessedNutrientStatus(selectedDay, "potassium", dayTotals[selectedDay].potassium, requirements.potassiumLimitMg)
-                      )}`}
-                    />
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "potassium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                  <span className="min-w-0 text-slate-500">{nutrientLabel("Potassium", "potassium", selectedDay)}</span>
+                  <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                    <NutritionStatusDot status={totalNutrientStatus(selectedDay, "potassium")} />
                     {formatDayNutrient(selectedDay, "potassium", "mg")}
                   </span>
                 </div>
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "phosphate"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(selectedDay, "phosphate"))} className="nutrient-target-surface rounded-lg px-2 py-1 grid min-w-0 grid-cols-[minmax(7rem,1fr)_minmax(0,1.4fr)] items-start gap-3">
-                  <span className="whitespace-nowrap text-slate-600">{nutrientLabel("Phosphorus", "phosphate", selectedDay)}</span>
-                  <span className="flex min-w-0 flex-wrap items-center justify-end gap-1.5 font-semibold text-slate-900">
-                    <span
-                      className={`h-3 w-3 rounded-full ${getStatusDotClass(
-                        assessedNutrientStatus(selectedDay, "phosphate", dayTotals[selectedDay].phosphate, requirements.phosphateLimitMg)
-                      )}`}
-                    />
+                <div title={getStatusText(totalNutrientStatus(selectedDay, "phosphate"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                  <span className="min-w-0 text-slate-500">{nutrientLabel("Phosphorus", "phosphate", selectedDay)}</span>
+                  <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                    <NutritionStatusDot status={totalNutrientStatus(selectedDay, "phosphate")} />
                     {formatDayNutrient(selectedDay, "phosphate", "mg")}
                   </span>
                 </div>
@@ -1550,10 +1560,11 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
+              <table className="nutrition-week-table w-full table-fixed border-collapse">
+                <colgroup><col className="nutrition-meal-column" /><col span={8} /></colgroup>
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50">
-                    <th className="w-[150px] px-3 py-4 text-left text-sm font-bold text-slate-700">
+                    <th className="px-3 py-4 text-left text-sm font-bold text-slate-700">
                       Meal
                     </th>
 
@@ -1604,57 +1615,57 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                             className="px-2 py-5 align-top text-center"
                           >
                             {recipe ? (
-                              <div className="min-w-[125px] space-y-1.5 text-left text-xs">
-                                <div className="flex items-center justify-between gap-2">
+                              <div className="min-w-0 space-y-1.5 text-left text-xs">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Energy</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.calories, "kcal")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Protein</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.protein, "g")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Carbohydrate</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.carbohydrates, "g")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Fat</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.fat, "g")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Fibre</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.fibre, "g")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Salt (g)</span>
                                   <strong className="text-slate-900">
                                     {formatSalt(totals.sodium)}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Potassium</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(getNutritionNumber(recipe.nutrition.potassium), "mg")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Phosphorus</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(getNutritionNumber(recipe.nutrition.phosphate), "mg")}
@@ -1673,7 +1684,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       })}
 
                       <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
-                        <div className="min-w-[125px] space-y-1.5 text-left text-xs">
+                        <div className="min-w-0 space-y-1.5 text-left text-xs">
                           {(() => {
 
 
@@ -1695,49 +1706,49 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
                             return (
                               <>
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Energy</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.calories, "kcal")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Protein</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.protein, "g")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Carbohydrate</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.carbohydrates, "g")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Fat</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.fat, "g")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Fibre</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.fibre, "g")}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Salt (g)</span>
                                   <strong className="text-slate-900">
                                     {formatSalt(average.sodium)}
                                   </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Potassium</span>
                                   <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                     <span
@@ -1755,7 +1766,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                   </span>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-2">
+                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Phosphorus</span>
                                   <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                     <span
@@ -1801,79 +1812,75 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       return (
                         <td
                           key={`total-${day}`}
-                          data-nutrient-status={nutrientStatusTone(getDailyStatusForDay(day))}
-                          className="nutrient-target-surface px-2 py-5 align-top"
+
+                          className="px-2 py-5 align-top"
                         >
-                          <div className="min-w-[125px] space-y-1.5 text-left text-xs">
+                          <div className="min-w-0 space-y-1.5 text-left text-xs">
                             {(() => {
 
 
                               return (
                                 <>
-                                  <div title={getStatusText(totalNutrientStatus(day, "calories"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "calories"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">{nutrientLabel("Energy", "calories", day)}</span>
-                                    <strong className="text-slate-900">
+                                  <div title={getStatusText(totalNutrientStatus(day, "calories"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                    <span className="min-w-0 text-slate-500">{nutrientLabel("Energy", "calories", day)}</span>
+                                    <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                      <NutritionStatusDot status={totalNutrientStatus(day, "calories")} />
                                       {formatDayNutrient(day, "calories", "kcal")}
-                    <span className="block"><NutritionStatusLabel status={totalNutrientStatus(day, "calories")} /></span>
-                                    </strong>
+                                    </span>
                                   </div>
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "protein"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "protein"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">{nutrientLabel("Protein", "protein", day)}</span>
-                                    <strong className="text-slate-900">
+                                  <div title={getStatusText(totalNutrientStatus(day, "protein"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                    <span className="min-w-0 text-slate-500">{nutrientLabel("Protein", "protein", day)}</span>
+                                    <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                      <NutritionStatusDot status={totalNutrientStatus(day, "protein")} />
                                       {formatDayNutrient(day, "protein", "g")}
-                                    </strong>
+                                    </span>
                                   </div>
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "carbohydrates"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "carbohydrates"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates", day)}</span>
-                                    <strong className="text-slate-900">
+                                  <div title={getStatusText(totalNutrientStatus(day, "carbohydrates"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                    <span className="min-w-0 text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates", day)}</span>
+                                    <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                      <NutritionStatusDot status={totalNutrientStatus(day, "carbohydrates")} />
                                       {formatDayNutrient(day, "carbohydrates", "g")}
-                    {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={totalNutrientStatus(day, "carbohydrates")} /></span>}
-                                    </strong>
+                                    </span>
                                   </div>
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "fat"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "fat"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">{nutrientLabel("Fat", "fat", day)}</span>
-                                    <strong className="text-slate-900">
+                                  <div title={getStatusText(totalNutrientStatus(day, "fat"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                    <span className="min-w-0 text-slate-500">{nutrientLabel("Fat", "fat", day)}</span>
+                                    <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                      <NutritionStatusDot status={totalNutrientStatus(day, "fat")} />
                                       {formatDayNutrient(day, "fat", "g")}
-                                    </strong>
+                                    </span>
                                   </div>
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "fibre"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "fibre"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">{nutrientLabel("Fibre", "fibre", day)}</span>
-                                    <strong className="text-slate-900">
+                                  <div title={getStatusText(totalNutrientStatus(day, "fibre"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                    <span className="min-w-0 text-slate-500">{nutrientLabel("Fibre", "fibre", day)}</span>
+                                    <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                      <NutritionStatusDot status={totalNutrientStatus(day, "fibre")} />
                                       {formatDayNutrient(day, "fibre", "g")}
-                                    </strong>
+                                    </span>
                                   </div>
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "sodium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "sodium"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">{nutrientLabel("Salt (g)", "sodium", day)}</span>
-                                    <strong className="text-slate-900">
+                                  <div title={getStatusText(totalNutrientStatus(day, "sodium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                    <span className="min-w-0 text-slate-500">{nutrientLabel("Salt (g)", "sodium", day)}</span>
+                                    <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                      <NutritionStatusDot status={totalNutrientStatus(day, "sodium")} />
                                       {formatDayNutrient(day, "sodium", "salt")}
-                                    </strong>
+                                    </span>
                                   </div>
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "potassium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "potassium"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">{nutrientLabel("Potassium", "potassium", day)}</span>
-                                    <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                      <span
-                                        className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          assessedNutrientStatus(day, "potassium", dayTotals[day].potassium, requirements.potassiumLimitMg)
-                                        )}`}
-                                      />
+                                  <div title={getStatusText(totalNutrientStatus(day, "potassium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                    <span className="min-w-0 text-slate-500">{nutrientLabel("Potassium", "potassium", day)}</span>
+                                    <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                      <NutritionStatusDot status={totalNutrientStatus(day, "potassium")} />
                                       {formatDayNutrient(day, "potassium", "mg")}
                                     </span>
                                   </div>
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "phosphate"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(day, "phosphate"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                    <span className="text-slate-500">{nutrientLabel("Phosphorus", "phosphate", day)}</span>
-                                    <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                      <span
-                                        className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                          assessedNutrientStatus(day, "phosphate", dayTotals[day].phosphate, requirements.phosphateLimitMg)
-                                        )}`}
-                                      />
+                                  <div title={getStatusText(totalNutrientStatus(day, "phosphate"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                    <span className="min-w-0 text-slate-500">{nutrientLabel("Phosphorus", "phosphate", day)}</span>
+                                    <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                      <NutritionStatusDot status={totalNutrientStatus(day, "phosphate")} />
                                       {formatDayNutrient(day, "phosphate", "mg")}
                                     </span>
                                   </div>
@@ -1887,77 +1894,73 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       );
                     })}
 
-                    <td data-nutrient-status={nutrientStatusTone(getDailyStatusForDay())} className="nutrient-target-surface nutrition-weekly-average border-l-2 border-blue-200 px-2 py-5 align-top">
-                      <div className="min-w-[125px] space-y-1.5 text-left text-xs">
+                    <td className="nutrition-weekly-average border-l-2 border-blue-200 bg-blue-50 px-2 py-5 align-top">
+                      <div className="min-w-0 space-y-1.5 text-left text-xs">
                         {(() => {
 
 
                           return (
                             <>
-                              <div title={getStatusText(totalNutrientStatus(undefined, "calories"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "calories"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                <span className="text-slate-500">{nutrientLabel("Energy", "calories")}</span>
-                                <strong className="text-slate-900">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "calories"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                <span className="min-w-0 text-slate-500">{nutrientLabel("Energy", "calories")}</span>
+                                <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                  <NutritionStatusDot status={totalNutrientStatus(undefined, "calories")} />
                                   {formatAverageNutrient("calories", "kcal")}
-                                  <span className="block"><NutritionStatusLabel status={totalNutrientStatus(undefined, "calories")} /></span>
-                                </strong>
+                                </span>
                               </div>
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "protein"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "protein"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                <span className="text-slate-500">{nutrientLabel("Protein", "protein")}</span>
-                                <strong className="text-slate-900">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "protein"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                <span className="min-w-0 text-slate-500">{nutrientLabel("Protein", "protein")}</span>
+                                <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                  <NutritionStatusDot status={totalNutrientStatus(undefined, "protein")} />
                                   {formatAverageNutrient("protein", "g")}
-                                </strong>
+                                </span>
                               </div>
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "carbohydrates"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "carbohydrates"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                <span className="text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates")}</span>
-                                <strong className="text-slate-900">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "carbohydrates"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                <span className="min-w-0 text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates")}</span>
+                                <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                  <NutritionStatusDot status={totalNutrientStatus(undefined, "carbohydrates")} />
                                   {formatAverageNutrient("carbohydrates", "g")}
-                                  {requirements.carbohydrateMin != null && requirements.carbohydrateMax != null && <span className="block"><NutritionStatusLabel status={totalNutrientStatus(undefined, "carbohydrates")} /></span>}
-                                </strong>
+                                </span>
                               </div>
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "fat"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "fat"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                <span className="text-slate-500">{nutrientLabel("Fat", "fat")}</span>
-                                <strong className="text-slate-900">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "fat"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                <span className="min-w-0 text-slate-500">{nutrientLabel("Fat", "fat")}</span>
+                                <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                  <NutritionStatusDot status={totalNutrientStatus(undefined, "fat")} />
                                   {formatAverageNutrient("fat", "g")}
-                                </strong>
+                                </span>
                               </div>
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "fibre"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "fibre"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                <span className="text-slate-500">{nutrientLabel("Fibre", "fibre")}</span>
-                                <strong className="text-slate-900">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "fibre"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                <span className="min-w-0 text-slate-500">{nutrientLabel("Fibre", "fibre")}</span>
+                                <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                  <NutritionStatusDot status={totalNutrientStatus(undefined, "fibre")} />
                                   {formatAverageNutrient("fibre", "g")}
-                                </strong>
+                                </span>
                               </div>
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "sodium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "sodium"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                <span className="text-slate-500">{nutrientLabel("Salt (g)", "sodium")}</span>
-                                <strong className="text-slate-900">
+                              <div title={getStatusText(totalNutrientStatus(undefined, "sodium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                <span className="min-w-0 text-slate-500">{nutrientLabel("Salt (g)", "sodium")}</span>
+                                <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                  <NutritionStatusDot status={totalNutrientStatus(undefined, "sodium")} />
                                   {formatAverageNutrient("sodium", "salt")}
-                                </strong>
+                                </span>
                               </div>
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "potassium"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "potassium"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                <span className="text-slate-500">{nutrientLabel("Potassium", "potassium")}</span>
-                                <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                  <span
-                                    className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      assessedNutrientStatus(undefined, "potassium", dailyAverage.potassium, requirements.potassiumLimitMg)
-                                    )}`}
-                                  />
+                              <div title={getStatusText(totalNutrientStatus(undefined, "potassium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                <span className="min-w-0 text-slate-500">{nutrientLabel("Potassium", "potassium")}</span>
+                                <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                  <NutritionStatusDot status={totalNutrientStatus(undefined, "potassium")} />
                                   {formatAverageNutrient("potassium", "mg")}
                                 </span>
                               </div>
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "phosphate"))} data-nutrient-status={nutrientStatusTone(totalNutrientStatus(undefined, "phosphate"))} className="nutrient-target-surface rounded-lg px-2 py-1 flex items-center justify-between gap-2">
-                                <span className="text-slate-500">{nutrientLabel("Phosphorus", "phosphate")}</span>
-                                <span className="flex items-center gap-1.5 font-semibold text-slate-900">
-                                  <span
-                                    className={`h-2.5 w-2.5 rounded-full ${getStatusDotClass(
-                                      assessedNutrientStatus(undefined, "phosphate", dailyAverage.phosphate, requirements.phosphateLimitMg)
-                                    )}`}
-                                  />
+                              <div title={getStatusText(totalNutrientStatus(undefined, "phosphate"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                <span className="min-w-0 text-slate-500">{nutrientLabel("Phosphorus", "phosphate")}</span>
+                                <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
+                                  <NutritionStatusDot status={totalNutrientStatus(undefined, "phosphate")} />
                                   {formatAverageNutrient("phosphate", "mg")}
                                 </span>
                               </div>
@@ -2083,7 +2086,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                     </thead>
                     <tbody>
                       {weeklySummaryRows.map((row) => (
-                        <tr key={row.label} data-nutrient-status={nutrientStatusTone(row.status)} className="nutrient-target-surface border-b border-slate-100 last:border-b-0">
+                        <tr key={row.label} className="border-b border-slate-100 last:border-b-0">
                           <td className="px-3 py-3 font-semibold text-slate-900">{row.label}</td>
                           <td className="px-3 py-3 text-slate-700">{row.total}</td>
                           <td className="px-3 py-3 text-slate-700">{row.average}</td>
@@ -2097,7 +2100,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
                 <div className="nutrition-print-hidden divide-y divide-slate-200 md:hidden">
                   {weeklySummaryRows.map((row) => (
-                    <article key={row.label} data-nutrient-status={nutrientStatusTone(row.status)} className="nutrient-target-surface rounded-lg px-2 py-2.5 first:pt-0 last:pb-0">
+                    <article key={row.label} className="py-2.5 first:pt-0 last:pb-0">
                       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
                         <div className="min-w-0">
                           <h3 className="break-words text-sm font-semibold leading-5 text-slate-900">{row.label}</h3>

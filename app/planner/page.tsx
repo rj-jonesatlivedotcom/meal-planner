@@ -1513,11 +1513,11 @@ function formatPotassiumMg(mg: number): string {
     day: string,
     field: DailyNumericField
   ): NutrientTargetStatus {
-    // Compare the recorded total shown in the Planner. Missing nutrient values
-    // remain missing in snack snapshots and are not rewritten as zero.
+    // Assess the displayed total against the saved target. Snack uncertainty
+    // belongs on the scanned item and does not override this colour comparison.
+    // Unavailable totals stay null; loading and failed account reads stay pending.
     const total = getDailyNutritionTotal(day, field);
-    const quality = snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[field];
-    return evaluateNutrientTarget(total, nutritionRequirements, field, Boolean(snackAccount.loading || snackAccount.error || quality.missing));
+    return evaluateNutrientTarget(total, nutritionRequirements, field, Boolean(snackAccount.loading || snackAccount.error));
   }
 
 

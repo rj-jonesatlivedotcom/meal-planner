@@ -21,7 +21,7 @@ export function homeJourney(requirements: Requirements | null, plannedMeals: num
         title: needsFigures ? "Add your daily figures in My Diet." : started ? "Let's finish My Diet." : "Start with My Diet.",
         description: needsFigures
           ? "Your wizard is complete. Save a daily target or range for each nutrient you selected so RenalPlan can compare your nutrition with your figures."
-          : "Start with Sidney in My Diet. Complete the four-step wizard and save your daily figures so RenalPlan can tailor your planning and nutrition reports.",
+          : "Start with Sidney in My Diet. Complete the guided setup and save your daily figures so RenalPlan can tailor your planning and nutrition reports.",
         href: "/requirements",
         button: needsFigures ? "Set My Diet figures" : started ? "Continue My Diet" : "Set up My Diet",
       }

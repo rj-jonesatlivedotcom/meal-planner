@@ -6,7 +6,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import styles from "./MyDietOnboarding.module.css";
 import { type Requirements, monitoredNutrients, nutrientLabels, isNutrientActive, targetNutrients, activeRequirements } from "@/lib/myDiet";
 import { kidneyStages, kidneyStageChoice, withKidneyStage, nutrientReference, acceptNutrientReference } from "@/lib/myDietReferences";
-import { createOnboardingDraft, onboardingSteps, nutrientExplanations, onboardingTargets, targetDisplayValue,
+import { createOnboardingDraft, onboardingVersion, onboardingSteps, parseFoodList, nutrientExplanations, onboardingTargets, targetDisplayValue,
   withTarget, targetSource, targetSummary, validateOnboardingTargets, saveOnboardingAction, onboardingSaveError,
   sidneyGuidance, type OnboardingAction } from "@/lib/myDietOnboarding";
 
@@ -28,9 +28,11 @@ const nutrientIcons = { sodium: "🧂", protein: "🥚", potassium: "🍌", phos
 export default function MyDietOnboarding({ initialRequirements, initialStep, onDraftChange, onSave, onExit }: Props) {
   const [draft, setDraft] = useState<Requirements>(() => {
     const initial = createOnboardingDraft(initialRequirements);
-    return { ...initial, onboardingStep: typeof initialStep === "number" && Number.isInteger(initialStep) && initialStep >= 1 && initialStep <= 4 ? initialStep : initial.onboardingStep };
+    return { ...initial, onboardingStep: typeof initialStep === "number" && Number.isInteger(initialStep) && initialStep >= 1 && initialStep <= onboardingSteps.length ? initialStep : initial.onboardingStep };
   });
   const step = draft.onboardingStep ?? 1;
+  const [allergyAnswer, setAllergyAnswer] = useState<"none" | "listed" | null>(() => draft.foodAllergies == null ? null : draft.foodAllergies.length ? "listed" : "none");
+  const [allergyText, setAllergyText] = useState(() => (draft.foodAllergies ?? []).join(", "));
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [failedAction, setFailedAction] = useState<OnboardingAction | null>(null);
@@ -46,7 +48,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
   useEffect(() => { if (error) errorRef.current?.focus(); }, [error]);
 
   function edit(next: Requirements) {
-    const current = { ...next, onboardingStep: step, onboardingVersion: 2, onboardingStatus: "in_progress" as const };
+    const current = { ...next, onboardingStep: step, onboardingVersion, onboardingStatus: "in_progress" as const };
     setDraft(current); onDraftChange(current);
   }
 
@@ -67,12 +69,16 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
     if (savingRef.current) return;
     if (preview) {
       setError(null); setFailedAction(null);
-      if (action === "continue") navigateTo(Math.min(4, step + 1));
+      if (action === "continue") navigateTo(Math.min(onboardingSteps.length, step + 1));
       else setTour(true);
       return;
     }
-    const validation = step === 4 ? validateOnboardingTargets(activeRequirements(draft)) : null;
+    const validation = step === 4 || action === "complete" ? validateOnboardingTargets(activeRequirements(draft)) : null;
     if (validation) { setError(validation); setFailedAction(null); return; }
+    if (step === 5 && draft.foodAllergies == null) {
+      setError(allergyAnswer === "listed" ? "Enter your food allergies, or choose No known food allergies." : "Choose whether you have any food allergies before finishing setup.");
+      setFailedAction(null); return;
+    }
     savingRef.current = true; setBusy(true); setError(null); setFailedAction(null);
     onDraftChange(draft);
     try {
@@ -90,7 +96,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
 
   const selectedNutrients = monitoredNutrients.filter(nutrient => isNutrientActive(draft, nutrient));
   const stageLabel = kidneyStages.find(choice => choice.value === kidneyStageChoice(draft))!.label;
-  const pose = tour ? 4 : step - 1;
+  const pose = tour ? 4 : Math.min(step - 1, 3);
 
   return (
     <section aria-labelledby={id + "-heading"} className={styles.journey}>
@@ -102,7 +108,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
         </div>
         <div className={styles.card}>
           {!tour && <div className="mb-4 flex items-center justify-between gap-3">
-            <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Step {step} of 4</p>
+            <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Step {step} of {onboardingSteps.length}</p>
             <ol aria-label="Setup progress" className="flex gap-1.5">
               {onboardingSteps.map((title, index) => <li key={title} aria-current={step === index + 1 ? "step" : undefined} title={title}
                 className={"h-2 w-7 rounded-full sm:w-9 " + (index < step ? "bg-[#067b3a]" : "bg-slate-200 dark:bg-slate-700")}>
@@ -122,11 +128,11 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
             <button type="button" onClick={preview ? () => leave() : onExit} className={secondaryClass + " mt-4"}>
               {preview ? "Return to My Diet" : "Back to My Diet"}
             </button>
-          </div> : <form noValidate={preview} onSubmit={event => { event.preventDefault(); void accept(step === 4 ? "complete" : "continue"); }} aria-busy={busy}>
+          </div> : <form noValidate={preview} onSubmit={event => { event.preventDefault(); void accept(step === onboardingSteps.length ? "complete" : "continue"); }} aria-busy={busy}>
             {(error || preview) && <div ref={errorRef} tabIndex={-1} role="alert" className="mt-4 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm leading-6 text-amber-950 outline-none dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100">
               {preview && <p>Unsaved preview — your answers are kept here, not saved to your account. Setup is not complete.</p>}
               {error && <p>{error}</p>}
-              {!preview && failedAction === "continue" && step < 4 && <button type="button" className="mt-2 block min-h-11 text-left font-bold underline" onClick={() => {
+              {!preview && failedAction === "continue" && step < onboardingSteps.length && <button type="button" className="mt-2 block min-h-11 text-left font-bold underline" onClick={() => {
                 setPreview(true); setError(null); setFailedAction(null); navigateTo(step + 1);
               }}>Continue reviewing without account saving</button>}
               {failedAction && <button type="button" onClick={() => leave()} className="mt-1 block min-h-11 text-left font-bold underline">Return to My Diet with unsaved answers</button>}
@@ -178,10 +184,31 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
                     </div> : <p className="text-sm dark:text-slate-100">{targetSummary(draft, nutrient)}</p>}
                   </fieldset>;
                 })}
+              </>}
+              {step === 5 && <>
+                <fieldset className="space-y-2">
+                  <legend className="mb-2 text-sm font-bold">Your food allergies</legend>
+                  {([['none', 'No known food allergies'], ['listed', 'I have food allergies']] as const).map(([value, label]) => <label key={value} className="flex min-h-11 cursor-pointer items-center gap-3 text-sm font-semibold dark:text-slate-100">
+                    <input type="radio" name={id + "-allergies"} value={value} checked={allergyAnswer === value} className="h-5 w-5 accent-[#067b3a]" onChange={() => {
+                      setAllergyAnswer(value);
+                      const foods = parseFoodList(allergyText);
+                      edit({ ...draft, foodAllergies: value === "none" ? [] : foods.length ? foods : null });
+                    }} />{label}
+                  </label>)}
+                  {allergyAnswer === "listed" && <label htmlFor={id + "-allergy-list"} className="block text-sm font-semibold dark:text-slate-100">Allergies (separate with commas or new lines)
+                    <textarea id={id + "-allergy-list"} rows={3} value={allergyText} className={fieldClass} onChange={event => {
+                      setAllergyText(event.target.value);
+                      const foods = parseFoodList(event.target.value);
+                      edit({ ...draft, foodAllergies: foods.length ? foods : null });
+                    }} />
+                  </label>}
+                </fieldset>
+                <p className="text-xs leading-5 text-slate-600 dark:text-slate-300">You can update this in My Diet → My Allergies. Check packaging, ingredients and cross-contact information each time; recipe matching cannot guarantee safety.</p>
                 <div className="rounded-xl bg-emerald-50 p-4 text-sm text-emerald-950 dark:bg-emerald-950 dark:text-emerald-100">
                   <h2 className="font-bold">Your setup at a glance</h2>
                   <p className="mt-2">{draft.preferredName?.trim() || "Name not provided"} · {stageLabel}</p>
                   <ul className="mt-2 space-y-2">{selectedNutrients.map(nutrient => <li key={nutrient}><strong>{nutrientLabels[nutrient]}</strong>: {targetSummary(draft, nutrient)}</li>)}</ul>
+                  <p className="mt-2"><strong>Food allergies:</strong> {draft.foodAllergies == null ? "Not answered" : draft.foodAllergies.length ? draft.foodAllergies.join(", ") : "No known food allergies"}</p>
                   <p className="mt-3 text-xs">{preview ? "These answers are unsaved. Setup is not complete." : "Finish to save. You can change these in My Diet at any time."}</p>
                 </div>
               </>}
@@ -189,7 +216,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
             <div className="mt-4 border-t border-slate-200 pt-3 dark:border-slate-700">
               <div className="flex flex-wrap items-center gap-2">
                 <button type="button" disabled={busy || step === 1} className={secondaryClass} onClick={() => { setError(null); setFailedAction(null); navigateTo(step - 1); }}>Back</button>
-                <button type="submit" disabled={busy} className={primaryClass + " ml-auto"}>{busy ? "Saving…" : step === 1 ? "Let's go!" : step === 4 ? (preview ? "Explore without saving" : "Finish setup") : "Continue"}</button>
+                <button type="submit" disabled={busy} className={primaryClass + " ml-auto"}>{busy ? "Saving…" : step === 1 ? "Let's go!" : step === onboardingSteps.length ? (preview ? "Explore without saving" : "Finish setup") : "Continue"}</button>
               </div>
               <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
                 <button type="button" onClick={() => leave(true)} className="min-h-11 px-1 text-sm font-semibold text-slate-600 underline dark:text-slate-300">Skip for now</button>

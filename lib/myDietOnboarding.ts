@@ -2,12 +2,14 @@ import type { Requirements, MonitoredNutrient } from "./myDiet";
 import { visibleMonitoredNutrients, targetNutrients } from "./myDiet";
 import { nutrientReference } from "./myDietReferences";
 
-export const onboardingSteps = ["Your name", "Your kidney stage", "Nutrients to monitor", "Your targets"];
+export const onboardingVersion = 3;
+export const onboardingSteps = ["Your name", "Your kidney stage", "Nutrients to monitor", "Your targets", "Your allergies"];
 export const sidneyGuidance = [
   { opening: "Hello! I'm Sidney.", text: "What would you like me to call you?" },
   { opening: "Which best describes you?", text: "This helps me show the reference figures that apply to you. Your existing targets stay safe." },
   { opening: "Which nutrients would you like RenalPlan to monitor?", text: "Pick what matters to you. I'll include each one in your Planner and Nutrition displays." },
   { opening: "Your daily targets", text: "Use an existing RenalPlan reference or enter your own target. Let's make this work for you." },
+  { opening: "Do you have any food allergies?", text: "Before we finish, let's record any food allergies. This updates My Allergies in My Diet and helps MyChef check your recipe choices." },
 ];
 export const nutrientExplanations: Record<MonitoredNutrient, string> = {
   potassium: "View the potassium amounts available for your planned meals. Selecting this does not set a restriction.",
@@ -37,12 +39,13 @@ export const onboardingTargets: { key: TargetKey; label: string; unit: string }[
 export function createOnboardingDraft(requirements: Requirements): Requirements {
   const resuming = requirements.onboardingStatus === "in_progress" || requirements.onboardingStatus === "skipped";
   const savedStep = requirements.onboardingStep;
-  const step = requirements.onboardingVersion === 2 ? savedStep : typeof savedStep === "number" ? [1, 3, 4, 4, 4][savedStep - 1] : 1;
+  const step = requirements.onboardingVersion === 2 || requirements.onboardingVersion === onboardingVersion
+    ? savedStep : typeof savedStep === "number" ? [1, 3, 4, 4, 4][savedStep - 1] : 1;
   return { ...requirements, preferredName: requirements.preferredName ?? null,
     monitoredNutrients: visibleMonitoredNutrients(requirements), dietaryAdvice: requirements.dietaryAdvice ?? null,
     foodAllergies: requirements.foodAllergies ?? null, dislikedFoods: requirements.dislikedFoods ?? null,
-    onboardingVersion: 2, onboardingStatus: "in_progress",
-    onboardingStep: resuming && typeof step === "number" && Number.isInteger(step) && step >= 1 && step <= 4 ? step : 1 };
+    onboardingVersion, onboardingStatus: "in_progress",
+    onboardingStep: resuming && typeof step === "number" && Number.isInteger(step) && step >= 1 && step <= onboardingSteps.length ? step : 1 };
 }
 
 export function parseFoodList(text: string) {
@@ -92,9 +95,9 @@ export function validateOnboardingTargets(requirements: Requirements): string | 
 export type OnboardingAction = "continue" | "skip" | "complete";
 export async function saveOnboardingAction(requirements: Requirements, step: number, action: OnboardingAction,
   save: (next: Requirements) => Promise<void>): Promise<Requirements> {
-  const next: Requirements = { ...requirements, onboardingVersion: 2,
+  const next: Requirements = { ...requirements, onboardingVersion,
     onboardingStatus: action === "complete" ? "completed" : action === "skip" ? "skipped" : "in_progress",
-    onboardingStep: action === "continue" ? Math.min(4, step + 1) : step };
+    onboardingStep: action === "continue" ? Math.min(onboardingSteps.length, step + 1) : step };
   // Do not advance or acknowledge completion until the existing account save resolves.
   await save(next);
   return next;

@@ -171,9 +171,10 @@ test('Skip and Return stay available during failed/invalid saves and late respon
  const pending=deferred(),h=harness({},()=>pending.promise,4);await h.submit();await h.click('Return to My Diet');pending.resolve();await tick();h.render();assert.doesNotMatch(h.text(),/Your setup is saved/);
 });
 
-test('Finish waits for success before celebrating and offers the existing destination links',async()=>{
+test('Finish waits for success and Back to My Diet exits without changing the completed setup',async()=>{
  const pending=deferred(),h=harness({},()=>pending.promise,4);await h.submit();assert.equal(h.saves[0].onboardingStatus,'completed');assert.equal(h.drafts.at(-1).onboardingStatus,'in_progress');assert.doesNotMatch(h.text(),/Your setup is saved/);
  pending.resolve();await tick();h.render();assert.match(h.text(),/Your setup is saved/);assert.equal(h.find(n=>n.type==='img').props.src,'/images/henle-celebrate.png');const links=h.nodes().filter(n=>n.type==='a');assert.deepEqual(links.map(n=>n.props.href),['/recipes','/planner']);assert.equal(links[0].props.className,links[1].props.className);
+ const saved=plain(h.saves),drafts=plain(h.drafts);await h.click('Back to My Diet');assert.equal(h.exits(),1);assert.deepEqual(h.saves,saved);assert.deepEqual(h.drafts,drafts);assert.equal(h.saves.at(-1).onboardingStatus,'completed');
 });
 
 function pageSaveHarness(persist, userId = 'owner') {

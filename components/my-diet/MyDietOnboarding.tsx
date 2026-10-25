@@ -119,7 +119,9 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
               <Link href="/recipes" className={styles.destination}><span aria-hidden="true">🥗</span>Explore Recipes</Link>
               <Link href="/planner" className={styles.destination}><span aria-hidden="true">🗓️</span>Plan My Week</Link>
             </nav>
-            {preview && <button type="button" onClick={() => leave()} className={secondaryClass + " mt-4"}>Return to My Diet</button>}
+            <button type="button" onClick={preview ? () => leave() : onExit} className={secondaryClass + " mt-4"}>
+              {preview ? "Return to My Diet" : "Back to My Diet"}
+            </button>
           </div> : <form noValidate={preview} onSubmit={event => { event.preventDefault(); void accept(step === 4 ? "complete" : "continue"); }} aria-busy={busy}>
             {(error || preview) && <div ref={errorRef} tabIndex={-1} role="alert" className="mt-4 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm leading-6 text-amber-950 outline-none dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100">
               {preview && <p>Unsaved preview — your answers are kept here, not saved to your account. Setup is not complete.</p>}

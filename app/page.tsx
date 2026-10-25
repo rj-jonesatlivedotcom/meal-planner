@@ -5,7 +5,8 @@ import { useWeeklyPageStorage } from "@/lib/weeklyPageStorage";
 import Link from "next/link";
 import Image from "next/image";
 import { AllergyOverlay, RecipeAllergyNotice } from "@/components/RecipeAllergy";
-import { activeRequirements } from "@/lib/myDiet";
+import { activeRequirements, hasPendingRequirementsSave } from "@/lib/myDiet";
+import { homeJourney } from "@/lib/homeJourney";
 import { recipes } from "@/data/RecipeData";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -454,6 +455,7 @@ function LoggedInHome() {
   const [favouriteIds, setFavouriteIds] = useState<string[]>([]);
   const [shoppingCount, setShoppingCount] = useState(0);
   const [requirementsSet, setRequirementsSet] = useState(false);
+  const [dietSavePending, setDietSavePending] = useState(false);
   const [savedDietRequirements, setDietRequirements] = useState<Requirements | null>(null);
   const dietRequirements = savedDietRequirements ? activeRequirements(savedDietRequirements) : null;
   const [loaded, setLoaded] = useState(false);
@@ -526,6 +528,7 @@ function LoggedInHome() {
 
     const storedRequirements = readStoredRequirements();
     setDietRequirements(storedRequirements);
+    setDietSavePending(hasPendingRequirementsSave());
     setRequirementsSet(hasConfiguredRequirements(storedRequirements));
   }, [weeklyPageStorage]);
 
@@ -593,6 +596,7 @@ function LoggedInHome() {
       if (requirements) {
         const currentRequirements = cacheAccountRequirements(requirements);
         setDietRequirements(currentRequirements);
+        setDietSavePending(hasPendingRequirementsSave());
         setRequirementsSet(hasConfiguredRequirements(currentRequirements));
       }
 
@@ -651,44 +655,7 @@ function LoggedInHome() {
 
   const plannedMeals = plannedSlots.filter((slot) => Boolean(slot.recipe)).length;
 
-  // The hero adapts to the user's current stage instead of always sending them to My Diet.
-  const nextAction = !requirementsSet
-    ? {
-        eyebrow: "YOUR FIRST STEP",
-        title: "Start with My Diet.",
-        description: "Set your dietary requirements first, so RenalPlan can tailor meal choices and nutrition information around your needs.",
-        href: "/requirements",
-        button: "Set up My Diet",
-      }
-    : plannedMeals === 0
-      ? {
-          eyebrow: "YOUR NEXT STEP",
-          title: "Let's plan your week.",
-          description: "Your dietary preferences are set. Choose your meals or let MyChef help fill your planner.",
-          href: "/planner",
-          button: "Start planning",
-        }
-      : plannedMeals < 21
-        ? {
-            eyebrow: "PICK UP WHERE YOU LEFT OFF",
-            title: "Build out your week.",
-            description: `${plannedMeals} of 21 meals are planned. Add a few more, or use MyChef for inspiration.`,
-            href: "/planner",
-            button: "Continue your plan",
-          }
-        : {
-            eyebrow: "YOUR WEEK IS PLANNED",
-            title: "Your RenalPlan is complete.",
-            description: "Your shopping list is ready. Check what you need for the week ahead, and head to the shops when you're ready.",
-            href: "/shopping",
-            button: "Open shopping list",
-          };
-
-  const currentJourneyStep = !requirementsSet
-    ? 1
-    : plannedMeals < 21
-      ? 2
-      : 4;
+  const { dietReady, nextAction, currentJourneyStep, welcome, badge } = homeJourney(savedDietRequirements, plannedMeals, dietSavePending);
 
   const [todayName, setTodayName] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
@@ -837,10 +804,10 @@ function LoggedInHome() {
     {
       number: "1",
       title: "My Diet",
-      description: "Set your dietary requirements.",
+      description: "Complete Sidney’s wizard and save your daily figures.",
       href: "/requirements",
       colour: "green",
-      status: requirementsSet ? "Complete" : "Set up My Diet",
+      status: dietReady ? "Complete" : nextAction.button,
     },
     {
       number: "2",
@@ -1236,9 +1203,9 @@ function LoggedInHome() {
               <div className="flex flex-wrap items-center gap-2">
 
         
-                <p className="text-xs font-extrabold tracking-[0.18em] text-[#067b3a]">WELCOME BACK</p>
+                <p className="text-xs font-extrabold tracking-[0.18em] text-[#067b3a]">{welcome}</p>
                 <span className={`rounded-full px-2.5 py-1 text-[11px] font-extrabold ${
-                  !requirementsSet
+                  !dietReady
                     ? "bg-amber-100 text-amber-700"
                     : plannedMeals === 21
                       ? "renal-dashboard-diet-set bg-green-100 text-[#067b3a]"
@@ -1246,13 +1213,7 @@ function LoggedInHome() {
                         ? "bg-blue-100 text-blue-700"
                         : "renal-dashboard-diet-set bg-green-100 text-[#067b3a]"
                 }`}>
-                  {!requirementsSet
-                    ? "MY DIET TO SET"
-                    : plannedMeals === 21
-                      ? "WEEK PLANNED"
-                      : plannedMeals > 0
-                        ? "WEEK IN PROGRESS"
-                        : "MY DIET SET"}
+                  {badge}
                 </span>
               </div>
 
@@ -1261,8 +1222,7 @@ function LoggedInHome() {
               </h1>
 
               <p className="renal-dashboard-muted mt-3 max-w-[670px] text-base leading-relaxed text-[#355270] sm:text-lg">
-                <span className="sm:hidden">Your shopping list is ready!</span>
-                <span className="hidden sm:inline">{nextAction.description}</span>
+                {nextAction.description}
               </p>
 
               <Link
@@ -1340,7 +1300,7 @@ function LoggedInHome() {
                   Your <span className="text-[#1266c3]">Renal</span><span className="text-[#067b3a]">Plan</span> journey
                 </h2>
                 <p className="renal-dashboard-muted mt-1 text-sm text-slate-600 sm:text-base">
-                  Follow these simple steps from your diet to the supermarket.
+                  {dietReady ? "Follow these simple steps from your diet to the supermarket." : "Start with My Diet. Finish the wizard and save your daily figures before moving on."}
                 </p>
               </div>
               <button
@@ -1358,7 +1318,7 @@ function LoggedInHome() {
               {journeySteps.map((step, index) => {
                 const styles = colourClasses[step.colour];
                 const isCurrentStep = index + 1 === currentJourneyStep;
-                const isCompleted = index === 0 ? requirementsSet : index === 1 ? plannedMeals === 21 : index === 3 ? shoppingCount > 0 : false;
+                const isCompleted = index === 0 ? dietReady : index === 1 ? plannedMeals === 21 : index === 3 ? shoppingCount > 0 : false;
                 return (
                   <div key={step.number} className={`renal-dashboard-journey-card relative flex h-full flex-col overflow-hidden rounded-2xl border p-2.5 sm:p-4 ${styles.card} ${isCurrentStep ? "ring-2 ring-[#1266c3] ring-offset-1" : ""}`}>
                     <div className="relative z-10 flex items-center justify-between gap-2 sm:gap-3">

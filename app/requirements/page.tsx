@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { withTarget, targetDisplayValue } from "@/lib/myDietOnboarding";
-import { kidneyStages, kidneyStageChoice, withKidneyStage, type KidneyStageChoice } from "@/lib/myDietReferences";
+import { kidneyStages, kidneyStageChoice, applyStageReferences, type KidneyStageChoice } from "@/lib/myDietReferences";
 import MyAllergies from "@/components/my-diet/MyAllergies";
 import MyDietOnboarding from "@/components/my-diet/MyDietOnboarding";
 import dietActionStyles from "@/components/my-diet/MyDietActions.module.css";
@@ -191,7 +191,8 @@ export default function RequirementsPage() {
   }
 
   function applyStage(stage: KidneyStageChoice) {
-    const nextRequirements = withKidneyStage(requirements, stage);
+    if (!requirementsReady || loadError) return;
+    const nextRequirements = applyStageReferences(requirements, stage);
     setRequirements(nextRequirements);
     trackDietUpdate("ckd_stage");
     syncRequirementsToLocalStorage(nextRequirements, isLoggedIn);
@@ -322,13 +323,13 @@ export default function RequirementsPage() {
               </h2>
 
               <p className="mt-1 text-sm leading-6 text-slate-600">
-                Selecting a stage shows the applicable reference figures in guided setup.
-                Your saved targets are kept until you choose to change them.
+                Selecting a CKD stage fills the available starting figures below.
+                Your personal targets are kept. Where no fixed reference exists, enter your own daily figure.
               </p>
 
               <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {kidneyStages.map(({ value, label }) => (
-                  <button key={value} type="button" onClick={() => applyStage(value)} aria-pressed={kidneyStageChoice(requirements) === value}
+                  <button key={value} type="button" disabled={!requirementsReady || loadError || saveStatus === "saving"} onClick={() => applyStage(value)} aria-pressed={kidneyStageChoice(requirements) === value}
                     className={"min-h-12 rounded-xl border px-4 py-3 text-left text-sm font-extrabold transition " + (kidneyStageChoice(requirements) === value ? "border-green-500 bg-green-100 text-green-900 ring-2 ring-green-200" : "border-slate-300 bg-white text-slate-800 hover:border-green-400")}>
                     {label}
                   </button>
@@ -353,7 +354,7 @@ export default function RequirementsPage() {
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-slate-600">
                   Set your own targets below, or accept an existing reference in guided setup.
-                  Changing your stage keeps your saved figures.
+                  Changing your stage updates starting figures while keeping your personal targets.
                 </p>
               </div>
 

@@ -1,4 +1,5 @@
 import type { CkdStage, MonitoredNutrient, Requirements } from "./myDiet";
+import { monitoredNutrients, visibleMonitoredNutrients } from "./myDiet";
 
 // Moved unchanged from My Diet's existing stagePresets. No new clinical figures.
 export const stagePresets = {
@@ -47,4 +48,32 @@ export function acceptNutrientReference(requirements: Requirements, nutrient: Mo
   if (!reference) return requirements;
   return { ...requirements, ...reference.values, nutrientTargetSettings: { ...requirements.nutrientTargetSettings,
     sources: { ...requirements.nutrientTargetSettings?.sources, [nutrient]: "reference" } } };
+}
+
+/** Direct My Diet stage buttons accept available starting figures without opening the wizard. */
+export function applyStageReferences(requirements: Requirements, choice: KidneyStageChoice): Requirements {
+  let next = withKidneyStage(requirements, choice);
+  const visible = new Set(visibleMonitoredNutrients(requirements));
+
+  for (const nutrient of ["sodium", "potassium", "phosphate"] as const) {
+    const previousReference = nutrientReference(requirements, nutrient);
+    const reference = nutrientReference(next, nutrient);
+    const wasReference = requirements.nutrientTargetSettings?.sources?.[nutrient] === "reference" && previousReference != null &&
+      Object.entries(previousReference.values).every(([key, value]) => requirements[key as keyof Requirements] === value);
+    const hasFigure = Object.keys(reference?.values ?? previousReference?.values ?? {})
+      .some(key => requirements[key as keyof Requirements] != null);
+
+    if (reference) {
+      visible.add(nutrient);
+      // Unmarked existing figures are treated as personal; never guess their origin.
+      if (!hasFigure || wasReference) next = acceptNutrientReference(next, nutrient);
+    } else if (wasReference && previousReference) {
+      const sources = { ...next.nutrientTargetSettings?.sources };
+      delete sources[nutrient];
+      next = { ...next, ...Object.fromEntries(Object.keys(previousReference.values).map(key => [key, null])),
+        nutrientTargetSettings: { ...next.nutrientTargetSettings, sources } };
+    }
+  }
+
+  return { ...next, monitoredNutrients: monitoredNutrients.filter(nutrient => visible.has(nutrient)) };
 }

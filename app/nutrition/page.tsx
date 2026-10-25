@@ -1,6 +1,6 @@
 "use client";
 import { evaluateNutrientTarget, getNutrientTarget, nutrientStatusText, type NutrientTargetStatus } from "@/lib/nutrientTargets";
-import { defaultRequirements as sharedDefaultRequirements, type Requirements } from "@/lib/myDiet";
+import { defaultRequirements as sharedDefaultRequirements, activeRequirements, isPersonalisedNutrientVisible, type Requirements } from "@/lib/myDiet";
 import { useMyDiet } from "@/components/my-diet/MyDietProvider";
 
 
@@ -339,7 +339,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   const [plannerMeals, setPlannerMeals] =
     useState<PlannerMeals | null>(null);
   const { requirements: savedDiet } = useMyDiet();
-  const requirements = savedDiet ?? defaultRequirements;
+  const requirements = activeRequirements(savedDiet ?? defaultRequirements);
   const [fluidEntries, setFluidEntries] = useState<FluidEntry[]>([]);
   const fluidAllowanceMl = requirements.fluidLimitMl ?? null;
   const [selectedDay, setSelectedDay] =
@@ -645,6 +645,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
 
   const weeklySummaryRows: Array<{
+    nutrient: string;
     label: string;
     total: string;
     average: string;
@@ -652,6 +653,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     status: Status | null;
   }> = [
     {
+      nutrient: "calories",
       label: "Energy (kcal)",
       total: formatNumber(weeklyTotals.calories),
       average: formatNumber(dailyAverage.calories),
@@ -659,6 +661,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       status: evaluateNutrientTarget(dailyAverage.calories, requirements, "calories"),
     },
     {
+      nutrient: "protein",
       label: "Protein (g)",
       total: formatNumber(weeklyTotals.protein),
       average: formatNumber(dailyAverage.protein),
@@ -666,6 +669,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       status: evaluateNutrientTarget(dailyAverage.protein, requirements, "protein"),
     },
     {
+      nutrient: "carbohydrates",
       label: "Carbohydrate (g)",
       total: formatNumber(weeklyTotals.carbohydrates),
       average: formatNumber(dailyAverage.carbohydrates),
@@ -673,6 +677,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       status: evaluateNutrientTarget(dailyAverage.carbohydrates, requirements, "carbohydrates"),
     },
     {
+      nutrient: "fat",
       label: "Fat (g)",
       total: formatNumber(weeklyTotals.fat),
       average: formatNumber(dailyAverage.fat),
@@ -680,6 +685,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       status: null,
     },
     {
+      nutrient: "fibre",
       label: "Fibre (g)",
       total: formatNumber(weeklyTotals.fibre),
       average: formatNumber(dailyAverage.fibre),
@@ -687,6 +693,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       status: null,
     },
     {
+      nutrient: "sodium",
       label: "Salt (g)",
       total: formatSalt(weeklyTotals.sodium),
       average: formatSalt(dailyAverage.sodium),
@@ -697,6 +704,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       status: evaluateNutrientTarget(dailyAverage.sodium, requirements, "sodium"),
     },
     {
+      nutrient: "potassium",
       label: "Potassium (mg)",
       total: formatPotassiumMg(weeklyTotals.potassium),
       average: formatPotassiumMg(dailyAverage.potassium),
@@ -707,6 +715,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
       status: evaluateNutrientTarget(dailyAverage.potassium, requirements, "potassium"),
     },
     {
+      nutrient: "phosphate",
       label: "Phosphorus",
       total: `${formatNumber(weeklyTotals.phosphate)} mg`,
       average: `${formatNumber(dailyAverage.phosphate)} mg`,
@@ -718,13 +727,15 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     },
 
     {
+      nutrient: "fluid",
       label: "Total fluid (meals + drinks)",
       total: `${weeklyFluidTotal.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml`,
       average: `${Math.round(weeklyFluidTotal / 7).toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day`,
-      requirement: "—",
-      status: null,
+      requirement: fluidAllowanceMl == null ? "No target entered" : `≤ ${fluidAllowanceMl} ml/day`,
+      status: evaluateNutrientTarget(weeklyFluidTotal / 7, requirements, "fluid"),
     },
     {
+      nutrient: "fluid",
       label: "Personal fluid allowance",
       total: fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day`,
       average: fluidAllowanceMl === null ? "Not set" : `${fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day`,
@@ -733,6 +744,8 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     },
   ];
 
+
+  const visibleWeeklySummaryRows = weeklySummaryRows.filter(row => isPersonalisedNutrientVisible(savedDiet, row.nutrient));
 
   // Extend existing meal totals with saved snack snapshots; never refresh historical nutrition.
   function snackQuality(day?: Day) {
@@ -780,7 +793,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
   }
   function renderSnackBreakdown(day?: Day, mobile = false) {
     return <div className={mobile ? "mt-3 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-slate-200 pt-3 text-xs sm:text-sm" : "min-w-0 space-y-1.5 text-left text-xs"}>
-      {nutrientRows.map(({ key, label, unit }) => <div key={key} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+      {nutrientRows.filter(row => isPersonalisedNutrientVisible(savedDiet, row.key)).map(({ key, label, unit }) => <div key={key} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
         <span className="text-slate-500">{nutrientLabel(mobile && key === "carbohydrates" ? "Carbs" : label, key, day)}</span>
         <strong className="min-w-0 break-words text-right text-slate-900">{formatSnackNutrient(key, unit, day)}</strong>
       </div>)}
@@ -1337,76 +1350,76 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
               </div>
 
               <div className="mt-3 grid grid-cols-1 gap-y-2 text-xs sm:text-sm">
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "calories"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                {isPersonalisedNutrientVisible(savedDiet, "calories") && (<div title={getStatusText(totalNutrientStatus(selectedDay, "calories"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                   <span className="min-w-0 text-slate-500">{nutrientLabel("Energy", "calories", selectedDay)}</span>
                   <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                     <NutritionStatusDot status={totalNutrientStatus(selectedDay, "calories")} />
                     {formatDayNutrient(selectedDay, "calories", "kcal")}
                   </span>
-                </div>
+                </div>)}
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "protein"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                {isPersonalisedNutrientVisible(savedDiet, "protein") && (<div title={getStatusText(totalNutrientStatus(selectedDay, "protein"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                   <span className="min-w-0 text-slate-500">{nutrientLabel("Protein", "protein", selectedDay)}</span>
                   <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                     <NutritionStatusDot status={totalNutrientStatus(selectedDay, "protein")} />
                     {formatDayNutrient(selectedDay, "protein", "g")}
                   </span>
-                </div>
+                </div>)}
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "carbohydrates"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<div title={getStatusText(totalNutrientStatus(selectedDay, "carbohydrates"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                   <span className="min-w-0 text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates", selectedDay)}</span>
                   <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                     <NutritionStatusDot status={totalNutrientStatus(selectedDay, "carbohydrates")} />
                     {formatDayNutrient(selectedDay, "carbohydrates", "g")}
                   </span>
-                </div>
+                </div>)}
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "fat"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                {isPersonalisedNutrientVisible(savedDiet, "fat") && (<div title={getStatusText(totalNutrientStatus(selectedDay, "fat"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                   <span className="min-w-0 text-slate-500">{nutrientLabel("Fat", "fat", selectedDay)}</span>
                   <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                     <NutritionStatusDot status={totalNutrientStatus(selectedDay, "fat")} />
                     {formatDayNutrient(selectedDay, "fat", "g")}
                   </span>
-                </div>
+                </div>)}
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "fibre"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<div title={getStatusText(totalNutrientStatus(selectedDay, "fibre"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                   <span className="min-w-0 text-slate-500">{nutrientLabel("Fibre", "fibre", selectedDay)}</span>
                   <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                     <NutritionStatusDot status={totalNutrientStatus(selectedDay, "fibre")} />
                     {formatDayNutrient(selectedDay, "fibre", "g")}
                   </span>
-                </div>
+                </div>)}
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "sodium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<div title={getStatusText(totalNutrientStatus(selectedDay, "sodium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                   <span className="min-w-0 text-slate-500">{nutrientLabel("Salt (g)", "sodium", selectedDay)}</span>
                   <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                     <NutritionStatusDot status={totalNutrientStatus(selectedDay, "sodium")} />
                     {formatDayNutrient(selectedDay, "sodium", "salt")}
                   </span>
-                </div>
+                </div>)}
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "potassium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<div title={getStatusText(totalNutrientStatus(selectedDay, "potassium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                   <span className="min-w-0 text-slate-500">{nutrientLabel("Potassium", "potassium", selectedDay)}</span>
                   <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                     <NutritionStatusDot status={totalNutrientStatus(selectedDay, "potassium")} />
                     {formatDayNutrient(selectedDay, "potassium", "mg")}
                   </span>
-                </div>
+                </div>)}
 
-                <div title={getStatusText(totalNutrientStatus(selectedDay, "phosphate"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<div title={getStatusText(totalNutrientStatus(selectedDay, "phosphate"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                   <span className="min-w-0 text-slate-500">{nutrientLabel("Phosphorus", "phosphate", selectedDay)}</span>
                   <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                     <NutritionStatusDot status={totalNutrientStatus(selectedDay, "phosphate")} />
                     {formatDayNutrient(selectedDay, "phosphate", "mg")}
                   </span>
-                </div>
+                </div>)}
 
 
               </div>
             </div>
 
             {/* MOBILE FLUID INTAKE: follows the selected day, like the meal and daily-total cards above. */}
-            <section className="nutrition-mobile-fluid mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            {isPersonalisedNutrientVisible(savedDiet, "fluid") && (<section className="nutrition-mobile-fluid mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-pink-700">Fluid intake</p>
@@ -1424,7 +1437,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                   Personal allowance saved in My Diet: {fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day.
                 </p>
               )}
-            </section>
+            </section>)}
           </section>
 
           {/* DESKTOP WEEKLY GRID */}
@@ -1441,14 +1454,14 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                         <tr className="bg-slate-100 text-left">
                           <th>Meal</th>
                           <th>Planned recipe</th>
-                          <th>Energy</th>
-                          <th>Protein</th>
-                          <th>Carbohydrate</th>
-                          <th>Fat</th>
-                          <th>Fibre</th>
-                          <th>Salt</th>
-                          <th>Potassium</th>
-                          <th>Phosphorus</th>
+                          {isPersonalisedNutrientVisible(savedDiet, "calories") && (<th>Energy</th>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "protein") && (<th>Protein</th>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<th>Carbohydrate</th>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "fat") && (<th>Fat</th>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<th>Fibre</th>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<th>Salt</th>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<th>Potassium</th>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<th>Phosphorus</th>)}
 
                         </tr>
                       </thead>
@@ -1461,30 +1474,30 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                             <tr key={`${day}-${meal}`}>
                               <th className="text-left">{meal}</th>
                               <td>{recipe?.name ?? "No meal planned"}</td>
-                              <td>{recipe ? formatNutrient(totals.calories, "kcal") : "—"}</td>
-                              <td>{recipe ? formatNutrient(totals.protein, "g") : "—"}</td>
-                              <td>{recipe ? formatNutrient(totals.carbohydrates, "g") : "—"}</td>
-                              <td>{recipe ? formatNutrient(totals.fat, "g") : "—"}</td>
-                              <td>{recipe ? formatNutrient(totals.fibre, "g") : "—"}</td>
-                              <td>{recipe ? formatSalt(totals.sodium) : "—"}</td>
-                              <td>{recipe ? formatPotassiumMg(totals.potassium) : "—"}</td>
-                              <td>{recipe ? formatNutrient(totals.phosphate, "mg") : "—"}</td>
+                              {isPersonalisedNutrientVisible(savedDiet, "calories") && (<td>{recipe ? formatNutrient(totals.calories, "kcal") : "—"}</td>)}
+                              {isPersonalisedNutrientVisible(savedDiet, "protein") && (<td>{recipe ? formatNutrient(totals.protein, "g") : "—"}</td>)}
+                              {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<td>{recipe ? formatNutrient(totals.carbohydrates, "g") : "—"}</td>)}
+                              {isPersonalisedNutrientVisible(savedDiet, "fat") && (<td>{recipe ? formatNutrient(totals.fat, "g") : "—"}</td>)}
+                              {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<td>{recipe ? formatNutrient(totals.fibre, "g") : "—"}</td>)}
+                              {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<td>{recipe ? formatSalt(totals.sodium) : "—"}</td>)}
+                              {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<td>{recipe ? formatPotassiumMg(totals.potassium) : "—"}</td>)}
+                              {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<td>{recipe ? formatNutrient(totals.phosphate, "mg") : "—"}</td>)}
 
                             </tr>
                           );
                         })}
-                        <tr><th className="text-left">Snacks</th><td>All planned snacks</td>{nutrientRows.map(({key, unit}) => <td key={key}>{formatSnackNutrient(key, unit, day)}</td>)}</tr>
+                        <tr><th className="text-left">Snacks</th><td>All planned snacks</td>{nutrientRows.filter(row => isPersonalisedNutrientVisible(savedDiet, row.key)).map(({key, unit}) => <td key={key}>{formatSnackNutrient(key, unit, day)}</td>)}</tr>
                         <tr className="bg-green-50 font-bold">
                           <th className="text-left">Daily total</th>
                           <td>All planned meals and snacks</td>
-                          <td>{formatDayNutrient(day, "calories", "kcal")}</td>
-                          <td>{formatDayNutrient(day, "protein", "g")}</td>
-                          <td>{formatDayNutrient(day, "carbohydrates", "g")}</td>
-                          <td>{formatDayNutrient(day, "fat", "g")}</td>
-                          <td>{formatDayNutrient(day, "fibre", "g")}</td>
-                          <td>{formatDayNutrient(day, "sodium", "salt")}</td>
-                          <td>{formatDayNutrient(day, "potassium", "mg")}</td>
-                          <td>{formatDayNutrient(day, "phosphate", "mg")}</td>
+                          {isPersonalisedNutrientVisible(savedDiet, "calories") && (<td>{formatDayNutrient(day, "calories", "kcal")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "protein") && (<td>{formatDayNutrient(day, "protein", "g")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<td>{formatDayNutrient(day, "carbohydrates", "g")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "fat") && (<td>{formatDayNutrient(day, "fat", "g")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<td>{formatDayNutrient(day, "fibre", "g")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<td>{formatDayNutrient(day, "sodium", "salt")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<td>{formatDayNutrient(day, "potassium", "mg")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<td>{formatDayNutrient(day, "phosphate", "mg")}</td>)}
 
                         </tr>
                       </tbody>
@@ -1501,14 +1514,14 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                     <tr className="bg-slate-100 text-left">
                       <th>Meal</th>
                       <th>Planned recipe</th>
-                      <th>Energy</th>
-                      <th>Protein</th>
-                      <th>Carbohydrate</th>
-                      <th>Fat</th>
-                      <th>Fibre</th>
-                      <th>Salt</th>
-                      <th>Potassium</th>
-                      <th>Phosphorus</th>
+                      {isPersonalisedNutrientVisible(savedDiet, "calories") && (<th>Energy</th>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "protein") && (<th>Protein</th>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<th>Carbohydrate</th>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "fat") && (<th>Fat</th>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<th>Fibre</th>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<th>Salt</th>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<th>Potassium</th>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<th>Phosphorus</th>)}
 
                     </tr>
                   </thead>
@@ -1529,14 +1542,14 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                         <tr key={`average-${meal}`}>
                           <th className="text-left">{meal}</th>
                           <td>Weekly average per {meal.toLowerCase()}</td>
-                          <td>{formatNutrient(average.calories, "kcal")}</td>
-                          <td>{formatNutrient(average.protein, "g")}</td>
-                          <td>{formatNutrient(average.carbohydrates, "g")}</td>
-                          <td>{formatNutrient(average.fat, "g")}</td>
-                          <td>{formatNutrient(average.fibre, "g")}</td>
-                          <td>{formatSalt(average.sodium)}</td>
-                          <td>{formatPotassiumMg(average.potassium)}</td>
-                          <td>{formatNutrient(average.phosphate, "mg")}</td>
+                          {isPersonalisedNutrientVisible(savedDiet, "calories") && (<td>{formatNutrient(average.calories, "kcal")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "protein") && (<td>{formatNutrient(average.protein, "g")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<td>{formatNutrient(average.carbohydrates, "g")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "fat") && (<td>{formatNutrient(average.fat, "g")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<td>{formatNutrient(average.fibre, "g")}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<td>{formatSalt(average.sodium)}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<td>{formatPotassiumMg(average.potassium)}</td>)}
+                          {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<td>{formatNutrient(average.phosphate, "mg")}</td>)}
 
                         </tr>
                       );
@@ -1544,14 +1557,14 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                     <tr className="bg-blue-50 font-bold">
                       <th className="text-left">Daily total</th>
                       <td>Average across the week</td>
-                      <td>{formatAverageNutrient("calories", "kcal")}</td>
-                      <td>{formatAverageNutrient("protein", "g")}</td>
-                      <td>{formatAverageNutrient("carbohydrates", "g")}</td>
-                      <td>{formatAverageNutrient("fat", "g")}</td>
-                      <td>{formatAverageNutrient("fibre", "g")}</td>
-                      <td>{formatAverageNutrient("sodium", "salt")}</td>
-                      <td>{formatAverageNutrient("potassium", "mg")}</td>
-                      <td>{formatAverageNutrient("phosphate", "mg")}</td>
+                      {isPersonalisedNutrientVisible(savedDiet, "calories") && (<td>{formatAverageNutrient("calories", "kcal")}</td>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "protein") && (<td>{formatAverageNutrient("protein", "g")}</td>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<td>{formatAverageNutrient("carbohydrates", "g")}</td>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "fat") && (<td>{formatAverageNutrient("fat", "g")}</td>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<td>{formatAverageNutrient("fibre", "g")}</td>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<td>{formatAverageNutrient("sodium", "salt")}</td>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<td>{formatAverageNutrient("potassium", "mg")}</td>)}
+                      {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<td>{formatAverageNutrient("phosphate", "mg")}</td>)}
 
                     </tr>
                   </tbody>
@@ -1616,47 +1629,47 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                           >
                             {recipe ? (
                               <div className="min-w-0 space-y-1.5 text-left text-xs">
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "calories") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Energy</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.calories, "kcal")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "protein") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Protein</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.protein, "g")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Carbohydrate</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.carbohydrates, "g")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "fat") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Fat</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.fat, "g")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Fibre</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(totals.fibre, "g")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Salt (g)</span>
                                   <strong className="text-slate-900">
                                     {formatSalt(totals.sodium)}
                                   </strong>
-                                </div>
+                                </div>)}
 
                                 <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Potassium</span>
@@ -1706,49 +1719,49 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
                             return (
                               <>
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "calories") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Energy</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.calories, "kcal")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "protein") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Protein</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.protein, "g")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Carbohydrate</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.carbohydrates, "g")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "fat") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Fat</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.fat, "g")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Fibre</span>
                                   <strong className="text-slate-900">
                                     {formatNutrient(average.fibre, "g")}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Salt (g)</span>
                                   <strong className="text-slate-900">
                                     {formatSalt(average.sodium)}
                                   </strong>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Potassium</span>
                                   <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                     <span
@@ -1764,9 +1777,9 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                     />
                                     {formatNutrient(average.potassium, "mg")}
                                   </span>
-                                </div>
+                                </div>)}
 
-                                <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Phosphorus</span>
                                   <span className="flex items-center gap-1.5 font-semibold text-slate-900">
                                     <span
@@ -1782,7 +1795,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                     />
                                     {formatNutrient(average.phosphate, "mg")}
                                   </span>
-                                </div>
+                                </div>)}
 
 
                               </>
@@ -1821,69 +1834,69 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
                               return (
                                 <>
-                                  <div title={getStatusText(totalNutrientStatus(day, "calories"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                  {isPersonalisedNutrientVisible(savedDiet, "calories") && (<div title={getStatusText(totalNutrientStatus(day, "calories"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                     <span className="min-w-0 text-slate-500">{nutrientLabel("Energy", "calories", day)}</span>
                                     <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                       <NutritionStatusDot status={totalNutrientStatus(day, "calories")} />
                                       {formatDayNutrient(day, "calories", "kcal")}
                                     </span>
-                                  </div>
+                                  </div>)}
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "protein"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                  {isPersonalisedNutrientVisible(savedDiet, "protein") && (<div title={getStatusText(totalNutrientStatus(day, "protein"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                     <span className="min-w-0 text-slate-500">{nutrientLabel("Protein", "protein", day)}</span>
                                     <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                       <NutritionStatusDot status={totalNutrientStatus(day, "protein")} />
                                       {formatDayNutrient(day, "protein", "g")}
                                     </span>
-                                  </div>
+                                  </div>)}
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "carbohydrates"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                  {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<div title={getStatusText(totalNutrientStatus(day, "carbohydrates"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                     <span className="min-w-0 text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates", day)}</span>
                                     <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                       <NutritionStatusDot status={totalNutrientStatus(day, "carbohydrates")} />
                                       {formatDayNutrient(day, "carbohydrates", "g")}
                                     </span>
-                                  </div>
+                                  </div>)}
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "fat"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                  {isPersonalisedNutrientVisible(savedDiet, "fat") && (<div title={getStatusText(totalNutrientStatus(day, "fat"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                     <span className="min-w-0 text-slate-500">{nutrientLabel("Fat", "fat", day)}</span>
                                     <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                       <NutritionStatusDot status={totalNutrientStatus(day, "fat")} />
                                       {formatDayNutrient(day, "fat", "g")}
                                     </span>
-                                  </div>
+                                  </div>)}
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "fibre"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                  {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<div title={getStatusText(totalNutrientStatus(day, "fibre"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                     <span className="min-w-0 text-slate-500">{nutrientLabel("Fibre", "fibre", day)}</span>
                                     <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                       <NutritionStatusDot status={totalNutrientStatus(day, "fibre")} />
                                       {formatDayNutrient(day, "fibre", "g")}
                                     </span>
-                                  </div>
+                                  </div>)}
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "sodium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                  {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<div title={getStatusText(totalNutrientStatus(day, "sodium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                     <span className="min-w-0 text-slate-500">{nutrientLabel("Salt (g)", "sodium", day)}</span>
                                     <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                       <NutritionStatusDot status={totalNutrientStatus(day, "sodium")} />
                                       {formatDayNutrient(day, "sodium", "salt")}
                                     </span>
-                                  </div>
+                                  </div>)}
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "potassium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                  {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<div title={getStatusText(totalNutrientStatus(day, "potassium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                     <span className="min-w-0 text-slate-500">{nutrientLabel("Potassium", "potassium", day)}</span>
                                     <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                       <NutritionStatusDot status={totalNutrientStatus(day, "potassium")} />
                                       {formatDayNutrient(day, "potassium", "mg")}
                                     </span>
-                                  </div>
+                                  </div>)}
 
-                                  <div title={getStatusText(totalNutrientStatus(day, "phosphate"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                                  {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<div title={getStatusText(totalNutrientStatus(day, "phosphate"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                     <span className="min-w-0 text-slate-500">{nutrientLabel("Phosphorus", "phosphate", day)}</span>
                                     <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                       <NutritionStatusDot status={totalNutrientStatus(day, "phosphate")} />
                                       {formatDayNutrient(day, "phosphate", "mg")}
                                     </span>
-                                  </div>
+                                  </div>)}
 
 
                                 </>
@@ -1901,69 +1914,69 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
                           return (
                             <>
-                              <div title={getStatusText(totalNutrientStatus(undefined, "calories"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                              {isPersonalisedNutrientVisible(savedDiet, "calories") && (<div title={getStatusText(totalNutrientStatus(undefined, "calories"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                 <span className="min-w-0 text-slate-500">{nutrientLabel("Energy", "calories")}</span>
                                 <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                   <NutritionStatusDot status={totalNutrientStatus(undefined, "calories")} />
                                   {formatAverageNutrient("calories", "kcal")}
                                 </span>
-                              </div>
+                              </div>)}
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "protein"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                              {isPersonalisedNutrientVisible(savedDiet, "protein") && (<div title={getStatusText(totalNutrientStatus(undefined, "protein"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                 <span className="min-w-0 text-slate-500">{nutrientLabel("Protein", "protein")}</span>
                                 <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                   <NutritionStatusDot status={totalNutrientStatus(undefined, "protein")} />
                                   {formatAverageNutrient("protein", "g")}
                                 </span>
-                              </div>
+                              </div>)}
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "carbohydrates"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                              {isPersonalisedNutrientVisible(savedDiet, "carbohydrates") && (<div title={getStatusText(totalNutrientStatus(undefined, "carbohydrates"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                 <span className="min-w-0 text-slate-500">{nutrientLabel("Carbohydrate", "carbohydrates")}</span>
                                 <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                   <NutritionStatusDot status={totalNutrientStatus(undefined, "carbohydrates")} />
                                   {formatAverageNutrient("carbohydrates", "g")}
                                 </span>
-                              </div>
+                              </div>)}
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "fat"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                              {isPersonalisedNutrientVisible(savedDiet, "fat") && (<div title={getStatusText(totalNutrientStatus(undefined, "fat"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                 <span className="min-w-0 text-slate-500">{nutrientLabel("Fat", "fat")}</span>
                                 <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                   <NutritionStatusDot status={totalNutrientStatus(undefined, "fat")} />
                                   {formatAverageNutrient("fat", "g")}
                                 </span>
-                              </div>
+                              </div>)}
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "fibre"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                              {isPersonalisedNutrientVisible(savedDiet, "fibre") && (<div title={getStatusText(totalNutrientStatus(undefined, "fibre"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                 <span className="min-w-0 text-slate-500">{nutrientLabel("Fibre", "fibre")}</span>
                                 <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                   <NutritionStatusDot status={totalNutrientStatus(undefined, "fibre")} />
                                   {formatAverageNutrient("fibre", "g")}
                                 </span>
-                              </div>
+                              </div>)}
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "sodium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                              {isPersonalisedNutrientVisible(savedDiet, "sodium") && (<div title={getStatusText(totalNutrientStatus(undefined, "sodium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                 <span className="min-w-0 text-slate-500">{nutrientLabel("Salt (g)", "sodium")}</span>
                                 <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                   <NutritionStatusDot status={totalNutrientStatus(undefined, "sodium")} />
                                   {formatAverageNutrient("sodium", "salt")}
                                 </span>
-                              </div>
+                              </div>)}
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "potassium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                              {isPersonalisedNutrientVisible(savedDiet, "potassium") && (<div title={getStatusText(totalNutrientStatus(undefined, "potassium"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                 <span className="min-w-0 text-slate-500">{nutrientLabel("Potassium", "potassium")}</span>
                                 <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                   <NutritionStatusDot status={totalNutrientStatus(undefined, "potassium")} />
                                   {formatAverageNutrient("potassium", "mg")}
                                 </span>
-                              </div>
+                              </div>)}
 
-                              <div title={getStatusText(totalNutrientStatus(undefined, "phosphate"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
+                              {isPersonalisedNutrientVisible(savedDiet, "phosphate") && (<div title={getStatusText(totalNutrientStatus(undefined, "phosphate"))} className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                 <span className="min-w-0 text-slate-500">{nutrientLabel("Phosphorus", "phosphate")}</span>
                                 <span className="flex shrink-0 items-center justify-end gap-1 whitespace-nowrap font-semibold text-slate-900">
                                   <NutritionStatusDot status={totalNutrientStatus(undefined, "phosphate")} />
                                   {formatAverageNutrient("phosphate", "mg")}
                                 </span>
-                              </div>
+                              </div>)}
 
 
                             </>
@@ -1977,7 +1990,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
             </div>
           </section>
 
-          <section className="nutrition-print-fluid nutrition-print-card mb-6 hidden w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-600 dark:bg-slate-800 md:block">
+          {isPersonalisedNutrientVisible(savedDiet, "fluid") && (<section className="nutrition-print-fluid nutrition-print-card mb-6 hidden w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-600 dark:bg-slate-800 md:block">
             <div className="mb-3">
               <h2 className="text-lg font-extrabold text-slate-900 dark:text-slate-100">Fluid intake</h2>
               <p className="mt-1 text-sm text-slate-500 dark:text-slate-300">Estimated fluid includes drinks you record plus fluid from the meals planned for each day.</p>
@@ -2030,7 +2043,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                 </tbody>
               </table>
             </div>
-          </section>
+          </section>)}
 
           <div className="contents">
             <button
@@ -2085,7 +2098,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       </tr>
                     </thead>
                     <tbody>
-                      {weeklySummaryRows.map((row) => (
+                      {visibleWeeklySummaryRows.map((row) => (
                         <tr key={row.label} className="border-b border-slate-100 last:border-b-0">
                           <td className="px-3 py-3 font-semibold text-slate-900">{row.label}</td>
                           <td className="px-3 py-3 text-slate-700">{row.total}</td>
@@ -2099,7 +2112,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                 </div>
 
                 <div className="nutrition-print-hidden divide-y divide-slate-200 md:hidden">
-                  {weeklySummaryRows.map((row) => (
+                  {visibleWeeklySummaryRows.map((row) => (
                     <article key={row.label} className="py-2.5 first:pt-0 last:pb-0">
                       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
                         <div className="min-w-0">

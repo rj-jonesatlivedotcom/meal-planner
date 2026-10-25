@@ -6,9 +6,12 @@ export const monitoredNutrients = ["sodium", "protein", "potassium", "phosphate"
 export type MonitoredNutrient = typeof monitoredNutrients[number];
 export type OnboardingStatus = "not_started" | "in_progress" | "skipped" | "completed";
 export type NutrientTargetSettings = {
+  // Retained for older saved profiles; selecting a nutrient now activates its saved figures.
   enabled?: Partial<Record<MonitoredNutrient, boolean>>;
   energyMinKcal?: number | null;
   energyMaxKcal?: number | null;
+  kidneyCategory?: "nonrenal" | "unsure";
+  sources?: Partial<Record<MonitoredNutrient, "reference" | "personal">>;
 };
 
 export type Requirements = {
@@ -132,7 +135,7 @@ export function cacheAccountRequirements(requirements: Requirements): Requiremen
   return readStoredRequirements() ?? requirements;
 }
 
-export const monitoringWithoutTargetLabel = "Monitoring — no target entered";
+export const monitoringWithoutTargetLabel = "No target entered";
 export const nutrientLabels: Record<MonitoredNutrient, string> = {
   sodium: "Salt", protein: "Protein", potassium: "Potassium",
   phosphate: "Phosphorus", calories: "Energy / calories", carbohydrate: "Carbohydrates", fluid: "Fluid",
@@ -143,13 +146,9 @@ export function isNutrientActive(requirements: { monitoredNutrients?: MonitoredN
   return requirements.monitoredNutrients == null || requirements.monitoredNutrients.includes(nutrient);
 }
 
-export function isTargetEnabled(requirements: { nutrientTargetSettings?: NutrientTargetSettings | null }, nutrient: MonitoredNutrient) {
-  return requirements.nutrientTargetSettings?.enabled?.[nutrient] !== false;
-}
-
-export function withTargetChoice(requirements: Requirements, nutrient: MonitoredNutrient, enabled: boolean): Requirements {
-  return { ...requirements, nutrientTargetSettings: { ...requirements.nutrientTargetSettings,
-    enabled: { ...requirements.nutrientTargetSettings?.enabled, [nutrient]: enabled } } };
+export function isPersonalisedNutrientVisible(requirements: Partial<Requirements> | null, nutrient: string) {
+  if (requirements?.monitoredNutrients == null) return true;
+  return requirements.monitoredNutrients.includes((nutrient === "carbohydrates" ? "carbohydrate" : nutrient) as MonitoredNutrient);
 }
 
 export const targetNutrients = {
@@ -173,11 +172,11 @@ export function activeRequirements<T extends { monitoredNutrients?: MonitoredNut
   const active = { ...saved } as T & Record<string, unknown>;
   for (const [key, nutrient] of Object.entries(targetNutrients)) {
     if (key === "energyMinKcal" || key === "energyMaxKcal") continue;
-    if (!isNutrientActive(saved, nutrient) || !isTargetEnabled(saved, nutrient)) (active as Record<string, unknown>)[key] = null;
+    if (!isNutrientActive(saved, nutrient)) (active as Record<string, unknown>)[key] = null;
   }
-  if (!isNutrientActive(saved, "potassium") || !isTargetEnabled(saved, "potassium")) (active as Record<string, unknown>).potassium = "Any";
-  if (!isNutrientActive(saved, "phosphate") || !isTargetEnabled(saved, "phosphate")) (active as Record<string, unknown>).phosphate = "Any";
-  if (!isNutrientActive(saved, "calories") || !isTargetEnabled(saved, "calories")) active.nutrientTargetSettings = {
+  if (!isNutrientActive(saved, "potassium")) (active as Record<string, unknown>).potassium = "Any";
+  if (!isNutrientActive(saved, "phosphate")) (active as Record<string, unknown>).phosphate = "Any";
+  if (!isNutrientActive(saved, "calories")) active.nutrientTargetSettings = {
     ...saved.nutrientTargetSettings, energyMinKcal: null, energyMaxKcal: null,
   };
   return active;

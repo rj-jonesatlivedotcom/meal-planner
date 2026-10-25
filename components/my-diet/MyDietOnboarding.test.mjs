@@ -31,6 +31,7 @@ function harness(initial = {}, save, initialStep) {
       if (name === './MyDietOnboarding.module.css') return { __esModule: true, default: { layout: 'onboarding-layout', mascot: 'onboarding-mascot' } };
       if (name === '@/lib/myDiet') return load('../../lib/myDiet.ts');
       if (name === './myDiet') return load('../../lib/myDiet.ts');
+      if (name === '@/lib/myDietReferences' || name === './myDietReferences') return load('../../lib/myDietReferences.ts');
       if (name === '@/lib/myDietOnboarding') return load('../../lib/myDietOnboarding.ts');
       throw new Error(`Unexpected import ${name}`);
     };
@@ -38,7 +39,7 @@ function harness(initial = {}, save, initialStep) {
   }
   const model = load('../../lib/myDiet.ts'), flow = load('../../lib/myDietOnboarding.ts');
   const Component = load('./MyDietOnboarding.tsx').default;
-  const props = { initialStep, initialRequirements: { ...model.defaultRequirements, ...initial },
+  const props = { initialStep, initialRequirements: { ...model.defaultRequirements, onboardingVersion: 2, ...initial },
     onDraftChange: draft => drafts.push(plain(draft)), onSave: async next => { saves.push(plain(next)); if (save) await save(next); },
     onExit: () => { exits++; } };
   let tree;
@@ -67,202 +68,112 @@ function harness(initial = {}, save, initialStep) {
     saves, drafts, exits: () => exits };
 }
 
-test('welcome uses the waving Henle asset, optional name and accessible progress', async () => {
-  const h = harness();
-  assert.equal(h.find(n => n.type === 'img').props.src, '/images/henle-hello.png');
-  assert.ok(h.button("Let's go!"));
-  assert.doesNotMatch(h.text(), /We'll choose what|Your choices save when/);
-  assert.match(h.text(), /Step 1 of 5/);
-  assert.equal(h.button('Back').props.disabled, true);
-  assert.ok(h.nodes().some(n => n.props?.['aria-current'] === 'step'));
-  h.change('name', 'Alex'); await h.submit();
-  assert.equal(h.saves[0].preferredName, 'Alex');
-  assert.equal(h.saves[0].onboardingStatus, 'in_progress');
-  assert.equal(h.saves[0].onboardingStep, 2);
-  await h.click('Back'); assert.equal(h.input('name').props.value, 'Alex');
+
+function stage(h, value) { h.find(n => n.type === 'input' && n.props.name === 'guide-stage' && n.props.value === value).props.onChange(); h.render(); }
+function select(h, values) { for (const value of values) { h.find(n => n.type === 'input' && n.props.type === 'checkbox' && n.props.value === value).props.onChange({target:{checked:true}}); h.render(); } }
+function reference(h, nutrient) { h.find(n => n.type === 'input' && n.props.name === 'guide-target-' + nutrient && n.props.value === 'reference').props.onChange(); h.render(); }
+
+test('Sidney introduces a four-step journey using the existing character and accessible labels', async () => {
+  const h=harness(); assert.equal(h.find(n=>n.type==='img').props.src,'/images/henle-hello.png');
+  assert.equal(h.find(n=>n.type==='img').props.alt,'Sidney the Kidney waving hello');
+  assert.match(h.text(),/Hello! I'm Sidney/);assert.match(h.text(),/Step 1 of 4/);
+  assert.ok(h.nodes().some(n=>n.props?.['aria-label']==='A note from Sidney'));
+  assert.equal(h.button('Back').props.disabled,true);assert.ok(h.nodes().some(n=>n.props?.['aria-current']==='step'));
+  h.change('name','Alex');await h.submit();assert.equal(h.saves[0].preferredName,'Alex');assert.equal(h.saves[0].onboardingStep,2);
+  assert.equal(h.nodes().filter(n=>n.type==='input'&&n.props.type==='radio').length,6);
+  await h.click('Back');assert.equal(h.input('name').props.value,'Alex');
 });
 
-test('monitoring includes energy, is independent of targets and retains existing restrictions', async () => {
-  const h = harness({ onboardingStatus: 'in_progress', onboardingStep: 2, monitoredNutrients: [], potassium: 'Low', proteinMinG: 50 });
-  for (const value of ['potassium', 'calories']) {
-    h.find(n => n.type === 'input' && n.props.type === 'checkbox' && n.props.value === value).props.onChange({ target: { checked: true } }); h.render();
-  }
-  assert.ok(h.nodes().some(n => n.type === 'details'));
-  await h.submit(); const saved = h.saves[0];
-  assert.deepEqual(saved.monitoredNutrients, ['potassium', 'calories']);
-  assert.equal(saved.potassium, 'Low'); assert.equal(saved.potassiumLimitMg, null);
-  assert.equal(saved.proteinMinG, 50); assert.equal(saved.ckdStage, 'custom');
-  await h.click('Back');
-  assert.equal(h.find(n => n.type === 'input' && n.props.value === 'calories').props.checked, true);
+for(const [ckdStage,k,p] of [['stage3',null,null],['stage4',2737,1000],['stage5',2737,1000],['dialysis',2737,1000]])test(ckdStage+' reuses exact existing references, without automatic targets',async()=>{
+ const h=harness({},undefined,2);stage(h,ckdStage);await h.submit();select(h,['sodium','potassium','phosphate']);await h.submit();
+ assert.equal(h.saves.at(-1).sodiumLimit,null);assert.equal(h.saves.at(-1).potassiumLimitMg,null);
+ assert.match(h.text(),/Salt maximum: 5 g\/day/);reference(h,'sodium');
+ if(k!==null){assert.match(h.text(),/2,737 mg\/day.*70 mmol\/day/);reference(h,'potassium');reference(h,'phosphate');}
+ else {assert.ok(h.input('potassiumLimitMg'));assert.ok(h.input('phosphateLimitMg'));}
+ await h.submit();const saved=h.saves.at(-1);assert.equal(saved.sodiumLimit,2000);assert.equal(saved.potassiumLimitMg,k);assert.equal(saved.phosphateLimitMg,p);assert.equal(saved.onboardingStatus,'completed');
 });
 
-test('guidance preserves exact existing targets and units; notes never impose restrictions', async () => {
-  const h = harness({ onboardingStatus: 'in_progress', onboardingStep: 3, ckdStage: 'stage4', sodiumLimit: 2300,
-    proteinMinG: 51.5, proteinMaxG: 70, potassiumLimitMg: 2737, phosphate: 'Moderate' });
-  assert.equal(h.input('sodiumLimit').props.value, 5.75);
-  h.change('advice', 'My existing advice, recorded as written.'); h.change('proteinMaxG', '80');
-  await h.submit(); const saved = h.saves[0];
-  assert.equal(saved.sodiumLimit, 2300); assert.equal(saved.proteinMinG, 51.5); assert.equal(saved.proteinMaxG, 80);
-  assert.equal(saved.potassiumLimitMg, 2737); assert.equal(saved.phosphate, 'Moderate'); assert.equal(saved.ckdStage, 'stage4');
-  assert.equal(saved.fluidLimitMl, null);
+test('CKD4 mixes potassium reference with a personal protein range and keeps notes/allergies/preferences',async()=>{
+ const existing={ckdStage:'stage4',monitoredNutrients:['potassium','protein'],proteinMinG:51.5,proteinMaxG:70,foodAllergies:['Egg'],dislikedFoods:['Olives'],dietaryAdvice:'My existing advice',potassium:'Moderate'};
+ const h=harness(existing,undefined,4);reference(h,'potassium');h.change('proteinMaxG','80');await h.submit();const saved=h.saves[0];
+ assert.equal(saved.potassiumLimitMg,2737);assert.equal(saved.proteinMinG,51.5);assert.equal(saved.proteinMaxG,80);
+ assert.deepEqual(saved.foodAllergies,['Egg']);assert.deepEqual(saved.dislikedFoods,['Olives']);assert.equal(saved.dietaryAdvice,existing.dietaryAdvice);assert.equal(saved.potassium,'Moderate');
+ assert.equal(saved.nutrientTargetSettings.sources.potassium,'reference');assert.equal(saved.nutrientTargetSettings.sources.protein,'personal');
 });
 
-test('unticking nutrients hides their Step 3 fields without erasing targets, and re-enabling restores them', async () => {
-  const h=harness({onboardingStatus:'in_progress',onboardingStep:2,monitoredNutrients:['protein'],proteinMaxG:70,potassiumLimitMg:2737});
-  const toggle=checked=>{h.find(n=>n.type==='input'&&n.props.type==='checkbox'&&n.props.value==='protein').props.onChange({target:{checked}});h.render();};
-  toggle(false);await h.submit();assert.equal(h.nodes().some(n=>n.props?.id==='guide-proteinMaxG'),false);assert.equal(h.saves[0].proteinMaxG,70);assert.match(h.text(),/Inactive targets retained/);
-  await h.click('Back');toggle(true);await h.submit();assert.equal(h.input('proteinMaxG').props.value,70);assert.equal(h.nodes().some(n=>n.props?.id==='guide-potassiumLimitMg'),false);
+test('CKD5 personal targets override the displayed reference and survive stage changes',async()=>{
+ const h=harness({ckdStage:'stage5',monitoredNutrients:['sodium','potassium'],sodiumLimit:1600,potassiumLimitMg:2100,proteinMinG:55},undefined,4);
+ assert.equal(h.input('sodiumLimit').props.value,4);assert.equal(h.input('potassiumLimitMg').props.value,2100);
+ h.change('potassiumLimitMg','2200');await h.click('Back');await h.click('Back');stage(h,'stage3');await h.submit();await h.submit();
+ assert.equal(h.input('potassiumLimitMg').props.value,2200);assert.equal(h.input('sodiumLimit').props.value,4);await h.submit();
+ assert.equal(h.saves.at(-1).proteinMinG,55);assert.equal(h.saves.at(-1).potassiumLimitMg,2200);
 });
 
-test('accepting no Step 2 choices makes the empty selection explicit and retains old targets as inactive', async()=>{
-  const h=harness({onboardingStatus:'in_progress',onboardingStep:2,monitoredNutrients:[],sodiumLimit:2000});await h.submit();assert.deepEqual(h.saves[0].monitoredNutrients,[]);assert.equal(h.saves[0].sodiumLimit,2000);assert.equal(h.nodes().some(n=>n.props?.id==='guide-sodiumLimit'),false);
+for(const choice of ['nonrenal','unsure'])test(choice+' has no CKD references and supports energy/carbohydrate targets',async()=>{
+ const h=harness({},undefined,2);stage(h,choice);await h.submit();select(h,['calories','carbohydrate']);await h.submit();
+ assert.doesNotMatch(h.text(),/Use RenalPlan's reference/);h.change('energyMinKcal','1800');h.change('energyMaxKcal','2200');h.change('carbohydrateMin','100');h.change('carbohydrateMax','250');await h.submit();
+ const saved=h.saves.at(-1);assert.equal(saved.ckdStage,'custom');assert.equal(saved.nutrientTargetSettings.kidneyCategory,choice);assert.equal(saved.sodiumLimit,null);assert.equal(saved.potassiumLimitMg,null);
+ assert.equal(saved.nutrientTargetSettings.energyMinKcal,1800);assert.equal(saved.carbohydrateMax,250);
 });
 
-test('allergy answers stay separate from dislikes and existing favourites; skip retains entries', async () => {
-  const h = harness({ onboardingStatus: 'in_progress', onboardingStep: 4, preferredName: 'Alex', sodiumLimit: 1600 });
-  assert.equal(h.find(n => n.type === 'input' && n.props.value === 'unanswered').props.checked, true);
-  h.answerAllergy('none'); assert.deepEqual(h.drafts.at(-1).foodAllergies, []);
-  h.answerAllergy('listed'); h.change('allergies', 'Egg, Milk\nEgg');
-  h.change('dislikes', 'Mushrooms, olives');
-  h.answerAllergy('unanswered'); assert.equal(h.drafts.at(-1).foodAllergies, null);
-  h.answerAllergy('listed'); assert.equal(h.input('allergies').props.value, 'Egg, Milk\nEgg');
-  const favourites = h.find(n => n.type === 'a' && n.props.href === '/recipes?view=favourites');
-  assert.equal(favourites.props.target, '_blank');
-  await h.click('Skip for now');
-  assert.deepEqual(h.saves[0].foodAllergies, ['Egg', 'Milk']); assert.deepEqual(h.saves[0].dislikedFoods, ['Mushrooms', 'olives']);
-  assert.equal(h.saves[0].sodiumLimit, 1600); assert.equal(h.saves[0].preferredName, 'Alex');
-  assert.equal(h.saves[0].onboardingStatus, 'skipped'); assert.equal(h.saves[0].onboardingStep, 4); assert.equal(h.exits(), 1);
+test('one selected nutrient is reported with no numerical target and no separate monitoring mode',async()=>{
+ const h=harness({monitoredNutrients:[]},undefined,3);select(h,['potassium']);await h.submit();
+ assert.deepEqual(h.saves[0].monitoredNutrients,['potassium']);assert.ok(h.input('potassiumLimitMg'));assert.equal(h.nodes().some(n=>n.props?.id==='guide-proteinMinG'),false);
+ assert.match(h.text(),/No target entered/);assert.doesNotMatch(h.text(),/monitoring only|just monitor|Yes.*limit/i);await h.submit();assert.equal(h.saves.at(-1).potassiumLimitMg,null);
 });
 
-test('summary accurately distinguishes monitoring-only, unanswered questions and explicit no allergies', () => {
-  const h = harness({ onboardingStatus: 'in_progress', onboardingStep: 5, monitoredNutrients: ['potassium', 'calories'], foodAllergies: [] });
-  assert.match(h.text(), /Monitoring — no target entered/); assert.match(h.text(), /No numerical targets entered/);
-  assert.match(h.text(), /None reported/); assert.match(h.text(), /Not provided/);
-  assert.doesNotMatch(h.text(), /Your setup is saved/);
-  const unanswered = harness({ onboardingStatus: 'in_progress', onboardingStep: 5 });
-  assert.match(unanswered.text(), /Not answered/); assert.doesNotMatch(unanswered.text(), /None reported/);
+test('unselecting nutrients preserves saved numbers and selecting them restores their fields',async()=>{
+ const h=harness({monitoredNutrients:['protein'],proteinMinG:50,proteinMaxG:80},undefined,3);
+ const toggle=checked=>{h.find(n=>n.type==='input'&&n.props.value==='protein').props.onChange({target:{checked}});h.render();};
+ toggle(false);await h.submit();assert.equal(h.nodes().some(n=>n.props?.id==='guide-proteinMaxG'),false);assert.equal(h.saves.at(-1).proteinMaxG,80);
+ await h.click('Back');toggle(true);await h.submit();assert.equal(h.input('proteinMaxG').props.value,80);
 });
 
-test('Continue waits for account success and duplicate submissions do not create duplicate saves', async () => {
-  const pending = deferred(), h = harness({}, () => pending.promise);
-  await h.submit(); await h.submit();
-  assert.equal(h.saves.length, 1); assert.match(h.text(), /Step 1 of 5/);
-  assert.equal(h.find(n => n.type === 'fieldset').props.disabled, true);
-  pending.resolve(); await tick(); h.render(); assert.match(h.text(), /Step 2 of 5/);
+test('the final summary is visible before completion and gives minimum/maximum units',()=>{
+ const h=harness({preferredName:'Alex',ckdStage:'stage3',monitoredNutrients:['protein'],proteinMinG:50,proteinMaxG:80},undefined,4);
+ assert.match(h.text(),/Your setup at a glance/);assert.match(h.text(),/Alex.*CKD Stage 3/);assert.match(h.text(),/Protein minimum: 50 g\/day; Protein maximum: 80 g\/day/);
+ assert.doesNotMatch(h.text(),/Your setup is saved/);assert.equal(h.nodes().some(n=>n.type==='details'),false);
 });
 
-test('missing database fields show failure, preserve draft and allow clearly unsaved review', async () => {
-  const h = harness({}, async () => { throw { code: 'PGRST204' }; });
-  h.change('name', 'Alex'); await h.submit();
-  assert.match(h.text(), /Account saving isn't available yet/); assert.match(h.text(), /Step 1 of 5/); assert.equal(h.exits(), 0);
-  assert.equal(h.drafts.at(-1).preferredName, 'Alex'); assert.equal(h.drafts.at(-1).onboardingStatus, 'in_progress');
-  await h.click('Continue reviewing without account saving');
-  assert.match(h.text(), /Step 2 of 5/); assert.match(h.text(), /setup is not complete/i); assert.equal(h.saves.length, 1);
-  await h.click('Back'); assert.equal(h.input('name').props.value, 'Alex');
+test('invalid ranges block completion; blank and zero targets remain valid',async()=>{
+ const h=harness({monitoredNutrients:['protein'],proteinMinG:80,proteinMaxG:50},undefined,4);await h.submit();assert.equal(h.saves.length,0);assert.match(h.text(),/must not exceed/);
+ h.change('proteinMinG','0');h.change('proteinMaxG','');await h.submit();assert.equal(h.saves[0].proteinMinG,0);assert.equal(h.saves[0].proteinMaxG,null);
 });
 
-test('a failed accepted step can be retried successfully without losing entries', async () => {
-  let attempts = 0;
-  const h = harness({}, async () => { if (++attempts === 1) throw { code: '23514' }; });
-  h.change('name', 'Alex'); await h.submit(); assert.match(h.text(), /These choices couldn't be saved/);
-  await h.submit(); assert.match(h.text(), /Step 2 of 5/); assert.equal(h.saves[1].preferredName, 'Alex');
-  assert.ok(!h.nodes().some(node => node.props?.role === 'alert'));
+test('old five-step drafts resume safely in the four-step wizard without changing saved answers',()=>{
+ for(const [oldStep,next] of [[1,1],[2,3],[3,4],[4,4],[5,4]]){
+ const h=harness({onboardingVersion:1,onboardingStatus:'in_progress',onboardingStep:oldStep,preferredName:'Alex',foodAllergies:['Milk'],proteinMinG:55});
+ assert.match(h.text(),new RegExp('Step '+next+' of 4'));assert.equal(h.flow.createOnboardingDraft({...h.model.defaultRequirements,onboardingVersion:1,onboardingStatus:'in_progress',onboardingStep:oldStep}).onboardingVersion,2);
+ }
+ const h=harness({onboardingStatus:'completed',onboardingStep:4});assert.match(h.text(),/Step 1 of 4/);
 });
 
-test('failed completion never exits or opens the saved completion screen', async () => {
-    const h = harness({ onboardingStatus: 'in_progress', onboardingStep: 5 }, async () => { throw new Error('offline'); });
-    await h.submit();
-    assert.equal(h.exits(), 0); assert.match(h.text(), /has not been marked complete/);
-    assert.doesNotMatch(h.text(), /Your setup is saved/); assert.equal(h.drafts.at(-1).onboardingStatus, 'in_progress');
+test('Continue waits for saving, duplicate submissions cannot write twice, and Back preserves answers',async()=>{
+ const pending=deferred(),h=harness({},()=>pending.promise);h.change('name','Alex');await h.submit();await h.submit();assert.equal(h.saves.length,1);assert.match(h.text(),/Step 1 of 4/);
+ assert.equal(h.find(n=>n.type==='fieldset').props.disabled,true);pending.resolve();await tick();h.render();assert.match(h.text(),/Step 2 of 4/);await h.click('Back');assert.equal(h.input('name').props.value,'Alex');
 });
 
-test('unsaved preview continues through every step without retrying saves; Back retains answers', async () => {
-  const h = harness({}, async () => { throw { code: 'PGRST204' }; });
-  h.change('name', 'Alex'); await h.submit();
-  await h.click('Continue reviewing without account saving');
-  assert.match(h.text(), /Step 2 of 5/); assert.match(h.text(), /Unsaved preview/);
-  await h.submit(); assert.match(h.text(), /Step 3 of 5/);
-  h.change('advice', 'Keep this note');
-  await h.submit(); assert.match(h.text(), /Step 4 of 5/);
-  h.answerAllergy('none'); h.change('dislikes', 'Olives');
-  await h.submit(); assert.match(h.text(), /Step 5 of 5/);
-  assert.equal(h.saves.length, 1);
-  assert.match(h.text(), /Alex/); assert.match(h.text(), /Keep this note/); assert.match(h.text(), /Olives/);
-  await h.click('Back'); assert.equal(h.input('dislikes').props.value, 'Olives');
-  await h.click('Back'); assert.equal(h.input('advice').props.value, 'Keep this note');
-  assert.match(h.text(), /Unsaved preview/);
-  await h.submit(); await h.submit(); await h.submit();
-  assert.equal(h.saves.length, 1);
-  assert.equal(h.exits(), 0); assert.match(h.text(), /setup is not complete/i);
-  assert.doesNotMatch(h.text(), /You're all set/);
-  await h.click('Return to My Diet'); assert.equal(h.exits(), 1);
-  assert.ok(h.drafts.every(draft => draft.onboardingStatus !== 'completed'));
+test('failed saves preserve answers and allow retry without falsely completing',async()=>{
+ let attempts=0;const h=harness({},async()=>{if(++attempts===1)throw{code:'PGRST204'};});h.change('name','Alex');await h.submit();assert.match(h.text(),/Account saving isn't available yet/);assert.match(h.text(),/Step 1 of 4/);
+ await h.submit();assert.equal(h.saves.at(-1).preferredName,'Alex');assert.match(h.text(),/Step 2 of 4/);
+ const failure=harness({},async()=>{throw Error('offline')},4);await failure.submit();assert.doesNotMatch(failure.text(),/Your setup is saved/);assert.equal(failure.exits(),0);
 });
 
-test('preview Skip and exploration never retry account saving or claim completion', async () => {
-  for (const action of ['Skip for now', 'Explore without saving']) {
-    const h = harness({}, async () => { throw { code: 'PGRST204' }; });
-    await h.submit(); await h.click('Continue reviewing without account saving');
-    await h.submit(); await h.submit(); await h.submit();
-    assert.equal(h.find(node => node.type === 'form').props.noValidate, true);
-    if (action === 'Skip for now') await h.click(action); else await h.submit();
-    assert.equal(h.saves.length, 1);
-    assert.doesNotMatch(h.text(), /Your setup is saved/);
-    if (action === 'Explore without saving') { assert.match(h.text(), /setup is not complete/i); await h.click('Return to My Diet'); }
-    assert.equal(h.exits(), 1);
-  }
+test('unsaved preview traverses four steps and never acknowledges an account save',async()=>{
+ const h=harness({},async()=>{throw{code:'PGRST204'}});h.change('name','Alex');await h.submit();await h.click('Continue reviewing without account saving');stage(h,'nonrenal');await h.submit();select(h,['calories']);await h.submit();h.change('energyMaxKcal','2200');
+ assert.match(h.text(),/Step 4 of 4/);assert.match(h.text(),/Alex/);await h.click('Back');await h.submit();assert.equal(h.input('energyMaxKcal').props.value,2200);await h.submit();assert.equal(h.saves.length,1);assert.match(h.text(),/setup is not complete/i);await h.click('Return to My Diet');assert.equal(h.exits(),1);
 });
 
-test('Skip and Return leave after failed saving and preserve entries without declaring completion', async () => {
-  for (const label of ['Skip for now', 'Return to My Diet', 'Return to My Diet with unsaved answers']) {
-    const h = harness({}, async () => { throw { code: 'PGRST204' }; });
-    h.change('name', 'Alex'); await h.submit(); await h.click(label);
-    assert.equal(h.exits(), 1); assert.equal(h.drafts.at(-1).preferredName, 'Alex');
-    assert.equal(h.drafts.at(-1).onboardingStatus, label === 'Skip for now' ? 'skipped' : 'in_progress');
-  }
+test('Skip and Return stay available during failed/invalid saves and late responses cannot complete the wizard',async()=>{
+ for(const action of ['Skip for now','Return to My Diet']){
+ const pending=deferred(),h=harness({monitoredNutrients:['protein'],proteinMinG:80,proteinMaxG:50},()=>pending.promise,4);await h.submit();assert.match(h.text(),/must not exceed/);await h.click(action);assert.equal(h.exits(),1);assert.equal(h.drafts.at(-1).proteinMinG,80);pending.resolve();await tick();h.render();assert.doesNotMatch(h.text(),/Your setup is saved/);
+ }
+ const pending=deferred(),h=harness({},()=>pending.promise,4);await h.submit();await h.click('Return to My Diet');pending.resolve();await tick();h.render();assert.doesNotMatch(h.text(),/Your setup is saved/);
 });
 
-test('exit remains available during a pending save and ignores late navigation callbacks', async () => {
-  for (const label of ['Skip for now', 'Return to My Diet']) {
-    const pending = deferred(), h = harness({ onboardingStatus: 'in_progress', onboardingStep: 5 }, () => pending.promise);
-    await h.submit();
-    assert.notEqual(h.button(label).props.disabled, true);
-    await h.click(label); assert.equal(h.exits(), 1);
-    pending.resolve(); await tick(); h.render();
-    assert.equal(h.exits(), 1); assert.doesNotMatch(h.text(), /Your setup is saved/);
-  }
-});
-
-test('Skip and Return are not blocked by invalid or partially entered optional answers', async () => {
-  for (const label of ['Skip for now', 'Return to My Diet']) {
-    const h = harness({ onboardingStatus: 'in_progress', onboardingStep: 4, proteinMinG: 80, proteinMaxG: 50 }, async () => { throw new Error('offline'); });
-    h.answerAllergy('listed'); h.change('dislikes', 'Olives');
-    await h.click(label); assert.equal(h.exits(), 1);
-    assert.equal(h.drafts.at(-1).dislikedFoods[0], 'Olives');
-    assert.equal(h.drafts.at(-1).proteinMinG, 80);
-  }
-});
-
-test('Finish acknowledges completion only after success and offers equally prominent Recipes and Planner links', async () => {
-  const pending = deferred(), h = harness({ onboardingStatus: 'in_progress', onboardingStep: 5 }, () => pending.promise);
-  await h.submit(); assert.equal(h.exits(), 0); assert.doesNotMatch(h.text(), /Your setup is saved/);
-  assert.equal(h.drafts.at(-1).onboardingStatus, 'in_progress'); assert.equal(h.saves[0].onboardingStatus, 'completed');
-  pending.resolve(); await tick(); h.render(); assert.match(h.text(), /Your setup is saved/);
-  const links = h.nodes().filter(n => n.type === 'a');
-  assert.deepEqual(links.map(n => n.props.href), ['/recipes', '/planner']);
-  assert.equal(links[0].props.className, links[1].props.className);
-  assert.equal(h.exits(), 0);
-  assert.equal(h.find(n => n.type === 'img').props.src, '/images/henle-celebrate.png');
-});
-
-test('target validation rejects invalid ranges without inventing values; blank targets remain null', () => {
-  const h = harness(), base = h.model.defaultRequirements;
-  assert.equal(h.flow.withTarget(base, 'sodiumLimit', '5').sodiumLimit, 2000);
-  assert.equal(h.flow.withTarget(base, 'proteinMinG', '').proteinMinG, null);
-  assert.match(h.flow.validateOnboardingTargets({ ...base, proteinMinG: 70, proteinMaxG: 50 }), /must not exceed/);
-  assert.match(h.flow.validateOnboardingTargets({ ...base, fluidLimitMl: -1 }), /zero or more/);
-  assert.equal(h.flow.validateOnboardingTargets({ ...base, proteinMinG: 0 }), null);
-  assert.equal(h.flow.createOnboardingDraft({ ...base, onboardingStatus: 'completed', onboardingStep: 5 }).onboardingStep, 1);
+test('Finish waits for success before celebrating and offers the existing destination links',async()=>{
+ const pending=deferred(),h=harness({},()=>pending.promise,4);await h.submit();assert.equal(h.saves[0].onboardingStatus,'completed');assert.equal(h.drafts.at(-1).onboardingStatus,'in_progress');assert.doesNotMatch(h.text(),/Your setup is saved/);
+ pending.resolve();await tick();h.render();assert.match(h.text(),/Your setup is saved/);assert.equal(h.find(n=>n.type==='img').props.src,'/images/henle-celebrate.png');const links=h.nodes().filter(n=>n.type==='a');assert.deepEqual(links.map(n=>n.props.href),['/recipes','/planner']);assert.equal(links[0].props.className,links[1].props.className);
 });
 
 function pageSaveHarness(persist, userId = 'owner') {
@@ -328,20 +239,4 @@ test('the actual page save queue serializes writes and only acknowledges the new
   assert.equal((await first).ok, false); assert.equal((await second).ok, true);
   assert.deepEqual(writes, ['First', 'Second']);
   assert.deepEqual(h.cache.filter(entry => !entry.pending).map(entry => entry.value.preferredName), ['Second']);
-});
-
-
-test('direct Step 2 entry retains saved answers and declined target choices', async () => {
- const h=harness({preferredName:'Alex',onboardingStatus:'completed',onboardingStep:5,monitoredNutrients:['potassium'],potassiumLimitMg:2737,nutrientTargetSettings:{enabled:{potassium:false}}},undefined,2);
- assert.match(h.text(),/Step 2 of 5/); await h.submit(); assert.match(h.text(),/Step 3 of 5/);
- assert.equal(h.find(n=>n.props?.name==='guide-target-potassium' && n.props.value==='false').props.checked,true);
- await h.submit();assert.equal(h.saves.at(-1).potassiumLimitMg,2737);assert.equal(h.saves.at(-1).nutrientTargetSettings.enabled.potassium,false);assert.equal(h.saves.at(-1).preferredName,'Alex');
-});
-
-test('explicit energy target requires a value, validates ranges and persists kcal choices', async () => {
- const h=harness({monitoredNutrients:['calories']},undefined,3);
- h.find(n=>n.props?.name==='guide-target-calories' && n.props.value==='true').props.onChange();h.render();
- await h.submit();assert.equal(h.saves.length,0);assert.match(h.text(),/Enter a target/);
- h.change('energyMinKcal','1800');h.change('energyMaxKcal','2200');await h.submit();
- assert.deepEqual(h.saves[0].nutrientTargetSettings,{enabled:{calories:true},energyMinKcal:1800,energyMaxKcal:2200});
 });

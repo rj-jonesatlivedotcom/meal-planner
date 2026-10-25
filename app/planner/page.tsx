@@ -13,10 +13,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Suspense, useMemo, useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { normalizePlannerNutrient, type PlannerNutrient } from "@/lib/plannerNutrients";
+import { normalizePlannerNutrient, visiblePlannerNutrients, type PlannerNutrient } from "@/lib/plannerNutrients";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
-import { activeRequirements, type Requirements } from "@/lib/myDiet";
+import { activeRequirements, isNutrientActive, type Requirements } from "@/lib/myDiet";
 import { useMyDiet } from "@/components/my-diet/MyDietProvider";
 import { RecipeAllergyImage, RecipeAllergyNotice, PlannerAllergyWarnings } from "@/components/RecipeAllergy";
 import { eligibleForMyChef } from "@/lib/allergies";
@@ -1406,8 +1406,10 @@ openMyChefIntro();
 
   type NutritionView = PlannerNutrient;
 
-  const [nutritionView, setNutritionView] =
-    useState<NutritionView>("Calories");
+  const [preferredNutritionView, setNutritionView] = useState<NutritionView>("Calories");
+  const nutritionViews = visiblePlannerNutrients(savedDiet);
+  const nutritionView = nutritionViews.includes(preferredNutritionView) ? preferredNutritionView : nutritionViews[0] ?? "Calories";
+  const showFluid = isNutrientActive(savedDiet ?? {}, "fluid");
 
   function getNutritionNumber(
     value: string
@@ -1504,36 +1506,7 @@ function formatPotassiumMg(mg: number): string {
   function getDailyNutritionLimit(
     field: DailyNumericField
   ): number | null {
-    const dailyRequirements =
-      nutritionRequirements as DailyRequirements | null;
-
-    if (!dailyRequirements) {
-      return null;
-    }
-
-    if (field === "calories") return dailyRequirements.nutrientTargetSettings?.energyMaxKcal ?? null;
-
-    if (field === "protein") {
-      return dailyRequirements.proteinMaxG ?? null;
-    }
-
-    if (field === "sodium") {
-      return dailyRequirements.sodiumLimit ?? null;
-    }
-
-    if (field === "potassium") {
-      return dailyRequirements.potassiumLimitMg ?? null;
-    }
-
-    if (field === "phosphate") {
-      return dailyRequirements.phosphateLimitMg ?? null;
-    }
-
-    if (field === "carbohydrates") {
-      return dailyRequirements.carbohydrateMax ?? null;
-    }
-
-    return null;
+    return getNutrientTarget(nutritionRequirements, field).max ?? null;
   }
 
   function getDailyNutritionStatus(
@@ -2616,7 +2589,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
           <div className="mt-3 grid gap-3" style={{ gridAutoRows: "1fr" }}>
           {/* MOBILE FLUID TRACKER */}
-          <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+          {showFluid && (<section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
             <div className="grid h-full grid-cols-[minmax(0,1fr)_140px] items-center gap-3 border-t border-slate-100 px-4 py-3">
               <div className="min-w-0">
                 <h2 className="text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">
@@ -2628,11 +2601,11 @@ html[data-theme="dark"] main .planner-remove-button {
               </div>
               {Tricirculus({ day: selectedDay, fluidView: true })}
             </div>
-          </section>
+          </section>)}
 
           {/* MOBILE DAILY NUTRITION */}
 
-          <section data-nutrient-status={nutrientStatusTone(getDailyNutritionStatus(selectedDay, selectedNumericField))} className="nutrient-target-surface overflow-hidden rounded-3xl shadow-sm ring-1 ring-black/5">
+          {nutritionViews.length > 0 && (<section data-nutrient-status={nutrientStatusTone(getDailyNutritionStatus(selectedDay, selectedNumericField))} className="nutrient-target-surface overflow-hidden rounded-3xl shadow-sm ring-1 ring-black/5">
 
             <div className="flex h-full items-center justify-between gap-4 border-t border-slate-100 px-4 py-3">
 
@@ -2650,26 +2623,9 @@ html[data-theme="dark"] main .planner-remove-button {
                   className="mt-1.5 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-700 outline-none transition focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"
                   aria-label="Choose daily nutrition"
                 >
-                  <option value="Calories">
-                    Calories
-                  </option>
-                  <option value="Protein">
-                    Protein
-                  </option>
-                  <option value="Carbohydrate">
-                    Carbohydrate
-                  </option>
-                  <option value="Sodium">
-                    Salt
-                  </option>
-                  <option value="Potassium">
-                    Potassium
-                  </option>
-                  <option value="Phosphorus">
-                    Phosphorus
-                  </option>
+                  {nutritionViews.map(value => <option key={value} value={value}>{value === "Sodium" ? "Salt" : value}</option>)}
                 </select>
-                <NutritionLegend range={nutritionView === "Calories" || getNutrientTarget(nutritionRequirements, selectedNumericField).min != null} />
+                {getNutrientTarget(nutritionRequirements, selectedNumericField).min != null || getNutrientTarget(nutritionRequirements, selectedNumericField).max != null ? <NutritionLegend range={nutritionView === "Calories" || getNutrientTarget(nutritionRequirements, selectedNumericField).min != null} /> : <p className="mt-2 text-xs text-slate-500">No target entered</p>}
 
               </div>
 
@@ -2679,7 +2635,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
             </div>
 
-          </section>
+          </section>)}
 
           </div>
 
@@ -3130,7 +3086,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
             {/* DAILY FLUID ROW */}
 
-            <div className="planner-nutrition-row relative z-10 grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ pointerEvents: "auto" }}>
+            {showFluid && (<div className="planner-nutrition-row relative z-10 grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ pointerEvents: "auto" }}>
               <div className="planner-nutrition-label flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
                 <div className="flex flex-col items-center gap-1.5 text-center">
                   <h2 className="planner-nutrition-heading text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">
@@ -3151,11 +3107,11 @@ html[data-theme="dark"] main .planner-remove-button {
                   <Tricirculus day={day} desktop fluidView />
                 </div>
               ))}
-            </div>
+            </div>)}
 
             {/* DAILY NUTRITION ROW */}
 
-            <div className="planner-nutrition-row relative z-10 grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ pointerEvents: "auto" }}>
+            {nutritionViews.length > 0 && (<div className="planner-nutrition-row relative z-10 grid grid-cols-[120px_repeat(7,minmax(0,1fr))] border-t border-slate-200 bg-slate-50/70" style={{ pointerEvents: "auto" }}>
 
               <div className="planner-nutrition-label flex items-center justify-center border-r border-slate-100 bg-slate-50/70 px-3 py-4">
 
@@ -3173,27 +3129,10 @@ html[data-theme="dark"] main .planner-remove-button {
                     className="planner-nutrition-select w-full rounded-xl border border-slate-200 bg-white px-2 py-1.5 text-[10px] font-bold text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                     aria-label="Choose daily nutrition"
                   >
-                    <option value="Calories">
-                      Calories
-                    </option>
-                    <option value="Protein">
-                      Protein
-                    </option>
-                    <option value="Carbohydrate">
-                      Carbohydrate
-                    </option>
-                    <option value="Sodium">
-                      Salt
-                    </option>
-                    <option value="Potassium">
-                      Potassium
-                    </option>
-                    <option value="Phosphorus">
-                      Phosphorus
-                    </option>
+                  {nutritionViews.map(value => <option key={value} value={value}>{value === "Sodium" ? "Salt" : value}</option>)}
                   </select>
 
-                  <NutritionLegend range={nutritionView === "Calories" || getNutrientTarget(nutritionRequirements, selectedNumericField).min != null} />
+                  {getNutrientTarget(nutritionRequirements, selectedNumericField).min != null || getNutrientTarget(nutritionRequirements, selectedNumericField).max != null ? <NutritionLegend range={nutritionView === "Calories" || getNutrientTarget(nutritionRequirements, selectedNumericField).min != null} /> : <p className="mt-2 text-xs text-slate-500">No target entered</p>}
 
                 </div>
 
@@ -3214,7 +3153,7 @@ html[data-theme="dark"] main .planner-remove-button {
 
               ))}
 
-            </div>
+            </div>)}
 
           </section>
 
@@ -3414,7 +3353,7 @@ html[data-theme="dark"] main .planner-remove-button {
               <div className="mx-auto w-full max-w-[320px] sm:max-w-[420px]">
                 <Image
                   src="/images/kidney-chef.png"
-                  alt="Henle, RenalPlan MyChef kidney chef"
+                  alt="Sidney, RenalPlan MyChef kidney chef"
                   width={512}
                   height={512}
                   sizes="(max-width: 640px) 300px, 420px"
@@ -3427,7 +3366,7 @@ html[data-theme="dark"] main .planner-remove-button {
                 <>
                   <div className="mt-1 flex items-center justify-center gap-2 text-[#067b3a]">
                     <span className="text-lg" aria-hidden="true">✦</span>
-                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">Meet Henle</span>
+                    <span className="text-xs font-extrabold uppercase tracking-[0.18em]">Meet Sidney</span>
                     <span className="text-lg" aria-hidden="true">✦</span>
                   </div>
                   <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Want MyChef to plan your week?</h2>

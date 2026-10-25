@@ -1,22 +1,22 @@
 import type { Requirements, MonitoredNutrient } from "./myDiet";
-import { visibleMonitoredNutrients } from "./myDiet";
+import { visibleMonitoredNutrients, targetNutrients } from "./myDiet";
+import { nutrientReference } from "./myDietReferences";
 
-export const onboardingSteps = ["Meet Henle", "Nutrients to monitor", "Your dietary guidance", "Foods you love and avoid", "You're ready!"];
-export const henleGuidance = [
-  { opening: "Hi! I'm Henle!", text: "I'll help make RenalPlan feel right for you." },
-  { opening: "Nutrients to monitor", text: "Pick what matters to you!" },
-  { opening: "Your daily targets", text: "Has your kidney team given you daily targets? You can also just monitor." },
-  { opening: "Foods you love and avoid", text: "What should we know about your plate?" },
-  { opening: "A little more you", text: "Take a look. Does this feel right?" },
+export const onboardingSteps = ["Your name", "Your kidney stage", "Nutrients to monitor", "Your targets"];
+export const sidneyGuidance = [
+  { opening: "Hello! I'm Sidney.", text: "What would you like me to call you?" },
+  { opening: "Which best describes you?", text: "This helps me show the reference figures that apply to you. Your existing targets stay safe." },
+  { opening: "Which nutrients would you like RenalPlan to monitor?", text: "Pick what matters to you. I'll include each one in your Planner and Nutrition displays." },
+  { opening: "Your daily targets", text: "Use an existing RenalPlan reference or enter your own target. Let's make this work for you." },
 ];
 export const nutrientExplanations: Record<MonitoredNutrient, string> = {
   potassium: "View the potassium amounts available for your planned meals. Selecting this does not set a restriction.",
-  phosphate: "View phosphorus amounts where available. Your saved settings use the internal name phosphate.",
-  sodium: "Keep an eye on salt and sodium. My Diet displays salt in grams and stores the equivalent sodium amount.",
+  phosphate: "View phosphorus amounts where available.",
+  sodium: "Keep an eye on salt and sodium. Enter salt in grams per day.",
   protein: "View protein amounts in grams. You can enter a daily minimum or maximum if you already have one.",
-  calories: "View energy in kcal, with an optional daily target or range from your kidney team.",
+  calories: "View energy in kcal, with an optional daily target or range from your healthcare professional.",
   carbohydrate: "View carbohydrate amounts in grams, with an optional existing daily range.",
-  fluid: "Record that you monitor fluid. An optional allowance can be entered in millilitres; dashboard fluid totals may be unavailable.",
+  fluid: "View fluid from planned meals and recorded drinks. Enter a personal daily allowance in millilitres if you have one.",
 };
 
 export type TargetKey = "sodiumLimit" | "proteinMinG" | "proteinMaxG" | "potassiumLimitMg" |
@@ -36,12 +36,13 @@ export const onboardingTargets: { key: TargetKey; label: string; unit: string }[
 
 export function createOnboardingDraft(requirements: Requirements): Requirements {
   const resuming = requirements.onboardingStatus === "in_progress" || requirements.onboardingStatus === "skipped";
-  const step = requirements.onboardingStep;
+  const savedStep = requirements.onboardingStep;
+  const step = requirements.onboardingVersion === 2 ? savedStep : typeof savedStep === "number" ? [1, 3, 4, 4, 4][savedStep - 1] : 1;
   return { ...requirements, preferredName: requirements.preferredName ?? null,
     monitoredNutrients: visibleMonitoredNutrients(requirements), dietaryAdvice: requirements.dietaryAdvice ?? null,
     foodAllergies: requirements.foodAllergies ?? null, dislikedFoods: requirements.dislikedFoods ?? null,
-    onboardingVersion: 1, onboardingStatus: "in_progress",
-    onboardingStep: resuming && typeof step === "number" && Number.isInteger(step) && step >= 1 && step <= 5 ? step : 1 };
+    onboardingVersion: 2, onboardingStatus: "in_progress",
+    onboardingStep: resuming && typeof step === "number" && Number.isInteger(step) && step >= 1 && step <= 4 ? step : 1 };
 }
 
 export function parseFoodList(text: string) {
@@ -55,9 +56,22 @@ export function targetDisplayValue(requirements: Requirements, key: TargetKey): 
 
 export function withTarget(requirements: Requirements, key: TargetKey, text: string): Requirements {
   const number = text === "" ? null : Number(text);
+  const nutrientTargetSettings = { ...requirements.nutrientTargetSettings,
+    sources: { ...requirements.nutrientTargetSettings?.sources, [targetNutrients[key]]: "personal" as const } };
   if (key === "energyMinKcal" || key === "energyMaxKcal") return { ...requirements,
-    nutrientTargetSettings: { ...requirements.nutrientTargetSettings, [key]: number } };
-  return { ...requirements, [key]: number === null ? null : key === "sodiumLimit" ? Math.round(number * 400) : number };
+    nutrientTargetSettings: { ...nutrientTargetSettings, [key]: number } };
+  return { ...requirements, nutrientTargetSettings, [key]: number === null ? null : key === "sodiumLimit" ? Math.round(number * 400) : number };
+}
+
+export function targetSource(requirements: Requirements, nutrient: MonitoredNutrient): "reference" | "personal" {
+  const reference = nutrientReference(requirements, nutrient);
+  return requirements.nutrientTargetSettings?.sources?.[nutrient] === "reference" && reference &&
+    Object.entries(reference.values).every(([key, value]) => requirements[key as keyof Requirements] === value) ? "reference" : "personal";
+}
+
+export function targetSummary(requirements: Requirements, nutrient: MonitoredNutrient): string {
+  return onboardingTargets.filter(({ key }) => targetNutrients[key] === nutrient && targetDisplayValue(requirements, key) !== "")
+    .map(({ key, label, unit }) => `${label}: ${targetDisplayValue(requirements, key)} ${unit}`).join("; ") || "No target entered";
 }
 
 export function validateOnboardingTargets(requirements: Requirements): string | null {
@@ -78,9 +92,9 @@ export function validateOnboardingTargets(requirements: Requirements): string | 
 export type OnboardingAction = "continue" | "skip" | "complete";
 export async function saveOnboardingAction(requirements: Requirements, step: number, action: OnboardingAction,
   save: (next: Requirements) => Promise<void>): Promise<Requirements> {
-  const next: Requirements = { ...requirements, onboardingVersion: 1,
+  const next: Requirements = { ...requirements, onboardingVersion: 2,
     onboardingStatus: action === "complete" ? "completed" : action === "skip" ? "skipped" : "in_progress",
-    onboardingStep: action === "continue" ? Math.min(5, step + 1) : step };
+    onboardingStep: action === "continue" ? Math.min(4, step + 1) : step };
   // Do not advance or acknowledge completion until the existing account save resolves.
   await save(next);
   return next;

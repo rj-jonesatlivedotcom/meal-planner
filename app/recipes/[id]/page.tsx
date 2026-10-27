@@ -14,7 +14,7 @@ import { useParams, useRouter } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getNutritionEvidenceText } from "@/lib/nutritionEvidence";
-import { getDietaryGuide } from "@/lib/dietaryGuides";
+import { getDietaryGuide, getDietaryGuideSections } from "@/lib/dietaryGuides";
 
 const days = [
   "Monday",
@@ -633,6 +633,7 @@ export default function RecipeDetailPage() {
   }
 
   const relatedRecipes = recipes.filter((item) => item.id !== recipe.id && item.category === recipe.category).slice(0, 4);
+  const dietaryGuideSections = getDietaryGuideSections(getDietaryGuide(recipe));
 
   return (
     <main className={styles.detail}>
@@ -699,7 +700,15 @@ export default function RecipeDetailPage() {
         </section>
         <section className={styles.guidePanel} aria-labelledby="recipe-guide">
           <h2 id="recipe-guide"><RecipeIcon name="Potassium" />Dietary Guide</h2>
-          <p>{getDietaryGuide(recipe)}</p>
+          <p className={styles.guideIntro}>Discover more about the ingredients in this meal, what they contribute to your nutrition, and useful tips for making it your own.</p>
+          {dietaryGuideSections.length > 0 ? <div className={styles.guideSections}>
+            {dietaryGuideSections.map((section) => (
+              <details className={styles.guideSection} key={section.title}>
+                <summary>{section.title}</summary>
+                <div className={styles.guideSectionContent}><div><p>{section.text}</p></div></div>
+              </details>
+            ))}
+          </div> : <p className={styles.guideUnavailable}>Recipe-specific notes are not available for this meal yet. You can still compare the ingredients and per-serving nutrition above with your saved My Diet targets.</p>}
         </section>
       </div>
       {relatedRecipes.length > 0 && <section className={styles.related} aria-labelledby="related-recipes">

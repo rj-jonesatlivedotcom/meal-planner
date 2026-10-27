@@ -61,8 +61,20 @@
 .method p { margin: 0; overflow-wrap: anywhere; }
 .guidePanel { background: #edf9f1; border-color: #ceebdc; }
 .lowerSections { grid-template-columns: minmax(0, 1fr); }
-.lowerSections > .guidePanel { display: grid; gap: 8px; padding: 16px 20px; }
-.lowerSections > .guidePanel p { margin: 0; }
+.guidePanel h2 { margin: 0; }
+.guidePanel .guideIntro { max-width: 760px; margin-top: 10px; }
+.guidePanel .guideUnavailable { max-width: 760px; margin-top: 14px; }
+.guideSections { display: grid; gap: 8px; margin-top: 18px; }
+.guideSection { overflow: hidden; border: 1px solid #d5e9dc; border-radius: 12px; background: #ffffffa6; }
+.guideSection summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 11px 14px; cursor: pointer; color: var(--recipe-ink); font-size: .9rem; font-weight: 700; list-style: none; }
+.guideSection summary::-webkit-details-marker { display: none; }
+.guideSection summary::after { width: 8px; height: 8px; flex: 0 0 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; content: ""; transform: rotate(45deg) translateY(-2px); transition: transform 180ms ease; }
+.guideSection[open] summary::after { transform: rotate(225deg) translate(-2px, -1px); }
+.guideSection summary:focus-visible { outline: 3px solid #16824d; outline-offset: -3px; border-radius: 10px; }
+.guideSectionContent { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 180ms ease; }
+.guideSection[open] .guideSectionContent { grid-template-rows: 1fr; }
+.guideSectionContent > div { min-height: 0; overflow: hidden; }
+.guideSectionContent p { margin: 0; padding: 0 14px 14px; }
 .guidePanel h2 svg { color: #258a56; }
 .evidence { margin-top: 20px; color: var(--recipe-muted); font-size: .8rem; line-height: 1.6; }
 .evidence summary { min-height: 44px; cursor: pointer; padding: 10px 0; font-weight: 600; }
@@ -118,13 +130,12 @@
  .heroContent > .nutrition > div { display:flex; flex-direction:column; text-align:center; padding:14px 6px; gap:5px; }
  .heroContent > .nutrition dt { order:2; margin:0; } .heroContent > .nutrition dd { order:1; }
  .sections { grid-template-columns:.95fr 1.05fr; background-image: url('/images/recipe-herb-sprig.svg'), url('/images/recipe-herb-sprig.svg'); background-repeat: no-repeat; background-size: 220px 85px; background-position: left 18% bottom 12px, right 18% bottom 12px; }
- .lowerSections > .guidePanel { grid-template-columns: 180px minmax(0, 1fr); align-items: center; gap: 20px; }
 }
 @media (min-width:640px) { .lowerSections .detailedNutrition { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media (min-width:1152px) { .lowerSections .detailedNutrition { grid-template-columns:repeat(8,minmax(0,1fr)); } }
 @media (max-width:374px) { .detail { padding:12px 12px 48px; } .heroContent,.panel,.guidePanel,.related { padding:16px; } .nutrition { gap:8px; } .nutrition > div { padding:11px 9px; column-gap:6px; } .nutrition dd { font-size:.92rem; } .panelHeading h2 { font-size:1.15rem; } }
 @media (hover:hover) and (prefers-reduced-motion:no-preference) { .card:hover { transform:translateY(-2px); box-shadow:0 8px 22px #253e2915; } .card:hover .cardImage img { transform:scale(1.02); } .relatedCard:hover { border-color:#72b997; } }
-@media (prefers-reduced-motion:reduce) { .card,.cardImage img,.primary { transition:none; } }
+@media (prefers-reduced-motion:reduce) { .card,.cardImage img,.primary,.guideSection summary::after,.guideSectionContent { transition:none; } }
 :global(html[data-theme="dark"]) .detail, :global(html[data-theme="dark"]) .discovery { --recipe-ink:#edf2f7; --recipe-muted:#b9c7d1; --recipe-line:#34434b; --recipe-surface:#19252e; background:#111b22; color:var(--recipe-ink); }
 :global(html[data-theme="dark"]) .nutrition > div { background:var(--dark-bg,#243440); color:var(--dark-ink,#d0dfeb); }
 :global(html[data-theme="dark"]) .nutrition [data-nutrient="Calories"] { --dark-bg:#3e2d24; --dark-ink:#ffb78f; }
@@ -133,6 +144,7 @@
 :global(html[data-theme="dark"]) .nutrition [data-nutrient="Phosphorus"], :global(html[data-theme="dark"]) .nutrition [data-nutrient="Fat"] { --dark-bg:#342b47; --dark-ink:#d6b5ff; }
 :global(html[data-theme="dark"]) .nutrition [data-nutrient="Carbohydrates"] { --dark-bg:#3b3323; --dark-ink:#f1d28f; }
 :global(html[data-theme="dark"]) .guidePanel, :global(html[data-theme="dark"]) .equipment { background:#1b322b; border-color:#335747; }
+:global(html[data-theme="dark"]) .guideSection { background:#172a23; border-color:#335747; }
 :global(html[data-theme="dark"]) .category, :global(html[data-theme="dark"]) .panelHeading > span, :global(html[data-theme="dark"]) .method li > span { background:#254438; color:#bee9d2; }
 :global(html[data-theme="dark"]) .favourite { background:#24323b; border-color:#3d4b52; color:#edf2f7; }
 :global(html[data-theme="dark"]) .card { background:#19252e; border-color:#34434b; color:#edf2f7; }

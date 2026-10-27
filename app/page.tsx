@@ -457,6 +457,7 @@ function LoggedInHome() {
   const [requirementsSet, setRequirementsSet] = useState(false);
   const [dietSavePending, setDietSavePending] = useState(false);
   const [savedDietRequirements, setDietRequirements] = useState<Requirements | null>(null);
+  const hasAccountDietRef = useRef(false);
   const dietRequirements = savedDietRequirements ? activeRequirements(savedDietRequirements) : null;
   const [loaded, setLoaded] = useState(false);
   const [todayTipIndex, setTodayTipIndex] = useState(0);
@@ -526,9 +527,11 @@ function LoggedInHome() {
       setShoppingCount(0);
     }
 
-    const storedRequirements = readStoredRequirements();
+    // A browser cache cannot establish that this account completed My Diet.
+    // Only use local edits after this account's saved row has been found.
+    const storedRequirements = hasAccountDietRef.current ? readStoredRequirements() : null;
     setDietRequirements(storedRequirements);
-    setDietSavePending(hasPendingRequirementsSave());
+    setDietSavePending(hasAccountDietRef.current && hasPendingRequirementsSave());
     setRequirementsSet(hasConfiguredRequirements(storedRequirements));
   }, [weeklyPageStorage]);
 
@@ -546,6 +549,10 @@ function LoggedInHome() {
       if (cancelled) return;
 
       if (!user) {
+        hasAccountDietRef.current = false;
+        setDietRequirements(null);
+        setDietSavePending(false);
+        setRequirementsSet(false);
         setFavouriteIds([]);
         setLoaded(true);
         return;
@@ -594,10 +601,16 @@ function LoggedInHome() {
       }
 
       if (requirements) {
+        hasAccountDietRef.current = true;
         const currentRequirements = cacheAccountRequirements(requirements);
         setDietRequirements(currentRequirements);
         setDietSavePending(hasPendingRequirementsSave());
         setRequirementsSet(hasConfiguredRequirements(currentRequirements));
+      } else {
+        hasAccountDietRef.current = false;
+        setDietRequirements(null);
+        setDietSavePending(false);
+        setRequirementsSet(false);
       }
 
       setLoaded(true);

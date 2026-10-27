@@ -6,6 +6,7 @@ import { datedPlannerEnabled } from "@/lib/supabase/config";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { recipes } from "@/data/RecipeData";
+import { parseRecipeQuantity, formatQuantityNumber, unmeasuredShoppingQuantity } from "@/lib/recipeQuantities";
 import { createClient } from "@/lib/supabase/client";
 
 type ShoppingItem = {
@@ -283,68 +284,8 @@ function cleanText(value: string): string {
     .trim();
 }
 
-function fractionToDecimal(value: string): number | null {
-  const v = cleanText(value).trim();
-
-  const fractions: Record<string, number> = {
-    "¼": 0.25,
-    "½": 0.5,
-    "¾": 0.75,
-    "⅛": 0.125,
-    "⅜": 0.375,
-    "⅝": 0.625,
-    "⅞": 0.875,
-  };
-
-  if (fractions[v] !== undefined) return fractions[v];
-
-  const mixedUnicode = v.match(/^(\d+)([¼½¾⅛⅜⅝⅞])$/);
-  if (mixedUnicode) {
-    return Number(mixedUnicode[1]) + fractions[mixedUnicode[2]];
-  }
-
-  const mixedSlash = v.match(/^(\d+)\s+(\d+)\s*\/\s*(\d+)$/);
-  if (mixedSlash) {
-    const denominator = Number(mixedSlash[3]);
-    return denominator
-      ? Number(mixedSlash[1]) + Number(mixedSlash[2]) / denominator
-      : null;
-  }
-
-  const slash = v.match(/^(\d+)\s*\/\s*(\d+)$/);
-  if (slash) {
-    const denominator = Number(slash[2]);
-    return denominator ? Number(slash[1]) / denominator : null;
-  }
-
-  const numeric = Number(v);
-  return Number.isFinite(numeric) ? numeric : null;
-}
-
 function decimalToFraction(value: number): string {
-  const rounded = Math.round(value * 100) / 100;
-  const whole = Math.floor(rounded);
-  const fraction = Math.round((rounded - whole) * 100) / 100;
-
-  const map: Record<string, string> = {
-    "0.125": "⅛",
-    "0.25": "¼",
-    "0.375": "⅜",
-    "0.5": "½",
-    "0.625": "⅝",
-    "0.75": "¾",
-    "0.875": "⅞",
-  };
-
-  if (fraction === 0) return String(whole);
-
-  const key = Object.keys(map).find(
-    (candidate) => Math.abs(Number(candidate) - fraction) < 0.0001
-  );
-
-  if (!key) return Number(rounded.toFixed(2)).toString();
-
-  return whole === 0 ? map[key] : `${whole}${map[key]}`;
+  return formatQuantityNumber(value);
 }
 
 function normaliseUnit(unit: string): string {
@@ -359,6 +300,10 @@ function normaliseUnit(unit: string): string {
     millilitres: "ml",
     litre: "l",
     litres: "l",
+    liter: "l",
+    liters: "l",
+    milliliter: "ml",
+    milliliters: "ml",
     teaspoon: "tsp",
     teaspoons: "tsp",
     tablespoon: "tbsp",
@@ -410,62 +355,13 @@ function normaliseUnit(unit: string): string {
   return map[u] ?? u;
 }
 
-function parseQuantity(
-  quantity: string
-): { amount: number; unit: string } | null {
-  const q = cleanText(quantity)
-    .replace(/\s*\([^)]*\)/g, "")
-    .replace(/\s*\(optional\)/gi, "")
-    .trim();
-
-  if (!q) return null;
-
-  const lower = q.toLowerCase();
-
-  if (
-    lower === "to taste" ||
-    lower === "as required" ||
-    lower === "as needed" ||
-    lower === "optional"
-  ) {
-    return null;
-  }
-
-  const multiplied = q.match(
-    /^(\d+(?:\.\d+)?)\s*[×x]\s*(\d+(?:\.\d+)?(?:[¼½¾⅛⅜⅝⅞])?|\d+\s*\/\s*\d+|[¼½¾⅛⅜⅝⅞])\s*(.*)$/i
-  );
-
-  if (multiplied) {
-    const count = Number(multiplied[1]);
-    const each = fractionToDecimal(multiplied[2]);
-    if (each === null) return null;
-    return {
-      amount: count * each,
-      unit: normaliseUnit(multiplied[3]),
-    };
-  }
-
-  const match = q.match(
-    /^(\d+(?:\.\d+)?(?:[¼½¾⅛⅜⅝⅞])?|\d+\s+\d+\s*\/\s*\d+|\d+\s*\/\s*\d+|[¼½¾⅛⅜⅝⅞])\s*(.*)$/
-  );
-
-  if (!match) {
-    const sizeOnly = lower.match(/^(small|medium|large)$/);
-    if (sizeOnly) return { amount: 1, unit: sizeOnly[1] };
-    return null;
-  }
-
-  const amount = fractionToDecimal(match[1]);
-  if (amount === null) return null;
-
-  return {
-    amount,
-    unit: normaliseUnit(match[2]),
-  };
+function parseQuantity(quantity: string): { amount: number; unit: string } | null {
+  const parsed = parseRecipeQuantity(cleanText(quantity));
+  return parsed ? { ...parsed, unit: normaliseUnit(parsed.unit) } : null;
 }
 
 function formatQuantity(amount: number, unit: string): string {
-  const n = Math.round(amount * 100) / 100;
+  const n = amount;
   const a = decimalToFraction(n);
   const u = normaliseUnit(unit);
 
@@ -1292,8 +1188,7 @@ function combineQuantity(
   const a = parseQuantity(current);
   const b = parseQuantity(incoming);
 
-  if (!a) return incoming;
-  if (!b) return current;
+  if (!a || !b) return [current, incoming].filter(Boolean).join(" + ");
 
   const lower = name.toLowerCase();
 
@@ -2109,7 +2004,14 @@ export default function ShoppingPage() {
           )
           .forEach((ingredient: any) => {
             const parsed = parseQuantity(ingredient.quantity);
-            if (!parsed) return;
+            if (!parsed) {
+              const shoppingName = normaliseIngredient(ingredient.shoppingItem || ingredient.item);
+              const originalQuantity = unmeasuredShoppingQuantity(ingredient.quantity, recipeCount, servings);
+              const existing = combined.find(item => normaliseIngredient(item.item).toLowerCase() === shoppingName.toLowerCase());
+              if (existing) existing.quantity = combineQuantity(existing.quantity, originalQuantity, shoppingName);
+              else combined.push({ item: shoppingName, quantity: originalQuantity });
+              return;
+            }
 
             /*
              * Scale recipe quantity first.

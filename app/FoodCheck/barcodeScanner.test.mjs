@@ -16,13 +16,22 @@ const flush = async () => { await new Promise(setImmediate); };
 const mineralModule = { exports: {} };
 vm.runInNewContext(compile(fs.readFileSync(new URL("./curatedMinerals.ts", import.meta.url), "utf8")), { exports: mineralModule.exports });
 const mineralHelpers = mineralModule.exports;
-const categoryModule = { exports: {} };
-vm.runInNewContext(compile(fs.readFileSync(new URL("./categoryMinerals.ts", import.meta.url), "utf8")), { exports: categoryModule.exports, require: () => mineralHelpers });
-const categoryHelpers = categoryModule.exports;
+// Load real dependencies: reviewedLabelBasis was added after this harness was written.
 const matchingModule = { exports: {} };
 vm.runInNewContext(compile(fs.readFileSync(new URL("./referenceMatching.ts", import.meta.url), "utf8")), { exports: matchingModule.exports });
+const labelModule = { exports: {} };
+vm.runInNewContext(compile(fs.readFileSync(new URL("./reviewedLabelBasis.ts", import.meta.url), "utf8")), { exports: labelModule.exports });
+const dependency = name => {
+  if (name === "./referenceMatching") return matchingModule.exports;
+  if (name === "./reviewedLabelBasis") return labelModule.exports;
+  if (name === "./curatedMinerals") return mineralHelpers;
+  throw new Error('Unexpected test dependency: ' + name);
+};
+const categoryModule = { exports: {} };
+vm.runInNewContext(compile(fs.readFileSync(new URL("./categoryMinerals.ts", import.meta.url), "utf8")), { exports: categoryModule.exports, require: dependency });
+const categoryHelpers = categoryModule.exports;
 const portionModule = { exports: {} };
-vm.runInNewContext(compile(fs.readFileSync(new URL("./barcodePortions.ts", import.meta.url), "utf8")), { exports: portionModule.exports, require: name => name === "./referenceMatching" ? matchingModule.exports : mineralHelpers });
+vm.runInNewContext(compile(fs.readFileSync(new URL("./barcodePortions.ts", import.meta.url), "utf8")), { exports: portionModule.exports, require: dependency });
 const portionHelpers = portionModule.exports;
 const error = (name) => Object.assign(new Error(name), { name });
 
@@ -338,16 +347,21 @@ for (const value of [0, '0', 1.25, '1.25']) {
 }
 
 function renderSource(selectedFood) {
-  const section = page.slice(page.indexOf('{/* SOURCE */}'), page.indexOf('{/* SOURCE */}') + 4000);
-  const content = section.slice(section.indexOf('<h3'), section.indexOf('\n                        </div>', section.indexOf('<h3')));
-  const context = { ...mineralHelpers, React: load('react'), selectedFood, nutritionFood: selectedFood, activePortion: selectedFood.portion };
+  const tree=ts.createSourceFile('page.tsx',page,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
+  let content;
+  function visit(node) {
+    if(ts.isJsxElement(node)&&node.openingElement.tagName.getText(tree)==='details'&&node.getText(tree).includes('Other nutrients &amp; source information'))content=node.getText(tree);
+    ts.forEachChild(node,visit);
+  }
+  visit(tree);assert.ok(content,'source disclosure must remain rendered');
+  const context = { resultStyles: {}, ...mineralHelpers, React: load('react'), selectedFood, nutritionFood: selectedFood, activePortion: selectedFood.portion };
   const js = ts.transpileModule('result = <div>' + content + '</div>;', { compilerOptions: { jsx: ts.JsxEmit.React, target: ts.ScriptTarget.ES2017 } }).outputText;
   vm.runInNewContext(js, context);
   return load('react-dom/server').renderToStaticMarkup(context.result);
 }
 test('name-search mapping retains CoFID attribution and edible-portion source link', () => {
   const html = renderSource(nutritionContext.mapFood({ food_code: 'test' }));
-  assert.match(html, /Nutritional information source/);
+  assert.match(html, /Other nutrients &amp; source information/);
   assert.match(html, /McCance and Widdowson&#x27;s Composition of Foods Integrated Dataset \(CoFID\), 2021\./);
   assert.match(html, /per 100g of edible portion/);
   assert.match(html, /https:\/\/www.gov.uk\/government\/publications\/composition-of-foods-integrated-dataset-cofid/);
@@ -357,7 +371,7 @@ test('barcode source renders OFF warning and exact leading-zero product link', a
   const h = lookupHarness(async () => ({ ok: true, json: async () => ({ status: 1, product: { nutriments: {} } }) }));
   await h.lookup('0012345678905');
   const html = renderSource(h.state.selected[0]);
-  assert.match(html, /Nutritional information source/);
+  assert.match(html, /Other nutrients &amp; source information/);
   assert.match(html, /Open Food Facts product database/);
   assert.match(html, /Product information may be incomplete or contributed by users. &#x27;Not available&#x27; does not mean zero\./);
   assert.match(html, /href="https:\/\/world.openfoodfacts.org\/product\/0012345678905"/);
@@ -507,7 +521,7 @@ function renderMineralRows(selectedFood) {
     ts.forEachChild(node, visit);
   };
   visit(file); assert.equal(rows.length, 2);
-  const context = { ...mineralHelpers, React: load('react'), selectedFood, nutritionFood: selectedFood, activePortion: selectedFood.portion };
+  const context = { resultStyles: {}, ...mineralHelpers, React: load('react'), selectedFood, nutritionFood: selectedFood, activePortion: selectedFood.portion };
   const js = ts.transpileModule(pageFunction('formatNumber') + '\n' + pageFunction('NutritionRow') + '\nresult = <div>' + rows.join('') + '</div>;', { compilerOptions: { jsx: ts.JsxEmit.React, target: ts.ScriptTarget.ES2017 } }).outputText;
   vm.runInNewContext(js, context);
   return load('react-dom/server').renderToStaticMarkup(context.result);
@@ -555,7 +569,7 @@ test('independent single and range methods display in the actual mineral rows an
   assert.equal(formatMineral(result.potassium, String), 'Estimated 240 mg');
   assert.equal(formatMineral(result.phosphorus, String), 'Estimated 180–300 mg');
   const html = renderMineralRows({ minerals: result });
-  assert.match(html, /240 mg/); assert.match(html, /Not available/); assert.equal((html.match(/>ESTIMATE</g) || []).length, 1);
+  assert.match(html, /240 mg/); assert.match(html, /300 mg/); assert.equal((html.match(/>ESTIMATE</g) || []).length, 2);
   const source = renderSource({ source: 'Open Food Facts', code: '5000295141599', minerals: result });
   assert.match(source, /comparable food/); assert.match(source, /component calculation for the complete product/);
   assert.match(source, /Synthetic complete product, food code TEST-ONLY/);
@@ -691,7 +705,7 @@ for (const quantity of ['6x25g', '6 x 25 g', '150g(6x25g)']) {
 test('single bags, volume packs and conflicting units are handled without density guesses', () => {
   assert.equal(barcodePortion('crisps', { quantity: '25g', nutrition_data_per: '100g' }).amount, 25);
   const volume = barcodePortion('drink', { quantity: '330ml', nutrition_data_per: '100ml' });
-  assert.equal(volume.amount, 330); assert.equal(volume.unit, 'ml');
+  assert.equal(volume.amount, 100); assert.equal(volume.wholePack.amount,330); assert.equal(volume.unit, 'ml');
   assert.equal(barcodePortion('drink', { quantity: '330ml', nutrition_data_per: '100g' }).amount, null);
   assert.equal(barcodePortion('drink', { quantity: '330g', nutrition_data_per: '100ml' }).amount, null);
 });
@@ -723,12 +737,14 @@ test('all nutrient fields use the same pack factor; missing values and source da
   assert.equal(display.energyKcal, null); assert.equal(food.protein, 8); assert.equal(food.minerals.potassium.valueMg, 400);
   assert.doesNotMatch(renderMineralRows(display), /ESTIMATE/);
 });
-test('public barcode pipeline keeps ranges dormant even when a range-only candidate is approved', async () => {
+test('public barcode pipeline preserves an approved complete-product range and its planning endpoint', async () => {
   const mapping = mixedMapping();
   const h = lookupHarness(async () => ({ ok: true, json: async () => ({ status: 1, product: { quantity: '350g', nutriments: {} } }) }), [mapping], cofidFixture);
   await h.lookup(mapping.barcode);
-  assert.equal(h.state.selected[0].minerals.phosphorus.provenance, 'unavailable');
-  assert.match(renderMineralRows(h.state.selected[0]), /Not available/);
+  assert.equal(h.state.selected[0].minerals.phosphorus.provenance, 'estimated');
+  assert.equal(h.state.selected[0].minerals.phosphorus.valueMg,300);
+  assert.deepEqual(JSON.parse(JSON.stringify(h.state.selected[0].minerals.phosphorus.rangeMg)),{lower:180,upper:300});
+  assert.match(renderMineralRows(h.state.selected[0]), /300 mg/);
 });
 test('portion reference toggle resets on selection and the estimate badge supports dark mode', () => {
   let reference;
@@ -778,11 +794,11 @@ for (const serving of [
     assert.equal(barcodePortion('5000295141599', { quantity: '350g', ...serving }).amount, 350);
   });
 }
-test('snacks, explicit multipacks and prepared pots do not adopt unrelated serving sizes', () => {
+test('validated manufacturer servings take priority while prepared pots retain their reviewed basis', () => {
   const serving = { serving_size: '1 serving (15 g)', serving_quantity: 15, serving_quantity_unit: 'g' };
-  assert.equal(barcodePortion('5000159553834', { quantity: '30', ...serving }).amount, 30);
-  assert.equal(barcodePortion('bag', { quantity: '25g', ...serving }).amount, 25);
-  assert.equal(barcodePortion('multipack', { quantity: '6x25g', ...serving }).amount, 25);
+  for(const [code,quantity,whole] of [['5000159553834','30',30],['bag','25g',25],['multipack','6x25g',25]]) {
+    const portion=barcodePortion(code,{quantity,...serving});assert.equal(portion.amount,15);assert.equal(portion.wholePack.amount,whole);
+  }
   assert.equal(barcodePortion('4061464935198', { quantity: '85g', ...serving }).amount, 435);
 });
 test('manufacturer serving and whole-pack views scale from the same unchanged reference', async () => {

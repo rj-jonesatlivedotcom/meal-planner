@@ -6,6 +6,7 @@ import styles from "@/components/recipe-design.module.css";
 import RecipeIcon from "@/components/RecipeIcon";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/RecipeData";
+import { matchesProteinFilter } from "@/lib/recipeProtein";
 import { createClient } from "@/lib/supabase/client";
 
 export default function RecipesPage() {
@@ -38,11 +39,13 @@ export default function RecipesPage() {
   const proteins = [
     "All",
     "Chicken",
+    "Poultry",
     "Beef",
     "Pork",
     "Lamb",
     "Fish",
     "Vegetarian",
+    "Other",
   ];
 
   const mealTypeIcons: Record<string, string> = {
@@ -55,6 +58,8 @@ export default function RecipesPage() {
   const proteinIcons: Record<string, string> = {
     All: "🍽️",
     Chicken: "🍗",
+    Poultry: "🦃",
+    Other: "🍽️",
     Beef: "🥩",
     Pork: "🐷",
     Lamb: "🐑",
@@ -78,11 +83,13 @@ export default function RecipesPage() {
     const validProteinTypes = [
       "All",
       "Chicken",
+      "Poultry",
       "Beef",
       "Pork",
       "Lamb",
       "Fish",
       "Vegetarian",
+      "Other",
     ];
 
     try {
@@ -420,63 +427,6 @@ export default function RecipesPage() {
     return "Other";
   }
 
-  function getProteinType(recipe: (typeof recipes)[number]) {
-    const category = recipe.category?.toLowerCase() ?? "";
-
-    const ingredientText = recipe.ingredients
-      .map((ingredient) => ingredient.item.toLowerCase())
-      .join(" ");
-
-    if (category === "lamb" || ingredientText.includes("lamb")) {
-      return "Lamb";
-    }
-
-    if (
-      category === "fish" ||
-      ingredientText.includes("salmon") ||
-      ingredientText.includes("tuna") ||
-      ingredientText.includes("cod") ||
-      ingredientText.includes("haddock") ||
-      ingredientText.includes("mackerel") ||
-      ingredientText.includes("trout")
-    ) {
-      return "Fish";
-    }
-
-    if (
-      category === "pork" ||
-      ingredientText.includes("pork")
-    ) {
-      return "Pork";
-    }
-
-    if (
-      category === "beef" ||
-      ingredientText.includes("beef")
-    ) {
-      return "Beef";
-    }
-
-    if (
-      category === "chicken" ||
-      ingredientText.includes("chicken")
-    ) {
-      return "Chicken";
-    }
-
-    // Treat a recipe as vegetarian when its ingredients contain no meat
-    // or fish. This includes meat-free breakfasts, egg dishes, dairy dishes,
-    // and vegetable-based meals even when their category is not labelled
-    // exactly "vegetarian".
-    const nonVegetarianIngredients = /\b(chicken|turkey|duck|beef|pork|lamb|mutton|bacon|ham|sausage|salami|pepperoni|prosciutto|meat|fish|salmon|tuna|cod|haddock|mackerel|trout|sardine|anchovy|herring|pollock|tilapia|seafood|prawn|shrimp|crab|lobster|mussel|clam|oyster|scallop|squid|octopus)\b/i;
-
-    if (!nonVegetarianIngredients.test(ingredientText)) {
-      return "Vegetarian";
-    }
-
-    return category;
-  }
-
   const searchWords = searchText
     .toLowerCase()
     .trim()
@@ -508,8 +458,7 @@ export default function RecipesPage() {
         recipeMealType === selectedMealType;
 
       const matchesProtein =
-        selectedProtein === "All" ||
-        getProteinType(recipe) === selectedProtein;
+        matchesProteinFilter(recipe, selectedProtein);
 
       const matchesFavourite =
         !showFavourites ||
@@ -638,8 +587,7 @@ export default function RecipesPage() {
   // but do not depend on the currently selected meal type.
   const recipesMatchingBrowseFilters = recipes.filter((recipe) => {
     const matchesProtein =
-      selectedProtein === "All" ||
-      getProteinType(recipe) === selectedProtein;
+      matchesProteinFilter(recipe, selectedProtein);
     const matchesFavourite =
       !showFavourites || favouriteRecipeIds.includes(recipe.id);
     const searchableText = [

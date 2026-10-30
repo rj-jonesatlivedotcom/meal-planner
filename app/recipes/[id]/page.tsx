@@ -654,6 +654,7 @@ export default function RecipeDetailPage() {
             <span><RecipeIcon name="time" />{recipe.cookingTime}</span>
             <span><RecipeIcon name="servings" />{recipe.servings} {recipe.servings === 1 ? "serving" : "servings"}</span>
           </div>
+          {recipe.potassium === "Pending review" && <p className="mt-3 text-sm text-amber-800">Pending review. Nutrition is estimated and may be incomplete. A dash means unavailable, never zero. Personal dietary suitability has not been assessed.</p>}
           <RecipeNutrition values={[
             ["Calories", recipe.nutrition.calories], ["Protein", recipe.nutrition.protein],
             ["Potassium", recipe.nutrition.potassium], ["Phosphorus", recipe.nutrition.phosphate],

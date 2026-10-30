@@ -37,7 +37,7 @@ export function getNutritionEvidenceText(
       .map((field) => fieldLabels[field] ?? field)
       .join(", ");
     notes.push(
-      `incomplete: CoFID marks ${missing} input(s) N; known contributions are shown as a subtotal and missing values are not treated as zero`,
+      `incomplete: ${missing} information is unavailable or incomplete; affected totals cannot be assessed and missing values are not treated as zero`,
     );
   }
 

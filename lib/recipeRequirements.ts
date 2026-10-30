@@ -32,19 +32,20 @@ const levelRank: Record<"Low" | "Moderate" | "High", number> = {
 
 function getSodiumNumber(value: string) {
   const match = value.match(/-?\d+(?:\.\d+)?/);
-  return match ? Number(match[0]) : 0;
+  return match ? Number(match[0]) : Number.NaN;
 }
 
 function getCarbohydrateNumber(value: string) {
   const match = value.match(/-?\d+(?:\.\d+)?/);
-  return match ? Number(match[0]) : 0;
+  return match ? Number(match[0]) : Number.NaN;
 }
 
 function matchesLevel(
-  recipeLevel: "Low" | "Moderate" | "High",
+  recipeLevel: Recipe["potassium"],
   requirement: RequirementLevel
 ) {
   if (requirement === "Any") return true;
+  if (recipeLevel === "Pending review") return false;
   return levelRank[recipeLevel] <= levelRank[requirement];
 }
 
@@ -55,6 +56,18 @@ export function recipeMatchesRequirements(
   if (!requirements) {
     return true;
   }
+
+  const requiredFields = [
+    ...(requirements.sodiumLimit != null ? ["sodium"] : []),
+    ...(requirements.carbohydrateMin != null || requirements.carbohydrateMax != null ? ["carbohydrates"] : []),
+    ...(requirements.potassiumLimitMg != null ? ["potassium"] : []),
+    ...(requirements.phosphateLimitMg != null ? ["phosphate"] : []),
+  ] as (keyof Recipe["nutrition"])[];
+  if (requiredFields.some(field => recipe.nutritionIncomplete?.includes(field) ||
+    !Number.isFinite(getSodiumNumber(recipe.nutrition[field] ?? "")))) return false;
+  if ((requirements.potassium !== "Any" && recipe.potassium === "Pending review") ||
+    (requirements.phosphate !== "Any" && recipe.phosphate === "Pending review") ||
+    (requirements.purines !== "Any" && recipe.purines === "Pending review")) return false;
 
   const mealSodiumGuide =
     requirements.sodiumLimit === null

@@ -29,7 +29,7 @@ export function evaluateNutrientTarget(
   incomplete = false,
 ): NutrientTargetStatus {
   const { min, max } = getNutrientTarget(requirements, nutrient);
-  const status = actual == null ? null : classifyTargetRange(actual, min, max);
+  const status = actual == null || !Number.isFinite(actual) ? null : classifyTargetRange(actual, min, max);
   // A known exceedance remains conclusive even if another contribution is missing.
   if (!status || (incomplete && status !== "Exceeds target")) return "pending";
   if (nutrient === "calories" || (min != null && Number.isFinite(min))) return status;

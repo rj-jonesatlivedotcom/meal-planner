@@ -39,6 +39,8 @@
     ".next-calendar-test/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/* - Copy.ts",
+    "**/* - Copy.tsx"
   ]
 }

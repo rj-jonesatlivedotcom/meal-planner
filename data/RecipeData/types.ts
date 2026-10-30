@@ -18,10 +18,13 @@ export type Nutrition = {
 
 export type NutritionField = keyof Nutrition;
 
+export type DietaryRating = "Low" | "Moderate" | "High" | "Pending review";
+
 export type Recipe = {
   id: string;
   code: string;
   category: string;
+  cuisine?: string;
   mealFamily: string;emoji: string;
   image: string;
   name: string;
@@ -33,9 +36,9 @@ export type Recipe = {
   ingredients: Ingredient[];
   method: string[];
   nutrition: Nutrition;
-  potassium: "Low" | "Moderate" | "High";
-  phosphate: "Low" | "Moderate" | "High";
-  purines: "Low" | "Moderate" | "High";
+  potassium: DietaryRating;
+  phosphate: DietaryRating;
+  purines: DietaryRating;
   dietaryNote?: string;
   /** Status of the current CoFID ingredient-input calculation. */
   nutritionBasis?: "CoFID ingredient-input estimate";

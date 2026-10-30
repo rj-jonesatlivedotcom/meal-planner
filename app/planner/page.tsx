@@ -490,13 +490,17 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
 
   // Count the recipe-level fluid estimate for the meals planned on a given day.
   // Recipe fluidMl values are per serving, so account for the planned meal portions.
+  function formatFluid(value: number): string {
+    return Number.isFinite(value) ? Math.round(value).toLocaleString("en-GB") : "—";
+  }
+
   function plannedMealFluidForDay(day: string) {
     return mealTypes.reduce((total, meal) => {
       const recipe = getRecipe(plannerMeals?.[day]?.[meal] ?? null);
       if (!recipe) return total;
-      const recipeFluid = Number((recipe as typeof recipe & { fluidMl?: number }).fluidMl ?? 0);
+      const recipeFluid = Number((recipe as typeof recipe & { fluidMl?: number }).fluidMl ?? Number.NaN);
       const people = Number(mealPeople?.[day]?.[meal] ?? getHouseholdPeople());
-      return total + (Number.isFinite(recipeFluid) ? recipeFluid : 0) * (Number.isFinite(people) && people > 0 ? people : 1);
+      return total + recipeFluid * (Number.isFinite(people) && people > 0 ? people : 1);
     }, 0);
   }
 
@@ -1009,7 +1013,13 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     let chefRecipes: typeof recipes;
     try { chefRecipes = eligibleForMyChef(recipes, savedDiet?.foodAllergies); }
     catch { setMyChefNotice("MyChef couldn't check recipe ingredients. Your existing plan has been kept. Please retry."); return; }
-    if (!chefRecipes.length) { setMyChefNotice("No eligible recipes remain after allergy checks. Your existing plan has been kept."); return; }
+    // Unknown nutrients must never improve a candidate's daily score.
+    const planningFields = ["calories", "protein", "carbohydrates", "sodium", "potassium", "phosphate"] as const;
+    chefRecipes = chefRecipes.filter(recipe => planningFields.every(field =>
+      !recipe.nutritionIncomplete?.includes(field) &&
+      Number.isFinite(getNutritionNumber(recipe.nutrition[field] ?? ""))
+    ));
+    if (!chefRecipes.length) { setMyChefNotice("No recipes with complete planning nutrition remain after allergy checks. Your existing plan has been kept."); return; }
     const missing = ["B", "L", "D"].filter(prefix => !chefRecipes.some(recipe => recipe.code.startsWith(prefix)))
       .map(prefix => prefix === "B" ? "breakfast" : prefix === "L" ? "lunch" : "dinner");
     setMyChefNotice(missing.length ? `No eligible ${missing.join(" or ")} recipes remain after allergy checks. Those slots may remain empty; existing meals in them are kept. MyChef never relaxes allergy exclusions.` : null);
@@ -1055,7 +1065,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
 
       const numeric = (recipe: Recipe, field: "calories" | "protein" | "carbohydrates" | "sodium" | "potassium" | "phosphate") => {
         if (field === "protein") return getNutritionNumber(recipe.protein);
-        return getNutritionNumber(recipe.nutrition[field] ?? "0");
+        return getNutritionNumber(recipe.nutrition[field] ?? "");
       };
 
       const rank: Record<string, number> = {
@@ -1067,7 +1077,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
       const getPool = (meal: string, fixedRecipeId: string | null): Recipe[] => {
         if (fixedRecipeId) {
           const fixed = recipes.find((recipe) => recipe.id === fixedRecipeId);
-          return fixed ? [fixed] : [];
+          return fixed && chefRecipes.some(recipe => recipe.id === fixed.id) ? [fixed] : [];
         }
 
         const codePrefix = meal === "Breakfast" ? "B" : meal === "Lunch" ? "L" : "D";
@@ -1415,7 +1425,7 @@ openMyChefIntro();
     value: string
   ) {
     const match = value.match(/-?\d+(?:\.\d+)?/);
-    return match ? Number(match[0]) : 0;
+    return match ? Number(match[0]) : Number.NaN;
   }
 
   function formatSalt(sodiumMg: number): string {
@@ -1475,6 +1485,7 @@ function formatPotassiumMg(mg: number): string {
       .map((meal) => meals[meal as keyof typeof meals])
       .filter(Boolean)
       .map((recipe) => {
+        if (recipe!.nutritionIncomplete?.includes(field)) return Number.NaN;
         if (field === "calories") {
           return getNutritionNumber(recipe!.calories);
         }
@@ -1492,15 +1503,16 @@ function formatPotassiumMg(mg: number): string {
         }
 
         if (field === "potassium") {
-          return getNutritionNumber(recipe!.nutrition.potassium ?? "0");
+          return getNutritionNumber(recipe!.nutrition.potassium ?? "");
         }
 
-        return getNutritionNumber(recipe!.nutrition.phosphate ?? "0");
+        return getNutritionNumber(recipe!.nutrition.phosphate ?? "");
       });
 
     const snacks = snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[field];
     if (values.length === 0 && snacks.value === null) return null;
-    return values.reduce((total, value) => total + value, 0) + (snacks.value ?? 0);
+    const total = values.reduce((sum, value) => sum + value, 0) + (snacks.value ?? 0);
+    return Number.isFinite(total) ? total : null;
   }
 
   function getDailyNutritionLimit(
@@ -1513,16 +1525,16 @@ function formatPotassiumMg(mg: number): string {
     day: string,
     field: DailyNumericField
   ): NutrientTargetStatus {
-    // Assess the displayed total against the saved target. Snack uncertainty
-    // belongs on the scanned item and does not override this colour comparison.
+    // Incomplete contributions cannot confirm a target; known exceedances remain conclusive.
     // Unavailable totals stay null; loading and failed account reads stay pending.
     const total = getDailyNutritionTotal(day, field);
-    return evaluateNutrientTarget(total, nutritionRequirements, field, Boolean(snackAccount.loading || snackAccount.error));
+    return evaluateNutrientTarget(total, nutritionRequirements, field, Boolean(snackAccount.loading || snackAccount.error || snackSummary(snackAccount.snacks, getDateForPlannerDay(day))[field].missing));
   }
 
 
   function getSodiumRating(sodium: string) {
     const value = getNutritionNumber(sodium);
+    if (!Number.isFinite(value)) return "Pending review";
 
     if (value <= 500) {
       return "Low";
@@ -1575,6 +1587,7 @@ function formatPotassiumMg(mg: number): string {
     }
 
     if (nutritionView === "Sodium") {
+      if (recipe.nutritionIncomplete?.includes("sodium")) return "Pending review";
       return getSodiumRating(
         recipe.nutrition.sodium
       );
@@ -1651,8 +1664,8 @@ function formatPotassiumMg(mg: number): string {
           className={`planner-fluid-card relative z-[10000] isolate flex min-h-[112px] w-full min-w-[82px] cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border px-2 py-3 text-center font-extrabold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
             desktop ? "sm:min-h-[124px] sm:px-2.5" : ""
           }`}
-          aria-label={`${day}: ${total} ml estimated from planned meals and recorded drinks. Open fluid tracker`}
-          title={`${day}: ${planned} ml from planned meals + ${drinks} ml drinks recorded. Click to view or edit.`}
+          aria-label={`${day}: ${formatFluid(total)} ml estimated from planned meals and recorded drinks. Open fluid tracker`}
+          title={`${day}: ${formatFluid(planned)} ml from planned meals + ${drinks} ml drinks recorded. Click to view or edit.`}
         >
           <span className="planner-fluid-card-day pointer-events-none text-[10px] uppercase tracking-[0.16em]">
             {shortDay}
@@ -1678,7 +1691,7 @@ function formatPotassiumMg(mg: number): string {
             />
           </svg>
           <span className="planner-fluid-card-total pointer-events-none text-lg leading-none tracking-tight sm:text-xl">
-            {total.toLocaleString("en-GB", { maximumFractionDigits: 0 })}{" "}
+            {formatFluid(total)}{" "}
             <span className="planner-fluid-card-unit text-xs">ml</span>
           </span>
           <span
@@ -1950,6 +1963,7 @@ function formatPotassiumMg(mg: number): string {
     return (
       <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-8">
       <PlannerAllergyWarnings planner={plannerMeals} />
+      <p className="mx-auto mb-3 max-w-6xl text-sm text-slate-600">Unknown or incomplete nutrition is shown as — and cannot confirm daily goals. MyChef excludes recipes with incomplete planning nutrition and keeps existing meals. Estimates and pending ratings do not establish personal dietary suitability.</p>
       {myChefNotice && <p role="status" className="mx-auto mb-4 max-w-6xl rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950">{myChefNotice}</p>}
         <div className="mx-auto max-w-6xl">
 
@@ -2213,6 +2227,7 @@ html[data-theme="dark"] main .planner-remove-button {
         }}
       >
       <PlannerAllergyWarnings planner={plannerMeals} />
+      <p className="mx-auto mb-3 max-w-6xl text-sm text-slate-600">Unknown or incomplete nutrition is shown as — and cannot confirm daily goals. MyChef excludes recipes with incomplete planning nutrition and keeps existing meals. Estimates and pending ratings do not establish personal dietary suitability.</p>
       {myChefNotice && <p role="status" className="mx-auto mb-4 max-w-6xl rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950">{myChefNotice}</p>}
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
@@ -3670,7 +3685,7 @@ html[data-theme="dark"] main .planner-remove-button {
               <div className="mt-2 grid grid-cols-2 gap-3">
                 <div className="rounded-xl bg-slate-700/70 p-3">
                   <p className="text-xs font-semibold !text-slate-200">Planned meals</p>
-                  <p className="mt-1 text-xl font-extrabold !text-white">{plannedMealFluidForDate(fluidDate).toLocaleString("en-GB", { maximumFractionDigits: 0 })} <span className="text-sm !text-slate-200">ml</span></p>
+                  <p className="mt-1 text-xl font-extrabold !text-white">{formatFluid(plannedMealFluidForDate(fluidDate))} <span className="text-sm !text-slate-200">ml</span></p>
                 </div>
                 <div className="rounded-xl bg-slate-700/70 p-3">
                   <p className="text-xs font-semibold !text-slate-200">Drinks recorded</p>
@@ -3678,9 +3693,9 @@ html[data-theme="dark"] main .planner-remove-button {
                 </div>
               </div>
               <p className="mt-3 text-sm font-semibold !text-slate-100">Combined estimate</p>
-              <p className="mt-1 text-3xl font-extrabold !text-white">{(plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)).toLocaleString("en-GB", { maximumFractionDigits: 0 })} <span className="text-base !text-slate-200">ml</span></p>
-              {fluidAllowanceMl !== null && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, (plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)) / fluidAllowanceMl * 100) : plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
-              <p className="mt-2 text-xs leading-5 !text-slate-300">Meal fluid is an estimate from recipe ingredients. Drinks are recorded separately. Follow your renal team's fluid guidance; this is not a recommendation to drink more.</p>
+              <p className="mt-1 text-3xl font-extrabold !text-white">{formatFluid((plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)))} <span className="text-base !text-slate-200">ml</span></p>
+              {fluidAllowanceMl !== null && Number.isFinite(plannedMealFluidForDate(fluidDate)) && <><p className="mt-2 text-xs font-medium !text-slate-200">Personal daily allowance: {fluidAllowanceMl.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml</p><div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-600"><div className={`h-full rounded-full ${plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > fluidAllowanceMl ? "bg-rose-500" : "bg-sky-600"}`} style={{ width: `${fluidAllowanceMl > 0 ? Math.min(100, (plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate)) / fluidAllowanceMl * 100) : plannedMealFluidForDate(fluidDate) + fluidTotalForDate(fluidDate) > 0 ? 100 : 0}%` }} /></div></>}
+              <p className="mt-2 text-xs leading-5 !text-slate-300">A dash means meal fluid is unknown, so the combined total cannot be assessed. Meal fluid is an estimate from recipe ingredients. Drinks are recorded separately. Follow your renal team's fluid guidance; this is not a recommendation to drink more.</p>
             </div>
             <h3 className="mt-5 text-sm font-extrabold text-slate-800">Add a drink</h3>
             <div className="mt-2 grid grid-cols-2 gap-3">

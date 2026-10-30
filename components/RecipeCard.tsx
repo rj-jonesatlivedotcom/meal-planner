@@ -25,6 +25,7 @@ type RecipeCardProps = {
     nutritionIncomplete?: ("calories" | "protein" | "carbohydrates" | "fat" | "fibre" | "sodium" | "salt" | "potassium" | "phosphate")[];
     quantityConversionsEstimated?: boolean;
     clinicalReviewPending?: boolean;
+    potassium?: string;
     cookingTime: string;
     calories: string;
     protein: string;
@@ -802,6 +803,7 @@ export default function RecipeCard({
           </p>
 
           <p className="mt-3 text-xs font-semibold text-slate-500"><span aria-hidden="true">◷</span> {recipe.cookingTime}</p>
+          {recipe.potassium === "Pending review" && <p className="mt-2 text-xs text-amber-800">Pending review · dietary suitability not assessed</p>}
           <RecipeNutrition values={[
             ["Calories", recipe.calories], ["Protein", recipe.protein],
             ["Potassium", recipe.nutrition?.potassium], ["Phosphorus", recipe.nutrition?.phosphate],

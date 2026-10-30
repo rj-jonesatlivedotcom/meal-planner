@@ -598,5 +598,205 @@
   "chicken-herb-meatballs-rice": {
     "fingerprint": "e9602025",
     "text": "These meatballs contain a smaller meat serving than many of the chicken dinners, which explains the different protein and mineral balance. Rice and oil still help provide energy, so more meat is not the only way to make the meal nourishing. Homemade preparation also gives control over seasoning. If salt or phosphate additives are restricted, do not assume a ready-made chicken meatball product is an equivalent substitute."
+  },
+  "chicken-tikka-naan-style-flatbread": {
+    "fingerprint": "71f34499",
+    "text": null
+  },
+  "spiced-turkey-keema-stuffed-pitta": {
+    "fingerprint": "ed8c1e33",
+    "text": null
+  },
+  "bombay-style-cauliflower-and-egg-rolls": {
+    "fingerprint": "14112fa4",
+    "text": null
+  },
+  "coconut-chicken-hopper-style-bowl": {
+    "fingerprint": "e2be562b",
+    "text": null
+  },
+  "chicken-shawarma-with-garlic-flatbread": {
+    "fingerprint": "796e41fa",
+    "text": null
+  },
+  "lamb-kofta-with-herbed-bulgur": {
+    "fingerprint": "1804b5d4",
+    "text": null
+  },
+  "lemon-chicken-souvlaki-with-warm-pitta": {
+    "fingerprint": "55fded7e",
+    "text": null
+  },
+  "chermoula-fish-with-couscous": {
+    "fingerprint": "6c5c30aa",
+    "text": null
+  },
+  "spiced-egg-and-pepper-shakshuka-with-bread": {
+    "fingerprint": "b3044c08",
+    "text": null
+  },
+  "pork-and-ginger-steamed-dumplings": {
+    "fingerprint": "278b2665",
+    "text": null
+  },
+  "chicken-katsu-with-rice-and-cabbage-slaw": {
+    "fingerprint": "d7481d57",
+    "text": null
+  },
+  "bulgogi-style-beef-lettuce-cups": {
+    "fingerprint": "6a05f467",
+    "text": null
+  },
+  "lemongrass-chicken-noodle-salad": {
+    "fingerprint": "9ee51fe7",
+    "text": null
+  },
+  "banh-mi-inspired-chicken-baguette": {
+    "fingerprint": "51af3866",
+    "text": null
+  },
+  "chicken-satay-style-rice-noodle-salad": {
+    "fingerprint": "ceb9d8d6",
+    "text": null
+  },
+  "chicken-and-pepper-quesadillas": {
+    "fingerprint": "432d9a0d",
+    "text": null
+  },
+  "soft-fish-tacos-with-lime-slaw": {
+    "fingerprint": "294ddcb0",
+    "text": null
+  },
+  "jerk-chicken-flatbread": {
+    "fingerprint": "3b981619",
+    "text": null
+  },
+  "suya-spiced-chicken-skewers-with-flatbread": {
+    "fingerprint": "88d5b976",
+    "text": null
+  },
+  "mildly-spiced-chicken-kelewele-inspired-bowl": {
+    "fingerprint": "493eb190",
+    "text": null
+  },
+  "chicken-biryani-with-fragrant-basmati-rice": {
+    "fingerprint": "a6f14da0",
+    "text": null
+  },
+  "chicken-jalfrezi-with-chapati": {
+    "fingerprint": "6a8c4bf1",
+    "text": null
+  },
+  "lamb-rogan-josh-with-rice": {
+    "fingerprint": "ad0078ca",
+    "text": null
+  },
+  "tandoori-style-fish-with-lemon-pilau": {
+    "fingerprint": "55aeaccb",
+    "text": null
+  },
+  "chicken-karahi-with-homemade-flatbread": {
+    "fingerprint": "12c7f738",
+    "text": null
+  },
+  "coconut-fish-curry-with-rice": {
+    "fingerprint": "6e936db4",
+    "text": null
+  },
+  "chicken-shish-tawook-with-vermicelli-rice": {
+    "fingerprint": "39dc34ae",
+    "text": null
+  },
+  "homemade-chicken-pide": {
+    "fingerprint": "c5b14904",
+    "text": null
+  },
+  "saffron-chicken-with-jewelled-rice": {
+    "fingerprint": "b17711ae",
+    "text": null
+  },
+  "chicken-gyros-platter": {
+    "fingerprint": "2726924a",
+    "text": null
+  },
+  "chicken-and-apricot-tagine": {
+    "fingerprint": "4a28c029",
+    "text": null
+  },
+  "spiced-lamb-and-vegetable-pastilla": {
+    "fingerprint": "2728ad4e",
+    "text": null
+  },
+  "harissa-style-baked-fish-with-couscous": {
+    "fingerprint": "9462cd90",
+    "text": null
+  },
+  "sweet-and-sour-chicken-with-rice": {
+    "fingerprint": "98e9476",
+    "text": null
+  },
+  "ginger-and-spring-onion-steamed-fish": {
+    "fingerprint": "f14df0e9",
+    "text": null
+  },
+  "crispy-pork-with-garlic-noodles": {
+    "fingerprint": "a49d9343",
+    "text": null
+  },
+  "chicken-teriyaki-style-rice-bowl": {
+    "fingerprint": "b271bcf4",
+    "text": null
+  },
+  "thai-basil-chicken-with-jasmine-rice": {
+    "fingerprint": "65f67ea6",
+    "text": null
+  },
+  "red-curry-style-chicken-with-rice": {
+    "fingerprint": "c850d7ad",
+    "text": null
+  },
+  "lemongrass-pork-with-rice-noodles": {
+    "fingerprint": "d8b374d0",
+    "text": null
+  },
+  "chicken-laksa-inspired-noodle-bowl": {
+    "fingerprint": "b0e06411",
+    "text": null
+  },
+  "chicken-enchiladas-with-homemade-sauce": {
+    "fingerprint": "f4e736ce",
+    "text": null
+  },
+  "beef-fajita-platter-with-tortillas": {
+    "fingerprint": "1d32e5ff",
+    "text": null
+  },
+  "caribbean-chicken-curry-with-rice": {
+    "fingerprint": "ba1dba56",
+    "text": null
+  },
+  "jollof-style-rice-with-grilled-chicken": {
+    "fingerprint": "2bdb1e5f",
+    "text": null
+  },
+  "light-chicken-stew-with-seasoned-rice": {
+    "fingerprint": "b61cca5",
+    "text": null
+  },
+  "homemade-chicken-and-spinach-cannelloni": {
+    "fingerprint": "dbcc3bd0",
+    "text": null
+  },
+  "chicken-and-pepper-paella": {
+    "fingerprint": "58e5df9b",
+    "text": null
+  },
+  "chicken-and-mushroom-puff-pastry-pie": {
+    "fingerprint": "fdd756b2",
+    "text": null
+  },
+  "paprika-pork-goulash-with-buttered-noodles": {
+    "fingerprint": "8f6a8dad",
+    "text": null
   }
 }

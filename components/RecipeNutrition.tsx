@@ -11,7 +11,7 @@ export default function RecipeNutrition({ values, detailed = false }: {
         <div key={label} data-nutrient={label}>
           <RecipeIcon name={label as Parameters<typeof RecipeIcon>[0]["name"]} />
           <dt>{label}</dt>
-          <dd>{value || "—"}</dd>
+          <dd>{value && /\d/.test(value) ? value : "—"}</dd>
         </div>
       ))}
     </dl>

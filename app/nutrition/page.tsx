@@ -145,10 +145,10 @@ const emptyTotals = (): NutrientTotals => ({
 
 
 function getNutritionNumber(value: string | undefined): number {
-  if (!value) return 0;
+  if (!value) return Number.NaN;
 
   const match = value.match(/-?\d+(?:\.\d+)?/);
-  return match ? Number(match[0]) : 0;
+  return match ? Number(match[0]) : Number.NaN;
 }
 
 function getRecipe(
@@ -174,16 +174,7 @@ function getDayTotals(
 
     if (!recipe) return;
 
-    totals.calories += getNutritionNumber(recipe.nutrition.calories);
-    totals.protein += getNutritionNumber(recipe.nutrition.protein);
-    totals.carbohydrates += getNutritionNumber(
-      recipe.nutrition.carbohydrates
-    );
-    totals.fat += getNutritionNumber(recipe.nutrition.fat);
-    totals.fibre += getNutritionNumber(recipe.nutrition.fibre);
-    totals.sodium += getNutritionNumber(recipe.nutrition.sodium);
-    totals.potassium += getNutritionNumber(recipe.nutrition.potassium);
-    totals.phosphate += getNutritionNumber(recipe.nutrition.phosphate);
+    addTotals(totals, getMealTotals(recipe));
   });
 
   return totals;
@@ -205,6 +196,10 @@ function getMealTotals(recipe: Recipe | null): NutrientTotals {
   totals.potassium = getNutritionNumber(recipe.nutrition.potassium);
   totals.phosphate = getNutritionNumber(recipe.nutrition.phosphate);
 
+  for (const field of recipe.nutritionIncomplete ?? []) {
+    if (field !== "salt") totals[field] = Number.NaN;
+    else totals.sodium = Number.NaN;
+  }
   return totals;
 }
 
@@ -285,6 +280,7 @@ function NutritionStatusLabel({ status }: { status: Status | null }) {
 
 
 function formatSalt(sodiumMg: number): string {
+  if (!Number.isFinite(sodiumMg)) return "—";
   const saltGrams = (sodiumMg * 2.5) / 1000;
   return `${saltGrams.toFixed(1)} g`;
 }
@@ -294,6 +290,7 @@ function formatPotassiumMg(potassiumMg: number): string {
 }
 
 function formatNumber(value: number): string {
+  if (!Number.isFinite(value)) return "—";
   return Math.round(value).toLocaleString("en-GB");
 }
 
@@ -301,7 +298,7 @@ function formatNutrient(
   value: number,
   unit: "kcal" | "g" | "mg"
 ): string {
-  return `${formatNumber(value)} ${unit}`;
+  return Number.isFinite(value) ? `${formatNumber(value)} ${unit}` : "—";
 }
 
 function formatRange(
@@ -616,6 +613,10 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
   // Fluid from planned meals is estimated from each recipe's fluidMl value.
   // The saved planner also stores per-meal serving counts in mealPeople.
+  function formatFluid(value: number): string {
+    return Number.isFinite(value) ? Math.round(value).toLocaleString("en-GB") : "—";
+  }
+
   function plannedMealFluidForDay(day: Day): number {
     const savedPlanner = plannerMeals as (PlannerMeals & {
       mealPeople?: Record<string, Record<string, number>>;
@@ -624,9 +625,9 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     return mealTypes.reduce((total, meal) => {
       const recipe = getRecipe(plannerMeals ?? {}, day, meal);
       if (!recipe) return total;
-      const recipeFluid = Number((recipe as Recipe & { fluidMl?: number }).fluidMl ?? 0);
+      const recipeFluid = Number((recipe as Recipe & { fluidMl?: number }).fluidMl ?? Number.NaN);
       const people = Number(savedPlanner?.mealPeople?.[day]?.[meal] ?? 1);
-      return total + (Number.isFinite(recipeFluid) ? recipeFluid : 0) * (Number.isFinite(people) && people > 0 ? people : 1);
+      return total + recipeFluid * (Number.isFinite(people) && people > 0 ? people : 1);
     }, 0);
   }
 
@@ -717,8 +718,8 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     {
       nutrient: "phosphate",
       label: "Phosphorus",
-      total: `${formatNumber(weeklyTotals.phosphate)} mg`,
-      average: `${formatNumber(dailyAverage.phosphate)} mg`,
+      total: formatNutrient(weeklyTotals.phosphate, "mg"),
+      average: formatNutrient(dailyAverage.phosphate, "mg"),
       requirement:
         requirements.phosphateLimitMg != null
           ? `≤ ${formatNumber(requirements.phosphateLimitMg)} mg/day`
@@ -729,8 +730,8 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
     {
       nutrient: "fluid",
       label: "Total fluid (meals + drinks)",
-      total: `${weeklyFluidTotal.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml`,
-      average: `${Math.round(weeklyFluidTotal / 7).toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day`,
+      total: `${formatFluid(weeklyFluidTotal)} ml`,
+      average: `${formatFluid(Math.round(weeklyFluidTotal / 7))} ml/day`,
       requirement: fluidAllowanceMl == null ? "No target entered" : `≤ ${fluidAllowanceMl} ml/day`,
       status: evaluateNutrientTarget(weeklyFluidTotal / 7, requirements, "fluid"),
     },
@@ -1319,11 +1320,11 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                         </div>
                         <div className="flex min-w-0 items-center justify-between gap-2">
                           <span className="text-slate-500">Potassium</span>
-                          <strong className="shrink-0 text-slate-900">{formatNutrient(getNutritionNumber(recipe.nutrition.potassium), "mg")}</strong>
+                          <strong className="shrink-0 text-slate-900">{formatNutrient(totals.potassium, "mg")}</strong>
                         </div>
                         <div className="flex min-w-0 items-center justify-between gap-2">
                           <span className="text-slate-500">Phosphorus</span>
-                          <strong className="shrink-0 text-slate-900">{formatNutrient(getNutritionNumber(recipe.nutrition.phosphate), "mg")}</strong>
+                          <strong className="shrink-0 text-slate-900">{formatNutrient(totals.phosphate, "mg")}</strong>
                         </div>
 
                       </div>
@@ -1427,7 +1428,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                 </div>
                 <div className="text-right">
                   <p className="text-xl font-extrabold text-slate-900">
-                    {totalFluidForDayIndex(days.indexOf(selectedDay)).toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml
+                    {formatFluid(totalFluidForDayIndex(days.indexOf(selectedDay)))} ml
                   </p>
                   <p className="mt-1 text-xs text-slate-500">{selectedDay}</p>
                 </div>
@@ -1674,14 +1675,14 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                                 <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Potassium</span>
                                   <strong className="text-slate-900">
-                                    {formatNutrient(getNutritionNumber(recipe.nutrition.potassium), "mg")}
+                                    {formatNutrient(totals.potassium, "mg")}
                                   </strong>
                                 </div>
 
                                 <div className="nutrition-nutrient-line flex min-w-0 items-center justify-between gap-1">
                                   <span className="text-slate-500">Phosphorus</span>
                                   <strong className="text-slate-900">
-                                    {formatNutrient(getNutritionNumber(recipe.nutrition.phosphate), "mg")}
+                                    {formatNutrient(totals.phosphate, "mg")}
                                   </strong>
                                 </div>
 
@@ -2021,16 +2022,16 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
                       return (
                         <td key={day} className="px-2 py-4 text-center align-top">
                           <div className="mx-auto rounded-xl border border-slate-200 bg-slate-50 px-2 py-3 dark:border-slate-600 dark:bg-slate-700">
-                            <p className="text-lg font-extrabold text-slate-900 dark:text-white">{total.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml</p>
+                            <p className="text-lg font-extrabold text-slate-900 dark:text-white">{formatFluid(total)} ml</p>
                             <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-300">{day}</p>
-                            <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-300">Meals {meals.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml · Drinks {drinks.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml</p>
+                            <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-300">Meals {formatFluid(meals)} ml · Drinks {drinks.toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml</p>
                           </div>
                         </td>
                       );
                     })}
                     <td className="border-l-2 border-slate-200 bg-slate-50 px-2 py-4 text-center align-top dark:border-slate-600 dark:bg-slate-700">
                       <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-300">Weekly daily average</p>
-                      <p className="mt-2 text-xl font-extrabold text-slate-900 dark:text-white">{Math.round(weeklyFluidTotal / 7).toLocaleString("en-GB", { maximumFractionDigits: 0 })} ml/day</p>
+                      <p className="mt-2 text-xl font-extrabold text-slate-900 dark:text-white">{formatFluid(Math.round(weeklyFluidTotal / 7))} ml/day</p>
                     </td>
                   </tr>
                   {fluidAllowanceMl !== null && (
@@ -2212,7 +2213,7 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
             renal or healthcare team. Calculations follow the recorded source mappings,
             quantity conversions and approved estimation assumptions; they are not
             measured plate values. Clinical suitability, dietary guidance and qualitative
-            classifications remain pending qualified renal dietitian review.
+            classifications remain pending qualified renal dietitian review. A dash means nutrition is unavailable or incomplete, never zero. Affected daily and weekly totals cannot be assessed against your goals. These estimates do not establish personal dietary suitability.
           </p>
             </div>
           </div>

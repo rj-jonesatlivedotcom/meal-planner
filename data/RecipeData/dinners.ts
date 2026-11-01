@@ -2185,7 +2185,7 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,},
   // International recipes: nutrition and ingredient quantities are for one serving.
-  {
+      {
     "id": "chicken-biryani-with-fragrant-basmati-rice",
     "code": "D053",
     "category": "Dinner",
@@ -2318,7 +2318,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "967 kcal",
       "protein": "55.1 g",
-      "carbohydrates": "?",
+      "carbohydrates": "101.3 g",
       "fat": "36.9 g",
       "fibre": "6.3 g",
       "sodium": "509 mg",
@@ -2331,10 +2331,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D053/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -2458,7 +2456,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "944 kcal",
       "protein": "61.4 g",
-      "carbohydrates": "?",
+      "carbohydrates": "93.1 g",
       "fat": "35.6 g",
       "fibre": "17.1 g",
       "sodium": "560 mg",
@@ -2471,10 +2469,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D054/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -2608,7 +2604,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1172 kcal",
       "protein": "51.0 g",
-      "carbohydrates": "?",
+      "carbohydrates": "96.4 g",
       "fat": "63.5 g",
       "fibre": "6.4 g",
       "sodium": "614 mg",
@@ -2621,10 +2617,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D055/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -2762,7 +2756,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "846 kcal",
       "protein": "50.2 g",
-      "carbohydrates": "?",
+      "carbohydrates": "96.5 g",
       "fat": "27.8 g",
       "fibre": "4.6 g",
       "sodium": "605 mg",
@@ -2775,10 +2769,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D056/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -2887,7 +2879,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "966 kcal",
       "protein": "55.3 g",
-      "carbohydrates": "?",
+      "carbohydrates": "95.6 g",
       "fat": "39.3 g",
       "fibre": "8.8 g",
       "sodium": "649 mg",
@@ -2900,10 +2892,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D057/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -3022,7 +3012,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1043 kcal",
       "protein": "48.4 g",
-      "carbohydrates": "?",
+      "carbohydrates": "102.4 g",
       "fat": "47.4 g",
       "fibre": "4.8 g",
       "sodium": "557 mg",
@@ -3035,10 +3025,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D058/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -3167,7 +3155,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1012 kcal",
       "protein": "65.5 g",
-      "carbohydrates": "?",
+      "carbohydrates": "100.9 g",
       "fat": "37.4 g",
       "fibre": "5.1 g",
       "sodium": "568 mg",
@@ -3180,10 +3168,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D059/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -3302,7 +3288,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "988 kcal",
       "protein": "58.3 g",
-      "carbohydrates": "?",
+      "carbohydrates": "109.2 g",
       "fat": "34.3 g",
       "fibre": "10.0 g",
       "sodium": "639 mg",
@@ -3315,10 +3301,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D060/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -3447,7 +3431,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1080 kcal",
       "protein": "56.9 g",
-      "carbohydrates": "?",
+      "carbohydrates": "117.3 g",
       "fat": "41.8 g",
       "fibre": "9.3 g",
       "sodium": "564 mg",
@@ -3460,10 +3444,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D061/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -3592,7 +3574,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1058 kcal",
       "protein": "65.6 g",
-      "carbohydrates": "?",
+      "carbohydrates": "106.3 g",
       "fat": "40.1 g",
       "fibre": "9.6 g",
       "sodium": "1113 mg",
@@ -3605,10 +3587,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D062/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -3736,7 +3716,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1066 kcal",
       "protein": "61.6 g",
-      "carbohydrates": "?",
+      "carbohydrates": "105.1 g",
       "fat": "43.4 g",
       "fibre": "12.0 g",
       "sodium": "609 mg",
@@ -3749,10 +3729,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D063/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -3866,7 +3844,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1327 kcal",
       "protein": "60.7 g",
-      "carbohydrates": "?",
+      "carbohydrates": "83.0 g",
       "fat": "83.0 g",
       "fibre": "13.1 g",
       "sodium": "904 mg",
@@ -3879,10 +3857,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D064/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -4005,7 +3981,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "938 kcal",
       "protein": "52.0 g",
-      "carbohydrates": "?",
+      "carbohydrates": "91.5 g",
       "fat": "39.4 g",
       "fibre": "10.9 g",
       "sodium": "535 mg",
@@ -4018,10 +3994,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D065/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -4150,7 +4124,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1308 kcal",
       "protein": "64.8 g",
-      "carbohydrates": "182.3 g",
+      "carbohydrates": "168.9 g",
       "fat": "40.0 g",
       "fibre": "7.2 g",
       "sodium": "966 mg",
@@ -4164,7 +4138,7 @@ export const dinners: Recipe[] = [
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
     "nutritionIncomplete": [],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D066/summary.json.",
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -4273,7 +4247,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "926 kcal",
       "protein": "49.2 g",
-      "carbohydrates": "108.3 g",
+      "carbohydrates": "99.1 g",
       "fat": "35.9 g",
       "fibre": "4.1 g",
       "sodium": "1287 mg",
@@ -4287,7 +4261,7 @@ export const dinners: Recipe[] = [
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
     "nutritionIncomplete": [],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D067/summary.json.",
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -4391,7 +4365,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1158 kcal",
       "protein": "53.4 g",
-      "carbohydrates": "?",
+      "carbohydrates": "87.5 g",
       "fat": "65.1 g",
       "fibre": "6.4 g",
       "sodium": "1779 mg",
@@ -4404,10 +4378,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D068/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -4516,7 +4488,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1015 kcal",
       "protein": "53.3 g",
-      "carbohydrates": "?",
+      "carbohydrates": "121.4 g",
       "fat": "33.7 g",
       "fibre": "?",
       "sodium": "1218 mg",
@@ -4530,12 +4502,11 @@ export const dinners: Recipe[] = [
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
     "nutritionIncomplete": [
-      "carbohydrates",
       "fibre",
       "potassium",
       "phosphate"
     ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D069/summary.json.",
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -4639,7 +4610,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "915 kcal",
       "protein": "59.5 g",
-      "carbohydrates": "?",
+      "carbohydrates": "101.6 g",
       "fat": "29.0 g",
       "fibre": "4.5 g",
       "sodium": "1545 mg",
@@ -4652,10 +4623,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D070/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -4794,7 +4763,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "?",
       "protein": "?",
-      "carbohydrates": "?",
+      "carbohydrates": "108.2 g",
       "fat": "?",
       "fibre": "?",
       "sodium": "?",
@@ -4810,7 +4779,6 @@ export const dinners: Recipe[] = [
     "nutritionIncomplete": [
       "calories",
       "protein",
-      "carbohydrates",
       "fat",
       "fibre",
       "sodium",
@@ -4818,7 +4786,7 @@ export const dinners: Recipe[] = [
       "phosphate",
       "salt"
     ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D071/summary.json.",
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -4957,7 +4925,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1194 kcal",
       "protein": "47.5 g",
-      "carbohydrates": "?",
+      "carbohydrates": "118.9 g",
       "fat": "55.1 g",
       "fibre": "?",
       "sodium": "2072 mg",
@@ -4971,10 +4939,9 @@ export const dinners: Recipe[] = [
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
     "nutritionIncomplete": [
-      "carbohydrates",
       "fibre"
     ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D072/summary.json.",
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5093,7 +5060,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "?",
       "protein": "?",
-      "carbohydrates": "?",
+      "carbohydrates": "106.3 g",
       "fat": "?",
       "fibre": "?",
       "sodium": "?",
@@ -5109,7 +5076,6 @@ export const dinners: Recipe[] = [
     "nutritionIncomplete": [
       "calories",
       "protein",
-      "carbohydrates",
       "fat",
       "fibre",
       "sodium",
@@ -5117,7 +5083,7 @@ export const dinners: Recipe[] = [
       "phosphate",
       "salt"
     ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D073/summary.json.",
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5241,7 +5207,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1102 kcal",
       "protein": "73.5 g",
-      "carbohydrates": "?",
+      "carbohydrates": "74.4 g",
       "fat": "54.7 g",
       "fibre": "16.5 g",
       "sodium": "959 mg",
@@ -5254,10 +5220,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D074/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5370,7 +5334,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1177 kcal",
       "protein": "61.7 g",
-      "carbohydrates": "?",
+      "carbohydrates": "90.5 g",
       "fat": "62.6 g",
       "fibre": "12.3 g",
       "sodium": "1338 mg",
@@ -5383,10 +5347,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D075/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5515,7 +5477,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "979 kcal",
       "protein": "55.6 g",
-      "carbohydrates": "?",
+      "carbohydrates": "113.3 g",
       "fat": "32.4 g",
       "fibre": "8.5 g",
       "sodium": "626 mg",
@@ -5528,10 +5490,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D076/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5660,7 +5620,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1068 kcal",
       "protein": "57.5 g",
-      "carbohydrates": "?",
+      "carbohydrates": "118.2 g",
       "fat": "39.9 g",
       "fibre": "11.3 g",
       "sodium": "720 mg",
@@ -5673,10 +5633,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D077/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5795,7 +5753,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "969 kcal",
       "protein": "54.8 g",
-      "carbohydrates": "?",
+      "carbohydrates": "107.9 g",
       "fat": "34.4 g",
       "fibre": "7.7 g",
       "sodium": "626 mg",
@@ -5808,10 +5766,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D078/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5940,7 +5896,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1267 kcal",
       "protein": "83.9 g",
-      "carbohydrates": "?",
+      "carbohydrates": "102.4 g",
       "fat": "57.5 g",
       "fibre": "8.6 g",
       "sodium": "770 mg",
@@ -5953,10 +5909,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D079/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -6060,7 +6014,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1003 kcal",
       "protein": "56.0 g",
-      "carbohydrates": "?",
+      "carbohydrates": "112.0 g",
       "fat": "35.6 g",
       "fibre": "10.8 g",
       "sodium": "593 mg",
@@ -6073,10 +6027,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D080/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -6180,7 +6132,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1161 kcal",
       "protein": "67.1 g",
-      "carbohydrates": "?",
+      "carbohydrates": "62.5 g",
       "fat": "70.9 g",
       "fibre": "7.3 g",
       "sodium": "927 mg",
@@ -6193,10 +6145,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D081/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -6300,7 +6250,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1272 kcal",
       "protein": "57.5 g",
-      "carbohydrates": "?",
+      "carbohydrates": "101.2 g",
       "fat": "70.0 g",
       "fibre": "13.9 g",
       "sodium": "1092 mg",
@@ -6313,10 +6263,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "carbohydrates"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with nutrient-specific supplements and explicit unknowns. CoFID carbohydrate expressed as monosaccharides; alternatives not mixed into totals. See evidence/D082/summary.json.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,

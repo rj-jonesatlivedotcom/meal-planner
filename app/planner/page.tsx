@@ -1013,13 +1013,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     let chefRecipes: typeof recipes;
     try { chefRecipes = eligibleForMyChef(recipes, savedDiet?.foodAllergies); }
     catch { setMyChefNotice("MyChef couldn't check recipe ingredients. Your existing plan has been kept. Please retry."); return; }
-    // Unknown nutrients must never improve a candidate's daily score.
-    const planningFields = ["calories", "protein", "carbohydrates", "sodium", "potassium", "phosphate"] as const;
-    chefRecipes = chefRecipes.filter(recipe => planningFields.every(field =>
-      !recipe.nutritionIncomplete?.includes(field) &&
-      Number.isFinite(getNutritionNumber(recipe.nutrition[field] ?? ""))
-    ));
-    if (!chefRecipes.length) { setMyChefNotice("No recipes with complete planning nutrition remain after allergy checks. Your existing plan has been kept."); return; }
+    if (!chefRecipes.length) { setMyChefNotice("No eligible recipes remain after allergy checks. Your existing plan has been kept."); return; }
     const missing = ["B", "L", "D"].filter(prefix => !chefRecipes.some(recipe => recipe.code.startsWith(prefix)))
       .map(prefix => prefix === "B" ? "breakfast" : prefix === "L" ? "lunch" : "dinner");
     setMyChefNotice(missing.length ? `No eligible ${missing.join(" or ")} recipes remain after allergy checks. Those slots may remain empty; existing meals in them are kept. MyChef never relaxes allergy exclusions.` : null);
@@ -1064,6 +1058,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
       };
 
       const numeric = (recipe: Recipe, field: "calories" | "protein" | "carbohydrates" | "sodium" | "potassium" | "phosphate") => {
+        if (recipe.nutritionIncomplete?.includes(field)) return Number.NaN;
         if (field === "protein") return getNutritionNumber(recipe.protein);
         return getNutritionNumber(recipe.nutrition[field] ?? "");
       };
@@ -1144,46 +1139,40 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
 
         const dailyScore = (combo: DayCombo): number => {
           const comboRecipes = [combo.Breakfast, combo.Lunch, combo.Dinner];
-          const protein = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "protein"), 0);
-          const carbohydrates = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "carbohydrates"), 0);
-          const sodium = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "sodium"), 0);
-          const potassium = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "potassium"), 0);
-          const phosphate = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "phosphate"), 0);
-          const energy = comboRecipes.reduce((sum, recipe) => sum + numeric(recipe, "calories"), 0);
-
-          let score = 0;
-          const penalty = (amount: number, weight: number) => {
-            score += Math.max(0, amount) * weight;
+          // Track known contributions separately. Missing values are never zero.
+          const total = (field: Parameters<typeof numeric>[1]) => {
+            const values = comboRecipes.map(recipe => numeric(recipe, field));
+            const known = values.filter(value => Number.isFinite(value));
+            return { complete: known.length === values.length, knownSubtotal: known.length ? known.reduce((sum, value) => sum + value, 0) : null };
           };
-
-          // My Diet targets are daily totals. Hard upper limits carry the
-          // strongest penalty; mealFamily only influences variety.
-          if (requirements?.sodiumLimit != null) penalty(sodium - requirements.sodiumLimit, 100000);
-          if (requirements?.potassiumLimitMg != null) {
-            penalty(potassium - requirements.potassiumLimitMg, 100000);
-          } else if (requirements?.potassium && requirements.potassium !== "Any") {
-            comboRecipes.forEach((recipe) => {
-              if (!recipe.clinicalReviewPending) penalty((rank[recipe.potassium] ?? 1) - (rank[requirements.potassium] ?? 1), 50000);
-            });
-          }
-          if (requirements?.phosphateLimitMg != null) {
-            penalty(phosphate - requirements.phosphateLimitMg, 100000);
-          } else if (requirements?.phosphate && requirements.phosphate !== "Any") {
-            comboRecipes.forEach((recipe) => {
-              if (!recipe.clinicalReviewPending) penalty((rank[recipe.phosphate] ?? 1) - (rank[requirements.phosphate] ?? 1), 50000);
-            });
-          }
-          if (requirements?.purines && requirements.purines !== "Any") {
-            comboRecipes.forEach((recipe) => {
-              if (!recipe.clinicalReviewPending) penalty((rank[recipe.purines] ?? 1) - (rank[requirements.purines] ?? 1), 50000);
-            });
-          }
-          if (requirements?.proteinMinG != null) penalty(requirements.proteinMinG - protein, 2000);
-          if (requirements?.proteinMaxG != null) penalty(protein - requirements.proteinMaxG, 100000);
-          if (requirements?.carbohydrateMin != null) penalty(requirements.carbohydrateMin - carbohydrates, 500);
-          if (requirements?.carbohydrateMax != null) penalty(carbohydrates - requirements.carbohydrateMax, 100000);
-          if (requirements?.nutrientTargetSettings?.energyMinKcal != null) penalty(requirements.nutrientTargetSettings.energyMinKcal - energy, 500);
-          if (requirements?.nutrientTargetSettings?.energyMaxKcal != null) penalty(energy - requirements.nutrientTargetSettings.energyMaxKcal, 100000);
+          let score = 0;
+          const penalty = (amount: number, weight: number) => { score += Math.max(0, amount) * weight; };
+          const lowerPenalty = (amount: ReturnType<typeof total>, minimum: number | null | undefined, weight: number) => {
+            if (minimum != null && amount.complete && amount.knownSubtotal != null) penalty(minimum - amount.knownSubtotal, weight);
+          };
+          const upperPenalty = (amount: ReturnType<typeof total>, maximum: number | null | undefined, weight: number) => {
+            // A known subtotal over a maximum is already a conclusive exceedance.
+            if (maximum != null && amount.knownSubtotal != null) penalty(amount.knownSubtotal - maximum, weight);
+          };
+          const protein = total("protein"), carbohydrates = total("carbohydrates"), energy = total("calories");
+          upperPenalty(total("sodium"), requirements?.sodiumLimit, 100000);
+          if (requirements?.potassiumLimitMg != null) upperPenalty(total("potassium"), requirements.potassiumLimitMg, 100000);
+          else if (requirements?.potassium && requirements.potassium !== "Any") comboRecipes.forEach(recipe => {
+            if (!recipe.clinicalReviewPending) penalty((rank[recipe.potassium] ?? 1) - (rank[requirements.potassium] ?? 1), 50000);
+          });
+          if (requirements?.phosphateLimitMg != null) upperPenalty(total("phosphate"), requirements.phosphateLimitMg, 100000);
+          else if (requirements?.phosphate && requirements.phosphate !== "Any") comboRecipes.forEach(recipe => {
+            if (!recipe.clinicalReviewPending) penalty((rank[recipe.phosphate] ?? 1) - (rank[requirements.phosphate] ?? 1), 50000);
+          });
+          if (requirements?.purines && requirements.purines !== "Any") comboRecipes.forEach(recipe => {
+            if (!recipe.clinicalReviewPending) penalty((rank[recipe.purines] ?? 1) - (rank[requirements.purines] ?? 1), 50000);
+          });
+          lowerPenalty(protein, requirements?.proteinMinG, 2000);
+          upperPenalty(protein, requirements?.proteinMaxG, 100000);
+          lowerPenalty(carbohydrates, requirements?.carbohydrateMin, 500);
+          upperPenalty(carbohydrates, requirements?.carbohydrateMax, 100000);
+          lowerPenalty(energy, requirements?.nutrientTargetSettings?.energyMinKcal, 500);
+          upperPenalty(energy, requirements?.nutrientTargetSettings?.energyMaxKcal, 100000);
 
           const mealEntries: [string, Recipe][] = [
             ["Breakfast", combo.Breakfast],
@@ -1963,7 +1952,6 @@ function formatPotassiumMg(mg: number): string {
     return (
       <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/40 px-4 py-8">
       <PlannerAllergyWarnings planner={plannerMeals} />
-      <p className="mx-auto mb-3 max-w-6xl text-sm text-slate-600">Unknown or incomplete nutrition is shown as — and cannot confirm daily goals. MyChef excludes recipes with incomplete planning nutrition and keeps existing meals. Estimates and pending ratings do not establish personal dietary suitability.</p>
       {myChefNotice && <p role="status" className="mx-auto mb-4 max-w-6xl rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950">{myChefNotice}</p>}
         <div className="mx-auto max-w-6xl">
 
@@ -2227,7 +2215,6 @@ html[data-theme="dark"] main .planner-remove-button {
         }}
       >
       <PlannerAllergyWarnings planner={plannerMeals} />
-      <p className="mx-auto mb-3 max-w-6xl text-sm text-slate-600">Unknown or incomplete nutrition is shown as — and cannot confirm daily goals. MyChef excludes recipes with incomplete planning nutrition and keeps existing meals. Estimates and pending ratings do not establish personal dietary suitability.</p>
       {myChefNotice && <p role="status" className="mx-auto mb-4 max-w-6xl rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950">{myChefNotice}</p>}
 
       <div className="mx-auto max-w-7xl md:max-w-[1400px]">
@@ -3385,7 +3372,7 @@ html[data-theme="dark"] main .planner-remove-button {
                     <span className="text-lg" aria-hidden="true">✦</span>
                   </div>
                   <h2 id="mychef-title" className="mt-2 text-[1.7rem] font-extrabold leading-tight tracking-tight text-[#09233f] sm:text-3xl">Want MyChef to plan your week?</h2>
-                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">MyChef will plan your meals that fit your saved dietary requirements and create a personalised plan for your week.</p>
+                  <p className="mx-auto mt-2 max-w-sm text-sm font-medium leading-relaxed text-slate-700 sm:text-base">MyChef will choose meals for your week using your saved preferences.</p>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     <button

@@ -700,7 +700,7 @@ export default function RecipeDetailPage() {
             ["Potassium", recipe.nutrition.potassium], ["Phosphorus", recipe.nutrition.phosphate],
           ]} />
           <details className={styles.evidence}><summary>About this nutrition information</summary><p>{getNutritionEvidenceText(recipe, recipe.nutritionBasis)}</p></details>
-          {recipe.dietCategories?.length ? <details className={styles.evidence}><summary>About these diet categories</summary><p>Categories describe the listed ingredients and portions. Mediterranean-style and DASH-style describe meal patterns; keto and Atkins use carbohydrate and ingredient checks. Low FODMAP uses ingredient and portion guidance. Intermittent fasting marks an eating-window meal, not a fasting schedule. Compare the serving with your daily targets.</p></details> : null}
+          {recipe.dietCategories?.length ? <details className={styles.evidence}><summary>About these diet categories</summary><p>Categories describe the listed ingredients and portions. Mediterranean-style and DASH-style describe meal patterns; keto and Atkins use carbohydrate and ingredient checks. Low FODMAP uses ingredient and portion guidance. Vegetarian cheese dishes require a vegetarian-rennet product. Intermittent fasting marks an eating-window meal, not a fasting schedule. Mixed diet means no narrower category was established for this serving. Compare the serving with your daily targets.</p></details> : null}
         </section>
         <section className={styles.guidePanel} aria-labelledby="recipe-guide">
           <h2 id="recipe-guide"><RecipeIcon name="Potassium" />Dietary Guide</h2>

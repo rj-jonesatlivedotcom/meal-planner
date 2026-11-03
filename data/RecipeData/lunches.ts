@@ -49,7 +49,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-lettuce-sandwich",
     code: "L002", mealFamily: "sandwich",
@@ -98,7 +101,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "tuna-lettuce-sandwich",
     code: "L003", mealFamily: "sandwich",
@@ -146,7 +152,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-cucumber-sandwich",
     code: "L004", mealFamily: "sandwich",
@@ -195,7 +204,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-mayo-sandwich",
     code: "L005", mealFamily: "sandwich",
@@ -244,7 +256,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "chicken-red-pepper-sandwich",
     code: "L006", mealFamily: "sandwich",
@@ -293,7 +308,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "ham-lettuce-sandwich",
     code: "L007", mealFamily: "sandwich",
@@ -342,7 +360,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "chicken-cream-cheese-sandwich",
     code: "L008", mealFamily: "sandwich",
@@ -391,7 +412,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-lettuce-wrap",
     code: "L009", mealFamily: "wrap",
@@ -440,7 +464,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "tuna-mayo-wrap",
     code: "L010", mealFamily: "wrap",
@@ -489,7 +516,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-chive-wrap",
     code: "L011", mealFamily: "wrap",
@@ -540,7 +570,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "chicken-cucumber-wrap",
     code: "L012", mealFamily: "wrap",
@@ -589,7 +622,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-pepper-pasta",
     code: "L013", mealFamily: "hot-pasta",
@@ -642,7 +678,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "creamy-chicken-pasta",
     code: "L014", mealFamily: "hot-pasta",
@@ -695,7 +734,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "tuna-pepper-pasta",
     code: "L015", mealFamily: "hot-pasta",
@@ -745,7 +787,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-cream-cheese-pasta",
     code: "L016", mealFamily: "hot-pasta",
@@ -796,7 +841,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "chicken-onion-pasta",
     code: "L017", mealFamily: "hot-pasta",
@@ -849,7 +897,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-mushroom-pasta",
     code: "L018", mealFamily: "hot-pasta",
@@ -902,7 +953,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "tuna-cream-cheese-pasta",
     code: "L019", mealFamily: "hot-pasta",
@@ -953,7 +1007,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-fried-rice",
     code: "L020", mealFamily: "rice-bowl",
@@ -1008,7 +1065,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-pepper-rice-bowl",
     code: "L021", mealFamily: "rice-bowl",
@@ -1060,7 +1120,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "chicken-onion-rice-bowl",
     code: "L022", mealFamily: "rice-bowl",
@@ -1113,7 +1176,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "tuna-egg-rice-bowl",
     code: "L023", mealFamily: "rice-bowl",
@@ -1164,7 +1230,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-noodle-bowl",
     code: "L024", mealFamily: "noodle-bowl",
@@ -1216,7 +1285,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-jacket-potato",
     code: "L025", mealFamily: "jacket-potato",
@@ -1268,7 +1340,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D6, D4, D2 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten.",},
+    nutritionSourceNote: "Owner-approved source assumptions D6, D4, D2 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "tuna-jacket-potato",
     code: "L026", mealFamily: "jacket-potato",
@@ -1318,7 +1393,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten.",},
+    nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-mayo-jacket-potato",
     code: "L027", mealFamily: "jacket-potato",
@@ -1369,7 +1447,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten.",},
+    nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "chicken-potato-hash",
     code: "L028", mealFamily: "potato-hash",
@@ -1423,7 +1504,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-potato-hash",
     code: "L029", mealFamily: "potato-hash",
@@ -1476,7 +1560,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "tuna-potato-salad",
     code: "L030", mealFamily: "potato-salad",
@@ -1526,7 +1613,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-pepper-omelette",
     code: "L031", mealFamily: "omelette",
@@ -1579,7 +1669,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Atkins Phase 1",
+    dietCategories: ["Atkins Phase 1"]
+  },
   {
     id: "mushroom-chive-omelette",
     code: "L032", mealFamily: "omelette",
@@ -1631,7 +1724,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "egg-pepper-toast",
     code: "L033", mealFamily: "toast",
@@ -1681,7 +1777,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "chicken-pepper-toastie",
     code: "L034", mealFamily: "toastie",
@@ -1733,7 +1832,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "tuna-cucumber-toastie",
     code: "L035", mealFamily: "toastie",
@@ -1783,7 +1885,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-apple-sandwich",
     code: "L036", mealFamily: "sandwich",
@@ -1833,7 +1938,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-cucumber-sandwich",
     code: "L037", mealFamily: "sandwich",
@@ -1883,7 +1991,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "chicken-cream-cheese-wrap",
     code: "L038", mealFamily: "wrap",
@@ -1933,7 +2044,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "tuna-cream-cheese-wrap",
     code: "L039", mealFamily: "wrap",
@@ -1982,7 +2096,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-onion-pasta-salad",
     code: "L040", mealFamily: "pasta-salad",
@@ -2034,7 +2151,10 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 
   { id: "chicken-leek-couscous-bowl", code: "L041", mealFamily: "couscous-bowl", category: "Lunch", emoji: "🥗", image: "/images/recipes/L041.webp", name: "Chicken & Leek Couscous Bowl", description: "Fluffy couscous tossed with tender chicken, soft leek and sweet carrot, finished with lemon and parsley for a bright, savoury bowl.", cookingTime: "25 minutes", calories: "380 kcal", protein: "26.9 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
   "Prepare the couscous according to the packet instructions using unsalted water.",
@@ -2049,7 +2169,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "turkey-cucumber-pitta", code: "L042", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L042.webp", name: "Turkey & Cucumber Pitta", description: "Juicy turkey breast, crisp cucumber and iceberg lettuce tucked into a soft white pitta with creamy mayonnaise and a hint of parsley.", cookingTime: "12 minutes", calories: "437 kcal", protein: "30.7 g", equipment: "Knife, chopping board, frying pan", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (60 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (40 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (15 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
   "Cook the turkey in a non-stick frying pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
   "Slice the turkey and prepare the cucumber and lettuce.",
@@ -2062,7 +2185,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "tuna-sweetcorn-pasta-salad", code: "L043", mealFamily: "pasta-salad", category: "Lunch", emoji: "🍝", image: "/images/recipes/L043.webp", name: "Tuna & Sweetcorn Pasta Salad", description: "A colourful pasta salad with flaky tuna, sweetcorn and cucumber, brought together with a creamy mayonnaise dressing.", cookingTime: "20 minutes", calories: "463 kcal", protein: "29.4 g", equipment: "Saucepan, colander, bowl, knife", ingredients: [ { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "50 g" }, { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "90 g" }, { item: "Sweetcorn kernels, canned in water, drained", shoppingItem: "Sweetcorn kernels", quantity: "20 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (20 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" } ], method: [
   "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
   "Drain the pasta thoroughly and allow it to cool.",
@@ -2076,7 +2202,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "egg-leek-rice-bowl", code: "L044", mealFamily: "rice-bowl", category: "Lunch", emoji: "🍳", image: "/images/recipes/L021.webp", name: "Egg & Leek Rice Bowl", description: "Fluffy rice tossed with egg, gently softened leek and onion, finished with fresh chives for a comforting savoury bowl.", cookingTime: "25 minutes", calories: "488 kcal", protein: "18.0 g", equipment: "Saucepan, frying pan, colander, knife", ingredients: [ { item: "Rice, white, basmati, raw", shoppingItem: "White rice", quantity: "60 g (dry)" }, { item: "Eggs, chicken, whole, raw", shoppingItem: "Egg", quantity: "2" }, { item: "Leeks, raw", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Onions, raw", shoppingItem: "Onions", quantity: "½ onion (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
   "Cook the rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
   "Slice the leek and onion and cook gently in half the oil until soft. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
@@ -2090,7 +2219,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "chicken-carrot-noodle-salad", code: "L045", mealFamily: "noodle-salad", category: "Lunch", emoji: "🍜", image: "/images/recipes/L045.webp", name: "Chicken & Carrot Noodle Salad", description: "Rice noodles, tender chicken, carrot and cucumber are tossed with lemon, ginger and olive oil for a fresh, zesty noodle salad.", cookingTime: "20 minutes", calories: "436 kcal", protein: "25.7 g", equipment: "Saucepan, colander, frying pan, knife", ingredients: [ { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice rice noodles", quantity: "150 g (cooked)" }, { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" } ], method: [
   "Cook the rice rice noodles according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
   "Cook the chicken in a non-stick frying pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
@@ -2104,7 +2236,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "turkey-apple-couscous-salad", code: "L046", mealFamily: "couscous-salad", category: "Lunch", emoji: "🍎", image: "/images/recipes/L046.webp", name: "Turkey & Apple Couscous Salad", description: "Tender turkey and fluffy couscous meet crisp apple and cucumber, with lemon and parsley adding a fresh, herby lift.", cookingTime: "20 minutes", calories: "433 kcal", protein: "29.1 g", equipment: "Saucepan, frying pan, knife, bowl", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apples", quantity: "⅓ apple (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, fresh", shoppingItem: "Fresh parsley", quantity: "1 sprig" } ], method: [
   "Prepare the couscous according to the packet instructions using unsalted water.",
   "Cook the turkey in a non-stick pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
@@ -2118,7 +2253,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "cod-cucumber-pasta-salad", code: "L047", mealFamily: "pasta-salad", category: "Lunch", emoji: "🐟", image: "/images/recipes/L047.webp", name: "Cod & Cucumber Pasta Salad", description: "Flaky baked cod and pasta tossed with cucumber and lettuce, finished with lemon, parsley and olive oil for a bright, fresh salad.", cookingTime: "25 minutes", calories: "443 kcal", protein: "33.7 g", equipment: "Oven, baking tray, saucepan, colander, knife", ingredients: [ { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "120 g" }, { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "40 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "¼ cucumber (20 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
   "Heat the oven to 200°C (180°C fan) and bake the cod until cooked through. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent.",
   "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
@@ -2132,7 +2270,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "chicken-leek-toasted-pitta", code: "L048", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L048.webp", name: "Chicken & Leek Toasted Pitta", description: "Toasted white pitta filled with tender chicken, softened leek and creamy chive mayonnaise for a warm, savoury lunch.", cookingTime: "18 minutes", calories: "410 kcal", protein: "27.4 g", equipment: "Frying pan, knife, chopping board, toaster", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (50 g)" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
   "Slice the chicken and leek. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
   "Cook the chicken in a non-stick pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
@@ -2146,7 +2287,10 @@ export const lunches: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   // International recipes: nutrition and ingredient quantities are for one serving.
       {
     "id": "chicken-tikka-naan-style-flatbread",
@@ -2328,6 +2472,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "spiced-turkey-keema-stuffed-pitta",
@@ -2471,6 +2618,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mediterranean-style",
+    dietCategories: ["Mediterranean-style"]
   },
   {
     "id": "bombay-style-cauliflower-and-egg-rolls",
@@ -2620,6 +2770,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "coconut-chicken-hopper-style-bowl",
@@ -2798,6 +2951,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "chicken-shawarma-with-garlic-flatbread",
@@ -2980,6 +3136,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "lamb-kofta-with-herbed-bulgur",
@@ -3097,6 +3256,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "lemon-chicken-souvlaki-with-warm-pitta",
@@ -3219,6 +3381,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "chermoula-fish-with-couscous",
@@ -3336,6 +3501,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "spiced-egg-and-pepper-shakshuka-with-bread",
@@ -3448,6 +3616,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "pork-and-ginger-steamed-dumplings",
@@ -3581,6 +3752,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "chicken-katsu-with-rice-and-cabbage-slaw",
@@ -3734,6 +3908,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "bulgogi-style-beef-lettuce-cups",
@@ -3866,6 +4043,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "lemongrass-chicken-noodle-salad",
@@ -4007,6 +4187,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "banh-mi-inspired-chicken-baguette",
@@ -4147,6 +4330,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "chicken-satay-style-rice-noodle-salad",
@@ -4290,6 +4476,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "chicken-and-pepper-quesadillas",
@@ -4397,6 +4586,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "soft-fish-tacos-with-lime-slaw",
@@ -4519,6 +4711,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "jerk-chicken-flatbread",
@@ -4661,6 +4856,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "suya-spiced-chicken-skewers-with-flatbread",
@@ -4784,6 +4982,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "mildly-spiced-chicken-kelewele-inspired-bowl",
@@ -4906,6 +5107,9 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
 {
   "id": "white-bean-and-roasted-pepper-bruschetta",

@@ -79,7 +79,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mediterranean-style",
+    dietCategories: ["Mediterranean-style"]
+  },
 {
     id: "turkey-rosemary-rice",
     code: "D002", mealFamily: "rice-dish",
@@ -153,7 +156,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mediterranean-style",
+    dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"]
+  },
 {
     id: "pork-herb-rice",
     code: "D003", mealFamily: "rice-dish",
@@ -227,7 +233,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+  },
 {
     id: "lemon-cod-rice",
     code: "D004", mealFamily: "rice-dish",
@@ -307,7 +316,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mediterranean-style",
+    dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"]
+  },
 {
     id: "lemon-salmon-rice",
     code: "D005", mealFamily: "rice-dish",
@@ -382,7 +394,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+  },
 {
     id: "beef-paprika-rice",
     code: "D006", mealFamily: "rice-dish",
@@ -457,7 +472,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1064% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1064% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+  },
 {
     id: "egg-cheddar-pasta-cabbage",
     code: "D007", mealFamily: "hot-pasta",
@@ -532,7 +550,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 {
     id: "chicken-paprika-rice-peppers",
     code: "D008", mealFamily: "rice-dish",
@@ -608,7 +629,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1202% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1202% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mediterranean-style",
+    dietCategories: ["Mediterranean-style"]
+  },
 {
     id: "creamy-pork-pasta-cabbage",
     code: "D009", mealFamily: "hot-pasta",
@@ -683,7 +707,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+  },
 {
     id: "egg-cauliflower-rice",
     code: "D010", mealFamily: "rice-bowl",
@@ -758,7 +785,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+  },
   {
     id: "d011-creamy-chicken-mushroom-rice",
     code: "D011", mealFamily: "rice-dish",
@@ -806,7 +836,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2909% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2909% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "turkey-sweetcorn-pasta",
     code: "D012", mealFamily: "hot-pasta",
@@ -864,7 +897,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3329% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3329% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 
   {
     id: "lemon-cod-pasta-peppers",
@@ -922,7 +958,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3551% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3551% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 
   {
     id: "chicken-sweetcorn-rice-bowl",
@@ -980,7 +1019,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2949% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2949% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 
   {
     id: "turkey-rice-roasted-peppers",
@@ -1039,7 +1081,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3039% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3039% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 
   {
     id: "pork-apple-rice-bowl",
@@ -1098,7 +1143,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2757% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2757% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 
   {
     id: "creamy-chicken-cabbage-pasta",
@@ -1156,7 +1204,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3533% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3533% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 
   {
     id: "cod-sweetcorn-rice",
@@ -1214,7 +1265,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2950% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2950% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 
   {
     id: "egg-vegetable-pasta",
@@ -1273,7 +1327,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3348% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3348% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 
   {
     id: "chicken-apple-couscous-style-rice",
@@ -1332,7 +1389,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2759% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2759% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "chicken-herb-sweetcorn-rice", code: "D021", mealFamily: "rice-dish", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.png",
     name: "Chicken, Herb & Sweetcorn Rice", description: "Tender chicken with fluffy basmati rice, sweetcorn and herbs.", cookingTime: "30 minutes", calories: "519 kcal", protein: "33.9 g", equipment: "Large saucepan, frying pan, wooden spoon, knife, chopping board",
@@ -1357,7 +1417,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2629% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2629% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "beef-pepper-pasta", code: "D022", mealFamily: "hot-pasta", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
     name: "Beef & Pepper Pasta", description: "Lean beef mince with pasta, peppers and onion in a light herb sauce.", cookingTime: "25 minutes", calories: "519 kcal", protein: "37.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
@@ -1382,7 +1445,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.4097% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.4097% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "herb-cod-potatoes-cabbage", code: "D023", mealFamily: "potato-dish", category: "Dinner", emoji: "🐟", image: "/images/recipes/D023.png",
     name: "Herb Cod with Potatoes & Cabbage", description: "Baked cod served with boiled potatoes and tender cabbage with lemon and herbs.", cookingTime: "35 minutes", calories: "449 kcal", protein: "30.7 g", equipment: "Baking tray, saucepan, steamer or second saucepan, knife, chopping board, Oven",
@@ -1409,7 +1475,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.4086% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.4086% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "creamy-cheese-egg-pasta", code: "D024", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
     name: "Creamy Cheese & Egg Pasta", description: "Pasta coated in a creamy egg and Cheddar sauce with onion and herbs.", cookingTime: "20 minutes", calories: "589 kcal", protein: "27.7 g", equipment: "Large saucepan, frying pan, mixing bowl, colander, wooden spoon",
@@ -1434,7 +1503,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2910% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2910% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "pork-apple-cabbage", code: "D025", mealFamily: "meat-and-vegetable-dish", category: "Dinner", emoji: "🍖", image: "/images/recipes/D025.png",
     name: "Pork, Apple & Cabbage", description: "Grilled pork with warm apple and tender cabbage, finished with herbs.", cookingTime: "30 minutes", calories: "396 kcal", protein: "36.9 g", equipment: "Grill pan, saucepan, frying pan, knife, chopping board",
@@ -1459,7 +1531,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.077300 g per serving, 0.4381% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.077300 g per serving, 0.4381% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "creamy-chicken-pepper-pasta", code: "D026", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
     name: "Creamy Chicken & Pepper Pasta", description: "Chicken and peppers folded through pasta with a light creamy sauce.", cookingTime: "25 minutes", calories: "562 kcal", protein: "36.3 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
@@ -1484,7 +1559,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3143% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3143% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "cod-sweetcorn-herb-pasta", code: "D027", mealFamily: "hot-pasta", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
     name: "Cod, Sweetcorn & Herb Pasta", description: "Flaked cod with pasta and sweetcorn in a fresh lemon and herb dressing.", cookingTime: "25 minutes", calories: "483 kcal", protein: "34.9 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife",
@@ -1509,7 +1587,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3052% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3052% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-cabbage-sweetcorn-rice", code: "D028", mealFamily: "rice-dish", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
     name: "Egg, Cabbage & Sweetcorn Rice", description: "Fluffy rice stir-fried with egg, cabbage, sweetcorn and onion.", cookingTime: "25 minutes", calories: "567 kcal", protein: "23.7 g", equipment: "Saucepan, large frying pan, wooden spoon, knife, chopping board",
@@ -1534,7 +1615,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2491% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2491% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "pork-pepper-pasta", code: "D029", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
     name: "Pork & Pepper Pasta", description: "Tender pork with pasta, green pepper and onion in a light herb dressing.", cookingTime: "25 minutes", calories: "510 kcal", protein: "42.9 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
@@ -1559,7 +1643,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3192% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3192% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "d030-pork-apple-cabbage-skillet",
     code: "D030", mealFamily: "skillet",
@@ -1606,7 +1693,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3269% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3269% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "lemon-chicken-herb-pasta",
     code: "D031", mealFamily: "hot-pasta",
@@ -1654,7 +1744,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2999% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2999% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "cod-pepper-lemon-rice",
     code: "D032", mealFamily: "rice-dish",
@@ -1703,7 +1796,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2711% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2711% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "beef-cabbage-rice",
     code: "D033", mealFamily: "rice-dish",
@@ -1750,7 +1846,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2602% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2602% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "cheesy-egg-vegetable-rice",
     code: "D034", mealFamily: "rice-dish",
@@ -1798,7 +1897,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2609% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2609% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"]
+  },
   {
     id: "chicken-cabbage-herb-rice",
     code: "D035", mealFamily: "rice-dish",
@@ -1845,7 +1947,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2600% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2600% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "cod-cabbage-pasta",
     code: "D036", mealFamily: "hot-pasta",
@@ -1893,7 +1998,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2904% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2904% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "pepper-beef-rice",
     code: "D037", mealFamily: "rice-dish",
@@ -1940,7 +2048,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.3529% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.3529% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "pork-apple-herb-pasta",
     code: "D038", mealFamily: "hot-pasta",
@@ -1987,7 +2098,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2851% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2851% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   {
     id: "egg-cauliflower-herb-pasta",
     code: "D039", mealFamily: "hot-pasta",
@@ -2035,7 +2149,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2898% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2898% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
   {
     id: "d040-cod-sweetcorn-potato-bake",
     code: "D040", mealFamily: "potato-bake",
@@ -2085,7 +2202,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.193250 g per serving, 0.4360% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.193250 g per serving, 0.4360% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 
   { id: "chicken-leek-couscous-lemon", code: "D041", mealFamily: "couscous-dish", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.png", name: "Chicken & Leek Couscous with Lemon", description: "Tender chicken with fluffy couscous, softened leek and carrot, finished with fresh lemon and parsley.", cookingTime: "30 minutes", calories: "371 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
@@ -2108,7 +2228,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "turkey-meatballs-herb-rice", code: "D042", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Herb-seasoned turkey meatballs served with basmati rice, tender cabbage and onion.", cookingTime: "30 minutes", calories: "504 kcal", protein: "20.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Turkey, meat, average, raw", shoppingItem: "Turkey mince (lean)", quantity: "60 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "70 g" },
@@ -2129,7 +2252,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "cod-herby-noodles-cucumber", code: "D043", mealFamily: "noodles", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Baked cod with plain noodles, tender cabbage and cucumber, finished with lemon, parsley and olive oil.", cookingTime: "30 minutes", calories: "377 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "50 g" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
@@ -2151,7 +2277,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mediterranean-style",
+    dietCategories: ["Mediterranean-style"]
+  },
   { id: "pork-apple-leek-rice", code: "D044", mealFamily: "meat-and-vegetable-dish", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Lean pork medallions with basmati rice, softened leek and warm apple finished with thyme.", cookingTime: "30 minutes", calories: "421 kcal", protein: "14.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "50 g" },
@@ -2172,7 +2301,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "chicken-carrot-noodle-stir-fry", code: "D045", mealFamily: "noodle-stir-fry", category: "Dinner", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "386 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
@@ -2192,7 +2324,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "beef-meatballs-couscous-peppers", code: "D046", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Lean beef meatballs with couscous, softened green pepper and onion, gently seasoned with paprika.", cookingTime: "30 minutes", calories: "416 kcal", protein: "18.5 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Beef, mince, raw, extra lean", shoppingItem: "Beef mince (5% fat)", quantity: "60 g" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "40 g" },
@@ -2214,7 +2349,10 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.2795% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.2795% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "haddock-lemon-rice-leeks", code: "D047", mealFamily: "rice-dish", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.png", name: "Haddock with Lemon Rice & Leeks", description: "Baked haddock with lemon basmati rice, softened leek and boiled carrot.", cookingTime: "30 minutes", calories: "445 kcal", protein: "15.9 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Haddock, flesh only, raw", shoppingItem: "Haddock fillet", quantity: "60 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
@@ -2235,7 +2373,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "chicken-pear-rice-bowl", code: "D048", mealFamily: "rice-bowl", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken and basmati rice with warm pear and tender cabbage, finished with rosemary.", cookingTime: "30 minutes", calories: "467 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
@@ -2256,7 +2397,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mediterranean-style",
+    dietCategories: ["Mediterranean-style"]
+  },
   { id: "pork-carrot-couscous-skillet", code: "D049", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Lean pork with couscous, boiled carrot and softened leek, finished with thyme.", cookingTime: "30 minutes", calories: "383 kcal", protein: "15.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "40 g" },
@@ -2277,7 +2421,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "cod-leek-pasta-bake", code: "D050", mealFamily: "pasta-bake", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Flaked cod and white pasta baked with softened leek and cabbage, finished with parsley and olive oil.", cookingTime: "30 minutes", calories: "374 kcal", protein: "16.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking dish", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "45 g" },
       { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "40 g" },
@@ -2299,7 +2446,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "turkey-apple-noodle-bowl", code: "D051", mealFamily: "noodle-bowl", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey and plain noodles with apple and cucumber, finished with ginger and olive oil.", cookingTime: "30 minutes", calories: "387 kcal", protein: "15.6 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "50 g (raw)" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
@@ -2319,7 +2469,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   { id: "chicken-herb-meatballs-rice", code: "D052", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken herb meatballs with basmati rice, tender cabbage and carrot, finished with parsley.", cookingTime: "30 minutes", calories: "459 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
@@ -2340,7 +2493,10 @@ export const dinners: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
   // International recipes: nutrition and ingredient quantities are for one serving.
       {
     "id": "chicken-biryani-with-fragrant-basmati-rice",
@@ -2495,6 +2651,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "chicken-jalfrezi-with-chapati",
@@ -2633,6 +2792,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "lamb-rogan-josh-with-rice",
@@ -2781,6 +2943,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "tandoori-style-fish-with-lemon-pilau",
@@ -2933,6 +3098,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "chicken-karahi-with-homemade-flatbread",
@@ -3056,6 +3224,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "coconut-fish-curry-with-rice",
@@ -3188,6 +3359,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "chicken-shish-tawook-with-vermicelli-rice",
@@ -3331,6 +3505,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "homemade-chicken-pide",
@@ -3465,6 +3642,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "saffron-chicken-with-jewelled-rice",
@@ -3608,6 +3788,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "chicken-gyros-platter",
@@ -3751,6 +3934,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "chicken-and-apricot-tagine",
@@ -3893,6 +4079,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "spiced-lamb-and-vegetable-pastilla",
@@ -4021,6 +4210,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "harissa-style-baked-fish-with-couscous",
@@ -4158,6 +4350,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mediterranean-style",
+    dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "sweet-and-sour-chicken-with-rice",
@@ -4301,6 +4496,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "ginger-and-spring-onion-steamed-fish",
@@ -4424,6 +4622,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "crispy-pork-with-garlic-noodles",
@@ -4542,6 +4743,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "chicken-teriyaki-style-rice-bowl",
@@ -4669,6 +4873,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "thai-basil-chicken-with-jasmine-rice",
@@ -4787,6 +4994,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "red-curry-style-chicken-with-rice",
@@ -4950,6 +5160,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "lemongrass-pork-with-rice-noodles",
@@ -5106,6 +5319,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "chicken-laksa-inspired-noodle-bowl",
@@ -5249,6 +5465,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "chicken-enchiladas-with-homemade-sauce",
@@ -5387,6 +5606,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "beef-fajita-platter-with-tortillas",
@@ -5514,6 +5736,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "caribbean-chicken-curry-with-rice",
@@ -5657,6 +5882,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "jollof-style-rice-with-grilled-chicken",
@@ -5801,6 +6029,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "light-chicken-stew-with-seasoned-rice",
@@ -5935,6 +6166,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "homemade-chicken-and-spinach-cannelloni",
@@ -6078,6 +6312,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "chicken-and-pepper-paella",
@@ -6196,6 +6433,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
   {
     "id": "chicken-and-mushroom-puff-pastry-pie",
@@ -6315,6 +6555,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
   },
   {
     "id": "paprika-pork-goulash-with-buttered-noodles",
@@ -6433,6 +6676,9 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
+  ,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
 {
   "id": "roasted-pepper-and-white-bean-lasagne",

@@ -52,7 +52,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "apple-honey-porridge",
     code: "B002",
@@ -104,7 +107,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-tomato-onion-toast",
     code: "B003",
@@ -158,7 +164,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-white-chive-toast",
     code: "B004",
@@ -209,7 +218,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-pepper-onion-toast",
     code: "B005",
@@ -263,7 +275,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "cinnamon-french-toast-with-jam",
     code: "B006",
@@ -317,7 +332,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.2825% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D1 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.2825% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D1 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-tomato-onion-buttered-toast",
     code: "B007",
@@ -370,7 +388,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "jam-butter-breakfast-toast",
     code: "B008",
@@ -418,7 +439,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "savoury-oats-egg-tomato-pepper",
     code: "B009",
@@ -473,7 +497,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "apple-honey-french-toast",
     code: "B010",
@@ -528,7 +555,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "blueberry-apple-toast",
     code: "B011",
@@ -580,7 +610,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "cinnamon-apple-toast",
     code: "B012",
@@ -633,7 +666,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.2510% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.2510% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "strawberry-cream-cheese-toast",
     code: "B013",
@@ -684,7 +720,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-pepper-breakfast-wrap",
     code: "B014",
@@ -739,7 +778,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "apple-cinnamon-pancakes",
     code: "B015",
@@ -796,7 +838,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.2199% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.2199% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "blueberry-yoghurt-toast",
     code: "B016",
@@ -848,7 +893,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D3 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D3 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-chive-muffin",
     code: "B017",
@@ -903,7 +951,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "strawberry-maple-pancakes",
     code: "B018",
@@ -957,7 +1008,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "apple-cream-cheese-bagel",
     code: "B019",
@@ -1008,7 +1062,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D7, D2 are documented in the 16 October 2026 reconciliation workbook. Bagel potassium and phosphorus only use the approved US-product proxy USDA SR Legacy FDC 174899; the other five nutrients retain CoFID 11-970.",},
+    nutritionSourceNote: "Owner-approved source assumptions D7, D2 are documented in the 16 October 2026 reconciliation workbook. Bagel potassium and phosphorus only use the approved US-product proxy USDA SR Legacy FDC 174899; the other five nutrients retain CoFID 11-970.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-apple-breakfast-wrap",
     code: "B020",
@@ -1064,7 +1121,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.3418% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.3418% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "scrambled-egg-mushroom-toast",
     code: "B021",
@@ -1116,7 +1176,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "cornflakes-toast-jam",
     code: "B022",
@@ -1168,7 +1231,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D1 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D1 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-onion-pepper-wrap",
     code: "B023",
@@ -1220,7 +1286,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "boiled-egg-soldiers",
     code: "B024",
@@ -1269,7 +1338,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "blueberry-cream-cheese-toast",
     code: "B025",
@@ -1320,7 +1392,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "mushroom-egg-muffin",
     code: "B026",
@@ -1373,7 +1448,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "strawberry-apple-french-toast",
     code: "B027",
@@ -1428,7 +1506,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "apple-yoghurt-toast",
     code: "B028",
@@ -1480,7 +1561,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D3 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D3 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-tomato-muffin",
     code: "B029",
@@ -1533,7 +1617,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "blueberry-apple-pancakes",
     code: "B030",
@@ -1588,7 +1675,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "danish-bacon-egg-muffin",
     code: "B031",
@@ -1639,7 +1729,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 {
     id: "jam-pancakes",
     code: "B032",
@@ -1692,7 +1785,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D1 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D1 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-tomato-pepper-toast",
     code: "B033",
@@ -1745,7 +1841,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "strawberry-apple-pancakes",
     code: "B034",
@@ -1800,7 +1899,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "boiled-egg-chive-cream-cheese-toast",
     code: "B035",
@@ -1852,7 +1954,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "danish-bacon-tomato-toast",
     code: "B036",
@@ -1904,7 +2009,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Mixed diet",
+    dietCategories: ["Mixed diet"]
+  },
 {
     id: "egg-pepper-muffin",
     code: "B037",
@@ -1956,7 +2064,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-white-herb-muffin",
     code: "B038",
@@ -2007,7 +2118,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "egg-tomato-onion-wrap",
     code: "B039",
@@ -2062,7 +2176,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",},
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "apple-blueberry-french-toast",
     code: "B040",
@@ -2118,7 +2235,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: true,},
+    quantityConversionsEstimated: true,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "three-egg-plain-omelette",
     code: "B041",
@@ -2167,7 +2287,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Keto",
+    dietCategories: ["Vegetarian","Keto","Atkins Phase 1","Low FODMAP"]
+  },
 {
     id: "three-egg-cheese-omelette",
     code: "B042",
@@ -2217,7 +2340,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Keto",
+    dietCategories: ["Vegetarian","Keto","Atkins Phase 1","Low FODMAP"]
+  },
 {
     id: "three-egg-mushroom-omelette",
     code: "B043",
@@ -2267,7 +2393,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Keto",
+    dietCategories: ["Vegetarian","Keto","Atkins Phase 1"]
+  },
 {
     id: "three-egg-ham-omelette",
     code: "B044",
@@ -2317,7 +2446,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Keto",
+    dietCategories: ["Keto","Atkins Phase 1"]
+  },
 {
     id: "mixed-berry-overnight-oats",
     code: "B045",
@@ -2368,7 +2500,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "apple-cinnamon-overnight-oats",
     code: "B046",
@@ -2419,7 +2554,10 @@ export const breakfasts: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.054980 g per serving, 0.1251% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",},
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.054980 g per serving, 0.1251% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "peanut-butter-greek-yoghurt-overnight-oats",
     code: "B047",
@@ -2470,7 +2608,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "blueberry-cottage-cheese-overnight-oats",
     code: "B048",
@@ -2521,7 +2662,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "cornflakes-and-milk",
     code: "B049",
@@ -2567,7 +2711,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
     id: "weetabix-and-milk",
     code: "B050",
@@ -2613,7 +2760,10 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,},
+    quantityConversionsEstimated: false,
+    primaryDietCategory: "Vegetarian",
+    dietCategories: ["Vegetarian"]
+  },
 {
   "id": "warm-blueberry-and-walnut-rice-porridge",
   "code": "B051",

@@ -3,7 +3,7 @@ import type { Recipe } from "@/data/RecipeData";
 export const DIET_TYPES = [
   "All", "Keto", "Atkins Phase 1", "Carnivore", "Mediterranean-style",
   "Low FODMAP", "Vegan", "Vegetarian", "DASH-style",
-  "Intermittent fasting — eating-window meal", "Not categorised",
+  "Intermittent fasting — eating-window meal", "Mixed diet",
 ] as const;
 
 export function matchesDietFilter(recipe: Pick<Recipe, "dietCategories">, selected: string): boolean {
@@ -24,6 +24,7 @@ export function matchesDietSearch(recipe: Pick<Recipe, "dietCategories">, query:
     [/\bfodmap\b/i, "Low FODMAP"], [/\bvegan\b/i, "Vegan"],
     [/\bvegetarian\b/i, "Vegetarian"], [/\bdash\b/i, "DASH-style"],
     [/\bintermittent\s+fasting\b/i, "Intermittent fasting — eating-window meal"],
+    [/\bmixed\s+diet\b/i, "Mixed diet"],
   ];
   return constraints.every(([pattern, category]) => !pattern.test(query) || matchesDietFilter(recipe, category));
 }

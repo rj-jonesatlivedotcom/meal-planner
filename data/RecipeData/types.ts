@@ -25,6 +25,10 @@ export type Recipe = {
   code: string;
   category: string;
   cuisine?: string;
+  primaryDietCategory?: string;
+  dietCategories?: string[];
+  /** Preserve audited weighed inputs when producing shopping requirements. */
+  shoppingByWeight?: boolean;
   mealFamily: string;emoji: string;
   image: string;
   name: string;
@@ -41,7 +45,7 @@ export type Recipe = {
   purines: DietaryRating;
   dietaryNote?: string;
   /** Status of the current CoFID ingredient-input calculation. */
-  nutritionBasis?: "CoFID ingredient-input estimate";
+  nutritionBasis?: "CoFID ingredient-input estimate" | "CoFID/USDA ingredient-input estimate";
   nutritionIncomplete?: NutritionField[];
   /** Nutrients supplemented from an explicitly cited secondary source, when applicable. */
   nutritionSourceNote?: string;

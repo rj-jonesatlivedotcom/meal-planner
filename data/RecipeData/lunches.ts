@@ -4837,5 +4837,5446 @@ export const lunches: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
-  }
+  },
+{
+  "id": "white-bean-and-roasted-pepper-bruschetta",
+  "code": "L069",
+  "category": "Lunch",
+  "cuisine": "Italy",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L069.webp",
+  "name": "White-bean and roasted pepper bruschetta",
+  "description": "Toasted bread topped with creamy white beans, roasted peppers and a walnut and parsley dressing.",
+  "cookingTime": "25 mins",
+  "calories": "554 kcal",
+  "protein": "15.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "90 g (cooked drained edible weight)"
+    },
+    {
+      "item": "White crusty bloomer bread, egg- and dairy-free",
+      "shoppingItem": "White crusty bloomer bread, egg- and dairy-free",
+      "quantity": "55 g (as sold edible weight)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "1.3 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Grill the deseeded pepper for 10–12 minutes until tender. Chop it, retaining its juices. Use navy beans previously boiled without salt and drained; weigh the cooked beans.",
+    "Mash half the beans with half the oil, the crushed garlic and half the lemon juice. Stir in the remaining beans and roasted pepper.",
+    "Toast the bread. Spoon over the beans. Chop the walnuts and parsley, mix with the remaining oil and lemon juice and black pepper, and spoon over the toast. Serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "554 kcal",
+    "protein": "15.5 g",
+    "carbohydrates": "44.1 g",
+    "fat": "30.9 g",
+    "fibre": "13.7 g",
+    "sodium": "223 mg",
+    "potassium": "694 mg",
+    "phosphate": "257 mg",
+    "salt": "0.56 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian"
+  ]
+},
+{
+  "id": "courgette-and-ricotta-bake-with-garlic-toast",
+  "code": "L070",
+  "category": "Lunch",
+  "cuisine": "Italy",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L070.webp",
+  "name": "Courgette and ricotta bake with garlic toast",
+  "description": "A small courgette and ricotta bake with crunchy walnuts and garlic toast.",
+  "cookingTime": "30 mins",
+  "calories": "532 kcal",
+  "protein": "22.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Courgette",
+      "shoppingItem": "Courgette",
+      "quantity": "90 g (raw edible input)"
+    },
+    {
+      "item": "Vegetarian-rennet ricotta",
+      "shoppingItem": "Vegetarian-rennet ricotta",
+      "quantity": "65 g (as sold)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "75 g (raw edible input)"
+    },
+    {
+      "item": "White crusty bloomer bread, egg- and dairy-free",
+      "shoppingItem": "White crusty bloomer bread, egg- and dairy-free",
+      "quantity": "45 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Finely grate the courgette, retaining its juice. Mix with the ricotta, egg white, torn basil, black pepper and one third of the oil.",
+    "Spoon into a small baking dish and scatter over the chopped walnuts. Bake for 18–22 minutes until completely set and steaming hot in the centre.",
+    "Brush the bread with another third of the oil and rub with the garlic. Toast under the grill for 2–3 minutes. Mix any remaining garlic with the lemon juice and remaining oil and spoon over the bake. Serve the whole bake and toast.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "532 kcal",
+    "protein": "22.2 g",
+    "carbohydrates": "26.2 g",
+    "fat": "37.4 g",
+    "fibre": "3.0 g",
+    "sodium": "385 mg",
+    "potassium": "672 mg",
+    "phosphate": "261 mg",
+    "salt": "0.96 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "basil-and-walnut-pasta-salad-with-ricotta",
+  "code": "L071",
+  "category": "Lunch",
+  "cuisine": "Italy",
+  "mealFamily": "pasta",
+  "emoji": "🥗",
+  "image": "/images/recipes/L071.webp",
+  "name": "Basil and walnut pasta salad with ricotta",
+  "description": "Pasta with soft ricotta, sweet peppers and a fresh basil and walnut dressing.",
+  "cookingTime": "25 mins",
+  "calories": "526 kcal",
+  "protein": "14.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Egg-free plain dried white wheat pasta",
+      "shoppingItem": "Egg-free plain dried white wheat pasta",
+      "quantity": "45 g (dry)"
+    },
+    {
+      "item": "Vegetarian-rennet ricotta",
+      "shoppingItem": "Vegetarian-rennet ricotta",
+      "quantity": "50 g (as sold)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "20 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "75 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "1.3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the dry pasta shapes in a separate pan of unsalted water according to the packet until tender. Drain. No nutrient reduction from draining has been assumed.",
+    "Finely chop the walnuts, basil and garlic. Mix with the oil, lemon juice and pepper. Dice the cucumber and pepper.",
+    "Toss all the pasta and vegetables with the dressing. Fold in the ricotta and serve the whole bowl.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "526 kcal",
+    "protein": "14.3 g",
+    "carbohydrates": "36.5 g",
+    "fat": "35.5 g",
+    "fibre": "4.7 g",
+    "sodium": "57 mg",
+    "potassium": "530 mg",
+    "phosphate": "277 mg",
+    "salt": "0.14 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "white-bean-and-cumin-patties-with-lemon-slaw",
+  "code": "L072",
+  "category": "Lunch",
+  "cuisine": "North Africa",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L072.webp",
+  "name": "White-bean and cumin patties with lemon slaw",
+  "description": "Golden white-bean patties with cumin and coriander, served with creamy lemon slaw.",
+  "cookingTime": "30 mins",
+  "calories": "545 kcal",
+  "protein": "12.4 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "25 g (dry)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "90 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "15 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "1.3 g (dry)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Use navy beans previously boiled without salt and drained. Mash them, then mix with the flour, very finely chopped onion, cumin, chopped coriander and pepper. Form three thin patties.",
+    "Heat the oil in a non-stick pan. Cook the patties over medium heat for 4–5 minutes per side until firm and steaming hot throughout, using all the oil across the batches.",
+    "Shred the cabbage and carrot. Mix the mayonnaise and lemon juice, toss with the vegetables and serve the whole slaw with all three patties."
+  ],
+  "nutrition": {
+    "calories": "545 kcal",
+    "protein": "12.4 g",
+    "carbohydrates": "42.5 g",
+    "fat": "31.7 g",
+    "fibre": "15.9 g",
+    "sodium": "38 mg",
+    "potassium": "777 mg",
+    "phosphate": "215 mg",
+    "salt": "0.09 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "chickpea-and-carrot-flatbread-with-walnut-dressing",
+  "code": "L073",
+  "category": "Lunch",
+  "cuisine": "Morocco",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L073.webp",
+  "name": "Chickpea and carrot flatbread with walnut dressing",
+  "description": "A warm chickpea and carrot flatbread with crunchy cabbage and lemony walnut dressing.",
+  "cookingTime": "30 mins",
+  "calories": "537 kcal",
+  "protein": "14.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Chickpeas, boiled without salt and drained",
+      "shoppingItem": "Chickpeas, boiled without salt and drained",
+      "quantity": "90 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "30 g (dry)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "25 g (weighed grams)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "1.3 g (dry)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix the flour with the measured water to make a dough. Knead briefly, cover and rest for 10 minutes. Roll between non-stick sheets without extra flour.",
+    "Finely dice the carrot. Cook it in one third of the oil in a covered non-stick pan for 8–10 minutes over low heat. Stir in the cumin and cooked, drained chickpeas, cover and heat through.",
+    "Dry-cook the flatbread in a separate hot pan for 2–3 minutes per side until cooked throughout. Finely shred the cabbage and chop the walnuts and parsley.",
+    "Mix the remaining oil and lemon juice with the walnuts, parsley and pepper. Serve all the chickpeas, carrot and cabbage on the whole flatbread with all the dressing."
+  ],
+  "nutrition": {
+    "calories": "537 kcal",
+    "protein": "14.0 g",
+    "carbohydrates": "45.4 g",
+    "fat": "33.0 g",
+    "fibre": "16.1 g",
+    "sodium": "26 mg",
+    "potassium": "701 mg",
+    "phosphate": "255 mg",
+    "salt": "0.06 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "egg-and-mustard-pasta-salad",
+  "code": "L074",
+  "category": "Lunch",
+  "cuisine": "Britain",
+  "mealFamily": "pasta",
+  "emoji": "🥗",
+  "image": "/images/recipes/L074.webp",
+  "name": "Egg and mustard pasta salad",
+  "description": "A creamy egg and pasta salad with cucumber, peppers, chives and mustard.",
+  "cookingTime": "25 mins",
+  "calories": "483 kcal",
+  "protein": "19.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Egg-free plain dried white wheat pasta",
+      "shoppingItem": "Egg-free plain dried white wheat pasta",
+      "quantity": "40 g (dry)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "25 g (as sold)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "6 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "75 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Mustard seeds",
+      "shoppingItem": "Mustard seeds",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Boil the whole egg for 10 minutes, cool, peel and chop. The listed egg weight excludes the shell. Cook the pasta in a separate pan of unsalted water according to the packet and drain.",
+    "Brush a small non-stick pan with half the oil. Pour in the weighed egg white and cook as a thin pancake for 2–3 minutes per side until fully set. Slice into ribbons.",
+    "Crush or grind the mustard seeds. Mix with the mayonnaise, lemon juice, remaining oil, chives and pepper. Toss with all the pasta, egg, egg-white ribbons, diced cucumber and pepper. Serve the entire salad."
+  ],
+  "nutrition": {
+    "calories": "483 kcal",
+    "protein": "19.6 g",
+    "carbohydrates": "31.7 g",
+    "fat": "30.6 g",
+    "fibre": "3.2 g",
+    "sodium": "235 mg",
+    "potassium": "528 mg",
+    "phosphate": "208 mg",
+    "salt": "0.59 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "pepper-and-herb-frittata-with-toasted-bread",
+  "code": "L075",
+  "category": "Lunch",
+  "cuisine": "Italy",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L075.webp",
+  "name": "Pepper and herb frittata with toasted bread",
+  "description": "A pepper and mozzarella frittata with basil and crisp toasted bread.",
+  "cookingTime": "30 mins",
+  "calories": "488 kcal",
+  "protein": "29.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "125 g (raw edible input)"
+    },
+    {
+      "item": "Vegetarian-rennet fresh mozzarella",
+      "shoppingItem": "Vegetarian-rennet fresh mozzarella",
+      "quantity": "25 g (as sold edible weight)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "White crusty bloomer bread, egg- and dairy-free",
+      "shoppingItem": "White crusty bloomer bread, egg- and dairy-free",
+      "quantity": "45 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Finely chop the onion and pepper. Cook in two thirds of the oil in a small ovenproof frying pan for 6–8 minutes.",
+    "Beat the whole egg and weighed egg white with the torn basil and black pepper. Pour over the vegetables and scatter over all the diced mozzarella.",
+    "Bake for 12–15 minutes until the centre is completely set. Brush the bread with the remaining oil, toast and serve with the whole frittata.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "488 kcal",
+    "protein": "29.5 g",
+    "carbohydrates": "26.1 g",
+    "fat": "29.5 g",
+    "fibre": "3.3 g",
+    "sodium": "589 mg",
+    "potassium": "516 mg",
+    "phosphate": "233 mg",
+    "salt": "1.47 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "black-bean-and-sweetcorn-cakes-with-lime-slaw",
+  "code": "L076",
+  "category": "Lunch",
+  "cuisine": "Brazil",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L076.webp",
+  "name": "Black-bean and sweetcorn cakes with lime slaw",
+  "description": "Crisp black-bean and corn cakes with a fresh cabbage and lime salad.",
+  "cookingTime": "30 mins",
+  "calories": "502 kcal",
+  "protein": "12.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Black beans, boiled without salt and drained",
+      "shoppingItem": "Black beans, boiled without salt and drained",
+      "quantity": "90 g (cooked drained edible weight)"
+    },
+    {
+      "item": "White masa harina, unenriched",
+      "shoppingItem": "White masa harina, unenriched",
+      "quantity": "30 g (dry edible input)"
+    },
+    {
+      "item": "Frozen sweetcorn kernels",
+      "shoppingItem": "Frozen sweetcorn kernels",
+      "quantity": "25 g (frozen uncooked input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "25 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "45 g (weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "4 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Use black beans previously boiled without salt and drained. Mash them and mix with the masa harina, sweetcorn, finely chopped onion, cumin and 20 g of the measured water. Form three thin cakes.",
+    "Heat three quarters of the oil in a non-stick pan. Cook the cakes over medium-low heat for 5–6 minutes per side until firm, fully cooked and steaming hot.",
+    "Shred the cabbage and dice the tomato. Mix the lime juice, remaining oil, remaining 15 g water and chopped coriander into a dressing. Serve all the cakes with all the slaw and dressing."
+  ],
+  "nutrition": {
+    "calories": "502 kcal",
+    "protein": "12.5 g",
+    "carbohydrates": "44.5 g",
+    "fat": "27.0 g",
+    "fibre": "12.7 g",
+    "sodium": "13 mg",
+    "potassium": "702 mg",
+    "phosphate": "242 mg",
+    "salt": "0.03 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "buckwheat-galette-with-mushrooms-and-walnuts",
+  "code": "L077",
+  "category": "Lunch",
+  "cuisine": "France",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L077.webp",
+  "name": "Buckwheat galette with mushrooms and walnuts",
+  "description": "A buckwheat pancake filled with mushrooms, leeks, ricotta and toasted walnuts.",
+  "cookingTime": "35 mins",
+  "calories": "575 kcal",
+  "protein": "19.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Whole-groat buckwheat flour",
+      "shoppingItem": "Whole-groat buckwheat flour",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "20 g (dry)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "95 g (weighed grams)"
+    },
+    {
+      "item": "Leek, trimmed edible portion",
+      "shoppingItem": "Leek, trimmed edible portion",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "White mushrooms",
+      "shoppingItem": "White mushrooms",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Vegetarian-rennet ricotta",
+      "shoppingItem": "Vegetarian-rennet ricotta",
+      "quantity": "40 g (as sold)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "6 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Dried thyme",
+      "shoppingItem": "Dried thyme",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Whisk both flours with the egg white and measured water. Rest for 10 minutes. Slice the leek and mushrooms.",
+    "Cook the vegetables in two thirds of the oil with the thyme and pepper for 8–10 minutes, retaining their juices. Stir in the ricotta and lemon juice off the heat.",
+    "Brush a 24 cm non-stick pan with the remaining oil. Pour in the batter, swirl thinly and cook for 3–4 minutes, then turn and cook for another 2 minutes until fully set.",
+    "Spoon over all the filling and chopped walnuts, fold in the sides and warm for 1–2 minutes. Serve the whole galette.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "575 kcal",
+    "protein": "19.6 g",
+    "carbohydrates": "42.8 g",
+    "fat": "35.4 g",
+    "fibre": "7.9 g",
+    "sodium": "145 mg",
+    "potassium": "772 mg",
+    "phosphate": "349 mg",
+    "salt": "0.36 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "chickpea-and-egg-salad-with-crisp-croutons",
+  "code": "L078",
+  "category": "Lunch",
+  "cuisine": "Portugal",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L078.webp",
+  "name": "Chickpea and egg salad with crisp croutons",
+  "description": "Chickpeas and chopped egg with cucumber, parsley and crisp olive-oil croutons.",
+  "cookingTime": "25 mins",
+  "calories": "468 kcal",
+  "protein": "24.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Chickpeas, boiled without salt and drained",
+      "shoppingItem": "Chickpeas, boiled without salt and drained",
+      "quantity": "90 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White crusty bloomer bread, egg- and dairy-free",
+      "shoppingItem": "White crusty bloomer bread, egg- and dairy-free",
+      "quantity": "30 g (as sold edible weight)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Boil the whole egg for 10 minutes, cool and peel. Use chickpeas previously boiled without salt and drained. Dice the cucumber and chop the parsley.",
+    "Cut the bread into cubes and toast in one third of the oil in a non-stick pan until crisp. Set aside. Cook the weighed egg white in the same pan with another third of the oil as a thin pancake until fully set, then chop.",
+    "Mix the remaining oil with the lemon juice and pepper. Toss with all the chickpeas, cucumber, parsley and chopped eggs. Scatter over all the croutons and serve."
+  ],
+  "nutrition": {
+    "calories": "468 kcal",
+    "protein": "24.6 g",
+    "carbohydrates": "30.7 g",
+    "fat": "27.1 g",
+    "fibre": "11.2 g",
+    "sodium": "323 mg",
+    "potassium": "640 mg",
+    "phosphate": "272 mg",
+    "salt": "0.81 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "potato-and-chive-cakes-with-herb-mayonnaise",
+  "code": "L079",
+  "category": "Lunch",
+  "cuisine": "Britain",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L079.webp",
+  "name": "Potato and chive cakes with herb mayonnaise",
+  "description": "Soft potato and chive cakes with a crisp outside, cucumber and herb mayonnaise.",
+  "cookingTime": "30 mins",
+  "calories": "553 kcal",
+  "protein": "11.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Peeled potato, boiled in unsalted water and drained",
+      "shoppingItem": "Peeled potato, boiled in unsalted water and drained",
+      "quantity": "75 g (cooked drained edible weight)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Leek, trimmed edible portion",
+      "shoppingItem": "Leek, trimmed edible portion",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "20 g (as sold)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Use peeled potato already boiled in unsalted water and drained; weigh 75 g after cooking. Mash and cool, then mix with the rice flour, egg white, finely sliced leek, half the chives and pepper. Rest for 5 minutes.",
+    "Form three thin cakes. Heat the oil in a non-stick pan and cook over medium-low heat for 5–6 minutes per side until the leeks are tender and the centres are cooked through. Use all the oil across the batches.",
+    "Mix the mayonnaise, lemon juice and remaining chives. Serve all the cakes with sliced cucumber and all the mayonnaise."
+  ],
+  "nutrition": {
+    "calories": "553 kcal",
+    "protein": "11.0 g",
+    "carbohydrates": "44.5 g",
+    "fat": "34.8 g",
+    "fibre": "4.0 g",
+    "sodium": "124 mg",
+    "potassium": "680 mg",
+    "phosphate": "111 mg",
+    "salt": "0.31 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "cabbage-mushroom-and-white-bean-pierogi",
+  "code": "L080",
+  "category": "Lunch",
+  "cuisine": "Poland",
+  "mealFamily": "pasta",
+  "emoji": "🥗",
+  "image": "/images/recipes/L080.webp",
+  "name": "Cabbage, mushroom and white-bean pierogi",
+  "description": "Hand-folded dumplings with cabbage, mushrooms, white beans and ricotta.",
+  "cookingTime": "60 mins",
+  "calories": "569 kcal",
+  "protein": "14.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "55 g (dry)"
+    },
+    {
+      "item": "Vegetarian-rennet ricotta",
+      "shoppingItem": "Vegetarian-rennet ricotta",
+      "quantity": "30 g (as sold)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "65 g (cooked drained edible weight)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "White mushrooms",
+      "shoppingItem": "White mushrooms",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "6 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "45 g (weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix 50 g of the flour with 30 g of the water and one third of the oil. Knead for 5 minutes, cover and rest for 15 minutes.",
+    "Finely chop the cabbage, mushrooms and onion. Cook in the remaining oil and remaining 15 g water for 10–12 minutes until tender. Mash in the cooked, drained navy beans and ricotta. Mix the remaining 5 g flour with the filling and cook for 2 minutes to thicken; season with pepper and cool.",
+    "Roll the dough between non-stick sheets without extra flour. Cut six circles. Divide all the filling among them, fold and pinch the edges firmly.",
+    "Poach in a separate pan of unsalted water for 3–4 minutes after the dumplings float, checking the dough is fully cooked. Lift out, turn in the melted butter and serve all six with any loose filling.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "569 kcal",
+    "protein": "14.6 g",
+    "carbohydrates": "56.1 g",
+    "fat": "28.6 g",
+    "fibre": "11.8 g",
+    "sodium": "40 mg",
+    "potassium": "714 mg",
+    "phosphate": "268 mg",
+    "salt": "0.10 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "carrot-and-coriander-soup-with-toast",
+  "code": "L081",
+  "category": "Lunch",
+  "cuisine": "Britain",
+  "mealFamily": "soup",
+  "emoji": "🥗",
+  "image": "/images/recipes/L081.webp",
+  "name": "Carrot and coriander soup with toast",
+  "description": "A smooth carrot soup with coriander, a little coconut and warm toast.",
+  "cookingTime": "30 mins",
+  "calories": "509 kcal",
+  "protein": "10.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "ingredients": [
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "250 g (weighed grams)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "13 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsweetened desiccated coconut",
+      "shoppingItem": "Unsweetened desiccated coconut",
+      "quantity": "20 g (dry edible input)"
+    },
+    {
+      "item": "White crusty bloomer bread, egg- and dairy-free",
+      "shoppingItem": "White crusty bloomer bread, egg- and dairy-free",
+      "quantity": "75 g (as sold edible weight)"
+    },
+    {
+      "item": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "shoppingItem": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "quantity": "30 g (as sold edible weight)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Finely slice the onion and carrot. Soften the onion in the oil in a small covered pan for 4 minutes. Stir in the cumin, carrot, desiccated coconut and measured water.",
+    "Cover and simmer for 18–20 minutes until the carrot is tender. Add the coriander and blend the entire contents until smooth.",
+    "Stir in the Greek-style yoghurt and pepper off the heat. Toast the bread and serve it with all the soup. Measure the finished soup volume if tracking a fluid allowance."
+  ],
+  "nutrition": {
+    "calories": "509 kcal",
+    "protein": "10.7 g",
+    "carbohydrates": "48.1 g",
+    "fat": "30.2 g",
+    "fibre": "10.1 g",
+    "sodium": "367 mg",
+    "potassium": "542 mg",
+    "phosphate": "168 mg",
+    "salt": "0.92 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "creamy-mushroom-spaghetti-with-walnuts",
+  "code": "L082",
+  "category": "Lunch",
+  "cuisine": "Italy",
+  "mealFamily": "pasta",
+  "emoji": "🥗",
+  "image": "/images/recipes/L082.webp",
+  "name": "Creamy mushroom spaghetti with walnuts",
+  "description": "Spaghetti in a creamy mushroom sauce with sweet peppers and chopped walnuts.",
+  "cookingTime": "30 mins",
+  "calories": "531 kcal",
+  "protein": "11.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Egg-free plain dried white wheat pasta",
+      "shoppingItem": "Egg-free plain dried white wheat pasta",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "White mushrooms",
+      "shoppingItem": "White mushrooms",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "shoppingItem": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "quantity": "45 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "40 g (weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the dry white spaghetti in a separate pan of unsalted water according to the packet and drain.",
+    "Finely slice the onion, mushrooms and pepper. Cook in the oil for 7–8 minutes. Add the measured water and simmer for 2 minutes.",
+    "Take off the heat. Stir in the Greek-style yoghurt, lemon juice, parsley, walnuts and pepper. Toss through all the pasta and warm gently without boiling. Serve the whole portion."
+  ],
+  "nutrition": {
+    "calories": "531 kcal",
+    "protein": "11.9 g",
+    "carbohydrates": "41.3 g",
+    "fat": "35.0 g",
+    "fibre": "4.9 g",
+    "sodium": "39 mg",
+    "potassium": "701 mg",
+    "phosphate": "290 mg",
+    "salt": "0.10 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "crisp-rice-pancakes-with-cabbage-and-peanut-dressing",
+  "code": "L083",
+  "category": "Lunch",
+  "cuisine": "India",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L083.webp",
+  "name": "Crisp rice pancakes with cabbage and peanut dressing",
+  "description": "Thin rice pancakes filled with chickpeas and cabbage, with a tangy peanut dressing.",
+  "cookingTime": "35 mins",
+  "calories": "519 kcal",
+  "protein": "12.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "ingredients": [
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "45 g (dry edible input)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Chickpeas, boiled without salt and drained",
+      "shoppingItem": "Chickpeas, boiled without salt and drained",
+      "quantity": "50 g (cooked drained edible weight)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "75 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "125 g (weighed grams)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "4 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Whisk the rice flour with 90 g of the water and one third of the oil. Rest for 10 minutes. Finely chop the cabbage, onion and ginger.",
+    "Cook the vegetables in another third of the oil with 17.5 g of the water for 7–8 minutes. Stir in the cumin and cooked, drained chickpeas and heat through.",
+    "Brush a non-stick pan with the remaining oil. Use all the batter to make three thin pancakes, cooking each for 2–3 minutes per side until the rice flour is fully cooked.",
+    "Blend the peanuts, lime juice and remaining 17.5 g water. Fill all the pancakes with all the chickpeas and vegetables, scatter with coriander and serve with all the dressing."
+  ],
+  "nutrition": {
+    "calories": "519 kcal",
+    "protein": "12.2 g",
+    "carbohydrates": "49.0 g",
+    "fat": "28.6 g",
+    "fibre": "10.6 g",
+    "sodium": "18 mg",
+    "potassium": "606 mg",
+    "phosphate": "215 mg",
+    "salt": "0.05 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "chickpea-chaat-with-herbed-yoghurt-dressing",
+  "code": "L084",
+  "category": "Lunch",
+  "cuisine": "India",
+  "mealFamily": "plated meal",
+  "emoji": "🥗",
+  "image": "/images/recipes/L084.webp",
+  "name": "Chickpea chaat with herbed yoghurt dressing",
+  "description": "Chickpeas, potato and cucumber with cumin, fresh herbs and creamy yoghurt dressing.",
+  "cookingTime": "25 mins",
+  "calories": "486 kcal",
+  "protein": "15.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Chickpeas, boiled without salt and drained",
+      "shoppingItem": "Chickpeas, boiled without salt and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Peeled potato, boiled in unsalted water and drained",
+      "shoppingItem": "Peeled potato, boiled in unsalted water and drained",
+      "quantity": "50 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "15 g (raw edible input)"
+    },
+    {
+      "item": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "shoppingItem": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "quantity": "50 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh mint",
+      "shoppingItem": "Fresh mint",
+      "quantity": "4 g (raw edible leaves)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "White crusty bloomer bread, egg- and dairy-free",
+      "shoppingItem": "White crusty bloomer bread, egg- and dairy-free",
+      "quantity": "25 g (as sold edible weight)"
+    }
+  ],
+  "method": [
+    "Use chickpeas and peeled potato previously boiled separately without salt and drained. Weigh each in its cooked state and cool. Dice the potato and cucumber and finely chop the onion and herbs.",
+    "Whisk the Greek-style yoghurt, oil, lemon juice and cumin. Toss with all the chickpeas, potato, cucumber, onion, mint and coriander.",
+    "Toast the bread and serve with the entire salad and dressing."
+  ],
+  "nutrition": {
+    "calories": "486 kcal",
+    "protein": "15.7 g",
+    "carbohydrates": "41.6 g",
+    "fat": "28.1 g",
+    "fibre": "13.4 g",
+    "sodium": "141 mg",
+    "potassium": "779 mg",
+    "phosphate": "276 mg",
+    "salt": "0.35 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "coconut-roti-with-spiced-cabbage",
+  "code": "L085",
+  "category": "Lunch",
+  "cuisine": "Sri Lanka",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L085.webp",
+  "name": "Coconut roti with spiced cabbage",
+  "description": "Small coconut flatbreads with warm cabbage, carrot and mustard seeds.",
+  "cookingTime": "35 mins",
+  "calories": "493 kcal",
+  "protein": "6.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "45 g (dry)"
+    },
+    {
+      "item": "Unsweetened desiccated coconut",
+      "shoppingItem": "Unsweetened desiccated coconut",
+      "quantity": "20 g (dry edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "90 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "40 g (weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Mustard seeds",
+      "shoppingItem": "Mustard seeds",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Ground turmeric",
+      "shoppingItem": "Ground turmeric",
+      "quantity": "0.4 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix the flour, desiccated coconut and 35 g of the water into a soft dough. Knead briefly, cover and rest for 10 minutes.",
+    "Heat the oil in a covered pan, add the mustard seeds and cover until they begin to pop. Add finely shredded cabbage, onion and carrot, the turmeric and remaining 5 g water. Cover and cook over low heat for 8–10 minutes until tender. Stir in the lime juice.",
+    "Divide the dough into two. Flatten between non-stick sheets and dry-cook in a hot non-stick pan for 3–4 minutes per side until cooked throughout. Serve both roti with all the vegetables and their juices."
+  ],
+  "nutrition": {
+    "calories": "493 kcal",
+    "protein": "6.9 g",
+    "carbohydrates": "42.6 g",
+    "fat": "32.4 g",
+    "fibre": "9.4 g",
+    "sodium": "22 mg",
+    "potassium": "525 mg",
+    "phosphate": "123 mg",
+    "salt": "0.06 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian"
+  ]
+},
+{
+  "id": "vegetable-and-lentil-khichuri",
+  "code": "L086",
+  "category": "Lunch",
+  "cuisine": "Bangladesh",
+  "mealFamily": "rice",
+  "emoji": "🥗",
+  "image": "/images/recipes/L086.webp",
+  "name": "Vegetable and lentil khichuri",
+  "description": "A soft rice and lentil bowl with vegetables, coconut, ginger and gentle spices.",
+  "cookingTime": "35 mins",
+  "calories": "482 kcal",
+  "protein": "11.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "30 g (dry)"
+    },
+    {
+      "item": "Dried split red lentils",
+      "shoppingItem": "Dried split red lentils",
+      "quantity": "25 g (dry edible input)"
+    },
+    {
+      "item": "Cauliflower, edible florets and stalk",
+      "shoppingItem": "Cauliflower, edible florets and stalk",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "250 g (weighed grams)"
+    },
+    {
+      "item": "Unsweetened desiccated coconut",
+      "shoppingItem": "Unsweetened desiccated coconut",
+      "quantity": "15 g (dry edible input)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Ground turmeric",
+      "shoppingItem": "Ground turmeric",
+      "quantity": "0.4 g (dry)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Rinse the dry rice and lentils. Finely chop the onion and ginger and cut the carrot and cauliflower into small pieces.",
+    "Soften the onion in the oil for 4–5 minutes. Add the ginger, cumin and turmeric and stir for 30 seconds.",
+    "Add the rice, lentils, vegetables, desiccated coconut and all the measured water. Cover and simmer gently for 20–25 minutes until the rice and lentils are tender. Stir occasionally, then rest covered for 5 minutes and serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "482 kcal",
+    "protein": "11.5 g",
+    "carbohydrates": "42.0 g",
+    "fat": "29.4 g",
+    "fibre": "9.8 g",
+    "sodium": "27 mg",
+    "potassium": "545 mg",
+    "phosphate": "175 mg",
+    "salt": "0.07 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian"
+  ]
+},
+{
+  "id": "salmon-and-cucumber-rice-salad",
+  "code": "L087",
+  "category": "Lunch",
+  "cuisine": "Japan",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L087.webp",
+  "name": "Salmon and cucumber rice salad",
+  "description": "Flaked salmon and short-grain rice with cool cucumber and a creamy sesame dressing.",
+  "cookingTime": "30 mins",
+  "calories": "596 kcal",
+  "protein": "22.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "White short-grain rice",
+      "shoppingItem": "White short-grain rice",
+      "quantity": "40 g (dry)"
+    },
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "90 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "75 g (raw edible input)"
+    },
+    {
+      "item": "Sesame seeds",
+      "shoppingItem": "Sesame seeds",
+      "quantity": "4 g (dry)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "13 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Plain unseasoned vinegar",
+      "shoppingItem": "Plain unseasoned vinegar",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Spring onion, bulbs and green tops",
+      "shoppingItem": "Spring onion, bulbs and green tops",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "80 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest covered for 5 minutes.",
+    "Brush the salmon with half the oil and bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Retain the edible baking juices.",
+    "Mix the mayonnaise, remaining oil, vinegar, lemon juice and sesame seeds. Toss with the warm rice, flaked salmon, sliced cucumber and spring onion and serve the entire bowl freshly prepared."
+  ],
+  "nutrition": {
+    "calories": "596 kcal",
+    "protein": "22.5 g",
+    "carbohydrates": "33.0 g",
+    "fat": "40.9 g",
+    "fibre": "1.8 g",
+    "sodium": "67 mg",
+    "potassium": "542 mg",
+    "phosphate": "297 mg",
+    "salt": "0.17 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mediterranean-style",
+  "dietCategories": [
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "tofu-cabbage-and-ginger-pancakes",
+  "code": "L088",
+  "category": "Lunch",
+  "cuisine": "East Asia",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L088.webp",
+  "name": "Tofu, cabbage and ginger pancakes",
+  "description": "Golden tofu pancakes with cabbage and ginger, served with a lime and sesame dip.",
+  "cookingTime": "30 mins",
+  "calories": "507 kcal",
+  "protein": "16.4 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Regular tofu, made with calcium sulphate, gently drained",
+      "shoppingItem": "Regular tofu, made with calcium sulphate, gently drained",
+      "quantity": "150 g (as sold edible weight, unpressed)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "90 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Sesame oil",
+      "shoppingItem": "Sesame oil",
+      "quantity": "4 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "4 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "40 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Use regular calcium-sulphate tofu, gently drained without pressing. Mash the weighed tofu and mix with the rice flour, finely shredded cabbage and carrot, crushed garlic, grated ginger and 20 g of the water. Rest for 5 minutes.",
+    "Heat the rapeseed oil in a non-stick pan. Cook four small, thin pancakes over medium-low heat for 4–5 minutes per side until firm and fully cooked, using all the oil across the batches.",
+    "Mix the sesame oil, soy sauce, lime juice and remaining 20 g water. Serve all four pancakes with all the dip."
+  ],
+  "nutrition": {
+    "calories": "507 kcal",
+    "protein": "16.4 g",
+    "carbohydrates": "39.4 g",
+    "fat": "30.7 g",
+    "fibre": "5.3 g",
+    "sodium": "248 mg",
+    "potassium": "592 mg",
+    "phosphate": "235 mg",
+    "salt": "0.62 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "steamed-cabbage-mushroom-and-white-bean-buns",
+  "code": "L089",
+  "category": "Lunch",
+  "cuisine": "China",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L089.webp",
+  "name": "Steamed cabbage, mushroom and white-bean buns",
+  "description": "Soft steamed buns with a savoury cabbage, mushroom and white-bean filling.",
+  "cookingTime": "100 mins",
+  "calories": "533 kcal",
+  "protein": "12.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "ingredients": [
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "55 g (dry)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "65 g (cooked drained edible weight)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "White mushrooms",
+      "shoppingItem": "White mushrooms",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "15 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Sesame oil",
+      "shoppingItem": "Sesame oil",
+      "quantity": "4 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "4 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "45 g (weighed grams)"
+    },
+    {
+      "item": "Active dry yeast",
+      "shoppingItem": "Active dry yeast",
+      "quantity": "1.3 g (dry)"
+    },
+    {
+      "item": "White sugar",
+      "shoppingItem": "White sugar",
+      "quantity": "3 g (dry)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Mix the flour, yeast, sugar and 40 g lukewarm water into a soft dough. Knead for 6–8 minutes, cover and leave in a warm place for about 45 minutes until puffy.",
+    "Finely chop the cabbage, mushroom, onion and ginger. Cook in two thirds of the olive oil with the remaining 5 g water for 8–10 minutes until tender and no loose liquid remains. Mash in the cooked, drained navy beans, soy sauce and sesame oil. Cool.",
+    "Divide the dough into three. Flatten between non-stick sheets without extra flour. Fill with all the bean mixture and pinch closed. Brush the bases with the remaining olive oil and set on parchment squares. Rest for 10 minutes.",
+    "Steam over a separate pan of boiling water for 15 minutes, keeping the buns clear of the water. Turn off the heat, leave covered for 3 minutes and serve all three buns."
+  ],
+  "nutrition": {
+    "calories": "533 kcal",
+    "protein": "12.2 g",
+    "carbohydrates": "59.0 g",
+    "fat": "24.3 g",
+    "fibre": "11.9 g",
+    "sodium": "230 mg",
+    "potassium": "663 mg",
+    "phosphate": "220 mg",
+    "salt": "0.58 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "chicken-lettuce-cups-with-ginger-and-peanut-dressing",
+  "code": "L090",
+  "category": "Lunch",
+  "cuisine": "Southeast Asia",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L090.webp",
+  "name": "Chicken lettuce cups with ginger and peanut dressing",
+  "description": "Lettuce cups with tender chicken, crunchy vegetables, a peanut dressing and crisp rice pancakes.",
+  "cookingTime": "35 mins",
+  "calories": "515 kcal",
+  "protein": "27.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer, blender, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless boneless chicken breast",
+      "shoppingItem": "Skinless boneless chicken breast",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "30 g (dry edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    },
+    {
+      "item": "Lettuce",
+      "shoppingItem": "Lettuce",
+      "quantity": "75 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "20 g (as sold edible weight)"
+    },
+    {
+      "item": "Sesame oil",
+      "shoppingItem": "Sesame oil",
+      "quantity": "6 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "13 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "4 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Whisk the rice flour with 75 g of the water and half the rapeseed oil. Rest for 10 minutes. Steam the chicken until its centre reaches 75°C for 30 seconds, then shred it, retaining the edible juices.",
+    "Brush a non-stick pan with the remaining rapeseed oil. Use all the batter to make two very thin rice pancakes, cooking for 2–3 minutes per side until fully cooked and crisp at the edges. Cut into wedges.",
+    "Blend the peanuts, sesame oil, lime juice, soy sauce, ginger and remaining 25 g water into a dressing.",
+    "Divide all the chicken, finely sliced cucumber and carrot between the lettuce leaves. Spoon over all the dressing and serve with all the pancake wedges."
+  ],
+  "nutrition": {
+    "calories": "515 kcal",
+    "protein": "27.9 g",
+    "carbohydrates": "29.4 g",
+    "fat": "30.6 g",
+    "fibre": "5.1 g",
+    "sodium": "292 mg",
+    "potassium": "854 mg",
+    "phosphate": "328 mg",
+    "salt": "0.73 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mixed diet",
+  "dietCategories": [
+    "Mixed diet"
+  ]
+},
+{
+  "id": "lime-fish-cakes-with-noodles-and-crunchy-salad",
+  "code": "L091",
+  "category": "Lunch",
+  "cuisine": "Thailand",
+  "mealFamily": "pasta",
+  "emoji": "🥗",
+  "image": "/images/recipes/L091.webp",
+  "name": "Lime fish cakes with noodles and crunchy salad",
+  "description": "Cod and herb cakes with rice noodles, crunchy vegetables and lime mayonnaise.",
+  "cookingTime": "35 mins",
+  "calories": "565 kcal",
+  "protein": "27.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Cod fillet, flesh only",
+      "shoppingItem": "Cod fillet, flesh only",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "20 g (dry edible input)"
+    },
+    {
+      "item": "Rice noodles",
+      "shoppingItem": "Rice noodles",
+      "quantity": "25 g (dry)"
+    },
+    {
+      "item": "Green beans",
+      "shoppingItem": "Green beans",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "25 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Finely chop or pulse the cod. Mix with the egg white, rice flour, finely sliced green beans, ginger and coriander. Form four thin fish cakes.",
+    "Heat the oil in a non-stick pan. Cook the cakes over medium heat for 4–5 minutes per side until the fish is opaque and the centres are steaming hot and fully set.",
+    "Cook the dry rice noodles in a separate pan of unsalted water according to the packet and drain. Mix half the lime juice with the measured water and toss through the noodles and sliced cucumber and carrot.",
+    "Mix the mayonnaise with the remaining lime juice. Serve all the cakes, noodles, salad and mayonnaise."
+  ],
+  "nutrition": {
+    "calories": "565 kcal",
+    "protein": "27.7 g",
+    "carbohydrates": "39.0 g",
+    "fat": "31.8 g",
+    "fibre": "3.9 g",
+    "sodium": "262 mg",
+    "potassium": "768 mg",
+    "phosphate": "278 mg",
+    "salt": "0.66 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mediterranean-style",
+  "dietCategories": [
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "vegetable-and-tofu-popiah-rolls",
+  "code": "L092",
+  "category": "Lunch",
+  "cuisine": "Malaysia",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L092.webp",
+  "name": "Vegetable and tofu popiah rolls",
+  "description": "Thin wheat pancakes around a warm tofu and vegetable filling with chopped peanuts.",
+  "cookingTime": "35 mins",
+  "calories": "525 kcal",
+  "protein": "20.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Regular tofu, made with calcium sulphate, gently drained",
+      "shoppingItem": "Regular tofu, made with calcium sulphate, gently drained",
+      "quantity": "75 g (as sold edible weight, unpressed)"
+    },
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "40 g (dry)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Mung beansprouts",
+      "shoppingItem": "Mung beansprouts",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "4 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Plain unseasoned vinegar",
+      "shoppingItem": "Plain unseasoned vinegar",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "90 g (weighed grams)"
+    },
+    {
+      "item": "White sugar",
+      "shoppingItem": "White sugar",
+      "quantity": "1.3 g (dry)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "3 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Whisk the flour, egg white and 65 g of the water into a thin batter. Rest for 10 minutes. Brush a non-stick pan with one third of the oil and use all the batter to make three pancakes, cooking both sides until fully set.",
+    "Use regular calcium-sulphate tofu, gently drained without pressing, and crumble it. Finely shred the cabbage and carrot and chop the garlic.",
+    "Cook the tofu, vegetables, garlic and beansprouts in the remaining oil and remaining 25 g water for 6–8 minutes until the beansprouts are steaming hot. Stir in the soy sauce, vinegar and sugar and cook until there is no loose liquid.",
+    "Divide all the filling between the pancakes, add all the chopped peanuts, fold in the sides and roll. Serve all three."
+  ],
+  "nutrition": {
+    "calories": "525 kcal",
+    "protein": "20.2 g",
+    "carbohydrates": "41.6 g",
+    "fat": "31.0 g",
+    "fibre": "6.8 g",
+    "sodium": "319 mg",
+    "potassium": "568 mg",
+    "phosphate": "226 mg",
+    "salt": "0.80 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "gado-gado-with-peanut-and-coconut-dressing",
+  "code": "L093",
+  "category": "Lunch",
+  "cuisine": "Indonesia",
+  "mealFamily": "plated meal",
+  "emoji": "🥗",
+  "image": "/images/recipes/L093.webp",
+  "name": "Gado-gado with peanut and coconut dressing",
+  "description": "Warm vegetables and a boiled egg with a rich peanut, coconut and lime dressing.",
+  "cookingTime": "30 mins",
+  "calories": "509 kcal",
+  "protein": "18.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer, blender",
+  "ingredients": [
+    {
+      "item": "Peeled potato, boiled in unsalted water and drained",
+      "shoppingItem": "Peeled potato, boiled in unsalted water and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Green beans",
+      "shoppingItem": "Green beans",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "30 g (as sold edible weight)"
+    },
+    {
+      "item": "Unsweetened desiccated coconut",
+      "shoppingItem": "Unsweetened desiccated coconut",
+      "quantity": "15 g (dry edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "6 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "45 g (weighed grams)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "3 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White sugar",
+      "shoppingItem": "White sugar",
+      "quantity": "3 g (dry)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "3 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Use peeled potato previously boiled in unsalted water and drained; weigh 100 g cooked potato. Boil the egg for 10 minutes, cool and peel. Steam the sliced cabbage, beans and carrot for 6–8 minutes until tender.",
+    "Blend the peanuts, desiccated coconut, measured water, soy sauce, sugar, garlic and lime juice until smooth.",
+    "Warm the oil in a small pan, add the dressing and simmer gently for 2–3 minutes. Arrange all the vegetables and quartered egg in a bowl and spoon over all the dressing."
+  ],
+  "nutrition": {
+    "calories": "509 kcal",
+    "protein": "18.1 g",
+    "carbohydrates": "30.8 g",
+    "fat": "35.1 g",
+    "fibre": "10.5 g",
+    "sodium": "263 mg",
+    "potassium": "1036 mg",
+    "phosphate": "292 mg",
+    "salt": "0.66 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "black-bean-tostadas-with-avocado-and-lime",
+  "code": "L094",
+  "category": "Lunch",
+  "cuisine": "Mexico",
+  "mealFamily": "plated meal",
+  "emoji": "🥗",
+  "image": "/images/recipes/L094.webp",
+  "name": "Black-bean tostadas with avocado and lime",
+  "description": "Crisp corn tostadas with black beans, sweetcorn, avocado and fresh lime salsa.",
+  "cookingTime": "35 mins",
+  "calories": "493 kcal",
+  "protein": "13.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "White masa harina, unenriched",
+      "shoppingItem": "White masa harina, unenriched",
+      "quantity": "30 g (dry edible input)"
+    },
+    {
+      "item": "Black beans, boiled without salt and drained",
+      "shoppingItem": "Black beans, boiled without salt and drained",
+      "quantity": "90 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Frozen sweetcorn kernels",
+      "shoppingItem": "Frozen sweetcorn kernels",
+      "quantity": "25 g (frozen uncooked input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Lettuce",
+      "shoppingItem": "Lettuce",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "15 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "45 g (weighed grams)"
+    },
+    {
+      "item": "Hass avocado flesh, skin and stone removed",
+      "shoppingItem": "Hass avocado flesh, skin and stone removed",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "4 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Mix the masa harina and measured water into a dough. Divide into two, press between non-stick sheets and dry-cook in a hot pan for 1–2 minutes per side.",
+    "Brush with one third of the oil and bake at 200°C, or 180°C fan, for 8–10 minutes until crisp. Heat the cooked, drained black beans and sweetcorn in another third of the oil with the cumin until steaming hot.",
+    "Mix the diced tomato, onion, weighed avocado flesh, coriander, lime juice and remaining oil. Top both tostadas with all the beans, corn, lettuce and salsa and serve."
+  ],
+  "nutrition": {
+    "calories": "493 kcal",
+    "protein": "13.0 g",
+    "carbohydrates": "43.4 g",
+    "fat": "26.3 g",
+    "fibre": "12.9 g",
+    "sodium": "16 mg",
+    "potassium": "901 mg",
+    "phosphate": "259 mg",
+    "salt": "0.04 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "tuna-and-lime-potato-causa",
+  "code": "L095",
+  "category": "Lunch",
+  "cuisine": "Peru",
+  "mealFamily": "plated meal",
+  "emoji": "🥗",
+  "image": "/images/recipes/L095.webp",
+  "name": "Tuna and lime potato causa",
+  "description": "Lime-flavoured potato layered with tuna, cucumber and a creamy dressing.",
+  "cookingTime": "35 mins",
+  "calories": "472 kcal",
+  "protein": "22.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Peeled potato, boiled in unsalted water and drained",
+      "shoppingItem": "Peeled potato, boiled in unsalted water and drained",
+      "quantity": "115 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Tuna canned in brine, drained",
+      "shoppingItem": "Tuna canned in brine, drained",
+      "quantity": "75 g (drained edible weight)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "25 g (as sold)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "13 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "25 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Lettuce",
+      "shoppingItem": "Lettuce",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    },
+    {
+      "item": "Pure cayenne chilli powder",
+      "shoppingItem": "Pure cayenne chilli powder",
+      "quantity": "0.1 g (dry)"
+    }
+  ],
+  "method": [
+    "Use peeled potato previously boiled in unsalted water and drained. Weigh 115 g while warm and mash with the oil, lime juice, chilli and pepper. Cool.",
+    "Drain brine-canned tuna and weigh the drained fish. Mix with the mayonnaise. Finely dice the cucumber.",
+    "Layer half the potato, all the tuna and cucumber, then the remaining potato in a small bowl or ring mould. Serve with all the lettuce. Refrigerate promptly if not serving immediately."
+  ],
+  "nutrition": {
+    "calories": "472 kcal",
+    "protein": "22.3 g",
+    "carbohydrates": "20.8 g",
+    "fat": "33.0 g",
+    "fibre": "3.1 g",
+    "sodium": "260 mg",
+    "potassium": "817 mg",
+    "phosphate": "191 mg",
+    "salt": "0.65 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mediterranean-style",
+  "dietCategories": [
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "black-beans-and-rice-with-lime-dressed-cabbage",
+  "code": "L096",
+  "category": "Lunch",
+  "cuisine": "Brazil",
+  "mealFamily": "rice",
+  "emoji": "🥗",
+  "image": "/images/recipes/L096.webp",
+  "name": "Black beans and rice with lime-dressed cabbage",
+  "description": "Garlicky black beans and rice with a bright cabbage, parsley and lime salad.",
+  "cookingTime": "30 mins",
+  "calories": "517 kcal",
+  "protein": "14.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Black beans, boiled without salt and drained",
+      "shoppingItem": "Black beans, boiled without salt and drained",
+      "quantity": "105 g (cooked drained edible weight)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "40 g (dry)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "23 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with 65 g of the measured water, covered, for 12–15 minutes, then rest for 5 minutes.",
+    "Soften the chopped onion and garlic in two thirds of the oil for 5 minutes. Add the cooked, drained black beans, remaining 15 g water and pepper. Simmer for 5–7 minutes, mashing a spoonful of beans to thicken.",
+    "Toss the shredded cabbage and chopped parsley with the remaining oil and lime juice. Serve all the beans, rice and salad."
+  ],
+  "nutrition": {
+    "calories": "517 kcal",
+    "protein": "14.0 g",
+    "carbohydrates": "52.2 g",
+    "fat": "23.9 g",
+    "fibre": "12.4 g",
+    "sodium": "12 mg",
+    "potassium": "661 mg",
+    "phosphate": "220 mg",
+    "salt": "0.03 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "plantain-and-black-eyed-pea-fritters-with-groundnuts",
+  "code": "L097",
+  "category": "Lunch",
+  "cuisine": "Ghana",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L097.webp",
+  "name": "Plantain and black-eyed pea fritters with groundnuts",
+  "description": "Plantain and black-eyed pea fritters with ginger, groundnuts and lime-dressed cabbage.",
+  "cookingTime": "35 mins",
+  "calories": "525 kcal",
+  "protein": "14.4 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Black-eyed peas, boiled without salt and drained",
+      "shoppingItem": "Black-eyed peas, boiled without salt and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Ripe plantain flesh",
+      "shoppingItem": "Ripe plantain flesh",
+      "quantity": "40 g (raw ripe flesh)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "20 g (dry edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "25 g (weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Use black-eyed peas previously boiled without salt and drained. Mash with the weighed peeled ripe plantain, rice flour, finely chopped onion, ginger, cumin and all the measured water.",
+    "Form four thin patties. Heat the oil in a non-stick pan and cook over medium-low heat for 5–6 minutes per side until the plantain and flour are fully cooked and the centres are steaming hot.",
+    "Toss the shredded cabbage with the lime juice and chopped peanuts. Serve all four fritters with all the cabbage."
+  ],
+  "nutrition": {
+    "calories": "525 kcal",
+    "protein": "14.4 g",
+    "carbohydrates": "48.1 g",
+    "fat": "27.5 g",
+    "fibre": "11.8 g",
+    "sodium": "15 mg",
+    "potassium": "845 mg",
+    "phosphate": "277 mg",
+    "salt": "0.04 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "black-eyed-pea-and-tomato-stew-with-soft-polenta",
+  "code": "L098",
+  "category": "Lunch",
+  "cuisine": "Ghana",
+  "mealFamily": "stew",
+  "emoji": "🥗",
+  "image": "/images/recipes/L098.webp",
+  "name": "Black-eyed pea and tomato stew with soft polenta",
+  "description": "Black-eyed peas in a ginger and tomato sauce, served over soft polenta.",
+  "cookingTime": "35 mins",
+  "calories": "511 kcal",
+  "protein": "14.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Black-eyed peas, boiled without salt and drained",
+      "shoppingItem": "Black-eyed peas, boiled without salt and drained",
+      "quantity": "115 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Fine sifted cornmeal, not self-raising",
+      "shoppingItem": "Fine sifted cornmeal, not self-raising",
+      "quantity": "50 g (dry edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "225 g (weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Sweet paprika",
+      "shoppingItem": "Sweet paprika",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Pure cayenne chilli powder",
+      "shoppingItem": "Pure cayenne chilli powder",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Bring 130 g of the water to a gentle simmer. Whisk in the cornmeal and cook over low heat for 20–25 minutes, stirring often, until fully tender. Cover off the heat if ready early.",
+    "Meanwhile soften the chopped onion, ginger and garlic in the oil for 5 minutes. Add chopped tomato, paprika, chilli and remaining 50 g water and simmer for 8 minutes.",
+    "Add the cooked, drained black-eyed peas and simmer for 5–7 minutes until hot and thickened. Serve all the stew over all the polenta."
+  ],
+  "nutrition": {
+    "calories": "511 kcal",
+    "protein": "14.5 g",
+    "carbohydrates": "55.6 g",
+    "fat": "21.5 g",
+    "fibre": "10.9 g",
+    "sodium": "16 mg",
+    "potassium": "606 mg",
+    "phosphate": "265 mg",
+    "salt": "0.04 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian"
+  ]
+},
+{
+  "id": "lentil-and-groundnut-stew-with-flatbread",
+  "code": "L099",
+  "category": "Lunch",
+  "cuisine": "West Africa",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L099.webp",
+  "name": "Lentil and groundnut stew with flatbread",
+  "description": "Red lentils and vegetables in a groundnut sauce with a warm homemade flatbread.",
+  "cookingTime": "40 mins",
+  "calories": "542 kcal",
+  "protein": "16.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Dried split red lentils",
+      "shoppingItem": "Dried split red lentils",
+      "quantity": "30 g (dry edible input)"
+    },
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "40 g (dry)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "25 g (raw edible input)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Tomato puree",
+      "shoppingItem": "Tomato puree",
+      "quantity": "6 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "225 g (weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Sweet paprika",
+      "shoppingItem": "Sweet paprika",
+      "quantity": "1.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix the flour with 25 g of the water to make a dough. Knead briefly, cover and rest for 10 minutes. Finely chop the vegetables, garlic and ginger and grind the peanuts.",
+    "Soften the onion in the oil for 5 minutes. Add garlic, ginger, cumin, paprika and tomato puree and cook for 30 seconds.",
+    "Add the rinsed red lentils, carrot, cabbage, ground peanuts and remaining 200 g water. Cover and simmer for 20–25 minutes until the lentils are soft, stirring regularly.",
+    "Roll the dough between non-stick sheets without extra flour. Dry-cook in a hot pan for 2–3 minutes per side until cooked throughout. Serve all the stew with the whole flatbread."
+  ],
+  "nutrition": {
+    "calories": "542 kcal",
+    "protein": "16.9 g",
+    "carbohydrates": "54.6 g",
+    "fat": "28.1 g",
+    "fibre": "12.6 g",
+    "sodium": "31 mg",
+    "potassium": "750 mg",
+    "phosphate": "249 mg",
+    "salt": "0.08 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "pea-and-mint-soup-with-toast",
+  "code": "L100",
+  "category": "Lunch",
+  "cuisine": "Britain",
+  "mealFamily": "soup",
+  "emoji": "🥗",
+  "image": "/images/recipes/L100.webp",
+  "name": "Pea and mint soup with toast",
+  "description": "A smooth pea and mint soup with a spoonful of yoghurt and crisp toast.",
+  "cookingTime": "25 mins",
+  "calories": "517 kcal",
+  "protein": "15.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "ingredients": [
+    {
+      "item": "Frozen peas",
+      "shoppingItem": "Frozen peas",
+      "quantity": "115 g (frozen uncooked input)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "20 g (dry edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Leek, trimmed edible portion",
+      "shoppingItem": "Leek, trimmed edible portion",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "19 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White crusty bloomer bread, egg- and dairy-free",
+      "shoppingItem": "White crusty bloomer bread, egg- and dairy-free",
+      "quantity": "45 g (as sold edible weight)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "250 g (weighed grams)"
+    },
+    {
+      "item": "Fresh mint",
+      "shoppingItem": "Fresh mint",
+      "quantity": "4 g (raw edible leaves)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "shoppingItem": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "quantity": "50 g (as sold edible weight)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.3 g (dry)"
+    }
+  ],
+  "method": [
+    "Slice the onion and leek and soften in the oil in a covered pan for 5 minutes. Mix the rice flour with 40 g of the measured water to make a smooth slurry.",
+    "Add the frozen peas and remaining 210 g water to the pan. Bring to a simmer, stir in the slurry and cook for 8–10 minutes until the peas and rice flour are fully cooked.",
+    "Add the mint, lemon juice and pepper, then blend until smooth. Stir in the Greek-style yoghurt off the heat. Toast the bread and serve with all the soup; measure the finished soup volume if tracking a fluid allowance."
+  ],
+  "nutrition": {
+    "calories": "517 kcal",
+    "protein": "15.2 g",
+    "carbohydrates": "53.2 g",
+    "fat": "25.9 g",
+    "fibre": "9.5 g",
+    "sodium": "230 mg",
+    "potassium": "528 mg",
+    "phosphate": "250 mg",
+    "salt": "0.58 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian"
+  ]
+},
+{
+  "id": "salmon-avocado-and-cucumber-salad",
+  "code": "L101",
+  "category": "Lunch",
+  "cuisine": "Mediterranean",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L101.webp",
+  "name": "Salmon, avocado and cucumber salad",
+  "description": "Flaked salmon with avocado, cucumber and crisp lettuce in a lemon and chive dressing.",
+  "cookingTime": "25 mins",
+  "calories": "433 kcal",
+  "protein": "22.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "100 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Hass avocado flesh, skin and stone removed",
+      "shoppingItem": "Hass avocado flesh, skin and stone removed",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Lettuce",
+      "shoppingItem": "Lettuce",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Brush the salmon with one third of the oil. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Retain edible baking juices.",
+    "Weigh the avocado flesh after removing its skin and stone. Dice with the cucumber and shred the lettuce.",
+    "Mix the remaining oil, lemon juice, chopped chives and pepper. Serve all the salad with all the salmon, edible juices and dressing."
+  ],
+  "nutrition": {
+    "calories": "433 kcal",
+    "protein": "22.1 g",
+    "carbohydrates": "2.0 g",
+    "fat": "37.3 g",
+    "fibre": "2.4 g",
+    "sodium": "51 mg",
+    "potassium": "759 mg",
+    "phosphate": "270 mg",
+    "salt": "0.13 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "chicken-and-avocado-lettuce-wraps",
+  "code": "L102",
+  "category": "Lunch",
+  "cuisine": "Southeast Asia",
+  "mealFamily": "bread",
+  "emoji": "🥗",
+  "image": "/images/recipes/L102.webp",
+  "name": "Chicken and avocado lettuce wraps",
+  "description": "Warm chicken strips in lettuce cups with avocado, cucumber, coriander and lime.",
+  "cookingTime": "30 mins",
+  "calories": "393 kcal",
+  "protein": "24.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless boneless chicken breast",
+      "shoppingItem": "Skinless boneless chicken breast",
+      "quantity": "90 g (raw edible input)"
+    },
+    {
+      "item": "Hass avocado flesh, skin and stone removed",
+      "shoppingItem": "Hass avocado flesh, skin and stone removed",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Lettuce",
+      "shoppingItem": "Lettuce",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "1 g (raw edible input)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Slice the chicken thinly. Cook in half the oil with crushed garlic and pepper for 8–10 minutes until its centre reaches 75°C for 30 seconds.",
+    "Dice the weighed avocado flesh and cucumber. Mix with the lime juice, chopped coriander and remaining oil.",
+    "Divide all the chicken and edible pan juices among the lettuce leaves. Add all the avocado mixture and serve the whole portion."
+  ],
+  "nutrition": {
+    "calories": "393 kcal",
+    "protein": "24.0 g",
+    "carbohydrates": "2.9 g",
+    "fat": "31.8 g",
+    "fibre": "3.3 g",
+    "sodium": "67 mg",
+    "potassium": "919 mg",
+    "phosphate": "259 mg",
+    "salt": "0.17 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "spinach-egg-and-mozzarella-skillet",
+  "code": "L103",
+  "category": "Lunch",
+  "cuisine": "Italy",
+  "mealFamily": "eggs",
+  "emoji": "🥗",
+  "image": "/images/recipes/L103.webp",
+  "name": "Spinach, egg and mozzarella skillet",
+  "description": "A soft spinach and mozzarella frittata with fresh basil and warm tomatoes.",
+  "cookingTime": "25 mins",
+  "calories": "435 kcal",
+  "protein": "25.8 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Vegetarian-rennet fresh mozzarella",
+      "shoppingItem": "Vegetarian-rennet fresh mozzarella",
+      "quantity": "35 g (as sold edible weight)"
+    },
+    {
+      "item": "Baby spinach",
+      "shoppingItem": "Baby spinach",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Warm half the oil in a small ovenproof pan. Add chopped tomato and spinach and cook for 3 minutes.",
+    "Beat the weighed whole egg and egg white with the basil and pepper. Pour into the pan and scatter over all the diced mozzarella. Drizzle with the remaining oil.",
+    "Bake for 12–15 minutes until the centre is completely set and steaming hot. Serve the whole skillet.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "435 kcal",
+    "protein": "25.8 g",
+    "carbohydrates": "1.2 g",
+    "fat": "36.4 g",
+    "fibre": "0.8 g",
+    "sodium": "398 mg",
+    "potassium": "589 mg",
+    "phosphate": "304 mg",
+    "salt": "0.99 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Vegetarian",
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "tuna-egg-and-cucumber-boats",
+  "code": "L104",
+  "category": "Lunch",
+  "cuisine": "Britain",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L104.webp",
+  "name": "Tuna, egg and cucumber boats",
+  "description": "Cucumber boats filled with tuna, chopped egg and a lemon and chive dressing.",
+  "cookingTime": "25 mins",
+  "calories": "420 kcal",
+  "protein": "32.8 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "ingredients": [
+    {
+      "item": "Tuna canned in brine, drained",
+      "shoppingItem": "Tuna canned in brine, drained",
+      "quantity": "100 g (drained edible weight)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "25 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Lettuce",
+      "shoppingItem": "Lettuce",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Brush a small ramekin with 5 g of the oil. Add the weighed raw egg and steam over a separate pan of water for 8–10 minutes until fully set. Cool and chop, retaining the oil.",
+    "Drain brine-canned tuna and weigh 100 g. Mix with the egg, remaining 20 g oil, lemon juice, chives and pepper.",
+    "Halve the cucumber lengthways and scoop out its centre, keeping all the edible flesh. Chop that flesh into the tuna mixture, fill both cucumber halves and serve on all the lettuce."
+  ],
+  "nutrition": {
+    "calories": "420 kcal",
+    "protein": "32.8 g",
+    "carbohydrates": "2.0 g",
+    "fat": "31.1 g",
+    "fibre": "1.5 g",
+    "sodium": "378 mg",
+    "potassium": "572 mg",
+    "phosphate": "295 mg",
+    "salt": "0.94 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "beef-and-cheddar-lettuce-cups",
+  "code": "L105",
+  "category": "Lunch",
+  "cuisine": "Britain",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L105.webp",
+  "name": "Beef and Cheddar lettuce cups",
+  "description": "Seared beef and Cheddar in crisp lettuce cups with a mustard dressing.",
+  "cookingTime": "25 mins",
+  "calories": "457 kcal",
+  "protein": "29.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Beef sirloin, lean and edible fat",
+      "shoppingItem": "Beef sirloin, lean and edible fat",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Mature Cheddar",
+      "shoppingItem": "Mature Cheddar",
+      "quantity": "25 g (as sold)"
+    },
+    {
+      "item": "Lettuce",
+      "shoppingItem": "Lettuce",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Mustard seeds",
+      "shoppingItem": "Mustard seeds",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Plain unseasoned vinegar",
+      "shoppingItem": "Plain unseasoned vinegar",
+      "quantity": "10 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Slice the beef across the grain. Cook in two thirds of the oil in a hot non-stick pan for 3–4 minutes until the surfaces are thoroughly seared. Season with pepper.",
+    "Grind the mustard seeds and mix with the vinegar and remaining oil. Dice the cucumber and grate the Cheddar.",
+    "Divide all the beef, edible pan juices, cheese and cucumber between the lettuce leaves. Spoon over all the dressing and serve."
+  ],
+  "nutrition": {
+    "calories": "457 kcal",
+    "protein": "29.3 g",
+    "carbohydrates": "1.6 g",
+    "fat": "36.9 g",
+    "fibre": "1.3 g",
+    "sodium": "250 mg",
+    "potassium": "544 mg",
+    "phosphate": "334 mg",
+    "salt": "0.63 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "salmon-with-softly-set-egg",
+  "code": "L106",
+  "category": "Lunch",
+  "cuisine": "Simple cooking",
+  "mealFamily": "eggs",
+  "emoji": "🥗",
+  "image": "/images/recipes/L106.webp",
+  "name": "Salmon with softly set egg",
+  "description": "Baked salmon with a softly set egg and warm butter.",
+  "cookingTime": "25 mins",
+  "calories": "394 kcal",
+  "protein": "26.8 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "100 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "15 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 190°C, or 170°C fan. Put the salmon in a small dish with 5 g of the butter and bake for 12–15 minutes until opaque and steaming hot.",
+    "Beat the weighed egg with the measured water. Melt the remaining 10 g butter in a non-stick pan and cook the egg gently, stirring, until fully set.",
+    "Serve all the salmon, edible baking juices, egg and butter together."
+  ],
+  "nutrition": {
+    "calories": "394 kcal",
+    "protein": "26.8 g",
+    "carbohydrates": "0.1 g",
+    "fat": "31.8 g",
+    "fibre": "0.2 g",
+    "sodium": "122 mg",
+    "potassium": "434 mg",
+    "phosphate": "319 mg",
+    "salt": "0.30 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Carnivore",
+  "dietCategories": [
+    "Keto",
+    "Carnivore"
+  ]
+},
+{
+  "id": "sirloin-steak-with-a-baked-egg",
+  "code": "L107",
+  "category": "Lunch",
+  "cuisine": "Simple cooking",
+  "mealFamily": "eggs",
+  "emoji": "🥗",
+  "image": "/images/recipes/L107.webp",
+  "name": "Sirloin steak with a baked egg",
+  "description": "Pan-seared sirloin with a baked egg and its butter pan juices.",
+  "cookingTime": "25 mins",
+  "calories": "418 kcal",
+  "protein": "32.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Beef sirloin, lean and edible fat",
+      "shoppingItem": "Beef sirloin, lean and edible fat",
+      "quantity": "120 g (raw edible input)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "15 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 190°C, or 170°C fan. Brush a small ramekin with 5 g of the butter, add the weighed egg and water and bake for 10–12 minutes until fully set.",
+    "Heat the remaining 10 g butter in a non-stick pan. Sear the steak on every surface and cook to preference. Rest for 3 minutes, retaining the edible juices.",
+    "Serve the entire steak, baked egg and all edible pan juices."
+  ],
+  "nutrition": {
+    "calories": "418 kcal",
+    "protein": "32.3 g",
+    "carbohydrates": "0.1 g",
+    "fat": "32.1 g",
+    "fibre": "0.0 g",
+    "sodium": "153 mg",
+    "potassium": "461 mg",
+    "phosphate": "309 mg",
+    "salt": "0.38 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Carnivore",
+  "dietCategories": [
+    "Keto",
+    "Carnivore"
+  ]
+},
+{
+  "id": "pork-medallions-with-scrambled-eggs",
+  "code": "L108",
+  "category": "Lunch",
+  "cuisine": "Simple cooking",
+  "mealFamily": "eggs",
+  "emoji": "🥗",
+  "image": "/images/recipes/L108.webp",
+  "name": "Pork medallions with scrambled eggs",
+  "description": "Pork medallions with buttery scrambled eggs.",
+  "cookingTime": "30 mins",
+  "calories": "444 kcal",
+  "protein": "39.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Pork fillet, lean and visible edible fat",
+      "shoppingItem": "Pork fillet, lean and visible edible fat",
+      "quantity": "120 g (raw edible input)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "25 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "15 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Slice the pork into medallions. Cook in 10 g of the butter over medium heat, turning, until the centres reach 75°C for 30 seconds. Keep warm with all edible pan juices.",
+    "Beat the weighed egg and water. Melt the remaining 15 g butter in a clean non-stick pan and cook the eggs gently until fully set.",
+    "Serve all the pork, eggs, butter and edible juices."
+  ],
+  "nutrition": {
+    "calories": "444 kcal",
+    "protein": "39.9 g",
+    "carbohydrates": "0.1 g",
+    "fat": "31.7 g",
+    "fibre": "0.0 g",
+    "sodium": "207 mg",
+    "potassium": "649 mg",
+    "phosphate": "451 mg",
+    "salt": "0.52 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Carnivore",
+  "dietCategories": [
+    "Keto",
+    "Carnivore"
+  ]
+},
+{
+  "id": "chicken-and-egg-mini-patties",
+  "code": "L109",
+  "category": "Lunch",
+  "cuisine": "Simple cooking",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L109.webp",
+  "name": "Chicken and egg mini patties",
+  "description": "Small chicken thigh patties bound with egg and cooked in butter.",
+  "cookingTime": "30 mins",
+  "calories": "367 kcal",
+  "protein": "35.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless boneless chicken thigh",
+      "shoppingItem": "Skinless boneless chicken thigh",
+      "quantity": "140 g (raw edible input)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "20 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "20 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Mince the plain skinless boneless chicken thigh at home. Mix with the weighed egg and form four small, thin patties.",
+    "Melt all the butter in a non-stick pan. Cook the patties over medium-low heat for 5–6 minutes per side until the centres reach 75°C for 30 seconds.",
+    "Transfer the patties to a plate. Add the measured water to the pan, heat briefly and spoon all the edible butter and juices over all four patties."
+  ],
+  "nutrition": {
+    "calories": "367 kcal",
+    "protein": "35.7 g",
+    "carbohydrates": "0.1 g",
+    "fat": "24.9 g",
+    "fibre": "0.0 g",
+    "sodium": "205 mg",
+    "potassium": "624 mg",
+    "phosphate": "248 mg",
+    "salt": "0.51 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Carnivore",
+  "dietCategories": [
+    "Keto",
+    "Carnivore"
+  ]
+},
+{
+  "id": "ginger-chicken-and-carrot-rice-bowl",
+  "code": "L110",
+  "category": "Lunch",
+  "cuisine": "East Asia",
+  "mealFamily": "rice",
+  "emoji": "🥗",
+  "image": "/images/recipes/L110.webp",
+  "name": "Ginger chicken and carrot rice bowl",
+  "description": "Chicken strips, tender carrots and rice with fresh ginger and chives.",
+  "cookingTime": "30 mins",
+  "calories": "484 kcal",
+  "protein": "28.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Skinless boneless chicken breast",
+      "shoppingItem": "Skinless boneless chicken breast",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the entire cooked rice portion.",
+    "Finely slice the chicken and carrot. Cook in the oil with grated ginger for 8–10 minutes, covering briefly if needed, until the carrot is tender and chicken reaches 75°C for 30 seconds.",
+    "Add the salt and chopped chives and serve all the chicken, carrot and edible pan juices with all the rice."
+  ],
+  "nutrition": {
+    "calories": "484 kcal",
+    "protein": "28.5 g",
+    "carbohydrates": "42.8 g",
+    "fat": "21.6 g",
+    "fibre": "3.0 g",
+    "sodium": "160 mg",
+    "potassium": "537 mg",
+    "phosphate": "283 mg",
+    "salt": "0.40 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "tuna-and-cucumber-rice-salad",
+  "code": "L111",
+  "category": "Lunch",
+  "cuisine": "Mediterranean",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L111.webp",
+  "name": "Tuna and cucumber rice salad",
+  "description": "Tuna and rice tossed with cucumber, carrot, parsley and lemon.",
+  "cookingTime": "25 mins",
+  "calories": "460 kcal",
+  "protein": "24.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Tuna canned in brine, drained",
+      "shoppingItem": "Tuna canned in brine, drained",
+      "quantity": "80 g (drained edible weight)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes.",
+    "Drain plain brine-canned tuna and weigh the drained fish. Check the packet contains no onion, garlic, flavouring or added sauce. Dice the cucumber and grate the carrot.",
+    "Mix the oil, lemon juice and parsley. Toss with all the rice, tuna and vegetables and serve the entire salad freshly prepared."
+  ],
+  "nutrition": {
+    "calories": "460 kcal",
+    "protein": "24.6 g",
+    "carbohydrates": "41.0 g",
+    "fat": "21.4 g",
+    "fibre": "2.1 g",
+    "sodium": "250 mg",
+    "potassium": "374 mg",
+    "phosphate": "204 mg",
+    "salt": "0.62 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "chive-and-spinach-rice-pancakes",
+  "code": "L112",
+  "category": "Lunch",
+  "cuisine": "Britain",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L112.webp",
+  "name": "Chive and spinach rice pancakes",
+  "description": "Savoury rice pancakes with spinach, chives and a tender centre.",
+  "cookingTime": "30 mins",
+  "calories": "450 kcal",
+  "protein": "18.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "45 g (dry edible input)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Baby spinach",
+      "shoppingItem": "Baby spinach",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "85 g (weighed grams)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Whisk the rice flour, weighed whole egg, egg white, measured water and salt into a smooth batter. Rest for 10 minutes.",
+    "Finely chop the spinach and chives and stir into the batter.",
+    "Divide all the oil between three batches in a non-stick pan. Cook three medium pancakes for 3–4 minutes per side until the egg and rice flour are fully cooked. Serve all three."
+  ],
+  "nutrition": {
+    "calories": "450 kcal",
+    "protein": "18.7 g",
+    "carbohydrates": "32.9 g",
+    "fat": "25.0 g",
+    "fibre": "1.5 g",
+    "sodium": "318 mg",
+    "potassium": "513 mg",
+    "phosphate": "173 mg",
+    "salt": "0.80 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Vegetarian",
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "basil-cod-with-warm-rice-salad",
+  "code": "L113",
+  "category": "Lunch",
+  "cuisine": "Italy",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L113.webp",
+  "name": "Basil cod with warm rice salad",
+  "description": "Basil and lemon cod with rice, carrot and cool cucumber.",
+  "cookingTime": "30 mins",
+  "calories": "450 kcal",
+  "protein": "22.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Cod fillet, flesh only",
+      "shoppingItem": "Cod fillet, flesh only",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes.",
+    "Brush the cod with half the oil and season with the salt. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily.",
+    "Mix the remaining oil, lemon juice and chopped basil with the rice, grated carrot and diced cucumber. Serve all the salad with all the fish and edible juices."
+  ],
+  "nutrition": {
+    "calories": "450 kcal",
+    "protein": "22.2 g",
+    "carbohydrates": "41.7 g",
+    "fat": "21.2 g",
+    "fibre": "2.4 g",
+    "sodium": "186 mg",
+    "potassium": "501 mg",
+    "phosphate": "235 mg",
+    "salt": "0.47 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "beef-and-carrot-rice-bowl",
+  "code": "L114",
+  "category": "Lunch",
+  "cuisine": "South America",
+  "mealFamily": "rice",
+  "emoji": "🥗",
+  "image": "/images/recipes/L114.webp",
+  "name": "Beef and carrot rice bowl",
+  "description": "Quick-seared beef with ginger carrots, rice and chopped chives.",
+  "cookingTime": "30 mins",
+  "calories": "579 kcal",
+  "protein": "26.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl",
+  "ingredients": [
+    {
+      "item": "Beef sirloin, lean and edible fat",
+      "shoppingItem": "Beef sirloin, lean and edible fat",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice in all the measured water, covered, for 12–15 minutes and rest for 5 minutes.",
+    "Slice the beef and carrot thinly. Heat the oil and sear the beef surfaces. Add the carrot and ginger, cover and cook over medium-low heat for 5–7 minutes until the carrot is tender and the beef is cooked to preference.",
+    "Stir in the salt and chives. Serve all the beef, carrot and edible juices with all the rice."
+  ],
+  "nutrition": {
+    "calories": "579 kcal",
+    "protein": "26.1 g",
+    "carbohydrates": "42.8 g",
+    "fat": "33.2 g",
+    "fibre": "3.0 g",
+    "sodium": "162 mg",
+    "potassium": "487 mg",
+    "phosphate": "243 mg",
+    "salt": "0.40 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "chive-omelette-with-soft-polenta-and-carrots",
+  "code": "L115",
+  "category": "Lunch",
+  "cuisine": "Italy",
+  "mealFamily": "eggs",
+  "emoji": "🥗",
+  "image": "/images/recipes/L115.webp",
+  "name": "Chive omelette with soft polenta and carrots",
+  "description": "A chive omelette with soft polenta and warm carrots.",
+  "cookingTime": "35 mins",
+  "calories": "446 kcal",
+  "protein": "23.8 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "70 g (raw edible input)"
+    },
+    {
+      "item": "Fine sifted cornmeal, not self-raising",
+      "shoppingItem": "Fine sifted cornmeal, not self-raising",
+      "quantity": "35 g (dry edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "140 g (weighed grams)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Bring all the measured water to a simmer. Whisk in the cornmeal and half the salt and cook gently for 20–25 minutes, stirring often, until fully tender. Retain the whole portion.",
+    "Finely slice the carrot. Cook in 5 g of the oil in a covered non-stick pan over low heat for 8–10 minutes until tender; set aside with any edible juices.",
+    "Beat the weighed egg and egg white with the chives and remaining salt. Heat the remaining 10 g oil and cook the egg as an omelette until fully set. Serve the whole omelette, all the polenta and carrots."
+  ],
+  "nutrition": {
+    "calories": "446 kcal",
+    "protein": "23.8 g",
+    "carbohydrates": "28.9 g",
+    "fat": "25.4 g",
+    "fibre": "3.8 g",
+    "sodium": "384 mg",
+    "potassium": "425 mg",
+    "phosphate": "241 mg",
+    "salt": "0.96 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Vegetarian",
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "white-bean-and-brown-rice-salad",
+  "code": "L116",
+  "category": "Lunch",
+  "cuisine": "Mediterranean",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L116.webp",
+  "name": "White-bean and brown rice salad",
+  "description": "Brown and white rice with white beans, crunchy vegetables, parsley and walnuts.",
+  "cookingTime": "30 mins",
+  "calories": "438 kcal",
+  "protein": "11.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "60 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Wholegrain brown basmati rice",
+      "shoppingItem": "Wholegrain brown basmati rice",
+      "quantity": "25 g (dry edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "25 g (dry)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "10 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "110 g (weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "10 g (as sold edible weight)"
+    }
+  ],
+  "method": [
+    "Simmer the brown rice in 70 g of the water, covered, for 15 minutes. Add the white rice and remaining 40 g water and simmer for another 12–15 minutes until both are tender; retain any liquid.",
+    "Use navy beans previously boiled without salt and drained. Dice the cucumber and pepper and chop the parsley and walnuts.",
+    "Mix the oil and lemon juice and toss with all the rice, beans, vegetables, herbs and walnuts. Serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "438 kcal",
+    "protein": "11.7 g",
+    "carbohydrates": "49.1 g",
+    "fat": "18.6 g",
+    "fibre": "9.5 g",
+    "sodium": "10 mg",
+    "potassium": "576 mg",
+    "phosphate": "253 mg",
+    "salt": "0.02 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "lemon-chickpea-and-quinoa-bowl",
+  "code": "L117",
+  "category": "Lunch",
+  "cuisine": "North Africa",
+  "mealFamily": "plated meal",
+  "emoji": "🥗",
+  "image": "/images/recipes/L117.webp",
+  "name": "Lemon chickpea and quinoa bowl",
+  "description": "Quinoa and chickpeas with cumin carrots, cabbage, walnuts and lemon.",
+  "cookingTime": "35 mins",
+  "calories": "481 kcal",
+  "protein": "17.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Quinoa",
+      "shoppingItem": "Quinoa",
+      "quantity": "60 g (dry edible input)"
+    },
+    {
+      "item": "Chickpeas, boiled without salt and drained",
+      "shoppingItem": "Chickpeas, boiled without salt and drained",
+      "quantity": "80 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "10 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "160 g (weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "10 g (as sold edible weight)"
+    }
+  ],
+  "method": [
+    "Rinse the dry quinoa and cook in all the measured water, covered, for 15–18 minutes until tender and the water is absorbed. Rest for 5 minutes.",
+    "Finely slice the carrot and cabbage. Cook in the oil with the cumin over low heat in a covered pan for 8–10 minutes. Add the cooked, drained chickpeas and heat through.",
+    "Fold in all the quinoa, lemon juice, parsley and chopped walnuts and serve the entire bowl."
+  ],
+  "nutrition": {
+    "calories": "481 kcal",
+    "protein": "17.6 g",
+    "carbohydrates": "50.9 g",
+    "fat": "22.7 g",
+    "fibre": "17.0 g",
+    "sodium": "64 mg",
+    "potassium": "999 mg",
+    "phosphate": "316 mg",
+    "salt": "0.16 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "oat-and-carrot-pancakes-with-white-beans",
+  "code": "L118",
+  "category": "Lunch",
+  "cuisine": "Britain",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L118.webp",
+  "name": "Oat and carrot pancakes with white beans",
+  "description": "Savoury oat pancakes with carrots and white beans, with lemon yoghurt.",
+  "cookingTime": "35 mins",
+  "calories": "418 kcal",
+  "protein": "20.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Unfortified porridge oats",
+      "shoppingItem": "Unfortified porridge oats",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "60 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "10 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "50 g (weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Plain low-fat yoghurt, about 1% fat",
+      "shoppingItem": "Plain low-fat yoghurt, about 1% fat",
+      "quantity": "50 g (as sold edible weight)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Grind the oats to a coarse flour. Mix with the egg white and measured water and rest for 10 minutes.",
+    "Mash the cooked, drained navy beans and stir into the batter with finely grated carrot, chives and pepper.",
+    "Heat all the oil in a non-stick pan and cook three thin pancakes for 4–5 minutes per side until fully set and the carrots are tender. Mix the yoghurt and lemon juice and serve with all three pancakes."
+  ],
+  "nutrition": {
+    "calories": "418 kcal",
+    "protein": "20.9 g",
+    "carbohydrates": "45.1 g",
+    "fat": "14.4 g",
+    "fibre": "12.7 g",
+    "sodium": "204 mg",
+    "potassium": "782 mg",
+    "phosphate": "338 mg",
+    "salt": "0.51 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "lentil-and-barley-herb-salad",
+  "code": "L119",
+  "category": "Lunch",
+  "cuisine": "Mediterranean",
+  "mealFamily": "salad",
+  "emoji": "🥗",
+  "image": "/images/recipes/L119.webp",
+  "name": "Lentil and barley herb salad",
+  "description": "Lentils and pearl barley with peppers, cucumber, parsley and walnuts.",
+  "cookingTime": "45 mins",
+  "calories": "436 kcal",
+  "protein": "13.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Green or brown lentils, boiled without salt and drained",
+      "shoppingItem": "Green or brown lentils, boiled without salt and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Pearl barley",
+      "shoppingItem": "Pearl barley",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "12 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "130 g (weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "10 g (as sold edible weight)"
+    }
+  ],
+  "method": [
+    "Simmer the dry pearl barley with all the measured water, covered, for 30–35 minutes until tender. Retain any remaining liquid and cool until just warm.",
+    "Use green or brown lentils previously boiled without salt and drained. Dice the pepper and cucumber and chop the parsley and walnuts.",
+    "Mix the oil and lemon juice and toss with all the barley, lentils, vegetables, herbs and walnuts. Serve the entire salad."
+  ],
+  "nutrition": {
+    "calories": "436 kcal",
+    "protein": "13.7 g",
+    "carbohydrates": "47.6 g",
+    "fat": "20.8 g",
+    "fibre": "16.3 g",
+    "sodium": "12 mg",
+    "potassium": "636 mg",
+    "phosphate": "256 mg",
+    "salt": "0.03 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "ginger-tofu-and-brown-rice-bowl",
+  "code": "L120",
+  "category": "Lunch",
+  "cuisine": "East Asia",
+  "mealFamily": "rice",
+  "emoji": "🥗",
+  "image": "/images/recipes/L120.webp",
+  "name": "Ginger tofu and brown rice bowl",
+  "description": "Tofu, cabbage and carrots over brown and white rice with ginger and sesame.",
+  "cookingTime": "40 mins",
+  "calories": "427 kcal",
+  "protein": "14.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Wholegrain brown basmati rice",
+      "shoppingItem": "Wholegrain brown basmati rice",
+      "quantity": "35 g (dry edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "20 g (dry)"
+    },
+    {
+      "item": "Regular tofu, made with calcium sulphate, gently drained",
+      "shoppingItem": "Regular tofu, made with calcium sulphate, gently drained",
+      "quantity": "100 g (as sold edible weight, unpressed)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "12 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "3 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "120 g (weighed grams)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Sesame seeds",
+      "shoppingItem": "Sesame seeds",
+      "quantity": "2 g (dry)"
+    }
+  ],
+  "method": [
+    "Simmer the brown rice in 80 g of the water for 15 minutes. Add the white rice and remaining 40 g water and cook covered for another 12–15 minutes until tender, retaining any liquid.",
+    "Use regular calcium-sulphate tofu, gently drained without pressing. Cube it and cook in the oil for 5 minutes. Add finely shredded carrot, cabbage and ginger, cover and cook for 6–8 minutes until tender.",
+    "Add the soy sauce, coriander and sesame. Serve all the tofu, vegetables and edible juices with all the rice."
+  ],
+  "nutrition": {
+    "calories": "427 kcal",
+    "protein": "14.3 g",
+    "carbohydrates": "49.1 g",
+    "fat": "19.4 g",
+    "fibre": "5.9 g",
+    "sodium": "199 mg",
+    "potassium": "481 mg",
+    "phosphate": "266 mg",
+    "salt": "0.50 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "white-bean-walnut-pasta-with-frittata-ribbons",
+  "code": "L121",
+  "category": "Lunch",
+  "cuisine": "Italy",
+  "mealFamily": "pasta",
+  "emoji": "🥗",
+  "image": "/images/recipes/L121.webp",
+  "name": "White-bean walnut pasta with frittata ribbons",
+  "description": "Pasta with white beans, vegetables, walnuts and basil, topped with egg-white ribbons.",
+  "cookingTime": "35 mins",
+  "calories": "723 kcal",
+  "protein": "28.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Egg-free plain dried white wheat pasta",
+      "shoppingItem": "Egg-free plain dried white wheat pasta",
+      "quantity": "60 g (dry)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Courgette",
+      "shoppingItem": "Courgette",
+      "quantity": "70 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "20 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "40 g (weighed grams)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the dry pasta in a separate pan of unsalted water according to the packet and drain. Cook the weighed egg white in 5 g of the oil as a thin pancake until fully set; cut into ribbons.",
+    "Dice the courgette and pepper and cook in the remaining 15 g oil for 6–8 minutes. Add the cooked, drained navy beans and all the measured water and heat through.",
+    "Toss in all the pasta, chopped walnuts, basil, lemon juice and pepper. Add all the frittata ribbons and serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "723 kcal",
+    "protein": "28.1 g",
+    "carbohydrates": "61.8 g",
+    "fat": "35.5 g",
+    "fibre": "15.4 g",
+    "sodium": "153 mg",
+    "potassium": "1128 mg",
+    "phosphate": "380 mg",
+    "salt": "0.38 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Vegetarian",
+    "Mediterranean-style",
+    "DASH-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "chicken-groundnut-and-black-eyed-pea-rice-bowl",
+  "code": "L122",
+  "category": "Lunch",
+  "cuisine": "Ghana",
+  "mealFamily": "rice",
+  "emoji": "🥗",
+  "image": "/images/recipes/L122.webp",
+  "name": "Chicken, groundnut and black-eyed pea rice bowl",
+  "description": "Chicken and black-eyed peas in a groundnut and pepper sauce with rice.",
+  "cookingTime": "40 mins",
+  "calories": "738 kcal",
+  "protein": "41.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless boneless chicken breast",
+      "shoppingItem": "Skinless boneless chicken breast",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "60 g (dry)"
+    },
+    {
+      "item": "Black-eyed peas, boiled without salt and drained",
+      "shoppingItem": "Black-eyed peas, boiled without salt and drained",
+      "quantity": "80 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "20 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "130 g (weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Sweet paprika",
+      "shoppingItem": "Sweet paprika",
+      "quantity": "1 g (dry)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "4 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Cook the rice with 125 g of the water in a covered pan for 12–15 minutes, then rest for 5 minutes.",
+    "Dice the chicken and vegetables and grind the peanuts. Soften onion, garlic and ginger in the oil for 4 minutes. Add chicken and paprika and cook for 4 minutes.",
+    "Add chopped tomato, pepper, cooked drained black-eyed peas, ground peanuts and remaining 5 g water. Cover and simmer gently for 12–15 minutes until chicken reaches 75°C for 30 seconds and vegetables are tender. Stir in the coriander and serve all the stew with all the rice."
+  ],
+  "nutrition": {
+    "calories": "738 kcal",
+    "protein": "41.2 g",
+    "carbohydrates": "65.6 g",
+    "fat": "32.1 g",
+    "fibre": "10.1 g",
+    "sodium": "75 mg",
+    "potassium": "1081 mg",
+    "phosphate": "515 mg",
+    "salt": "0.19 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "lime-fish-and-avocado-rice-bowl",
+  "code": "L123",
+  "category": "Lunch",
+  "cuisine": "Peru",
+  "mealFamily": "rice",
+  "emoji": "🥗",
+  "image": "/images/recipes/L123.webp",
+  "name": "Lime fish and avocado rice bowl",
+  "description": "Lime baked fish with rice, avocado and a creamy cabbage and carrot slaw.",
+  "cookingTime": "35 mins",
+  "calories": "782 kcal",
+  "protein": "28.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Cod fillet, flesh only",
+      "shoppingItem": "Cod fillet, flesh only",
+      "quantity": "120 g (raw edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "60 g (dry)"
+    },
+    {
+      "item": "Hass avocado flesh, skin and stone removed",
+      "shoppingItem": "Hass avocado flesh, skin and stone removed",
+      "quantity": "70 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "70 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "25 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "25 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "135 g (weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with all the measured water, covered, for 12–15 minutes, then rest for 5 minutes.",
+    "Brush the cod with 10 g of the oil and half the lime juice. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque and steaming hot.",
+    "Mix mayonnaise, remaining 15 g oil, remaining lime juice, chopped coriander and pepper. Toss with shredded cabbage and carrot. Serve all the fish and edible juices with all the rice, weighed avocado flesh and slaw."
+  ],
+  "nutrition": {
+    "calories": "782 kcal",
+    "protein": "28.6 g",
+    "carbohydrates": "54.1 g",
+    "fat": "49.7 g",
+    "fibre": "6.8 g",
+    "sodium": "159 mg",
+    "potassium": "1133 mg",
+    "phosphate": "334 mg",
+    "salt": "0.40 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "potato-and-herb-cakes-with-egg-salad",
+  "code": "L124",
+  "category": "Lunch",
+  "cuisine": "Britain",
+  "mealFamily": "cakes",
+  "emoji": "🥗",
+  "image": "/images/recipes/L124.webp",
+  "name": "Potato and herb cakes with egg salad",
+  "description": "Crisp potato and herb cakes with chopped egg, cucumber and creamy lemon dressing.",
+  "cookingTime": "40 mins",
+  "calories": "710 kcal",
+  "protein": "23.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Peeled potato, boiled in unsalted water and drained",
+      "shoppingItem": "Peeled potato, boiled in unsalted water and drained",
+      "quantity": "140 g (cooked drained edible weight)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "35 g (dry edible input)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "25 g (as sold)"
+    },
+    {
+      "item": "Lettuce",
+      "shoppingItem": "Lettuce",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Use peeled potato previously boiled without salt and drained; weigh 140 g cooked. Mash, cool and mix with the rice flour, weighed egg white, half the chives and pepper. Form four thin cakes.",
+    "Cook the weighed whole egg in a small ramekin brushed with 5 g of the oil, steaming until fully set. Cool and chop. Cook all four potato cakes in the remaining 15 g oil over medium-low heat for 5–6 minutes per side until fully cooked.",
+    "Mix the mayonnaise, lemon juice and remaining chives. Toss with chopped egg, sliced cucumber and lettuce. Serve all the cakes and salad."
+  ],
+  "nutrition": {
+    "calories": "710 kcal",
+    "protein": "23.7 g",
+    "carbohydrates": "50.5 g",
+    "fat": "44.1 g",
+    "fibre": "4.6 g",
+    "sodium": "306 mg",
+    "potassium": "1088 mg",
+    "phosphate": "223 mg",
+    "salt": "0.77 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Vegetarian",
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "ginger-tofu-and-peanut-noodle-salad",
+  "code": "L125",
+  "category": "Lunch",
+  "cuisine": "East Asia",
+  "mealFamily": "pasta",
+  "emoji": "🥗",
+  "image": "/images/recipes/L125.webp",
+  "name": "Ginger tofu and peanut noodle salad",
+  "description": "Rice noodles with tofu, crunchy vegetables and a ginger, peanut and lime dressing.",
+  "cookingTime": "30 mins",
+  "calories": "738 kcal",
+  "protein": "24.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "ingredients": [
+    {
+      "item": "Rice noodles",
+      "shoppingItem": "Rice noodles",
+      "quantity": "60 g (dry)"
+    },
+    {
+      "item": "Regular tofu, made with calcium sulphate, gently drained",
+      "shoppingItem": "Regular tofu, made with calcium sulphate, gently drained",
+      "quantity": "180 g (as sold edible weight, unpressed)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "20 g (as sold edible weight)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Sesame oil",
+      "shoppingItem": "Sesame oil",
+      "quantity": "5 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "5 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "60 g (weighed grams)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "5 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Cook the rice noodles in a separate pan of unsalted water according to the packet and drain.",
+    "Use regular calcium-sulphate tofu, gently drained without pressing. Cut into cubes and cook in all the rapeseed oil for 6–8 minutes until hot.",
+    "Blend the peanuts, sesame oil, soy sauce, lime juice, ginger and measured water. Toss with all the noodles, tofu and edible pan juices, sliced cucumber, grated carrot and coriander. Serve the entire bowl freshly prepared."
+  ],
+  "nutrition": {
+    "calories": "738 kcal",
+    "protein": "24.5 g",
+    "carbohydrates": "59.6 g",
+    "fat": "44.6 g",
+    "fibre": "6.4 g",
+    "sodium": "423 mg",
+    "potassium": "673 mg",
+    "phosphate": "375 mg",
+    "salt": "1.06 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Intermittent fasting — eating-window meal"
+  ]
+}
 ];

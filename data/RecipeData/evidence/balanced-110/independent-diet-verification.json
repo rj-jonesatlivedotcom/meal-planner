@@ -1,0 +1,21 @@
+{
+  "recipesChecked": 110,
+  "allNineCategoriesRepresented": true,
+  "categoryCounts": {
+    "Vegan": 33,
+    "Vegetarian": 64,
+    "DASH-style": 19,
+    "Low FODMAP": 13,
+    "Mediterranean-style": 31,
+    "Keto": 20,
+    "Atkins Phase 1": 11,
+    "Carnivore": 9,
+    "Intermittent fasting \u2014 eating-window meal": 31,
+    "Mixed diet": 6
+  },
+  "twoMealScenariosIndependentlyReconstructed": 4,
+  "compoundAllergenChecksPassed": true,
+  "lowFODMAPRecipesIngredientPortionChecked": 13,
+  "atkinsPhaseOneRecipeChecks": 11,
+  "clinicalOrFODMAPLaboratoryCertification": false
+}

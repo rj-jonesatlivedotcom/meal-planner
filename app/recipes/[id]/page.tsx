@@ -650,6 +650,9 @@ export default function RecipeDetailPage() {
           {showLoginMessage && <p role="status">Please log in to save favourite recipes.</p>}
           <h1>{recipe.name}</h1>
           <p>{recipe.description}</p>
+          {recipe.dietCategories?.length ? <div className="mt-3 flex flex-wrap gap-2" aria-label="Diet categories">
+            {recipe.dietCategories.map((category) => <span className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-900" key={category}>{category}</span>)}
+          </div> : null}
           <div className={styles.meta}>
             <span><RecipeIcon name="time" />{recipe.cookingTime}</span>
             <span><RecipeIcon name="servings" />{recipe.servings} {recipe.servings === 1 ? "serving" : "servings"}</span>
@@ -696,7 +699,8 @@ export default function RecipeDetailPage() {
             ["Fibre", recipe.nutrition.fibre], ["Salt", recipe.nutrition.salt ?? formatSalt(recipe.nutrition.sodium)],
             ["Potassium", recipe.nutrition.potassium], ["Phosphorus", recipe.nutrition.phosphate],
           ]} />
-          <details className={styles.evidence}><summary>About this nutrition information</summary><p>{getNutritionEvidenceText(recipe)}</p></details>
+          <details className={styles.evidence}><summary>About this nutrition information</summary><p>{getNutritionEvidenceText(recipe, recipe.nutritionBasis)}</p></details>
+          {recipe.dietCategories?.length ? <details className={styles.evidence}><summary>About these diet categories</summary><p>Categories describe the listed ingredients and portions. Mediterranean-style and DASH-style describe meal patterns; keto and Atkins use carbohydrate and ingredient checks. Low FODMAP uses ingredient and portion guidance. Intermittent fasting marks an eating-window meal, not a fasting schedule. Compare the serving with your daily targets.</p></details> : null}
         </section>
         <section className={styles.guidePanel} aria-labelledby="recipe-guide">
           <h2 id="recipe-guide"><RecipeIcon name="Potassium" />Dietary Guide</h2>

@@ -2609,5 +2609,930 @@ export const breakfasts: Recipe[] = [
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
-    quantityConversionsEstimated: false,}
+    quantityConversionsEstimated: false,},
+{
+  "id": "warm-blueberry-and-walnut-rice-porridge",
+  "code": "B051",
+  "category": "Breakfast",
+  "cuisine": "Britain",
+  "mealFamily": "rice",
+  "emoji": "🥣",
+  "image": "/images/recipes/B051.webp",
+  "name": "Warm blueberry and walnut rice porridge",
+  "description": "Creamy rice and oat porridge with warm blueberries, cinnamon and walnuts.",
+  "cookingTime": "35 mins",
+  "calories": "389 kcal",
+  "protein": "8.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Unfortified porridge oats",
+      "shoppingItem": "Unfortified porridge oats",
+      "quantity": "15 g (dry edible input)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Fresh blueberries",
+      "shoppingItem": "Fresh blueberries",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "200 g (weighed grams)"
+    },
+    {
+      "item": "White sugar",
+      "shoppingItem": "White sugar",
+      "quantity": "5 g (dry)"
+    },
+    {
+      "item": "Ground cinnamon",
+      "shoppingItem": "Ground cinnamon",
+      "quantity": "0.5 g (dry)"
+    }
+  ],
+  "method": [
+    "Put the dry rice, oats, cinnamon and all the measured water in a small covered pan. Bring to a simmer and cook gently for 25–30 minutes, stirring regularly, until the rice and oats are fully tender.",
+    "Add all the blueberries and sugar and cook for another 3–4 minutes, crushing some berries into the porridge.",
+    "Scatter over all the chopped walnuts and serve the entire bowl. If tracking fluid, measure the finished portion rather than assuming the added water is the fluid allowance."
+  ],
+  "nutrition": {
+    "calories": "389 kcal",
+    "protein": "8.6 g",
+    "carbohydrates": "60.6 g",
+    "fat": "11.9 g",
+    "fibre": "4.2 g",
+    "sodium": "12 mg",
+    "potassium": "217 mg",
+    "phosphate": "179 mg",
+    "salt": "0.03 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style",
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "blueberry-oat-and-tofu-pancakes",
+  "code": "B052",
+  "category": "Breakfast",
+  "cuisine": "Britain",
+  "mealFamily": "cakes",
+  "emoji": "🥣",
+  "image": "/images/recipes/B052.webp",
+  "name": "Blueberry oat and tofu pancakes",
+  "description": "Tender oat pancakes with tofu in the batter and a warm blueberry topping.",
+  "cookingTime": "35 mins",
+  "calories": "463 kcal",
+  "protein": "14.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "ingredients": [
+    {
+      "item": "Unfortified porridge oats",
+      "shoppingItem": "Unfortified porridge oats",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "20 g (dry edible input)"
+    },
+    {
+      "item": "Regular tofu, made with calcium sulphate, gently drained",
+      "shoppingItem": "Regular tofu, made with calcium sulphate, gently drained",
+      "quantity": "100 g (as sold edible weight, unpressed)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "70 g (weighed grams)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "12 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh blueberries",
+      "shoppingItem": "Fresh blueberries",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "White sugar",
+      "shoppingItem": "White sugar",
+      "quantity": "5 g (dry)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground cinnamon",
+      "shoppingItem": "Ground cinnamon",
+      "quantity": "0.5 g (dry)"
+    }
+  ],
+  "method": [
+    "Use regular calcium-sulphate tofu, gently drained without pressing. Blend the weighed tofu, oats, rice flour, cinnamon and 50 g of the water into a thick batter. Rest for 10 minutes.",
+    "Put the blueberries, sugar, lemon juice and remaining 20 g water in a small pan. Simmer for 5 minutes to make a warm topping.",
+    "Divide all the oil between three pancakes in a non-stick pan. Cook each over medium-low heat for 4–5 minutes per side until fully cooked and firm in the centre. Serve all three pancakes with all the topping."
+  ],
+  "nutrition": {
+    "calories": "463 kcal",
+    "protein": "14.5 g",
+    "carbohydrates": "54.4 g",
+    "fat": "20.3 g",
+    "fibre": "5.4 g",
+    "sodium": "13 mg",
+    "potassium": "386 mg",
+    "phosphate": "292 mg",
+    "salt": "0.03 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "seitan-pepper-and-breakfast-rice-hash",
+  "code": "B053",
+  "category": "Breakfast",
+  "cuisine": "East Asia",
+  "mealFamily": "rice",
+  "emoji": "🥣",
+  "image": "/images/recipes/B053.webp",
+  "name": "Seitan, pepper and breakfast rice hash",
+  "description": "A savoury rice and potato hash with homemade seitan, peppers and chives.",
+  "cookingTime": "45 mins",
+  "calories": "408 kcal",
+  "protein": "23.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "ingredients": [
+    {
+      "item": "Pure vital wheat gluten powder",
+      "shoppingItem": "Pure vital wheat gluten powder",
+      "quantity": "25 g (dry edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "35 g (dry)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "110 g (weighed grams)"
+    },
+    {
+      "item": "Peeled potato, boiled in unsalted water and drained",
+      "shoppingItem": "Peeled potato, boiled in unsalted water and drained",
+      "quantity": "50 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix the vital wheat gluten with 35 g of the water into a dough. Knead for 2 minutes, rest for 5 minutes and flatten to about 1 cm thick. Steam over a separate pan of water for 20–25 minutes until firm and cooked through, retaining the entire dough.",
+    "Cook the rice with the remaining 75 g water in a covered pan for 12–15 minutes, then rest for 5 minutes. Use peeled potato already boiled without salt and drained; weigh 50 g cooked.",
+    "Dice the steamed seitan and cooked potato. Finely chop the onion and pepper and cook in all the oil for 6–8 minutes. Add all the seitan, rice and potato and fry for 4–5 minutes until steaming hot. Add the chives and pepper and serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "408 kcal",
+    "protein": "23.3 g",
+    "carbohydrates": "42.2 g",
+    "fat": "15.8 g",
+    "fibre": "3.2 g",
+    "sodium": "14 mg",
+    "potassium": "403 mg",
+    "phosphate": "136 mg",
+    "salt": "0.03 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian"
+  ]
+},
+{
+  "id": "spiced-tofu-scramble-with-rice-flatbread",
+  "code": "B054",
+  "category": "Breakfast",
+  "cuisine": "India",
+  "mealFamily": "bread",
+  "emoji": "🥣",
+  "image": "/images/recipes/B054.webp",
+  "name": "Spiced tofu scramble with rice flatbread",
+  "description": "A soft tofu scramble with tomatoes, spinach and gentle spices, served with a rice flatbread.",
+  "cookingTime": "35 mins",
+  "calories": "380 kcal",
+  "protein": "15.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Regular tofu, made with calcium sulphate, gently drained",
+      "shoppingItem": "Regular tofu, made with calcium sulphate, gently drained",
+      "quantity": "150 g (as sold edible weight, unpressed)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "30 g (dry edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Baby spinach",
+      "shoppingItem": "Baby spinach",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "60 g (weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Ground turmeric",
+      "shoppingItem": "Ground turmeric",
+      "quantity": "0.3 g (dry)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "3 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Mix the rice flour with 40 g of the water and 5 g of the oil to make a thick batter. Rest for 10 minutes. Spread in a non-stick pan and cook for 3–4 minutes per side until fully cooked as one thin flatbread.",
+    "Use regular calcium-sulphate tofu, gently drained without pressing, and crumble the weighed portion. Soften chopped onion in the remaining 10 g oil for 4 minutes, then add cumin and turmeric for 30 seconds.",
+    "Add chopped tomato, spinach, tofu and remaining 20 g water. Cover and cook for 6–8 minutes until hot and the vegetables are tender. Stir in the parsley and serve all the scramble with the whole flatbread."
+  ],
+  "nutrition": {
+    "calories": "380 kcal",
+    "protein": "15.2 g",
+    "carbohydrates": "27.7 g",
+    "fat": "22.8 g",
+    "fibre": "2.5 g",
+    "sodium": "24 mg",
+    "potassium": "569 mg",
+    "phosphate": "214 mg",
+    "salt": "0.06 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style"
+  ]
+},
+{
+  "id": "white-bean-and-basil-breakfast-polenta",
+  "code": "B055",
+  "category": "Breakfast",
+  "cuisine": "Italy",
+  "mealFamily": "plated meal",
+  "emoji": "🥣",
+  "image": "/images/recipes/B055.webp",
+  "name": "White-bean and basil breakfast polenta",
+  "description": "Soft polenta topped with white beans, warm tomatoes, peppers and walnuts.",
+  "cookingTime": "35 mins",
+  "calories": "453 kcal",
+  "protein": "12.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "80 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Fine sifted cornmeal, not self-raising",
+      "shoppingItem": "Fine sifted cornmeal, not self-raising",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "12 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "170 g (weighed grams)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "10 g (as sold edible weight)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Bring 150 g of the water to a simmer. Whisk in the cornmeal and cook gently for 20–25 minutes until tender, stirring frequently.",
+    "Finely chop the tomato and pepper and cook in the oil for 6–8 minutes. Add the cooked, drained navy beans and remaining 20 g water and simmer for 4 minutes.",
+    "Stir in the basil and pepper. Serve all the polenta with all the beans, vegetables, juices and chopped walnuts."
+  ],
+  "nutrition": {
+    "calories": "453 kcal",
+    "protein": "12.5 g",
+    "carbohydrates": "44.0 g",
+    "fat": "20.8 g",
+    "fibre": "12.1 g",
+    "sodium": "9 mg",
+    "potassium": "634 mg",
+    "phosphate": "223 mg",
+    "salt": "0.02 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "lentil-and-groundnut-breakfast-fritters",
+  "code": "B056",
+  "category": "Breakfast",
+  "cuisine": "West Africa",
+  "mealFamily": "cakes",
+  "emoji": "🥣",
+  "image": "/images/recipes/B056.webp",
+  "name": "Lentil and groundnut breakfast fritters",
+  "description": "Savoury lentil and rice fritters with carrots, cabbage and groundnuts.",
+  "cookingTime": "40 mins",
+  "calories": "482 kcal",
+  "protein": "13.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Dried split red lentils",
+      "shoppingItem": "Dried split red lentils",
+      "quantity": "25 g (dry edible input)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "15 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "150 g (weighed grams)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "15 g (as sold edible weight)"
+    }
+  ],
+  "method": [
+    "Rinse the dry lentils and cook with 90 g of the water in a covered pan for 15–20 minutes until very soft, retaining any liquid. Cool until just warm.",
+    "Mix the rice flour and remaining 60 g water with the lentils. Add finely grated carrot, finely shredded cabbage and onion, cumin, chopped coriander and chopped peanuts. Rest for 5 minutes.",
+    "Divide all the oil between four thin fritters in a non-stick pan. Cook over medium-low heat for 5–6 minutes per side until fully cooked and the vegetables are tender. Serve all four with all the lemon juice."
+  ],
+  "nutrition": {
+    "calories": "482 kcal",
+    "protein": "13.7 g",
+    "carbohydrates": "49.9 g",
+    "fat": "23.6 g",
+    "fibre": "10.2 g",
+    "sodium": "28 mg",
+    "potassium": "615 mg",
+    "phosphate": "221 mg",
+    "salt": "0.07 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "seitan-and-white-bean-breakfast-wrap",
+  "code": "B057",
+  "category": "Breakfast",
+  "cuisine": "Mediterranean",
+  "mealFamily": "bread",
+  "emoji": "🥣",
+  "image": "/images/recipes/B057.webp",
+  "name": "Seitan and white-bean breakfast wrap",
+  "description": "A warm homemade wrap filled with seitan, white beans and lemony vegetables.",
+  "cookingTime": "45 mins",
+  "calories": "432 kcal",
+  "protein": "26.7 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "ingredients": [
+    {
+      "item": "Pure vital wheat gluten powder",
+      "shoppingItem": "Pure vital wheat gluten powder",
+      "quantity": "25 g (dry edible input)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "50 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "30 g (dry)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix the vital wheat gluten with 35 g water, knead for 2 minutes and rest for 5 minutes. Flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and cooked throughout. Retain the entire seitan portion.",
+    "Mix the plain flour with 20 g water into a dough. Knead briefly, cover and rest for 10 minutes. Roll between non-stick sheets without extra flour and dry-cook for 2–3 minutes per side until fully cooked.",
+    "Dice the steamed seitan. Cook shredded cabbage and carrot in all the oil with the cumin and remaining 45 g water for 8–10 minutes. Add the cooked, drained navy beans and seitan and heat through.",
+    "Stir in lemon juice, parsley and pepper. Put all the filling and juices in the whole flatbread, fold and serve."
+  ],
+  "nutrition": {
+    "calories": "432 kcal",
+    "protein": "26.7 g",
+    "carbohydrates": "38.8 g",
+    "fat": "16.5 g",
+    "fibre": "9.8 g",
+    "sodium": "26 mg",
+    "potassium": "516 mg",
+    "phosphate": "198 mg",
+    "salt": "0.07 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style",
+    "DASH-style"
+  ]
+},
+{
+  "id": "feta-and-spinach-breakfast-omelette",
+  "code": "B058",
+  "category": "Breakfast",
+  "cuisine": "Mediterranean",
+  "mealFamily": "eggs",
+  "emoji": "🥣",
+  "image": "/images/recipes/B058.webp",
+  "name": "Feta and spinach breakfast omelette",
+  "description": "A spinach and feta omelette with warm tomatoes and chives.",
+  "cookingTime": "25 mins",
+  "calories": "424 kcal",
+  "protein": "25.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Vegetarian-rennet feta cheese",
+      "shoppingItem": "Vegetarian-rennet feta cheese",
+      "quantity": "30 g (as sold edible weight)"
+    },
+    {
+      "item": "Baby spinach",
+      "shoppingItem": "Baby spinach",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat half the oil in a small ovenproof pan. Add chopped tomato and spinach and cook for 3 minutes. Heat the grill to medium.",
+    "Beat the weighed whole egg and egg white with chives and pepper. Pour over the vegetables and scatter over all the feta. Drizzle with the remaining oil.",
+    "Cook gently for 4–5 minutes, then grill for 3–4 minutes until fully set and steaming hot in the centre. Serve the whole omelette.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "424 kcal",
+    "protein": "25.1 g",
+    "carbohydrates": "1.5 g",
+    "fat": "35.3 g",
+    "fibre": "0.8 g",
+    "sodium": "578 mg",
+    "potassium": "614 mg",
+    "phosphate": "296 mg",
+    "salt": "1.44 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Vegetarian",
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "salmon-and-egg-breakfast-cup",
+  "code": "B059",
+  "category": "Breakfast",
+  "cuisine": "Simple cooking",
+  "mealFamily": "eggs",
+  "emoji": "🥣",
+  "image": "/images/recipes/B059.webp",
+  "name": "Salmon and egg breakfast cup",
+  "description": "A softly baked salmon and egg breakfast cup.",
+  "cookingTime": "30 mins",
+  "calories": "395 kcal",
+  "protein": "27.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "70 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "30 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 180°C, or 160°C fan. Grease a small baking dish with 5 g of the butter and add the salmon in small pieces.",
+    "Beat the weighed egg and measured water and pour over. Dot with the remaining 10 g butter.",
+    "Bake for 20–25 minutes until the egg is fully set and the salmon is opaque and steaming hot. Serve the entire cup and edible juices."
+  ],
+  "nutrition": {
+    "calories": "395 kcal",
+    "protein": "27.0 g",
+    "carbohydrates": "0.1 g",
+    "fat": "31.8 g",
+    "fibre": "0.1 g",
+    "sodium": "186 mg",
+    "potassium": "399 mg",
+    "phosphate": "341 mg",
+    "salt": "0.47 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Carnivore",
+  "dietCategories": [
+    "Keto",
+    "Carnivore"
+  ]
+},
+{
+  "id": "bean-and-seitan-brunch-rice-bowl",
+  "code": "B060",
+  "category": "Breakfast",
+  "cuisine": "Mediterranean",
+  "mealFamily": "rice",
+  "emoji": "🥣",
+  "image": "/images/recipes/B060.webp",
+  "name": "Bean and seitan brunch rice bowl",
+  "description": "A substantial brunch bowl with homemade seitan, white beans, rice, peppers and walnuts.",
+  "cookingTime": "50 mins",
+  "calories": "766 kcal",
+  "protein": "44.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "ingredients": [
+    {
+      "item": "Pure vital wheat gluten powder",
+      "shoppingItem": "Pure vital wheat gluten powder",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "Wholegrain brown basmati rice",
+      "shoppingItem": "Wholegrain brown basmati rice",
+      "quantity": "30 g (dry edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "25 g (dry)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "80 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "70 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "175 g (weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix the vital wheat gluten with 50 g water, knead for 2 minutes and rest for 5 minutes. Flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked.",
+    "Simmer the brown rice in 80 g water for 15 minutes. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender, keeping any liquid.",
+    "Dice the seitan. Cook chopped onion and pepper in all the oil for 8 minutes. Add the cooked, drained navy beans and all the seitan and heat through.",
+    "Fold in all the rice, chopped walnuts, parsley, lemon juice and pepper. Serve the entire bowl and edible juices."
+  ],
+  "nutrition": {
+    "calories": "766 kcal",
+    "protein": "44.6 g",
+    "carbohydrates": "64.2 g",
+    "fat": "32.8 g",
+    "fibre": "13.4 g",
+    "sodium": "24 mg",
+    "potassium": "765 mg",
+    "phosphate": "422 mg",
+    "salt": "0.06 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style",
+    "DASH-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+}
 ];

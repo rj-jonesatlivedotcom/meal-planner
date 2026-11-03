@@ -798,5 +798,445 @@
   "paprika-pork-goulash-with-buttered-noodles": {
     "fingerprint": "e2e19284",
     "text": null
+  },
+  "warm-blueberry-and-walnut-rice-porridge": {
+    "fingerprint": "516afebb",
+    "text": null
+  },
+  "blueberry-oat-and-tofu-pancakes": {
+    "fingerprint": "fd12cfe1",
+    "text": null
+  },
+  "seitan-pepper-and-breakfast-rice-hash": {
+    "fingerprint": "b526a8a8",
+    "text": null
+  },
+  "spiced-tofu-scramble-with-rice-flatbread": {
+    "fingerprint": "43e3a01e",
+    "text": null
+  },
+  "white-bean-and-basil-breakfast-polenta": {
+    "fingerprint": "3a4a06b5",
+    "text": null
+  },
+  "lentil-and-groundnut-breakfast-fritters": {
+    "fingerprint": "49ada615",
+    "text": null
+  },
+  "seitan-and-white-bean-breakfast-wrap": {
+    "fingerprint": "34456b89",
+    "text": null
+  },
+  "feta-and-spinach-breakfast-omelette": {
+    "fingerprint": "7373daf7",
+    "text": null
+  },
+  "salmon-and-egg-breakfast-cup": {
+    "fingerprint": "6601f45e",
+    "text": null
+  },
+  "bean-and-seitan-brunch-rice-bowl": {
+    "fingerprint": "977c9a84",
+    "text": null
+  },
+  "white-bean-and-roasted-pepper-bruschetta": {
+    "fingerprint": "be749da4",
+    "text": null
+  },
+  "courgette-and-ricotta-bake-with-garlic-toast": {
+    "fingerprint": "d33bfbc",
+    "text": null
+  },
+  "basil-and-walnut-pasta-salad-with-ricotta": {
+    "fingerprint": "20ead915",
+    "text": null
+  },
+  "white-bean-and-cumin-patties-with-lemon-slaw": {
+    "fingerprint": "63befe28",
+    "text": null
+  },
+  "chickpea-and-carrot-flatbread-with-walnut-dressing": {
+    "fingerprint": "130cd3cb",
+    "text": null
+  },
+  "egg-and-mustard-pasta-salad": {
+    "fingerprint": "5d5fa929",
+    "text": null
+  },
+  "pepper-and-herb-frittata-with-toasted-bread": {
+    "fingerprint": "c5eba2cd",
+    "text": null
+  },
+  "black-bean-and-sweetcorn-cakes-with-lime-slaw": {
+    "fingerprint": "b3bf5fe4",
+    "text": null
+  },
+  "buckwheat-galette-with-mushrooms-and-walnuts": {
+    "fingerprint": "f553a3d8",
+    "text": null
+  },
+  "chickpea-and-egg-salad-with-crisp-croutons": {
+    "fingerprint": "3bd28ce9",
+    "text": null
+  },
+  "potato-and-chive-cakes-with-herb-mayonnaise": {
+    "fingerprint": "9317c105",
+    "text": null
+  },
+  "cabbage-mushroom-and-white-bean-pierogi": {
+    "fingerprint": "7ed73e40",
+    "text": null
+  },
+  "carrot-and-coriander-soup-with-toast": {
+    "fingerprint": "12805c1a",
+    "text": null
+  },
+  "creamy-mushroom-spaghetti-with-walnuts": {
+    "fingerprint": "d97e560c",
+    "text": null
+  },
+  "crisp-rice-pancakes-with-cabbage-and-peanut-dressing": {
+    "fingerprint": "8f716dde",
+    "text": null
+  },
+  "chickpea-chaat-with-herbed-yoghurt-dressing": {
+    "fingerprint": "4bb6313",
+    "text": null
+  },
+  "coconut-roti-with-spiced-cabbage": {
+    "fingerprint": "632c74af",
+    "text": null
+  },
+  "vegetable-and-lentil-khichuri": {
+    "fingerprint": "1562591a",
+    "text": null
+  },
+  "salmon-and-cucumber-rice-salad": {
+    "fingerprint": "5ffef8d2",
+    "text": null
+  },
+  "tofu-cabbage-and-ginger-pancakes": {
+    "fingerprint": "15b588d0",
+    "text": null
+  },
+  "steamed-cabbage-mushroom-and-white-bean-buns": {
+    "fingerprint": "de383998",
+    "text": null
+  },
+  "chicken-lettuce-cups-with-ginger-and-peanut-dressing": {
+    "fingerprint": "8471d294",
+    "text": null
+  },
+  "lime-fish-cakes-with-noodles-and-crunchy-salad": {
+    "fingerprint": "8cec7f83",
+    "text": null
+  },
+  "vegetable-and-tofu-popiah-rolls": {
+    "fingerprint": "5a8e16e8",
+    "text": null
+  },
+  "gado-gado-with-peanut-and-coconut-dressing": {
+    "fingerprint": "4b18e273",
+    "text": null
+  },
+  "black-bean-tostadas-with-avocado-and-lime": {
+    "fingerprint": "e32764d0",
+    "text": null
+  },
+  "tuna-and-lime-potato-causa": {
+    "fingerprint": "30848814",
+    "text": null
+  },
+  "black-beans-and-rice-with-lime-dressed-cabbage": {
+    "fingerprint": "360f0813",
+    "text": null
+  },
+  "plantain-and-black-eyed-pea-fritters-with-groundnuts": {
+    "fingerprint": "425ff83a",
+    "text": null
+  },
+  "black-eyed-pea-and-tomato-stew-with-soft-polenta": {
+    "fingerprint": "6e957c56",
+    "text": null
+  },
+  "lentil-and-groundnut-stew-with-flatbread": {
+    "fingerprint": "9d5df26a",
+    "text": null
+  },
+  "pea-and-mint-soup-with-toast": {
+    "fingerprint": "f41b3677",
+    "text": null
+  },
+  "roasted-pepper-and-white-bean-lasagne": {
+    "fingerprint": "600412ee",
+    "text": null
+  },
+  "turkey-and-leek-pie-with-walnut-pastry": {
+    "fingerprint": "1301c77d",
+    "text": null
+  },
+  "cod-and-parsley-cakes-with-warm-rice-salad": {
+    "fingerprint": "5bdbe5d",
+    "text": null
+  },
+  "vegetable-and-chickpea-tagine-with-almond-couscous": {
+    "fingerprint": "ce943be1",
+    "text": null
+  },
+  "ricotta-and-walnut-ravioli-with-basil-and-green-beans": {
+    "fingerprint": "4cfd7826",
+    "text": null
+  },
+  "baked-fish-with-green-rice-and-lime-slaw": {
+    "fingerprint": "50919fba",
+    "text": null
+  },
+  "turkey-mushroom-and-walnut-pilaf": {
+    "fingerprint": "e10da95a",
+    "text": null
+  },
+  "hake-and-coconut-rice-bake-with-crisp-slaw": {
+    "fingerprint": "3a4ac3aa",
+    "text": null
+  },
+  "pork-and-apple-skewers-with-herbed-couscous": {
+    "fingerprint": "adab6ac3",
+    "text": null
+  },
+  "cabbage-rolls-with-barley-mushrooms-and-seitan": {
+    "fingerprint": "9d8fb753",
+    "text": null
+  },
+  "mild-tofu-and-coconut-curry-with-basmati-rice": {
+    "fingerprint": "3823de56",
+    "text": null
+  },
+  "turkey-kebabs-with-flatbread-and-cucumber-yoghurt": {
+    "fingerprint": "52146c0d",
+    "text": null
+  },
+  "basil-and-ginger-tofu-cakes-with-rice-and-cabbage": {
+    "fingerprint": "c2f8dab",
+    "text": null
+  },
+  "sesame-salmon-with-rice-noodles-and-crunchy-slaw": {
+    "fingerprint": "69f4d952",
+    "text": null
+  },
+  "black-bean-and-rice-stuffed-peppers": {
+    "fingerprint": "356b2b98",
+    "text": null
+  },
+  "beef-pepper-and-onion-saltado-with-rice": {
+    "fingerprint": "cb1b06f",
+    "text": null
+  },
+  "fish-and-groundnut-stew-with-rice": {
+    "fingerprint": "ae440eef",
+    "text": null
+  },
+  "lentil-bobotie-with-rice": {
+    "fingerprint": "ac337746",
+    "text": null
+  },
+  "salmon-avocado-and-cucumber-salad": {
+    "fingerprint": "639a09e1",
+    "text": null
+  },
+  "chicken-and-avocado-lettuce-wraps": {
+    "fingerprint": "3c0d84a6",
+    "text": null
+  },
+  "spinach-egg-and-mozzarella-skillet": {
+    "fingerprint": "57c809d0",
+    "text": null
+  },
+  "tuna-egg-and-cucumber-boats": {
+    "fingerprint": "4081c1fa",
+    "text": null
+  },
+  "beef-and-cheddar-lettuce-cups": {
+    "fingerprint": "59cfcf0c",
+    "text": null
+  },
+  "salmon-and-courgette-frittata": {
+    "fingerprint": "4a3d30ff",
+    "text": null
+  },
+  "garlic-cream-chicken-with-braised-cabbage": {
+    "fingerprint": "e15e6fe",
+    "text": null
+  },
+  "pork-medallions-with-creamy-courgettes": {
+    "fingerprint": "4da05179",
+    "text": null
+  },
+  "turkey-patties-with-avocado-and-cabbage-salad": {
+    "fingerprint": "4d766d2e",
+    "text": null
+  },
+  "egg-and-cheddar-stuffed-mushrooms": {
+    "fingerprint": "f58f30cf",
+    "text": null
+  },
+  "salmon-with-softly-set-egg": {
+    "fingerprint": "20faabea",
+    "text": null
+  },
+  "sirloin-steak-with-a-baked-egg": {
+    "fingerprint": "4b2b7f4a",
+    "text": null
+  },
+  "pork-medallions-with-scrambled-eggs": {
+    "fingerprint": "52df5524",
+    "text": null
+  },
+  "chicken-and-egg-mini-patties": {
+    "fingerprint": "7bfe4293",
+    "text": null
+  },
+  "salmon-and-egg-bake": {
+    "fingerprint": "d35df020",
+    "text": null
+  },
+  "beef-patties-with-poached-eggs": {
+    "fingerprint": "b07e2524",
+    "text": null
+  },
+  "chicken-thigh-and-egg-casserole": {
+    "fingerprint": "15efd1e3",
+    "text": null
+  },
+  "cod-and-salmon-egg-custard": {
+    "fingerprint": "a98aef46",
+    "text": null
+  },
+  "ginger-chicken-and-carrot-rice-bowl": {
+    "fingerprint": "2d57271b",
+    "text": null
+  },
+  "tuna-and-cucumber-rice-salad": {
+    "fingerprint": "4d1632e4",
+    "text": null
+  },
+  "chive-and-spinach-rice-pancakes": {
+    "fingerprint": "e2ab99d0",
+    "text": null
+  },
+  "basil-cod-with-warm-rice-salad": {
+    "fingerprint": "436fbd7a",
+    "text": null
+  },
+  "beef-and-carrot-rice-bowl": {
+    "fingerprint": "905c51ff",
+    "text": null
+  },
+  "chive-omelette-with-soft-polenta-and-carrots": {
+    "fingerprint": "fb1b13c1",
+    "text": null
+  },
+  "chicken-and-potato-frittata-with-carrots": {
+    "fingerprint": "87162db",
+    "text": null
+  },
+  "salmon-with-carrot-rice-and-cucumber-salad": {
+    "fingerprint": "12751599",
+    "text": null
+  },
+  "turkey-and-chive-meatballs-with-polenta": {
+    "fingerprint": "74182b1f",
+    "text": null
+  },
+  "steak-and-rice-with-lettuce-and-carrots": {
+    "fingerprint": "b9a5b14c",
+    "text": null
+  },
+  "crisp-cod-with-basil-polenta-and-carrots": {
+    "fingerprint": "39a23e12",
+    "text": null
+  },
+  "ginger-egg-and-carrot-fried-rice": {
+    "fingerprint": "e5e16242",
+    "text": null
+  },
+  "white-bean-and-brown-rice-salad": {
+    "fingerprint": "abf1898e",
+    "text": null
+  },
+  "lemon-chickpea-and-quinoa-bowl": {
+    "fingerprint": "8d4755c3",
+    "text": null
+  },
+  "oat-and-carrot-pancakes-with-white-beans": {
+    "fingerprint": "a9bdb281",
+    "text": null
+  },
+  "lentil-and-barley-herb-salad": {
+    "fingerprint": "b901faa",
+    "text": null
+  },
+  "ginger-tofu-and-brown-rice-bowl": {
+    "fingerprint": "99588422",
+    "text": null
+  },
+  "spiced-lentil-and-brown-rice-pilaf": {
+    "fingerprint": "9d5eeeea",
+    "text": null
+  },
+  "lemon-seitan-with-white-bean-barley-pilaf": {
+    "fingerprint": "ca983ff8",
+    "text": null
+  },
+  "turkey-with-brown-rice-and-herb-vegetables": {
+    "fingerprint": "2f3394c8",
+    "text": null
+  },
+  "tofu-white-bean-and-barley-bake": {
+    "fingerprint": "9798a6f8",
+    "text": null
+  },
+  "spinach-and-egg-brown-rice-bake": {
+    "fingerprint": "e27101d9",
+    "text": null
+  },
+  "white-bean-walnut-pasta-with-frittata-ribbons": {
+    "fingerprint": "ee5471",
+    "text": null
+  },
+  "chicken-groundnut-and-black-eyed-pea-rice-bowl": {
+    "fingerprint": "a02acc8a",
+    "text": null
+  },
+  "lime-fish-and-avocado-rice-bowl": {
+    "fingerprint": "dbf333bb",
+    "text": null
+  },
+  "potato-and-herb-cakes-with-egg-salad": {
+    "fingerprint": "4438953a",
+    "text": null
+  },
+  "ginger-tofu-and-peanut-noodle-salad": {
+    "fingerprint": "e9526c2b",
+    "text": null
+  },
+  "lentil-and-walnut-bobotie-with-rice": {
+    "fingerprint": "ea385882",
+    "text": null
+  },
+  "white-bean-and-ricotta-stuffed-peppers-with-rice": {
+    "fingerprint": "346d09c4",
+    "text": null
+  },
+  "peanut-and-lime-fish-noodles": {
+    "fingerprint": "ca04a8f0",
+    "text": null
+  },
+  "beef-and-black-eyed-pea-stew-with-polenta": {
+    "fingerprint": "201c2cdc",
+    "text": null
+  },
+  "salmon-and-leek-rice-pie": {
+    "fingerprint": "603e1b16",
+    "text": null
   }
 }

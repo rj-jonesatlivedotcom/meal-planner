@@ -1084,7 +1084,7 @@ function normaliseShoppingQuantity(
     if (converted !== null) return decimalToFraction(converted);
   }
 
-  if (ML_ITEMS.has(lower) || lower.includes("oil") || lower.includes("syrup")) {
+  if (ML_ITEMS.has(lower) || /\boil\b/.test(lower) || lower.includes("syrup")) {
     // Oils are stored in the recipe data as weight for nutrition, but the
     // shopping list should present them as a liquid volume. For olive oil
     // (and other oils handled here), keep the shopping display in ml.
@@ -1980,6 +1980,7 @@ export default function ShoppingPage() {
     if (!loaded) return;
 
     const combined: ShoppingItem[] = [];
+    const weighed = new Map<string, number>();
 
     // Lemon is a shared physical resource. Track juice and zest separately
     // so one lemon can satisfy both, while two separate juice requirements
@@ -2000,10 +2001,16 @@ export default function ShoppingPage() {
             (ingredient: any) =>
               ingredient.item?.trim().toLowerCase() !== "water" &&
               ingredient.item?.trim().toLowerCase() !== "boiling water" &&
+              ingredient.item?.trim().toLowerCase() !== "drinking tap water" &&
               ingredient.item?.trim().toLowerCase() !== "no added salt"
           )
           .forEach((ingredient: any) => {
             const parsed = parseQuantity(ingredient.quantity);
+            if (recipe.shoppingByWeight && parsed?.unit === "g") {
+              const name = normaliseIngredient(ingredient.shoppingItem || ingredient.item);
+              weighed.set(name, (weighed.get(name) ?? 0) + parsed.amount * recipeCount / servings);
+              return;
+            }
             if (!parsed) {
               const shoppingName = normaliseIngredient(ingredient.shoppingItem || ingredient.item);
               const originalQuantity = unmeasuredShoppingQuantity(ingredient.quantity, recipeCount, servings);
@@ -2160,6 +2167,19 @@ export default function ShoppingPage() {
     }, []);
 
     const finalList = deduped.map(finaliseShoppingQuantity);
+    // Weight-based recipe inputs have no assumed density or purchase conversion.
+    // Keep incompatible legacy volumes/counts visible alongside their gram total.
+    for (const [name, grams] of weighed) {
+      const existing = finalList.find(item => item.item.toLowerCase() === name.toLowerCase());
+      if (!existing) {
+        finalList.push({ item: name, quantity: `${formatQuantityNumber(grams)} g` });
+      } else {
+        const parsed = parseQuantity(existing.quantity);
+        existing.quantity = parsed && (parsed.unit === "g" || parsed.unit === "kg")
+          ? `${formatQuantityNumber(grams + parsed.amount * (parsed.unit === "kg" ? 1000 : 1))} g`
+          : `${existing.quantity} + ${formatQuantityNumber(grams)} g`;
+      }
+    }
 
     setShoppingList(finalList);
 

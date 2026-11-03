@@ -1,0 +1,19 @@
+{
+  "recipes": 110,
+  "breakfasts": 10,
+  "lunches": 57,
+  "dinners": 43,
+  "oneServingRecipes": 110,
+  "ingredientNutrientRecalculations": 10116,
+  "recipeNutrientTotals": 990,
+  "roundedFiguresChecked": 990,
+  "dailyExampleFieldChecks": 12564,
+  "additionalSaturatedFatContributionsChecked": 1124,
+  "unknownToZeroConversions": 0,
+  "sourceCatalogueFilesUnchanged": [
+    "C:\\Users\\rj-jo\\Documents\\RenalPlan\\data\\RecipeData\\breakfasts.ts",
+    "C:\\Users\\rj-jo\\Documents\\RenalPlan\\data\\RecipeData\\lunches.ts",
+    "C:\\Users\\rj-jo\\Documents\\RenalPlan\\data\\RecipeData\\dinners.ts"
+  ],
+  "status": "Passed arithmetic and source-reference checks; not clinical or regulatory sign-off."
+}

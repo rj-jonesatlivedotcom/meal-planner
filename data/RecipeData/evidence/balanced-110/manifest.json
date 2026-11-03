@@ -1,0 +1,54 @@
+{
+  "created": "2026-11-02",
+  "expectedBatch": {
+    "recipes": 110,
+    "breakfasts": 10,
+    "lunches": 57,
+    "dinners": 43
+  },
+  "sources": [
+    {
+      "file": "CoFID-2021.xlsx",
+      "bytes": 4629542,
+      "sha256": "436e9445ef2adb2a75f3d7edd51302de3adad25385f9795fc94ba58bd030e97d",
+      "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid",
+      "licence": "Public Health England, Open Government Licence; selected rows reproduced with attribution."
+    },
+    {
+      "file": "cofid-extracted.json",
+      "sha256": "8a7eea91f053f77d3df0ec4bb9266b634cecf6d3234a2e3f72b5051be0b4a53d",
+      "note": "Retained prior extraction; an independent source-workbook check is run for all used cells."
+    },
+    {
+      "file": "sr28asc.zip",
+      "bytes": 6231932,
+      "sha256": "8308fd1d224ef1e5331093748007180da01a7ac713cbac6a1f5bc2a03e1ee70a",
+      "url": "https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr11-sr28/",
+      "licence": "USDA public-domain data; selected raw records retained. Historical SR28 archive, not a claim of current FoodData Central equivalence."
+    }
+  ],
+  "methodReferences": {
+    "cofid": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid",
+    "guide": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+    "usda": "https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr11-sr28/",
+    "fao": "https://www.fao.org/fileadmin/templates/food_composition/documents/1nutrition/Conversion_Guidelines-V1.0.pdf",
+    "fsa": "https://www.gov.uk/government/publications/cooking-your-food/cooking-your-food"
+  },
+  "catalogueSnapshot": [
+    {
+      "category": "breakfasts",
+      "file": "C:/Users/rj-jo/Documents/RenalPlan/data/RecipeData/breakfasts.ts",
+      "sha256": "b1cf1e866f2a3127d64b91c0cc38d893a5f52d63fb76e353a5632255dd1cc547"
+    },
+    {
+      "category": "lunches",
+      "file": "C:/Users/rj-jo/Documents/RenalPlan/data/RecipeData/lunches.ts",
+      "sha256": "069d040dd6aa039e9ba4ddd8b181af5469d73d192f4f7b035530a5c5aae4205b"
+    },
+    {
+      "category": "dinners",
+      "file": "C:/Users/rj-jo/Documents/RenalPlan/data/RecipeData/dinners.ts",
+      "sha256": "c6c99c6f9761778b8166ac4bad2cba12679ce5df03a242be809b5cf7a38ec5f6"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "recipes": 110,
+  "counts": {
+    "Vegan": 33,
+    "Vegetarian": 64,
+    "DASH-style": 19,
+    "Low FODMAP": 13,
+    "Mediterranean-style": 31,
+    "Keto": 20,
+    "Atkins Phase 1": 11,
+    "Carnivore": 9,
+    "Intermittent fasting — eating-window meal": 31,
+    "Mixed diet": 6
+  },
+  "allNineRequestedCategoriesHaveChoices": true,
+  "categoryLabelsAreNotPersonalSuitability": true,
+  "references": {
+    "protein": "https://www.monashfodmap.com/blog/meat-seafood-eggs-and-cooking-fats-low-fodmap/",
+    "portions": "https://www.cuh.nhs.uk/patient-information/low-fodmap-diet-reducing-fermentable-carbohydrates-in-your-diet/",
+    "stacking": "https://monashfodmap.com/blog/serving-size-and-fodmaps-why-it-so-important/",
+    "atkins": "https://www.atkins.com/expertise/the-rules-of-induction",
+    "atkinsFoods": "https://files.atkins.com/downloads/1310AtkinsCarbCounter_Online.pdf",
+    "fasting": "https://www.niddk.nih.gov/health-information/professionals/diabetes-discoveries-practice/patients-intermittent-fasting"
+  }
+}

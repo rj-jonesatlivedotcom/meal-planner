@@ -21,8 +21,9 @@ export function getNutritionEvidenceText(
     | "quantityConversionsEstimated"
     | "clinicalReviewPending"
   >,
+  basis = "CoFID ingredient-input estimate",
 ): string {
-  const notes = ["CoFID ingredient-input estimate"];
+  const notes = [basis];
 
   if (recipe.conditionalProxyPending) {
     notes.push("provisional pending owner approval of a conditional food match");

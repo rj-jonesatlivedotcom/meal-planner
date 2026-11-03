@@ -6269,5 +6269,4381 @@ export const dinners: Recipe[] = [
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
     "servings": 1
-  }
+  },
+{
+  "id": "roasted-pepper-and-white-bean-lasagne",
+  "code": "D083",
+  "category": "Dinner",
+  "cuisine": "Italy",
+  "mealFamily": "pasta",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D083.webp",
+  "name": "Roasted pepper and white-bean lasagne",
+  "description": "Lasagne layered with white beans, roasted peppers, ricotta and a walnut topping.",
+  "cookingTime": "55 mins",
+  "calories": "717 kcal",
+  "protein": "23.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Egg-free plain dried white wheat pasta",
+      "shoppingItem": "Egg-free plain dried white wheat pasta",
+      "quantity": "45 g (dry)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "75 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Vegetarian-rennet ricotta",
+      "shoppingItem": "Vegetarian-rennet ricotta",
+      "quantity": "55 g (as sold)"
+    },
+    {
+      "item": "Whole milk",
+      "shoppingItem": "Whole milk",
+      "quantity": "45 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "6 g (dry)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "10 g (as sold edible weight)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "65 g (weighed grams)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Finely dice the pepper and onion. Cook in half the oil for 8 minutes. Add crushed garlic, cooked drained navy beans and 20 g of the measured water and simmer for 3 minutes. Mash some beans to thicken.",
+    "In a small pan, stir the flour into one quarter of the oil. Gradually whisk in the milk and remaining 45 g water. Simmer for 3 minutes, then stir in the ricotta, chopped basil and pepper.",
+    "Use no-preboil dry white lasagne sheets. Layer all the beans, pasta and sauce in a small baking dish, with sauce covering every pasta edge. Chop the walnuts and mix with the remaining oil for the topping.",
+    "Cover tightly and bake for 30 minutes. Uncover, scatter over all the walnut topping and bake for another 8–10 minutes until the pasta is tender and the centre is steaming hot. Rest for 5 minutes and serve the whole bake.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "717 kcal",
+    "protein": "23.2 g",
+    "carbohydrates": "59.7 g",
+    "fat": "38.2 g",
+    "fibre": "15.1 g",
+    "sodium": "80 mg",
+    "potassium": "903 mg",
+    "phosphate": "434 mg",
+    "salt": "0.20 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "turkey-and-leek-pie-with-walnut-pastry",
+  "code": "D084",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "pie",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D084.webp",
+  "name": "Turkey and leek pie with walnut pastry",
+  "description": "A turkey and leek filling under a crisp, crumbly walnut pastry lid.",
+  "cookingTime": "55 mins",
+  "calories": "706 kcal",
+  "protein": "34.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray, food thermometer",
+  "ingredients": [
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "28 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "110 g (weighed grams)"
+    },
+    {
+      "item": "Skinless turkey breast",
+      "shoppingItem": "Skinless turkey breast",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Leek, trimmed edible portion",
+      "shoppingItem": "Leek, trimmed edible portion",
+      "quantity": "55 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "35 g (raw edible input)"
+    },
+    {
+      "item": "Whole milk",
+      "shoppingItem": "Whole milk",
+      "quantity": "65 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Dried thyme",
+      "shoppingItem": "Dried thyme",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Grind the walnuts finely. Mix with 45 g of the flour, 17 g of the oil and 20 g of the water to make a dough. Cover and rest while making the filling.",
+    "Dice the turkey and slice the leek and carrot thinly. Cook in the remaining 11 g oil for 5 minutes. Stir in the remaining 5 g flour and thyme, then gradually add the milk and remaining 90 g water. Simmer for 8–10 minutes until the vegetables are tender and the sauce thickens.",
+    "Stir in the parsley and pepper and transfer all the filling and sauce to a small pie dish. Roll the pastry between non-stick sheets without extra flour and place over the top. Make a steam slit.",
+    "Bake for 25–30 minutes until the pastry is cooked and the centre of the turkey filling reaches 75°C for 30 seconds. Serve the whole pie."
+  ],
+  "nutrition": {
+    "calories": "706 kcal",
+    "protein": "34.6 g",
+    "carbohydrates": "45.4 g",
+    "fat": "42.5 g",
+    "fibre": "6.4 g",
+    "sodium": "96 mg",
+    "potassium": "859 mg",
+    "phosphate": "430 mg",
+    "salt": "0.24 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mediterranean-style",
+  "dietCategories": [
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "cod-and-parsley-cakes-with-warm-rice-salad",
+  "code": "D085",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "cakes",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D085.webp",
+  "name": "Cod and parsley cakes with warm rice salad",
+  "description": "Cod and parsley cakes with warm rice, a creamy cabbage salad and chopped walnuts.",
+  "cookingTime": "40 mins",
+  "calories": "686 kcal",
+  "protein": "29.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Cod fillet, flesh only",
+      "shoppingItem": "Cod fillet, flesh only",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "20 g (dry edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "35 g (dry)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "10 g (as sold edible weight)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "7 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with 70 g of the measured water, covered, for 12–15 minutes. Rest for 5 minutes.",
+    "Finely chop or pulse the cod. Mix with the egg white, rice flour, half the parsley, half the lemon juice and pepper. Form four thin cakes.",
+    "Heat three quarters of the oil in a non-stick pan. Cook the cakes for 4–5 minutes per side until fully set, opaque and steaming hot in the centres.",
+    "Mix the mayonnaise, remaining oil, remaining lemon juice and remaining 30 g water. Toss with the shredded cabbage, sliced cucumber, remaining parsley and walnuts. Serve all the cakes with all the rice and salad."
+  ],
+  "nutrition": {
+    "calories": "686 kcal",
+    "protein": "29.6 g",
+    "carbohydrates": "46.1 g",
+    "fat": "41.4 g",
+    "fibre": "4.1 g",
+    "sodium": "209 mg",
+    "potassium": "809 mg",
+    "phosphate": "308 mg",
+    "salt": "0.52 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mediterranean-style",
+  "dietCategories": [
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "vegetable-and-chickpea-tagine-with-almond-couscous",
+  "code": "D086",
+  "category": "Dinner",
+  "cuisine": "Morocco",
+  "mealFamily": "stew",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D086.webp",
+  "name": "Vegetable and chickpea tagine with almond couscous",
+  "description": "A fragrant chickpea and vegetable tagine with lemony almond couscous.",
+  "cookingTime": "40 mins",
+  "calories": "647 kcal",
+  "protein": "16.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Chickpeas, boiled without salt and drained",
+      "shoppingItem": "Chickpeas, boiled without salt and drained",
+      "quantity": "75 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Plain couscous",
+      "shoppingItem": "Plain couscous",
+      "quantity": "45 g (dry)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Courgette",
+      "shoppingItem": "Courgette",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "35 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "28 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Flaked almonds",
+      "shoppingItem": "Flaked almonds",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "165 g (weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "1.1 g (dry)"
+    },
+    {
+      "item": "Ground cinnamon",
+      "shoppingItem": "Ground cinnamon",
+      "quantity": "0.3 g (dry)"
+    },
+    {
+      "item": "Ground ginger",
+      "shoppingItem": "Ground ginger",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "6 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Soften the chopped onion in three fifths of the oil for 5 minutes. Add cumin, cinnamon and ginger for 30 seconds.",
+    "Add diced carrot, courgette and tomato, cooked drained chickpeas and 65 g of the measured water. Cover and simmer for 20–25 minutes until tender.",
+    "Bring the remaining 100 g water to a boil in a separate pan. Stir in the couscous, cover, turn off the heat and leave for 5–7 minutes.",
+    "Fluff the couscous and fold in the remaining oil, chopped almonds and half the lemon juice. Add the remaining lemon juice and chopped coriander to the tagine. Serve both whole portions."
+  ],
+  "nutrition": {
+    "calories": "647 kcal",
+    "protein": "16.5 g",
+    "carbohydrates": "54.0 g",
+    "fat": "40.2 g",
+    "fibre": "14.8 g",
+    "sodium": "30 mg",
+    "potassium": "873 mg",
+    "phosphate": "343 mg",
+    "salt": "0.07 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "ricotta-and-walnut-ravioli-with-basil-and-green-beans",
+  "code": "D087",
+  "category": "Dinner",
+  "cuisine": "Italy",
+  "mealFamily": "pasta",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D087.webp",
+  "name": "Ricotta and walnut ravioli with basil and green beans",
+  "description": "Homemade ravioli filled with ricotta and walnuts, with basil oil and green beans.",
+  "cookingTime": "60 mins",
+  "calories": "664 kcal",
+  "protein": "19.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "ingredients": [
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Vegetarian-rennet ricotta",
+      "shoppingItem": "Vegetarian-rennet ricotta",
+      "quantity": "65 g (as sold)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "20 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Green beans",
+      "shoppingItem": "Green beans",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "15 g (weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix the flour and 30 g beaten egg into a firm dough. Knead for 5–7 minutes, cover and rest for 15 minutes. The measured water is for the sauce, not the dough.",
+    "Mix the ricotta with finely chopped walnuts, half the basil, half the lemon juice and black pepper. Roll the dough very thinly between non-stick sheets without extra flour. Make six large ravioli, dividing all the filling between them and pinching the edges firmly.",
+    "Steam the green beans for 6–8 minutes until tender. Poach the ravioli in a separate pan of unsalted water for 4–5 minutes until the pasta and egg are cooked throughout. Lift out carefully.",
+    "Warm the oil, measured water, remaining lemon juice and remaining basil gently in a pan. Turn all the ravioli and beans in the sauce and serve, including any loose filling.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "664 kcal",
+    "protein": "19.0 g",
+    "carbohydrates": "41.3 g",
+    "fat": "46.5 g",
+    "fibre": "5.7 g",
+    "sodium": "115 mg",
+    "potassium": "519 mg",
+    "phosphate": "326 mg",
+    "salt": "0.29 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "baked-fish-with-green-rice-and-lime-slaw",
+  "code": "D088",
+  "category": "Dinner",
+  "cuisine": "Peru",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D088.webp",
+  "name": "Baked fish with green rice and lime slaw",
+  "description": "Baked cod with coriander rice, crunchy lime slaw and avocado.",
+  "cookingTime": "40 mins",
+  "calories": "673 kcal",
+  "protein": "26.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray, blender",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Cod fillet, flesh only",
+      "shoppingItem": "Cod fillet, flesh only",
+      "quantity": "110 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "10 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Hass avocado flesh, skin and stone removed",
+      "shoppingItem": "Hass avocado flesh, skin and stone removed",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "120 g (weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Blend the pepper, coriander, garlic and all the measured water. Put in a small pan with the dry rice and half the oil. Bring to a simmer, cover and cook gently for 15–18 minutes until tender. Rest covered for 5 minutes.",
+    "Brush the cod with one quarter of the oil and half the lime juice. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily.",
+    "Mix the mayonnaise, remaining oil and remaining lime juice. Toss with the shredded cabbage and carrot. Serve all the fish and edible baking juices with all the green rice, slaw and weighed avocado flesh."
+  ],
+  "nutrition": {
+    "calories": "673 kcal",
+    "protein": "26.0 g",
+    "carbohydrates": "46.4 g",
+    "fat": "42.3 g",
+    "fibre": "6.1 g",
+    "sodium": "143 mg",
+    "potassium": "1023 mg",
+    "phosphate": "303 mg",
+    "salt": "0.36 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mediterranean-style",
+  "dietCategories": [
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "turkey-mushroom-and-walnut-pilaf",
+  "code": "D089",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D089.webp",
+  "name": "Turkey, mushroom and walnut pilaf",
+  "description": "A one-pan turkey and mushroom rice dish with walnuts and a lemon yoghurt spooned alongside.",
+  "cookingTime": "40 mins",
+  "calories": "667 kcal",
+  "protein": "31.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Skinless turkey breast",
+      "shoppingItem": "Skinless turkey breast",
+      "quantity": "90 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "20 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White mushrooms",
+      "shoppingItem": "White mushrooms",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "120 g (weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "shoppingItem": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "quantity": "35 g (as sold edible weight)"
+    },
+    {
+      "item": "Dried thyme",
+      "shoppingItem": "Dried thyme",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Dice the turkey and finely slice the onion and mushrooms. Heat the oil in a small covered pan. Cook the turkey for 3–4 minutes, then add the vegetables and thyme and cook for another 4 minutes.",
+    "Stir in the dry rice, all the measured water and pepper. Cover and simmer gently for 15–18 minutes until the rice is tender and the turkey reaches 75°C for 30 seconds. Rest covered for 5 minutes.",
+    "Fold in the chopped walnuts and parsley. Mix the Greek-style yoghurt and lemon juice. Serve all the pilaf and all the yoghurt."
+  ],
+  "nutrition": {
+    "calories": "667 kcal",
+    "protein": "31.9 g",
+    "carbohydrates": "42.7 g",
+    "fat": "40.5 g",
+    "fibre": "3.2 g",
+    "sodium": "80 mg",
+    "potassium": "787 mg",
+    "phosphate": "435 mg",
+    "salt": "0.20 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mixed diet",
+  "dietCategories": [
+    "Mixed diet",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "hake-and-coconut-rice-bake-with-crisp-slaw",
+  "code": "D090",
+  "category": "Dinner",
+  "cuisine": "Brazil",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D090.webp",
+  "name": "Hake and coconut rice bake with crisp slaw",
+  "description": "A coconut rice and hake bake with a golden egg-white topping and crisp lime slaw.",
+  "cookingTime": "40 mins",
+  "calories": "666 kcal",
+  "protein": "27.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Hake fillet, flesh only",
+      "shoppingItem": "Hake fillet, flesh only",
+      "quantity": "90 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Unsweetened desiccated coconut",
+      "shoppingItem": "Unsweetened desiccated coconut",
+      "quantity": "10 g (dry edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "120 g (weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "6 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Put the rice, desiccated coconut, crushed garlic, half the oil and all the measured water in a small pan. Bring to a simmer, cover and cook gently for 10 minutes.",
+    "Transfer the partially cooked rice and all its liquid to a small baking dish. Nestle in the hake pieces. Pour the weighed egg white over the surface and cover tightly.",
+    "Bake for 15–20 minutes until the rice is tender, the egg white is fully set and the fish is opaque, steaming hot and flaking easily. Uncover for the last 3 minutes if needed.",
+    "Mix the mayonnaise, remaining oil, lime juice and chopped coriander. Toss with shredded cabbage and carrot. Serve the whole bake with all the slaw and all edible baking juices."
+  ],
+  "nutrition": {
+    "calories": "666 kcal",
+    "protein": "27.1 g",
+    "carbohydrates": "44.3 g",
+    "fat": "41.8 g",
+    "fibre": "5.2 g",
+    "sodium": "214 mg",
+    "potassium": "664 mg",
+    "phosphate": "271 mg",
+    "salt": "0.53 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mixed diet",
+  "dietCategories": [
+    "Mixed diet",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "pork-and-apple-skewers-with-herbed-couscous",
+  "code": "D091",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "plated meal",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D091.webp",
+  "name": "Pork and apple skewers with herbed couscous",
+  "description": "Mustard and thyme pork skewers with apple, herbed couscous and walnut cabbage salad.",
+  "cookingTime": "40 mins",
+  "calories": "657 kcal",
+  "protein": "29.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Plain couscous",
+      "shoppingItem": "Plain couscous",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Pork fillet, lean and visible edible fat",
+      "shoppingItem": "Pork fillet, lean and visible edible fat",
+      "quantity": "90 g (raw edible input)"
+    },
+    {
+      "item": "Eating apple, flesh and skin, core removed",
+      "shoppingItem": "Eating apple, flesh and skin, core removed",
+      "quantity": "55 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "55 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "28 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "10 g (as sold edible weight)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "110 g (weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Mustard seeds",
+      "shoppingItem": "Mustard seeds",
+      "quantity": "1.1 g (dry)"
+    },
+    {
+      "item": "Dried thyme",
+      "shoppingItem": "Dried thyme",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cut the pork, cored apple and onion into small pieces. Grind the mustard seeds and mix with two fifths of the oil and the thyme. Coat the pork, apple and onion and thread onto short skewers.",
+    "Grill or cook in a non-stick pan over medium heat, turning regularly, for about 12–15 minutes until the pork centres reach 75°C for 30 seconds. Retain edible cooking juices.",
+    "Bring the measured water to a boil. Add the couscous, cover, turn off the heat and leave for 5–7 minutes. Fluff and fold in one fifth of the oil and chopped parsley.",
+    "Mix the remaining oil, lemon juice and pepper. Toss with finely shredded cabbage and chopped walnuts. Serve all the skewers, edible pan juices, couscous and salad."
+  ],
+  "nutrition": {
+    "calories": "657 kcal",
+    "protein": "29.6 g",
+    "carbohydrates": "47.7 g",
+    "fat": "38.3 g",
+    "fibre": "5.9 g",
+    "sodium": "52 mg",
+    "potassium": "842 mg",
+    "phosphate": "395 mg",
+    "salt": "0.13 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mixed diet",
+  "dietCategories": [
+    "Mixed diet",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "cabbage-rolls-with-barley-mushrooms-and-seitan",
+  "code": "D092",
+  "category": "Dinner",
+  "cuisine": "Poland",
+  "mealFamily": "plated meal",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D092.webp",
+  "name": "Cabbage rolls with barley, mushrooms and seitan",
+  "description": "Tender cabbage leaves filled with barley, mushrooms, walnuts and homemade seitan.",
+  "cookingTime": "65 mins",
+  "calories": "621 kcal",
+  "protein": "24.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "ingredients": [
+    {
+      "item": "Pearl barley",
+      "shoppingItem": "Pearl barley",
+      "quantity": "35 g (dry edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "20 g (dry)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "110 g (raw edible input)"
+    },
+    {
+      "item": "White mushrooms",
+      "shoppingItem": "White mushrooms",
+      "quantity": "35 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "55 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "230 g (weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Sweet paprika",
+      "shoppingItem": "Sweet paprika",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Dried thyme",
+      "shoppingItem": "Dried thyme",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    },
+    {
+      "item": "Pure vital wheat gluten powder",
+      "shoppingItem": "Pure vital wheat gluten powder",
+      "quantity": "20 g (dry edible input)"
+    }
+  ],
+  "method": [
+    "Mix 20 g pure vital wheat gluten with 30 g of the water into a dough. Knead for 2 minutes, rest for 5 minutes, flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked. Keep the entire portion and chop finely.",
+    "Simmer the barley in 120 g of the water, covered, for 15 minutes. Add the rice and cook for another 15–20 minutes until both grains are tender, keeping all liquid.",
+    "Steam the cabbage leaves until flexible, finely chopping any edible stalk trimmings. Cook chopped onion, garlic, mushrooms and cabbage trimmings in three quarters of the oil for 6–8 minutes. Mix with all the cooked grains, seitan, walnuts, thyme and pepper.",
+    "Divide the entire filling between three large cabbage leaves, fold in the sides and roll. Put chopped tomato, paprika, remaining oil and remaining 80 g water in a covered casserole. Add the rolls and simmer for 20–25 minutes until tender and steaming hot. Serve all the rolls and sauce."
+  ],
+  "nutrition": {
+    "calories": "621 kcal",
+    "protein": "24.1 g",
+    "carbohydrates": "54.3 g",
+    "fat": "33.7 g",
+    "fibre": "11.9 g",
+    "sodium": "29 mg",
+    "potassium": "763 mg",
+    "phosphate": "288 mg",
+    "salt": "0.07 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "mild-tofu-and-coconut-curry-with-basmati-rice",
+  "code": "D093",
+  "category": "Dinner",
+  "cuisine": "India",
+  "mealFamily": "stew",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D093.webp",
+  "name": "Mild tofu and coconut curry with basmati rice",
+  "description": "A mild coconut and tofu curry with cabbage, peppers and basmati rice.",
+  "cookingTime": "35 mins",
+  "calories": "625 kcal",
+  "protein": "20.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "45 g (dry)"
+    },
+    {
+      "item": "Regular tofu, made with calcium sulphate, gently drained",
+      "shoppingItem": "Regular tofu, made with calcium sulphate, gently drained",
+      "quantity": "165 g (as sold edible weight, unpressed)"
+    },
+    {
+      "item": "Unsweetened desiccated coconut",
+      "shoppingItem": "Unsweetened desiccated coconut",
+      "quantity": "15 g (dry edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "75 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "155 g (weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.8 g (dry)"
+    },
+    {
+      "item": "Ground coriander seed",
+      "shoppingItem": "Ground coriander seed",
+      "quantity": "0.8 g (dry)"
+    },
+    {
+      "item": "Ground turmeric",
+      "shoppingItem": "Ground turmeric",
+      "quantity": "0.3 g (dry)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    }
+  ],
+  "method": [
+    "Cook the rice with 100 g of the measured water, covered, for 12–15 minutes. Rest for 5 minutes. Use regular calcium-sulphate tofu, gently drained without pressing, and cut the weighed tofu into cubes.",
+    "Soften chopped onion, garlic and ginger in the oil for 5 minutes. Stir in the cumin, coriander and turmeric for 30 seconds.",
+    "Add shredded cabbage, diced pepper and tomato, desiccated coconut, tofu and remaining 55 g water. Cover and simmer gently for 10–12 minutes until the vegetables are tender and the tofu is hot.",
+    "Stir in the lime juice and serve all the curry with all the rice."
+  ],
+  "nutrition": {
+    "calories": "625 kcal",
+    "protein": "20.1 g",
+    "carbohydrates": "47.7 g",
+    "fat": "40.0 g",
+    "fibre": "8.3 g",
+    "sodium": "32 mg",
+    "potassium": "814 mg",
+    "phosphate": "289 mg",
+    "salt": "0.08 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "turkey-kebabs-with-flatbread-and-cucumber-yoghurt",
+  "code": "D094",
+  "category": "Dinner",
+  "cuisine": "Pakistan",
+  "mealFamily": "bread",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D094.webp",
+  "name": "Turkey kebabs with flatbread and cucumber yoghurt",
+  "description": "Spiced turkey kebabs with a warm flatbread and cool cucumber yoghurt.",
+  "cookingTime": "40 mins",
+  "calories": "704 kcal",
+  "protein": "48.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless turkey breast",
+      "shoppingItem": "Skinless turkey breast",
+      "quantity": "145 g (raw edible input)"
+    },
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "50 g (dry)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "35 g (raw edible input)"
+    },
+    {
+      "item": "Fine sifted cornmeal, not self-raising",
+      "shoppingItem": "Fine sifted cornmeal, not self-raising",
+      "quantity": "9 g (dry edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "shoppingItem": "Plain full-fat Greek-style yoghurt, about 10% fat",
+      "quantity": "30 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "28 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "1.1 g (dry)"
+    },
+    {
+      "item": "Ground coriander seed",
+      "shoppingItem": "Ground coriander seed",
+      "quantity": "1.1 g (dry)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "35 g (weighed grams)"
+    },
+    {
+      "item": "Pure cayenne chilli powder",
+      "shoppingItem": "Pure cayenne chilli powder",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix the flour, measured water and 6 g of the oil into a dough. Knead briefly, cover and rest for 10 minutes.",
+    "Mince plain turkey breast at home. Mix with the egg white, cornmeal, very finely chopped onion and tomato, half the coriander leaves, ground cumin and coriander, and chilli. Form four thin, compact patties.",
+    "Heat 16 g of the oil in a non-stick pan. Cook the kebabs over medium heat for 5–6 minutes per side until the centres reach 75°C for 30 seconds. Keep edible pan juices.",
+    "Roll the dough between non-stick sheets and dry-cook for 2–3 minutes per side until cooked through. Mix the Greek-style yoghurt, diced cucumber, lemon juice, remaining 6 g oil and remaining coriander. Serve all the kebabs, flatbread, juices and yoghurt."
+  ],
+  "nutrition": {
+    "calories": "704 kcal",
+    "protein": "48.0 g",
+    "carbohydrates": "49.8 g",
+    "fat": "34.2 g",
+    "fibre": "4.8 g",
+    "sodium": "169 mg",
+    "potassium": "1064 mg",
+    "phosphate": "493 mg",
+    "salt": "0.42 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mediterranean-style",
+  "dietCategories": [
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "basil-and-ginger-tofu-cakes-with-rice-and-cabbage",
+  "code": "D095",
+  "category": "Dinner",
+  "cuisine": "Thailand",
+  "mealFamily": "cakes",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D095.webp",
+  "name": "Basil and ginger tofu cakes with rice and cabbage",
+  "description": "Tofu cakes with basil and ginger, served with rice and warm sesame cabbage.",
+  "cookingTime": "40 mins",
+  "calories": "669 kcal",
+  "protein": "20.8 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Regular tofu, made with calcium sulphate, gently drained",
+      "shoppingItem": "Regular tofu, made with calcium sulphate, gently drained",
+      "quantity": "165 g (as sold edible weight, unpressed)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "35 g (dry edible input)"
+    },
+    {
+      "item": "White short-grain rice",
+      "shoppingItem": "White short-grain rice",
+      "quantity": "20 g (dry)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Sesame oil",
+      "shoppingItem": "Sesame oil",
+      "quantity": "6 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "10 g (as sold edible weight)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "3 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Cook the short-grain rice with 55 g of the measured water in a covered pan for 12–15 minutes. Rest for 5 minutes.",
+    "Mash the weighed regular calcium-sulphate tofu, gently drained without pressing. Mix with the rice flour, finely chopped basil, garlic, ginger and 20 g of the measured water. Rest for 5 minutes, then form four small, thin cakes.",
+    "Heat 17 g of the rapeseed oil in a non-stick pan. Cook the cakes for 5–6 minutes per side until firm and the centres are fully cooked.",
+    "Cook the shredded cabbage and sliced pepper in the remaining 5 g rapeseed oil and remaining 25 g water for 5–6 minutes. Stir in the sesame oil, soy sauce, lime juice and chopped peanuts. Serve all the cakes, rice and vegetables."
+  ],
+  "nutrition": {
+    "calories": "669 kcal",
+    "protein": "20.8 g",
+    "carbohydrates": "51.6 g",
+    "fat": "41.5 g",
+    "fibre": "5.6 g",
+    "sodium": "189 mg",
+    "potassium": "680 mg",
+    "phosphate": "300 mg",
+    "salt": "0.47 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegan",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "sesame-salmon-with-rice-noodles-and-crunchy-slaw",
+  "code": "D096",
+  "category": "Dinner",
+  "cuisine": "Japan",
+  "mealFamily": "pasta",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D096.webp",
+  "name": "Sesame salmon with rice noodles and crunchy slaw",
+  "description": "Sesame salmon with rice noodles and a crunchy ginger-dressed cabbage salad.",
+  "cookingTime": "30 mins",
+  "calories": "701 kcal",
+  "protein": "26.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "110 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Rice noodles",
+      "shoppingItem": "Rice noodles",
+      "quantity": "35 g (dry)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "35 g (raw edible input)"
+    },
+    {
+      "item": "Sesame seeds",
+      "shoppingItem": "Sesame seeds",
+      "quantity": "3 g (dry)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "17 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Sesame oil",
+      "shoppingItem": "Sesame oil",
+      "quantity": "6 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Standard mayonnaise",
+      "shoppingItem": "Standard mayonnaise",
+      "quantity": "10 g (as sold)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "3 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Plain unseasoned vinegar",
+      "shoppingItem": "Plain unseasoned vinegar",
+      "quantity": "10 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "45 g (weighed grams)"
+    },
+    {
+      "item": "White sugar",
+      "shoppingItem": "White sugar",
+      "quantity": "2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Brush the salmon with one third of the rapeseed oil, scatter with the sesame seeds and bake for 12–15 minutes until opaque, steaming hot and flaking easily. Retain edible baking juices.",
+    "Cook the rice noodles in a separate pan of unsalted water according to the packet and drain. Toss with the remaining rapeseed oil and all the sesame oil while warm.",
+    "Mix the mayonnaise, soy sauce, vinegar, grated ginger, sugar and all the measured water. Toss with shredded cabbage and carrot.",
+    "Serve all the freshly cooked salmon and edible juices with all the noodles, slaw and dressing."
+  ],
+  "nutrition": {
+    "calories": "701 kcal",
+    "protein": "26.3 g",
+    "carbohydrates": "36.3 g",
+    "fat": "49.1 g",
+    "fibre": "4.5 g",
+    "sodium": "307 mg",
+    "potassium": "653 mg",
+    "phosphate": "350 mg",
+    "salt": "0.77 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mixed diet",
+  "dietCategories": [
+    "Mixed diet",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "black-bean-and-rice-stuffed-peppers",
+  "code": "D097",
+  "category": "Dinner",
+  "cuisine": "Mexico",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D097.webp",
+  "name": "Black-bean and rice stuffed peppers",
+  "description": "Baked peppers filled with black beans, rice and spices, with melted Cheddar and avocado.",
+  "cookingTime": "45 mins",
+  "calories": "681 kcal",
+  "protein": "20.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "45 g (dry)"
+    },
+    {
+      "item": "Black beans, boiled without salt and drained",
+      "shoppingItem": "Black beans, boiled without salt and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "130 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Vegetarian-rennet mature cheddar",
+      "shoppingItem": "Vegetarian-rennet mature cheddar",
+      "quantity": "20 g (as sold)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Hass avocado flesh, skin and stone removed",
+      "shoppingItem": "Hass avocado flesh, skin and stone removed",
+      "quantity": "35 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "110 g (weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "1.1 g (dry)"
+    },
+    {
+      "item": "Sweet paprika",
+      "shoppingItem": "Sweet paprika",
+      "quantity": "1.1 g (dry)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "6 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Halve and deseed the peppers and weigh the edible halves. Brush with half the oil and bake for 15 minutes.",
+    "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes.",
+    "Soften chopped onion in the remaining oil for 5 minutes. Add cumin, paprika, chopped tomato and cooked drained black beans. Cook for 5 minutes, then fold in all the rice.",
+    "Fill both pepper halves, spooning any extra filling around them. Top with all the grated Cheddar and bake for 15–20 minutes until the peppers are tender and the filling is steaming hot. Serve the entire dish with all the weighed avocado flesh, lime juice and coriander.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "681 kcal",
+    "protein": "20.2 g",
+    "carbohydrates": "59.3 g",
+    "fat": "36.6 g",
+    "fibre": "14.8 g",
+    "sodium": "161 mg",
+    "potassium": "1115 mg",
+    "phosphate": "364 mg",
+    "salt": "0.40 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "beef-pepper-and-onion-saltado-with-rice",
+  "code": "D098",
+  "category": "Dinner",
+  "cuisine": "Peru",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D098.webp",
+  "name": "Beef, pepper and onion saltado with rice",
+  "description": "Quick-seared beef, onions and peppers with rice, tomato and fresh avocado.",
+  "cookingTime": "35 mins",
+  "calories": "700 kcal",
+  "protein": "29.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "45 g (dry)"
+    },
+    {
+      "item": "Beef sirloin, lean and edible fat",
+      "shoppingItem": "Beef sirloin, lean and edible fat",
+      "quantity": "110 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "55 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Hass avocado flesh, skin and stone removed",
+      "shoppingItem": "Hass avocado flesh, skin and stone removed",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Plain unseasoned vinegar",
+      "shoppingItem": "Plain unseasoned vinegar",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "4 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "6 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "100 g (weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Slice the beef across the grain and cut the onion, pepper and tomato into wedges.",
+    "Heat three quarters of the oil in a wok. Sear the beef for 2–3 minutes, then add the onion, pepper and garlic. Stir-fry for 3–4 minutes.",
+    "Add the tomato, soy sauce, vinegar and pepper. Stir-fry for 2 minutes, ensuring the beef surfaces are thoroughly seared and everything is hot.",
+    "Mix the weighed avocado flesh with the remaining oil and chopped coriander. Serve all the stir-fry and sauce with all the rice and avocado."
+  ],
+  "nutrition": {
+    "calories": "700 kcal",
+    "protein": "29.9 g",
+    "carbohydrates": "44.1 g",
+    "fat": "44.3 g",
+    "fibre": "5.0 g",
+    "sodium": "303 mg",
+    "potassium": "1033 mg",
+    "phosphate": "316 mg",
+    "salt": "0.76 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mixed diet",
+  "dietCategories": [
+    "Mixed diet",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "fish-and-groundnut-stew-with-rice",
+  "code": "D099",
+  "category": "Dinner",
+  "cuisine": "Ghana",
+  "mealFamily": "stew",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D099.webp",
+  "name": "Fish and groundnut stew with rice",
+  "description": "Fish in a warming groundnut and pepper sauce with rice and tender cabbage.",
+  "cookingTime": "40 mins",
+  "calories": "638 kcal",
+  "protein": "26.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Cod fillet, flesh only",
+      "shoppingItem": "Cod fillet, flesh only",
+      "quantity": "75 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "30 g (as sold edible weight)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "45 g (dry)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "45 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "130 g (weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Sweet paprika",
+      "shoppingItem": "Sweet paprika",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Pure cayenne chilli powder",
+      "shoppingItem": "Pure cayenne chilli powder",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with 100 g of the measured water, covered, for 12–15 minutes. Rest for 5 minutes.",
+    "Grind the peanuts. Soften chopped onion, pepper, ginger and garlic in the oil for 6–8 minutes. Stir in paprika and chilli, then add chopped tomato, shredded cabbage, ground peanuts and remaining 30 g water.",
+    "Cover and simmer for 8 minutes. Add the cod pieces, cover and simmer gently for 6–8 minutes until opaque, steaming hot and flaking easily.",
+    "Stir in the lime juice and serve the entire stew with all the rice."
+  ],
+  "nutrition": {
+    "calories": "638 kcal",
+    "protein": "26.2 g",
+    "carbohydrates": "47.9 g",
+    "fat": "38.0 g",
+    "fibre": "7.7 g",
+    "sodium": "84 mg",
+    "potassium": "945 mg",
+    "phosphate": "336 mg",
+    "salt": "0.21 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Mediterranean-style",
+  "dietCategories": [
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "lentil-bobotie-with-rice",
+  "code": "D100",
+  "category": "Dinner",
+  "cuisine": "South Africa",
+  "mealFamily": "pie",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D100.webp",
+  "name": "Lentil bobotie with rice",
+  "description": "A gently spiced lentil and walnut bake with apple, raisins and a golden egg topping.",
+  "cookingTime": "50 mins",
+  "calories": "681 kcal",
+  "protein": "27.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "40 g (dry)"
+    },
+    {
+      "item": "Green or brown lentils, boiled without salt and drained",
+      "shoppingItem": "Green or brown lentils, boiled without salt and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "65 g (raw edible input)"
+    },
+    {
+      "item": "Whole milk",
+      "shoppingItem": "Whole milk",
+      "quantity": "45 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White crusty bloomer bread, egg- and dairy-free",
+      "shoppingItem": "White crusty bloomer bread, egg- and dairy-free",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Eating apple, flesh and skin, core removed",
+      "shoppingItem": "Eating apple, flesh and skin, core removed",
+      "quantity": "35 g (raw edible input)"
+    },
+    {
+      "item": "Raisins",
+      "shoppingItem": "Raisins",
+      "quantity": "6 g (dry as sold)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "22 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "10 g (as sold edible weight)"
+    },
+    {
+      "item": "Plain unseasoned vinegar",
+      "shoppingItem": "Plain unseasoned vinegar",
+      "quantity": "10 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Ground coriander seed",
+      "shoppingItem": "Ground coriander seed",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Ground turmeric",
+      "shoppingItem": "Ground turmeric",
+      "quantity": "0.6 g (dry)"
+    },
+    {
+      "item": "Ground cinnamon",
+      "shoppingItem": "Ground cinnamon",
+      "quantity": "0.3 g (dry)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "90 g (weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 190°C, or 170°C fan. Soak the bread in 20 g of the milk, keeping all the milk.",
+    "Cook chopped onion and grated cored apple in the oil for 6 minutes. Add cumin, coriander, turmeric, cinnamon, vinegar, raisins, cooked drained green lentils and chopped walnuts. Stir in all the soaked bread and milk and the pepper.",
+    "Spoon into a small baking dish. Beat the whole egg, weighed egg white and remaining 25 g milk and pour over the top. Bake for 25–30 minutes until the topping is completely set and filling is steaming hot.",
+    "Meanwhile cook the rice in all the measured water, covered, for 12–15 minutes, then rest for 5 minutes. Serve the whole bake with all the rice."
+  ],
+  "nutrition": {
+    "calories": "681 kcal",
+    "protein": "27.1 g",
+    "carbohydrates": "63.2 g",
+    "fat": "34.8 g",
+    "fibre": "10.6 g",
+    "sodium": "254 mg",
+    "potassium": "668 mg",
+    "phosphate": "321 mg",
+    "salt": "0.63 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Vegetarian",
+  "dietCategories": [
+    "Vegetarian",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "salmon-and-courgette-frittata",
+  "code": "D101",
+  "category": "Dinner",
+  "cuisine": "Italy",
+  "mealFamily": "eggs",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D101.webp",
+  "name": "Salmon and courgette frittata",
+  "description": "An individual salmon and courgette frittata with Cheddar, lemon and parsley.",
+  "cookingTime": "35 mins",
+  "calories": "561 kcal",
+  "protein": "33.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "100 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Courgette",
+      "shoppingItem": "Courgette",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Mature Cheddar",
+      "shoppingItem": "Mature Cheddar",
+      "quantity": "20 g (as sold)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Dice the courgette and cook in half the oil in a small ovenproof pan for 5 minutes.",
+    "Cut the salmon into small pieces and add to the pan. Beat the weighed egg with the lemon juice, parsley and pepper, and pour over the fish and vegetables.",
+    "Scatter with the grated Cheddar and remaining oil. Bake for 18–22 minutes until the egg is completely set and the salmon is opaque and steaming hot. Serve the whole dish and edible juices."
+  ],
+  "nutrition": {
+    "calories": "561 kcal",
+    "protein": "33.0 g",
+    "carbohydrates": "2.2 g",
+    "fat": "46.7 g",
+    "fibre": "0.8 g",
+    "sodium": "266 mg",
+    "potassium": "762 mg",
+    "phosphate": "452 mg",
+    "salt": "0.66 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "garlic-cream-chicken-with-braised-cabbage",
+  "code": "D102",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "plated meal",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D102.webp",
+  "name": "Garlic cream chicken with braised cabbage",
+  "description": "Tender chicken thigh in a garlic and thyme cream sauce with soft cabbage.",
+  "cookingTime": "35 mins",
+  "calories": "453 kcal",
+  "protein": "29.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless boneless chicken thigh",
+      "shoppingItem": "Skinless boneless chicken thigh",
+      "quantity": "130 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "25 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Single cream",
+      "shoppingItem": "Single cream",
+      "quantity": "30 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Dried thyme",
+      "shoppingItem": "Dried thyme",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "40 g (weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Use skinless boneless chicken thigh. Cut into small pieces and brown in three fifths of the oil for 5 minutes.",
+    "Add shredded cabbage, crushed garlic, thyme and all the measured water. Cover and simmer for 12–15 minutes until the cabbage is tender and the chicken reaches 75°C for 30 seconds.",
+    "Stir in the cream, remaining oil, lemon juice and pepper. Warm gently without boiling and serve the entire portion with all the sauce."
+  ],
+  "nutrition": {
+    "calories": "453 kcal",
+    "protein": "29.6 g",
+    "carbohydrates": "6.2 g",
+    "fat": "34.5 g",
+    "fibre": "3.3 g",
+    "sodium": "135 mg",
+    "potassium": "804 mg",
+    "phosphate": "199 mg",
+    "salt": "0.34 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "pork-medallions-with-creamy-courgettes",
+  "code": "D103",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "plated meal",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D103.webp",
+  "name": "Pork medallions with creamy courgettes",
+  "description": "Pork medallions with courgettes in a buttery thyme and garlic sauce.",
+  "cookingTime": "30 mins",
+  "calories": "432 kcal",
+  "protein": "29.4 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Pork fillet, lean and visible edible fat",
+      "shoppingItem": "Pork fillet, lean and visible edible fat",
+      "quantity": "120 g (raw edible input)"
+    },
+    {
+      "item": "Courgette",
+      "shoppingItem": "Courgette",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Single cream",
+      "shoppingItem": "Single cream",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "15 g (as sold)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Dried thyme",
+      "shoppingItem": "Dried thyme",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "30 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Slice the pork into medallions. Heat the oil and half the butter in a non-stick pan and cook the pork, turning, until its centres reach 75°C for 30 seconds. Keep warm and retain all edible pan juices.",
+    "Slice the courgette and cook in the same pan with the remaining butter, garlic, thyme and measured water for 7–8 minutes until tender.",
+    "Stir in the cream and pepper over low heat. Return the pork and all edible juices, warm through and serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "432 kcal",
+    "protein": "29.4 g",
+    "carbohydrates": "3.4 g",
+    "fat": "33.6 g",
+    "fibre": "0.8 g",
+    "sodium": "59 mg",
+    "potassium": "882 mg",
+    "phosphate": "330 mg",
+    "salt": "0.15 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "turkey-patties-with-avocado-and-cabbage-salad",
+  "code": "D104",
+  "category": "Dinner",
+  "cuisine": "Pakistan",
+  "mealFamily": "cakes",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D104.webp",
+  "name": "Turkey patties with avocado and cabbage salad",
+  "description": "Cumin-spiced turkey patties with a crunchy cabbage, avocado and lemon salad.",
+  "cookingTime": "35 mins",
+  "calories": "503 kcal",
+  "protein": "37.4 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless turkey breast",
+      "shoppingItem": "Skinless turkey breast",
+      "quantity": "130 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Hass avocado flesh, skin and stone removed",
+      "shoppingItem": "Hass avocado flesh, skin and stone removed",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "25 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "1 g (dry)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Mince plain skinless turkey breast at home. Mix with the egg white, cumin, half the parsley and pepper. Shape into four thin patties.",
+    "Heat three fifths of the oil in a non-stick pan and cook the patties for 5–6 minutes per side until the centres reach 75°C for 30 seconds.",
+    "Toss shredded cabbage and weighed avocado flesh with the remaining oil, lemon juice and parsley. Serve all the patties, edible pan juices and salad."
+  ],
+  "nutrition": {
+    "calories": "503 kcal",
+    "protein": "37.4 g",
+    "carbohydrates": "5.6 g",
+    "fat": "36.8 g",
+    "fibre": "4.6 g",
+    "sodium": "134 mg",
+    "potassium": "1122 mg",
+    "phosphate": "367 mg",
+    "salt": "0.33 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "egg-and-cheddar-stuffed-mushrooms",
+  "code": "D105",
+  "category": "Dinner",
+  "cuisine": "Italy",
+  "mealFamily": "eggs",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D105.webp",
+  "name": "Egg and Cheddar stuffed mushrooms",
+  "description": "Large mushrooms filled with a rich egg, Cheddar and herb mixture.",
+  "cookingTime": "35 mins",
+  "calories": "527 kcal",
+  "protein": "24.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Vegetarian-rennet mature cheddar",
+      "shoppingItem": "Vegetarian-rennet mature cheddar",
+      "quantity": "40 g (as sold)"
+    },
+    {
+      "item": "White mushrooms",
+      "shoppingItem": "White mushrooms",
+      "quantity": "120 g (raw edible input)"
+    },
+    {
+      "item": "Single cream",
+      "shoppingItem": "Single cream",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 190°C, or 170°C fan. Choose large flat mushrooms and weigh 120 g of edible caps and stalks. Remove the stalks, chop them and cook in half the oil for 3 minutes.",
+    "Beat the weighed egg with the cream, grated Cheddar, chopped herbs, cooked stalks and pepper. Put the caps in a small dish and brush with the remaining oil.",
+    "Fill the caps, pouring any extra filling around them. Bake for 20–25 minutes until the egg filling is completely set and mushrooms are tender. Serve all the mushrooms, filling and edible juices.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "527 kcal",
+    "protein": "24.9 g",
+    "carbohydrates": "1.1 g",
+    "fat": "47.1 g",
+    "fibre": "1.1 g",
+    "sodium": "456 mg",
+    "potassium": "699 mg",
+    "phosphate": "515 mg",
+    "salt": "1.14 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Keto",
+  "dietCategories": [
+    "Vegetarian",
+    "Keto",
+    "Atkins Phase 1"
+  ]
+},
+{
+  "id": "salmon-and-egg-bake",
+  "code": "D106",
+  "category": "Dinner",
+  "cuisine": "Simple cooking",
+  "mealFamily": "eggs",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D106.webp",
+  "name": "Salmon and egg bake",
+  "description": "An individual salmon and egg bake with a golden surface.",
+  "cookingTime": "35 mins",
+  "calories": "584 kcal",
+  "protein": "41.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "140 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "20 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "30 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 190°C, or 170°C fan. Grease a small baking dish with 5 g of the butter and add the salmon in small pieces.",
+    "Beat the weighed egg with the measured water and pour over the salmon. Dot with the remaining 15 g butter.",
+    "Bake for 22–28 minutes until the egg is completely set and the salmon is opaque and steaming hot. Serve the entire bake and edible juices."
+  ],
+  "nutrition": {
+    "calories": "584 kcal",
+    "protein": "41.3 g",
+    "carbohydrates": "0.1 g",
+    "fat": "46.4 g",
+    "fibre": "0.3 g",
+    "sodium": "217 mg",
+    "potassium": "650 mg",
+    "phosphate": "500 mg",
+    "salt": "0.54 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Carnivore",
+  "dietCategories": [
+    "Keto",
+    "Carnivore"
+  ]
+},
+{
+  "id": "beef-patties-with-poached-eggs",
+  "code": "D107",
+  "category": "Dinner",
+  "cuisine": "Simple cooking",
+  "mealFamily": "cakes",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D107.webp",
+  "name": "Beef patties with poached eggs",
+  "description": "Plain beef patties with poached eggs and warm butter juices.",
+  "cookingTime": "35 mins",
+  "calories": "581 kcal",
+  "protein": "45.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer, food thermometer",
+  "ingredients": [
+    {
+      "item": "Beef sirloin, lean and edible fat",
+      "shoppingItem": "Beef sirloin, lean and edible fat",
+      "quantity": "150 g (raw edible input)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "20 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "50 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Mince plain sirloin at home and shape into two patties. Melt 10 g of the butter in a non-stick pan and cook for 5–6 minutes per side until the centres reach 75°C for 30 seconds.",
+    "Grease two small heatproof cups with the remaining 10 g butter. Divide the weighed egg and measured water between them and steam over a separate pan of water until fully set, about 8–10 minutes.",
+    "Serve all the patties, eggs, butter and edible pan juices."
+  ],
+  "nutrition": {
+    "calories": "581 kcal",
+    "protein": "45.1 g",
+    "carbohydrates": "0.1 g",
+    "fat": "44.5 g",
+    "fibre": "0.0 g",
+    "sodium": "251 mg",
+    "potassium": "630 mg",
+    "phosphate": "454 mg",
+    "salt": "0.63 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Carnivore",
+  "dietCategories": [
+    "Keto",
+    "Carnivore"
+  ]
+},
+{
+  "id": "chicken-thigh-and-egg-casserole",
+  "code": "D108",
+  "category": "Dinner",
+  "cuisine": "Simple cooking",
+  "mealFamily": "eggs",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D108.webp",
+  "name": "Chicken thigh and egg casserole",
+  "description": "Chicken thigh pieces baked with egg and butter in a small casserole.",
+  "cookingTime": "40 mins",
+  "calories": "491 kcal",
+  "protein": "46.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless boneless chicken thigh",
+      "shoppingItem": "Skinless boneless chicken thigh",
+      "quantity": "160 g (raw edible input)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "25 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "30 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 190°C, or 170°C fan. Dice plain skinless boneless chicken thigh and brown in 10 g of the butter for 5 minutes.",
+    "Transfer the chicken and all edible juices to a small dish. Beat the weighed egg and water, pour over and dot with the remaining 15 g butter.",
+    "Bake for 25–30 minutes until the egg is fully set and the chicken centres reach 75°C for 30 seconds. Serve the whole casserole and edible juices."
+  ],
+  "nutrition": {
+    "calories": "491 kcal",
+    "protein": "46.2 g",
+    "carbohydrates": "0.1 g",
+    "fat": "34.0 g",
+    "fibre": "0.0 g",
+    "sodium": "301 mg",
+    "potassium": "776 mg",
+    "phosphate": "361 mg",
+    "salt": "0.75 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Carnivore",
+  "dietCategories": [
+    "Keto",
+    "Carnivore"
+  ]
+},
+{
+  "id": "cod-and-salmon-egg-custard",
+  "code": "D109",
+  "category": "Dinner",
+  "cuisine": "Simple cooking",
+  "mealFamily": "eggs",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D109.webp",
+  "name": "Cod and salmon egg custard",
+  "description": "Cod and salmon pieces in a savoury baked egg custard.",
+  "cookingTime": "35 mins",
+  "calories": "528 kcal",
+  "protein": "46.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Cod fillet, flesh only",
+      "shoppingItem": "Cod fillet, flesh only",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "80 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Unsalted butter",
+      "shoppingItem": "Unsalted butter",
+      "quantity": "20 g (as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "40 g (weighed grams)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 180°C, or 160°C fan. Grease a small baking dish with 5 g of the butter. Dice the fish and arrange in the dish.",
+    "Beat the weighed egg and water and pour over the fish. Dot with the remaining 15 g butter.",
+    "Bake for 25–30 minutes until the custard is completely set and the fish is opaque and steaming hot. Serve the entire dish and edible juices."
+  ],
+  "nutrition": {
+    "calories": "528 kcal",
+    "protein": "46.5 g",
+    "carbohydrates": "0.1 g",
+    "fat": "38.0 g",
+    "fibre": "0.2 g",
+    "sodium": "283 mg",
+    "potassium": "758 mg",
+    "phosphate": "533 mg",
+    "salt": "0.71 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Carnivore",
+  "dietCategories": [
+    "Keto",
+    "Carnivore"
+  ]
+},
+{
+  "id": "chicken-and-potato-frittata-with-carrots",
+  "code": "D110",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "eggs",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D110.webp",
+  "name": "Chicken and potato frittata with carrots",
+  "description": "Chicken and potato baked into a chive frittata, served with tender carrots.",
+  "cookingTime": "35 mins",
+  "calories": "527 kcal",
+  "protein": "39.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless boneless chicken breast",
+      "shoppingItem": "Skinless boneless chicken breast",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Peeled potato, boiled in unsalted water and drained",
+      "shoppingItem": "Peeled potato, boiled in unsalted water and drained",
+      "quantity": "120 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "30 g (weighed grams)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Use peeled potato already boiled without salt and drained; weigh 120 g cooked. Dice the chicken and cook in half the oil for 5 minutes.",
+    "Add sliced cooked potato. Beat the weighed egg, salt and chives, pour over and drizzle with the remaining oil. Bake for 15–20 minutes until the egg is fully set and chicken reaches 75°C for 30 seconds.",
+    "Simmer the sliced carrot in all the measured water in a covered pan until tender, retaining any liquid. Serve the whole frittata with all the carrot and edible juices."
+  ],
+  "nutrition": {
+    "calories": "527 kcal",
+    "protein": "39.2 g",
+    "carbohydrates": "23.7 g",
+    "fat": "30.5 g",
+    "fibre": "4.3 g",
+    "sodium": "311 mg",
+    "potassium": "1069 mg",
+    "phosphate": "448 mg",
+    "salt": "0.78 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "salmon-with-carrot-rice-and-cucumber-salad",
+  "code": "D111",
+  "category": "Dinner",
+  "cuisine": "Mediterranean",
+  "mealFamily": "salad",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D111.webp",
+  "name": "Salmon with carrot rice and cucumber salad",
+  "description": "Baked salmon with carrot rice and a small cucumber and parsley salad.",
+  "cookingTime": "35 mins",
+  "calories": "649 kcal",
+  "protein": "27.9 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "60 g (dry)"
+    },
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "110 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "120 g (weighed grams)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice and grated carrot with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes.",
+    "Brush the salmon with half the oil and season with the salt. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque and steaming hot.",
+    "Mix the cucumber, parsley, lemon juice and remaining oil. Serve all the salmon, edible juices, rice, carrot and salad."
+  ],
+  "nutrition": {
+    "calories": "649 kcal",
+    "protein": "27.9 g",
+    "carbohydrates": "49.2 g",
+    "fat": "37.2 g",
+    "fibre": "2.8 g",
+    "sodium": "144 mg",
+    "potassium": "593 mg",
+    "phosphate": "325 mg",
+    "salt": "0.36 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Low FODMAP",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "turkey-and-chive-meatballs-with-polenta",
+  "code": "D112",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "plated meal",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D112.webp",
+  "name": "Turkey and chive meatballs with polenta",
+  "description": "Plain turkey and chive meatballs with soft polenta and sweet carrots.",
+  "cookingTime": "40 mins",
+  "calories": "511 kcal",
+  "protein": "38.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless turkey breast",
+      "shoppingItem": "Skinless turkey breast",
+      "quantity": "120 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Fine sifted cornmeal, not self-raising",
+      "shoppingItem": "Fine sifted cornmeal, not self-raising",
+      "quantity": "45 g (dry edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "180 g (weighed grams)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Dried thyme",
+      "shoppingItem": "Dried thyme",
+      "quantity": "0.3 g (dry)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Mince plain turkey breast at home and mix with the egg white, chives, thyme and half the salt. Shape into five small meatballs.",
+    "Bring all the measured water to a simmer and whisk in the cornmeal and remaining salt. Cook over low heat for 20–25 minutes until fully tender, stirring frequently.",
+    "Heat all the oil in a non-stick pan. Cook the meatballs and thinly sliced carrot over medium-low heat for 12–15 minutes, turning and covering briefly, until the carrot is tender and meatball centres reach 75°C for 30 seconds. Serve everything, including edible pan juices."
+  ],
+  "nutrition": {
+    "calories": "511 kcal",
+    "protein": "38.3 g",
+    "carbohydrates": "36.0 g",
+    "fat": "22.7 g",
+    "fibre": "4.3 g",
+    "sodium": "236 mg",
+    "potassium": "686 mg",
+    "phosphate": "347 mg",
+    "salt": "0.59 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "steak-and-rice-with-lettuce-and-carrots",
+  "code": "D113",
+  "category": "Dinner",
+  "cuisine": "South America",
+  "mealFamily": "salad",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D113.webp",
+  "name": "Steak and rice with lettuce and carrots",
+  "description": "Seared steak with rice and a fresh lettuce, carrot and chive salad.",
+  "cookingTime": "35 mins",
+  "calories": "648 kcal",
+  "protein": "31.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Beef sirloin, lean and edible fat",
+      "shoppingItem": "Beef sirloin, lean and edible fat",
+      "quantity": "120 g (raw edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "60 g (dry)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Lettuce",
+      "shoppingItem": "Lettuce",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "120 g (weighed grams)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes.",
+    "Heat half the oil in a non-stick pan. Season the steak with the salt, sear all its surfaces and cook to preference. Rest for 3 minutes, retaining edible juices.",
+    "Toss shredded lettuce and grated carrot with the remaining oil, lemon juice and chives. Serve all the steak, juices, rice and salad."
+  ],
+  "nutrition": {
+    "calories": "648 kcal",
+    "protein": "31.5 g",
+    "carbohydrates": "48.7 g",
+    "fat": "35.7 g",
+    "fibre": "2.5 g",
+    "sodium": "170 mg",
+    "potassium": "594 mg",
+    "phosphate": "293 mg",
+    "salt": "0.43 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Low FODMAP",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "crisp-cod-with-basil-polenta-and-carrots",
+  "code": "D114",
+  "category": "Dinner",
+  "cuisine": "Italy",
+  "mealFamily": "plated meal",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D114.webp",
+  "name": "Crisp cod with basil polenta and carrots",
+  "description": "Rice-flour-crusted cod with soft basil polenta and warm carrots.",
+  "cookingTime": "40 mins",
+  "calories": "552 kcal",
+  "protein": "29.4 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "ingredients": [
+    {
+      "item": "Cod fillet, flesh only",
+      "shoppingItem": "Cod fillet, flesh only",
+      "quantity": "120 g (raw edible input)"
+    },
+    {
+      "item": "White rice flour",
+      "shoppingItem": "White rice flour",
+      "quantity": "15 g (dry edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Fine sifted cornmeal, not self-raising",
+      "shoppingItem": "Fine sifted cornmeal, not self-raising",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "25 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "170 g (weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "10 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Bring 160 g of the water to a simmer. Whisk in the cornmeal and half the salt and cook gently for 20–25 minutes, stirring often, until tender. Stir in the basil at the end.",
+    "Mix the egg white and remaining 10 g water. Dip the cod into it, then coat with all the rice flour. Keep any leftover coating mixture for the pan.",
+    "Heat 20 g of the oil in a non-stick pan. Cook the fish and any remaining coating for 4–5 minutes per side until the fish is opaque and steaming hot and the coating is fully cooked.",
+    "Steam the carrot until tender and toss with the remaining 5 g oil, lemon juice and salt. Serve all the fish, coating, edible pan juices, polenta and carrots."
+  ],
+  "nutrition": {
+    "calories": "552 kcal",
+    "protein": "29.4 g",
+    "carbohydrates": "43.5 g",
+    "fat": "27.4 g",
+    "fibre": "4.3 g",
+    "sodium": "267 mg",
+    "potassium": "664 mg",
+    "phosphate": "285 mg",
+    "salt": "0.67 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "ginger-egg-and-carrot-fried-rice",
+  "code": "D115",
+  "category": "Dinner",
+  "cuisine": "East Asia",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D115.webp",
+  "name": "Ginger egg and carrot fried rice",
+  "description": "Freshly cooked rice stir-fried with egg, carrots, spinach, ginger and chives.",
+  "cookingTime": "35 mins",
+  "calories": "587 kcal",
+  "protein": "29.2 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "100 g (raw edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "60 g (dry)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Baby spinach",
+      "shoppingItem": "Baby spinach",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "120 g (weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Table salt",
+      "shoppingItem": "Table salt",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with all the measured water in a covered pan for 12–15 minutes. Rest for 5 minutes, then spread on a clean plate while preparing the remaining ingredients; use immediately.",
+    "Heat half the oil in a wok. Add the weighed egg and egg white and stir until fully set. Transfer to a bowl with all edible juices.",
+    "Heat the remaining oil. Stir-fry grated carrot and ginger for 3 minutes, then add spinach, rice, salt and cooked egg. Toss over high heat until steaming hot throughout. Add the chives and serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "587 kcal",
+    "protein": "29.2 g",
+    "carbohydrates": "49.7 g",
+    "fat": "29.6 g",
+    "fibre": "2.9 g",
+    "sodium": "443 mg",
+    "potassium": "587 mg",
+    "phosphate": "271 mg",
+    "salt": "1.11 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Low FODMAP",
+  "dietCategories": [
+    "Vegetarian",
+    "Low FODMAP"
+  ]
+},
+{
+  "id": "spiced-lentil-and-brown-rice-pilaf",
+  "code": "D116",
+  "category": "Dinner",
+  "cuisine": "West Africa",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D116.webp",
+  "name": "Spiced lentil and brown rice pilaf",
+  "description": "A gently spiced brown rice and lentil pilaf with carrots and cabbage.",
+  "cookingTime": "45 mins",
+  "calories": "513 kcal",
+  "protein": "16.0 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Wholegrain brown basmati rice",
+      "shoppingItem": "Wholegrain brown basmati rice",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "25 g (dry)"
+    },
+    {
+      "item": "Dried split red lentils",
+      "shoppingItem": "Dried split red lentils",
+      "quantity": "35 g (dry edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "250 g (weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "1 g (dry)"
+    },
+    {
+      "item": "Sweet paprika",
+      "shoppingItem": "Sweet paprika",
+      "quantity": "1 g (dry)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "4 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Cook the brown rice with 130 g of the water, covered, for 15 minutes. Rinse the white rice and red lentils.",
+    "Heat the oil in a second pan. Cook finely shredded carrot, cabbage and ginger for 4 minutes. Stir in cumin and paprika for 30 seconds.",
+    "Add all the partially cooked brown rice and its liquid, white rice, lentils and remaining 120 g water. Cover and simmer for 20–25 minutes until all grains and lentils are tender. Stir in the coriander and serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "513 kcal",
+    "protein": "16.0 g",
+    "carbohydrates": "71.0 g",
+    "fat": "17.6 g",
+    "fibre": "12.1 g",
+    "sodium": "33 mg",
+    "potassium": "660 mg",
+    "phosphate": "306 mg",
+    "salt": "0.08 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "lemon-seitan-with-white-bean-barley-pilaf",
+  "code": "D117",
+  "category": "Dinner",
+  "cuisine": "Mediterranean",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D117.webp",
+  "name": "Lemon seitan with white-bean barley pilaf",
+  "description": "Homemade lemon seitan with pearl barley, white beans and sweet vegetables.",
+  "cookingTime": "45 mins",
+  "calories": "522 kcal",
+  "protein": "28.5 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "ingredients": [
+    {
+      "item": "Pure vital wheat gluten powder",
+      "shoppingItem": "Pure vital wheat gluten powder",
+      "quantity": "25 g (dry edible input)"
+    },
+    {
+      "item": "Pearl barley",
+      "shoppingItem": "Pearl barley",
+      "quantity": "50 g (dry edible input)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "60 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "215 g (weighed grams)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Mix the vital wheat gluten with 35 g of the water. Knead for 2 minutes, rest for 5 minutes, flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and cooked throughout. Retain the whole seitan portion.",
+    "Meanwhile simmer the dry barley with the remaining 180 g water, covered, for 30–35 minutes until tender, retaining any liquid.",
+    "Finely dice the carrot and pepper and cook in all the oil in a covered pan for 8–10 minutes until tender. Add the cooked, drained navy beans and diced cooked seitan and heat through.",
+    "Fold all the barley and its liquid into the vegetables with the lemon juice, parsley and pepper. Serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "522 kcal",
+    "protein": "28.5 g",
+    "carbohydrates": "57.0 g",
+    "fat": "17.0 g",
+    "fibre": "17.5 g",
+    "sodium": "33 mg",
+    "potassium": "649 mg",
+    "phosphate": "280 mg",
+    "salt": "0.08 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "Mediterranean-style",
+    "DASH-style"
+  ]
+},
+{
+  "id": "turkey-with-brown-rice-and-herb-vegetables",
+  "code": "D118",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D118.webp",
+  "name": "Turkey with brown rice and herb vegetables",
+  "description": "Turkey strips with mixed brown rice and softly cooked herb vegetables.",
+  "cookingTime": "45 mins",
+  "calories": "518 kcal",
+  "protein": "33.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "ingredients": [
+    {
+      "item": "Skinless turkey breast",
+      "shoppingItem": "Skinless turkey breast",
+      "quantity": "110 g (raw edible input)"
+    },
+    {
+      "item": "Wholegrain brown basmati rice",
+      "shoppingItem": "Wholegrain brown basmati rice",
+      "quantity": "40 g (dry edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "25 g (dry)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "150 g (weighed grams)"
+    },
+    {
+      "item": "Dried thyme",
+      "shoppingItem": "Dried thyme",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "15 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Simmer the brown rice in 100 g of the water for 15 minutes. Add the white rice and remaining 50 g water and cook covered for another 12–15 minutes until tender, retaining any liquid.",
+    "Slice the turkey and vegetables thinly. Cook in all the oil with the thyme and pepper over medium-low heat for 10–12 minutes until vegetables are tender and turkey centres reach 75°C for 30 seconds.",
+    "Stir in the lemon juice and serve all the turkey, vegetables and edible juices with all the rice."
+  ],
+  "nutrition": {
+    "calories": "518 kcal",
+    "protein": "33.6 g",
+    "carbohydrates": "55.1 g",
+    "fat": "17.6 g",
+    "fibre": "6.0 g",
+    "sodium": "83 mg",
+    "potassium": "775 mg",
+    "phosphate": "430 mg",
+    "salt": "0.21 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "DASH-style"
+  ]
+},
+{
+  "id": "tofu-white-bean-and-barley-bake",
+  "code": "D119",
+  "category": "Dinner",
+  "cuisine": "Italy",
+  "mealFamily": "plated meal",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D119.webp",
+  "name": "Tofu, white-bean and barley bake",
+  "description": "Tofu, white beans and pearl barley baked with tomatoes, courgettes and basil.",
+  "cookingTime": "55 mins",
+  "calories": "532 kcal",
+  "protein": "22.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Regular tofu, made with calcium sulphate, gently drained",
+      "shoppingItem": "Regular tofu, made with calcium sulphate, gently drained",
+      "quantity": "140 g (as sold edible weight, unpressed)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "70 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Pearl barley",
+      "shoppingItem": "Pearl barley",
+      "quantity": "45 g (dry edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "70 g (raw edible input)"
+    },
+    {
+      "item": "Courgette",
+      "shoppingItem": "Courgette",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "160 g (weighed grams)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "2 g (raw edible input)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "4 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "20 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Simmer the dry barley with all the measured water, covered, for 30–35 minutes until tender, keeping any liquid.",
+    "Heat the oven to 200°C, or 180°C fan. Soften finely chopped onion, garlic and courgette in the oil for 6 minutes. Add chopped tomato and pepper and simmer for 5 minutes.",
+    "Use regular calcium-sulphate tofu, gently drained without pressing. Fold the weighed tofu, cooked drained navy beans, basil and all the barley and liquid into the vegetables.",
+    "Transfer the entire mixture to a small dish and bake covered for 15 minutes until steaming hot. Serve the whole bake."
+  ],
+  "nutrition": {
+    "calories": "532 kcal",
+    "protein": "22.3 g",
+    "carbohydrates": "52.9 g",
+    "fat": "23.1 g",
+    "fibre": "16.4 g",
+    "sodium": "20 mg",
+    "potassium": "979 mg",
+    "phosphate": "380 mg",
+    "salt": "0.05 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "Vegan",
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "spinach-and-egg-brown-rice-bake",
+  "code": "D120",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D120.webp",
+  "name": "Spinach and egg brown rice bake",
+  "description": "Brown rice baked with spinach, carrots and egg, with chive yoghurt.",
+  "cookingTime": "50 mins",
+  "calories": "555 kcal",
+  "protein": "33.4 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "160 g (raw edible input)"
+    },
+    {
+      "item": "Wholegrain brown basmati rice",
+      "shoppingItem": "Wholegrain brown basmati rice",
+      "quantity": "45 g (dry edible input)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "20 g (dry)"
+    },
+    {
+      "item": "Baby spinach",
+      "shoppingItem": "Baby spinach",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "150 g (weighed grams)"
+    },
+    {
+      "item": "Plain low-fat yoghurt, about 1% fat",
+      "shoppingItem": "Plain low-fat yoghurt, about 1% fat",
+      "quantity": "60 g (as sold edible weight)"
+    },
+    {
+      "item": "Fresh chives",
+      "shoppingItem": "Fresh chives",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Simmer the brown rice in 105 g of the water for 15 minutes. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender.",
+    "Heat the oven to 190°C, or 170°C fan. Finely grate the carrot and chop the spinach. Cook in the oil for 5 minutes, then mix with all the rice and any liquid.",
+    "Beat the weighed whole egg and egg white with the pepper and mix through the warm rice. Put in a small dish and bake for 18–22 minutes until fully set and steaming hot.",
+    "Mix the yoghurt and chives and serve with the entire bake."
+  ],
+  "nutrition": {
+    "calories": "555 kcal",
+    "protein": "33.4 g",
+    "carbohydrates": "54.7 g",
+    "fat": "22.0 g",
+    "fibre": "3.8 g",
+    "sodium": "440 mg",
+    "potassium": "920 mg",
+    "phosphate": "380 mg",
+    "salt": "1.10 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "DASH-style",
+  "dietCategories": [
+    "Vegetarian",
+    "DASH-style"
+  ]
+},
+{
+  "id": "lentil-and-walnut-bobotie-with-rice",
+  "code": "D121",
+  "category": "Dinner",
+  "cuisine": "South Africa",
+  "mealFamily": "pie",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D121.webp",
+  "name": "Lentil and walnut bobotie with rice",
+  "description": "A substantial lentil and walnut bobotie with apple, raisins, a golden egg topping and rice.",
+  "cookingTime": "55 mins",
+  "calories": "852 kcal",
+  "protein": "35.8 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "Green or brown lentils, boiled without salt and drained",
+      "shoppingItem": "Green or brown lentils, boiled without salt and drained",
+      "quantity": "150 g (cooked drained edible weight)"
+    },
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "55 g (dry)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Whole milk",
+      "shoppingItem": "Whole milk",
+      "quantity": "50 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Eating apple, flesh and skin, core removed",
+      "shoppingItem": "Eating apple, flesh and skin, core removed",
+      "quantity": "40 g (raw edible input)"
+    },
+    {
+      "item": "Raisins",
+      "shoppingItem": "Raisins",
+      "quantity": "10 g (dry as sold)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "125 g (weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Ground coriander seed",
+      "shoppingItem": "Ground coriander seed",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Ground turmeric",
+      "shoppingItem": "Ground turmeric",
+      "quantity": "0.5 g (dry)"
+    },
+    {
+      "item": "Ground cinnamon",
+      "shoppingItem": "Ground cinnamon",
+      "quantity": "0.3 g (dry)"
+    },
+    {
+      "item": "Plain unseasoned vinegar",
+      "shoppingItem": "Plain unseasoned vinegar",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White crusty bloomer bread, egg- and dairy-free",
+      "shoppingItem": "White crusty bloomer bread, egg- and dairy-free",
+      "quantity": "20 g (as sold edible weight)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 190°C, or 170°C fan. Soak the bread in 25 g of the milk, retaining all the milk. Cook the rice with all the measured water, covered, for 12–15 minutes, then rest for 5 minutes.",
+    "Soften chopped onion and grated cored apple in the oil for 6 minutes. Add all the spices, vinegar, raisins, chopped walnuts, cooked drained lentils, soaked bread and milk, and pepper. Cook for 3 minutes.",
+    "Transfer the entire filling to a small dish. Beat the weighed whole egg and egg white with the remaining 25 g milk and pour over. Bake for 25–30 minutes until completely set and steaming hot. Serve the whole bake with all the rice."
+  ],
+  "nutrition": {
+    "calories": "852 kcal",
+    "protein": "35.8 g",
+    "carbohydrates": "87.7 g",
+    "fat": "38.8 g",
+    "fibre": "15.3 g",
+    "sodium": "301 mg",
+    "potassium": "889 mg",
+    "phosphate": "456 mg",
+    "salt": "0.75 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Vegetarian",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "white-bean-and-ricotta-stuffed-peppers-with-rice",
+  "code": "D122",
+  "category": "Dinner",
+  "cuisine": "Italy",
+  "mealFamily": "rice",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D122.webp",
+  "name": "White-bean and ricotta stuffed peppers with rice",
+  "description": "Roasted peppers with rice, white beans, ricotta and a crunchy walnut topping.",
+  "cookingTime": "50 mins",
+  "calories": "787 kcal",
+  "protein": "23.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "60 g (dry)"
+    },
+    {
+      "item": "Navy beans, boiled without salt and drained",
+      "shoppingItem": "Navy beans, boiled without salt and drained",
+      "quantity": "120 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Red bell pepper",
+      "shoppingItem": "Red bell pepper",
+      "quantity": "150 g (raw edible input)"
+    },
+    {
+      "item": "Vegetarian-rennet ricotta",
+      "shoppingItem": "Vegetarian-rennet ricotta",
+      "quantity": "50 g (as sold)"
+    },
+    {
+      "item": "Unsalted walnut kernels",
+      "shoppingItem": "Unsalted walnut kernels",
+      "quantity": "15 g (as sold edible weight)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "60 g (raw edible input)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "140 g (weighed grams)"
+    },
+    {
+      "item": "Fresh basil",
+      "shoppingItem": "Fresh basil",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C, or 180°C fan. Halve and deseed the pepper, weigh 150 g edible halves and brush with 5 g of the oil. Roast for 15 minutes.",
+    "Cook the rice with all the measured water in a covered pan for 12–15 minutes. Soften chopped onion and tomato in the remaining 15 g oil for 8 minutes.",
+    "Mix all the rice and its liquid, cooked drained navy beans, ricotta, basil and pepper with the tomato mixture. Fill the peppers, spooning all excess filling around them. Add all the chopped walnuts.",
+    "Cover and bake for 15 minutes, then uncover for 5 minutes until tender and steaming hot. Serve the entire dish.",
+    "Use vegetarian-rennet cheese for the vegetarian version specified here."
+  ],
+  "nutrition": {
+    "calories": "787 kcal",
+    "protein": "23.6 g",
+    "carbohydrates": "76.6 g",
+    "fat": "37.2 g",
+    "fibre": "19.0 g",
+    "sodium": "61 mg",
+    "potassium": "1152 mg",
+    "phosphate": "432 mg",
+    "salt": "0.15 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Vegetarian",
+    "Mediterranean-style",
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "peanut-and-lime-fish-noodles",
+  "code": "D123",
+  "category": "Dinner",
+  "cuisine": "Thailand",
+  "mealFamily": "pasta",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D123.webp",
+  "name": "Peanut and lime fish noodles",
+  "description": "Fish and rice noodles with warm vegetables and a rich peanut and lime sauce.",
+  "cookingTime": "35 mins",
+  "calories": "744 kcal",
+  "protein": "32.6 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "ingredients": [
+    {
+      "item": "Cod fillet, flesh only",
+      "shoppingItem": "Cod fillet, flesh only",
+      "quantity": "120 g (raw edible input)"
+    },
+    {
+      "item": "Rice noodles",
+      "shoppingItem": "Rice noodles",
+      "quantity": "65 g (dry)"
+    },
+    {
+      "item": "Unsalted dry-roasted peanuts",
+      "shoppingItem": "Unsalted dry-roasted peanuts",
+      "quantity": "25 g (as sold edible weight)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Sesame oil",
+      "shoppingItem": "Sesame oil",
+      "quantity": "5 g (as sold, weighed grams)"
+    },
+    {
+      "item": "White cabbage",
+      "shoppingItem": "White cabbage",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "25 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "50 g (weighed grams)"
+    },
+    {
+      "item": "Fresh ginger",
+      "shoppingItem": "Fresh ginger",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Soy sauce",
+      "shoppingItem": "Soy sauce",
+      "quantity": "5 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "5 g (raw edible input)"
+    }
+  ],
+  "method": [
+    "Cook the noodles in a separate pan of unsalted water according to the packet and drain. Blend the peanuts, sesame oil, lime juice, measured water, ginger and soy sauce.",
+    "Heat the rapeseed oil in a covered non-stick pan. Add finely shredded cabbage and carrot and cook over medium-low heat for 6 minutes.",
+    "Add the cod in small pieces and all the peanut sauce. Cover and simmer gently for 6–8 minutes until the fish is opaque and steaming hot. Fold in all the noodles and coriander and serve the entire portion."
+  ],
+  "nutrition": {
+    "calories": "744 kcal",
+    "protein": "32.6 g",
+    "carbohydrates": "63.5 g",
+    "fat": "38.8 g",
+    "fibre": "7.8 g",
+    "sodium": "528 mg",
+    "potassium": "919 mg",
+    "phosphate": "430 mg",
+    "salt": "1.32 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "beef-and-black-eyed-pea-stew-with-polenta",
+  "code": "D124",
+  "category": "Dinner",
+  "cuisine": "West Africa",
+  "mealFamily": "stew",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D124.webp",
+  "name": "Beef and black-eyed pea stew with polenta",
+  "description": "A warming beef and black-eyed pea stew with soft polenta.",
+  "cookingTime": "45 mins",
+  "calories": "768 kcal",
+  "protein": "38.3 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "ingredients": [
+    {
+      "item": "Beef sirloin, lean and edible fat",
+      "shoppingItem": "Beef sirloin, lean and edible fat",
+      "quantity": "110 g (raw edible input)"
+    },
+    {
+      "item": "Black-eyed peas, boiled without salt and drained",
+      "shoppingItem": "Black-eyed peas, boiled without salt and drained",
+      "quantity": "100 g (cooked drained edible weight)"
+    },
+    {
+      "item": "Fine sifted cornmeal, not self-raising",
+      "shoppingItem": "Fine sifted cornmeal, not self-raising",
+      "quantity": "55 g (dry edible input)"
+    },
+    {
+      "item": "Fresh tomato",
+      "shoppingItem": "Fresh tomato",
+      "quantity": "70 g (raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Onion",
+      "shoppingItem": "Onion",
+      "quantity": "30 g (raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "20 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "240 g (weighed grams)"
+    },
+    {
+      "item": "Ground cumin",
+      "shoppingItem": "Ground cumin",
+      "quantity": "1 g (dry)"
+    },
+    {
+      "item": "Sweet paprika",
+      "shoppingItem": "Sweet paprika",
+      "quantity": "1 g (dry)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "3 g (raw edible input)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Bring 210 g of the measured water to a simmer, whisk in the cornmeal and cook over low heat for 20–25 minutes until tender, stirring frequently.",
+    "Dice the beef small and finely chop the vegetables and garlic. Brown the beef surfaces in all the oil for 3 minutes. Add onion, carrot, garlic, cumin and paprika and cook for 5 minutes.",
+    "Add chopped tomato, cooked drained black-eyed peas and remaining 30 g water. Cover and simmer over low heat for 15 minutes until the carrot is tender and stew is steaming hot. Stir in parsley and pepper and serve all the stew over all the polenta."
+  ],
+  "nutrition": {
+    "calories": "768 kcal",
+    "protein": "38.3 g",
+    "carbohydrates": "61.9 g",
+    "fat": "37.0 g",
+    "fibre": "12.7 g",
+    "sodium": "102 mg",
+    "potassium": "1110 mg",
+    "phosphate": "467 mg",
+    "salt": "0.25 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Intermittent fasting — eating-window meal"
+  ]
+},
+{
+  "id": "salmon-and-leek-rice-pie",
+  "code": "D125",
+  "category": "Dinner",
+  "cuisine": "Britain",
+  "mealFamily": "pie",
+  "emoji": "🍽️",
+  "image": "/images/recipes/D125.webp",
+  "name": "Salmon and leek rice pie",
+  "description": "Salmon and leeks baked under a light egg and rice topping.",
+  "cookingTime": "50 mins",
+  "calories": "764 kcal",
+  "protein": "47.1 g",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "ingredients": [
+    {
+      "item": "White basmati rice",
+      "shoppingItem": "White basmati rice",
+      "quantity": "55 g (dry)"
+    },
+    {
+      "item": "Farmed salmon fillet, flesh only",
+      "shoppingItem": "Farmed salmon fillet, flesh only",
+      "quantity": "120 g (raw edible input, skin and bones excluded)"
+    },
+    {
+      "item": "Whole egg, shell removed",
+      "shoppingItem": "Whole egg, shell removed",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Fresh raw egg white, separated from shell eggs",
+      "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+      "quantity": "80 g (raw edible input)"
+    },
+    {
+      "item": "Whole milk",
+      "shoppingItem": "Whole milk",
+      "quantity": "40 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Leek, trimmed edible portion",
+      "shoppingItem": "Leek, trimmed edible portion",
+      "quantity": "50 g (raw edible input)"
+    },
+    {
+      "item": "Olive oil",
+      "shoppingItem": "Olive oil",
+      "quantity": "15 g (as sold, weighed grams)"
+    },
+    {
+      "item": "Plain white flour",
+      "shoppingItem": "Plain white flour",
+      "quantity": "10 g (dry)"
+    },
+    {
+      "item": "Drinking tap water",
+      "shoppingItem": "Drinking tap water",
+      "quantity": "125 g (weighed grams)"
+    },
+    {
+      "item": "Fresh parsley",
+      "shoppingItem": "Fresh parsley",
+      "quantity": "5 g (raw edible input)"
+    },
+    {
+      "item": "Fresh lemon juice",
+      "shoppingItem": "Fresh lemon juice",
+      "quantity": "20 g (freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Ground black pepper",
+      "shoppingItem": "Ground black pepper",
+      "quantity": "0.2 g (dry)"
+    }
+  ],
+  "method": [
+    "Cook the rice with 115 g of the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Heat the oven to 190°C, or 170°C fan.",
+    "Slice the leek and soften in all the oil for 6 minutes. Stir in the flour, then gradually add the milk and remaining 10 g water. Simmer for 3 minutes and add the salmon in small pieces, parsley, lemon juice and pepper.",
+    "Transfer all the filling to a small dish. Beat the weighed whole egg and egg white and mix with all the warm rice. Spoon over the fish.",
+    "Bake for 25–30 minutes until the topping is fully set and the salmon is opaque and steaming hot. Serve the entire pie and sauce."
+  ],
+  "nutrition": {
+    "calories": "764 kcal",
+    "protein": "47.1 g",
+    "carbohydrates": "53.5 g",
+    "fat": "39.5 g",
+    "fibre": "2.9 g",
+    "sodium": "301 mg",
+    "potassium": "924 mg",
+    "phosphate": "492 mg",
+    "salt": "0.75 g"
+  },
+  "potassium": "Pending review",
+  "phosphate": "Pending review",
+  "purines": "Pending review",
+  "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+  "nutritionIncomplete": [],
+  "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+  "servings": 1,
+  "shoppingByWeight": true,
+  "primaryDietCategory": "Intermittent fasting — eating-window meal",
+  "dietCategories": [
+    "Intermittent fasting — eating-window meal"
+  ]
+}
 ];

@@ -4756,9 +4756,9 @@ export const dinners: Recipe[] = [
     "emoji": "🍽️",
     "image": "/images/recipes/D069.webp",
     "name": "Chicken teriyaki-style rice bowl",
-    "description": "Pan-seared chicken in a glossy soy and mirin-style glaze, served with rice, cucumber, carrot and sesame seeds.",
+    "description": "Pan-seared chicken in a glossy soy glaze, served with rice, cucumber, carrot and sesame seeds.",
     "cookingTime": "50 mins",
-    "calories": "1015 kcal",
+    "calories": "1013 kcal",
     "protein": "53.3 g",
     "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
     "ingredients": [
@@ -4773,19 +4773,19 @@ export const dinners: Recipe[] = [
         "quantity": "16 g (teriyaki; as sold, weighed grams)"
       },
       {
-        "item": "Kikkoman mirin-style sweet seasoning",
-        "shoppingItem": "Kikkoman mirin-style sweet seasoning",
-        "quantity": "17.5 ml (teriyaki; as sold, measured ml)"
+        "item": "Plain unseasoned vinegar",
+        "shoppingItem": "Plain unseasoned vinegar",
+        "quantity": "3.5 g (teriyaki; as sold, weighed grams)"
       },
       {
         "item": "White sugar",
         "shoppingItem": "White sugar",
-        "quantity": "9 g (teriyaki; dry)"
+        "quantity": "23 g (teriyaki; dry)"
       },
       {
         "item": "Water",
         "shoppingItem": "Water",
-        "quantity": "12.5 g (teriyaki; weighed recipe water)"
+        "quantity": "19.5 g (teriyaki; weighed recipe water)"
       },
       {
         "item": "Rapeseed oil",
@@ -4839,36 +4839,32 @@ export const dinners: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Cook the rice component in its measured water, oil and salt in a close-fitting saucepan: bring to a simmer, cover on the lowest heat for 12-15 minutes, then rest off the heat for 10 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Do not drain. Keep the complete cooked rice for this serving.",
-  "Use the specified Kikkoman mirin-style sweet seasoning measured as 17.5 ml, not 17.5 g. Its published nutrition is per 100 ml; no density conversion is invented. Mix with soy, sugar and sauce water. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Flatten thighs to an even thickness. Heat chicken oil in a non-stick pan, sear 5-6 minutes per side, then cover briefly until safely cooked. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Keep the pan juices.",
-  "Add the teriyaki mixture and simmer, turning chicken repeatedly, for 3-5 minutes until glossy and clinging. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Count all glaze; no alcohol-evaporation nutrient adjustment is claimed for this low-alcohol mirin-style product.",
-  "Toss finely cut cucumber and carrot with vinegar, sesame and sesame oil. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Slice the chicken and serve it with all the glaze, rice and side as one serving. Fibre, potassium and phosphorus for the exact mirin product remain unreported.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
+      "Cook the rice component in its measured water, oil and salt in a close-fitting saucepan: bring to a simmer, cover on the lowest heat for 12-15 minutes, then rest off the heat for 10 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Do not drain. Keep the complete cooked rice for this serving.",
+      "Stir together the 16 g soy sauce, 23 g white sugar, 3.5 g plain unseasoned vinegar and 19.5 g sauce water until the sugar starts to dissolve. Keep this glaze separate from the vinegar used for the salad. Use the measured amounts shown; do not add extra salt or a potassium-based salt substitute.",
+      "Flatten thighs to an even thickness. Heat chicken oil in a non-stick pan, sear 5-6 minutes per side, then cover briefly until safely cooked. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Keep the pan juices.",
+      "Add the teriyaki mixture and simmer, turning chicken repeatedly, for 3-5 minutes until glossy and clinging. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Serve all the glaze with the chicken; do not discard any pan sauce.",
+      "Toss finely cut cucumber and carrot with vinegar, sesame and sesame oil. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Slice the chicken and serve it with all the glaze, rice and side as one serving.",
+      "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
+    ],
     "nutrition": {
-      "calories": "1015 kcal",
+      "calories": "1013 kcal",
       "protein": "53.3 g",
-      "carbohydrates": "121.4 g",
+      "carbohydrates": "121.1 g",
       "fat": "33.7 g",
-      "fibre": "?",
-      "sodium": "1218 mg",
-      "potassium": "?",
-      "phosphate": "?",
-      "salt": "3.04 g"
+      "fibre": "4.9 g",
+      "sodium": "1212 mg",
+      "potassium": "1249 mg",
+      "phosphate": "438 mg",
+      "salt": "3.03 g"
     },
     "potassium": "Pending review",
     "phosphate": "Pending review",
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "fibre",
-      "potassium",
-      "phosphate"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited CoFID and secondary sources. Available carbohydrate by weight excludes dietary fibre. Completed missing-nutrient evidence and calculations: data/RecipeData/evidence/nutrition-gap-resolution.json. Ingredient and cooking variability remain.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5009,8 +5005,8 @@ export const dinners: Recipe[] = [
     "name": "Red-curry-style chicken with rice",
     "description": "Chicken, peppers and green beans in a coconut curry with fresh chilli, lemongrass and galangal, served with jasmine rice.",
     "cookingTime": "75 mins",
-    "calories": "?",
-    "protein": "?",
+    "calories": "1175 kcal",
+    "protein": "56.6 g",
     "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
     "ingredients": [
       {
@@ -5130,32 +5126,23 @@ export const dinners: Recipe[] = [
   "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
 ],
     "nutrition": {
-      "calories": "?",
-      "protein": "?",
+      "calories": "1175 kcal",
+      "protein": "56.6 g",
       "carbohydrates": "108.2 g",
-      "fat": "?",
-      "fibre": "?",
-      "sodium": "?",
-      "potassium": "?",
-      "phosphate": "?",
-      "salt": "?"
+      "fat": "55.2 g",
+      "fibre": "10.7 g",
+      "sodium": "1293 mg",
+      "potassium": "2122 mg",
+      "phosphate": "613 mg",
+      "salt": "3.23 g"
     },
     "potassium": "Pending review",
     "phosphate": "Pending review",
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "calories",
-      "protein",
-      "fat",
-      "fibre",
-      "sodium",
-      "potassium",
-      "phosphate",
-      "salt"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited CoFID and secondary sources. Available carbohydrate by weight excludes dietary fibre. Completed missing-nutrient evidence and calculations: data/RecipeData/evidence/nutrition-gap-resolution.json. Ingredient and cooking variability remain.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5300,7 +5287,7 @@ export const dinners: Recipe[] = [
       "protein": "47.5 g",
       "carbohydrates": "118.9 g",
       "fat": "55.1 g",
-      "fibre": "?",
+      "fibre": "9.3 g",
       "sodium": "2072 mg",
       "potassium": "1437 mg",
       "phosphate": "631 mg",
@@ -5311,10 +5298,8 @@ export const dinners: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "fibre"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited CoFID and secondary sources. Available carbohydrate by weight excludes dietary fibre. Completed missing-nutrient evidence and calculations: data/RecipeData/evidence/nutrition-gap-resolution.json. Ingredient and cooking variability remain.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -5334,8 +5319,8 @@ export const dinners: Recipe[] = [
     "name": "Chicken laksa-inspired noodle bowl",
     "description": "Chicken and rice noodles in a coconut broth with lemongrass, galangal and chilli, finished with beansprouts and coriander.",
     "cookingTime": "80 mins",
-    "calories": "?",
-    "protein": "?",
+    "calories": "1169 kcal",
+    "protein": "55.6 g",
     "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
     "ingredients": [
       {
@@ -5435,32 +5420,23 @@ export const dinners: Recipe[] = [
   "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
 ],
     "nutrition": {
-      "calories": "?",
-      "protein": "?",
+      "calories": "1169 kcal",
+      "protein": "55.6 g",
       "carbohydrates": "106.3 g",
-      "fat": "?",
-      "fibre": "?",
-      "sodium": "?",
-      "potassium": "?",
-      "phosphate": "?",
-      "salt": "?"
+      "fat": "54.3 g",
+      "fibre": "8.3 g",
+      "sodium": "1379 mg",
+      "potassium": "1702 mg",
+      "phosphate": "666 mg",
+      "salt": "3.45 g"
     },
     "potassium": "Pending review",
     "phosphate": "Pending review",
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "calories",
-      "protein",
-      "fat",
-      "fibre",
-      "sodium",
-      "potassium",
-      "phosphate",
-      "salt"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited CoFID and secondary sources. Available carbohydrate by weight excludes dietary fibre. Completed missing-nutrient evidence and calculations: data/RecipeData/evidence/nutrition-gap-resolution.json. Ingredient and cooking variability remain.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,

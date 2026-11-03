@@ -4168,7 +4168,7 @@ export const lunches: Recipe[] = [
       "protein": "39.0 g",
       "carbohydrates": "82.3 g",
       "fat": "20.4 g",
-      "fibre": "?",
+      "fibre": "6.0 g",
       "sodium": "1482 mg",
       "potassium": "1048 mg",
       "phosphate": "347 mg",
@@ -4179,10 +4179,8 @@ export const lunches: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "fibre"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited CoFID and secondary sources. Available carbohydrate by weight excludes dietary fibre. Completed missing-nutrient evidence and calculations: data/RecipeData/evidence/nutrition-gap-resolution.json. Ingredient and cooking variability remain.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,
@@ -4311,7 +4309,7 @@ export const lunches: Recipe[] = [
       "protein": "42.6 g",
       "carbohydrates": "81.6 g",
       "fat": "28.9 g",
-      "fibre": "?",
+      "fibre": "8.1 g",
       "sodium": "1539 mg",
       "potassium": "1164 mg",
       "phosphate": "331 mg",
@@ -4322,10 +4320,8 @@ export const lunches: Recipe[] = [
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
     "nutritionBasis": "CoFID ingredient-input estimate",
-    "nutritionIncomplete": [
-      "fibre"
-    ],
-    "nutritionSourceNote": "Ingredient-input estimates with cited secondary sources. Available carbohydrate by weight, excluding dietary fibre; reconciliation and original references: data/RecipeData/evidence/international-carbohydrates.json. Other nutrient gaps remain explicit.",
+    "nutritionIncomplete": [],
+    "nutritionSourceNote": "Ingredient-input estimates with cited CoFID and secondary sources. Available carbohydrate by weight excludes dietary fibre. Completed missing-nutrient evidence and calculations: data/RecipeData/evidence/nutrition-gap-resolution.json. Ingredient and cooking variability remain.",
     "quantityConversionsEstimated": false,
     "conditionalProxyPending": true,
     "clinicalReviewPending": true,

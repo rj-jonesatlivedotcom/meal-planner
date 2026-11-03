@@ -14,7 +14,7 @@ import { useParams, useRouter } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getNutritionEvidenceText } from "@/lib/nutritionEvidence";
-import { getDietaryGuide, getDietaryGuideSections } from "@/lib/dietaryGuides";
+import { getDietaryGuide, getDietaryGuideSections, getDietaryGuideReferences } from "@/lib/dietaryGuides";
 
 const days = [
   "Monday",
@@ -713,6 +713,7 @@ export default function RecipeDetailPage() {
               </details>
             ))}
           </div> : <p className={styles.guideUnavailable}>Recipe-specific notes are not available for this meal yet. You can still compare the ingredients and per-serving nutrition above with your saved My Diet targets.</p>}
+          {getDietaryGuideReferences(recipe).length > 0 ? <details className={styles.guideSection}><summary>Sources</summary><div className={styles.guideSectionContent}><ul>{getDietaryGuideReferences(recipe).map(url => <li key={url}><a href={url} target="_blank" rel="noreferrer">{new URL(url).hostname.replace(/^www\./, "")} — {url.split("/").filter(Boolean).at(-1)?.replaceAll("-", " ")}</a></li>)}</ul></div></details> : null}
         </section>
       </div>
       {relatedRecipes.length > 0 && <section className={styles.related} aria-labelledby="related-recipes">

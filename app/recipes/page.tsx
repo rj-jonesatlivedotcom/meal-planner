@@ -7,11 +7,13 @@ import RecipeIcon from "@/components/RecipeIcon";
 import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/RecipeData";
 import { matchesProteinFilter } from "@/lib/recipeProtein";
+import { DIET_TYPES, matchesDietFilter, matchesDietSearch, recipeDietSearchTerms } from "@/lib/recipeDiets";
 import { createClient } from "@/lib/supabase/client";
 
 export default function RecipesPage() {
   const [selectedMealType, setSelectedMealType] = useState("All");
   const [selectedProtein, setSelectedProtein] = useState("All");
+  const [selectedDiet, setSelectedDiet] = useState("All");
   const [searchText, setSearchText] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [showFavourites, setShowFavourites] = useState(false);
@@ -117,6 +119,7 @@ export default function RecipesPage() {
         plannerFilterRef.current = false;
         setSelectedMealType("All");
         setSelectedProtein("All");
+        setSelectedDiet("All");
         setShowFavourites(true);
         setSearchText("");
         setSortBy("default");
@@ -130,6 +133,7 @@ export default function RecipesPage() {
         plannerFilterRef.current = true;
         setSelectedMealType(plannerMeal);
         setSelectedProtein("All");
+        setSelectedDiet("All");
         setShowFavourites(false);
         setSearchText("");
         setSortBy("default");
@@ -152,6 +156,7 @@ export default function RecipesPage() {
       let savedFilters: {
         selectedMealType?: unknown;
         selectedProtein?: unknown;
+        selectedDiet?: unknown;
         showFavourites?: unknown;
         searchText?: unknown;
         sortBy?: unknown;
@@ -180,6 +185,8 @@ export default function RecipesPage() {
             ? savedFilters.selectedProtein
             : "All"
         );
+        const savedDiet = savedFilters.selectedDiet;
+        setSelectedDiet(typeof savedDiet === "string" && DIET_TYPES.some(diet => diet === savedDiet) ? savedDiet : "All");
         setShowFavourites(savedFilters.showFavourites === true);
         setSearchText(
           typeof savedFilters.searchText === "string"
@@ -195,6 +202,7 @@ export default function RecipesPage() {
       } else {
         setSelectedMealType("All");
         setSelectedProtein("All");
+        setSelectedDiet("All");
         setShowFavourites(false);
         setSearchText("");
         setSortBy("default");
@@ -226,6 +234,7 @@ export default function RecipesPage() {
         JSON.stringify({
           selectedMealType,
           selectedProtein,
+          selectedDiet,
           showFavourites,
           searchText,
           sortBy,
@@ -238,6 +247,7 @@ export default function RecipesPage() {
     filtersLoaded,
     selectedMealType,
     selectedProtein,
+    selectedDiet,
     showFavourites,
     searchText,
     sortBy,
@@ -469,6 +479,7 @@ export default function RecipesPage() {
         recipe.description,
         recipe.equipment,
         recipe.category,
+        recipeDietSearchTerms(recipe),
         ...recipe.ingredients.map((ingredient) => ingredient.item),
       ]
         .filter(Boolean)
@@ -510,6 +521,8 @@ export default function RecipesPage() {
       return (
         matchesMealType &&
         matchesProtein &&
+        matchesDietFilter(recipe, selectedDiet) &&
+        matchesDietSearch(recipe, searchText) &&
         matchesFavourite &&
         matchesSearch
       );
@@ -595,6 +608,7 @@ export default function RecipesPage() {
       recipe.description,
       recipe.equipment,
       recipe.category,
+      recipeDietSearchTerms(recipe),
       ...recipe.ingredients.map((ingredient) => ingredient.item),
     ]
       .filter(Boolean)
@@ -619,7 +633,7 @@ export default function RecipesPage() {
         return variants.some((variant) => searchableText.includes(variant));
       });
 
-    return matchesProtein && matchesFavourite && matchesSearch;
+    return matchesProtein && matchesDietFilter(recipe, selectedDiet) && matchesDietSearch(recipe, searchText) && matchesFavourite && matchesSearch;
   });
 
   const mealTypeCounts = {
@@ -662,6 +676,7 @@ export default function RecipesPage() {
     setShowFavourites((current) => !current);
     setSelectedMealType("All");
     setSelectedProtein("All");
+        setSelectedDiet("All");
     setSearchText("");
     setSortBy("default");
   }
@@ -730,7 +745,7 @@ export default function RecipesPage() {
 
               {showFilters && (
                 <div className="absolute right-0 top-full z-30 mt-3 w-[min(900px,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
-                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
 
                     {/* Meal type */}
                     <div>
@@ -780,6 +795,13 @@ export default function RecipesPage() {
                       </select>
                     </div>
 
+                    <div>
+                      <label htmlFor="recipe-diet-desktop" className="mb-2 block font-semibold text-slate-800">Diet type</label>
+                      <select id="recipe-diet-desktop" value={selectedDiet} onChange={(event) => setSelectedDiet(event.target.value)} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                        {DIET_TYPES.map((diet) => <option key={diet} value={diet}>{diet === "All" ? "All diets" : diet}</option>)}
+                      </select>
+                    </div>
+
                     {/* Favourites */}
                     <div>
                       <label className="mb-2 block font-semibold text-slate-800">
@@ -815,7 +837,7 @@ export default function RecipesPage() {
                     </div>
 
                     {/* Sort */}
-                    <div className="md:col-span-3">
+                    <div className="md:col-span-4">
                       <label className="mb-2 block font-semibold text-slate-800">
                         Sort by
                       </label>
@@ -870,6 +892,7 @@ export default function RecipesPage() {
                           setSearchText("");
                           setSelectedMealType("All");
                           setSelectedProtein("All");
+        setSelectedDiet("All");
                           setShowFavourites(false);
                           setSortBy("default");
 
@@ -1024,7 +1047,14 @@ export default function RecipesPage() {
                       </select>
                     </div>
 
-                    {/* Favourites */}
+                    <div>
+                    <label htmlFor="recipe-diet-mobile" className="mb-2 block font-semibold text-slate-800">Diet type</label>
+                    <select id="recipe-diet-mobile" value={selectedDiet} onChange={(event) => setSelectedDiet(event.target.value)} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                      {DIET_TYPES.map((diet) => <option key={diet} value={diet}>{diet === "All" ? "All diets" : diet}</option>)}
+                    </select>
+                  </div>
+
+                  {/* Favourites */}
                     <div>
                       <label className="mb-2 block font-semibold text-gray-800">
                         Show
@@ -1117,6 +1147,7 @@ export default function RecipesPage() {
                           setSearchText("");
                           setSelectedMealType("All");
                           setSelectedProtein("All");
+        setSelectedDiet("All");
                           setShowFavourites(false);
                           setSortBy("default");
 

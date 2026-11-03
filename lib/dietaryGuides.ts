@@ -12,6 +12,12 @@ export type DietaryGuideSection = {
 export function getDietaryGuideSections(text: string): DietaryGuideSection[] {
   if (text === neutralDietaryGuide) return [];
 
+  const paragraphs = text.split(/\n\s*\n/);
+  const titled = paragraphs.map(paragraph => paragraph.match(/^([A-Z][A-Za-z &-]+):\s+([\s\S]+)$/));
+  if (paragraphs.length > 1 && titled.every(Boolean)) {
+    return titled.map(match => ({ title: match![1], text: match![2] }));
+  }
+
   const sections = new Map<string, string[]>();
   const sentences = text.split(/(?<=[.!?])\s+(?=[A-Z])/);
 
@@ -59,4 +65,9 @@ export function getDietaryGuide(recipe: Recipe): string {
   return entry?.text && entry.fingerprint === dietaryGuideFingerprint(recipe)
     ? entry.text
     : neutralDietaryGuide;
+}
+
+export function getDietaryGuideReferences(recipe: Recipe): string[] {
+  const entry = (guides as Record<string, { fingerprint: string; references?: string[] }>)[recipe.id];
+  return entry?.fingerprint === dietaryGuideFingerprint(recipe) ? entry.references ?? [] : [];
 }

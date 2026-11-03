@@ -10,42 +10,17 @@ export type DietaryGuideSection = {
 };
 
 export function getDietaryGuideSections(text: string): DietaryGuideSection[] {
-  if (text === neutralDietaryGuide) return [];
+  if (text.trim() === neutralDietaryGuide) return [];
 
-  const paragraphs = text.split(/\n\s*\n/);
-  const titled = paragraphs.map(paragraph => paragraph.match(/^([A-Z][A-Za-z &-]+):\s+([\s\S]+)$/));
-  if (paragraphs.length > 1 && titled.every(Boolean)) {
-    return titled.map(match => ({ title: match![1], text: match![2] }));
-  }
-
-  const sections = new Map<string, string[]>();
-  const sentences = text.split(/(?<=[.!?])\s+(?=[A-Z])/);
-
-  for (const sentence of sentences) {
-    const potassium = /\bpotassium\b/i.test(sentence);
-    const phosphorus = /\bphosph(?:orus|ate)\b/i.test(sentence);
-    const title = potassium && phosphorus
-      ? "Potassium and phosphorus"
-      : potassium
-        ? "Potassium"
-        : phosphorus
-          ? "Phosphorus"
-          : /\bprotein\b/i.test(sentence)
-            ? "Protein"
-            : /\b(salt|sodium)\b/i.test(sentence)
-              ? "Salt and flavour"
-              : /\b(carbohydrate|sugar|starch)\b/i.test(sentence)
-                ? "Carbohydrates"
-                : /\b(calorie|energy)\b/i.test(sentence)
-                  ? "Energy"
-                  : /\b(serving|portion|target|amounts?)\b/i.test(sentence)
-                    ? "Portions and personal targets"
-                    : "About this serving";
-    const content = sentence.trim();
-    sections.set(title, [...(sections.get(title) ?? []), content]);
-  }
-
-  return Array.from(sections, ([title, content]) => ({ title, text: content.join(" ") }));
+  // Section choices are editorial, not inferred from nutrient keywords.
+  // This also handles one titled paragraph and omits empty headings.
+  return text.split(/\n\s*\n/).flatMap(paragraph => {
+    const content = paragraph.trim();
+    if (!content) return [];
+    const titled = content.match(/^([A-Z][A-Za-z &-]+):\s*([\s\S]*)$/);
+    if (titled) return titled[2].trim() ? [{ title: titled[1], text: titled[2].trim() }] : [];
+    return [{ title: "About this meal", text: content }];
+  });
 }
 
 // A change to any reviewed ingredient, quantity, method or serving size requires
@@ -68,6 +43,8 @@ export function getDietaryGuide(recipe: Recipe): string {
 }
 
 export function getDietaryGuideReferences(recipe: Recipe): string[] {
-  const entry = (guides as Record<string, { fingerprint: string; references?: string[] }>)[recipe.id];
-  return entry?.fingerprint === dietaryGuideFingerprint(recipe) ? entry.references ?? [] : [];
+  const entry = (guides as Record<string, { fingerprint: string; text: string | null; references?: string[]; guidanceReferences?: string[] }>)[recipe.id];
+  return entry?.text?.trim() && entry.fingerprint === dietaryGuideFingerprint(recipe)
+    ? entry.guidanceReferences ?? entry.references ?? []
+    : [];
 }

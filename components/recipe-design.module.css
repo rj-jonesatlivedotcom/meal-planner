@@ -62,9 +62,14 @@
 .guidePanel { background: #edf9f1; border-color: #ceebdc; }
 .lowerSections { grid-template-columns: minmax(0, 1fr); }
 .guidePanel h2 { margin: 0; }
-.guidePanel .guideIntro { max-width: 760px; margin-top: 10px; }
+.guideSummary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; cursor: pointer; list-style: none; }
+.guideSummary::-webkit-details-marker { display: none; }
+.guideSummary::after { content: ""; width: 8px; height: 8px; flex: 0 0 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); }
+.guidePanel[open] > .guideSummary::after { transform: rotate(225deg); }
+.guideSummary:focus-visible { outline: 3px solid #16824d; outline-offset: 4px; border-radius: 4px; }
 .guidePanel .guideUnavailable { max-width: 760px; margin-top: 14px; }
 .guideSections { display: grid; gap: 8px; margin-top: 18px; }
+.guidePanel > .guideSection { margin-top: 8px; }
 .guideSection { overflow: hidden; border: 1px solid #d5e9dc; border-radius: 12px; background: #ffffffa6; }
 .guideSection summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 11px 14px; cursor: pointer; color: var(--recipe-ink); font-size: .9rem; font-weight: 700; list-style: none; }
 .guideSection summary::-webkit-details-marker { display: none; }
@@ -75,6 +80,7 @@
 .guideSection[open] .guideSectionContent { grid-template-rows: 1fr; }
 .guideSectionContent > div { min-height: 0; overflow: hidden; }
 .guideSectionContent p { margin: 0; padding: 0 14px 14px; }
+.guideSectionContent ul { margin: 0; padding: 0 28px 14px; overflow-wrap: anywhere; font-size: .85rem; }
 .guidePanel h2 svg { color: #258a56; }
 .evidence { margin-top: 20px; color: var(--recipe-muted); font-size: .8rem; line-height: 1.6; }
 .evidence summary { min-height: 44px; cursor: pointer; padding: 10px 0; font-weight: 600; }

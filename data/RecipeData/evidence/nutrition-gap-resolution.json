@@ -10,7 +10,7 @@
     "D072",
     "D073"
   ],
-  "authority": "Resolve six missing-nutrient recipes; user explicitly permits replacing the unevidenced mirin seasoning in D069. No other ingredient or method changes.",
+  "authority": "Resolve six missing-nutrient recipes; user explicitly permits replacing the unevidenced mirin seasoning in D069. Other ingredients remain unchanged; D071 removes one obsolete missing-evidence sentence.",
   "basis": "Per one complete serving; ingredient-input estimates, not laboratory measurements of cooked meals.",
   "methodology": {
     "scaling": "Use the current one-serving ingredient quantity directly, per100 basis in g or ml; never halve a one-serving quantity again. Sum unrounded contributions before display rounding.",
@@ -11532,7 +11532,7 @@
           "Heat paste oil over medium heat and fry the full paste for 8-10 minutes until fragrant, stirring so it does not scorch. Add 50 g of the curry coconut milk and cook 2 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
           "Add chicken in 3 cm pieces, remaining 125 g coconut milk, curry water, fish sauce and sugar. Simmer gently 15 minutes, then add sliced pepper and beans for 8-10 minutes, until chicken is safely cooked and vegetables tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
           "Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-          "Fold in basil and serve all the curry and jasmine rice as one serving. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains. Galangal remains galangal; no ginger value is substituted for its missing composition evidence.",
+          "Fold in basil and serve all the curry and jasmine rice as one serving. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains.",
           "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
         ],
         "nutrition": {
@@ -11567,7 +11567,8 @@
         "protein",
         "nutrition",
         "nutritionIncomplete",
-        "nutritionSourceNote"
+        "nutritionSourceNote",
+        "method"
       ],
       "unroundedTotals": {
         "calories": 1174.544875,

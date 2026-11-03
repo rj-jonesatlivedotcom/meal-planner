@@ -64,7 +64,8 @@ panel is recalculated for the authorised ingredient change. Top-level calorie
 and protein figures mirror the completed nutrition panel. Existing diet tags,
 ratings, images, portions and unrelated methods stay unchanged. Guides remove
 now-obsolete incomplete-mineral statements; source links and fingerprints are
-updated. Historical audit files describe earlier dated revisions; this record
+updated. D071's method also removes its obsolete sentence saying galangal
+composition evidence is missing. Historical audit files describe earlier dated revisions; this record
 supersedes their missing-value findings for these six app recipes only.
 
 The JSON audit retains exact before/after recipe records, source identifiers,

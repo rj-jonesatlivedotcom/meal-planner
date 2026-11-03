@@ -5116,15 +5116,15 @@ export const dinners: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Cook the rice component in its measured water, oil and salt in a close-fitting saucepan: bring to a simmer, cover on the lowest heat for 12-15 minutes, then rest off the heat for 10 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Do not drain. Keep the complete cooked rice for this serving.",
-  "Peel galangal and remove tough lemongrass layers before weighing. Mince very finely with chilli, garlic and shallot. Pound with coriander, cumin and paste lime into a coarse paste; this is an original fresh red-curry-style paste without a commercial blend.",
-  "Heat paste oil over medium heat and fry the full paste for 8-10 minutes until fragrant, stirring so it does not scorch. Add 50 g of the curry coconut milk and cook 2 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Add chicken in 3 cm pieces, remaining 125 g coconut milk, curry water, fish sauce and sugar. Simmer gently 15 minutes, then add sliced pepper and beans for 8-10 minutes, until chicken is safely cooked and vegetables tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-  "Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Fold in basil and serve all the curry and jasmine rice as one serving. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains. Galangal remains galangal; no ginger value is substituted for its missing composition evidence.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
+      "Cook the rice component in its measured water, oil and salt in a close-fitting saucepan: bring to a simmer, cover on the lowest heat for 12-15 minutes, then rest off the heat for 10 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Do not drain. Keep the complete cooked rice for this serving.",
+      "Peel galangal and remove tough lemongrass layers before weighing. Mince very finely with chilli, garlic and shallot. Pound with coriander, cumin and paste lime into a coarse paste; this is an original fresh red-curry-style paste without a commercial blend.",
+      "Heat paste oil over medium heat and fry the full paste for 8-10 minutes until fragrant, stirring so it does not scorch. Add 50 g of the curry coconut milk and cook 2 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
+      "Add chicken in 3 cm pieces, remaining 125 g coconut milk, curry water, fish sauce and sugar. Simmer gently 15 minutes, then add sliced pepper and beans for 8-10 minutes, until chicken is safely cooked and vegetables tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Fold in basil and serve all the curry and jasmine rice as one serving. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains.",
+      "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
+    ],
     "nutrition": {
       "calories": "1175 kcal",
       "protein": "56.6 g",

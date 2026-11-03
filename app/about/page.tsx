@@ -131,7 +131,15 @@ export default function About() {
               </div>
               <div>
                 <h3 className="text-lg font-bold">Recipe calculation details</h3>
-                <p className="mt-2">Open &quot;About this nutrition information&quot; below a recipe&apos;s nutrition table for its calculation basis and source notes. Where a detailed ingredient calculation record is available, it is linked there with the original source references.</p>
+                <p className="mt-2">These calculation records show the ingredients, quantities and sources used for the following recipes:</p>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  <li><a className="text-green-700 underline" href="/evidence/nutrition/L061.json" download>Lemongrass chicken noodle salad</a></li>
+                  <li><a className="text-green-700 underline" href="/evidence/nutrition/L062.json" download>Bánh mì-inspired chicken baguette</a></li>
+                  <li><a className="text-green-700 underline" href="/evidence/nutrition/D069.json" download>Chicken teriyaki-style rice bowl</a></li>
+                  <li><a className="text-green-700 underline" href="/evidence/nutrition/D071.json" download>Red-curry-style chicken with rice</a></li>
+                  <li><a className="text-green-700 underline" href="/evidence/nutrition/D072.json" download>Lemongrass pork with rice noodles</a></li>
+                  <li><a className="text-green-700 underline" href="/evidence/nutrition/D073.json" download>Chicken laksa-inspired noodle bowl</a></li>
+                </ul>
               </div>
             </div>
             <div className="mt-6 rounded-2xl border border-green-100 bg-green-50 p-5">

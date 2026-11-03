@@ -14,7 +14,7 @@ import { useParams, useRouter } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getNutritionEvidenceText } from "@/lib/nutritionEvidence";
-import { getDietaryGuide, getDietaryGuideSections, getDietaryGuideReferences } from "@/lib/dietaryGuides";
+import { getDietaryGuide, getDietaryGuideSections } from "@/lib/dietaryGuides";
 
 const days = [
   "Monday",
@@ -634,7 +634,6 @@ export default function RecipeDetailPage() {
 
   const relatedRecipes = recipes.filter((item) => item.id !== recipe.id && item.category === recipe.category).slice(0, 4);
   const dietaryGuideSections = getDietaryGuideSections(getDietaryGuide(recipe));
-  const dietaryGuideReferences = getDietaryGuideReferences(recipe);
 
   return (
     <main className={styles.detail}>
@@ -700,7 +699,8 @@ export default function RecipeDetailPage() {
             ["Fibre", recipe.nutrition.fibre], ["Salt", recipe.nutrition.salt ?? formatSalt(recipe.nutrition.sodium)],
             ["Potassium", recipe.nutrition.potassium], ["Phosphorus", recipe.nutrition.phosphate],
           ]} />
-          <details className={styles.evidence}><summary>About this nutrition information</summary><p>{getNutritionEvidenceText(recipe, recipe.nutritionBasis)}</p></details>
+          <details className={styles.evidence}><summary>About this nutrition information</summary><p>{getNutritionEvidenceText(recipe, recipe.nutritionBasis)}</p>{["L061", "L062", "D069", "D071", "D072", "D073"].includes(recipe.code) ? <p><a href={`/evidence/nutrition/${recipe.code}.json`} download>Ingredient calculation record and source references</a></p> : null}</details>
+          <p className={styles.methodologyLink}><Link href="/about#nutrition-sources-methodology">Nutrition sources &amp; methodology</Link></p>
           {recipe.dietCategories?.length ? <details className={styles.evidence}><summary>About these diet categories</summary><p>Categories describe the listed ingredients and portions. Mediterranean-style and DASH-style describe meal patterns; keto and Atkins use carbohydrate and ingredient checks. Low FODMAP uses ingredient and portion guidance. Vegetarian cheese dishes require a vegetarian-rennet product. Intermittent fasting marks an eating-window meal, not a fasting schedule. Mixed diet means no narrower category was established for this serving. Compare the serving with your daily targets.</p></details> : null}
         </section>
         <details className={styles.guidePanel} aria-labelledby="recipe-guide" key={recipe.id}>
@@ -713,7 +713,6 @@ export default function RecipeDetailPage() {
               </details>
             ))}
           </div> : <p className={styles.guideUnavailable}>No recipe-specific notes are available for this meal.</p>}
-          {dietaryGuideReferences.length > 0 ? <details className={styles.guideSection}><summary>Sources</summary><div className={styles.guideSectionContent}><div><ul>{dietaryGuideReferences.map(url => <li key={url}><a href={url} target="_blank" rel="noreferrer">{new URL(url).hostname.replace(/^www\./, "")} — {url.split("/").filter(Boolean).at(-1)?.replaceAll("-", " ")}</a></li>)}</ul></div></div></details> : null}
         </details>
       </div>
       {relatedRecipes.length > 0 && <section className={styles.related} aria-labelledby="related-recipes">

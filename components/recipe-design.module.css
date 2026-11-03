@@ -84,6 +84,9 @@
 .guidePanel h2 svg { color: #258a56; }
 .evidence { margin-top: 20px; color: var(--recipe-muted); font-size: .8rem; line-height: 1.6; }
 .evidence summary { min-height: 44px; cursor: pointer; padding: 10px 0; font-weight: 600; }
+.methodologyLink { margin: 10px 0 0; color: var(--recipe-muted); font-size: .8rem; line-height: 1.6; }
+.methodologyLink a { text-decoration: underline; text-underline-offset: 3px; }
+.methodologyLink a:focus-visible { outline: 3px solid #16824d; outline-offset: 3px; }
 .related { margin-top: 18px; }
 .related .panelHeading > a { color: #007b51; font-size: .8rem; min-height: 44px; display: inline-flex; align-items: center; }
 .relatedGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }

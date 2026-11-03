@@ -111,33 +111,29 @@ export default function About() {
             </p>
           </section>
 
-          {/* HOW NUTRITION IS CALCULATED */}
-          <section className="mt-6 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
-            <h2 className="text-2xl font-bold">
-              How the nutrition figures are calculated
-            </h2>
-
-            <p className="mt-3 text-lg leading-relaxed text-slate-700">
-              Each <RenalPlan /> recipe is calculated for one adult serving.
-              Nutrition values are calculated from the quantities of the
-              ingredients used in the recipe.
-            </p>
-
-            <p className="mt-3 text-lg leading-relaxed text-slate-700">
-              The primary food-composition source used is
-              McCance and Widdowson&apos;s <strong>Composition of Foods
-              Integrated Dataset (CoFID) 2021</strong>. CoFID provides nutrient
-              values for foods, generally expressed per 100g. The ingredient
-              quantity used in each recipe is converted to the appropriate
-              amount for one serving.
-            </p>
-
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              Where CoFID records a nutrient as a trace value or as present
-              without a reliable quantitative value, that limitation is
-              respected rather than replacing it with an invented figure.
-            </p>
-
+          {/* NUTRITION SOURCES AND METHODOLOGY */}
+          <section id="nutrition-sources-methodology" className="mt-6 scroll-mt-6 rounded-3xl bg-white p-6 shadow-sm sm:p-8" aria-labelledby="nutrition-methodology-heading">
+            <h2 id="nutrition-methodology-heading" className="text-2xl font-bold">Nutrition Sources &amp; Methodology</h2>
+            <div className="mt-5 space-y-5 text-base leading-7 text-slate-700">
+              <div>
+                <h3 className="text-lg font-bold">Food composition sources</h3>
+                <p className="mt-2">The principal source is McCance and Widdowson&apos;s <a className="font-semibold text-green-700 underline" href="https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid" target="_blank" rel="noreferrer">Composition of Foods Integrated Dataset (CoFID) 2021</a>. Selected gaps are supplemented with identified records from the historical <a className="font-semibold text-green-700 underline" href="https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip">USDA Standard Reference 28 dataset</a>.</p>
+                <p className="mt-2">The lemongrass and galangal calculations also use fresh-weight composition from Table S5 of <a className="font-semibold text-green-700 underline" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10189170/" target="_blank" rel="noreferrer">Suttisansanee and colleagues, Heliyon (2023)</a>. The recipe calculation records identify the food matches, source cells and any conversions used.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold">Quantities and servings</h3>
+                <p className="mt-2">Each ingredient&apos;s nutrient values per 100 g or 100 ml are scaled to its listed quantity, added together and divided by the recipe&apos;s serving count. Raw, cooked and drained weights follow the ingredient descriptions. Household measures use recorded weight conversions where needed. Totals are rounded for display after summing the ingredient contributions.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold">Estimates and preparation</h3>
+                <p className="mt-2">The figures are ingredient-based estimates. Brands, edible portions and cooking methods can differ from the matched food records. Cooking-water losses, oil left in the pan and changes in cooked weight are only reflected where the calculation has a recorded basis for them. A preparation tip in a Dietary Guide does not itself alter the nutrition figures.</p>
+                <p className="mt-2">Source-reported zeros, trace entries and missing values are kept distinct. Missing nutrients display as unavailable and are excluded from target assessments. Source-match assumptions and estimated quantity conversions remain in each recipe&apos;s nutrition details. Countable fluid follows the recorded liquid or semi-liquid allowance; ingredient water is not used as a measured final broth volume.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold">Recipe calculation details</h3>
+                <p className="mt-2">Open &quot;About this nutrition information&quot; below a recipe&apos;s nutrition table for its calculation basis and source notes. Where a detailed ingredient calculation record is available, it is linked there with the original source references.</p>
+              </div>
+            </div>
             <div className="mt-6 rounded-2xl border border-green-100 bg-green-50 p-5">
               <h3 className="text-xl font-bold text-slate-900">
                 Understanding your nutrition results
@@ -216,110 +212,6 @@ export default function About() {
               <RenalPlan /> is intended as a practical planning aid and does
               not replace advice from your renal team or dietitian.
             </p>
-          </section>
-
-          {/* SOURCES */}
-          <section className="mt-6 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
-            <h2 className="text-2xl font-bold">
-              Sources and references
-            </h2>
-
-            <div className="mt-5 space-y-4 text-base leading-7 text-slate-700">
-              <div>
-                <h3 className="font-bold">
-                  McCance and Widdowson&apos;s Composition of Foods Integrated
-                  Dataset (CoFID) 2021
-                </h3>
-                <p className="mt-1 text-sm text-slate-600">
-                  Primary UK food-composition dataset used for the
-                  ingredient-level nutrition calculations.
-                </p>
-                <div className="mt-3 flex flex-wrap gap-3 text-sm font-semibold">
-                  <a
-                    href="https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-700 underline underline-offset-2 hover:text-green-900"
-                  >
-                    CoFID 2021 dataset page ↗
-                  </a>
-                  <a
-                    href="https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-700 underline underline-offset-2 hover:text-green-900"
-                  >
-                    CoFID 2021 user guide (PDF) ↗
-                  </a>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="font-bold">
-                  British Dietetic Association — Renal Suitable menu coding
-                </h3>
-                <p className="mt-1 text-sm text-slate-600">
-                  Used as clinical context for renal menu planning and the
-                  importance of estimating potassium content in dishes.
-                </p>
-                <a
-                  href="https://www.bda.uk.com/practice-and-education/resources-for-practice/the-nutrition-and-hydration-digest/menu-coding-therapeutic-diets-and-patient-groups/therapeutic-diets.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold text-green-700 underline underline-offset-2 hover:text-green-900"
-                >
-                  BDA Therapeutic Diets — Renal Suitable ↗
-                </a>
-              </div>
-
-              <div>
-                <h3 className="font-bold">
-                  British Dietetic Association — Nutrition analysis and food labelling
-                </h3>
-                <p className="mt-1 text-sm text-slate-600">
-                  Supporting reference for nutritional analysis and the use of
-                  food-composition data when calculating nutrient values.
-                </p>
-                <a
-                  href="https://www.bda.uk.com/practice-and-education/nutrition-and-dietetic-practice/the-nutrition-and-hydration-digest/nutrition-analysis-and-food-labelling.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold text-green-700 underline underline-offset-2 hover:text-green-900"
-                >
-                  BDA Nutrition Analysis and Food Labelling ↗
-                </a>
-              </div>
-
-
-              <div>
-                <h3 className="font-bold">
-                  EMEESY renal dietetic information
-                </h3>
-                <p className="mt-1 text-sm text-slate-600">
-                  Used as supporting renal-diet guidance, including potassium
-                  and phosphate food guidance and lower-potassium preparation
-                  advice.
-                </p>
-                <div className="mt-3 flex flex-wrap gap-3 text-sm font-semibold">
-                  <a
-                    href="https://www.emeesykidney.nhs.uk/professionals/dietetic-information/114-dietetic-information/167-how-much-potassium-is-in-the-food-i-eat"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-700 underline underline-offset-2 hover:text-green-900"
-                  >
-                    EMEESY — Potassium guidance ↗
-                  </a>
-                  <a
-                    href="https://www.emeesykidney.nhs.uk/professionals/dietetic-information/114-dietetic-information/168-lowering-phosphate-in-diet"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-700 underline underline-offset-2 hover:text-green-900"
-                  >
-                    EMEESY — Phosphate guidance ↗
-                  </a>
-                </div>
-              </div>
-            </div>
           </section>
 
           {/* BACK BUTTON */}

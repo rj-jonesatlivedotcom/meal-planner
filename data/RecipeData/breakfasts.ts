@@ -12,7 +12,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "10 minutes",
     calories: "285 kcal",
     protein: "17.5 g",
-    equipment: "Frying pan, bowl, fork, toaster, wooden spoon",
+    equipment: "Frying pan, bowl, fork, toaster, wooden spoon, Knife and chopping board",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
@@ -21,15 +21,15 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre. Crack the egg into a bowl, add the 50 g liquid egg whites, and beat gently with a fork. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Slice the tomato. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate. Heat a non-stick frying pan over medium-low heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Add the butter to the pan. Add the tomato and cook for 2 minutes, turning once.",
-  "Move the tomato to one side of the pan. Add the beaten egg to the empty side.",
-  "Stir the egg slowly with a wooden spoon until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout. Do not overcook.",
-  "Remove the toast from the toaster and arrange on a plate.",
-  "Spoon the warm tomato over the toast and top with the scrambled egg.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Put the bread into the toaster. Crack the egg into a bowl, add the 50 g liquid egg whites, and beat gently with a fork.",
+      "Slice the tomato. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate. Heat a non-stick frying pan over medium-low heat.",
+      "Add the butter to the pan. Add the tomato and cook for 2 minutes, turning once.",
+      "Move the tomato to one side of the pan. Add the beaten egg to the empty side.",
+      "Stir the egg slowly with a wooden spoon until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout. Do not overcook.",
+      "Remove the toast from the toaster and arrange on a plate.",
+      "Spoon the warm tomato over the toast and top with the scrambled egg.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "285 kcal",
       protein: "17.5 g",
@@ -76,15 +76,15 @@ export const breakfasts: Recipe[] = [
       { item: "Honey", shoppingItem: "Honey", quantity: "2 tsp" },
     ],
     method: [
-  "Peel, core and dice the apple into small pieces. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Put the oats and milk into a small saucepan over medium-low heat.",
-  "Stir continuously until the mixture begins to thicken.",
-  "Reduce the heat and cook for a further 3 minutes, stirring regularly.",
-  "While the porridge cooks, put the diced apple into a small non-stick pan with 1 tbsp water. Stir across the bottom and into the corners of the pan as it thickens. The cereal should be soft and creamy, with no dry or gritty pieces; reduce the heat if it spits.",
-  "Cook the apple for 2 minutes until just softened.",
-  "Spoon the porridge into a bowl and top with the warm apple.",
-  "Drizzle over the measured honey and serve."
-],
+      "Peel, core and dice the apple into small pieces. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Put the oats and milk into a small saucepan over medium-low heat.",
+      "Stir continuously until the mixture begins to thicken.",
+      "Reduce the heat and cook for a further 3 minutes, stirring regularly across the bottom of the pan, until the oats are soft and creamy.",
+      "While the porridge cooks, put the diced apple into a small non-stick pan with 1 tbsp water.",
+      "Cook the apple for 2 minutes until just softened.",
+      "Spoon the porridge into a bowl and top with the warm apple.",
+      "Drizzle over the measured honey and serve."
+    ],
     nutrition: {
       calories: "366 kcal",
       protein: "13.2 g",
@@ -119,11 +119,11 @@ export const breakfasts: Recipe[] = [
     emoji: "🍅",
     image: "/images/recipes/B003.webp",
     name: "Egg, Tomato & Onion Toast",
-    description: "Fried egg with softened tomato and onion served on crisp white toast.",
+    description: "Soft scrambled egg with softened tomato and onion served on crisp white toast.",
     cookingTime: "12 minutes",
     calories: "303 kcal",
     protein: "17.9 g",
-    equipment: "Frying pan, toaster, spatula, knife, chopping board",
+    equipment: "Frying pan, toaster, spatula, knife, chopping board, Mixing bowl, Fork or whisk",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
@@ -133,15 +133,14 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Finely slice the onion and tomato. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate. Put the bread into the toaster. Beat the egg with the 50 g liquid egg whites before cooking.",
-  "Heat the olive oil in a non-stick frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Add the onion and cook for 2 minutes until softened.",
-  "Add the tomato and cook for 2 minutes, turning gently.",
-  "Push the vegetables to one side of the pan and crack the egg into the clear space.",
-  "Cook the egg until the white is fully set and the yolk is cooked through.",
-  "Place the toast on a plate and spoon over the tomato and onion.",
-  "Add the egg and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Finely slice the onion and tomato. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate. Put the bread into the toaster. Beat the egg with the 50 g liquid egg whites before cooking.",
+      "Heat the olive oil in a non-stick frying pan over medium heat.",
+      "Add the onion and cook for 2 minutes until softened.",
+      "Add the tomato and cook for 2 minutes, turning gently.",
+      "Push the vegetables to one side of the pan and pour the beaten egg mixture into the clear space.",
+      "Stir the egg gently until set throughout, then fold it through the vegetables.",
+      "Spoon the egg, tomato and onion mixture over the toast and serve immediately."
+    ],
     nutrition: {
       calories: "303 kcal",
       protein: "17.9 g",
@@ -188,14 +187,14 @@ export const breakfasts: Recipe[] = [
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "1 tbsp" },
     ],
     method: [
-  "Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre. Separate the egg whites into a bowl and whisk gently with a fork. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Melt the butter in a non-stick frying pan over low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Pour in the egg whites and stir gently until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Fold through the chopped fresh chives and remove from the heat.",
-  "Remove the toast from the toaster and arrange on a plate.",
-  "Spoon the scrambled egg whites over the toast.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Put the bread into the toaster. Separate the egg whites into a bowl and whisk gently with a fork.",
+      "Melt the butter in a non-stick frying pan over low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Pour in the egg whites and stir gently until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout.",
+      "Fold through the chopped fresh chives and remove from the heat.",
+      "Remove the toast from the toaster and arrange on a plate.",
+      "Spoon the scrambled egg whites over the toast.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "220 kcal",
       protein: "12.8 g",
@@ -234,7 +233,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "12 minutes",
     calories: "302 kcal",
     protein: "18.1 g",
-    equipment: "Frying pan, bowl, fork, toaster, spatula",
+    equipment: "Frying pan, bowl, fork, toaster, spatula, Knife and chopping board",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
@@ -244,15 +243,15 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Finely dice the pepper and onion. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre. Beat the egg with the 50 g liquid egg whites before cooking.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the onion and pepper and cook for 3 minutes until softened.",
-  "Beat the egg in a bowl and pour it over the vegetables. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Stir gently until the egg is softly set.",
-  "Remove the toast from the toaster and arrange on a plate.",
-  "Spoon the egg and vegetables over the toast.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Finely dice the pepper and onion. Put the bread into the toaster. Beat the egg with the 50 g liquid egg whites before cooking.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the onion and pepper and cook for 3 minutes until softened.",
+      "Pour the beaten egg mixture over the vegetables.",
+      "Stir gently until the egg is softly set.",
+      "Remove the toast from the toaster and arrange on a plate.",
+      "Spoon the egg and vegetables over the toast.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "302 kcal",
       protein: "18.1 g",
@@ -291,7 +290,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "9 minutes",
     calories: "333 kcal",
     protein: "13.8 g",
-    equipment: "Shallow bowl, frying pan, spatula, toaster, spoon",
+    equipment: "Shallow bowl, frying pan, spatula, toaster, spoon, Fork or whisk",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "50 ml" },
@@ -301,14 +300,14 @@ export const breakfasts: Recipe[] = [
       { item: "Ground cinnamon", shoppingItem: "Ground cinnamon", quantity: "¼ tsp" },
     ],
     method: [
-  "Whisk the egg and milk together in a shallow bowl and stir in the cinnamon. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat a non-stick frying pan over medium-low heat and melt the butter. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Dip the bread into the egg mixture, coating both sides without soaking it excessively.",
-  "Place the bread in the pan and cook for 2–3 minutes until golden underneath.",
-  "Turn the bread and cook for another 2–3 minutes.",
-  "Transfer the French toast to a plate.",
-  "Spoon the measured jam over the toast and serve."
-],
+      "Whisk the egg and milk together in a shallow bowl and stir in the cinnamon.",
+      "Heat a non-stick frying pan over medium-low heat and melt the butter. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Dip the bread into the egg mixture, coating both sides without soaking it excessively.",
+      "Place the bread in the pan and cook for 2–3 minutes until golden underneath.",
+      "Turn the bread and cook for another 2–3 minutes.",
+      "Transfer the French toast to a plate.",
+      "Spoon the measured jam over the toast and serve."
+    ],
     nutrition: {
       calories: "333 kcal",
       protein: "13.8 g",
@@ -348,7 +347,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "12 minutes",
     calories: "278 kcal",
     protein: "12.6 g",
-    equipment: "Frying pan, bowl, fork, toaster, wooden spoon",
+    equipment: "Frying pan, bowl, fork, toaster, wooden spoon, Knife and chopping board",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
@@ -357,15 +356,15 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Dice the tomato and onion. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the onion and cook for 2 minutes.",
-  "Add the tomato and cook for another 2 minutes.",
-  "Beat the egg and pour it into the pan. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Stir slowly until the egg is just set, keeping the mixture soft.",
-  "Arrange the toast on a plate and spoon over the egg mixture.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Dice the tomato and onion. Put the bread into the toaster.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the onion and cook for 2 minutes.",
+      "Add the tomato and cook for another 2 minutes.",
+      "Beat the egg and pour it into the pan.",
+      "Stir slowly until the egg is just set, keeping the mixture soft.",
+      "Arrange the toast on a plate and spoon over the egg mixture.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "278 kcal",
       protein: "12.6 g",
@@ -411,12 +410,12 @@ export const breakfasts: Recipe[] = [
       { item: "Marmalade", shoppingItem: "Marmalade", quantity: "20 g" },
     ],
     method: [
-  "Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Remove the toast from the toaster.",
-  "Spread the measured butter evenly over the toast. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Spread the marmalade over the buttered toast.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Put the bread into the toaster.",
+      "Remove the toast from the toaster.",
+      "Spread the measured butter evenly over the toast.",
+      "Spread the marmalade over the buttered toast.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "280 kcal",
       protein: "5.6 g",
@@ -455,7 +454,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "12 minutes",
     calories: "389 kcal",
     protein: "20.0 g",
-    equipment: "Two small pans, wooden spoon, bowl, toaster, knife, chopping board",
+    equipment: "Small saucepan, Non-stick frying pan, Wooden spoon, Bowl, Fork, Toaster, Knife, Chopping board",
     ingredients: [
       { item: "Porridge oats", shoppingItem: "Porridge oats", quantity: "45 g" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
@@ -466,15 +465,15 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Dice the tomato and red pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre. Beat the egg with the 50 g liquid egg whites before cooking.",
-  "Put the oats into a small saucepan with 150 ml water. Cook over medium-low heat, stirring regularly.",
-  "Add the tomato and pepper to a second non-stick pan with 1 tbsp water. Cook for 3 minutes.",
-  "Continue cooking the oats until creamy and thick.",
-  "Melt the butter in the vegetable pan and crack in the egg. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Cook the egg until the white is fully set and cooked through, then gently fold the egg and vegetables together.",
-  "Spoon the oats into a bowl and top with the egg, tomato and pepper mixture.",
-  "Serve with the toast."
-],
+      "Dice the tomato and red pepper. Put the bread into the toaster. Beat the egg with the 50 g liquid egg whites before cooking.",
+      "Put the oats into a small saucepan with 150 ml water. Cook over medium-low heat, stirring regularly.",
+      "Add the tomato and pepper to a second non-stick pan with 1 tbsp water. Cook for 3 minutes.",
+      "Continue cooking the oats until creamy and thick.",
+      "Melt the butter in the vegetable pan, then pour in the beaten egg mixture.",
+      "Stir gently until the egg mixture is set throughout, then fold it through the vegetables.",
+      "Spoon the oats into a bowl and top with the egg, tomato and pepper mixture.",
+      "Serve with the toast."
+    ],
     nutrition: {
       calories: "389 kcal",
       protein: "20.0 g",
@@ -513,7 +512,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "11 minutes",
     calories: "374 kcal",
     protein: "15.9 g",
-    equipment: "Shallow bowl, frying pan, spatula, toaster, knife, chopping board",
+    equipment: "Shallow bowl, frying pan, spatula, toaster, knife, chopping board, Fork or whisk",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "100 ml" },
@@ -523,16 +522,16 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Whisk the egg and milk together in a shallow bowl. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat a non-stick frying pan over medium-low heat and melt the butter. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Dip the bread into the egg mixture, coating both sides without soaking it excessively.",
-  "Place the bread in the pan and cook for 2–3 minutes until golden underneath.",
-  "Turn the bread and cook for another 2–3 minutes until golden.",
-  "Add the sliced apple to the side of the pan with 1 tbsp water and cook until just softened.",
-  "Transfer the French toast to a plate, arrange the warm apple over the top and drizzle with honey.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Whisk the egg and milk together in a shallow bowl.",
+      "Heat a non-stick frying pan over medium-low heat and melt the butter. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Dip the bread into the egg mixture, coating both sides without soaking it excessively.",
+      "Place the bread in the pan and cook for 2–3 minutes until golden underneath.",
+      "Turn the bread and cook for another 2–3 minutes until golden.",
+      "Add the sliced apple to the side of the pan with 1 tbsp water and cook until just softened.",
+      "Transfer the French toast to a plate, arrange the warm apple over the top and drizzle with honey.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "374 kcal",
       protein: "15.9 g",
@@ -580,13 +579,13 @@ export const breakfasts: Recipe[] = [
       { item: "Honey", shoppingItem: "Honey", quantity: "1 tsp" },
     ],
     method: [
-  "Wash the apple and blueberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Toast the bread until lightly golden. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Spread the cream cheese evenly over the toast. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Arrange the apple slices over the cream cheese.",
-  "Scatter the blueberries over the toast.",
-  "Drizzle over the honey and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Wash the apple and blueberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Toast the bread until lightly golden.",
+      "Spread the cream cheese evenly over the toast.",
+      "Arrange the apple slices over the cream cheese.",
+      "Scatter the blueberries over the toast.",
+      "Drizzle over the honey and serve immediately."
+    ],
     nutrition: {
       calories: "300 kcal",
       protein: "8.0 g",
@@ -635,14 +634,14 @@ export const breakfasts: Recipe[] = [
       { item: "Ground cinnamon", shoppingItem: "Ground cinnamon", quantity: "¼ tsp" },
     ],
     method: [
-  "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Put the apple into a small frying pan with the cinnamon and 1 tbsp water.",
-  "Cook over medium-low heat for 4 minutes, turning gently, until softened.",
-  "Toast the bread until crisp and golden. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Spread the measured butter over the toast. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Spoon the warm apple evenly over the toast.",
-  "Drizzle over the honey and serve."
-],
+      "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Put the apple into a small frying pan with the cinnamon and 1 tbsp water.",
+      "Cook over medium-low heat for 4 minutes, turning gently, until softened.",
+      "Toast the bread until crisp and golden.",
+      "Spread the measured butter over the toast.",
+      "Spoon the warm apple evenly over the toast.",
+      "Drizzle over the honey and serve."
+    ],
     nutrition: {
       calories: "320 kcal",
       protein: "6.3 g",
@@ -690,13 +689,13 @@ export const breakfasts: Recipe[] = [
       { item: "Honey", shoppingItem: "Honey", quantity: "2 tsp" },
     ],
     method: [
-  "Wash, hull and slice the strawberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Toast the bread until lightly golden. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Spread the cream cheese evenly over the toast. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Arrange the sliced strawberries over the cream cheese.",
-  "Drizzle the measured honey over the strawberries.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Wash, hull and slice the strawberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Toast the bread until lightly golden.",
+      "Spread the cream cheese evenly over the toast.",
+      "Arrange the sliced strawberries over the cream cheese.",
+      "Drizzle the measured honey over the strawberries.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "299 kcal",
       protein: "7.8 g",
@@ -747,15 +746,15 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Finely dice the pepper and onion. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Beat the egg with the 50 g liquid egg whites in a bowl. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the onion and pepper and cook for 3 minutes until softened.",
-  "Pour in the beaten egg and stir gently until softly set.",
-  "Warm the tortilla in a dry pan for 20–30 seconds on each side.",
-  "Spread the cream cheese across the centre of the tortilla. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Spoon the egg and vegetables over the cream cheese. Fold the bottom edge up, fold in both sides and roll tightly.",
-  "Cut in half and serve."
-],
+      "Finely dice the pepper and onion. Beat the egg with the 50 g liquid egg whites in a bowl.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the onion and pepper and cook for 3 minutes until softened.",
+      "Pour in the beaten egg and stir gently until softly set.",
+      "Warm the tortilla in a dry pan for 20–30 seconds on each side.",
+      "Spread the cream cheese across the centre of the tortilla.",
+      "Spoon the egg and vegetables over the cream cheese. Fold the bottom edge up, fold in both sides and roll tightly.",
+      "Cut in half and serve."
+    ],
     nutrition: {
       calories: "367 kcal",
       protein: "18.2 g",
@@ -806,15 +805,15 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Core and dice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal. Put it into a small pan with the cinnamon and 1 tbsp water.",
-  "Cook the apple for 4–5 minutes until tender.",
-  "Put the flour into a bowl. Add the egg, 50 g liquid egg whites and milk and whisk until smooth. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat a non-stick frying pan over medium heat and brush with the oil. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Spoon half the batter into the pan. Cook for about 2 minutes until bubbles appear.",
-  "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
-  "Stack the pancakes and spoon over the warm apple.",
-  "Drizzle over the maple syrup and serve."
-],
+      "Core and dice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Put it into a small pan with the cinnamon and 1 tbsp water.",
+      "Cook the apple for 4–5 minutes until tender.",
+      "Put the flour into a bowl. Add the egg, 50 g liquid egg whites and milk and whisk until smooth.",
+      "Heat a non-stick frying pan over medium heat and brush with the oil.",
+      "Spoon half the batter into the pan. Cook for about 2 minutes until bubbles appear.",
+      "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
+      "Stack the pancakes and spoon over the warm apple.",
+      "Drizzle over the maple syrup and serve."
+    ],
     nutrition: {
       calories: "417 kcal",
       protein: "19.5 g",
@@ -863,13 +862,13 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Wash the blueberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
-  "Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Spoon the natural yoghurt into a bowl and fold through half the blueberries.",
-  "Spread the measured butter over the toast. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Top the yoghurt with the remaining blueberries.",
-  "Drizzle the honey over the yoghurt and serve alongside the toast."
-],
+      "Wash the blueberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
+      "Put the bread into the toaster.",
+      "Spoon the natural yoghurt into a bowl and fold through half the blueberries.",
+      "Spread the measured butter over the toast.",
+      "Top the yoghurt with the remaining blueberries.",
+      "Drizzle the honey over the yoghurt and serve alongside the toast."
+    ],
     nutrition: {
       calories: "340 kcal",
       protein: "12.0 g",
@@ -919,15 +918,15 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Split the English muffin and start toasting it. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Beat the egg with the 50 g liquid egg whites in a bowl. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Melt the butter in a non-stick frying pan over low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the egg and stir gently with a spatula until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Fold the chopped chives through the egg and turn off the heat.",
-  "Spread the cream cheese over the toasted muffin. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Spoon the scrambled egg over the cream cheese.",
-  "Add the muffin top and serve."
-],
+      "Split the English muffin and start toasting it.",
+      "Beat the egg with the 50 g liquid egg whites in a bowl.",
+      "Melt the butter in a non-stick frying pan over low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the egg and stir gently with a spatula until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout.",
+      "Fold the chopped chives through the egg and turn off the heat.",
+      "Spread the cream cheese over the toasted muffin.",
+      "Spoon the scrambled egg over the cream cheese.",
+      "Add the muffin top and serve."
+    ],
     nutrition: {
       calories: "322 kcal",
       protein: "19.2 g",
@@ -978,14 +977,14 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Wash, hull and slice the strawberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Put the flour into a bowl. Add the egg, 50 g liquid egg whites and milk and whisk until smooth. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat a non-stick frying pan over medium heat and brush with the oil. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Spoon half the batter into the pan and cook for about 2 minutes until bubbles appear.",
-  "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
-  "Stack the pancakes and arrange the strawberries over the top.",
-  "Drizzle over the maple syrup and serve."
-],
+      "Wash, hull and slice the strawberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Put the flour into a bowl. Add the egg, 50 g liquid egg whites and milk and whisk until smooth.",
+      "Heat a non-stick frying pan over medium heat and brush with the oil.",
+      "Spoon half the batter into the pan and cook for about 2 minutes until bubbles appear.",
+      "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
+      "Stack the pancakes and arrange the strawberries over the top.",
+      "Drizzle over the maple syrup and serve."
+    ],
     nutrition: {
       calories: "405 kcal",
       protein: "19.6 g",
@@ -1032,13 +1031,13 @@ export const breakfasts: Recipe[] = [
       { item: "Honey", shoppingItem: "Honey", quantity: "2 tsp" },
     ],
     method: [
-  "Wash, core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Slice the bagel in half and toast until lightly golden. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Spread the cream cheese evenly over both halves. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Arrange the apple slices over the cream cheese.",
-  "Drizzle the honey over the apple.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Wash, core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Slice the bagel in half and toast until lightly golden.",
+      "Spread the cream cheese evenly over both halves.",
+      "Arrange the apple slices over the cream cheese.",
+      "Drizzle the honey over the apple.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "389 kcal",
       protein: "10.6 g",
@@ -1089,16 +1088,16 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal. Sprinkle with cinnamon.",
-  "Beat the egg with the 50 g liquid egg whites in a bowl. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Melt the butter in a non-stick frying pan over low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the egg and stir gently until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout.",
-  "Warm the tortilla in a dry pan for 20–30 seconds on each side.",
-  "Spread the cream cheese across the centre of the tortilla. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Spoon the scrambled egg over the cream cheese and arrange the apple down the centre.",
-  "Fold the bottom edge up, fold in both sides and roll tightly.",
-  "Cut in half and serve."
-],
+      "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Sprinkle with cinnamon.",
+      "Beat the egg with the 50 g liquid egg whites in a bowl.",
+      "Melt the butter in a non-stick frying pan over low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the egg and stir gently until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout.",
+      "Warm the tortilla in a dry pan for 20–30 seconds on each side.",
+      "Spread the cream cheese across the centre of the tortilla.",
+      "Spoon the scrambled egg over the cream cheese and arrange the apple down the centre.",
+      "Fold the bottom edge up, fold in both sides and roll tightly.",
+      "Cut in half and serve."
+    ],
     nutrition: {
       calories: "390 kcal",
       protein: "18.1 g",
@@ -1137,7 +1136,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "10 minutes",
     calories: "282 kcal",
     protein: "17.9 g",
-    equipment: "Frying pan, bowl, fork, toaster, wooden spoon",
+    equipment: "Frying pan, bowl, fork, toaster, wooden spoon, Knife and chopping board",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
@@ -1146,14 +1145,14 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Slice the mushrooms and put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the mushrooms and cook for 3 minutes until softened.",
-  "Beat the egg with the 50 g liquid egg whites in a bowl and add the mixture to the pan. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Stir gently until the egg is just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout.",
-  "Arrange the toast on a plate and spoon over the scrambled egg and mushrooms.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Slice the mushrooms and put the bread into the toaster.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the mushrooms and cook for 3 minutes until softened.",
+      "Beat the egg with the 50 g liquid egg whites in a bowl and add the mixture to the pan.",
+      "Stir gently until the egg is just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout.",
+      "Arrange the toast on a plate and spoon over the scrambled egg and mushrooms.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "282 kcal",
       protein: "17.9 g",
@@ -1201,13 +1200,13 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Measure the cornflakes into a breakfast bowl.",
-  "Pour over the measured semi-skimmed milk.",
-  "Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Remove the toast from the toaster.",
-  "Spread the measured butter over the toast. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Spoon the jam over the toast and serve alongside the cornflakes."
-],
+      "Measure the cornflakes into a breakfast bowl.",
+      "Pour over the measured semi-skimmed milk.",
+      "Put the bread into the toaster.",
+      "Remove the toast from the toaster.",
+      "Spread the measured butter over the toast.",
+      "Spoon the jam over the toast and serve alongside the cornflakes."
+    ],
     nutrition: {
       calories: "354 kcal",
       protein: "9.6 g",
@@ -1256,15 +1255,15 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Dice the pepper and onion. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Beat the egg in a bowl. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the onion and pepper and cook for 4 minutes until softened.",
-  "Add the beaten egg and stir gently until softly set.",
-  "Warm the tortilla in a dry pan for 20–30 seconds on each side.",
-  "Spoon the egg and vegetables down the centre of the tortilla.",
-  "Fold the bottom edge up, fold in both sides and roll tightly.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Dice the pepper and onion. Beat the egg in a bowl.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the onion and pepper and cook for 4 minutes until softened.",
+      "Add the beaten egg and stir gently until softly set.",
+      "Warm the tortilla in a dry pan for 20–30 seconds on each side.",
+      "Spoon the egg and vegetables down the centre of the tortilla.",
+      "Fold the bottom edge up, fold in both sides and roll tightly.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "298 kcal",
       protein: "11.8 g",
@@ -1309,13 +1308,13 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Bring a small saucepan of water to the boil.",
-  "Carefully lower the egg into the boiling water and cook for 5–6 minutes.",
-  "Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Remove the egg and place it in an egg cup.",
-  "Spread the measured butter over the toast and cut each slice into strips.",
-  "Serve immediately with the toast soldiers for dipping. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Bring a small saucepan of water to the boil.",
+      "Carefully lower the egg into the boiling water and cook for 5–6 minutes.",
+      "Put the bread into the toaster.",
+      "Remove the egg and place it in an egg cup.",
+      "Spread the measured butter over the toast and cut each slice into strips.",
+      "Serve immediately with the toast soldiers for dipping."
+    ],
     nutrition: {
       calories: "262 kcal",
       protein: "12.6 g",
@@ -1362,13 +1361,13 @@ export const breakfasts: Recipe[] = [
       { item: "Honey", shoppingItem: "Honey", quantity: "2 tsp" },
     ],
     method: [
-  "Wash the blueberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
-  "Toast the bread until lightly golden. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Spread the cream cheese evenly over the toast. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Scatter the blueberries over the cream cheese.",
-  "Drizzle over the honey.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Wash the blueberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
+      "Toast the bread until lightly golden.",
+      "Spread the cream cheese evenly over the toast.",
+      "Scatter the blueberries over the cream cheese.",
+      "Drizzle over the honey.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "287 kcal",
       protein: "7.6 g",
@@ -1406,7 +1405,7 @@ export const breakfasts: Recipe[] = [
     name: "Mushroom & Egg Breakfast Muffin",
     description: "A toasted English muffin filled with sautéed mushrooms and softly scrambled egg.",
     cookingTime: "11 minutes",
-    equipment: "Frying pan, bowl, fork, toaster, spatula",
+    equipment: "Frying pan, bowl, fork, toaster, spatula, Knife and chopping board",
     calories: "262 kcal",
     protein: "18.3 g",
     ingredients: [
@@ -1417,15 +1416,15 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Slice the mushrooms and split the English muffin.",
-  "Start toasting the muffin.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the mushrooms and cook for 3 minutes.",
-  "Beat the egg with the 50 g liquid egg whites and add the mixture to the pan. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Stir gently until softly set and combine with the mushrooms.",
-  "Spoon the filling onto the toasted muffin.",
-  "Add the muffin top and serve."
-],
+      "Slice the mushrooms and split the English muffin.",
+      "Start toasting the muffin.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the mushrooms and cook for 3 minutes.",
+      "Beat the egg with the 50 g liquid egg whites and add the mixture to the pan.",
+      "Stir gently until softly set and combine with the mushrooms.",
+      "Spoon the filling onto the toasted muffin.",
+      "Add the muffin top and serve."
+    ],
     nutrition: {
       calories: "262 kcal",
       protein: "18.3 g",
@@ -1462,7 +1461,7 @@ export const breakfasts: Recipe[] = [
     name: "Strawberry & Apple French Toast",
     description: "Golden French toast topped with fresh strawberries, apple and a light honey drizzle.",
     cookingTime: "10 minutes",
-    equipment: "Shallow bowl, frying pan, spatula, knife, chopping board",
+    equipment: "Shallow bowl, frying pan, spatula, knife, chopping board, Fork or whisk",
     calories: "360 kcal",
     protein: "15.3 g",
     ingredients: [
@@ -1475,15 +1474,15 @@ export const breakfasts: Recipe[] = [
       { item: "Honey", shoppingItem: "Honey", quantity: "1 tsp" },
     ],
     method: [
-  "Wash and slice the strawberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal. Core and thinly slice the apple.",
-  "Whisk the egg and milk together in a shallow bowl. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat the frying pan over medium-low heat and melt the butter. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Dip both sides of the bread into the egg mixture.",
-  "Cook for 2–3 minutes until golden underneath.",
-  "Turn and cook for another 2–3 minutes.",
-  "Transfer to a plate and arrange the strawberries and apple over the top.",
-  "Drizzle over the honey and serve."
-],
+      "Wash and slice the strawberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Core and thinly slice the apple.",
+      "Whisk the egg and milk together in a shallow bowl.",
+      "Heat the frying pan over medium-low heat and melt the butter. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Dip both sides of the bread into the egg mixture.",
+      "Cook for 2–3 minutes until golden underneath.",
+      "Turn and cook for another 2–3 minutes.",
+      "Transfer to a plate and arrange the strawberries and apple over the top.",
+      "Drizzle over the honey and serve."
+    ],
     nutrition: {
       calories: "360 kcal",
       protein: "15.3 g",
@@ -1531,13 +1530,13 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Spoon the yoghurt into a bowl and arrange the apple over it.",
-  "Drizzle over the honey.",
-  "Spread the measured butter over the toast. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Serve the yoghurt and apple alongside the toast."
-],
+      "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Put the bread into the toaster.",
+      "Spoon the yoghurt into a bowl and arrange the apple over it.",
+      "Drizzle over the honey.",
+      "Spread the measured butter over the toast.",
+      "Serve the yoghurt and apple alongside the toast."
+    ],
     nutrition: {
       calories: "361 kcal",
       protein: "11.9 g",
@@ -1586,15 +1585,15 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Slice the tomato and split the English muffin. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate.",
-  "Start toasting the muffin.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the tomato and cook for 2 minutes.",
-  "Beat the egg with the 50 g liquid egg whites and add the mixture to the pan. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Stir gently until softly set and combine with the tomato.",
-  "Spoon the filling onto the toasted muffin.",
-  "Add the muffin top and serve."
-],
+      "Slice the tomato and split the English muffin. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate.",
+      "Start toasting the muffin.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the tomato and cook for 2 minutes.",
+      "Beat the egg with the 50 g liquid egg whites and add the mixture to the pan.",
+      "Stir gently until softly set and combine with the tomato.",
+      "Spoon the filling onto the toasted muffin.",
+      "Add the muffin top and serve."
+    ],
     nutrition: {
       calories: "266 kcal",
       protein: "18.0 g",
@@ -1644,15 +1643,15 @@ export const breakfasts: Recipe[] = [
       { item: "Maple syrup", shoppingItem: "Maple syrup", quantity: "2 tsp" },
     ],
     method: [
-  "Core and dice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal. Put it into a small saucepan with 1 tbsp water.",
-  "Cook the apple for 4 minutes until just tender.",
-  "Whisk the flour, egg and milk together until smooth. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat a non-stick frying pan over medium heat and brush with the oil. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook half the batter for about 2 minutes until bubbles appear.",
-  "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
-  "Stack the pancakes and top with the warm apple and blueberries.",
-  "Drizzle over the maple syrup and serve."
-],
+      "Core and dice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Put it into a small saucepan with 1 tbsp water.",
+      "Cook the apple for 4 minutes until just tender.",
+      "Whisk the flour, egg and milk together until smooth.",
+      "Heat a non-stick frying pan over medium heat and brush with the oil.",
+      "Cook half the batter for about 2 minutes until bubbles appear.",
+      "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
+      "Stack the pancakes and top with the warm apple and blueberries.",
+      "Drizzle over the maple syrup and serve."
+    ],
     nutrition: {
       calories: "404 kcal",
       protein: "14.4 g",
@@ -1699,14 +1698,14 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Split the English muffin and put it into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Heat a non-stick frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the Back bacon until cooked through and lightly crisp. Transfer to a plate.",
-  "Melt the butter in the pan and crack in the egg. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Cook until the white is fully set and the yolk is cooked through.",
-  "Remove the toasted muffin from the toaster.",
-  "Place the bacon and fried egg on the muffin base, add the muffin top and serve. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute."
-],
+      "Split the English muffin and put it into the toaster.",
+      "Heat a non-stick frying pan over medium heat.",
+      "Cook the Back bacon until cooked through and lightly crisp. Transfer to a plate.",
+      "Melt the butter in the pan and crack in the egg. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Cook until the white is fully set and the yolk is cooked through.",
+      "Remove the toasted muffin from the toaster.",
+      "Place the bacon and fried egg on the muffin base, add the muffin top and serve."
+    ],
     nutrition: {
       calories: "296 kcal",
       protein: "17.2 g",
@@ -1755,13 +1754,13 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Put the flour into a mixing bowl. Add the egg, 50 g liquid egg whites and milk and whisk until smooth. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat a non-stick frying pan over medium heat and brush with the oil. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Spoon half the batter into the pan and cook for about 2 minutes until bubbles appear.",
-  "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
-  "Stack the pancakes on a plate.",
-  "Spoon the measured jam over the pancakes and serve."
-],
+      "Put the flour into a mixing bowl. Add the egg, 50 g liquid egg whites and milk and whisk until smooth.",
+      "Heat a non-stick frying pan over medium heat and brush with the oil.",
+      "Spoon half the batter into the pan and cook for about 2 minutes until bubbles appear.",
+      "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
+      "Stack the pancakes on a plate.",
+      "Spoon the measured jam over the pancakes and serve."
+    ],
     nutrition: {
       calories: "393 kcal",
       protein: "18.2 g",
@@ -1801,7 +1800,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "10 minutes",
     calories: "293 kcal",
     protein: "17.8 g",
-    equipment: "Frying pan, bowl, fork, toaster, wooden spoon",
+    equipment: "Frying pan, bowl, fork, toaster, wooden spoon, Knife and chopping board",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
@@ -1811,14 +1810,14 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Dice the tomato and pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the tomato and pepper and cook for 3 minutes.",
-  "Beat the egg with the 50 g liquid egg whites and add the mixture to the pan. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Stir gently until the egg is softly set and fold through the vegetables.",
-  "Arrange the toast on a plate and spoon over the egg mixture.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Dice the tomato and pepper. Put the bread into the toaster.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the tomato and pepper and cook for 3 minutes.",
+      "Beat the egg with the 50 g liquid egg whites and add the mixture to the pan.",
+      "Stir gently until the egg is softly set and fold through the vegetables.",
+      "Arrange the toast on a plate and spoon over the egg mixture.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "293 kcal",
       protein: "17.8 g",
@@ -1868,15 +1867,15 @@ export const breakfasts: Recipe[] = [
       { item: "Maple syrup", shoppingItem: "Maple syrup", quantity: "2 tsp" },
     ],
     method: [
-  "Wash, hull and slice the strawberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal. Core and dice the apple.",
-  "Put the apple into a small saucepan with 1 tbsp water and cook gently for 4 minutes.",
-  "Whisk the flour, egg and milk together until smooth. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat a non-stick frying pan over medium heat and brush with the oil. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook half the batter for about 2 minutes until bubbles appear.",
-  "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
-  "Stack the pancakes and top with the warm apple and strawberries.",
-  "Drizzle over the maple syrup and serve."
-],
+      "Wash, hull and slice the strawberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Core and dice the apple.",
+      "Put the apple into a small saucepan with 1 tbsp water and cook gently for 4 minutes.",
+      "Whisk the flour, egg and milk together until smooth.",
+      "Heat a non-stick frying pan over medium heat and brush with the oil.",
+      "Cook half the batter for about 2 minutes until bubbles appear.",
+      "Flip and cook for 1–2 minutes. Repeat with the remaining batter.",
+      "Stack the pancakes and top with the warm apple and strawberries.",
+      "Drizzle over the maple syrup and serve."
+    ],
     nutrition: {
       calories: "401 kcal",
       protein: "14.3 g",
@@ -1924,13 +1923,13 @@ export const breakfasts: Recipe[] = [
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "1 tbsp" },
     ],
     method: [
-  "Bring a small saucepan of water to the boil.",
-  "Carefully lower the egg into the boiling water and cook for 7 minutes.",
-  "Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Remove the egg, cool briefly under cold running water and peel.",
-  "Spread the cream cheese over the toast and add the measured butter. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Slice the boiled egg over the toast, scatter with fresh chives and serve."
-],
+      "Bring a small saucepan of water to the boil.",
+      "Carefully lower the egg into the boiling water and cook for 7 minutes.",
+      "Put the bread into the toaster.",
+      "Remove the egg, cool briefly under cold running water and peel.",
+      "Spread the cream cheese over the toast and add the measured butter.",
+      "Slice the boiled egg over the toast, scatter with fresh chives and serve."
+    ],
     nutrition: {
       calories: "326 kcal",
       protein: "14.0 g",
@@ -1978,15 +1977,15 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Slice the tomato and put the bread into the toaster. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Heat a non-stick frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the Back bacon until cooked through and lightly crisp.",
-  "Transfer the bacon to a plate and add the tomato to the pan. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Cook the tomato for 1–2 minutes until warmed through.",
-  "Remove the toast from the toaster and spread the measured butter over it. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Top the toast with the warm tomato and Back bacon.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Slice the tomato and put the bread into the toaster. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate.",
+      "Heat a non-stick frying pan over medium heat.",
+      "Cook the Back bacon until cooked through and lightly crisp.",
+      "Transfer the bacon to a plate and add the tomato to the pan.",
+      "Cook the tomato for 1–2 minutes until warmed through.",
+      "Remove the toast from the toaster and spread the measured butter over it.",
+      "Top the toast with the warm tomato and Back bacon.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "257 kcal",
       protein: "10.7 g",
@@ -2025,7 +2024,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "10 minutes",
     calories: "271 kcal",
     protein: "18.2 g",
-    equipment: "Frying pan, bowl, fork, toaster, spatula",
+    equipment: "Frying pan, bowl, fork, toaster, spatula, Knife and chopping board",
     ingredients: [
       { item: "English muffin", shoppingItem: "English muffins", quantity: "1" },
       { item: "Egg", shoppingItem: "Egg", quantity: "1" },
@@ -2034,14 +2033,14 @@ export const breakfasts: Recipe[] = [
       { item: "Liquid egg whites", shoppingItem: "Liquid egg whites", quantity: "50 g" },
     ],
     method: [
-  "Split the English muffin and put it into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Dice the pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the pepper and cook for 3 minutes until softened.",
-  "Beat the egg with the 50 g liquid egg whites and add the mixture to the pan. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Stir gently until softly set.",
-  "Spoon the egg and pepper onto the toasted muffin.",
-  "Add the muffin top and serve."
-],
+      "Split the English muffin and put it into the toaster.",
+      "Dice the pepper.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the pepper and cook for 3 minutes until softened.",
+      "Beat the egg with the 50 g liquid egg whites and add the mixture to the pan. Stir gently until softly set.",
+      "Spoon the egg and pepper onto the toasted muffin.",
+      "Add the muffin top and serve."
+    ],
     nutrition: {
       calories: "271 kcal",
       protein: "18.2 g",
@@ -2088,14 +2087,14 @@ export const breakfasts: Recipe[] = [
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "1 tbsp" },
     ],
     method: [
-  "Split the English muffin and put it into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre. Whisk the egg whites gently in a bowl. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Melt the butter in a non-stick frying pan over low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the egg whites and stir gently until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Fold through the chopped fresh chives and remove from the heat.",
-  "Remove the toasted muffin from the toaster.",
-  "Spoon the scrambled egg whites over the muffin base.",
-  "Add the muffin top and serve."
-],
+      "Split the English muffin and put it into the toaster. Whisk the egg whites gently in a bowl.",
+      "Melt the butter in a non-stick frying pan over low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the egg whites and stir gently until just set. Use slow, broad strokes to bring the setting egg from the edges into the middle. Take care not to break it into dry crumbs; finish only when the egg is set throughout.",
+      "Fold through the chopped fresh chives and remove from the heat.",
+      "Remove the toasted muffin from the toaster.",
+      "Spoon the scrambled egg whites over the muffin base.",
+      "Add the muffin top and serve."
+    ],
     nutrition: {
       calories: "200 kcal",
       protein: "13.3 g",
@@ -2144,16 +2143,16 @@ export const breakfasts: Recipe[] = [
       { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Dice the tomato and onion. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Beat the egg in a bowl. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the onion and cook for 2 minutes.",
-  "Add the tomato and cook for 2 minutes.",
-  "Add the beaten egg and stir gently until softly set.",
-  "Warm the tortilla in a dry pan for 20–30 seconds on each side.",
-  "Spread the cream cheese across the centre and spoon over the egg mixture. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Fold the bottom edge up, fold in both sides and roll tightly.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Dice the tomato and onion. Beat the egg in a bowl.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the onion and cook for 2 minutes.",
+      "Add the tomato and cook for 2 minutes.",
+      "Add the beaten egg and stir gently until softly set.",
+      "Warm the tortilla in a dry pan for 20–30 seconds on each side.",
+      "Spread the cream cheese across the centre and spoon over the egg mixture.",
+      "Fold the bottom edge up, fold in both sides and roll tightly.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "342 kcal",
       protein: "12.6 g",
@@ -2192,7 +2191,7 @@ export const breakfasts: Recipe[] = [
     cookingTime: "11 minutes",
     calories: "377 kcal",
     protein: "15.4 g",
-    equipment: "Shallow bowl, frying pan, spatula, knife, chopping board",
+    equipment: "Shallow bowl, frying pan, spatula, knife, chopping board, Fork or whisk",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "75 ml" },
@@ -2203,16 +2202,16 @@ export const breakfasts: Recipe[] = [
       { item: "Maple syrup", shoppingItem: "Maple syrup", quantity: "2 tsp" },
     ],
     method: [
-  "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal. Wash the blueberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
-  "Whisk the egg and milk together in a shallow bowl. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat a non-stick frying pan over medium-low heat and melt the butter. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Dip both sides of the bread into the egg mixture.",
-  "Cook for 2–3 minutes until golden underneath.",
-  "Turn and cook for another 2–3 minutes.",
-  "Transfer the French toast to a plate.",
-  "Arrange the apple and blueberries over the toast.",
-  "Drizzle over the maple syrup and serve."
-],
+      "Core and thinly slice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Wash the blueberries. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
+      "Whisk the egg and milk together in a shallow bowl.",
+      "Heat a non-stick frying pan over medium-low heat and melt the butter. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Dip both sides of the bread into the egg mixture.",
+      "Cook for 2–3 minutes until golden underneath.",
+      "Turn and cook for another 2–3 minutes.",
+      "Transfer the French toast to a plate.",
+      "Arrange the apple and blueberries over the toast.",
+      "Drizzle over the maple syrup and serve."
+    ],
     nutrition: {
       calories: "377 kcal",
       protein: "15.4 g",
@@ -2258,13 +2257,13 @@ export const breakfasts: Recipe[] = [
       { item: "Fresh parsley", shoppingItem: "Fresh parsley", quantity: "2 g, finely chopped" },
     ],
     method: [
-  "Crack the eggs into a bowl, whisk until combined, and stir through the finely chopped parsley. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Melt the butter in a small non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Pour in the eggs and allow the base to set gently.",
-  "Draw the set edges towards the centre while tilting the pan so uncooked egg flows underneath.",
-  "Fold the omelette in half once just set, then cook until the centre is fully cooked.",
-  "Slide onto a plate and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Crack the eggs into a bowl, whisk until combined, and stir through the finely chopped parsley.",
+      "Melt the butter in a small non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Pour in the eggs and allow the base to set gently.",
+      "Draw the set edges towards the centre while tilting the pan so uncooked egg flows underneath.",
+      "Fold the omelette in half once just set, then cook until the centre is fully cooked.",
+      "Slide onto a plate and serve immediately."
+    ],
     nutrition: {
       calories: "234 kcal",
       protein: "19.0 g",
@@ -2311,13 +2310,13 @@ export const breakfasts: Recipe[] = [
       { item: "Fresh parsley", shoppingItem: "Fresh parsley", quantity: "2 g, finely chopped" },
     ],
     method: [
-  "Beat the eggs in a bowl until combined and stir through the finely chopped parsley. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Grate the cheddar if needed. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Melt the butter in a non-stick pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Pour in the eggs and cook gently until the base begins to set.",
-  "Sprinkle the cheddar over one half of the omelette.",
-  "Fold the omelette over the cheese and continue cooking until the egg is fully set and the cheese has melted.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Beat the eggs in a bowl until combined and stir through the finely chopped parsley. Grate the cheddar if needed.",
+      "Melt the butter in a non-stick pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Pour in the eggs and cook gently until the base begins to set.",
+      "Sprinkle the cheddar over one half of the omelette.",
+      "Fold the omelette over the cheese and continue cooking until the egg is fully set and the cheese has melted.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "318 kcal",
       protein: "24.1 g",
@@ -2364,13 +2363,13 @@ export const breakfasts: Recipe[] = [
       { item: "Fresh parsley", shoppingItem: "Fresh parsley", quantity: "2 g, finely chopped" },
     ],
     method: [
-  "Wipe the mushrooms clean and slice them. Beat the eggs in a bowl and stir through the finely chopped parsley. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Melt the butter in a non-stick frying pan over medium heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the mushrooms and cook for 3–4 minutes until softened.",
-  "Pour in the beaten eggs, tilting the pan so the egg covers the base.",
-  "Cook gently until nearly set, then fold the omelette over the mushrooms.",
-  "Check the egg is fully cooked and serve."
-],
+      "Wipe the mushrooms clean and slice them. Beat the eggs in a bowl and stir through the finely chopped parsley.",
+      "Melt the butter in a non-stick frying pan over medium heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the mushrooms and cook for 3–4 minutes until softened.",
+      "Pour in the beaten eggs, tilting the pan so the egg covers the base.",
+      "Cook gently until nearly set, then fold the omelette over the mushrooms.",
+      "Check the egg is fully cooked and serve."
+    ],
     nutrition: {
       calories: "239 kcal",
       protein: "19.6 g",
@@ -2417,13 +2416,13 @@ export const breakfasts: Recipe[] = [
       { item: "Fresh parsley", shoppingItem: "Fresh parsley", quantity: "2 g, finely chopped" },
     ],
     method: [
-  "Dice the cooked ham, finely chop the parsley, and beat the eggs in a bowl, stirring the parsley through. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Pour in the eggs and let the base begin to set.",
-  "Scatter the diced ham over one half of the omelette.",
-  "Fold the omelette and cook until the egg is fully set and the ham is hot.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Dice the cooked ham, finely chop the parsley, and beat the eggs in a bowl, stirring the parsley through.",
+      "Melt the butter in a non-stick frying pan over medium-low heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Pour in the eggs and let the base begin to set.",
+      "Scatter the diced ham over one half of the omelette.",
+      "Fold the omelette and cook until the egg is fully set and the ham is hot.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "261 kcal",
       protein: "23.6 g",
@@ -2471,13 +2470,13 @@ export const breakfasts: Recipe[] = [
       { item: "Honey", shoppingItem: "Honey", quantity: "5 g" },
     ],
     method: [
-  "Measure the listed ingredients before starting, using the stated serving size. Set out a serving plate or bowl and the utensils needed for this recipe so that everything is ready when you assemble the meal.",
-  "Add the oats and milk to a clean jar and stir well.",
-  "Add the blueberries and raspberries.",
-  "Stir through the honey.",
-  "Cover and refrigerate overnight, or for at least 4 hours.",
-  "Stir before serving; add a small splash of water only if needed for texture."
-],
+      "Measure the listed ingredients before starting, using the stated serving size. Set out a serving plate or bowl and the utensils needed for this recipe so that everything is ready when you assemble the meal.",
+      "Add the oats and milk to a clean jar and stir well.",
+      "Add the blueberries and raspberries.",
+      "Stir through the honey.",
+      "Cover and refrigerate overnight, or for at least 4 hours.",
+      "Stir before serving; add a small splash of water only if needed for texture."
+    ],
     nutrition: {
       calories: "230 kcal",
       protein: "8.4 g",
@@ -2525,12 +2524,12 @@ export const breakfasts: Recipe[] = [
       { item: "Ground cinnamon", shoppingItem: "Ground cinnamon", quantity: "0.2 g" },
     ],
     method: [
-  "Add the oats and milk to a clean jar and stir.",
-  "Core and finely dice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Fold the apple through the oats, stir in the honey and dust with cinnamon.",
-  "Cover and refrigerate overnight, or for at least 4 hours.",
-  "Stir and serve chilled."
-],
+      "Add the oats and milk to a clean jar and stir.",
+      "Core and finely dice the apple. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Fold the apple through the oats, stir in the honey and dust with cinnamon.",
+      "Cover and refrigerate overnight, or for at least 4 hours.",
+      "Stir and serve chilled."
+    ],
     nutrition: {
       calories: "245 kcal",
       protein: "8.4 g",
@@ -2579,13 +2578,13 @@ export const breakfasts: Recipe[] = [
       { item: "Walnuts, chopped", shoppingItem: "Walnuts", quantity: "5 g" },
     ],
     method: [
-  "Measure the listed ingredients before starting, using the stated serving size. Set out a serving plate or bowl and the utensils needed for this recipe so that everything is ready when you assemble the meal.",
-  "Add the oats, Greek-style yoghurt and milk to a clean jar and stir well.",
-  "Stir the peanut butter through until evenly combined, or leave a small swirl on top.",
-  "Sprinkle the chopped walnuts over the top.",
-  "Cover and refrigerate overnight, or for at least 4 hours.",
-  "Stir before serving; add a little extra water only if needed for your preferred texture."
-],
+      "Measure the listed ingredients before starting, using the stated serving size. Set out a serving plate or bowl and the utensils needed for this recipe so that everything is ready when you assemble the meal.",
+      "Add the oats, Greek-style yoghurt and milk to a clean jar and stir well.",
+      "Stir the peanut butter through until evenly combined, or leave a small swirl on top.",
+      "Sprinkle the chopped walnuts over the top.",
+      "Cover and refrigerate overnight, or for at least 4 hours.",
+      "Stir before serving; add a little extra water only if needed for your preferred texture."
+    ],
     nutrition: {
       calories: "396 kcal",
       protein: "14.9 g",
@@ -2634,12 +2633,12 @@ export const breakfasts: Recipe[] = [
       { item: "Pumpkin seeds", shoppingItem: "Pumpkin seeds", quantity: "5 g" },
     ],
     method: [
-  "Blend or mash the cottage cheese and Greek-style yoghurt until creamy.",
-  "Stir in the oats and milk until evenly combined. Stir across the bottom and into the corners of the pan as it thickens. The cereal should be soft and creamy, with no dry or gritty pieces; reduce the heat if it spits.",
-  "Fold through the blueberries and sprinkle the pumpkin seeds over the top.",
-  "Cover and refrigerate overnight, or for at least 4 hours.",
-  "Stir before serving chilled."
-],
+      "Blend or mash the cottage cheese and Greek-style yoghurt until creamy.",
+      "Stir in the oats and milk until evenly combined. Stir across the bottom and into the corners of the pan as it thickens. The cereal should be soft and creamy, with no dry or gritty pieces; reduce the heat if it spits.",
+      "Fold through the blueberries and sprinkle the pumpkin seeds over the top.",
+      "Cover and refrigerate overnight, or for at least 4 hours.",
+      "Stir before serving chilled."
+    ],
     nutrition: {
       calories: "342 kcal",
       protein: "20.7 g",
@@ -2684,11 +2683,11 @@ export const breakfasts: Recipe[] = [
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "125 ml" },
     ],
     method: [
-  "Measure the listed ingredients before starting, using the stated serving size. Set out a serving plate or bowl and the utensils needed for this recipe so that everything is ready when you assemble the meal.",
-  "Weigh the cornflakes into a bowl.",
-  "Measure and pour over the semi-skimmed milk.",
-  "Serve straight away while the cereal is crisp."
-],
+      "Measure the listed ingredients before starting, using the stated serving size. Set out a serving plate or bowl and the utensils needed for this recipe so that everything is ready when you assemble the meal.",
+      "Weigh the cornflakes into a bowl.",
+      "Measure and pour over the semi-skimmed milk.",
+      "Serve straight away while the cereal is crisp."
+    ],
     nutrition: {
       calories: "172 kcal",
       protein: "6.6 g",
@@ -2733,11 +2732,11 @@ export const breakfasts: Recipe[] = [
       { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "125 ml" },
     ],
     method: [
-  "Measure the listed ingredients before starting, using the stated serving size. Set out a serving plate or bowl and the utensils needed for this recipe so that everything is ready when you assemble the meal.",
-  "Place the two wheat biscuits in a bowl.",
-  "Measure and pour over the semi-skimmed milk.",
-  "Serve immediately, while the biscuits still have some texture. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Measure the listed ingredients before starting, using the stated serving size. Set out a serving plate or bowl and the utensils needed for this recipe so that everything is ready when you assemble the meal.",
+      "Place the two wheat biscuits in a bowl.",
+      "Measure and pour over the semi-skimmed milk.",
+      "Serve immediately, while the biscuits still have some texture."
+    ],
     nutrition: {
       calories: "184 kcal",
       protein: "8.4 g",
@@ -2777,7 +2776,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "389 kcal",
   "protein": "8.6 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "White basmati rice",
@@ -2816,10 +2815,10 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Put the dry rice, oats, cinnamon and all the measured water in a small covered pan. Bring to a simmer and cook gently for 25–30 minutes, stirring regularly, until the rice and oats are fully tender. Stir across the bottom and into the corners of the pan as it thickens. The cereal should be soft and creamy, with no dry or gritty pieces; reduce the heat if it spits.",
-  "Add all the blueberries and sugar and cook for another 3–4 minutes, crushing some berries into the porridge.",
-  "Scatter over all the chopped walnuts and serve the entire bowl. If tracking fluid, measure the finished portion rather than assuming the added water is the fluid allowance."
-],
+      "Put the dry rice, oats, cinnamon and all the measured water in a small covered pan. Bring to a simmer and cook gently for 25–30 minutes, stirring regularly, until the rice and oats are fully tender. Stir across the bottom and into the corners of the pan as it thickens. The cereal should be soft and creamy, with no dry or gritty pieces; reduce the heat if it spits.",
+      "Add all the blueberries and sugar and cook for another 3–4 minutes, crushing some berries into the porridge.",
+      "Scatter over all the chopped walnuts and serve the entire bowl. If tracking fluid, measure the finished portion rather than assuming the added water is the fluid allowance."
+    ],
   "nutrition": {
     "calories": "389 kcal",
     "protein": "8.6 g",
@@ -2860,7 +2859,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "463 kcal",
   "protein": "14.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "equipment": "Kitchen scales, Mixing bowl, Frying pan, Saucepan, Blender or food processor",
   "ingredients": [
     {
       "item": "Unfortified porridge oats",
@@ -2909,10 +2908,10 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Use regular calcium-sulphate tofu, gently drained without pressing. Blend the weighed tofu, oats, rice flour, cinnamon and 50 g of the water into a thick batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Put the blueberries, sugar, lemon juice and remaining 20 g water in a small pan. Simmer for 5 minutes to make a warm topping. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-  "Divide all the oil between three pancakes in a non-stick pan. Cook each over medium-low heat for 4–5 minutes per side until fully cooked and firm in the centre. Serve all three pancakes with all the topping."
-],
+      "Use regular calcium-sulphate tofu, gently drained without pressing. Blend the weighed tofu, oats, rice flour, cinnamon and 50 g of the water into a thick batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes.",
+      "Put the blueberries, sugar, lemon juice and remaining 20 g water in a small pan. Simmer for 5 minutes to make a warm topping. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Divide all the oil between three pancakes in a non-stick pan. Cook each over medium-low heat for 4–5 minutes per side until fully cooked and firm in the centre. Serve all three pancakes with all the topping."
+    ],
   "nutrition": {
     "calories": "463 kcal",
     "protein": "14.5 g",
@@ -2952,7 +2951,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "45 mins",
   "calories": "408 kcal",
   "protein": "23.3 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Saucepan, Steamer and saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Pure vital wheat gluten powder",
@@ -3001,12 +3000,12 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Mix the vital wheat gluten with 35 g of the water into a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Knead for 2 minutes, rest for 5 minutes and flatten to about 1 cm thick. Steam over a separate pan of water for 20–25 minutes until firm and cooked through, retaining the entire dough. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
-  "Cook the rice with the remaining 75 g water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Use peeled potato already boiled without salt and drained; weigh 50 g cooked.",
-  "Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion.",
-  "Dice the steamed seitan and cooked potato. Finely chop the onion and pepper and cook in all the oil for 6–8 minutes. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Add all the seitan, rice and potato and fry for 4–5 minutes until steaming hot. Add the chives and pepper and serve the entire portion."
-],
+      "Mix the vital wheat gluten with 35 g of the water into a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Knead for 2 minutes, rest for 5 minutes and flatten to about 1 cm thick. Steam over a separate pan of water for 20–25 minutes until firm and cooked through, retaining the entire dough.",
+      "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+      "Cook the rice with the remaining 75 g water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Use peeled potato already boiled without salt and drained; weigh 50 g cooked.",
+      "Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion.",
+      "Dice the steamed seitan and cooked potato. Finely chop the onion and pepper and cook in all the oil for 6–8 minutes. Add all the seitan, rice and potato and fry for 4–5 minutes until steaming hot. Add the chives and pepper and serve the entire portion."
+    ],
   "nutrition": {
     "calories": "408 kcal",
     "protein": "23.3 g",
@@ -3045,7 +3044,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "380 kcal",
   "protein": "15.2 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Mixing bowl, Frying pan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Regular tofu, made with calcium sulphate, gently drained",
@@ -3099,10 +3098,10 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Mix the rice flour with 40 g of the water and 5 g of the oil to make a thick batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes. Spread in a non-stick pan and cook for 3–4 minutes per side until fully cooked as one thin flatbread. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Use regular calcium-sulphate tofu, gently drained without pressing, and crumble the weighed portion. Soften chopped onion in the remaining 10 g oil for 4 minutes, then add cumin and turmeric for 30 seconds. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Add chopped tomato, spinach, tofu and remaining 20 g water. Cover and cook for 6–8 minutes until hot and the vegetables are tender. Stir in the parsley and serve all the scramble with the whole flatbread."
-],
+      "Mix the rice flour with 40 g of the water and 5 g of the oil to make a thick batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes. Spread in a non-stick pan and cook for 3–4 minutes per side until fully cooked as one thin flatbread.",
+      "Use regular calcium-sulphate tofu, gently drained without pressing, and crumble the weighed portion. Soften chopped onion in the remaining 10 g oil for 4 minutes, then add cumin and turmeric for 30 seconds. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add chopped tomato, spinach, tofu and remaining 20 g water. Cover and cook for 6–8 minutes until hot and the vegetables are tender. Stir in the parsley and serve all the scramble with the whole flatbread."
+    ],
   "nutrition": {
     "calories": "380 kcal",
     "protein": "15.2 g",
@@ -3142,7 +3141,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "453 kcal",
   "protein": "12.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan",
   "ingredients": [
     {
       "item": "Navy beans, boiled without salt and drained",
@@ -3191,10 +3190,10 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Bring 150 g of the water to a simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Whisk in the cornmeal and cook gently for 20–25 minutes until tender, stirring frequently. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Finely chop the tomato and pepper and cook in the oil for 6–8 minutes. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Add the cooked, drained navy beans and remaining 20 g water and simmer for 4 minutes.",
-  "Stir in the basil and pepper. Serve all the polenta with all the beans, vegetables, juices and chopped walnuts."
-],
+      "Bring 150 g of the water to a simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Whisk in the cornmeal and cook gently for 20–25 minutes until tender, stirring frequently.",
+      "Finely chop the tomato and pepper and cook in the oil for 6–8 minutes. Add the cooked, drained navy beans and remaining 20 g water and simmer for 4 minutes.",
+      "Stir in the basil and pepper. Serve all the polenta with all the beans, vegetables, juices and chopped walnuts."
+    ],
   "nutrition": {
     "calories": "453 kcal",
     "protein": "12.5 g",
@@ -3234,7 +3233,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "40 mins",
   "calories": "482 kcal",
   "protein": "13.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Mixing bowl, Frying pan, Grater, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Dried split red lentils",
@@ -3293,10 +3292,10 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Rinse the dry lentils and cook with 90 g of the water in a covered pan for 15–20 minutes until very soft, retaining any liquid. Cool until just warm.",
-  "Mix the rice flour and remaining 60 g water with the lentils. Add finely grated carrot, finely shredded cabbage and onion, cumin, chopped coriander and chopped peanuts. Rest for 5 minutes. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Divide all the oil between four thin fritters in a non-stick pan. Cook over medium-low heat for 5–6 minutes per side until fully cooked and the vegetables are tender. Serve all four with all the lemon juice."
-],
+      "Rinse the dry lentils and cook with 90 g of the water in a covered pan for 15–20 minutes until very soft, retaining any liquid. Cool until just warm.",
+      "Mix the rice flour and remaining 60 g water with the lentils. Add finely grated carrot, finely shredded cabbage and onion, cumin, chopped coriander and chopped peanuts. Rest for 5 minutes.",
+      "Divide all the oil between four thin fritters in a non-stick pan. Cook over medium-low heat for 5–6 minutes per side until fully cooked and the vegetables are tender. Serve all four with all the lemon juice."
+    ],
   "nutrition": {
     "calories": "482 kcal",
     "protein": "13.7 g",
@@ -3336,7 +3335,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "45 mins",
   "calories": "432 kcal",
   "protein": "26.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Steamer and saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Pure vital wheat gluten powder",
@@ -3395,12 +3394,12 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Mix the vital wheat gluten with 35 g water, knead for 2 minutes and rest for 5 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and cooked throughout. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Retain the entire seitan portion.",
-  "Mix the plain flour with 20 g water into a dough. Knead briefly, cover and rest for 10 minutes. Roll between non-stick sheets without extra flour and dry-cook for 2–3 minutes per side until fully cooked.",
-  "Dice the steamed seitan. Cook shredded cabbage and carrot in all the oil with the cumin and remaining 45 g water for 8–10 minutes. Add the cooked, drained navy beans and seitan and heat through.",
-  "Stir in lemon juice, parsley and pepper. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Put all the filling and juices in the whole flatbread, fold and serve."
-],
+      "Mix the vital wheat gluten with 35 g water, knead for 2 minutes and rest for 5 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and cooked throughout.",
+      "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Retain the entire seitan portion.",
+      "Mix the plain flour with 20 g water into a dough. Knead briefly, cover and rest for 10 minutes. Roll between non-stick sheets without extra flour and dry-cook for 2–3 minutes per side until fully cooked.",
+      "Dice the steamed seitan. Cook shredded cabbage and carrot in all the oil with the cumin and remaining 45 g water for 8–10 minutes. Add the cooked, drained navy beans and seitan and heat through.",
+      "Stir in lemon juice, parsley and pepper. Put all the filling and juices in the whole flatbread, fold and serve."
+    ],
   "nutrition": {
     "calories": "432 kcal",
     "protein": "26.7 g",
@@ -3441,7 +3440,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "424 kcal",
   "protein": "25.1 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Mixing bowl, Fork or whisk, Grill",
   "ingredients": [
     {
       "item": "Whole egg, shell removed",
@@ -3485,11 +3484,11 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Heat half the oil in a small ovenproof pan. Add chopped tomato and spinach and cook for 3 minutes. Heat the grill to medium. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Beat the weighed whole egg and egg white with chives and pepper. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Pour over the vegetables and scatter over all the feta. Drizzle with the remaining oil.",
-  "Cook gently for 4–5 minutes, then grill for 3–4 minutes until fully set and steaming hot in the centre. Serve the whole omelette.",
-  "Use vegetarian-rennet cheese for the vegetarian version specified here."
-],
+      "Heat half the oil in a small ovenproof pan. Add chopped tomato and spinach and cook for 3 minutes. Heat the grill to medium.",
+      "Beat the weighed whole egg and egg white with chives and pepper. Pour over the vegetables and scatter over all the feta. Drizzle with the remaining oil.",
+      "Cook gently for 4–5 minutes, then grill for 3–4 minutes until fully set and steaming hot in the centre. Serve the whole omelette.",
+      "Use vegetarian-rennet cheese for the vegetarian version specified here."
+    ],
   "nutrition": {
     "calories": "424 kcal",
     "protein": "25.1 g",
@@ -3529,7 +3528,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "395 kcal",
   "protein": "27.0 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Mixing bowl, Fork or whisk, Oven, Ovenproof dish",
   "ingredients": [
     {
       "item": "Whole egg, shell removed",
@@ -3553,10 +3552,10 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Heat the oven to 180°C, or 160°C fan. Grease a small baking dish with 5 g of the butter and add the salmon in small pieces.",
-  "Beat the weighed egg and measured water and pour over. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Dot with the remaining 10 g butter.",
-  "Bake for 20–25 minutes until the egg is fully set and the salmon is opaque and steaming hot. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the entire cup and edible juices."
-],
+      "Heat the oven to 180°C, or 160°C fan. Grease a small baking dish with 5 g of the butter and add the salmon in small pieces.",
+      "Beat the weighed egg and measured water and pour over. Dot with the remaining 10 g butter.",
+      "Bake for 20–25 minutes until the egg is fully set and the salmon is opaque and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the entire cup and edible juices."
+    ],
   "nutrition": {
     "calories": "395 kcal",
     "protein": "27.0 g",
@@ -3595,7 +3594,7 @@ export const breakfasts: Recipe[] = [
   "cookingTime": "50 mins",
   "calories": "766 kcal",
   "protein": "44.6 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Steamer and saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Pure vital wheat gluten powder",
@@ -3659,12 +3658,12 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-  "Mix the vital wheat gluten with 50 g water, knead for 2 minutes and rest for 5 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
-  "Simmer the brown rice in 80 g water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender, keeping any liquid.",
-  "Dice the seitan. Cook chopped onion and pepper in all the oil for 8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the cooked, drained navy beans and all the seitan and heat through.",
-  "Fold in all the rice, chopped walnuts, parsley, lemon juice and pepper. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains. Serve the entire bowl and edible juices."
-],
+      "Mix the vital wheat gluten with 50 g water, knead for 2 minutes and rest for 5 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked.",
+      "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+      "Simmer the brown rice in 80 g water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender, keeping any liquid.",
+      "Dice the seitan. Cook chopped onion and pepper in all the oil for 8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the cooked, drained navy beans and all the seitan and heat through.",
+      "Fold in all the rice, chopped walnuts, parsley, lemon juice and pepper. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Serve the entire bowl and edible juices."
+    ],
   "nutrition": {
     "calories": "766 kcal",
     "protein": "44.6 g",

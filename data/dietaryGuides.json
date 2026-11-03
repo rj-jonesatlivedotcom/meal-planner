@@ -1,6 +1,6 @@
 {
   "scrambled-egg-tomato-toast": {
-    "fingerprint": "2635f71d",
+    "fingerprint": "f585b332",
     "text": "About this meal: Using extra egg whites strengthens the protein content without needing another yolk, which brings considerably more phosphate. That is a useful compromise when protein and phosphate both need attention.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -17,7 +17,7 @@
     ]
   },
   "apple-honey-porridge": {
-    "fingerprint": "9233c047",
+    "fingerprint": "1afbe72d",
     "text": "About this meal: The useful balance here is between the oats' fibre and the milk's contribution to protein, potassium and phosphate. If phosphate needs managing, do not automatically remove the oats: plant phosphate is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -34,7 +34,7 @@
     ]
   },
   "egg-tomato-onion-toast": {
-    "fingerprint": "61f6db39",
+    "fingerprint": "384e7900",
     "text": "About this meal: The extra whites make it possible to keep a modest whole-egg portion while retaining useful protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -50,7 +50,7 @@
     ]
   },
   "egg-white-chive-toast": {
-    "fingerprint": "9d40cb87",
+    "fingerprint": "325d1431",
     "text": "About this meal: Egg whites supply protein with much less phosphorus than yolks. This toast uses whites alone, so adding a yolk would change that balance.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -67,7 +67,7 @@
     ]
   },
   "egg-pepper-onion-toast": {
-    "fingerprint": "5ca3f179",
+    "fingerprint": "7d4aa7c2",
     "text": "About this meal: The pepper and onion give the scramble flavour and substance without needing a salty sauce. Extra whites support protein while keeping the number of yolks down.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -83,7 +83,7 @@
     ]
   },
   "cinnamon-french-toast-with-jam": {
-    "fingerprint": "40fc531b",
+    "fingerprint": "59176cd4",
     "text": "About this meal: The egg-and-milk coating contributes protein as well as texture. The jam adds sugar, so it is part of the carbohydrate portion if you count carbohydrates.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -98,7 +98,7 @@
     ]
   },
   "egg-tomato-onion-buttered-toast": {
-    "fingerprint": "b348f292",
+    "fingerprint": "789856f2",
     "text": "About this meal: Softening the vegetables brings sweetness and flavour without needing ketchup or a stock-based seasoning. That helps preserve the simple salt profile of the filling, although the bread still matters.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -112,7 +112,7 @@
     ]
   },
   "jam-butter-breakfast-toast": {
-    "fingerprint": "da5eff94",
+    "fingerprint": "1714d37",
     "text": "About this meal: This toast has little protein. If breakfast needs to provide more of your protein target, increasing the marmalade or butter will not address that.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -126,7 +126,7 @@
     ]
   },
   "savoury-oats-egg-tomato-pepper": {
-    "fingerprint": "eb789a51",
+    "fingerprint": "cce78fd8",
     "text": "About this meal: Combining oats with the egg mixture gives this breakfast both fibre and protein, so there is more nutritional value here than its mineral totals alone suggest. If phosphate is restricted, the extra whites are a useful way to support protein without more yolks.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -143,7 +143,7 @@
     ]
   },
   "apple-honey-french-toast": {
-    "fingerprint": "3b2a94ec",
+    "fingerprint": "d5fe1dcd",
     "text": "About this meal: The warm apple brings sweetness and texture, so increasing the honey is not the only way to make this satisfying. The egg and milk also give the breakfast useful protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -157,7 +157,7 @@
     ]
   },
   "blueberry-apple-toast": {
-    "fingerprint": "7ee55d93",
+    "fingerprint": "3cdc68ef",
     "text": "About this meal: Cream cheese gives the toast a creamy topping, but is not a concentrated protein source. If you need more protein at breakfast, extra spread is not the most effective way to add it.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -172,7 +172,7 @@
     ]
   },
   "cinnamon-apple-toast": {
-    "fingerprint": "1ec2f692",
+    "fingerprint": "4dc8e0a9",
     "text": "About this meal: Cinnamon and softened apple give this toast sweetness without needing a larger honey topping.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -184,7 +184,7 @@
     "guidanceReferences": []
   },
   "strawberry-cream-cheese-toast": {
-    "fingerprint": "9df358f6",
+    "fingerprint": "6e3861f4",
     "text": "About this meal: Strawberries give this toast sweetness and texture. Cream cheese adds richness, but a thicker spread is not an effective way to turn it into a protein-rich breakfast.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -199,7 +199,7 @@
     ]
   },
   "egg-pepper-breakfast-wrap": {
-    "fingerprint": "59c71f73",
+    "fingerprint": "28a0cde0",
     "text": "About this meal: The extra whites improve the protein balance without needing more yolk or a large cheese filling. The tortilla and spread deserve attention if salt or phosphate additives are restricted; a fresh vegetable filling does not tell you everything about the finished wrap.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -216,7 +216,7 @@
     ]
   },
   "apple-cinnamon-pancakes": {
-    "fingerprint": "1bb0493b",
+    "fingerprint": "323b3f3f",
     "text": "About this meal: The extra whites make these pancakes a more useful protein breakfast than their sweet appearance might suggest. Apple and cinnamon provide flavour, so extra syrup is optional rather than essential.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -231,7 +231,7 @@
     ]
   },
   "blueberry-yoghurt-toast": {
-    "fingerprint": "775d7543",
+    "fingerprint": "c120203d",
     "text": "About this meal: The yoghurt supplies protein as well as creaminess. A dairy-free yoghurt is not necessarily a similar protein source; compare its protein content and check for phosphate additives if choosing an alternative.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -247,7 +247,7 @@
     ]
   },
   "egg-chive-muffin": {
-    "fingerprint": "190f3346",
+    "fingerprint": "4b78dd9e",
     "text": "About this meal: The extra egg whites add protein without another yolk. This keeps the filling from relying on a larger cream-cheese portion for protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -263,7 +263,7 @@
     ]
   },
   "strawberry-maple-pancakes": {
-    "fingerprint": "60c4cc3a",
+    "fingerprint": "7bb1af6",
     "text": "About this meal: Egg whites add protein to the pancake batter without extra yolks. The strawberries give the topping flavour without needing more maple syrup.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -279,7 +279,7 @@
     ]
   },
   "apple-cream-cheese-bagel": {
-    "fingerprint": "c444196e",
+    "fingerprint": "c6723af4",
     "text": "About this meal: The bagel is a substantial bread portion even though its topping is light. If you count carbohydrates, include the bagel and honey together.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -295,7 +295,7 @@
     ]
   },
   "egg-apple-breakfast-wrap": {
-    "fingerprint": "5892f3a5",
+    "fingerprint": "18191963",
     "text": "About this meal: The apple and cinnamon supply sweetness without a syrup topping, while extra whites strengthen the protein content. The salt consideration comes from the assembled wrap, not just the egg filling, so compare tortillas and spreads before reaching for a seasoning sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -311,7 +311,7 @@
     ]
   },
   "scrambled-egg-mushroom-toast": {
-    "fingerprint": "be83a580",
+    "fingerprint": "304103f8",
     "text": "About this meal: Mushrooms give the eggs a savoury flavour without needing a salty bottled sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -325,7 +325,7 @@
     ]
   },
   "cornflakes-toast-jam": {
-    "fingerprint": "6213708e",
+    "fingerprint": "64e4dc44",
     "text": "About this meal: This breakfast includes both cereal and toast. If you count carbohydrates, include both rather than treating the toast as an incidental extra.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -341,7 +341,7 @@
     ]
   },
   "egg-onion-pepper-wrap": {
-    "fingerprint": "458b860c",
+    "fingerprint": "4542c073",
     "text": "About this meal: The vegetables give this wrap flavour without needing processed meat or a cheese-heavy filling. The tortilla is still an important product choice: some contain phosphate-based raising agents, and salt varies between brands.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -356,7 +356,7 @@
     ]
   },
   "boiled-egg-soldiers": {
-    "fingerprint": "8756373",
+    "fingerprint": "fbe0cb75",
     "text": "About this meal: A simple egg breakfast can be useful when you want protein without a processed-meat filling. The yolk still contributes phosphate, while the bread contributes salt, so neither consideration disappears just because the recipe is short.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -373,7 +373,7 @@
     ]
   },
   "blueberry-cream-cheese-toast": {
-    "fingerprint": "e6537655",
+    "fingerprint": "673dc202",
     "text": "About this meal: Cream cheese supplies richness rather than a concentrated protein portion. Increasing the spread is not an effective way to meet a higher breakfast protein target.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -388,7 +388,7 @@
     ]
   },
   "mushroom-egg-muffin": {
-    "fingerprint": "99711091",
+    "fingerprint": "1803606b",
     "text": "About this meal: The mushrooms supply savoury flavour while the extra whites add protein without another yolk.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -404,7 +404,7 @@
     ]
   },
   "strawberry-apple-french-toast": {
-    "fingerprint": "8530f95b",
+    "fingerprint": "bd979c47",
     "text": "About this meal: The fruit topping brings fibre and variety, while the egg coating contributes protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -418,7 +418,7 @@
     ]
   },
   "apple-yoghurt-toast": {
-    "fingerprint": "9672abda",
+    "fingerprint": "7831e427",
     "text": "About this meal: The yoghurt contributes protein as well as potassium and phosphorus. If choosing a dairy-free alternative, compare protein and check for phosphate additives rather than relying on the dairy-free label.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -434,7 +434,7 @@
     ]
   },
   "egg-tomato-muffin": {
-    "fingerprint": "59f5894c",
+    "fingerprint": "360da33e",
     "text": "About this meal: The extra whites make this a useful protein filling without relying on cheese or bacon. The tomato supplies moisture, so a salty finishing sauce is not needed for the muffin to feel complete.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -449,7 +449,7 @@
     ]
   },
   "blueberry-apple-pancakes": {
-    "fingerprint": "bab7c821",
+    "fingerprint": "3bad6649",
     "text": "About this meal: The fruit topping gives these pancakes sweetness and texture, so extra syrup is not the only way to add flavour.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -461,7 +461,7 @@
     "guidanceReferences": []
   },
   "danish-bacon-egg-muffin": {
-    "fingerprint": "59c98c40",
+    "fingerprint": "5adab3e4",
     "text": "About this meal: Bacon is a cured product: compare salt on the label and, if phosphate is restricted, look for phosphate additives in the ingredients. The egg already provides a protein filling.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -476,7 +476,7 @@
     ]
   },
   "jam-pancakes": {
-    "fingerprint": "51e18ccf",
+    "fingerprint": "bf95eff8",
     "text": "About this meal: The extra whites add protein without extra yolks. The jam is a sweet topping rather than a protein addition.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -492,7 +492,7 @@
     ]
   },
   "egg-tomato-pepper-toast": {
-    "fingerprint": "9311320e",
+    "fingerprint": "856aff06",
     "text": "About this meal: The vegetables bring moisture and flavour to the scramble, while whites support protein without another yolk. That makes extra cheese unnecessary for a satisfying filling.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -508,7 +508,7 @@
     ]
   },
   "strawberry-apple-pancakes": {
-    "fingerprint": "5c7fc925",
+    "fingerprint": "ec049825",
     "text": "About this meal: The fruit gives the pancakes sweetness and texture without needing more syrup. It also adds fibre that syrup does not provide.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -522,7 +522,7 @@
     ]
   },
   "boiled-egg-chive-cream-cheese-toast": {
-    "fingerprint": "1538b961",
+    "fingerprint": "65d241bd",
     "text": "About this meal: Cream cheese adds richness, but adding a spread does not remove the phosphate contribution from the egg yolk. If you need more protein while watching phosphate, more spread is not necessarily the most useful change.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -540,7 +540,7 @@
     ]
   },
   "danish-bacon-tomato-toast": {
-    "fingerprint": "e75e8e7f",
+    "fingerprint": "3c8787bd",
     "text": "About this meal: Check the bacon label for salt and phosphate additives. A thin slice of cured meat can still bring seasoning and additives into an otherwise simple toast breakfast.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -555,7 +555,7 @@
     ]
   },
   "egg-pepper-muffin": {
-    "fingerprint": "da59ca4",
+    "fingerprint": "5578efc3",
     "text": "About this meal: The extra whites make the filling more useful for protein without requiring cheese or another yolk. Pepper adds sweetness and texture, so the meal does not depend on ketchup or a processed-meat topping for flavour.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -571,7 +571,7 @@
     ]
   },
   "egg-white-herb-muffin": {
-    "fingerprint": "c46ae582",
+    "fingerprint": "e9b4b5d",
     "text": "About this meal: Using whites without yolks provides egg protein with much less phosphorus from the egg. The muffin and butter still have a separate role in providing energy.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -588,7 +588,7 @@
     ]
   },
   "egg-tomato-onion-wrap": {
-    "fingerprint": "bd2139c7",
+    "fingerprint": "a1d6791d",
     "text": "About this meal: The spread gives this wrap creaminess, while tomato supplies moisture and onion gives flavour. You do not need bacon or a finishing sauce to make the filling work.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -601,7 +601,7 @@
     "guidanceReferences": []
   },
   "apple-blueberry-french-toast": {
-    "fingerprint": "59ef8a9a",
+    "fingerprint": "a1c4e7d6",
     "text": "About this meal: Fruit supplies much of the topping’s flavour, so extra syrup is optional. The egg-and-milk coating also contributes protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -615,7 +615,7 @@
     ]
   },
   "three-egg-plain-omelette": {
-    "fingerprint": "4ec92128",
+    "fingerprint": "83d6ba5",
     "text": "About this meal: A plain omelette avoids the extra salt and phosphate that cheese or cured meat can add, but the egg yolks still contribute phosphate. If you need protein while limiting phosphate, using some whites in place of whole eggs may be worth discussing.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -632,7 +632,7 @@
     ]
   },
   "three-egg-cheese-omelette": {
-    "fingerprint": "4a72a066",
+    "fingerprint": "9267331d",
     "text": "About this meal: Cheddar adds phosphorus and salt as well as flavour. If phosphate is restricted, the cheese topping is one part you can review without removing all the egg protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -647,7 +647,7 @@
     ]
   },
   "three-egg-mushroom-omelette": {
-    "fingerprint": "6f23964",
+    "fingerprint": "3b5cf448",
     "text": "About this meal: Mushrooms give the omelette savoury flavour without a ham or cheese filling. The egg yolks still contribute phosphorus.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -663,7 +663,7 @@
     ]
   },
   "three-egg-ham-omelette": {
-    "fingerprint": "c35369b5",
+    "fingerprint": "49ebebe",
     "text": "About this meal: Ham supplies extra flavour and protein, but also brings the salt and possible additives of a cured product. If salt is restricted, the plain or herb-filled omelette offers a useful comparison before changing the eggs themselves.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -692,7 +692,7 @@
     ]
   },
   "apple-cinnamon-overnight-oats": {
-    "fingerprint": "c07b31b8",
+    "fingerprint": "84a2e76d",
     "text": "About this meal: Cinnamon helps flavour the apple without a larger honey topping. Oats also bring fibre that a sweet spread alone would not provide.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -751,7 +751,7 @@
     ]
   },
   "weetabix-and-milk": {
-    "fingerprint": "7d6cbac",
+    "fingerprint": "91aa2b55",
     "text": "About this meal: Wheat biscuits contribute wholegrain fibre. Changing to a refined cereal to manage a mineral restriction also changes that fibre contribution.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -781,7 +781,7 @@
     ]
   },
   "blueberry-oat-and-tofu-pancakes": {
-    "fingerprint": "955a273f",
+    "fingerprint": "957dc94d",
     "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -795,7 +795,7 @@
     ]
   },
   "seitan-pepper-and-breakfast-rice-hash": {
-    "fingerprint": "f653f3cb",
+    "fingerprint": "e80fa507",
     "text": "Ingredient considerations: The seitan is made from vital wheat gluten, a concentrated wheat protein. Ordinary flour will not make the same protein-rich dough; use the gluten powder specified rather than substituting flour.\n\nPotassium: The potato weight is for potatoes already boiled and drained. Discarding boiling water can remove some potassium; starting with the same weight of raw potato and cooking it in the dish does not provide the same preparation.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -810,7 +810,7 @@
     ]
   },
   "spiced-tofu-scramble-with-rice-flatbread": {
-    "fingerprint": "c61c5735",
+    "fingerprint": "a36ec48b",
     "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -824,8 +824,8 @@
     ]
   },
   "white-bean-and-basil-breakfast-polenta": {
-    "fingerprint": "8dfd5b27",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "90b83d03",
+    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -838,8 +838,8 @@
     ]
   },
   "lentil-and-groundnut-breakfast-fritters": {
-    "fingerprint": "758d4f71",
-    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "49ada615",
+    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -852,8 +852,8 @@
     ]
   },
   "seitan-and-white-bean-breakfast-wrap": {
-    "fingerprint": "337a33e5",
-    "text": "Ingredient considerations: The seitan is made from vital wheat gluten, a concentrated wheat protein. Ordinary flour will not make the same protein-rich dough; use the gluten powder specified rather than substituting flour.\n\nPhosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "efe70c0f",
+    "text": "Ingredient considerations: The seitan is made from vital wheat gluten, a concentrated wheat protein. Ordinary flour will not make the same protein-rich dough; use the gluten powder specified rather than substituting flour.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -867,7 +867,7 @@
     ]
   },
   "feta-and-spinach-breakfast-omelette": {
-    "fingerprint": "dc610a15",
+    "fingerprint": "7373daf7",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -882,7 +882,7 @@
     ]
   },
   "salmon-and-egg-breakfast-cup": {
-    "fingerprint": "664e8ca3",
+    "fingerprint": "2765ea07",
     "text": "Fibre: This version has no plant accompaniment. If you want wholegrain or vegetable fibre with it, add a separately planned side rather than increasing the meat, fish or egg portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -896,8 +896,8 @@
     ]
   },
   "bean-and-seitan-brunch-rice-bowl": {
-    "fingerprint": "a34dd3b3",
-    "text": "Ingredient considerations: The seitan is made from vital wheat gluten, a concentrated wheat protein. Ordinary flour will not make the same protein-rich dough; use the gluten powder specified rather than substituting flour.\n\nPhosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "a428bc17",
+    "text": "Ingredient considerations: The seitan is made from vital wheat gluten, a concentrated wheat protein. Ordinary flour will not make the same protein-rich dough; use the gluten powder specified rather than substituting flour.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -911,7 +911,7 @@
     ]
   },
   "chicken-lettuce-sandwich": {
-    "fingerprint": "24768cf3",
+    "fingerprint": "99b60790",
     "text": "About this meal: Cooking plain chicken yourself gives you control over seasoning and avoids assuming that a deli or pre-seasoned chicken product has the same salt and additives. The mayonnaise helps the sandwich provide energy, which can be useful if appetite is limited; it is not the main protein contribution.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -942,7 +942,7 @@
     ]
   },
   "tuna-lettuce-sandwich": {
-    "fingerprint": "c071fd22",
+    "fingerprint": "4b484e3a",
     "text": "About this meal: The main trade-off is that the tuna supplies useful protein while its brine can bring salt. Draining is important, but it does not make brined tuna salt-free.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -956,7 +956,7 @@
     ]
   },
   "chicken-cucumber-sandwich": {
-    "fingerprint": "689c7e3b",
+    "fingerprint": "ec7b13da",
     "text": "About this meal: Cucumber keeps the sandwich moist, so increasing the spread is not the only way to make it easier to eat. That can be useful if you need to manage salt, while someone struggling to eat enough may value the spread's energy.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -970,7 +970,7 @@
     ]
   },
   "egg-mayo-sandwich": {
-    "fingerprint": "5f997902",
+    "fingerprint": "c5a3b8d2",
     "text": "About this meal: The mayonnaise makes this a richer, more energy-dense sandwich, which may help when you have a poor appetite. It does not add protein in the same way as the egg filling.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -984,7 +984,7 @@
     ]
   },
   "chicken-red-pepper-sandwich": {
-    "fingerprint": "cc030878",
+    "fingerprint": "68a5fa8f",
     "text": "About this meal: Pepper gives sweetness and crunch without needing a bottled sauce to make the chicken filling interesting. That is useful when salt is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -998,7 +998,7 @@
     ]
   },
   "ham-lettuce-sandwich": {
-    "fingerprint": "c368fdbd",
+    "fingerprint": "9b7de8c1",
     "text": "About this meal: The egg filling supplies protein, while its yolks contribute phosphorus. If phosphate needs limiting, replacing some whole egg with whites can retain egg protein with less phosphorus.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1015,7 +1015,7 @@
     ]
   },
   "chicken-cream-cheese-sandwich": {
-    "fingerprint": "5292e7",
+    "fingerprint": "69688622",
     "text": "About this meal: Cream cheese makes the chicken filling creamy. Extra spread is not the most effective way to add more protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1030,7 +1030,7 @@
     ]
   },
   "chicken-lettuce-wrap": {
-    "fingerprint": "b6514391",
+    "fingerprint": "43dba6e7",
     "text": "About this meal: A fresh chicken filling gives you control over seasoning, but putting it in a tortilla does not automatically make the meal lower in salt or phosphate than a sandwich. The wrap's label matters, including any phosphate-based raising agents.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1045,7 +1045,7 @@
     ]
   },
   "tuna-mayo-wrap": {
-    "fingerprint": "b424d126",
+    "fingerprint": "d403e745",
     "text": "About this meal: The tuna and tortilla each deserve attention when salt is restricted; a wrap is not automatically a lighter-salt alternative to bread. Compare the tuna's packing liquid and the tortilla label, rather than trying to solve the issue only by removing mayonnaise.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1059,7 +1059,7 @@
     ]
   },
   "egg-chive-wrap": {
-    "fingerprint": "574ca093",
+    "fingerprint": "bd9296cb",
     "text": "About this meal: Chives give the egg filling a stronger savoury flavour without relying on cheese or processed meat. That helps keep those extra phosphate and salt sources out of the meal.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1074,7 +1074,7 @@
     ]
   },
   "chicken-cucumber-wrap": {
-    "fingerprint": "14964454",
+    "fingerprint": "367d4b28",
     "text": "About this meal: The cucumber gives the filling freshness and moisture, while the chicken supplies protein. If salt is restricted, keep those useful roles and examine the tortilla and mayonnaise labels before making the whole filling smaller.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1088,7 +1088,7 @@
     ]
   },
   "chicken-pepper-pasta": {
-    "fingerprint": "6d8f3646",
+    "fingerprint": "bb82edf6",
     "text": "About this meal: The chicken supplies protein while the pasta helps meet energy needs, so the meal does not need a larger meat portion simply to feel substantial. Pepper and onion provide flavour without a cheese sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1102,7 +1102,7 @@
     ]
   },
   "creamy-chicken-pasta": {
-    "fingerprint": "c2e2588c",
+    "fingerprint": "c9931e96",
     "text": "About this meal: The spread makes a sauce, so a creamy texture does not require adding grated cheese as well. If phosphate is restricted, avoid layering several dairy additions onto a meal that already includes chicken and a dairy spread.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1117,7 +1117,7 @@
     ]
   },
   "tuna-pepper-pasta": {
-    "fingerprint": "8f7b8382",
+    "fingerprint": "8e7b9939",
     "text": "About this meal: Cream cheese makes the pasta sauce creamy without a hard-cheese topping. If phosphate is restricted, adding grated cheese would introduce another phosphorus source.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1131,7 +1131,7 @@
     ]
   },
   "egg-cream-cheese-pasta": {
-    "fingerprint": "814d70d2",
+    "fingerprint": "3c6c8799",
     "text": "About this meal: Eggs and cream cheese bring phosphate together in the same meal, even though it is meat-free. If phosphate needs reducing, the sauce is worth reviewing before cutting away a protein food you may need.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1147,7 +1147,7 @@
     ]
   },
   "chicken-onion-pasta": {
-    "fingerprint": "ab01d841",
+    "fingerprint": "5931bf21",
     "text": "About this meal: The chicken and creamy sauce serve different purposes: one supports protein intake, while the sauce and oil help the meal provide energy and go down easily. That can be useful with a small appetite.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1162,7 +1162,7 @@
     ]
   },
   "chicken-mushroom-pasta": {
-    "fingerprint": "ddbf833c",
+    "fingerprint": "1517bc82",
     "text": "About this meal: Mushrooms provide a savoury depth that can make a stock cube or packet sauce unnecessary. That is helpful when salt is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1177,7 +1177,7 @@
     ]
   },
   "tuna-cream-cheese-pasta": {
-    "fingerprint": "ac053649",
+    "fingerprint": "9be91350",
     "text": "About this meal: Mushrooms give the chicken pasta a savoury flavour without needing a stock cube or packet sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1190,7 +1190,7 @@
     "guidanceReferences": []
   },
   "chicken-fried-rice": {
-    "fingerprint": "425c9fec",
+    "fingerprint": "d9c8127e",
     "text": "About this meal: The rice supplies energy while chicken and egg share the protein role, so this is not simply a bowl of rice with a little garnish. The main avoidable change for a salt restriction is adding soy sauce or stock by habit.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1204,7 +1204,7 @@
     ]
   },
   "egg-pepper-rice-bowl": {
-    "fingerprint": "9b22ed0c",
+    "fingerprint": "9465aa66",
     "text": "About this meal: This is an egg-led meal with a meaningful yolk contribution, not just rice with a token egg stirred through it. If phosphate is restricted but protein remains important, a partly egg-white version may be worth discussing rather than removing all the egg.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1221,7 +1221,7 @@
     ]
   },
   "chicken-onion-rice-bowl": {
-    "fingerprint": "e00f1555",
+    "fingerprint": "666aa66b",
     "text": "About this meal: Egg yolks contribute phosphorus as well as protein. If phosphate needs limiting, replacing some whole egg with whites can retain egg protein with less phosphorus.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1237,7 +1237,7 @@
     ]
   },
   "tuna-egg-rice-bowl": {
-    "fingerprint": "b9789a26",
+    "fingerprint": "60a9ec61",
     "text": "About this meal: Using both tuna and egg makes this a more concentrated protein choice than a simple vegetable rice bowl. That may help when protein needs are higher, but it is not automatically better for every kidney plan.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1251,7 +1251,7 @@
     ]
   },
   "chicken-noodle-bowl": {
-    "fingerprint": "5b7a7933",
+    "fingerprint": "49416ba6",
     "text": "About this meal: Tuna and egg both contribute protein. Increasing the rice and increasing the filling serve different purposes if you are adjusting the meal towards a personal protein target.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1265,7 +1265,7 @@
     ]
   },
   "chicken-jacket-potato": {
-    "fingerprint": "b4416851",
+    "fingerprint": "8addc887",
     "text": "About this meal: The jacket potato is the main practical consideration if you need to restrict potassium. Microwaving and crisping do not remove potassium through discarded cooking water, so this is different from a peeled, boiled-and-drained potato dish.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1280,7 +1280,7 @@
     ]
   },
   "tuna-jacket-potato": {
-    "fingerprint": "30372b9e",
+    "fingerprint": "f5f202e",
     "text": "About this meal: The jacket potato is microwaved and crisped, not boiled in water that is discarded. Do not rely on that method to remove potassium if you have been advised to limit it.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1294,7 +1294,7 @@
     ]
   },
   "egg-mayo-jacket-potato": {
-    "fingerprint": "faa1425f",
+    "fingerprint": "de8d2bcf",
     "text": "About this meal: The jacket potato is microwaved and crisped, not boiled in water that is discarded. A meat-free filling does not change that preparation.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1308,7 +1308,7 @@
     ]
   },
   "chicken-potato-hash": {
-    "fingerprint": "ef93e995",
+    "fingerprint": "ccf3d85f",
     "text": "About this meal: The potatoes are boiled and drained before frying. Discarding the water can remove some potassium; frying alone does not provide that step. This is not a guarantee of a low-potassium serving.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1322,7 +1322,7 @@
     ]
   },
   "egg-potato-hash": {
-    "fingerprint": "694f8c61",
+    "fingerprint": "bf80febf",
     "text": "About this meal: The potatoes are boiled and drained before frying. Discard the cooking water rather than reusing it in the dish if you are limiting potassium; boiling does not remove it all.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1336,7 +1336,7 @@
     ]
   },
   "tuna-potato-salad": {
-    "fingerprint": "58f8c560",
+    "fingerprint": "f70cfbf6",
     "text": "About this meal: Boiling the potatoes and discarding the water can remove some potassium. The tuna is packed in brine, so salt is a separate consideration when choosing the tin.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1351,7 +1351,7 @@
     ]
   },
   "chicken-pepper-omelette": {
-    "fingerprint": "aa5c6130",
+    "fingerprint": "e26dacbd",
     "text": "About this meal: Chicken and eggs together make this a substantial protein choice. That can be useful when needs are higher, but it should be intentional rather than assumed to be better for everyone.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1365,7 +1365,7 @@
     ]
   },
   "mushroom-chive-omelette": {
-    "fingerprint": "27fcf2c7",
+    "fingerprint": "821f3b20",
     "text": "About this meal: Mushrooms and chives give the omelette flavour without requiring ham or cheese, avoiding those extra salt and phosphate sources. The yolks still contribute phosphate, and mushrooms add potassium, so the relevant adjustment depends on your restriction.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1383,7 +1383,7 @@
     ]
   },
   "egg-pepper-toast": {
-    "fingerprint": "8cfd4145",
+    "fingerprint": "a947e991",
     "text": "About this meal: Pepper provides sweetness and texture, so the eggs do not need bacon or a salty sauce to make a filling for toast. If phosphate is restricted, the yolks are a more relevant discussion than removing the pepper automatically.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1400,7 +1400,7 @@
     ]
   },
   "chicken-pepper-toastie": {
-    "fingerprint": "f0d1a1fd",
+    "fingerprint": "8536801a",
     "text": "About this meal: Cream cheese helps make the chicken filling creamy. Adding a hard-cheese layer would introduce another phosphorus source if phosphate is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1414,7 +1414,7 @@
     ]
   },
   "tuna-cucumber-toastie": {
-    "fingerprint": "2632bb35",
+    "fingerprint": "fbb04927",
     "text": "About this meal: Toasting makes the sandwich feel different but does not remove the salt associated with brined tuna and bread. If salt is restricted, compare those products and the mayonnaise rather than assuming a hot filling is a better choice.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1428,7 +1428,7 @@
     ]
   },
   "chicken-apple-sandwich": {
-    "fingerprint": "ac5c2fd8",
+    "fingerprint": "86837af4",
     "text": "About this meal: Apple adds sweetness and crunch without needing a sweet bottled dressing. That helps keep the filling interesting while the chicken supplies protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1442,7 +1442,7 @@
     ]
   },
   "egg-cucumber-sandwich": {
-    "fingerprint": "6ef1a04d",
+    "fingerprint": "7b9da77a",
     "text": "About this meal: The cucumber adds moisture, while egg supplies protein and yolks contribute phosphate. If phosphate needs reducing, discuss a partly egg-white filling rather than assuming the whole sandwich needs to be smaller.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1459,7 +1459,7 @@
     ]
   },
   "chicken-cream-cheese-wrap": {
-    "fingerprint": "70fc512a",
+    "fingerprint": "720db2b6",
     "text": "About this meal: Changing mayonnaise to cream cheese changes the filling's nutritional balance rather than making it automatically better for kidneys. The chicken remains the main protein food, while the spread and tortilla need attention for salt and possible phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1475,7 +1475,7 @@
     ]
   },
   "tuna-cream-cheese-wrap": {
-    "fingerprint": "ae179c44",
+    "fingerprint": "7b1aac5c",
     "text": "About this meal: Tuna, tortilla and cream cheese bring several product-dependent sources of salt into the same meal. If salt is restricted, comparing those labels can be more useful than changing the cucumber.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1490,7 +1490,7 @@
     ]
   },
   "chicken-onion-pasta-salad": {
-    "fingerprint": "f9d3269d",
+    "fingerprint": "2cd55b4c",
     "text": "About this meal: The mayonnaise gives the pasta moisture and energy, while chicken supplies protein. That can be helpful when a dry meal is difficult to eat.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1504,7 +1504,7 @@
     ]
   },
   "chicken-leek-couscous-bowl": {
-    "fingerprint": "9a870a83",
+    "fingerprint": "f5c11782",
     "text": "About this meal: Couscous and oil supply energy alongside the chicken. If protein has a specific target, making the chicken portion larger is not the only way to make the bowl more substantial.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1518,7 +1518,7 @@
     ]
   },
   "turkey-cucumber-pitta": {
-    "fingerprint": "370fe5f7",
+    "fingerprint": "683e6238",
     "text": "About this meal: Plain cooked turkey is a different choice from sliced deli turkey, even when both are sold as lean meat. If salt or phosphate additives are restricted, do not assume those products are interchangeable.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1533,7 +1533,7 @@
     ]
   },
   "tuna-sweetcorn-pasta-salad": {
-    "fingerprint": "e8cf7901",
+    "fingerprint": "e2ba312a",
     "text": "About this meal: The tuna gives this salad a substantial protein role; mayonnaise mainly contributes richness and energy. If phosphate is restricted, adding cheese would introduce another source without being necessary to make the salad work.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1548,7 +1548,7 @@
     ]
   },
   "egg-leek-rice-bowl": {
-    "fingerprint": "e088b56e",
+    "fingerprint": "7aa1d581",
     "text": "About this meal: Leek, onion and chives give the rice flavour without relying on a stock cube or soy sauce. That is a useful feature when salt is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1562,7 +1562,7 @@
     ]
   },
   "chicken-carrot-noodle-salad": {
-    "fingerprint": "3d1134db",
+    "fingerprint": "4b8fe465",
     "text": "About this meal: Ginger and lemon provide a dressing without requiring soy sauce, helping you keep control of salt. The rice noodles supply energy while chicken supplies protein; those roles should guide any portion changes.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1576,7 +1576,7 @@
     ]
   },
   "turkey-apple-couscous-salad": {
-    "fingerprint": "5d909da6",
+    "fingerprint": "e7f25027",
     "text": "About this meal: Apple gives the salad sweetness without needing a sweet dressing, while oil helps it provide energy and keeps it moist. That can be useful with a smaller appetite.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1590,7 +1590,7 @@
     ]
   },
   "cod-cucumber-pasta-salad": {
-    "fingerprint": "d18a232f",
+    "fingerprint": "582b0fcd",
     "text": "About this meal: The fish has a substantial protein role, while the pasta and oil help make the meal more than a plate of lean fish. If appetite is limited, that energy contribution can be useful without increasing the fish portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1604,7 +1604,7 @@
     ]
   },
   "chicken-leek-toasted-pitta": {
-    "fingerprint": "fe729ef3",
+    "fingerprint": "43d92c5e",
     "text": "About this meal: Soft leek and mayonnaise help keep the chicken filling moist, which can make the pitta easier to eat without needing more meat. If salt is restricted, compare the pitta and spread before changing the fresh filling.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1618,7 +1618,7 @@
     ]
   },
   "chicken-tikka-naan-style-flatbread": {
-    "fingerprint": "30ee2979",
+    "fingerprint": "d7802f28",
     "text": "Salt and flavour: The tikka seasoning and flatbread are made separately from plain ingredients. A ready-made tikka paste or naan can introduce extra salt, so compare labels if taking that shortcut.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1633,7 +1633,7 @@
     ]
   },
   "spiced-turkey-keema-stuffed-pitta": {
-    "fingerprint": "b001a657",
+    "fingerprint": "dbf88689",
     "text": "Cooking and adaptations: The keema filling already includes peas as well as turkey. If you count carbohydrates, include those peas and the pitta, rather than counting only the bread.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1649,7 +1649,7 @@
     ]
   },
   "bombay-style-cauliflower-and-egg-rolls": {
-    "fingerprint": "98071918",
+    "fingerprint": "7dad987c",
     "text": "Salt and flavour: Cumin, coriander, ginger and lemon give the egg rolls flavour. A ready-made curry seasoning may also contain salt, unlike the separate spices listed here.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1663,7 +1663,7 @@
     ]
   },
   "coconut-chicken-hopper-style-bowl": {
-    "fingerprint": "d750c894",
+    "fingerprint": "320ac5bd",
     "text": "Energy and fats: Coconut milk is used in both the hopper batter and chicken sauce, with coconut oil in the cooking. These add saturated fat; dairy-free does not mean low in saturated fat.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1678,7 +1678,7 @@
     ]
   },
   "chicken-shawarma-with-garlic-flatbread": {
-    "fingerprint": "4b229e7e",
+    "fingerprint": "20717bae",
     "text": "Salt and flavour: The garlic sauce is made from garlic, oil and lemon rather than a bottled dressing. This lets you keep its salt separate from the seasoning in the chicken and flatbread.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1692,7 +1692,7 @@
     ]
   },
   "lamb-kofta-with-herbed-bulgur": {
-    "fingerprint": "4ffd8e99",
+    "fingerprint": "39817dc5",
     "text": "Fibre: Bulgur is a wheat grain that contributes fibre as well as starch. Swapping it for white rice would lose some of that wholegrain fibre.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1706,7 +1706,7 @@
     ]
   },
   "lemon-chicken-souvlaki-with-warm-pitta": {
-    "fingerprint": "c3a151a6",
+    "fingerprint": "63724640",
     "text": "Salt and flavour: Lemon, garlic and oregano flavour the chicken, while cucumber and yoghurt make the accompanying dressing. Extra bottled garlic sauce is not needed to complete those flavours.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1721,7 +1721,7 @@
     ]
   },
   "chermoula-fish-with-couscous": {
-    "fingerprint": "470ad764",
+    "fingerprint": "2c421371",
     "text": "Salt and flavour: The chermoula is made from herbs, lemon and individual spices. A jarred chermoula can contain extra salt; its label matters if you replace the homemade mixture.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1735,7 +1735,7 @@
     ]
   },
   "spiced-egg-and-pepper-shakshuka-with-bread": {
-    "fingerprint": "f8bbeaf7",
+    "fingerprint": "6cc1c91c",
     "text": "Phosphorus: The eggs supply protein and their yolks also supply phosphorus. If phosphate is restricted, using some whites in place of whole eggs can retain egg protein with less phosphorus.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1751,7 +1751,7 @@
     ]
   },
   "pork-and-ginger-steamed-dumplings": {
-    "fingerprint": "35bbbe15",
+    "fingerprint": "a2d8666b",
     "text": "Salt and flavour: Soy sauce appears in both the dumpling filling and the dipping sauce. Portion out the dip rather than topping it up freely: steaming the dumplings does not remove the salt in the filling.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1765,7 +1765,7 @@
     ]
   },
   "chicken-katsu-with-rice-and-cabbage-slaw": {
-    "fingerprint": "f0790340",
+    "fingerprint": "403b439e",
     "text": "Salt and flavour: The katsu sauce is made with tomato purée, vinegar, sugar and soy sauce. Bottled katsu sauce is a different product; compare its salt rather than assuming the same amount is equivalent.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1779,7 +1779,7 @@
     ]
   },
   "bulgogi-style-beef-lettuce-cups": {
-    "fingerprint": "eb414a33",
+    "fingerprint": "13e65a12",
     "text": "Carbohydrates: The rice is not the only carbohydrate here: pear and sugar are also used in the beef marinade. Include the whole serving if you count carbohydrates.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1794,7 +1794,7 @@
     ]
   },
   "lemongrass-chicken-noodle-salad": {
-    "fingerprint": "899e8f3e",
+    "fingerprint": "6f2b1418",
     "text": "Salt and flavour: Fish sauce seasons both the chicken and the dressing. Lime and fresh herbs give extra flavour without needing a larger fish-sauce portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1809,7 +1809,7 @@
     ]
   },
   "banh-mi-inspired-chicken-baguette": {
-    "fingerprint": "e1cadf4b",
+    "fingerprint": "9d3dccac",
     "text": "Salt and flavour: Soy sauce, fish sauce, the salted pickling mixture and the baguette all bring salt into this meal. A fresh vegetable filling does not make the assembled sandwich low in salt.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1824,7 +1824,7 @@
     ]
   },
   "chicken-satay-style-rice-noodle-salad": {
-    "fingerprint": "53489aba",
+    "fingerprint": "18624b1c",
     "text": "Ingredient considerations: This satay-style sauce uses unsalted peanuts and unsweetened tamarind. Sweetened peanut butter or a bottled satay sauce can add salt and sugar that those ingredients do not.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1839,7 +1839,7 @@
     ]
   },
   "chicken-and-pepper-quesadillas": {
-    "fingerprint": "14f7ed0",
+    "fingerprint": "72812a3e",
     "text": "Phosphorus: Cheddar adds phosphorus as well as flavour to a filling that already includes chicken protein. If phosphate is restricted, the cheese layer is a useful part to review.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1854,7 +1854,7 @@
     ]
   },
   "soft-fish-tacos-with-lime-slaw": {
-    "fingerprint": "e02d1bf1",
+    "fingerprint": "27787d5f",
     "text": "Salt and flavour: The slaw gets its dressing from yoghurt and lime. This gives moisture and sharpness without needing an additional bottled taco sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1869,7 +1869,7 @@
     ]
   },
   "jerk-chicken-flatbread": {
-    "fingerprint": "1f6ec3c8",
+    "fingerprint": "a4680b17",
     "text": "Salt and flavour: The jerk flavour comes from allspice, thyme, chilli, ginger and lime. If using a ready-made jerk paste, check its salt before adding the salt listed for the homemade seasoning.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1883,7 +1883,7 @@
     ]
   },
   "suya-spiced-chicken-skewers-with-flatbread": {
-    "fingerprint": "5ca9959",
+    "fingerprint": "90d3e31e",
     "text": "Ingredient considerations: The suya coating uses unsalted peanuts with separate spices. A commercial suya mix may contain salt, so check before adding the recipe’s salt on top.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1897,7 +1897,7 @@
     ]
   },
   "mildly-spiced-chicken-kelewele-inspired-bowl": {
-    "fingerprint": "e98844d8",
+    "fingerprint": "bc426e98",
     "text": "Potassium: Plantain is fried in this version rather than boiled and drained. Frying does not provide the potassium loss from discarded boiling water if you have been advised to limit potassium.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1912,8 +1912,8 @@
     ]
   },
   "white-bean-and-roasted-pepper-bruschetta": {
-    "fingerprint": "fb80c27c",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "2c4756c3",
+    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -1926,7 +1926,7 @@
     ]
   },
   "courgette-and-ricotta-bake-with-garlic-toast": {
-    "fingerprint": "300e99c5",
+    "fingerprint": "ba89d8a7",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1938,7 +1938,7 @@
     "guidanceReferences": []
   },
   "basil-and-walnut-pasta-salad-with-ricotta": {
-    "fingerprint": "fa17f452",
+    "fingerprint": "a0c88ce0",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1950,8 +1950,8 @@
     "guidanceReferences": []
   },
   "white-bean-and-cumin-patties-with-lemon-slaw": {
-    "fingerprint": "638f28eb",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "4a8e0f54",
+    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -1964,8 +1964,8 @@
     ]
   },
   "chickpea-and-carrot-flatbread-with-walnut-dressing": {
-    "fingerprint": "d1511f49",
-    "text": "Phosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "ad5f27bf",
+    "text": "Phosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -1978,7 +1978,7 @@
     ]
   },
   "egg-and-mustard-pasta-salad": {
-    "fingerprint": "de029f37",
+    "fingerprint": "51141ce9",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -1993,7 +1993,7 @@
     ]
   },
   "pepper-and-herb-frittata-with-toasted-bread": {
-    "fingerprint": "5e957177",
+    "fingerprint": "6b26b182",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2008,8 +2008,8 @@
     ]
   },
   "black-bean-and-sweetcorn-cakes-with-lime-slaw": {
-    "fingerprint": "583a07b",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "cc87e6e0",
+    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2022,7 +2022,7 @@
     ]
   },
   "buckwheat-galette-with-mushrooms-and-walnuts": {
-    "fingerprint": "e2a86bcb",
+    "fingerprint": "e31aea19",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2034,8 +2034,8 @@
     "guidanceReferences": []
   },
   "chickpea-and-egg-salad-with-crisp-croutons": {
-    "fingerprint": "c966b86",
-    "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.\n\nPhosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "c08f94b1",
+    "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2050,7 +2050,7 @@
     ]
   },
   "potato-and-chive-cakes-with-herb-mayonnaise": {
-    "fingerprint": "c772da83",
+    "fingerprint": "3827914a",
     "text": "Potassium: The potato weight is for potatoes already boiled and drained. Discarding boiling water can remove some potassium; starting with the same weight of raw potato and cooking it in the dish does not provide the same preparation.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2064,8 +2064,8 @@
     ]
   },
   "cabbage-mushroom-and-white-bean-pierogi": {
-    "fingerprint": "b0005a09",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "e40fe523",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2078,7 +2078,7 @@
     ]
   },
   "carrot-and-coriander-soup-with-toast": {
-    "fingerprint": "d1e9e9ce",
+    "fingerprint": "d77e1ee9",
     "text": "Energy and fats: Coconut gives this dish richness but also contributes saturated fat. A coconut-based sauce or dough is not a low-saturated-fat choice simply because it is dairy-free.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2094,7 +2094,7 @@
     ]
   },
   "creamy-mushroom-spaghetti-with-walnuts": {
-    "fingerprint": "493cb200",
+    "fingerprint": "746333f2",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2106,8 +2106,8 @@
     "guidanceReferences": []
   },
   "crisp-rice-pancakes-with-cabbage-and-peanut-dressing": {
-    "fingerprint": "537fb85e",
-    "text": "Phosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "8f716dde",
+    "text": "Phosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2120,8 +2120,8 @@
     ]
   },
   "chickpea-chaat-with-herbed-yoghurt-dressing": {
-    "fingerprint": "a1f55818",
-    "text": "Phosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.\n\nPotassium: The potato weight is for potatoes already boiled and drained. Discarding boiling water can remove some potassium; starting with the same weight of raw potato and cooking it in the dish does not provide the same preparation.",
+    "fingerprint": "4bb6313",
+    "text": "Potassium: The potato weight is for potatoes already boiled and drained. Discarding boiling water can remove some potassium; starting with the same weight of raw potato and cooking it in the dish does not provide the same preparation.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2136,7 +2136,7 @@
     ]
   },
   "coconut-roti-with-spiced-cabbage": {
-    "fingerprint": "be63530e",
+    "fingerprint": "a238b638",
     "text": "Energy and fats: Coconut gives this dish richness but also contributes saturated fat. A coconut-based sauce or dough is not a low-saturated-fat choice simply because it is dairy-free.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2151,8 +2151,8 @@
     ]
   },
   "vegetable-and-lentil-khichuri": {
-    "fingerprint": "bb77b565",
-    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.\n\nEnergy and fats: Coconut gives this dish richness but also contributes saturated fat. A coconut-based sauce or dough is not a low-saturated-fat choice simply because it is dairy-free.",
+    "fingerprint": "16ace401",
+    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.\n\nEnergy and fats: Coconut gives this dish richness but also contributes saturated fat. A coconut-based sauce or dough is not a low-saturated-fat choice simply because it is dairy-free.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2167,7 +2167,7 @@
     ]
   },
   "salmon-and-cucumber-rice-salad": {
-    "fingerprint": "2861890d",
+    "fingerprint": "3990a3db",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2179,7 +2179,7 @@
     "guidanceReferences": []
   },
   "tofu-cabbage-and-ginger-pancakes": {
-    "fingerprint": "15660173",
+    "fingerprint": "15b588d0",
     "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.\n\nSalt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2194,8 +2194,8 @@
     ]
   },
   "steamed-cabbage-mushroom-and-white-bean-buns": {
-    "fingerprint": "fada4bbe",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.\n\nSalt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
+    "fingerprint": "108c6b12",
+    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.\n\nSalt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2210,7 +2210,7 @@
     ]
   },
   "chicken-lettuce-cups-with-ginger-and-peanut-dressing": {
-    "fingerprint": "aa277bbb",
+    "fingerprint": "4a24efdf",
     "text": "Salt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2225,8 +2225,8 @@
     ]
   },
   "lime-fish-cakes-with-noodles-and-crunchy-salad": {
-    "fingerprint": "ab8c62d6",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "5ab5b09b",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2239,7 +2239,7 @@
     ]
   },
   "vegetable-and-tofu-popiah-rolls": {
-    "fingerprint": "99d601f4",
+    "fingerprint": "277d1a7c",
     "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.\n\nSalt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2254,8 +2254,8 @@
     ]
   },
   "gado-gado-with-peanut-and-coconut-dressing": {
-    "fingerprint": "e4a62223",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.\n\nSalt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.\n\nPotassium: The potato weight is for potatoes already boiled and drained. Discarding boiling water can remove some potassium; starting with the same weight of raw potato and cooking it in the dish does not provide the same preparation.",
+    "fingerprint": "7e0999cf",
+    "text": "Salt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.\n\nPotassium: The potato weight is for potatoes already boiled and drained. Discarding boiling water can remove some potassium; starting with the same weight of raw potato and cooking it in the dish does not provide the same preparation.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2271,8 +2271,8 @@
     ]
   },
   "black-bean-tostadas-with-avocado-and-lime": {
-    "fingerprint": "cf01af5a",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "ac48a02",
+    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2285,7 +2285,7 @@
     ]
   },
   "tuna-and-lime-potato-causa": {
-    "fingerprint": "333fb085",
+    "fingerprint": "8665129f",
     "text": "Potassium: The potato weight is for potatoes already boiled and drained. Discarding boiling water can remove some potassium; starting with the same weight of raw potato and cooking it in the dish does not provide the same preparation.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2299,8 +2299,8 @@
     ]
   },
   "black-beans-and-rice-with-lime-dressed-cabbage": {
-    "fingerprint": "a1a2be96",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "e946999e",
+    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2313,8 +2313,8 @@
     ]
   },
   "plantain-and-black-eyed-pea-fritters-with-groundnuts": {
-    "fingerprint": "2ed07e91",
-    "text": "Phosphorus: The black-eyed peas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "425ff83a",
+    "text": "Phosphorus: The black-eyed peas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2327,8 +2327,8 @@
     ]
   },
   "black-eyed-pea-and-tomato-stew-with-soft-polenta": {
-    "fingerprint": "53ad7279",
-    "text": "Phosphorus: The black-eyed peas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "cdc7aa09",
+    "text": "Phosphorus: The black-eyed peas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2342,8 +2342,8 @@
     ]
   },
   "lentil-and-groundnut-stew-with-flatbread": {
-    "fingerprint": "99b23a72",
-    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "52cce234",
+    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2357,7 +2357,7 @@
     ]
   },
   "pea-and-mint-soup-with-toast": {
-    "fingerprint": "d59d6e1c",
+    "fingerprint": "f41b3677",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2370,7 +2370,7 @@
     "guidanceReferences": []
   },
   "salmon-avocado-and-cucumber-salad": {
-    "fingerprint": "9ec52f42",
+    "fingerprint": "5b661604",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2382,7 +2382,7 @@
     "guidanceReferences": []
   },
   "chicken-and-avocado-lettuce-wraps": {
-    "fingerprint": "1f01d39e",
+    "fingerprint": "3c0d84a6",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2394,7 +2394,7 @@
     "guidanceReferences": []
   },
   "spinach-egg-and-mozzarella-skillet": {
-    "fingerprint": "918b3c03",
+    "fingerprint": "8789a33f",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2409,7 +2409,7 @@
     ]
   },
   "tuna-egg-and-cucumber-boats": {
-    "fingerprint": "a295e28d",
+    "fingerprint": "64fcbd17",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2421,7 +2421,7 @@
     "guidanceReferences": []
   },
   "beef-and-cheddar-lettuce-cups": {
-    "fingerprint": "300a2ca0",
+    "fingerprint": "59cfcf0c",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2433,7 +2433,7 @@
     "guidanceReferences": []
   },
   "salmon-with-softly-set-egg": {
-    "fingerprint": "e4677d06",
+    "fingerprint": "ae671ee6",
     "text": "Fibre: This version has no plant accompaniment. If you want wholegrain or vegetable fibre with it, add a separately planned side rather than increasing the meat, fish or egg portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2447,7 +2447,7 @@
     ]
   },
   "sirloin-steak-with-a-baked-egg": {
-    "fingerprint": "ec93670c",
+    "fingerprint": "b219c5f1",
     "text": "Fibre: This version has no plant accompaniment. If you want wholegrain or vegetable fibre with it, add a separately planned side rather than increasing the meat, fish or egg portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2461,7 +2461,7 @@
     ]
   },
   "pork-medallions-with-scrambled-eggs": {
-    "fingerprint": "377795d7",
+    "fingerprint": "1053bfa1",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2487,7 +2487,7 @@
     ]
   },
   "ginger-chicken-and-carrot-rice-bowl": {
-    "fingerprint": "567d11e1",
+    "fingerprint": "172e042d",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2499,7 +2499,7 @@
     "guidanceReferences": []
   },
   "tuna-and-cucumber-rice-salad": {
-    "fingerprint": "189b4f94",
+    "fingerprint": "ef368d48",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2511,7 +2511,7 @@
     "guidanceReferences": []
   },
   "chive-and-spinach-rice-pancakes": {
-    "fingerprint": "de193f42",
+    "fingerprint": "d9614608",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2526,7 +2526,7 @@
     ]
   },
   "basil-cod-with-warm-rice-salad": {
-    "fingerprint": "3fa07077",
+    "fingerprint": "c7efcdc3",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2538,7 +2538,7 @@
     "guidanceReferences": []
   },
   "beef-and-carrot-rice-bowl": {
-    "fingerprint": "f223bf39",
+    "fingerprint": "bf3f5c91",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2550,7 +2550,7 @@
     "guidanceReferences": []
   },
   "chive-omelette-with-soft-polenta-and-carrots": {
-    "fingerprint": "351aa421",
+    "fingerprint": "7418facb",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2565,8 +2565,8 @@
     ]
   },
   "white-bean-and-brown-rice-salad": {
-    "fingerprint": "37aa8c47",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "853b00c5",
+    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2579,8 +2579,8 @@
     ]
   },
   "lemon-chickpea-and-quinoa-bowl": {
-    "fingerprint": "d7fef96f",
-    "text": "Phosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "8d4755c3",
+    "text": "Phosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2593,8 +2593,8 @@
     ]
   },
   "oat-and-carrot-pancakes-with-white-beans": {
-    "fingerprint": "53e3f930",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "fcc84f61",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2608,8 +2608,8 @@
     ]
   },
   "lentil-and-barley-herb-salad": {
-    "fingerprint": "cb1d1499",
-    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "5e41b69d",
+    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2622,7 +2622,7 @@
     ]
   },
   "ginger-tofu-and-brown-rice-bowl": {
-    "fingerprint": "30e026cc",
+    "fingerprint": "9e9ad9ac",
     "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.\n\nSalt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2637,8 +2637,8 @@
     ]
   },
   "white-bean-walnut-pasta-with-frittata-ribbons": {
-    "fingerprint": "f6c58385",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "3756c839",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2651,8 +2651,8 @@
     ]
   },
   "chicken-groundnut-and-black-eyed-pea-rice-bowl": {
-    "fingerprint": "16134077",
-    "text": "Phosphorus: The black-eyed peas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "d3bcffb",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -2665,7 +2665,7 @@
     ]
   },
   "lime-fish-and-avocado-rice-bowl": {
-    "fingerprint": "68e0cca8",
+    "fingerprint": "48fb46ba",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2677,7 +2677,7 @@
     "guidanceReferences": []
   },
   "potato-and-herb-cakes-with-egg-salad": {
-    "fingerprint": "4158a83d",
+    "fingerprint": "acff6003",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.\n\nPotassium: The potato weight is for potatoes already boiled and drained. Discarding boiling water can remove some potassium; starting with the same weight of raw potato and cooking it in the dish does not provide the same preparation.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2693,7 +2693,7 @@
     ]
   },
   "ginger-tofu-and-peanut-noodle-salad": {
-    "fingerprint": "4a71dae9",
+    "fingerprint": "d0ca2e9f",
     "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.\n\nSalt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2708,7 +2708,7 @@
     ]
   },
   "lemon-herb-chicken-rice": {
-    "fingerprint": "bac6284a",
+    "fingerprint": "928178e8",
     "text": "About this meal: Rice and oil help this dinner supply energy without needing the chicken portion to keep growing. That can be useful when appetite is limited or protein has a specific target.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2722,7 +2722,7 @@
     ]
   },
   "turkey-rosemary-rice": {
-    "fingerprint": "194f0ab7",
+    "fingerprint": "e2a63ec0",
     "text": "About this meal: Lean turkey can help with protein, but lean does not mean free of phosphate. The rice and oil provide energy separately from that protein choice, so enlarging the meat is not the only way to make the dinner more substantial.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2737,7 +2737,7 @@
     ]
   },
   "pork-herb-rice": {
-    "fingerprint": "5ed4b1b4",
+    "fingerprint": "2b790345",
     "text": "About this meal: Plain pork is a different salt and additive choice from cured pork products, so keep that distinction when shopping. The rice and oil make this a substantial meal without needing a larger chop.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2751,7 +2751,7 @@
     ]
   },
   "lemon-cod-rice": {
-    "fingerprint": "1407e456",
+    "fingerprint": "5142da2a",
     "text": "About this meal: Cod is lean, so the oil and rice have an important role in making this dinner provide enough energy. Automatically removing the oil may work against someone who struggles to eat enough.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2765,7 +2765,7 @@
     ]
   },
   "lemon-salmon-rice": {
-    "fingerprint": "226f1098",
+    "fingerprint": "5ae005a",
     "text": "About this meal: Salmon supplies fat as well as protein, so a rich sauce is not essential for flavour or energy. Its phosphorus content still needs to fit your own target.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2780,7 +2780,7 @@
     ]
   },
   "beef-paprika-rice": {
-    "fingerprint": "96440734",
+    "fingerprint": "afeabcd",
     "text": "About this meal: Choosing lean mince addresses the meat’s fat content, but does not remove its phosphorus. The meat portion still matters if protein or phosphate is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2795,7 +2795,7 @@
     ]
   },
   "egg-cheddar-pasta-cabbage": {
-    "fingerprint": "60706b6",
+    "fingerprint": "12656986",
     "text": "About this meal: Eggs and Cheddar bring phosphate together in a meal that happens to be meat-free. If phosphate needs reducing, the cheese is worth reviewing before removing a protein food entirely; a partly egg-white version may also be a discussion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2812,7 +2812,7 @@
     ]
   },
   "chicken-paprika-rice-peppers": {
-    "fingerprint": "e8a16ff0",
+    "fingerprint": "6c2c8db3",
     "text": "About this meal: Paprika and the flavour developed while cooking the chicken make a bottled sauce unnecessary. That is useful when salt is restricted, but a salty spice blend is not the same choice as plain paprika.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2826,7 +2826,7 @@
     ]
   },
   "creamy-pork-pasta-cabbage": {
-    "fingerprint": "1412d903",
+    "fingerprint": "1eaf0348",
     "text": "About this meal: The sauce provides richness without needing a layer of grated cheese as well. If phosphate is restricted, adding Parmesan or another hard cheese would stack a further source onto the pork and cream.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2841,7 +2841,7 @@
     ]
   },
   "egg-cauliflower-rice": {
-    "fingerprint": "3843e33a",
+    "fingerprint": "cc827622",
     "text": "About this meal: Eggs and cheese are both part of the phosphate decision here, while the rice helps the meal provide energy. If phosphate needs reducing, simply cutting the whole bowl can unnecessarily reduce food intake as well.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2856,7 +2856,7 @@
     ]
   },
   "d011-creamy-chicken-mushroom-rice": {
-    "fingerprint": "511fba4a",
+    "fingerprint": "c42caa9d",
     "text": "About this meal: The mushrooms are pan-cooked, so this recipe does not discard vegetable cooking water as a way of reducing potassium. If you have a potassium restriction, that preparation and the mushroom portion deserve attention rather than assuming every chicken-and-rice dish is similar.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2870,7 +2870,7 @@
     ]
   },
   "turkey-sweetcorn-pasta": {
-    "fingerprint": "1e42cdfc",
+    "fingerprint": "77f357ab",
     "text": "About this meal: Turkey and cream both contribute phosphorus. If phosphate is restricted, a grated-cheese finish would add another source without being needed for the sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2885,7 +2885,7 @@
     ]
   },
   "lemon-cod-pasta-peppers": {
-    "fingerprint": "55f740d5",
+    "fingerprint": "ae35ed5f",
     "text": "About this meal: The vegetables are cooked with the pasta and drained, so the discarded water is an important part of the method if potassium is restricted. Do not reuse it as the basis of a sauce for this purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2899,7 +2899,7 @@
     ]
   },
   "chicken-sweetcorn-rice-bowl": {
-    "fingerprint": "faad8855",
+    "fingerprint": "23513a57",
     "text": "About this meal: The cabbage and sweetcorn cook in the chicken pan, so they are not losing potassium into water that is later discarded. If potassium is restricted, do not assume this behaves like the boiled-vegetable rice dishes.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2913,7 +2913,7 @@
     ]
   },
   "turkey-rice-roasted-peppers": {
-    "fingerprint": "6679be22",
+    "fingerprint": "31668603",
     "text": "About this meal: Roasting makes the peppers sweet and flavoursome without needing a salty sauce. It does not provide the potassium loss associated with boiling and discarding water, so that distinction matters if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2928,7 +2928,7 @@
     ]
   },
   "pork-apple-rice-bowl": {
-    "fingerprint": "a8d570f5",
+    "fingerprint": "bda57ccd",
     "text": "About this meal: Apple provides sweetness without relying on a chutney or bottled sweet sauce, which can help keep control of added sugar and salt. The pork still brings phosphate alongside its protein, so leanness alone does not determine suitability.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2943,7 +2943,7 @@
     ]
   },
   "creamy-chicken-cabbage-pasta": {
-    "fingerprint": "7484d214",
+    "fingerprint": "f2c38671",
     "text": "About this meal: The cream makes the pasta moist, which can be useful when appetite is poor; automatically making it drier is not necessarily an improvement. If phosphate is restricted, avoid adding another dairy layer through grated cheese.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2958,7 +2958,7 @@
     ]
   },
   "cod-sweetcorn-rice": {
-    "fingerprint": "873b1952",
+    "fingerprint": "eba2207",
     "text": "About this meal: Fish contributes useful protein but still brings phosphate, even without a creamy sauce. The rice supplies energy separately, which helps you avoid increasing the fish portion simply to fill the plate.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2973,7 +2973,7 @@
     ]
   },
   "egg-vegetable-pasta": {
-    "fingerprint": "f1197446",
+    "fingerprint": "7356d89e",
     "text": "About this meal: Eggs provide a meat-free protein option, but yolks still contribute phosphate. If phosphate needs reducing while protein remains important, a partly egg-white version may be worth discussing.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -2990,7 +2990,7 @@
     ]
   },
   "chicken-apple-couscous-style-rice": {
-    "fingerprint": "9df57e4",
+    "fingerprint": "90c72005",
     "text": "About this meal: Apple adds sweetness without needing a sweet bottled sauce, while the rice makes the meal substantial without extra chicken. That separation is useful if protein has a specific target.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3004,7 +3004,7 @@
     ]
   },
   "chicken-herb-sweetcorn-rice": {
-    "fingerprint": "bfa51b5",
+    "fingerprint": "a86a7bb6",
     "text": "About this meal: Sweetcorn gives the rice texture and makes a sauce less necessary. If salt is restricted, that is a useful feature to preserve rather than adding stock or soy sauce by habit.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3018,7 +3018,7 @@
     ]
   },
   "beef-pepper-pasta": {
-    "fingerprint": "d6e00303",
+    "fingerprint": "21f163d6",
     "text": "About this meal: Lean mince still contributes phosphorus. If you need more energy without more meat protein, the pasta and cooking oil have a different role from the mince.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3033,7 +3033,7 @@
     ]
   },
   "herb-cod-potatoes-cabbage": {
-    "fingerprint": "bae6b145",
+    "fingerprint": "a6b9d743",
     "text": "About this meal: The potatoes are boiled and drained. Discarding that water can remove some potassium, but does not make the meal automatically low in potassium. Keep the cooking water out of any sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3047,7 +3047,7 @@
     ]
   },
   "creamy-cheese-egg-pasta": {
-    "fingerprint": "aa088603",
+    "fingerprint": "ed798e1d",
     "text": "About this meal: The sauce combines several natural phosphate sources, so being meat-free does not make this a low-phosphate choice. If phosphate needs reducing, the cheese is a useful first discussion rather than simply shrinking the whole plate and losing energy.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3062,7 +3062,7 @@
     ]
   },
   "pork-apple-cabbage": {
-    "fingerprint": "c03d72a8",
+    "fingerprint": "7d066f17",
     "text": "About this meal: The pork makes this a substantial protein meal even without a starchy side. If energy intake is low, adding a suitable accompaniment may address that need more directly than enlarging the meat portion and its phosphate contribution.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3077,7 +3077,7 @@
     ]
   },
   "creamy-chicken-pepper-pasta": {
-    "fingerprint": "bc4d5cb8",
+    "fingerprint": "17f00198",
     "text": "About this meal: Cream gives this pasta richness, so extra hard cheese is not needed to make it feel like a complete sauce. That matters if phosphate is restricted, because chicken and dairy already contribute.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3092,7 +3092,7 @@
     ]
   },
   "cod-sweetcorn-herb-pasta": {
-    "fingerprint": "6c3486a6",
+    "fingerprint": "6cdfec8c",
     "text": "About this meal: Sweetcorn and herbs make the fish pasta interesting without a cheese sauce. Keeping that distinction can be useful when phosphate is restricted, because the cod already contributes phosphate with its protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3107,7 +3107,7 @@
     ]
   },
   "egg-cabbage-sweetcorn-rice": {
-    "fingerprint": "153e9b30",
+    "fingerprint": "d8c38a20",
     "text": "About this meal: This is a way to include protein without meat or fish, but the egg yolks still contribute phosphate. If phosphate needs reducing, discuss using some whites rather than simply leaving the eggs out.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3124,7 +3124,7 @@
     ]
   },
   "pork-pepper-pasta": {
-    "fingerprint": "a3fa1b5b",
+    "fingerprint": "aaafdd9a",
     "text": "About this meal: Pork supplies protein while pasta supplies starch and energy. If protein needs limiting, reducing pasta alone will not address the meat portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3138,7 +3138,7 @@
     ]
   },
   "d030-pork-apple-cabbage-skillet": {
-    "fingerprint": "f18a0db5",
+    "fingerprint": "b5eee839",
     "text": "About this meal: The rice already gives this skillet a starchy accompaniment, so extra meat is not needed simply to make it a full dinner. Pork supplies protein and phosphate, while apple and cabbage bring sweetness and texture.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3153,7 +3153,7 @@
     ]
   },
   "lemon-chicken-herb-pasta": {
-    "fingerprint": "274c22e0",
+    "fingerprint": "3cd39ce4",
     "text": "About this meal: Lemon and herbs give the chicken pasta a complete flavour without requiring a creamy or cheese-based sauce. That is useful when phosphate needs managing, because the chicken already provides phosphate alongside protein.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3168,7 +3168,7 @@
     ]
   },
   "cod-pepper-lemon-rice": {
-    "fingerprint": "65df5565",
+    "fingerprint": "380d9f89",
     "text": "About this meal: Lemon and thyme give the fish and rice flavour without needing a salty bottled sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3182,7 +3182,7 @@
     ]
   },
   "beef-cabbage-rice": {
-    "fingerprint": "fdfa717b",
+    "fingerprint": "9def815f",
     "text": "About this meal: Cabbage adds volume and texture around the beef, while rice helps meet energy needs. That can make the meal satisfying without an even larger meat portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3196,7 +3196,7 @@
     ]
   },
   "cheesy-egg-vegetable-rice": {
-    "fingerprint": "5a049e10",
+    "fingerprint": "e9582530",
     "text": "About this meal: The cheese is a flavour addition to a meal that already gets protein from eggs. If phosphate is restricted, that is a useful distinction: more cheese is not necessary to provide a protein source.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3211,7 +3211,7 @@
     ]
   },
   "chicken-cabbage-herb-rice": {
-    "fingerprint": "2a2c2c82",
+    "fingerprint": "1bb7d716",
     "text": "About this meal: The cabbage is boiled and drained before being mixed into the rice, which is a relevant preparation step when potassium is restricted. Keep that water out of a gravy or sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3225,7 +3225,7 @@
     ]
   },
   "cod-cabbage-pasta": {
-    "fingerprint": "2446caf3",
+    "fingerprint": "81c02c6d",
     "text": "About this meal: The cabbage and onion are cooked in the pan rather than boiled in water that is discarded. Do not assume this preparation removes potassium through discarded cooking water.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3239,7 +3239,7 @@
     ]
   },
   "pepper-beef-rice": {
-    "fingerprint": "6578f128",
+    "fingerprint": "b644eddc",
     "text": "About this meal: Pepper and oregano give the beef enough flavour that a salty packet sauce is not essential. That is worth preserving if salt is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3253,7 +3253,7 @@
     ]
   },
   "pork-apple-herb-pasta": {
-    "fingerprint": "8064abf5",
+    "fingerprint": "b459f1ec",
     "text": "About this meal: The pork makes this a substantial protein meal, while apple and rosemary provide flavour without a sweet bottled sauce. If protein or phosphate is restricted, the meat portion is the relevant part to review; reducing pasta instead would mainly cut energy.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3268,7 +3268,7 @@
     ]
   },
   "egg-cauliflower-herb-pasta": {
-    "fingerprint": "426a1e9d",
+    "fingerprint": "6e1b4cad",
     "text": "About this meal: Cauliflower and herbs give this pasta substance without meat, but the egg yolks still contribute phosphate. If that is restricted, using some whites may be a more useful discussion than removing the protein completely.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3285,7 +3285,7 @@
     ]
   },
   "d040-cod-sweetcorn-potato-bake": {
-    "fingerprint": "1761286c",
+    "fingerprint": "9a821fc9",
     "text": "About this meal: The potatoes are boiled and drained before baking. Discarding the boiling water can remove some potassium; baking alone does not provide that step.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3300,7 +3300,7 @@
     ]
   },
   "chicken-leek-couscous-lemon": {
-    "fingerprint": "e8322bec",
+    "fingerprint": "95161c01",
     "text": "About this meal: Couscous and oil supply energy alongside the chicken. If protein has a specific target, increasing the chicken is a different adjustment from increasing the accompaniment.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3314,7 +3314,7 @@
     ]
   },
   "turkey-meatballs-herb-rice": {
-    "fingerprint": "ae8ba4d0",
+    "fingerprint": "251092f1",
     "text": "About this meal: Homemade meatballs let you choose plain meat and control seasoning instead of relying on a prepared product that may contain salt and phosphate additives. The meat serving is modest, while rice and oil help meet energy needs.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3329,7 +3329,7 @@
     ]
   },
   "cod-herby-noodles-cucumber": {
-    "fingerprint": "adeec91b",
+    "fingerprint": "aeb1cf67",
     "text": "About this meal: Noodles and oil provide energy alongside the cod. If you need more energy while keeping a planned fish portion, the accompaniment has a separate role.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3343,7 +3343,7 @@
     ]
   },
   "pork-apple-leek-rice": {
-    "fingerprint": "8c4c984",
+    "fingerprint": "2621556d",
     "text": "About this meal: Rice and oil provide energy alongside the pork. Increasing the meat is not the only way to make the meal more substantial when protein has a specific target.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3357,7 +3357,7 @@
     ]
   },
   "chicken-carrot-noodle-stir-fry": {
-    "fingerprint": "85d9636e",
+    "fingerprint": "aa1d1ae7",
     "text": "About this meal: Noodles and oil supply energy alongside the chicken. If protein has a specific target, increasing the chicken is a different adjustment from increasing the noodles.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3371,7 +3371,7 @@
     ]
   },
   "beef-meatballs-couscous-peppers": {
-    "fingerprint": "ef86046b",
+    "fingerprint": "c20b612d",
     "text": "About this meal: Making the meatballs yourself gives control over salt and avoids assuming a prepared meatball product has the same phosphate additives. The modest beef portion supplies protein, while couscous and oil make a separate contribution to energy.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3386,7 +3386,7 @@
     ]
   },
   "haddock-lemon-rice-leeks": {
-    "fingerprint": "4df54800",
+    "fingerprint": "17706f02",
     "text": "About this meal: Rice and oil provide energy alongside the haddock. If protein has a specific target, more fish is not the only way to make the meal more substantial.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3400,7 +3400,7 @@
     ]
   },
   "chicken-pear-rice-bowl": {
-    "fingerprint": "21cbd77e",
+    "fingerprint": "2eac492b",
     "text": "About this meal: Pear adds sweetness and moisture without a bottled dressing. Rice and oil also provide energy, so increasing the chicken is not the only way to make the bowl more substantial.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3414,7 +3414,7 @@
     ]
   },
   "pork-carrot-couscous-skillet": {
-    "fingerprint": "18ac8355",
+    "fingerprint": "5092210",
     "text": "About this meal: Couscous and oil provide energy alongside the pork. If protein has a specific target, enlarging the meat and enlarging the accompaniment are different adjustments.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3428,7 +3428,7 @@
     ]
   },
   "cod-leek-pasta-bake": {
-    "fingerprint": "53663b0b",
+    "fingerprint": "d3cfc9d2",
     "text": "About this meal: Pasta and oil provide energy alongside the cod. If protein has a specific target, increasing the fish is not the only way to make the bake more substantial.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3442,7 +3442,7 @@
     ]
   },
   "turkey-apple-noodle-bowl": {
-    "fingerprint": "e445c422",
+    "fingerprint": "17cf938d",
     "text": "About this meal: Noodles and oil supply energy alongside the turkey. Increasing the turkey is a different adjustment from increasing the accompaniment if protein has a specific target.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3456,7 +3456,7 @@
     ]
   },
   "chicken-herb-meatballs-rice": {
-    "fingerprint": "6ca7a633",
+    "fingerprint": "daf0d89d",
     "text": "About this meal: Rice and oil provide energy alongside the chicken meatballs. Increasing the meatballs is not the only way to make the meal more substantial when protein has a specific target.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3470,7 +3470,7 @@
     ]
   },
   "chicken-biryani-with-fragrant-basmati-rice": {
-    "fingerprint": "e5a0656a",
+    "fingerprint": "a97d4f34",
     "text": "Salt and flavour: The biryani uses separate spices, yoghurt and herbs rather than a prepared biryani paste. If using a paste, check its salt before adding the salt listed here.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3485,7 +3485,7 @@
     ]
   },
   "chicken-jalfrezi-with-chapati": {
-    "fingerprint": "7957bad7",
+    "fingerprint": "908177a7",
     "text": "Fibre: The chapati uses brown chapati flour, which contributes wholegrain fibre. Replacing it with a white-flour flatbread changes that fibre contribution.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3499,7 +3499,7 @@
     ]
   },
   "lamb-rogan-josh-with-rice": {
-    "fingerprint": "763679cd",
+    "fingerprint": "89ae5ac8",
     "text": "Salt and flavour: The rogan josh sauce is built from yoghurt, onion and separate spices. A jarred sauce can bring extra salt, so compare its label if choosing one for convenience.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3514,7 +3514,7 @@
     ]
   },
   "tandoori-style-fish-with-lemon-pilau": {
-    "fingerprint": "73ed3995",
+    "fingerprint": "49d68147",
     "text": "Salt and flavour: The fish marinade uses yoghurt, lemon and separate spices. A ready-made tandoori paste can contain salt; check before adding the recipe’s salt as well.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3529,7 +3529,7 @@
     ]
   },
   "chicken-karahi-with-homemade-flatbread": {
-    "fingerprint": "1c06395b",
+    "fingerprint": "884d226",
     "text": "Salt and flavour: Tomato, ginger, garlic and chilli form the karahi sauce without a stock cube. Adding stock would add seasoning that the homemade sauce does not need.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3543,7 +3543,7 @@
     ]
   },
   "coconut-fish-curry-with-rice": {
-    "fingerprint": "25029a5c",
+    "fingerprint": "76e338c6",
     "text": "Energy and fats: Both coconut milk and coconut oil give this curry richness. They contribute saturated fat even though the sauce contains no dairy.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3559,7 +3559,7 @@
     ]
   },
   "chicken-shish-tawook-with-vermicelli-rice": {
-    "fingerprint": "bb4455e7",
+    "fingerprint": "c7e57f97",
     "text": "Carbohydrates: The rice accompaniment also contains wheat vermicelli. If you count carbohydrates, include both rather than treating the toasted vermicelli as a seasoning.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3575,7 +3575,7 @@
     ]
   },
   "homemade-chicken-pide": {
-    "fingerprint": "ffda3aec",
+    "fingerprint": "20a3a8e2",
     "text": "Cooking and adaptations: The pide dough and chicken filling are made separately, each with salt. When using a prepared dough, check its seasoning before adding the salt intended for the homemade version.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3589,7 +3589,7 @@
     ]
   },
   "saffron-chicken-with-jewelled-rice": {
-    "fingerprint": "c9deba40",
+    "fingerprint": "c3210b56",
     "text": "Carbohydrates: Raisins and sugar are part of the jewelled rice, not just decoration. Include them with the rice if you count carbohydrates.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3604,7 +3604,7 @@
     ]
   },
   "chicken-gyros-platter": {
-    "fingerprint": "94609747",
+    "fingerprint": "b9373887",
     "text": "Carbohydrates: This platter includes both pitta and potatoes. If you count carbohydrates, include both accompaniments rather than treating either as a free side.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3620,7 +3620,7 @@
     ]
   },
   "chicken-and-apricot-tagine": {
-    "fingerprint": "adb90764",
+    "fingerprint": "62dfa5d2",
     "text": "Ingredient considerations: Dried apricots give the sauce sweetness without a larger sugar addition. They are concentrated fruit, so keep the listed portion in mind if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3634,7 +3634,7 @@
     ]
   },
   "spiced-lamb-and-vegetable-pastilla": {
-    "fingerprint": "5d1ceeaa",
+    "fingerprint": "e3928488",
     "text": "Energy and fats: Filo is brushed with butter in this pastilla. Thin pastry sheets do not by themselves mean a low-fat dish; the butter between them also contributes.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3648,7 +3648,7 @@
     ]
   },
   "harissa-style-baked-fish-with-couscous": {
-    "fingerprint": "a51192fa",
+    "fingerprint": "26461c00",
     "text": "Salt and flavour: The harissa-style mixture is made from chilli, garlic and individual spices. A jarred harissa can contain extra salt, so check its label before adding the recipe’s salt as well.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3662,7 +3662,7 @@
     ]
   },
   "sweet-and-sour-chicken-with-rice": {
-    "fingerprint": "b238d935",
+    "fingerprint": "454ec2db",
     "text": "Carbohydrates: The sweet-and-sour sauce contains sugar and cornflour as well as pineapple. If you count carbohydrates, include the sauce with the rice.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3677,7 +3677,7 @@
     ]
   },
   "ginger-and-spring-onion-steamed-fish": {
-    "fingerprint": "fe93bbc9",
+    "fingerprint": "21294065",
     "text": "Salt and flavour: Steaming does not remove the salt in the soy-based dressing. Ginger and spring onion give flavour without needing a larger soy-sauce portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3691,7 +3691,7 @@
     ]
   },
   "crispy-pork-with-garlic-noodles": {
-    "fingerprint": "1a6ee68",
+    "fingerprint": "d80572fd",
     "text": "Energy and fats: Pork belly includes a substantial fat layer. Crisping the skinless meat does not make it equivalent to a lean pork fillet; the cut matters if you are choosing it for your fat intake.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3705,7 +3705,7 @@
     ]
   },
   "chicken-teriyaki-style-rice-bowl": {
-    "fingerprint": "f5deef2b",
+    "fingerprint": "f7a89e11",
     "text": "Carbohydrates: The teriyaki-style glaze includes sugar. Include the glaze as well as the rice if you count carbohydrates.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3721,7 +3721,7 @@
     ]
   },
   "thai-basil-chicken-with-jasmine-rice": {
-    "fingerprint": "9e5bfef4",
+    "fingerprint": "f0153b4d",
     "text": "Salt and flavour: Both fish sauce and soy sauce season the chicken. Basil, chilli and garlic add flavour without needing larger amounts of either sauce.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3735,7 +3735,7 @@
     ]
   },
   "red-curry-style-chicken-with-rice": {
-    "fingerprint": "b1098230",
+    "fingerprint": "9d94fe13",
     "text": "Salt and flavour: The curry paste is made from fresh aromatics and separate spices. A commercial red curry paste may already contain salt or fish sauce; check before adding the listed fish sauce on top.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3751,7 +3751,7 @@
     ]
   },
   "lemongrass-pork-with-rice-noodles": {
-    "fingerprint": "b88ed047",
+    "fingerprint": "c98c2eef",
     "text": "Salt and flavour: Fish sauce is used in both the pork seasoning and the dressing. Lime and fresh herbs give extra flavour without needing more fish sauce at the table.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3766,7 +3766,7 @@
     ]
   },
   "chicken-laksa-inspired-noodle-bowl": {
-    "fingerprint": "44f0ad6b",
+    "fingerprint": "8eab849b",
     "text": "Cooking and adaptations: This noodle bowl includes a coconut-milk broth. If you have a fluid allowance that includes soups, count the broth you eat according to your own fluid instructions.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3781,7 +3781,7 @@
     ]
   },
   "chicken-enchiladas-with-homemade-sauce": {
-    "fingerprint": "ff45a9c2",
+    "fingerprint": "f0089642",
     "text": "Phosphorus: The Cheddar topping adds phosphorus to a filling that already supplies chicken protein. If phosphate is restricted, the topping is one part to review without removing the whole filling.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3796,7 +3796,7 @@
     ]
   },
   "beef-fajita-platter-with-tortillas": {
-    "fingerprint": "faaa3b52",
+    "fingerprint": "569953d2",
     "text": "Carbohydrates: Tortillas are part of the fajita serving, including any used for a second wrap. Count all the tortillas you eat if you count carbohydrates.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3812,7 +3812,7 @@
     ]
   },
   "caribbean-chicken-curry-with-rice": {
-    "fingerprint": "93adb98b",
+    "fingerprint": "13989a05",
     "text": "Carbohydrates: Potato is part of the curry as well as rice on the side. If you count carbohydrates, include both rather than counting only the rice.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3828,7 +3828,7 @@
     ]
   },
   "jollof-style-rice-with-grilled-chicken": {
-    "fingerprint": "87b0cd5",
+    "fingerprint": "3cd76c3",
     "text": "Salt and flavour: Tomato, pepper, onion and spices flavour this jollof-style rice without a stock cube. Adding one would bring extra salt beyond the seasoning already listed.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3842,7 +3842,7 @@
     ]
   },
   "light-chicken-stew-with-seasoned-rice": {
-    "fingerprint": "ce4c2eec",
+    "fingerprint": "4088e722",
     "text": "Salt and flavour: Ginger, garlic, chilli and coriander flavour the stew without a stock cube. If using prepared stock instead of the listed water, check its salt.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3857,7 +3857,7 @@
     ]
   },
   "homemade-chicken-and-spinach-cannelloni": {
-    "fingerprint": "8c453746",
+    "fingerprint": "ae76dd9a",
     "text": "Phosphorus: Ricotta, milk and Parmesan all contribute phosphorus alongside the chicken. If phosphate is restricted, the Parmesan finish is a separate addition to review rather than removing all the protein filling.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3872,7 +3872,7 @@
     ]
   },
   "chicken-and-pepper-paella": {
-    "fingerprint": "be0609e1",
+    "fingerprint": "b2ff39d",
     "text": "Salt and flavour: Paprika, saffron, tomato and lemon flavour this paella without a stock cube. A prepared paella seasoning can also contain salt, so check before adding the salt listed here.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3886,7 +3886,7 @@
     ]
   },
   "chicken-and-mushroom-puff-pastry-pie": {
-    "fingerprint": "7653881f",
+    "fingerprint": "7a5bc463",
     "text": "Energy and fats: The pie combines puff pastry with butter and cream in the filling. A modest-looking pastry lid does not account for all the dish’s saturated fat.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3902,7 +3902,7 @@
     ]
   },
   "paprika-pork-goulash-with-buttered-noodles": {
-    "fingerprint": "fd002cce",
+    "fingerprint": "7fe4b980",
     "text": "Salt and flavour: Paprika and caraway flavour the goulash without a stock cube. Choose plain paprika rather than a salted seasoning blend if you want to keep that distinction.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3916,8 +3916,8 @@
     ]
   },
   "roasted-pepper-and-white-bean-lasagne": {
-    "fingerprint": "734f1a70",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "f14b9aa8",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -3930,7 +3930,7 @@
     ]
   },
   "turkey-and-leek-pie-with-walnut-pastry": {
-    "fingerprint": "30b7cd11",
+    "fingerprint": "53b75917",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3942,7 +3942,7 @@
     "guidanceReferences": []
   },
   "cod-and-parsley-cakes-with-warm-rice-salad": {
-    "fingerprint": "ef19131c",
+    "fingerprint": "bb916503",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3954,8 +3954,8 @@
     "guidanceReferences": []
   },
   "vegetable-and-chickpea-tagine-with-almond-couscous": {
-    "fingerprint": "9150f24e",
-    "text": "Phosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "e9fdd0ea",
+    "text": "Phosphorus: The chickpeas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -3968,8 +3968,8 @@
     ]
   },
   "ricotta-and-walnut-ravioli-with-basil-and-green-beans": {
-    "fingerprint": "55c01155",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "7fea2dc9",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -3982,7 +3982,7 @@
     ]
   },
   "baked-fish-with-green-rice-and-lime-slaw": {
-    "fingerprint": "28918ddd",
+    "fingerprint": "2ed436b5",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -3994,7 +3994,7 @@
     "guidanceReferences": []
   },
   "turkey-mushroom-and-walnut-pilaf": {
-    "fingerprint": "acea8330",
+    "fingerprint": "ba1e3978",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4006,7 +4006,7 @@
     "guidanceReferences": []
   },
   "hake-and-coconut-rice-bake-with-crisp-slaw": {
-    "fingerprint": "5a43a2e9",
+    "fingerprint": "df931b65",
     "text": "Energy and fats: Coconut gives this dish richness but also contributes saturated fat. A coconut-based sauce or dough is not a low-saturated-fat choice simply because it is dairy-free.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4021,7 +4021,7 @@
     ]
   },
   "pork-and-apple-skewers-with-herbed-couscous": {
-    "fingerprint": "a5b841f3",
+    "fingerprint": "adab6ac3",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4033,7 +4033,7 @@
     "guidanceReferences": []
   },
   "cabbage-rolls-with-barley-mushrooms-and-seitan": {
-    "fingerprint": "1cb374ba",
+    "fingerprint": "88bfdab6",
     "text": "Ingredient considerations: The seitan is made from vital wheat gluten, a concentrated wheat protein. Ordinary flour will not make the same protein-rich dough; use the gluten powder specified rather than substituting flour.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4047,7 +4047,7 @@
     ]
   },
   "mild-tofu-and-coconut-curry-with-basmati-rice": {
-    "fingerprint": "2dc5dced",
+    "fingerprint": "5ec368e5",
     "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.\n\nEnergy and fats: Coconut gives this dish richness but also contributes saturated fat. A coconut-based sauce or dough is not a low-saturated-fat choice simply because it is dairy-free.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4063,7 +4063,7 @@
     ]
   },
   "turkey-kebabs-with-flatbread-and-cucumber-yoghurt": {
-    "fingerprint": "b8508b91",
+    "fingerprint": "bfea3dee",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4075,7 +4075,7 @@
     "guidanceReferences": []
   },
   "basil-and-ginger-tofu-cakes-with-rice-and-cabbage": {
-    "fingerprint": "7c7287b3",
+    "fingerprint": "a52b472e",
     "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.\n\nSalt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4090,7 +4090,7 @@
     ]
   },
   "sesame-salmon-with-rice-noodles-and-crunchy-slaw": {
-    "fingerprint": "723e1455",
+    "fingerprint": "cda9935",
     "text": "Salt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4105,8 +4105,8 @@
     ]
   },
   "black-bean-and-rice-stuffed-peppers": {
-    "fingerprint": "e99044ba",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "f46ef218",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -4119,7 +4119,7 @@
     ]
   },
   "beef-pepper-and-onion-saltado-with-rice": {
-    "fingerprint": "75a2bd95",
+    "fingerprint": "3016e9d1",
     "text": "Salt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4134,7 +4134,7 @@
     ]
   },
   "fish-and-groundnut-stew-with-rice": {
-    "fingerprint": "113ec69",
+    "fingerprint": "317d739d",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4147,8 +4147,8 @@
     "guidanceReferences": []
   },
   "lentil-bobotie-with-rice": {
-    "fingerprint": "301981d6",
-    "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.\n\nPhosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "5a7e6dce",
+    "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -4163,7 +4163,7 @@
     ]
   },
   "salmon-and-courgette-frittata": {
-    "fingerprint": "64728d98",
+    "fingerprint": "1d4f1d46",
     "text": "Phosphorus: The Cheddar adds phosphorus alongside the salmon and egg. If phosphate is restricted, reducing the cheese is one adjustment that keeps the fish and egg protein in the frittata.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4177,7 +4177,7 @@
     ]
   },
   "garlic-cream-chicken-with-braised-cabbage": {
-    "fingerprint": "ba5ba9f4",
+    "fingerprint": "7a9cc44c",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4190,7 +4190,7 @@
     "guidanceReferences": []
   },
   "pork-medallions-with-creamy-courgettes": {
-    "fingerprint": "3d1cec06",
+    "fingerprint": "4da05179",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4202,7 +4202,7 @@
     "guidanceReferences": []
   },
   "turkey-patties-with-avocado-and-cabbage-salad": {
-    "fingerprint": "90ba66f3",
+    "fingerprint": "8c38ff1e",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4214,7 +4214,7 @@
     "guidanceReferences": []
   },
   "egg-and-cheddar-stuffed-mushrooms": {
-    "fingerprint": "255792de",
+    "fingerprint": "7224e1ae",
     "text": "Phosphorus: Eggs, Cheddar and cream all contribute phosphorus in this meat-free filling. If phosphate is restricted, the cheese and cream are separate additions to review rather than removing the egg protein altogether.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4228,7 +4228,7 @@
     ]
   },
   "salmon-and-egg-bake": {
-    "fingerprint": "cbf26889",
+    "fingerprint": "79e3ba2b",
     "text": "Fibre: This version has no plant accompaniment. If you want wholegrain or vegetable fibre with it, add a separately planned side rather than increasing the meat, fish or egg portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4256,7 +4256,7 @@
     ]
   },
   "chicken-thigh-and-egg-casserole": {
-    "fingerprint": "317461a8",
+    "fingerprint": "7eaf6f38",
     "text": "Fibre: This version has no plant accompaniment. If you want wholegrain or vegetable fibre with it, add a separately planned side rather than increasing the meat, fish or egg portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4270,7 +4270,7 @@
     ]
   },
   "cod-and-salmon-egg-custard": {
-    "fingerprint": "c379c5d9",
+    "fingerprint": "36dc1af5",
     "text": "Fibre: This version has no plant accompaniment. If you want wholegrain or vegetable fibre with it, add a separately planned side rather than increasing the meat, fish or egg portion.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4285,7 +4285,7 @@
     ]
   },
   "chicken-and-potato-frittata-with-carrots": {
-    "fingerprint": "97474099",
+    "fingerprint": "2a00f3b3",
     "text": "Potassium: The potato weight is for potatoes already boiled and drained. Discarding boiling water can remove some potassium; starting with the same weight of raw potato and cooking it in the dish does not provide the same preparation.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4299,7 +4299,7 @@
     ]
   },
   "salmon-with-carrot-rice-and-cucumber-salad": {
-    "fingerprint": "70107b1c",
+    "fingerprint": "b21d6b10",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4311,7 +4311,7 @@
     "guidanceReferences": []
   },
   "turkey-and-chive-meatballs-with-polenta": {
-    "fingerprint": "2d09c0d4",
+    "fingerprint": "e0138a45",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4323,7 +4323,7 @@
     "guidanceReferences": []
   },
   "steak-and-rice-with-lettuce-and-carrots": {
-    "fingerprint": "1fe4f0b3",
+    "fingerprint": "1e0fd5a6",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4335,7 +4335,7 @@
     "guidanceReferences": []
   },
   "crisp-cod-with-basil-polenta-and-carrots": {
-    "fingerprint": "d9555a1e",
+    "fingerprint": "9f937bd9",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4347,7 +4347,7 @@
     "guidanceReferences": []
   },
   "ginger-egg-and-carrot-fried-rice": {
-    "fingerprint": "bb9c2a50",
+    "fingerprint": "8d929574",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4362,8 +4362,8 @@
     ]
   },
   "spiced-lentil-and-brown-rice-pilaf": {
-    "fingerprint": "bedae978",
-    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "e9804444",
+    "text": "Phosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -4376,8 +4376,8 @@
     ]
   },
   "lemon-seitan-with-white-bean-barley-pilaf": {
-    "fingerprint": "f2a8c64",
-    "text": "Ingredient considerations: The seitan is made from vital wheat gluten, a concentrated wheat protein. Ordinary flour will not make the same protein-rich dough; use the gluten powder specified rather than substituting flour.\n\nPhosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "a3f1371a",
+    "text": "Ingredient considerations: The seitan is made from vital wheat gluten, a concentrated wheat protein. Ordinary flour will not make the same protein-rich dough; use the gluten powder specified rather than substituting flour.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -4391,7 +4391,7 @@
     ]
   },
   "turkey-with-brown-rice-and-herb-vegetables": {
-    "fingerprint": "e5cadb32",
+    "fingerprint": "f204c51e",
     "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4403,8 +4403,8 @@
     "guidanceReferences": []
   },
   "tofu-white-bean-and-barley-bake": {
-    "fingerprint": "2da788e4",
-    "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.\n\nPhosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "621c023c",
+    "text": "Ingredient considerations: This recipe uses regular tofu set with calcium sulphate and gently drained. Silken tofu can make the mixture wetter, while smoked or marinated tofu can bring extra salt; choose the plain type specified.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -4418,7 +4418,7 @@
     ]
   },
   "spinach-and-egg-brown-rice-bake": {
-    "fingerprint": "bca4d6ac",
+    "fingerprint": "d8cbd474",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4433,8 +4433,8 @@
     ]
   },
   "lentil-and-walnut-bobotie-with-rice": {
-    "fingerprint": "8da7fb20",
-    "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.\n\nPhosphorus: The lentils contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "5ea77ea4",
+    "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -4449,8 +4449,8 @@
     ]
   },
   "white-bean-and-ricotta-stuffed-peppers-with-rice": {
-    "fingerprint": "ade40d66",
-    "text": "Phosphorus: The beans contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "cecb0c72",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -4463,7 +4463,7 @@
     ]
   },
   "peanut-and-lime-fish-noodles": {
-    "fingerprint": "6943e019",
+    "fingerprint": "3b5dbcc2",
     "text": "Salt and flavour: The soy sauce brings salt as well as savoury flavour. Measure it into the dish rather than adding more at the table; a reduced-salt version may contain potassium additives, so check the ingredients if potassium is restricted.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
@@ -4478,8 +4478,8 @@
     ]
   },
   "beef-and-black-eyed-pea-stew-with-polenta": {
-    "fingerprint": "56528816",
-    "text": "Phosphorus: The black-eyed peas contribute plant protein and fibre as well as phosphorus. Plant phosphorus is generally less readily absorbed than phosphate additives; this is a difference in absorption, not a reason to subtract it from the nutrition total.",
+    "fingerprint": "ced328be",
+    "text": null,
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
       "https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/learn-about-carb-counting",
@@ -4493,7 +4493,7 @@
     ]
   },
   "salmon-and-leek-rice-pie": {
-    "fingerprint": "a18933c1",
+    "fingerprint": "cc056457",
     "text": "Protein: The mixture uses extra whites alongside whole egg. Whites supply protein with much less phosphorus than yolks, so extra whole eggs would not serve the same purpose.",
     "references": [
       "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",

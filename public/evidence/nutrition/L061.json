@@ -1,0 +1,4238 @@
+{
+  "code": "L061",
+  "id": "lemongrass-chicken-noodle-salad",
+  "basis": "Per one complete serving; ingredient-input estimates, not laboratory measurements of cooked meals.",
+  "methodology": {
+    "scaling": "Use the current one-serving ingredient quantity directly, per100 basis in g or ml; never halve a one-serving quantity again. Sum unrounded contributions before display rounding.",
+    "unavailable": "A missing source remains null and cannot contribute a zero or a complete total.",
+    "salt": "Sum unrounded sodium mg, multiply by 2.5/1000.",
+    "trace": "Retain reported Tr tokens. A computational zero for a documented source trace is at source precision, not a fabricated measured zero.",
+    "energy": "Retain established source energy for unchanged ingredients. Galangal energy is derived from 4*available carbohydrate + 4*protein + 9*fat + 2*dietary fibre, to avoid counting fibre at 4 kcal/g. The paper reported 4*total carbohydrate including fibre; that reported energy is retained separately.",
+    "variability": "Two Thai origins are averaged as in the prior carbohydrate reconciliation. Stalk/rhizome edible-portion composition is an estimate for the specified tender core/peeled rhizome; cultivar, trimming and cooking vary. No leaching, cooking yield, oil loss or measured final fluid is invented."
+  },
+  "ingredients": [
+    {
+      "item": "Skinless boneless chicken thigh",
+      "shoppingItem": "Skinless boneless chicken thigh",
+      "quantity": "150 g (chicken; raw edible input)"
+    },
+    {
+      "item": "Tender lemongrass core",
+      "shoppingItem": "Tender lemongrass core",
+      "quantity": "10 g (chicken; raw edible core finely minced)"
+    },
+    {
+      "item": "Garlic",
+      "shoppingItem": "Garlic",
+      "quantity": "4 g (chicken; raw edible input)"
+    },
+    {
+      "item": "Fish sauce",
+      "shoppingItem": "Fish sauce",
+      "quantity": "9 g (chicken; as sold, weighed grams)"
+    },
+    {
+      "item": "White sugar",
+      "shoppingItem": "White sugar",
+      "quantity": "5 g (chicken; dry)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "10 g (chicken; as sold, weighed grams)"
+    },
+    {
+      "item": "Rice noodles",
+      "shoppingItem": "Rice noodles",
+      "quantity": "80 g (salad; dry)"
+    },
+    {
+      "item": "Cucumber",
+      "shoppingItem": "Cucumber",
+      "quantity": "60 g (salad; raw edible input)"
+    },
+    {
+      "item": "Carrot",
+      "shoppingItem": "Carrot",
+      "quantity": "50 g (salad; raw edible input)"
+    },
+    {
+      "item": "Shallot",
+      "shoppingItem": "Shallot",
+      "quantity": "20 g (salad; raw edible input)"
+    },
+    {
+      "item": "Fresh mint",
+      "shoppingItem": "Fresh mint",
+      "quantity": "6 g (salad; raw edible leaves)"
+    },
+    {
+      "item": "Fresh coriander leaves",
+      "shoppingItem": "Fresh coriander leaves",
+      "quantity": "6 g (salad; raw edible input)"
+    },
+    {
+      "item": "Fresh lime juice",
+      "shoppingItem": "Fresh lime juice",
+      "quantity": "20 g (dressing; freshly squeezed, weighed grams)"
+    },
+    {
+      "item": "Fish sauce",
+      "shoppingItem": "Fish sauce",
+      "quantity": "6 g (dressing; as sold, weighed grams)"
+    },
+    {
+      "item": "White sugar",
+      "shoppingItem": "White sugar",
+      "quantity": "7 g (dressing; dry)"
+    },
+    {
+      "item": "Water",
+      "shoppingItem": "Water",
+      "quantity": "12.5 g (dressing; weighed recipe water)"
+    },
+    {
+      "item": "Fresh red chilli flesh",
+      "shoppingItem": "Fresh red chilli flesh",
+      "quantity": "2.5 g (dressing; raw edible input)"
+    },
+    {
+      "item": "Rapeseed oil",
+      "shoppingItem": "Rapeseed oil",
+      "quantity": "5 g (dressing; as sold, weighed grams)"
+    }
+  ],
+  "nutrition": {
+    "calories": "691 kcal",
+    "protein": "39.0 g",
+    "carbohydrates": "82.3 g",
+    "fat": "20.4 g",
+    "fibre": "6.0 g",
+    "sodium": "1482 mg",
+    "potassium": "1048 mg",
+    "phosphate": "347 mg",
+    "salt": "3.70 g"
+  },
+  "nutritionIncomplete": [],
+  "conditionalProxyPending": true,
+  "clinicalReviewPending": true,
+  "lines": [
+    {
+      "line": 1,
+      "ingredient": "Skinless boneless chicken thigh",
+      "quantity": 150,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 109,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "109",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "18-289",
+            "foodName": "Chicken, dark meat, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "M687",
+            "rawValue": "109",
+            "mainDataReferences": "Reviewed 2013. LGC, Nutrient analysis of chicken and turkey, 1994-1995; vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 163.5
+        },
+        "protein": {
+          "valuePer100": 20.9,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "20.9",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "18-289",
+            "foodName": "Chicken, dark meat, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "J687",
+            "rawValue": "20.9",
+            "mainDataReferences": "Reviewed 2013. LGC, Nutrient analysis of chicken and turkey, 1994-1995; vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 31.35
+        },
+        "carbohydrates": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "0.0",
+            "O": "0.0",
+            "P": null,
+            "Q": "0.0",
+            "R": "0.0",
+            "S": "0.0",
+            "T": "0.0",
+            "U": "0.0",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "18-289",
+              "foodName": "Chicken, dark meat, raw",
+              "sheet": "1.3 Proximates",
+              "row": 687,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0
+        },
+        "fat": {
+          "valuePer100": 2.8,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "2.8",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "18-289",
+            "foodName": "Chicken, dark meat, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "K687",
+            "rawValue": "2.8",
+            "mainDataReferences": "Reviewed 2013. LGC, Nutrient analysis of chicken and turkey, 1994-1995; vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 4.2
+        },
+        "fibre": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "18-289",
+            "foodName": "Chicken, dark meat, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "Z687",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. LGC, Nutrient analysis of chicken and turkey, 1994-1995; vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "sodium": {
+          "valuePer100": 90,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "90",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "18-289",
+            "foodName": "Chicken, dark meat, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "H687",
+            "rawValue": "90",
+            "mainDataReferences": "Reviewed 2013. LGC, Nutrient analysis of chicken and turkey, 1994-1995; vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 135
+        },
+        "potassium": {
+          "valuePer100": 390,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "390",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "18-289",
+            "foodName": "Chicken, dark meat, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "I687",
+            "rawValue": "390",
+            "mainDataReferences": "Reviewed 2013. LGC, Nutrient analysis of chicken and turkey, 1994-1995; vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 585
+        },
+        "phosphate": {
+          "valuePer100": 110,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "110",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "18-289",
+            "foodName": "Chicken, dark meat, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "L687",
+            "rawValue": "110",
+            "mainDataReferences": "Reviewed 2013. LGC, Nutrient analysis of chicken and turkey, 1994-1995; vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 165
+        }
+      }
+    },
+    {
+      "line": 2,
+      "ingredient": "Tender lemongrass core",
+      "quantity": 10,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 99,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 99,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "11972",
+            "foodName": "Lemon grass (citronella), raw",
+            "nutrientId": "208",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "11972",
+              "208",
+              "99",
+              "0",
+              "",
+              "4",
+              "NC",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "02/2004",
+              ""
+            ],
+            "originalLine": "~11972~^~208~^99^0^^~4~^~NC~^~~^~~^^^^^^^~~^02/2004^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Tender lemongrass core",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 9.9
+        },
+        "protein": {
+          "valuePer100": 1.82,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 1.82,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "11972",
+            "foodName": "Lemon grass (citronella), raw",
+            "nutrientId": "203",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "11972",
+              "203",
+              "1.82",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "10/1996",
+              ""
+            ],
+            "originalLine": "~11972~^~203~^1.82^2^^~1~^~A~^~~^~~^^^^^^^~~^10/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Tender lemongrass core",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.182
+        },
+        "carbohydrates": {
+          "valuePer100": 4.73,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "totalCarbohydrate": [
+              11.9,
+              15.9
+            ],
+            "dietaryFibre": [
+              7.9,
+              10.44
+            ]
+          },
+          "sourceReference": [
+            {
+              "dataset": "Heliyon 2023 e15951",
+              "foodName": "Cymbopogon citratus, stalk",
+              "url": "https://doi.org/10.1016/j.heliyon.2023.e15951",
+              "supplementUrl": "https://ars.els-cdn.com/content/image/1-s2.0-S2405844023031584-mmc1.pdf",
+              "table": "Supplementary Table S5, page 15 of 35",
+              "basis": "per 100 g fresh weight",
+              "methods": "Main article section 2.2.1: carbohydrate by difference includes AOAC 985.29 dietary fibre"
+            },
+            {
+              "url": "https://www.fao.org/fileadmin/templates/food_composition/documents/1nutrition/Conversion_Guidelines-V1.0.pdf",
+              "meaning": "Available carbohydrate by difference excludes dietary fibre"
+            }
+          ],
+          "method": "Published fresh edible ingredient; total carbohydrate minus total dietary fibre",
+          "contribution": 0.47300000000000003
+        },
+        "fat": {
+          "valuePer100": 0.49,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 0.49,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "11972",
+            "foodName": "Lemon grass (citronella), raw",
+            "nutrientId": "204",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "11972",
+              "204",
+              "0.49",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "10/1996",
+              ""
+            ],
+            "originalLine": "~11972~^~204~^0.49^2^^~1~^~A~^~~^~~^^^^^^^~~^10/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Tender lemongrass core",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.049
+        },
+        "fibre": {
+          "valuePer100": 9.17,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": [
+            7.9,
+            10.44
+          ],
+          "sourceReference": {
+            "article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10189170/",
+            "supplement": "https://ars.els-cdn.com/content/image/1-s2.0-S2405844023031584-mmc1.pdf",
+            "table": "S5",
+            "pages": "15",
+            "basis": "per100g fresh weight",
+            "sample": "Cy. citratus, stalk"
+          },
+          "method": "Mean of two fresh-weight source means",
+          "contribution": 0.917
+        },
+        "sodium": {
+          "valuePer100": 6,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 6,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "11972",
+            "foodName": "Lemon grass (citronella), raw",
+            "nutrientId": "307",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "11972",
+              "307",
+              "6",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "10/1996",
+              ""
+            ],
+            "originalLine": "~11972~^~307~^6^2^^~1~^~A~^~~^~~^^^^^^^~~^10/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Tender lemongrass core",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.6
+        },
+        "potassium": {
+          "valuePer100": 723,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 723,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "11972",
+            "foodName": "Lemon grass (citronella), raw",
+            "nutrientId": "306",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "11972",
+              "306",
+              "723",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "10/1996",
+              ""
+            ],
+            "originalLine": "~11972~^~306~^723^2^^~1~^~A~^~~^~~^^^^^^^~~^10/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Tender lemongrass core",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 72.3
+        },
+        "phosphate": {
+          "valuePer100": 101,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 101,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "11972",
+            "foodName": "Lemon grass (citronella), raw",
+            "nutrientId": "305",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "11972",
+              "305",
+              "101",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "10/1996",
+              ""
+            ],
+            "originalLine": "~11972~^~305~^101^2^^~1~^~A~^~~^~~^^^^^^^~~^10/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Tender lemongrass core",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 10.1
+        }
+      }
+    },
+    {
+      "line": 3,
+      "ingredient": "Garlic",
+      "quantity": 4,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 98,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "98",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-244",
+            "foodName": "Garlic, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "M1208",
+            "rawValue": "98",
+            "mainDataReferences": "Reviewed 2013. IFR, The nutritional composition of retail vegetables in the UK, 1984-1987",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 3.92
+        },
+        "protein": {
+          "valuePer100": 7.9,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "7.9",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-244",
+            "foodName": "Garlic, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "J1208",
+            "rawValue": "7.9",
+            "mainDataReferences": "Reviewed 2013. IFR, The nutritional composition of retail vegetables in the UK, 1984-1987",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.316
+        },
+        "carbohydrates": {
+          "valuePer100": 14.935064935064934,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "16.3",
+            "O": "14.7",
+            "P": null,
+            "Q": "1.6",
+            "R": "0.4",
+            "S": "0.0",
+            "T": "0.6",
+            "U": "0.6",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-244",
+              "foodName": "Garlic, raw",
+              "sheet": "1.3 Proximates",
+              "row": 1208,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0.5974025974025974
+        },
+        "fat": {
+          "valuePer100": 0.6,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.6",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-244",
+            "foodName": "Garlic, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "K1208",
+            "rawValue": "0.6",
+            "mainDataReferences": "Reviewed 2013. IFR, The nutritional composition of retail vegetables in the UK, 1984-1987",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.024
+        },
+        "fibre": {
+          "valuePer100": 2.1,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 2.1,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "11215",
+            "foodName": "Garlic, raw",
+            "nutrientId": "291",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "11215",
+              "291",
+              "2.1",
+              "0",
+              "",
+              "4",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "08/1984",
+              ""
+            ],
+            "originalLine": "~11215~^~291~^2.1^0^^~4~^~~^~~^~~^^^^^^^~~^08/1984^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-244",
+              "foodName": "Garlic, raw",
+              "sheet": "1.3 Proximates",
+              "cell": "Z1208",
+              "rawValue": "N",
+              "mainDataReferences": "Reviewed 2013. IFR, The nutritional composition of retail vegetables in the UK, 1984-1987",
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.084
+        },
+        "sodium": {
+          "valuePer100": 4,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "4",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-244",
+            "foodName": "Garlic, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "H1208",
+            "rawValue": "4",
+            "mainDataReferences": "Reviewed 2013. IFR, The nutritional composition of retail vegetables in the UK, 1984-1987",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.16
+        },
+        "potassium": {
+          "valuePer100": 620,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "620",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-244",
+            "foodName": "Garlic, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "I1208",
+            "rawValue": "620",
+            "mainDataReferences": "Reviewed 2013. IFR, The nutritional composition of retail vegetables in the UK, 1984-1987",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 24.8
+        },
+        "phosphate": {
+          "valuePer100": 170,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "170",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-244",
+            "foodName": "Garlic, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "L1208",
+            "rawValue": "170",
+            "mainDataReferences": "Reviewed 2013. IFR, The nutritional composition of retail vegetables in the UK, 1984-1987",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 6.8
+        }
+      }
+    },
+    {
+      "line": 4,
+      "ingredient": "Fish sauce",
+      "quantity": 9,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 35,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 35,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "208",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "208",
+              "35",
+              "0",
+              "",
+              "4",
+              "NC",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~208~^35^0^^~4~^~NC~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 3.15
+        },
+        "protein": {
+          "valuePer100": 5.06,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 5.06,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "203",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "203",
+              "5.06",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~203~^5.06^2^^~1~^~A~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.45539999999999997
+        },
+        "carbohydrates": {
+          "valuePer100": 3.64,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "totalCarbohydrate": 3.64,
+            "dietaryFibre": 0
+          },
+          "sourceReference": [
+            {
+              "dataset": "USDA SR28",
+              "foodId": "06179",
+              "foodName": "Sauce, fish, ready-to-serve",
+              "nutrientId": "205",
+              "file": "NUT_DATA.txt inside sr28asc.zip",
+              "rawRecord": [
+                "06179",
+                "205",
+                "3.64",
+                "0",
+                "",
+                "4",
+                "NC",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "03/1996",
+                ""
+              ],
+              "originalLine": "~06179~^~205~^3.64^0^^~4~^~NC~^~~^~~^^^^^^^~~^03/1996^",
+              "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+              "primaryMissing": {
+                "dataset": "CoFID 2021",
+                "foodCode": null,
+                "foodName": "Fish sauce",
+                "sheet": "1.3 Proximates",
+                "cell": null,
+                "rawValue": null,
+                "mainDataReferences": null,
+                "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+              }
+            },
+            {
+              "dataset": "USDA SR28",
+              "nutrientId": "291",
+              "rawRecord": [
+                "06179",
+                "291",
+                "0.0",
+                "0",
+                "",
+                "7",
+                "Z",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "03/1996",
+                ""
+              ],
+              "url": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip"
+            },
+            {
+              "url": "https://www.fao.org/fileadmin/templates/food_composition/documents/1nutrition/Conversion_Guidelines-V1.0.pdf",
+              "meaning": "Available carbohydrate by difference excludes dietary fibre"
+            }
+          ],
+          "method": "USDA total carbohydrate minus dietary fibre by weight",
+          "contribution": 0.3276
+        },
+        "fat": {
+          "valuePer100": 0.01,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 0.01,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "204",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "204",
+              "0.01",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~204~^0.01^2^^~1~^~A~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.0009
+        },
+        "fibre": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 0,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "291",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "291",
+              "0.0",
+              "0",
+              "",
+              "7",
+              "Z",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~291~^0.0^0^^~7~^~Z~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "sodium": {
+          "valuePer100": 7851,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 7851,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "307",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "307",
+              "7851",
+              "3",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "07/2010",
+              ""
+            ],
+            "originalLine": "~06179~^~307~^7851^3^^~1~^~A~^~~^~~^^^^^^^~~^07/2010^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 706.59
+        },
+        "potassium": {
+          "valuePer100": 288,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 288,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "306",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "306",
+              "288",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~306~^288^2^^~1~^~A~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 25.92
+        },
+        "phosphate": {
+          "valuePer100": 7,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 7,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "305",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "305",
+              "7",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~305~^7^2^^~1~^~A~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.63
+        }
+      }
+    },
+    {
+      "line": 5,
+      "ingredient": "White sugar",
+      "quantity": 5,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 394,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "394",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.3 Proximates",
+            "cell": "M2635",
+            "rawValue": "394",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 19.7
+        },
+        "protein": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.3 Proximates",
+            "cell": "J2635",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "carbohydrates": {
+          "valuePer100": 100,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "105.0",
+            "O": "0.0",
+            "P": null,
+            "Q": "105.0",
+            "R": "0.0",
+            "S": "0.0",
+            "T": "0.0",
+            "U": "105.0",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "17-063",
+              "foodName": "Sugar, white",
+              "sheet": "1.3 Proximates",
+              "row": 2635,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 5
+        },
+        "fat": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.3 Proximates",
+            "cell": "K2635",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "fibre": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.3 Proximates",
+            "cell": "Z2635",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "sodium": {
+          "valuePer100": 5,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "5",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.4 Inorganics",
+            "cell": "H2635",
+            "rawValue": "5",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.25
+        },
+        "potassium": {
+          "valuePer100": 5,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "5",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.4 Inorganics",
+            "cell": "I2635",
+            "rawValue": "5",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.25
+        },
+        "phosphate": {
+          "valuePer100": 1,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "1",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.4 Inorganics",
+            "cell": "L2635",
+            "rawValue": "1",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.05
+        }
+      }
+    },
+    {
+      "line": 6,
+      "ingredient": "Rapeseed oil",
+      "quantity": 10,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 899,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "899",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.3 Proximates",
+            "cell": "M1789",
+            "rawValue": "899",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 89.9
+        },
+        "protein": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.3 Proximates",
+            "cell": "J1789",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "carbohydrates": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "0.0",
+            "O": "0.0",
+            "P": null,
+            "Q": "0.0",
+            "R": "0.0",
+            "S": "0.0",
+            "T": "0.0",
+            "U": "0.0",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "17-041",
+              "foodName": "Oil, rapeseed",
+              "sheet": "1.3 Proximates",
+              "row": 1789,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0
+        },
+        "fat": {
+          "valuePer100": 99.9,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "99.9",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.3 Proximates",
+            "cell": "K1789",
+            "rawValue": "99.9",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 9.99
+        },
+        "fibre": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.3 Proximates",
+            "cell": "Z1789",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "sodium": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.4 Inorganics",
+            "cell": "H1789",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "potassium": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.4 Inorganics",
+            "cell": "I1789",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "phosphate": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.4 Inorganics",
+            "cell": "L1789",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        }
+      }
+    },
+    {
+      "line": 7,
+      "ingredient": "Rice noodles",
+      "quantity": 80,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 364,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 364,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "20133",
+            "foodName": "Rice noodles, dry",
+            "nutrientId": "208",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "20133",
+              "208",
+              "364",
+              "0",
+              "",
+              "4",
+              "NC",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/2013",
+              ""
+            ],
+            "originalLine": "~20133~^~208~^364^0^^~4~^~NC~^~~^~~^^^^^^^~~^03/2013^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Rice noodles",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 291.2
+        },
+        "protein": {
+          "valuePer100": 5.95,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 5.95,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "20133",
+            "foodName": "Rice noodles, dry",
+            "nutrientId": "203",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "20133",
+              "203",
+              "5.95",
+              "0",
+              "",
+              "4",
+              "FLA",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "05/2013",
+              ""
+            ],
+            "originalLine": "~20133~^~203~^5.95^0^^~4~^~FLA~^~~^~~^^^^^^^~~^05/2013^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Rice noodles",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 4.76
+        },
+        "carbohydrates": {
+          "valuePer100": 78.58000000000001,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "totalCarbohydrate": 80.18,
+            "dietaryFibre": 1.6
+          },
+          "sourceReference": [
+            {
+              "dataset": "USDA SR28",
+              "foodId": "20133",
+              "foodName": "Rice noodles, dry",
+              "nutrientId": "205",
+              "file": "NUT_DATA.txt inside sr28asc.zip",
+              "rawRecord": [
+                "20133",
+                "205",
+                "80.18",
+                "0",
+                "",
+                "4",
+                "FLA",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "05/2013",
+                ""
+              ],
+              "originalLine": "~20133~^~205~^80.18^0^^~4~^~FLA~^~~^~~^^^^^^^~~^05/2013^",
+              "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+              "primaryMissing": {
+                "dataset": "CoFID 2021",
+                "foodCode": null,
+                "foodName": "Rice noodles",
+                "sheet": "1.3 Proximates",
+                "cell": null,
+                "rawValue": null,
+                "mainDataReferences": null,
+                "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+              }
+            },
+            {
+              "dataset": "USDA SR28",
+              "nutrientId": "291",
+              "rawRecord": [
+                "20133",
+                "291",
+                "1.6",
+                "3",
+                "0.469",
+                "1",
+                "A",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "03/2013",
+                ""
+              ],
+              "url": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip"
+            },
+            {
+              "url": "https://www.fao.org/fileadmin/templates/food_composition/documents/1nutrition/Conversion_Guidelines-V1.0.pdf",
+              "meaning": "Available carbohydrate by difference excludes dietary fibre"
+            }
+          ],
+          "method": "USDA total carbohydrate minus dietary fibre by weight",
+          "contribution": 62.86400000000001
+        },
+        "fat": {
+          "valuePer100": 0.56,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 0.56,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "20133",
+            "foodName": "Rice noodles, dry",
+            "nutrientId": "204",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "20133",
+              "204",
+              "0.56",
+              "3",
+              "0.212",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/2013",
+              ""
+            ],
+            "originalLine": "~20133~^~204~^0.56^3^0.212^~1~^~A~^~~^~~^^^^^^^~~^03/2013^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Rice noodles",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.44800000000000006
+        },
+        "fibre": {
+          "valuePer100": 1.6,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 1.6,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "20133",
+            "foodName": "Rice noodles, dry",
+            "nutrientId": "291",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "20133",
+              "291",
+              "1.6",
+              "3",
+              "0.469",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/2013",
+              ""
+            ],
+            "originalLine": "~20133~^~291~^1.6^3^0.469^~1~^~A~^~~^~~^^^^^^^~~^03/2013^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Rice noodles",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 1.28
+        },
+        "sodium": {
+          "valuePer100": 182,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 182,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "20133",
+            "foodName": "Rice noodles, dry",
+            "nutrientId": "307",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "20133",
+              "307",
+              "182",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/2013",
+              ""
+            ],
+            "originalLine": "~20133~^~307~^182^2^^~1~^~A~^~~^~~^^^^^^^~~^03/2013^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Rice noodles",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 145.6
+        },
+        "potassium": {
+          "valuePer100": 30,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 30,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "20133",
+            "foodName": "Rice noodles, dry",
+            "nutrientId": "306",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "20133",
+              "306",
+              "30",
+              "3",
+              "3.580",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/2013",
+              ""
+            ],
+            "originalLine": "~20133~^~306~^30^3^3.580^~1~^~A~^~~^~~^^^^^^^~~^03/2013^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Rice noodles",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 24
+        },
+        "phosphate": {
+          "valuePer100": 153,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 153,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "20133",
+            "foodName": "Rice noodles, dry",
+            "nutrientId": "305",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "20133",
+              "305",
+              "153",
+              "3",
+              "36.259",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/2013",
+              ""
+            ],
+            "originalLine": "~20133~^~305~^153^3^36.259^~1~^~A~^~~^~~^^^^^^^~~^03/2013^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Rice noodles",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 122.4
+        }
+      }
+    },
+    {
+      "line": 8,
+      "ingredient": "Cucumber",
+      "quantity": 60,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 14,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "14",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-523",
+            "foodName": "Cucumber, raw, flesh and skin",
+            "sheet": "1.3 Proximates",
+            "cell": "M907",
+            "rawValue": "14",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 8.4
+        },
+        "protein": {
+          "valuePer100": 1,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "1.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-523",
+            "foodName": "Cucumber, raw, flesh and skin",
+            "sheet": "1.3 Proximates",
+            "cell": "J907",
+            "rawValue": "1.0",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.6
+        },
+        "carbohydrates": {
+          "valuePer100": 1.2,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "1.2",
+            "O": "Tr",
+            "P": null,
+            "Q": "1.2",
+            "R": "0.5",
+            "S": "Tr",
+            "T": "0.7",
+            "U": "0.0",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-523",
+              "foodName": "Cucumber, raw, flesh and skin",
+              "sheet": "1.3 Proximates",
+              "row": 907,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0.72
+        },
+        "fat": {
+          "valuePer100": 0.6,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.6",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-523",
+            "foodName": "Cucumber, raw, flesh and skin",
+            "sheet": "1.3 Proximates",
+            "cell": "K907",
+            "rawValue": "0.6",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.36
+        },
+        "fibre": {
+          "valuePer100": 0.7,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.7",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-523",
+            "foodName": "Cucumber, raw, flesh and skin",
+            "sheet": "1.3 Proximates",
+            "cell": "Z907",
+            "rawValue": "0.7",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.42
+        },
+        "sodium": {
+          "valuePer100": 4,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "4",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-523",
+            "foodName": "Cucumber, raw, flesh and skin",
+            "sheet": "1.4 Inorganics",
+            "cell": "H907",
+            "rawValue": "4",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 2.4
+        },
+        "potassium": {
+          "valuePer100": 156,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "156",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-523",
+            "foodName": "Cucumber, raw, flesh and skin",
+            "sheet": "1.4 Inorganics",
+            "cell": "I907",
+            "rawValue": "156",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 93.6
+        },
+        "phosphate": {
+          "valuePer100": 23,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "23",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-523",
+            "foodName": "Cucumber, raw, flesh and skin",
+            "sheet": "1.4 Inorganics",
+            "cell": "L907",
+            "rawValue": "23",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 13.8
+        }
+      }
+    },
+    {
+      "line": 9,
+      "ingredient": "Carrot",
+      "quantity": 50,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 34,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "34",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-496",
+            "foodName": "Carrots, old, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "M541",
+            "rawValue": "34",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 17
+        },
+        "protein": {
+          "valuePer100": 0.5,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.5",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-496",
+            "foodName": "Carrots, old, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "J541",
+            "rawValue": "0.5",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.25
+        },
+        "carbohydrates": {
+          "valuePer100": 7.433766233766234,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "7.7",
+            "O": "0.1",
+            "P": "0.3",
+            "Q": "7.2",
+            "R": "1.1",
+            "S": "Tr",
+            "T": "1.1",
+            "U": "5.0",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-496",
+              "foodName": "Carrots, old, raw",
+              "sheet": "1.3 Proximates",
+              "row": 541,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 3.716883116883117
+        },
+        "fat": {
+          "valuePer100": 0.4,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.4",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-496",
+            "foodName": "Carrots, old, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "K541",
+            "rawValue": "0.4",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.2
+        },
+        "fibre": {
+          "valuePer100": 3.9,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "3.9",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-496",
+            "foodName": "Carrots, old, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "Z541",
+            "rawValue": "3.9",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 1.95
+        },
+        "sodium": {
+          "valuePer100": 27,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "27",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-496",
+            "foodName": "Carrots, old, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "H541",
+            "rawValue": "27",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 13.5
+        },
+        "potassium": {
+          "valuePer100": 178,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "178",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-496",
+            "foodName": "Carrots, old, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "I541",
+            "rawValue": "178",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 89
+        },
+        "phosphate": {
+          "valuePer100": 16,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "16",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-496",
+            "foodName": "Carrots, old, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "L541",
+            "rawValue": "16",
+            "mainDataReferences": "DH, Nutrient analysis of fruit and vegetables, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 8
+        }
+      }
+    },
+    {
+      "line": 10,
+      "ingredient": "Shallot",
+      "quantity": 20,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 20,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "20",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-342",
+            "foodName": "Shallots, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "M2526",
+            "rawValue": "20",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 4
+        },
+        "protein": {
+          "valuePer100": 1.5,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "1.5",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-342",
+            "foodName": "Shallots, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "J2526",
+            "rawValue": "1.5",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.3
+        },
+        "carbohydrates": {
+          "valuePer100": 3.2476190476190476,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "3.3",
+            "O": "Tr",
+            "P": null,
+            "Q": "3.3",
+            "R": "1.2",
+            "S": "0.0",
+            "T": "1.0",
+            "U": "1.1",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-342",
+              "foodName": "Shallots, raw",
+              "sheet": "1.3 Proximates",
+              "row": 2526,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0.6495238095238095
+        },
+        "fat": {
+          "valuePer100": 0.2,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.2",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-342",
+            "foodName": "Shallots, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "K2526",
+            "rawValue": "0.2",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.04
+        },
+        "fibre": {
+          "valuePer100": 3.2,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 3.2,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "11677",
+            "foodName": "Shallots, raw",
+            "nutrientId": "291",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "11677",
+              "291",
+              "3.2",
+              "0",
+              "",
+              "4",
+              "BFSN",
+              "11282",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "08/2011",
+              ""
+            ],
+            "originalLine": "~11677~^~291~^3.2^0^^~4~^~BFSN~^~11282~^~~^^^^^^^~~^08/2011^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-342",
+              "foodName": "Shallots, raw",
+              "sheet": "1.3 Proximates",
+              "cell": "Z2526",
+              "rawValue": null,
+              "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.64
+        },
+        "sodium": {
+          "valuePer100": 10,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "10",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-342",
+            "foodName": "Shallots, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "H2526",
+            "rawValue": "10",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 2
+        },
+        "potassium": {
+          "valuePer100": 180,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "180",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-342",
+            "foodName": "Shallots, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "I2526",
+            "rawValue": "180",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 36
+        },
+        "phosphate": {
+          "valuePer100": 50,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "50",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-342",
+            "foodName": "Shallots, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "L2526",
+            "rawValue": "50",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 10
+        }
+      }
+    },
+    {
+      "line": 11,
+      "ingredient": "Fresh mint",
+      "quantity": 6,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 43,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "43",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-836",
+            "foodName": "Mint, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "M1695",
+            "rawValue": "43",
+            "mainDataReferences": "Reviewed 2013. Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 2.58
+        },
+        "protein": {
+          "valuePer100": 3.8,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "3.8",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-836",
+            "foodName": "Mint, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "J1695",
+            "rawValue": "3.8",
+            "mainDataReferences": "Reviewed 2013. Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.22799999999999998
+        },
+        "carbohydrates": {
+          "valuePer100": 5.0476190476190474,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "5.3",
+            "O": "N",
+            "P": null,
+            "Q": "N",
+            "R": "N",
+            "S": "0.0",
+            "T": "N",
+            "U": "N",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-836",
+              "foodName": "Mint, fresh",
+              "sheet": "1.3 Proximates",
+              "row": 1695,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0.3028571428571428
+        },
+        "fat": {
+          "valuePer100": 0.7,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.7",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-836",
+            "foodName": "Mint, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "K1695",
+            "rawValue": "0.7",
+            "mainDataReferences": "Reviewed 2013. Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.041999999999999996
+        },
+        "fibre": {
+          "valuePer100": 6.8,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 6.8,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "02065",
+            "foodName": "Spearmint, fresh",
+            "nutrientId": "291",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "02065",
+              "291",
+              "6.8",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "04/1996",
+              ""
+            ],
+            "originalLine": "~02065~^~291~^6.8^2^^~1~^~A~^~~^~~^^^^^^^~~^04/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-836",
+              "foodName": "Mint, fresh",
+              "sheet": "1.3 Proximates",
+              "cell": "Z1695",
+              "rawValue": "N",
+              "mainDataReferences": "Reviewed 2013. Vegetables, Herbs and Spices Supplement, 1991",
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.408
+        },
+        "sodium": {
+          "valuePer100": 15,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "15",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-836",
+            "foodName": "Mint, fresh",
+            "sheet": "1.4 Inorganics",
+            "cell": "H1695",
+            "rawValue": "15",
+            "mainDataReferences": "Reviewed 2013. Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.9
+        },
+        "potassium": {
+          "valuePer100": 260,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "260",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-836",
+            "foodName": "Mint, fresh",
+            "sheet": "1.4 Inorganics",
+            "cell": "I1695",
+            "rawValue": "260",
+            "mainDataReferences": "Reviewed 2013. Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 15.6
+        },
+        "phosphate": {
+          "valuePer100": 75,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "75",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-836",
+            "foodName": "Mint, fresh",
+            "sheet": "1.4 Inorganics",
+            "cell": "L1695",
+            "rawValue": "75",
+            "mainDataReferences": "Reviewed 2013. Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 4.5
+        }
+      }
+    },
+    {
+      "line": 12,
+      "ingredient": "Fresh coriander leaves",
+      "quantity": 6,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 18,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "18",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-888",
+            "foodName": "Coriander leaves, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "M846",
+            "rawValue": "18",
+            "mainDataReferences": "USDA SR26, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 1.08
+        },
+        "protein": {
+          "valuePer100": 2.1,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "2.1",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-888",
+            "foodName": "Coriander leaves, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "J846",
+            "rawValue": "2.1",
+            "mainDataReferences": "USDA SR26, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.126
+        },
+        "carbohydrates": {
+          "valuePer100": 1.1727272727272728,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "1.2",
+            "O": "0.3",
+            "P": null,
+            "Q": "0.9",
+            "R": "0.5",
+            "S": "0.0",
+            "T": "0.4",
+            "U": "Tr",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-888",
+              "foodName": "Coriander leaves, fresh",
+              "sheet": "1.3 Proximates",
+              "row": 846,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0.07036363636363636
+        },
+        "fat": {
+          "valuePer100": 0.5,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.5",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-888",
+            "foodName": "Coriander leaves, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "K846",
+            "rawValue": "0.5",
+            "mainDataReferences": "USDA SR26, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.03
+        },
+        "fibre": {
+          "valuePer100": 2.8,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "2.8",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-888",
+            "foodName": "Coriander leaves, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "Z846",
+            "rawValue": "2.8",
+            "mainDataReferences": "USDA SR26, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.16799999999999998
+        },
+        "sodium": {
+          "valuePer100": 46,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "46",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-888",
+            "foodName": "Coriander leaves, fresh",
+            "sheet": "1.4 Inorganics",
+            "cell": "H846",
+            "rawValue": "46",
+            "mainDataReferences": "USDA SR26, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 2.76
+        },
+        "potassium": {
+          "valuePer100": 521,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "521",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-888",
+            "foodName": "Coriander leaves, fresh",
+            "sheet": "1.4 Inorganics",
+            "cell": "I846",
+            "rawValue": "521",
+            "mainDataReferences": "USDA SR26, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 31.26
+        },
+        "phosphate": {
+          "valuePer100": 48,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "48",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-888",
+            "foodName": "Coriander leaves, fresh",
+            "sheet": "1.4 Inorganics",
+            "cell": "L846",
+            "rawValue": "48",
+            "mainDataReferences": "USDA SR26, 2013",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 2.88
+        }
+      }
+    },
+    {
+      "line": 13,
+      "ingredient": "Fresh lime juice",
+      "quantity": 20,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 9,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "9",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "14-279",
+            "foodName": "Lime juice, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "M1559",
+            "rawValue": "9",
+            "mainDataReferences": "Gebhardt et al. (1982) Composition of foods: fruits and fruit juices, raw, processed and prepared, Agriculture Handbook No. 8-9",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 1.8
+        },
+        "protein": {
+          "valuePer100": 0.4,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.4",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "14-279",
+            "foodName": "Lime juice, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "J1559",
+            "rawValue": "0.4",
+            "mainDataReferences": "Gebhardt et al. (1982) Composition of foods: fruits and fruit juices, raw, processed and prepared, Agriculture Handbook No. 8-9",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.08
+        },
+        "carbohydrates": {
+          "valuePer100": 1.5238095238095237,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "1.6",
+            "O": "0.0",
+            "P": null,
+            "Q": "1.6",
+            "R": "0.6",
+            "S": null,
+            "T": "0.6",
+            "U": "0.4",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "14-279",
+              "foodName": "Lime juice, fresh",
+              "sheet": "1.3 Proximates",
+              "row": 1559,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0.30476190476190473
+        },
+        "fat": {
+          "valuePer100": 0.1,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.1",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "14-279",
+            "foodName": "Lime juice, fresh",
+            "sheet": "1.3 Proximates",
+            "cell": "K1559",
+            "rawValue": "0.1",
+            "mainDataReferences": "Gebhardt et al. (1982) Composition of foods: fruits and fruit juices, raw, processed and prepared, Agriculture Handbook No. 8-9",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.02
+        },
+        "fibre": {
+          "valuePer100": 0.4,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 0.4,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "09160",
+            "foodName": "Lime juice, raw",
+            "nutrientId": "291",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "09160",
+              "291",
+              "0.4",
+              "0",
+              "",
+              "4",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "04/2004",
+              ""
+            ],
+            "originalLine": "~09160~^~291~^0.4^0^^~4~^~~^~~^~~^^^^^^^~~^04/2004^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": "14-279",
+              "foodName": "Lime juice, fresh",
+              "sheet": "1.3 Proximates",
+              "cell": "Z1559",
+              "rawValue": null,
+              "mainDataReferences": "Gebhardt et al. (1982) Composition of foods: fruits and fruit juices, raw, processed and prepared, Agriculture Handbook No. 8-9",
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.08
+        },
+        "sodium": {
+          "valuePer100": 1,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "1",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "14-279",
+            "foodName": "Lime juice, fresh",
+            "sheet": "1.4 Inorganics",
+            "cell": "H1559",
+            "rawValue": "1",
+            "mainDataReferences": "Gebhardt et al. (1982) Composition of foods: fruits and fruit juices, raw, processed and prepared, Agriculture Handbook No. 8-9",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.2
+        },
+        "potassium": {
+          "valuePer100": 110,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "110",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "14-279",
+            "foodName": "Lime juice, fresh",
+            "sheet": "1.4 Inorganics",
+            "cell": "I1559",
+            "rawValue": "110",
+            "mainDataReferences": "Gebhardt et al. (1982) Composition of foods: fruits and fruit juices, raw, processed and prepared, Agriculture Handbook No. 8-9",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 22
+        },
+        "phosphate": {
+          "valuePer100": 7,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "7",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "14-279",
+            "foodName": "Lime juice, fresh",
+            "sheet": "1.4 Inorganics",
+            "cell": "L1559",
+            "rawValue": "7",
+            "mainDataReferences": "Gebhardt et al. (1982) Composition of foods: fruits and fruit juices, raw, processed and prepared, Agriculture Handbook No. 8-9",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 1.4
+        }
+      }
+    },
+    {
+      "line": 14,
+      "ingredient": "Fish sauce",
+      "quantity": 6,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 35,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 35,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "208",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "208",
+              "35",
+              "0",
+              "",
+              "4",
+              "NC",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~208~^35^0^^~4~^~NC~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 2.1
+        },
+        "protein": {
+          "valuePer100": 5.06,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 5.06,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "203",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "203",
+              "5.06",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~203~^5.06^2^^~1~^~A~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.3036
+        },
+        "carbohydrates": {
+          "valuePer100": 3.64,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "totalCarbohydrate": 3.64,
+            "dietaryFibre": 0
+          },
+          "sourceReference": [
+            {
+              "dataset": "USDA SR28",
+              "foodId": "06179",
+              "foodName": "Sauce, fish, ready-to-serve",
+              "nutrientId": "205",
+              "file": "NUT_DATA.txt inside sr28asc.zip",
+              "rawRecord": [
+                "06179",
+                "205",
+                "3.64",
+                "0",
+                "",
+                "4",
+                "NC",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "03/1996",
+                ""
+              ],
+              "originalLine": "~06179~^~205~^3.64^0^^~4~^~NC~^~~^~~^^^^^^^~~^03/1996^",
+              "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+              "primaryMissing": {
+                "dataset": "CoFID 2021",
+                "foodCode": null,
+                "foodName": "Fish sauce",
+                "sheet": "1.3 Proximates",
+                "cell": null,
+                "rawValue": null,
+                "mainDataReferences": null,
+                "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+              }
+            },
+            {
+              "dataset": "USDA SR28",
+              "nutrientId": "291",
+              "rawRecord": [
+                "06179",
+                "291",
+                "0.0",
+                "0",
+                "",
+                "7",
+                "Z",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "03/1996",
+                ""
+              ],
+              "url": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip"
+            },
+            {
+              "url": "https://www.fao.org/fileadmin/templates/food_composition/documents/1nutrition/Conversion_Guidelines-V1.0.pdf",
+              "meaning": "Available carbohydrate by difference excludes dietary fibre"
+            }
+          ],
+          "method": "USDA total carbohydrate minus dietary fibre by weight",
+          "contribution": 0.2184
+        },
+        "fat": {
+          "valuePer100": 0.01,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 0.01,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "204",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "204",
+              "0.01",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~204~^0.01^2^^~1~^~A~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.0006
+        },
+        "fibre": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 0,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "291",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "291",
+              "0.0",
+              "0",
+              "",
+              "7",
+              "Z",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~291~^0.0^0^^~7~^~Z~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.3 Proximates",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "sodium": {
+          "valuePer100": 7851,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 7851,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "307",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "307",
+              "7851",
+              "3",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "07/2010",
+              ""
+            ],
+            "originalLine": "~06179~^~307~^7851^3^^~1~^~A~^~~^~~^^^^^^^~~^07/2010^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 471.06
+        },
+        "potassium": {
+          "valuePer100": 288,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 288,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "306",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "306",
+              "288",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~306~^288^2^^~1~^~A~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 17.28
+        },
+        "phosphate": {
+          "valuePer100": 7,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 7,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "06179",
+            "foodName": "Sauce, fish, ready-to-serve",
+            "nutrientId": "305",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "06179",
+              "305",
+              "7",
+              "2",
+              "",
+              "1",
+              "A",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "03/1996",
+              ""
+            ],
+            "originalLine": "~06179~^~305~^7^2^^~1~^~A~^~~^~~^^^^^^^~~^03/1996^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": null,
+              "foodName": "Fish sauce",
+              "sheet": "1.4 Inorganics",
+              "cell": null,
+              "rawValue": null,
+              "mainDataReferences": null,
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.42
+        }
+      }
+    },
+    {
+      "line": 15,
+      "ingredient": "White sugar",
+      "quantity": 7,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 394,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "394",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.3 Proximates",
+            "cell": "M2635",
+            "rawValue": "394",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 27.58
+        },
+        "protein": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.3 Proximates",
+            "cell": "J2635",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "carbohydrates": {
+          "valuePer100": 100,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "105.0",
+            "O": "0.0",
+            "P": null,
+            "Q": "105.0",
+            "R": "0.0",
+            "S": "0.0",
+            "T": "0.0",
+            "U": "105.0",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "17-063",
+              "foodName": "Sugar, white",
+              "sheet": "1.3 Proximates",
+              "row": 2635,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 7
+        },
+        "fat": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.3 Proximates",
+            "cell": "K2635",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "fibre": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.3 Proximates",
+            "cell": "Z2635",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "sodium": {
+          "valuePer100": 5,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "5",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.4 Inorganics",
+            "cell": "H2635",
+            "rawValue": "5",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.35
+        },
+        "potassium": {
+          "valuePer100": 5,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "5",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.4 Inorganics",
+            "cell": "I2635",
+            "rawValue": "5",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.35
+        },
+        "phosphate": {
+          "valuePer100": 1,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "1",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-063",
+            "foodName": "Sugar, white",
+            "sheet": "1.4 Inorganics",
+            "cell": "L2635",
+            "rawValue": "1",
+            "mainDataReferences": "Reviewed 2013. LGC, Analysis of assorted foods, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.07
+        }
+      }
+    },
+    {
+      "line": 16,
+      "ingredient": "Water",
+      "quantity": 12.5,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-377",
+            "foodName": "Water, distilled",
+            "sheet": "1.3 Proximates",
+            "cell": "M2826",
+            "rawValue": "0",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "protein": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-377",
+            "foodName": "Water, distilled",
+            "sheet": "1.3 Proximates",
+            "cell": "J2826",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "carbohydrates": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "0.0",
+            "O": "0.0",
+            "P": null,
+            "Q": "0.0",
+            "R": "0.0",
+            "S": "0.0",
+            "T": "0.0",
+            "U": "0.0",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "17-377",
+              "foodName": "Water, distilled",
+              "sheet": "1.3 Proximates",
+              "row": 2826,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0
+        },
+        "fat": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-377",
+            "foodName": "Water, distilled",
+            "sheet": "1.3 Proximates",
+            "cell": "K2826",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "fibre": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-377",
+            "foodName": "Water, distilled",
+            "sheet": "1.3 Proximates",
+            "cell": "Z2826",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "sodium": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-377",
+            "foodName": "Water, distilled",
+            "sheet": "1.4 Inorganics",
+            "cell": "H2826",
+            "rawValue": "0",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "potassium": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-377",
+            "foodName": "Water, distilled",
+            "sheet": "1.4 Inorganics",
+            "cell": "I2826",
+            "rawValue": "0",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "phosphate": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-377",
+            "foodName": "Water, distilled",
+            "sheet": "1.4 Inorganics",
+            "cell": "L2826",
+            "rawValue": "0",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        }
+      }
+    },
+    {
+      "line": 17,
+      "ingredient": "Fresh red chilli flesh",
+      "quantity": 2.5,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 26,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "26",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-317",
+            "foodName": "Peppers, capsicum, chilli, red, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "M1985",
+            "rawValue": "26",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.65
+        },
+        "protein": {
+          "valuePer100": 1.8,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "1.8",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-317",
+            "foodName": "Peppers, capsicum, chilli, red, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "J1985",
+            "rawValue": "1.8",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.045
+        },
+        "carbohydrates": {
+          "valuePer100": 4.2,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "4.2",
+            "O": "Tr",
+            "P": null,
+            "Q": "4.2",
+            "R": "1.9",
+            "S": "0.0",
+            "T": "2.3",
+            "U": "Tr",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-317",
+              "foodName": "Peppers, capsicum, chilli, red, raw",
+              "sheet": "1.3 Proximates",
+              "row": 1985,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0.105
+        },
+        "fat": {
+          "valuePer100": 0.3,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.3",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-317",
+            "foodName": "Peppers, capsicum, chilli, red, raw",
+            "sheet": "1.3 Proximates",
+            "cell": "K1985",
+            "rawValue": "0.3",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.0075
+        },
+        "fibre": {
+          "valuePer100": 1.5,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": 1.5,
+          "sourceReference": {
+            "dataset": "USDA SR28",
+            "foodId": "11819",
+            "foodName": "Peppers, hot chili, red, raw",
+            "nutrientId": "291",
+            "file": "NUT_DATA.txt inside sr28asc.zip",
+            "rawRecord": [
+              "11819",
+              "291",
+              "1.5",
+              "0",
+              "",
+              "4",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "01/2004",
+              ""
+            ],
+            "originalLine": "~11819~^~291~^1.5^0^^~4~^~~^~~^~~^^^^^^^~~^01/2004^",
+            "sourceUrl": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+            "primaryMissing": {
+              "dataset": "CoFID 2021",
+              "foodCode": "13-317",
+              "foodName": "Peppers, capsicum, chilli, red, raw",
+              "sheet": "1.3 Proximates",
+              "cell": "Z1985",
+              "rawValue": null,
+              "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+              "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            }
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.0375
+        },
+        "sodium": {
+          "valuePer100": 12,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "12",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-317",
+            "foodName": "Peppers, capsicum, chilli, red, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "H1985",
+            "rawValue": "12",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.3
+        },
+        "potassium": {
+          "valuePer100": 440,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "440",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-317",
+            "foodName": "Peppers, capsicum, chilli, red, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "I1985",
+            "rawValue": "440",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 11
+        },
+        "phosphate": {
+          "valuePer100": 39,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "39",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "13-317",
+            "foodName": "Peppers, capsicum, chilli, red, raw",
+            "sheet": "1.4 Inorganics",
+            "cell": "L1985",
+            "rawValue": "39",
+            "mainDataReferences": "Vegetables, Herbs and Spices Supplement, 1991",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0.975
+        }
+      }
+    },
+    {
+      "line": 18,
+      "ingredient": "Rapeseed oil",
+      "quantity": 5,
+      "unit": "g",
+      "nutrients": {
+        "calories": {
+          "valuePer100": 899,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "899",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.3 Proximates",
+            "cell": "M1789",
+            "rawValue": "899",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 44.95
+        },
+        "protein": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.3 Proximates",
+            "cell": "J1789",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "carbohydrates": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": {
+            "L": "0.0",
+            "O": "0.0",
+            "P": null,
+            "Q": "0.0",
+            "R": "0.0",
+            "S": "0.0",
+            "T": "0.0",
+            "U": "0.0",
+            "V": "0.0",
+            "W": "0.0"
+          },
+          "sourceReference": [
+            {
+              "dataset": "CoFID 2021",
+              "foodCode": "17-041",
+              "foodName": "Oil, rapeseed",
+              "sheet": "1.3 Proximates",
+              "row": 1789,
+              "columns": "L:W",
+              "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+            },
+            {
+              "url": "https://assets.publishing.service.gov.uk/media/60538e66d3bf7f03249bac58/McCance_and_Widdowsons_Composition_of_Foods_integrated_dataset_2021.pdf",
+              "pages": "10-11, 16",
+              "meaning": "Carbohydrate definitions and conversion to actual weights"
+            }
+          ],
+          "method": "CoFID conversion to available carbohydrate by weight",
+          "contribution": 0
+        },
+        "fat": {
+          "valuePer100": 99.9,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "99.9",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.3 Proximates",
+            "cell": "K1789",
+            "rawValue": "99.9",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 4.995
+        },
+        "fibre": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "0.0",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.3 Proximates",
+            "cell": "Z1789",
+            "rawValue": "0.0",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "sodium": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.4 Inorganics",
+            "cell": "H1789",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "potassium": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.4 Inorganics",
+            "cell": "I1789",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        },
+        "phosphate": {
+          "valuePer100": 0,
+          "unit": "g",
+          "basis": "per100g",
+          "raw": "Tr",
+          "sourceReference": {
+            "dataset": "CoFID 2021",
+            "foodCode": "17-041",
+            "foodName": "Oil, rapeseed",
+            "sheet": "1.4 Inorganics",
+            "cell": "L1789",
+            "rawValue": "Tr",
+            "mainDataReferences": "Reviewed 2013. Miscellaneous Foods Supplement, 1994; and Fatty Acids Supplement, 1998. Vitamin K1 from Bolton-Smith et al Br.J. Nutr.83, 2000",
+            "sourceUrl": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "method": "Retained original ingredient evidence",
+          "contribution": 0
+        }
+      }
+    }
+  ],
+  "unroundedTotals": {
+    "calories": 691.4100000000001,
+    "protein": 38.995999999999995,
+    "carbohydrates": 82.34979220779223,
+    "fat": 20.406999999999996,
+    "fibre": 5.9845,
+    "sodium": 1481.6699999999998,
+    "potassium": 1048.36,
+    "phosphate": 347.02500000000003,
+    "salt": 3.7041749999999998
+  }
+}

@@ -12,7 +12,7 @@ export const lunches: Recipe[] = [
     cookingTime: "15 minutes",
     calories: "372 kcal",
     protein: "24.0 g",
-    equipment: "Knife, Chopping board, Butter knife",
+    equipment: "Knife, Chopping board, Butter knife, Frying pan, Food thermometer",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "75 g (raw)" },
@@ -20,12 +20,12 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
     method: [
-  "Wash and prepare the salad vegetables. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cut the chicken breast into thin strips.",
-  "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
-  "Spread the measured mayonnaise evenly over the bread. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Arrange the cooked chicken and prepared vegetables over the bread. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Wash and prepare the salad vegetables. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Cut the chicken breast into thin strips.",
+      "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
+      "Spread the measured mayonnaise evenly over the bread.",
+      "Arrange the cooked chicken and prepared vegetables over the bread.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "372 kcal",
       protein: "24.0 g",
@@ -64,7 +64,7 @@ export const lunches: Recipe[] = [
     cookingTime: "14 minutes",
     calories: "401 kcal",
     protein: "20.0 g",
-    equipment: "Knife, Chopping board, Butter knife, Saucepan",
+    equipment: "Knife, Chopping board, Butter knife, Saucepan, Lid or bowl cover",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "2" },
@@ -72,13 +72,13 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" },
     ],
     method: [
-  "Place the eggs in a saucepan and cover with cold water.",
-  "Bring the water to a boil.",
-  "Once boiling, cook the eggs for 8–10 minutes.",
-  "Drain, cool under cold running water and peel the eggs.",
-  "Slice the eggs and arrange on the bread with mayonnaise and lettuce. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling.",
-  "Close the sandwich, cut in half if desired and serve."
-],
+      "Place the eggs in a saucepan and cover with cold water.",
+      "Bring the water to a boil.",
+      "Once boiling, cook the eggs for 8–10 minutes.",
+      "Drain, cool under cold running water and peel the eggs.",
+      "Slice the eggs and arrange on the bread with mayonnaise and lettuce. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling.",
+      "Close the sandwich, cut in half if desired and serve."
+    ],
     nutrition: {
       calories: "401 kcal",
       protein: "20.0 g",
@@ -116,7 +116,7 @@ export const lunches: Recipe[] = [
     cookingTime: "8 minutes",
     calories: "358 kcal",
     protein: "20.9 g",
-    equipment: "Knife, Chopping board, Butter knife",
+    equipment: "Knife, Chopping board, Butter knife, Mixing bowl",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "60 g" },
@@ -124,12 +124,12 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
     method: [
-  "Drain the tuna thoroughly and prepare the lettuce.",
-  "Mix the tuna with the measured mayonnaise. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Spread the tuna mixture over the bread.",
-  "Add the lettuce and close the sandwich.",
-  "Cut in half if desired and serve."
-],
+      "Drain the tuna thoroughly and prepare the lettuce.",
+      "Mix the tuna with the measured mayonnaise.",
+      "Spread the tuna mixture over the bread.",
+      "Add the lettuce and close the sandwich.",
+      "Cut in half if desired and serve."
+    ],
     nutrition: {
       calories: "358 kcal",
       protein: "20.9 g",
@@ -167,7 +167,7 @@ export const lunches: Recipe[] = [
     cookingTime: "15 minutes",
     calories: "377 kcal",
     protein: "24.3 g",
-    equipment: "Knife, Chopping board, Butter knife",
+    equipment: "Knife, Chopping board, Butter knife, Frying pan, Food thermometer",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "75 g (raw)" },
@@ -175,12 +175,12 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
     method: [
-  "Wash and prepare the salad vegetables. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cut the chicken breast into thin strips.",
-  "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
-  "Spread the measured mayonnaise evenly over the bread. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Arrange the cooked chicken and prepared vegetables over the bread.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Wash and prepare the salad vegetables. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Cut the chicken breast into thin strips.",
+      "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
+      "Spread the measured mayonnaise evenly over the bread.",
+      "Arrange the cooked chicken and prepared vegetables over the bread.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "377 kcal",
       protein: "24.3 g",
@@ -219,7 +219,7 @@ export const lunches: Recipe[] = [
     cookingTime: "14 minutes",
     calories: "469 kcal",
     protein: "20.0 g",
-    equipment: "Knife, Chopping board, Butter knife, Saucepan",
+    equipment: "Knife, Chopping board, Butter knife, Saucepan, Mixing bowl, Lid or bowl cover",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "2" },
@@ -227,13 +227,13 @@ export const lunches: Recipe[] = [
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
     ],
     method: [
-  "Place the egg in a saucepan and cover with cold water.",
-  "Bring the water to a boil.",
-  "Cook the egg for 8–10 minutes.",
-  "Drain, cool under cold running water and peel.",
-  "Chop the egg and mix with mayonnaise and chopped chives. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Spread the mixture over the bread and serve."
-],
+      "Place the egg in a saucepan and cover with cold water.",
+      "Bring the water to a boil.",
+      "Cook the egg for 8–10 minutes.",
+      "Drain, cool under cold running water and peel.",
+      "Chop the egg and mix with mayonnaise and chopped chives.",
+      "Spread the mixture over the bread and serve."
+    ],
     nutrition: {
       calories: "469 kcal",
       protein: "20.0 g",
@@ -271,7 +271,7 @@ export const lunches: Recipe[] = [
     cookingTime: "15 minutes",
     calories: "371 kcal",
     protein: "22.8 g",
-    equipment: "Knife, Chopping board, Butter knife",
+    equipment: "Knife, Chopping board, Butter knife, Frying pan, Food thermometer",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -279,12 +279,12 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
     method: [
-  "Wash and prepare the salad vegetables. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cut the chicken breast into thin strips.",
-  "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
-  "Spread the measured mayonnaise evenly over the bread. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Arrange the cooked chicken and prepared vegetables over the bread.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Wash and prepare the salad vegetables. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Cut the chicken breast into thin strips.",
+      "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
+      "Spread the measured mayonnaise evenly over the bread.",
+      "Arrange the cooked chicken and prepared vegetables over the bread.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "371 kcal",
       protein: "22.8 g",
@@ -320,10 +320,10 @@ export const lunches: Recipe[] = [
     image: "/images/recipes/L002.webp",
     name: "Egg & Lettuce Sandwich with Chives",
     description: "Soft white bread layered with egg, crisp lettuce and creamy mayonnaise makes this a familiar, satisfying lunchtime favourite.",
-    cookingTime: "8 minutes",
+    cookingTime: "15 mins",
     calories: "430 kcal",
     protein: "18.5 g",
-    equipment: "Knife, Chopping board, Butter knife",
+    equipment: "Knife, Chopping board, Butter knife, Saucepan, Lid or bowl cover",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "2" },
@@ -332,12 +332,13 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "10 g" },
     ],
     method: [
-  "Wash and prepare the lettuce. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
-  "Spread the measured butter over the bread. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Spread the mayonnaise over the bread.",
-  "Add the lettuce.",
-  "Close the sandwich, cut in half if desired and serve."
-],
+      "Place the eggs in a saucepan and cover with cold water. Bring to the boil and cook for 8–10 minutes. Drain, cool under cold running water, peel and slice.",
+      "Wash and prepare the lettuce. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
+      "Spread the measured butter over the bread.",
+      "Spread the mayonnaise over the bread.",
+      "Add the sliced eggs and lettuce.",
+      "Close the sandwich, cut in half if desired and serve."
+    ],
     nutrition: {
       calories: "430 kcal",
       protein: "18.5 g",
@@ -375,7 +376,7 @@ export const lunches: Recipe[] = [
     cookingTime: "15 minutes",
     calories: "296 kcal",
     protein: "24.1 g",
-    equipment: "Knife, Chopping board, Butter knife",
+    equipment: "Knife, Chopping board, Butter knife, Frying pan, Food thermometer",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -383,12 +384,12 @@ export const lunches: Recipe[] = [
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "⅓ cucumber (40 g)" },
     ],
     method: [
-  "Wash and prepare the salad vegetables. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cut the chicken breast into thin strips.",
-  "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
-  "Spread the measured cream cheese evenly over the bread. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Arrange the cooked chicken and prepared vegetables over the bread.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Wash and prepare the salad vegetables. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Cut the chicken breast into thin strips.",
+      "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
+      "Spread the measured cream cheese evenly over the bread.",
+      "Arrange the cooked chicken and prepared vegetables over the bread.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "296 kcal",
       protein: "24.1 g",
@@ -435,12 +436,12 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
     method: [
-  "Prepare the chicken and salad ingredients.",
-  "Spread the measured mayonnaise over the tortilla. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Add the chicken and prepared vegetables down the centre.",
-  "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Prepare the chicken and salad ingredients.",
+      "Spread the measured mayonnaise over the tortilla.",
+      "Add the chicken and prepared vegetables down the centre.",
+      "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "385 kcal",
       protein: "21.9 g",
@@ -479,7 +480,7 @@ export const lunches: Recipe[] = [
     cookingTime: "15 minutes",
     calories: "376 kcal",
     protein: "20.1 g",
-    equipment: "Knife, Chopping board, Butter knife",
+    equipment: "Knife, Chopping board, Butter knife, Mixing bowl",
     ingredients: [
       { item: "White tortilla wrap", shoppingItem: "White Tortilla Wraps", quantity: "60 g" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "60 g" },
@@ -487,13 +488,13 @@ export const lunches: Recipe[] = [
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (shredded if preferred)" },
     ],
     method: [
-  "Drain the tuna thoroughly and prepare the lettuce.",
-  "Mix the tuna with mayonnaise. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Lay the tortilla flat and spoon the tuna mixture down the centre.",
-  "Add the lettuce.",
-  "Fold in the sides and roll tightly.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Drain the tuna thoroughly and prepare the lettuce.",
+      "Mix the tuna with mayonnaise.",
+      "Lay the tortilla flat and spoon the tuna mixture down the centre.",
+      "Add the lettuce.",
+      "Fold in the sides and roll tightly.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "376 kcal",
       protein: "20.1 g",
@@ -531,7 +532,7 @@ export const lunches: Recipe[] = [
     cookingTime: "15 minutes",
     calories: "420 kcal",
     protein: "19.3 g",
-    equipment: "Knife, Chopping board, Butter knife, Saucepan",
+    equipment: "Knife, Chopping board, Butter knife, Saucepan, Mixing bowl, Lid or bowl cover",
     ingredients: [
       { item: "White tortilla wrap", shoppingItem: "White Tortilla Wraps", quantity: "60 g" },
       { item: "Egg", shoppingItem: "Egg", quantity: "2" },
@@ -540,14 +541,14 @@ export const lunches: Recipe[] = [
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (shredded if preferred)" },
     ],
     method: [
-  "Place the eggs in a saucepan and cover with cold water.",
-  "Bring the water to a boil.",
-  "Cook the eggs for 8–10 minutes.",
-  "Drain, cool under cold running water and peel.",
-  "Chop the eggs and mix with mayonnaise and chopped chives. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Lay the tortilla flat and add the lettuce and egg mixture.",
-  "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out. Serve."
-],
+      "Place the eggs in a saucepan and cover with cold water.",
+      "Bring the water to a boil.",
+      "Cook the eggs for 8–10 minutes.",
+      "Drain, cool under cold running water and peel.",
+      "Chop the eggs and mix with mayonnaise and chopped chives.",
+      "Lay the tortilla flat and add the lettuce and egg mixture.",
+      "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out. Serve."
+    ],
     nutrition: {
       calories: "420 kcal",
       protein: "19.3 g",
@@ -593,12 +594,12 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
     method: [
-  "Prepare the chicken and salad ingredients.",
-  "Spread the measured mayonnaise over the tortilla. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Add the chicken and prepared vegetables down the centre.",
-  "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Prepare the chicken and salad ingredients.",
+      "Spread the measured mayonnaise over the tortilla.",
+      "Add the chicken and prepared vegetables down the centre.",
+      "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "391 kcal",
       protein: "22.3 g",
@@ -637,7 +638,7 @@ export const lunches: Recipe[] = [
     cookingTime: "18 minutes",
     calories: "438 kcal",
     protein: "25.8 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Food thermometer, Colander or sieve",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -646,15 +647,15 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
-  "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Finely chop the onion and red pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Heat the vegetable oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the onion and red pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Drain the pasta thoroughly.",
-  "Add the pasta to the frying pan and toss with the chicken and vegetables.",
-  "Heat through thoroughly and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Finely chop the onion and red pepper.",
+      "Heat the vegetable oil in a frying pan over medium heat.",
+      "Cook the onion and red pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Drain the pasta thoroughly.",
+      "Add the pasta to the frying pan and toss with the chicken and vegetables.",
+      "Heat through thoroughly and serve immediately."
+    ],
     nutrition: {
       calories: "438 kcal",
       protein: "25.8 g",
@@ -693,7 +694,7 @@ export const lunches: Recipe[] = [
     cookingTime: "18 minutes",
     calories: "506 kcal",
     protein: "27.1 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Food thermometer, Colander or sieve",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -702,15 +703,15 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
-  "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Finely chop the onion. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Heat the vegetable oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the onion until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Drain the pasta thoroughly.",
-  "Add the pasta and cream cheese to the frying pan and stir until combined.",
-  "Heat through thoroughly and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Finely chop the onion.",
+      "Heat the vegetable oil in a frying pan over medium heat.",
+      "Cook the onion until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Drain the pasta thoroughly.",
+      "Add the pasta and cream cheese to the frying pan and stir until combined.",
+      "Heat through thoroughly and serve immediately."
+    ],
     nutrition: {
       calories: "506 kcal",
       protein: "27.1 g",
@@ -749,7 +750,7 @@ export const lunches: Recipe[] = [
     cookingTime: "18 minutes",
     calories: "467 kcal",
     protein: "24.0 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Colander or sieve",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "60 g" },
@@ -758,13 +759,13 @@ export const lunches: Recipe[] = [
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
     ],
     method: [
-  "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Prepare the red pepper and fresh chives. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Drain the pasta thoroughly.",
-  "Add the drained pasta, tuna and red pepper to a clean pan and warm gently. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Stir through the mayonnaise and fresh chives. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Prepare the red pepper and fresh chives.",
+      "Drain the pasta thoroughly.",
+      "Add the drained pasta, tuna and red pepper to a clean pan and warm gently.",
+      "Stir through the mayonnaise and fresh chives.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "467 kcal",
       protein: "24.0 g",
@@ -802,7 +803,7 @@ export const lunches: Recipe[] = [
     cookingTime: "19 minutes",
     calories: "510 kcal",
     protein: "22.8 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Mixing bowl, Fork or whisk, Colander or sieve",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "2" },
@@ -811,13 +812,13 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "5 g" },
     ],
     method: [
-  "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Prepare the egg and fresh chives.",
-  "Drain the pasta thoroughly.",
-  "Add the pasta and cream cheese to a frying pan over low heat and stir until combined. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Beat the egg, add it to the hot pasta and stir continuously until fully cooked. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Stir through the fresh chives and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Prepare the egg and fresh chives.",
+      "Drain the pasta thoroughly.",
+      "Add the pasta and cream cheese to a frying pan over low heat and stir until combined.",
+      "Beat the egg, add it to the hot pasta and stir continuously until fully cooked.",
+      "Stir through the fresh chives and serve immediately."
+    ],
     nutrition: {
       calories: "510 kcal",
       protein: "22.8 g",
@@ -856,7 +857,7 @@ export const lunches: Recipe[] = [
     cookingTime: "18 minutes",
     calories: "504 kcal",
     protein: "28.2 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Food thermometer, Colander or sieve",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "75 g (raw)" },
@@ -865,15 +866,15 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
-  "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Finely chop the onion. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Heat the vegetable oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the onion until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Drain the pasta thoroughly.",
-  "Add the pasta and cream cheese to the frying pan and stir through the chicken and onion.",
-  "Heat through thoroughly and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Finely chop the onion.",
+      "Heat the vegetable oil in a frying pan over medium heat.",
+      "Cook the onion until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Drain the pasta thoroughly.",
+      "Add the pasta and cream cheese to the frying pan and stir through the chicken and onion.",
+      "Heat through thoroughly and serve immediately."
+    ],
     nutrition: {
       calories: "504 kcal",
       protein: "28.2 g",
@@ -912,7 +913,7 @@ export const lunches: Recipe[] = [
     cookingTime: "18 minutes",
     calories: "487 kcal",
     protein: "27.0 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Food thermometer, Colander or sieve",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -921,15 +922,15 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
-  "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Slice the mushrooms and prepare the chicken.",
-  "Heat the vegetable oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the mushrooms until softened.",
-  "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Drain the pasta thoroughly.",
-  "Add the pasta and cream cheese to the frying pan and stir until combined.",
-  "Heat through thoroughly and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Slice the mushrooms and prepare the chicken.",
+      "Heat the vegetable oil in a frying pan over medium heat.",
+      "Cook the mushrooms until softened.",
+      "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Drain the pasta thoroughly.",
+      "Add the pasta and cream cheese to the frying pan and stir until combined.",
+      "Heat through thoroughly and serve immediately."
+    ],
     nutrition: {
       calories: "487 kcal",
       protein: "27.0 g",
@@ -968,7 +969,7 @@ export const lunches: Recipe[] = [
     cookingTime: "18 minutes",
     calories: "431 kcal",
     protein: "24.8 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Colander or sieve",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "60 g" },
@@ -977,13 +978,13 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "5 g" },
     ],
     method: [
-  "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Prepare the tuna, cream cheese and fresh chives.",
-  "Drain the pasta thoroughly.",
-  "Add the pasta, tuna and cream cheese to a frying pan over low heat and stir until combined. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Stir through the fresh chives.",
-  "Heat through thoroughly and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Bring a saucepan of water to the boil and cook the pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Prepare the tuna, cream cheese and fresh chives.",
+      "Drain the pasta thoroughly.",
+      "Add the pasta, tuna and cream cheese to a frying pan over low heat and stir until combined.",
+      "Stir through the fresh chives.",
+      "Heat through thoroughly and serve immediately."
+    ],
     nutrition: {
       calories: "431 kcal",
       protein: "24.8 g",
@@ -1022,7 +1023,7 @@ export const lunches: Recipe[] = [
     cookingTime: "26 minutes",
     calories: "458 kcal",
     protein: "27.6 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Mixing bowl, Fork or whisk, Food thermometer, Lid or bowl cover",
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -1032,16 +1033,16 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
-  "Rinse the measured dry rice and place it in a saucepan with the appropriate amount of water.",
-  "Bring to the boil, cover and simmer according to the rice packet instructions. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Finely dice the onion and red pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Heat the vegetable oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the onion and red pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Beat the egg, add it to the pan and stir continuously until fully cooked. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Stir in the cooked rice and combine thoroughly.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Rinse the measured dry rice and place it in a saucepan with the appropriate amount of water.",
+      "Bring to the boil, cover and simmer according to the rice packet instructions. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Finely dice the onion and red pepper.",
+      "Heat the vegetable oil in a frying pan over medium heat.",
+      "Cook the onion and red pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add the chicken and cook thoroughly until no longer pink in the centre. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Beat the egg, add it to the pan and stir continuously until fully cooked.",
+      "Stir in the cooked rice and combine thoroughly.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "458 kcal",
       protein: "27.6 g",
@@ -1080,7 +1081,7 @@ export const lunches: Recipe[] = [
     cookingTime: "23 minutes",
     calories: "514 kcal",
     protein: "23.4 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Mixing bowl, Fork or whisk, Lid or bowl cover",
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "3" },
@@ -1089,15 +1090,15 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
-  "Rinse the measured dry rice and place it in a saucepan with the appropriate amount of water.",
-  "Bring to the boil, cover and simmer according to the rice packet instructions. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Finely dice the onion and red pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Heat the oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the onion and pepper for 3 minutes until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Add the cooked rice and stir-fry for 2 minutes.",
-  "Beat the egg, add it to the pan and stir until fully cooked. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Rinse the measured dry rice and place it in a saucepan with the appropriate amount of water.",
+      "Bring to the boil, cover and simmer according to the rice packet instructions. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Finely dice the onion and red pepper.",
+      "Heat the oil in a frying pan over medium heat.",
+      "Cook the onion and pepper for 3 minutes until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add the cooked rice and stir-fry for 2 minutes.",
+      "Beat the egg, add it to the pan and stir until fully cooked.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "514 kcal",
       protein: "23.4 g",
@@ -1135,7 +1136,7 @@ export const lunches: Recipe[] = [
     cookingTime: "26 minutes",
     calories: "401 kcal",
     protein: "22.6 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Food thermometer, Lid or bowl cover",
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "75 g (raw)" },
@@ -1144,15 +1145,15 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
-  "Rinse the measured dry rice and place it in a saucepan with the appropriate amount of water.",
-  "Bring to the boil, cover and simmer according to the rice packet instructions. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Finely slice the onion and dice the pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Heat the oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the onion and pepper for 3 minutes until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Add the raw chicken and cook for 6–8 minutes until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Stir in the cooked rice and heat thoroughly.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Rinse the measured dry rice and place it in a saucepan with the appropriate amount of water.",
+      "Bring to the boil, cover and simmer according to the rice packet instructions. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Finely slice the onion and dice the pepper.",
+      "Heat the oil in a frying pan over medium heat.",
+      "Cook the onion and pepper for 3 minutes until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add the raw chicken and cook for 6–8 minutes until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Stir in the cooked rice and heat thoroughly.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "401 kcal",
       protein: "22.6 g",
@@ -1191,7 +1192,7 @@ export const lunches: Recipe[] = [
     cookingTime: "20 minutes",
     calories: "485 kcal",
     protein: "33.3 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Lid or bowl cover",
     ingredients: [
       { item: "White rice", shoppingItem: "White rice", quantity: "60 g (dry)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "90 g" },
@@ -1200,14 +1201,14 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "15 g" },
     ],
     method: [
-  "Rinse the measured dry rice and place it in a saucepan with the appropriate amount of water.",
-  "Bring to the boil, then cover and simmer according to the rice packet instructions. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "While the rice cooks, prepare the cucumber and drain the tuna.",
-  "Cook the egg in a frying pan until fully set, then remove and set aside.",
-  "Drain any excess water from the rice if necessary and allow it to stand for a minute.",
-  "Stir the rice with the tuna and mayonnaise, then top with the cooked egg and cucumber. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Rinse the measured dry rice and place it in a saucepan with the appropriate amount of water.",
+      "Bring to the boil, then cover and simmer according to the rice packet instructions. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "While the rice cooks, prepare the cucumber and drain the tuna.",
+      "Cook the egg in a frying pan until fully set, then remove and set aside.",
+      "Drain any excess water from the rice if necessary and allow it to stand for a minute.",
+      "Stir the rice with the tuna and mayonnaise, then top with the cooked egg and cucumber.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "485 kcal",
       protein: "33.3 g",
@@ -1245,7 +1246,7 @@ export const lunches: Recipe[] = [
     cookingTime: "20 minutes",
     calories: "428 kcal",
     protein: "26.4 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Food thermometer, Colander or sieve",
     ingredients: [
       { item: "Egg noodles", shoppingItem: "Egg noodles", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -1254,14 +1255,14 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
-  "Bring a saucepan of water to a boil and cook the measured dry egg noodles according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Slice the chicken and prepare the cucumber and red pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Heat the oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Stir-fry the raw chicken and red pepper for 6–8 minutes until the chicken is completely cooked through and the pepper is softened. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Drain the noodles thoroughly.",
-  "Add the noodles and cucumber to the pan and toss together.",
-  "Heat through thoroughly and serve."
-],
+      "Bring a saucepan of water to a boil and cook the measured dry egg noodles according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Slice the chicken and prepare the cucumber and red pepper.",
+      "Heat the oil in a frying pan over medium heat.",
+      "Stir-fry the raw chicken and red pepper for 6–8 minutes until the chicken is completely cooked through and the pepper is softened. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Drain the noodles thoroughly.",
+      "Add the noodles and cucumber to the pan and toss together.",
+      "Heat through thoroughly and serve."
+    ],
     nutrition: {
       calories: "428 kcal",
       protein: "26.4 g",
@@ -1300,7 +1301,7 @@ export const lunches: Recipe[] = [
     cookingTime: "29 minutes",
     calories: "289 kcal",
     protein: "22.5 g",
-    equipment: "Knife, Chopping board, Saucepan, Microwave, Oven or air fryer",
+    equipment: "Knife, Chopping board, Saucepan, Microwave, Oven or air fryer, Mixing bowl, Frying pan, Food thermometer, Baking tray",
     ingredients: [
       { item: "Baking potato", shoppingItem: "Baking potato", quantity: "1 baking potato (200 g)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -1308,15 +1309,15 @@ export const lunches: Recipe[] = [
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (shredded if preferred)" },
     ],
     method: [
-  "Wash and prick the baking potato several times with a fork.",
-  "Microwave the potato until tender, turning halfway through according to your microwave instructions.",
-  "While the potato cooks, prepare the filling and wash the lettuce. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
-  "Slice the raw chicken breast and cook in a non-stick frying pan over medium heat for 6–8 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Finish the potato in a hot oven or air fryer until the skin is crisp.",
-  "Mix the cooked chicken with the cream cheese.",
-  "Cut a cross in the top of the potato and gently open it.",
-  "Fill with the chicken and cream cheese mixture and serve with the lettuce. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling."
-],
+      "Wash and prick the baking potato several times with a fork.",
+      "Microwave the potato until tender, turning halfway through according to your microwave instructions.",
+      "While the potato cooks, prepare the filling and wash the lettuce. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing.",
+      "Slice the raw chicken breast and cook in a non-stick frying pan over medium heat for 6–8 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Finish the potato in a hot oven or air fryer until the skin is crisp.",
+      "Mix the cooked chicken with the cream cheese.",
+      "Cut a cross in the top of the potato and gently open it.",
+      "Fill with the chicken and cream cheese mixture and serve with the lettuce."
+    ],
     nutrition: {
       calories: "289 kcal",
       protein: "22.5 g",
@@ -1355,7 +1356,7 @@ export const lunches: Recipe[] = [
     cookingTime: "29 minutes",
     calories: "342 kcal",
     protein: "19.3 g",
-    equipment: "Knife, Chopping board, Saucepan, Microwave, Oven or air fryer",
+    equipment: "Knife, Chopping board, Saucepan, Microwave, Oven or air fryer, Mixing bowl, Baking tray",
     ingredients: [
       { item: "Baking potato", shoppingItem: "Baking potato", quantity: "1 baking potato (200 g)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "60 g" },
@@ -1363,13 +1364,13 @@ export const lunches: Recipe[] = [
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (shredded if preferred)" },
     ],
     method: [
-  "Wash and prick the baking potato several times with a fork.",
-  "Microwave the potato until tender, turning halfway through according to your microwave instructions.",
-  "Drain the tuna thoroughly and mix with the mayonnaise. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Finish the potato in a hot oven or air fryer until the skin is crisp.",
-  "Cut a cross in the top of the potato and gently open it.",
-  "Fill with the tuna mixture and serve with the lettuce. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling."
-],
+      "Wash and prick the baking potato several times with a fork.",
+      "Microwave the potato until tender, turning halfway through according to your microwave instructions.",
+      "Drain the tuna thoroughly and mix with the mayonnaise.",
+      "Finish the potato in a hot oven or air fryer until the skin is crisp.",
+      "Cut a cross in the top of the potato and gently open it.",
+      "Fill with the tuna mixture and serve with the lettuce. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling."
+    ],
     nutrition: {
       calories: "342 kcal",
       protein: "19.3 g",
@@ -1408,7 +1409,7 @@ export const lunches: Recipe[] = [
     cookingTime: "29 minutes",
     calories: "418 kcal",
     protein: "18.3 g",
-    equipment: "Knife, Chopping board, Saucepan, Microwave, Oven or air fryer",
+    equipment: "Knife, Chopping board, Saucepan, Microwave, Oven or air fryer, Mixing bowl, Lid or bowl cover, Baking tray",
     ingredients: [
       { item: "Baking potato", shoppingItem: "Baking potato", quantity: "1 baking potato (200 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "2" },
@@ -1416,14 +1417,14 @@ export const lunches: Recipe[] = [
       { item: "Fresh chives", shoppingItem: "Fresh chives", quantity: "3 g" },
     ],
     method: [
-  "Wash and prick the baking potato several times with a fork.",
-  "Microwave the potato until tender, turning halfway through according to your microwave instructions.",
-  "Place the egg in a saucepan, cover with cold water and bring to the boil.",
-  "Cook the egg for 8–10 minutes.",
-  "Drain, cool and peel the egg, then chop and mix with mayonnaise and chives. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
-  "Finish the potato in a hot oven or air fryer until crisp.",
-  "Cut a cross in the top, gently open and fill with the egg mixture."
-],
+      "Wash and prick the baking potato several times with a fork.",
+      "Microwave the potato until tender, turning halfway through according to your microwave instructions.",
+      "Place the egg in a saucepan, cover with cold water and bring to the boil.",
+      "Cook the egg for 8–10 minutes.",
+      "Drain, cool and peel the egg, then chop and mix with mayonnaise and chives. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
+      "Finish the potato in a hot oven or air fryer until crisp.",
+      "Cut a cross in the top, gently open and fill with the egg mixture."
+    ],
     nutrition: {
       calories: "418 kcal",
       protein: "18.3 g",
@@ -1462,7 +1463,7 @@ export const lunches: Recipe[] = [
     cookingTime: "32 minutes",
     calories: "376 kcal",
     protein: "20.8 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Food thermometer",
     ingredients: [
       { item: "Potatoes, peeled", shoppingItem: "Potatoes, peeled", quantity: "1 potato (180 g)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -1471,16 +1472,16 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "15 g" },
     ],
     method: [
-  "Peel the potato and cut it into small pieces.",
-  "Put the potato into a saucepan of fresh water and bring to the boil. Keep the pieces at a steady simmer and test the thickest piece with the tip of a knife. Stop when it goes in without a hard centre, before the potato breaks apart.",
-  "Boil until tender, then drain and discard the cooking water. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
-  "While the potato cooks, prepare the onion and red pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Heat the oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the onion and pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Add the drained potato and cook for 3 minutes.",
-  "Add the chicken and cook for 5–7 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Heat everything through and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Peel the potato and cut it into small pieces.",
+      "Put the potato into a saucepan of fresh water and bring to the boil. Keep the pieces at a steady simmer and test the thickest piece with the tip of a knife. Stop when it goes in without a hard centre, before the potato breaks apart.",
+      "Boil until tender, then drain and discard the cooking water. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
+      "While the potato cooks, prepare the onion and red pepper.",
+      "Heat the oil in a frying pan over medium heat.",
+      "Cook the onion and pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add the drained potato and cook for 3 minutes.",
+      "Add the chicken and cook for 5–7 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Heat everything through and serve immediately."
+    ],
     nutrition: {
       calories: "376 kcal",
       protein: "20.8 g",
@@ -1528,16 +1529,16 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "15 g" },
     ],
     method: [
-  "Peel the potato and cut it into small pieces.",
-  "Put the potato into a saucepan of fresh water and bring to the boil. Keep the pieces at a steady simmer and test the thickest piece with the tip of a knife. Stop when it goes in without a hard centre, before the potato breaks apart.",
-  "Boil until tender, then drain and discard the cooking water. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
-  "While the potato cooks, prepare the onion and red pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Heat the oil in a frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Cook the onion and pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Add the drained potato and cook for 3 minutes.",
-  "Add the chopped cooked egg and toss gently with the potato and vegetables.",
-  "Heat everything through and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Peel the potato and cut it into small pieces.",
+      "Put the potato into a saucepan of fresh water and bring to the boil. Keep the pieces at a steady simmer and test the thickest piece with the tip of a knife. Stop when it goes in without a hard centre, before the potato breaks apart.",
+      "Boil until tender, then drain and discard the cooking water. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
+      "While the potato cooks, prepare the onion and red pepper.",
+      "Heat the oil in a frying pan over medium heat.",
+      "Cook the onion and pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add the drained potato and cook for 3 minutes.",
+      "Add the chopped cooked egg and toss gently with the potato and vegetables.",
+      "Heat everything through and serve immediately."
+    ],
     nutrition: {
       calories: "432 kcal",
       protein: "16.6 g",
@@ -1575,7 +1576,7 @@ export const lunches: Recipe[] = [
     cookingTime: "20 minutes",
     calories: "359 kcal",
     protein: "19.3 g",
-    equipment: "Knife, Chopping board, Saucepan",
+    equipment: "Knife, Chopping board, Saucepan, Mixing bowl",
     ingredients: [
       { item: "Potatoes, peeled", shoppingItem: "Potatoes, peeled", quantity: "1 potato (180 g)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "60 g" },
@@ -1584,13 +1585,13 @@ export const lunches: Recipe[] = [
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (shredded if preferred)" },
     ],
     method: [
-  "Peel the potato and cut it into small pieces.",
-  "Put the potato into a saucepan of fresh water and bring to the boil. Keep the pieces at a steady simmer and test the thickest piece with the tip of a knife. Stop when it goes in without a hard centre, before the potato breaks apart.",
-  "Boil until tender, then drain and discard the cooking water. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
-  "While the potato cooks, drain the tuna and prepare the cucumber and lettuce.",
-  "Allow the potato to cool slightly.",
-  "Mix the potato with tuna and mayonnaise, then serve with cucumber and lettuce. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute."
-],
+      "Peel the potato and cut it into small pieces.",
+      "Put the potato into a saucepan of fresh water and bring to the boil. Keep the pieces at a steady simmer and test the thickest piece with the tip of a knife. Stop when it goes in without a hard centre, before the potato breaks apart.",
+      "Boil until tender, then drain and discard the cooking water. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
+      "While the potato cooks, drain the tuna and prepare the cucumber and lettuce.",
+      "Allow the potato to cool slightly.",
+      "Mix the potato with tuna and mayonnaise, then serve with cucumber and lettuce."
+    ],
     nutrition: {
       calories: "359 kcal",
       protein: "19.3 g",
@@ -1628,7 +1629,7 @@ export const lunches: Recipe[] = [
     cookingTime: "18 minutes",
     calories: "365 kcal",
     protein: "33.8 g",
-    equipment: "Knife, Chopping board, Frying pan",
+    equipment: "Knife, Chopping board, Frying pan, Mixing bowl, Fork or whisk, Food thermometer",
     ingredients: [
       { item: "Egg", shoppingItem: "Egg", quantity: "3" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "60 g (raw)" },
@@ -1637,15 +1638,15 @@ export const lunches: Recipe[] = [
       { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "10 g" },
     ],
     method: [
-  "Beat the eggs in a bowl and prepare the chicken, onion and pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Heat the oil in a non-stick frying pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Add the onion and pepper and cook for 4 minutes until softened.",
-  "Add the raw chicken and cook for 5–7 minutes until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Pour the beaten egg into the pan.",
-  "Cook until the egg is almost completely set.",
-  "Fold the omelette in half and cook for a further 2 minutes.",
-  "Check the egg is fully cooked and serve."
-],
+      "Beat the eggs in a bowl and prepare the chicken, onion and pepper.",
+      "Heat the oil in a non-stick frying pan over medium heat.",
+      "Add the onion and pepper and cook for 4 minutes until softened.",
+      "Add the raw chicken and cook for 5–7 minutes until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Pour the beaten egg into the pan.",
+      "Cook until the egg is almost completely set.",
+      "Fold the omelette in half and cook for a further 2 minutes.",
+      "Check the egg is fully cooked and serve."
+    ],
     nutrition: {
       calories: "365 kcal",
       protein: "33.8 g",
@@ -1684,7 +1685,7 @@ export const lunches: Recipe[] = [
     cookingTime: "15 minutes",
     calories: "351 kcal",
     protein: "22.2 g",
-    equipment: "Knife, Chopping board, Frying pan",
+    equipment: "Knife, Chopping board, Frying pan, Mixing bowl, Fork or whisk",
     ingredients: [
       { item: "Egg", shoppingItem: "Egg", quantity: "3" },
       { item: "Mushrooms", shoppingItem: "Mushrooms", quantity: "4 mushrooms (40 g)" },
@@ -1693,15 +1694,15 @@ export const lunches: Recipe[] = [
       { item: "White bread", shoppingItem: "White bread", quantity: "1 slice (35 g)" },
     ],
     method: [
-  "Slice the mushrooms and chop the chives.",
-  "Melt the butter in a non-stick frying pan over medium heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the mushrooms and cook for 4 minutes until softened. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Beat the eggs and stir in the chives. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Pour the egg mixture into the pan.",
-  "Cook until almost set, then fold the omelette in half.",
-  "Toast the measured bread. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Check the egg is fully cooked and serve with the toast."
-],
+      "Slice the mushrooms and chop the chives.",
+      "Melt the butter in a non-stick frying pan over medium heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the mushrooms and cook for 4 minutes until softened.",
+      "Beat the eggs and stir in the chives.",
+      "Pour the egg mixture into the pan.",
+      "Cook until almost set, then fold the omelette in half.",
+      "Toast the measured bread.",
+      "Check the egg is fully cooked and serve with the toast."
+    ],
     nutrition: {
       calories: "351 kcal",
       protein: "22.2 g",
@@ -1739,7 +1740,7 @@ export const lunches: Recipe[] = [
     cookingTime: "12 minutes",
     calories: "365 kcal",
     protein: "18.4 g",
-    equipment: "Knife, Chopping board, Saucepan",
+    equipment: "Knife, Chopping board, Saucepan, Mixing bowl, Fork or whisk, Toaster, Frying pan",
     ingredients: [
       { item: "Egg", shoppingItem: "Egg", quantity: "2" },
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
@@ -1747,14 +1748,14 @@ export const lunches: Recipe[] = [
       { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "10 g" },
     ],
     method: [
-  "Put the bread into the toaster. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Dice the red pepper and beat the egg. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Melt the butter in a non-stick frying pan over medium heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Add the pepper and cook for 3 minutes until softened.",
-  "Add the beaten egg and stir gently until fully set.",
-  "Place the toast on a plate and spoon over the egg and pepper.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Put the bread into the toaster.",
+      "Dice the red pepper and beat the egg.",
+      "Melt the butter in a non-stick frying pan over medium heat. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Add the pepper and cook for 3 minutes until softened.",
+      "Add the beaten egg and stir gently until fully set.",
+      "Place the toast on a plate and spoon over the egg and pepper.",
+      "Serve immediately."
+    ],
     nutrition: {
       calories: "365 kcal",
       protein: "18.4 g",
@@ -1801,14 +1802,14 @@ export const lunches: Recipe[] = [
       { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Spread the cream cheese over the bread. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Slice the chicken and prepare the pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Add the chicken and pepper to the sandwich.",
-  "Butter the outside lightly.",
-  "Heat a sandwich press or non-stick frying pan. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Toast until the bread is golden and the filling is hot. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Remove, cut in half and serve."
-],
+      "Spread the cream cheese over the bread.",
+      "Slice the chicken and prepare the pepper.",
+      "Add the chicken and pepper to the sandwich.",
+      "Butter the outside lightly.",
+      "Heat a sandwich press or non-stick frying pan.",
+      "Toast until the bread is golden and the filling is hot.",
+      "Remove, cut in half and serve."
+    ],
     nutrition: {
       calories: "334 kcal",
       protein: "23.9 g",
@@ -1847,7 +1848,7 @@ export const lunches: Recipe[] = [
     cookingTime: "13 minutes",
     calories: "399 kcal",
     protein: "21.1 g",
-    equipment: "Knife, Chopping board, Butter knife, Frying pan",
+    equipment: "Knife, Chopping board, Butter knife, Frying pan, Mixing bowl",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "60 g" },
@@ -1856,13 +1857,13 @@ export const lunches: Recipe[] = [
       { item: "Butter, unsalted", shoppingItem: "Unsalted butter", quantity: "5 g" },
     ],
     method: [
-  "Drain the tuna thoroughly and mix with the mayonnaise. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Spread the tuna mixture over the bread and add the cucumber.",
-  "Butter the outside of the sandwich lightly.",
-  "Heat a sandwich press or non-stick frying pan. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Toast the sandwich until the bread is golden and the filling is hot. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Remove, cut in half and serve."
-],
+      "Drain the tuna thoroughly and mix with the mayonnaise.",
+      "Spread the tuna mixture over the bread and add the cucumber.",
+      "Butter the outside of the sandwich lightly.",
+      "Heat a sandwich press or non-stick frying pan.",
+      "Toast the sandwich until the bread is golden and the filling is hot.",
+      "Remove, cut in half and serve."
+    ],
     nutrition: {
       calories: "399 kcal",
       protein: "21.1 g",
@@ -1900,7 +1901,7 @@ export const lunches: Recipe[] = [
     cookingTime: "15 minutes",
     calories: "392 kcal",
     protein: "23.1 g",
-    equipment: "Knife, Chopping board, Butter knife",
+    equipment: "Knife, Chopping board, Butter knife, Frying pan, Food thermometer",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -1909,12 +1910,12 @@ export const lunches: Recipe[] = [
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (shredded if preferred)" },
     ],
     method: [
-  "Wash and prepare the salad vegetables. Rinse the produce under cold running water, drain well and gently pat dry so that excess water does not dilute the filling or dressing. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cut the chicken breast into thin strips.",
-  "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
-  "Spread the measured mayonnaise evenly over the bread. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Arrange the cooked chicken and prepared vegetables over the bread. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Wash and dry the lettuce. Core and thinly slice the apple. Cut the chicken breast into thin strips.",
+      "Heat a non-stick frying pan over medium heat and cook the chicken for 6–8 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Remove from the pan and allow to rest briefly.",
+      "Spread the measured mayonnaise evenly over the bread.",
+      "Arrange the cooked chicken, apple and lettuce over the bread. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "392 kcal",
       protein: "23.1 g",
@@ -1953,7 +1954,7 @@ export const lunches: Recipe[] = [
     cookingTime: "16 minutes",
     calories: "441 kcal",
     protein: "20.4 g",
-    equipment: "Knife, Chopping board, Butter knife, Saucepan",
+    equipment: "Knife, Chopping board, Butter knife, Saucepan, Lid or bowl cover",
     ingredients: [
       { item: "White bread", shoppingItem: "White bread", quantity: "2 slices (70 g)" },
       { item: "Egg", shoppingItem: "Egg", quantity: "2" },
@@ -1961,14 +1962,14 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
     method: [
-  "Place the eggs in a saucepan and cover with cold water.",
-  "Bring the water to a boil.",
-  "Cook the eggs for 8–10 minutes.",
-  "Drain, cool under cold running water and peel.",
-  "Slice the eggs and prepare the cucumber.",
-  "Spread the mayonnaise over the bread and add the egg and cucumber. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Close the sandwich, cut in half if desired and serve."
-],
+      "Place the eggs in a saucepan and cover with cold water.",
+      "Bring the water to a boil.",
+      "Cook the eggs for 8–10 minutes.",
+      "Drain, cool under cold running water and peel.",
+      "Slice the eggs and prepare the cucumber.",
+      "Spread the mayonnaise over the bread and add the egg and cucumber.",
+      "Close the sandwich, cut in half if desired and serve."
+    ],
     nutrition: {
       calories: "441 kcal",
       protein: "20.4 g",
@@ -2015,12 +2016,12 @@ export const lunches: Recipe[] = [
       { item: "Iceberg lettuce", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (shredded if preferred)" },
     ],
     method: [
-  "Prepare the chicken and salad ingredients.",
-  "Spread the measured cream cheese over the tortilla. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps.",
-  "Add the chicken and prepared vegetables down the centre.",
-  "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Prepare the chicken and salad ingredients.",
+      "Spread the measured cream cheese over the tortilla.",
+      "Add the chicken and prepared vegetables down the centre.",
+      "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "317 kcal",
       protein: "23.5 g",
@@ -2067,12 +2068,12 @@ export const lunches: Recipe[] = [
       { item: "Cucumber", shoppingItem: "Cucumber", quantity: "½ cucumber (50 g)" },
     ],
     method: [
-  "Drain the tuna thoroughly and prepare the cucumber.",
-  "Spread the cream cheese over the centre of the tortilla. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Add the tuna and cucumber.",
-  "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
-  "Close the sandwich, cut in half if desired and serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Drain the tuna thoroughly and prepare the cucumber.",
+      "Spread the cream cheese over the centre of the tortilla.",
+      "Add the tuna and cucumber.",
+      "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+      "Close the sandwich, cut in half if desired and serve immediately."
+    ],
     nutrition: {
       calories: "306 kcal",
       protein: "21.4 g",
@@ -2111,7 +2112,7 @@ export const lunches: Recipe[] = [
     cookingTime: "20 minutes",
     calories: "485 kcal",
     protein: "26.2 g",
-    equipment: "Knife, Chopping board, Saucepan, Frying pan",
+    equipment: "Knife, Chopping board, Saucepan, Frying pan, Mixing bowl, Food thermometer, Colander or sieve",
     ingredients: [
       { item: "Pasta", shoppingItem: "Pasta", quantity: "75 g (dry)" },
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "70 g (raw)" },
@@ -2120,14 +2121,14 @@ export const lunches: Recipe[] = [
       { item: "Mayonnaise", shoppingItem: "Mayonnaise", quantity: "20 g" },
     ],
     method: [
-  "Bring a saucepan of water to a boil and cook the measured dry pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "While the pasta cooks, finely dice the onion and cucumber. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Drain the pasta thoroughly and allow it to cool for a few minutes.",
-  "Cook the chicken in a non-stick frying pan over medium heat for 6–8 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Allow it to rest briefly, then slice.",
-  "Stir the cooked chicken, onion and cucumber through the pasta.",
-  "Add the mayonnaise and mix until evenly coated.",
-  "Serve warm or chill before serving. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-],
+      "Bring a saucepan of water to a boil and cook the measured dry pasta according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "While the pasta cooks, finely dice the onion and cucumber.",
+      "Drain the pasta thoroughly and allow it to cool for a few minutes.",
+      "Cook the chicken in a non-stick frying pan over medium heat for 6–8 minutes, turning regularly, until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Allow it to rest briefly, then slice.",
+      "Stir the cooked chicken, onion and cucumber through the pasta.",
+      "Add the mayonnaise and mix until evenly coated.",
+      "Serve warm or chill before serving."
+    ],
     nutrition: {
       calories: "485 kcal",
       protein: "26.2 g",
@@ -2156,14 +2157,14 @@ export const lunches: Recipe[] = [
     dietCategories: ["Mixed diet"]
   },
 
-  { id: "chicken-leek-couscous-bowl", code: "L041", mealFamily: "couscous-bowl", category: "Lunch", emoji: "🥗", image: "/images/recipes/L041.webp", name: "Chicken & Leek Couscous Bowl", description: "Fluffy couscous tossed with tender chicken, soft leek and sweet carrot, finished with lemon and parsley for a bright, savoury bowl.", cookingTime: "25 minutes", calories: "380 kcal", protein: "26.9 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
-  "Prepare the couscous according to the packet instructions using unsalted water.",
-  "Slice the chicken and cook in half the olive oil until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Boil the leek and carrot in unsalted water until tender, then drain well.",
-  "Fluff the couscous and combine with the vegetables. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains.",
-  "Top with the chicken and finish with the remaining olive oil, lemon juice and parsley.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-], nutrition: { calories: "380 kcal", protein: "26.9 g", carbohydrates: "29.6 g", fat: "18.0 g", fibre: "2.2 g", sodium: "85 mg", salt: "0.21 g", potassium: "566 mg", phosphate: "252 mg" }, potassium: "High", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+  { id: "chicken-leek-couscous-bowl", code: "L041", mealFamily: "couscous-bowl", category: "Lunch", emoji: "🥗", image: "/images/recipes/L041.webp", name: "Chicken & Leek Couscous Bowl", description: "Fluffy couscous tossed with tender chicken, soft leek and sweet carrot, finished with lemon and parsley for a bright, savoury bowl.", cookingTime: "25 minutes", calories: "380 kcal", protein: "26.9 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
+      "Prepare the couscous according to the packet instructions using unsalted water.",
+      "Slice the chicken and cook in half the olive oil until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Boil the leek and carrot in unsalted water until tender, then drain well.",
+      "Fluff the couscous and combine with the vegetables.",
+      "Top with the chicken and finish with the remaining olive oil, lemon juice and parsley.",
+      "Serve immediately."
+    ], nutrition: { calories: "380 kcal", protein: "26.9 g", carbohydrates: "29.6 g", fat: "18.0 g", fibre: "2.2 g", sodium: "85 mg", salt: "0.21 g", potassium: "566 mg", phosphate: "252 mg" }, potassium: "High", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2173,13 +2174,13 @@ export const lunches: Recipe[] = [
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
-  { id: "turkey-cucumber-pitta", code: "L042", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L042.webp", name: "Turkey & Cucumber Pitta", description: "Juicy turkey breast, crisp cucumber and iceberg lettuce tucked into a soft white pitta with creamy mayonnaise and a hint of parsley.", cookingTime: "12 minutes", calories: "437 kcal", protein: "30.7 g", equipment: "Knife, chopping board, frying pan", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (60 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (40 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (15 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
-  "Cook the turkey in a non-stick frying pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Slice the turkey and prepare the cucumber and lettuce.",
-  "Warm the pitta briefly and split it open.",
-  "Spread with mayonnaise and add the turkey and salad. Spread the listed amount right out towards the edges so that each bite has some of the topping; do not add another spoonful to cover any gaps. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Finish with parsley and serve."
-], nutrition: { calories: "437 kcal", protein: "30.7 g", carbohydrates: "34.4 g", fat: "20.5 g", fibre: "1.9 g", sodium: "326 mg", salt: "0.81 g", potassium: "569 mg", phosphate: "304 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+  { id: "turkey-cucumber-pitta", code: "L042", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L042.webp", name: "Turkey & Cucumber Pitta", description: "Juicy turkey breast, crisp cucumber and iceberg lettuce tucked into a soft white pitta with creamy mayonnaise and a hint of parsley.", cookingTime: "12 minutes", calories: "437 kcal", protein: "30.7 g", equipment: "Knife, chopping board, frying pan, Food thermometer", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (60 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (40 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (15 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
+      "Cook the turkey in a non-stick frying pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Slice the turkey and prepare the cucumber and lettuce.",
+      "Warm the pitta briefly and split it open.",
+      "Spread with mayonnaise and add the turkey and salad.",
+      "Finish with parsley and serve."
+    ], nutrition: { calories: "437 kcal", protein: "30.7 g", carbohydrates: "34.4 g", fat: "20.5 g", fibre: "1.9 g", sodium: "326 mg", salt: "0.81 g", potassium: "569 mg", phosphate: "304 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2190,13 +2191,13 @@ export const lunches: Recipe[] = [
     dietCategories: ["Mixed diet"]
   },
   { id: "tuna-sweetcorn-pasta-salad", code: "L043", mealFamily: "pasta-salad", category: "Lunch", emoji: "🍝", image: "/images/recipes/L043.webp", name: "Tuna & Sweetcorn Pasta Salad", description: "A colourful pasta salad with flaky tuna, sweetcorn and cucumber, brought together with a creamy mayonnaise dressing.", cookingTime: "20 minutes", calories: "463 kcal", protein: "29.4 g", equipment: "Saucepan, colander, bowl, knife", ingredients: [ { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "50 g" }, { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "90 g" }, { item: "Sweetcorn kernels, canned in water, drained", shoppingItem: "Sweetcorn kernels", quantity: "20 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (20 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" } ], method: [
-  "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Drain the pasta thoroughly and allow it to cool.",
-  "Drain the tuna very thoroughly and prepare the cucumber.",
-  "Mix the pasta, tuna, sweetcorn and cucumber. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Stir through the mayonnaise. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving.",
-  "Serve warm or chilled. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-], nutrition: { calories: "463 kcal", protein: "29.4 g", carbohydrates: "41.8 g", fat: "20.9 g", fibre: "1.1 g", sodium: "301 mg", salt: "0.75 g", potassium: "447 mg", phosphate: "266 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. The tuna is canned in brine, so drain it thoroughly and check the label for salt content.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+      "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Drain the pasta thoroughly and allow it to cool.",
+      "Drain the tuna very thoroughly and prepare the cucumber.",
+      "Mix the pasta, tuna, sweetcorn and cucumber.",
+      "Stir through the mayonnaise.",
+      "Serve warm or chilled."
+    ], nutrition: { calories: "463 kcal", protein: "29.4 g", carbohydrates: "41.8 g", fat: "20.9 g", fibre: "1.1 g", sodium: "301 mg", salt: "0.75 g", potassium: "447 mg", phosphate: "266 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. The tuna is canned in brine, so drain it thoroughly and check the label for salt content.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2206,14 +2207,14 @@ export const lunches: Recipe[] = [
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
-  { id: "egg-leek-rice-bowl", code: "L044", mealFamily: "rice-bowl", category: "Lunch", emoji: "🍳", image: "/images/recipes/L021.webp", name: "Egg & Leek Rice Bowl", description: "Fluffy rice tossed with egg, gently softened leek and onion, finished with fresh chives for a comforting savoury bowl.", cookingTime: "25 minutes", calories: "488 kcal", protein: "18.0 g", equipment: "Saucepan, frying pan, colander, knife", ingredients: [ { item: "Rice, white, basmati, raw", shoppingItem: "White rice", quantity: "60 g (dry)" }, { item: "Eggs, chicken, whole, raw", shoppingItem: "Egg", quantity: "2" }, { item: "Leeks, raw", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Onions, raw", shoppingItem: "Onions", quantity: "½ onion (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
-  "Cook the rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Slice the leek and onion and cook gently in half the oil until soft. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Beat the egg and cook gently in the pan until fully set. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white.",
-  "Add the cooked rice and remaining oil and stir through. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Finish with fresh chives.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-], nutrition: { calories: "488 kcal", protein: "18.0 g", carbohydrates: "52.7 g", fat: "24.4 g", fibre: "1.7 g", sodium: "155 mg", salt: "0.39 g", potassium: "268 mg", phosphate: "249 mg" }, potassium: "Low", phosphate: "Moderate", purines: "Low", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+  { id: "egg-leek-rice-bowl", code: "L044", mealFamily: "rice-bowl", category: "Lunch", emoji: "🍳", image: "/images/recipes/L021.webp", name: "Egg & Leek Rice Bowl", description: "Fluffy rice tossed with egg, gently softened leek and onion, finished with fresh chives for a comforting savoury bowl.", cookingTime: "25 minutes", calories: "488 kcal", protein: "18.0 g", equipment: "Saucepan, frying pan, colander, knife, Mixing bowl, Fork or whisk", ingredients: [ { item: "Rice, white, basmati, raw", shoppingItem: "White rice", quantity: "60 g (dry)" }, { item: "Eggs, chicken, whole, raw", shoppingItem: "Egg", quantity: "2" }, { item: "Leeks, raw", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Onions, raw", shoppingItem: "Onions", quantity: "½ onion (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
+      "Cook the rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Slice the leek and onion and cook gently in half the oil until soft.",
+      "Beat the egg and cook gently in the pan until fully set.",
+      "Add the cooked rice and remaining oil and stir through.",
+      "Finish with fresh chives.",
+      "Serve immediately."
+    ], nutrition: { calories: "488 kcal", protein: "18.0 g", carbohydrates: "52.7 g", fat: "24.4 g", fibre: "1.7 g", sodium: "155 mg", salt: "0.39 g", potassium: "268 mg", phosphate: "249 mg" }, potassium: "Low", phosphate: "Moderate", purines: "Low", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2223,14 +2224,14 @@ export const lunches: Recipe[] = [
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
-  { id: "chicken-carrot-noodle-salad", code: "L045", mealFamily: "noodle-salad", category: "Lunch", emoji: "🍜", image: "/images/recipes/L045.webp", name: "Chicken & Carrot Noodle Salad", description: "Rice noodles, tender chicken, carrot and cucumber are tossed with lemon, ginger and olive oil for a fresh, zesty noodle salad.", cookingTime: "20 minutes", calories: "436 kcal", protein: "25.7 g", equipment: "Saucepan, colander, frying pan, knife", ingredients: [ { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice rice noodles", quantity: "150 g (cooked)" }, { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" } ], method: [
-  "Cook the rice rice noodles according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Cook the chicken in a non-stick frying pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Boil the carrot until tender and drain well.",
-  "Drain the rice rice noodles thoroughly and rinse briefly if serving chilled.",
-  "Toss the rice rice noodles with carrot, cucumber, chicken, oil, lemon and ginger. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains.",
-  "Serve."
-], nutrition: { calories: "436 kcal", protein: "25.7 g", carbohydrates: "34.6 g", fat: "22.7 g", fibre: "3.1 g", sodium: "93 mg", salt: "0.23 g", potassium: "499 mg", phosphate: "202 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+  { id: "chicken-carrot-noodle-salad", code: "L045", mealFamily: "noodle-salad", category: "Lunch", emoji: "🍜", image: "/images/recipes/L045.webp", name: "Chicken & Carrot Noodle Salad", description: "Rice noodles, tender chicken, carrot and cucumber are tossed with lemon, ginger and olive oil for a fresh, zesty noodle salad.", cookingTime: "20 minutes", calories: "436 kcal", protein: "25.7 g", equipment: "Saucepan, colander, frying pan, knife, Food thermometer", ingredients: [ { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice rice noodles", quantity: "150 g (cooked)" }, { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" } ], method: [
+      "Cook the rice rice noodles according to the packet instructions using unsalted water. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Cook the chicken in a non-stick frying pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Boil the carrot until tender and drain well.",
+      "Drain the rice rice noodles thoroughly and rinse briefly if serving chilled.",
+      "Toss the rice rice noodles with carrot, cucumber, chicken, oil, lemon and ginger.",
+      "Serve."
+    ], nutrition: { calories: "436 kcal", protein: "25.7 g", carbohydrates: "34.6 g", fat: "22.7 g", fibre: "3.1 g", sodium: "93 mg", salt: "0.23 g", potassium: "499 mg", phosphate: "202 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2240,14 +2241,14 @@ export const lunches: Recipe[] = [
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
-  { id: "turkey-apple-couscous-salad", code: "L046", mealFamily: "couscous-salad", category: "Lunch", emoji: "🍎", image: "/images/recipes/L046.webp", name: "Turkey & Apple Couscous Salad", description: "Tender turkey and fluffy couscous meet crisp apple and cucumber, with lemon and parsley adding a fresh, herby lift.", cookingTime: "20 minutes", calories: "433 kcal", protein: "29.1 g", equipment: "Saucepan, frying pan, knife, bowl", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apples", quantity: "⅓ apple (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, fresh", shoppingItem: "Fresh parsley", quantity: "1 sprig" } ], method: [
-  "Prepare the couscous according to the packet instructions using unsalted water.",
-  "Cook the turkey in a non-stick pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Dice the apple and cucumber. Remove any inedible core, stalk or peel specified in the ingredient list before weighing. Cut into pieces that are comfortable to eat with the rest of the meal.",
-  "Fluff the couscous and stir through the apple and cucumber. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Slice the turkey and add to the couscous.",
-  "Finish with olive oil, lemon and parsley and serve."
-], nutrition: { calories: "433 kcal", protein: "29.1 g", carbohydrates: "31.7 g", fat: "21.9 g", fibre: "1.9 g", sodium: "53 mg", salt: "0.13 g", potassium: "558 mg", phosphate: "324 mg" }, potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+  { id: "turkey-apple-couscous-salad", code: "L046", mealFamily: "couscous-salad", category: "Lunch", emoji: "🍎", image: "/images/recipes/L046.webp", name: "Turkey & Apple Couscous Salad", description: "Tender turkey and fluffy couscous meet crisp apple and cucumber, with lemon and parsley adding a fresh, herby lift.", cookingTime: "20 minutes", calories: "433 kcal", protein: "29.1 g", equipment: "Saucepan, frying pan, knife, bowl, Food thermometer", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apples", quantity: "⅓ apple (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, fresh", shoppingItem: "Fresh parsley", quantity: "1 sprig" } ], method: [
+      "Prepare the couscous according to the packet instructions using unsalted water.",
+      "Cook the turkey in a non-stick pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Dice the apple and cucumber. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
+      "Fluff the couscous and stir through the apple and cucumber.",
+      "Slice the turkey and add to the couscous.",
+      "Finish with olive oil, lemon and parsley and serve."
+    ], nutrition: { calories: "433 kcal", protein: "29.1 g", carbohydrates: "31.7 g", fat: "21.9 g", fibre: "1.9 g", sodium: "53 mg", salt: "0.13 g", potassium: "558 mg", phosphate: "324 mg" }, potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2258,13 +2259,13 @@ export const lunches: Recipe[] = [
     dietCategories: ["Mixed diet"]
   },
   { id: "cod-cucumber-pasta-salad", code: "L047", mealFamily: "pasta-salad", category: "Lunch", emoji: "🐟", image: "/images/recipes/L047.webp", name: "Cod & Cucumber Pasta Salad", description: "Flaky baked cod and pasta tossed with cucumber and lettuce, finished with lemon, parsley and olive oil for a bright, fresh salad.", cookingTime: "25 minutes", calories: "443 kcal", protein: "33.7 g", equipment: "Oven, baking tray, saucepan, colander, knife", ingredients: [ { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "120 g" }, { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "40 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "¼ cucumber (20 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
-  "Heat the oven to 200°C (180°C fan) and bake the cod until cooked through. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent.",
-  "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Drain the pasta thoroughly and allow to cool slightly.",
-  "Flake the cod and combine with the pasta, cucumber and lettuce.",
-  "Add the olive oil, lemon juice and parsley. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Serve."
-], nutrition: { calories: "443 kcal", protein: "33.7 g", carbohydrates: "30.9 g", fat: "21.4 g", fibre: "0.4 g", sodium: "113 mg", salt: "0.28 g", potassium: "627 mg", phosphate: "309 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+      "Heat the oven to 200°C (180°C fan) and bake the cod until cooked through. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent.",
+      "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Drain the pasta thoroughly and allow to cool slightly.",
+      "Flake the cod and combine with the pasta, cucumber and lettuce.",
+      "Add the olive oil, lemon juice and parsley.",
+      "Serve."
+    ], nutrition: { calories: "443 kcal", protein: "33.7 g", carbohydrates: "30.9 g", fat: "21.4 g", fibre: "0.4 g", sodium: "113 mg", salt: "0.28 g", potassium: "627 mg", phosphate: "309 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2274,14 +2275,14 @@ export const lunches: Recipe[] = [
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
-  { id: "chicken-leek-toasted-pitta", code: "L048", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L048.webp", name: "Chicken & Leek Toasted Pitta", description: "Toasted white pitta filled with tender chicken, softened leek and creamy chive mayonnaise for a warm, savoury lunch.", cookingTime: "18 minutes", calories: "410 kcal", protein: "27.4 g", equipment: "Frying pan, knife, chopping board, toaster", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (50 g)" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
-  "Slice the chicken and leek. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Cook the chicken in a non-stick pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "Add the leek and cook until soft. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Warm the pitta and mix the filling with mayonnaise and chives. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving.",
-  "Fill the pitta.",
-  "Serve immediately. Transfer the complete portion to a plate or bowl, including any listed sides or sauce. Eat while freshly prepared; extra bread, dips or toppings would be additions to this meal."
-], nutrition: { calories: "410 kcal", protein: "27.4 g", carbohydrates: "28.7 g", fat: "21.5 g", fibre: "1.6 g", sodium: "310 mg", salt: "0.77 g", potassium: "507 mg", phosphate: "216 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+  { id: "chicken-leek-toasted-pitta", code: "L048", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L048.webp", name: "Chicken & Leek Toasted Pitta", description: "Toasted white pitta filled with tender chicken, softened leek and creamy chive mayonnaise for a warm, savoury lunch.", cookingTime: "18 minutes", calories: "410 kcal", protein: "27.4 g", equipment: "Frying pan, knife, chopping board, toaster, Mixing bowl, Food thermometer", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (50 g)" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
+      "Slice the chicken and leek.",
+      "Cook the chicken in a non-stick pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Add the leek and cook until soft.",
+      "Warm the pitta and mix the filling with mayonnaise and chives.",
+      "Fill the pitta.",
+      "Serve immediately."
+    ], nutrition: { calories: "410 kcal", protein: "27.4 g", carbohydrates: "28.7 g", fat: "21.5 g", fibre: "1.6 g", sodium: "310 mg", salt: "0.77 g", potassium: "507 mg", phosphate: "216 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2305,7 +2306,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "115 mins",
     "calories": "706 kcal",
     "protein": "44.2 g",
-    "equipment": "0.01 g scales, mixing bowls, knife, board, rolling pin, heavy frying pan, oven tray, metal skewers, clean probe thermometer",
+    "equipment": "0.01 g scales, mixing bowls, knife, board, rolling pin, heavy frying pan, oven tray, metal skewers, clean probe thermometer, Saucepan, Lid or bowl cover",
     "ingredients": [
       {
         "item": "Skinless chicken breast",
@@ -2439,17 +2440,16 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Weigh every ingredient, including the spices. Do not wash raw chicken. Cut it into approximately 25 mm pieces; cut the onion into wedges. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Mix the tikka yoghurt, garlic, ginger, lemon, 10 g oil, listed spices and 0.3 g salt. Coat chicken and onion in a covered bowl and refrigerate for 60 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
-  "Mix flour, yeast, sugar and 0.3 g bread salt. Add 20 g yoghurt, 40 g weighed lukewarm water and 5 g oil. Knead 6-8 minutes into a soft dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Cover and prove for about 60 minutes at ordinary warm room temperature, until visibly puffy.",
-  "Cover the bowl so the surface cannot dry out. Judge readiness by the dough becoming visibly puffy, because a cooler kitchen may make the rise slower than the stated guide time. Avoid extra flour; use the measured oil or baking paper if sticking.",
-  "Preheat the grill to medium-high and place a rimmed tray below the skewers to catch juices. Roll the dough into one flatbread approximately 20 cm across and 4-5 mm thick. If dough has not puffed, allow another 15-30 minutes and",
-  "Thread chicken and onion loosely onto metal skewers. Spread all remaining marinade over them. Grill for approximately 18-25 minutes, turning several times, until browned. Check the thickest chicken reaches 75 C for at least 30 seconds; extend cooking as needed.",
-  "In parallel, heat the dry heavy frying pan over medium-high heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Cook each bread for about 2-3 minutes on the first side and 1-2 on the other, with a brief lid-on period if needed to cook its centre. Look for cooked, airy crumb and brown patches. Brush the flatbread with all the measured butter.",
-  "Transfer skewer food to a plate. Put collected marinade and juices in a small pan; bring to a bubbling simmer and heat thoroughly before serving. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Serve all chicken, onion, bread, butter, cucumber, coriander and cooked juices on one plate.",
-  "Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Allow up to 01:55 if the grill or dough needs longer."
-],
+      "Do not wash raw chicken. Weigh every ingredient, including the spices. Cut it into approximately 25 mm pieces; cut the onion into wedges. Mix the tikka yoghurt, garlic, ginger, lemon, 10 g oil, listed spices and 0.3 g salt. Coat chicken and onion in a covered bowl and refrigerate for 60 minutes.",
+      "Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
+      "Mix flour, yeast, sugar and 0.3 g bread salt. Add 20 g yoghurt, 40 g weighed lukewarm water and 5 g oil. Knead 6-8 minutes into a soft dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Cover and prove for about 60 minutes at ordinary warm room temperature, until visibly puffy.",
+      "Cover the bowl so the surface cannot dry out. Judge readiness by the dough becoming visibly puffy, because a cooler kitchen may make the rise slower than the stated guide time. Avoid extra flour; use the measured oil or baking paper if sticking.",
+      "Preheat the grill to medium-high and place a rimmed tray below the skewers to catch juices. Roll the dough into one flatbread approximately 20 cm across and 4-5 mm thick. If the dough has not puffed, leave it covered for another 15–30 minutes before rolling.",
+      "Thread chicken and onion loosely onto metal skewers. Spread all remaining marinade over them. Grill for approximately 18-25 minutes, turning several times, until browned. Check the thickest chicken reaches 75 C for at least 30 seconds; extend cooking as needed.",
+      "In parallel, heat the dry heavy frying pan over medium-high heat. Cook each bread for about 2-3 minutes on the first side and 1-2 on the other, with a brief lid-on period if needed to cook its centre. Look for cooked, airy crumb and brown patches. Brush the flatbread with all the measured butter.",
+      "Transfer skewer food to a plate. Put collected marinade and juices in a small pan; bring to a bubbling simmer and heat thoroughly before serving. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Serve all chicken, onion, bread, butter, cucumber, coriander and cooked juices on one plate.",
+      "Check more than one piece if their sizes differ, and use clean utensils for the cooked food."
+    ],
     "nutrition": {
       "calories": "706 kcal",
       "protein": "44.2 g",
@@ -2489,7 +2489,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "55 mins",
     "calories": "597 kcal",
     "protein": "43.7 g",
-    "equipment": "0.1 g scales, knife, board, wide lidded frying pan, spoon, bowl, toaster or dry frying pan, clean probe thermometer",
+    "equipment": "0.1 g scales, knife, board, wide lidded frying pan, spoon, bowl, toaster or dry frying pan, clean probe thermometer, Saucepan, Blender or food processor, Grater",
     "ingredients": [
       {
         "item": "Skinless turkey breast, finely minced",
@@ -2588,14 +2588,13 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Finely mince the raw turkey breast using a clean processor or ask the butcher to mince breast only without added ingredients. Finely chop onion, garlic, ginger and tomato. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Keep the turkey chilled while preparing vegetables; clean equipment after contact with raw poultry.",
-  "Heat 15 g oil in a wide pan over medium heat. Add onion and cook gently for 15-20 minutes, stirring until golden. Use 10 g of the measured water if it catches rather than adding unmeasured oil. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Add garlic, ginger, cumin, coriander, turmeric, cinnamon, pepper and chilli. Stir for 30-60 seconds. Add tomato and salt and cook 5-7 minutes, crushing tomato until the mixture is a thick masala.",
-  "Add turkey and break it into small crumbs. Cook 5 minutes, then add the frozen peas and the remaining measured water. Cover and simmer about 8 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Stir thoroughly and check several parts of the mixture reach 75 C for 30 seconds.",
-  "Uncover and reduce for 3-5 minutes until moist but not saucy. Keep all fat and juices in the filling; do not drain. Fold in chopped coriander. Grate cucumber and mix with yoghurt without squeezing out its juice.",
-  "Warm two 45 g pittas in a toaster or dry pan for 1-2 minutes. Open pockets carefully. Divide all keema between the two pittas for one person, and serve with the cucumber yoghurt. Allow 55 minutes total; extend cooking if the temperature check requires it."
-],
+      "Finely mince the raw turkey breast using a clean processor or ask the butcher to mince breast only without added ingredients. Finely chop onion, garlic, ginger and tomato. Keep the turkey chilled while preparing vegetables; clean equipment after contact with raw poultry.",
+      "Heat 15 g oil in a wide pan over medium heat. Add onion and cook gently for 15-20 minutes, stirring until golden. Use 10 g of the measured water if it catches rather than adding unmeasured oil.",
+      "Add garlic, ginger, cumin, coriander, turmeric, cinnamon, pepper and chilli. Stir for 30-60 seconds. Add tomato and salt and cook 5-7 minutes, crushing tomato until the mixture is a thick masala.",
+      "Add turkey and break it into small crumbs. Cook 5 minutes, then add the frozen peas and the remaining measured water. Cover and simmer about 8 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Stir thoroughly and check several parts of the mixture reach 75 C for 30 seconds.",
+      "Uncover and reduce for 3-5 minutes until moist but not saucy. Keep all fat and juices in the filling; do not drain. Fold in chopped coriander. Grate cucumber and mix with yoghurt without squeezing out its juice.",
+      "Warm two 45 g pittas in a toaster or dry pan for 1-2 minutes. Open pockets carefully. Divide all keema between the two pittas for one person, and serve with the cucumber yoghurt. Allow 55 minutes total; extend cooking if the temperature check requires it."
+    ],
     "nutrition": {
       "calories": "597 kcal",
       "protein": "43.7 g",
@@ -2635,7 +2634,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "55 mins",
     "calories": "649 kcal",
     "protein": "25.0 g",
-    "equipment": "0.1 g scales, knife, board, mixing bowl, rolling pin, wide non-stick frying pan, lidded saute pan, spatula",
+    "equipment": "0.1 g scales, knife, board, mixing bowl, rolling pin, wide non-stick frying pan, lidded saute pan, spatula, Fork or whisk, Saucepan",
     "ingredients": [
       {
         "item": "Plain white flour",
@@ -2739,15 +2738,14 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Mix flour, 45 g water, 5 g oil and 0.3 g salt. Knead 5 minutes and cover for 15 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Beat exactly 100 g shelled egg in a separate bowl; egg count is only a shopping approximation. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Cut cauliflower into 1-1.5 cm florets and finely slice both onion portions, keeping 15 g aside raw. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Heat 7.5 g oil in a lidded pan. Cook the 35 g onion portion 5 minutes. Stir around the base and edges of the pan.",
-  "The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add garlic, ginger and filling spices and stir briefly.",
-  "Add cauliflower, 0.3 g salt and 15 g water. Cover for about 8 minutes, then uncover and cook 5-7 minutes, stirring, until tender with browned edges and no watery sauce. Do not boil in excess water or drain.",
-  "Divide the rested dough into two equal pieces and roll each approximately 18 cm wide. Use baking paper rather than adding uncounted dusting flour. Cook each in a hot dry non-stick pan for approximately 1 minute per side until cooked through. Stack under a clean cloth.",
-  "Divide the 5 g coating oil into two 2.5 g portions. Heat one portion over medium-low heat. Pour in 50 g beaten egg, spread to the bread size and immediately lay a cooked flatbread over it. Cook until the egg layer is fully set; turn and heat the bread briefly. Repeat for the second bread without leaving liquid egg on the bread.",
-  "Combine the reserved 15 g onion, lemon and coriander. Divide all cauliflower and fresh finish between two egg-coated breads. Roll firmly and serve both as one serving. Allow up to 55 minutes for the successive pan batches; timing depends on burner and pan size."
-],
+      "Mix flour, 45 g water, 5 g oil and 0.3 g salt. Knead 5 minutes and cover for 15 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Beat exactly 100 g shelled egg in a separate bowl; egg count is only a shopping approximation.",
+      "Cut cauliflower into 1-1.5 cm florets and finely slice both onion portions, keeping 15 g aside raw. Heat 7.5 g oil in a lidded pan. Cook the 35 g onion portion 5 minutes. Stir around the base and edges of the pan.",
+      "The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add garlic, ginger and filling spices and stir briefly.",
+      "Add cauliflower, 0.3 g salt and 15 g water. Cover for about 8 minutes, then uncover and cook 5-7 minutes, stirring, until tender with browned edges and no watery sauce. Do not boil in excess water or drain.",
+      "Divide the rested dough into two equal pieces and roll each approximately 18 cm wide. Use baking paper rather than adding uncounted dusting flour. Cook each in a hot dry non-stick pan for approximately 1 minute per side until cooked through. Stack under a clean cloth.",
+      "Divide the 5 g coating oil into two 2.5 g portions. Heat one portion over medium-low heat. Pour in 50 g beaten egg, spread to the bread size and immediately lay a cooked flatbread over it. Cook until the egg layer is fully set; turn and heat the bread briefly. Repeat for the second bread without leaving liquid egg on the bread.",
+      "Combine the reserved 15 g onion, lemon and coriander. Divide all cauliflower and fresh finish between two egg-coated breads. Roll firmly and serve both as one serving. Allow up to 55 minutes for the successive pan batches; timing depends on burner and pan size."
+    ],
     "nutrition": {
       "calories": "649 kcal",
       "protein": "25.0 g",
@@ -2921,14 +2919,13 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "The previous day, 18-20 hours before cooking - Mix rice flour, 0.15 g yeast and 90 g weighed water into a thick paste in a clean covered bowl. Ferment at approximately 20-24 C until risen and bubbly. Do not add coconut milk, sugar, salt or raw chicken at this stage. This follows a culinary fermentation method, not a validated home food-safety process; do not extend fermentation indefinitely if it fails. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Cooking day, 00:00 - Stir 80 g coconut milk and 2 g sugar into the fermented paste. Cover for 30 minutes. The batter should pour smoothly and coat the pan thinly; reserve any required additional weighed water as a documented revision, not an unrecorded coconut-milk addition.",
-  "Cut chicken thighs into 2-3 cm pieces. Chop onion and tomato; crush garlic and ginger. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Lightly toast the coriander, cumin and fennel in a dry saucepan for 30-60 seconds without burning. Add coconut oil, onion, garlic, ginger and finely sliced curry leaves; soften for 6-8 minutes.",
-  "Add turmeric, chilli, cinnamon, cardamom, cloves, tomato and 0.45 g curry salt. Cook 5 minutes to soften tomato, then add chicken, 40 g coconut milk, 75 g water and vinegar. Simmer gently, covered, 20-25 minutes, stirring and checking several chicken pieces reach 75 C for 30 seconds. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Uncover briefly if needed to thicken; do not discard sauce.",
-  "Stir 0.3 g hopper salt into the batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Heat a non-stick curved hopper pan over medium heat. Divide the measured 2 g olive oil across four to five hoppers with a brush. Weigh or divide batter equally; ladle a portion, quickly swirl it up the sides and cover. Cook 2-3 minutes until the centre is set and edges release. Repeat, adjusting heat to avoid burning.",
-  "If a second pan is unavailable, allow up to 65 minutes on cooking day for all hoppers and curry. Serve all the hoppers and curry as one serving, with the complete sauce. The finely sliced curry leaves are part of the eaten specification. Without a curved pan, the flat pancake result is a different practical variant requiring its own review."
-],
+      "The previous day, 18-20 hours before cooking - Mix rice flour, 0.15 g yeast and 90 g weighed water into a thick paste in a clean covered bowl. Ferment at approximately 20-24 C until risen and bubbly. Do not add coconut milk, sugar, salt or raw chicken at this stage. This follows a culinary fermentation method, not a validated home food-safety process; do not extend fermentation indefinitely if it fails.",
+      "Cooking day, 00:00 - Stir 80 g coconut milk and 2 g sugar into the fermented paste. Cover for 30 minutes. The batter should pour smoothly and coat the pan thinly.",
+      "Cut chicken thighs into 2-3 cm pieces. Chop onion and tomato; crush garlic and ginger. Lightly toast the coriander, cumin and fennel in a dry saucepan for 30-60 seconds without burning. Add coconut oil, onion, garlic, ginger and finely sliced curry leaves; soften for 6-8 minutes.",
+      "Add turmeric, chilli, cinnamon, cardamom, cloves, tomato and 0.45 g curry salt. Cook 5 minutes to soften tomato, then add chicken, 40 g coconut milk, 75 g water and vinegar. Simmer gently, covered, 20-25 minutes, stirring and checking several chicken pieces reach 75 C for 30 seconds. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Uncover briefly if needed to thicken; do not discard sauce.",
+      "Stir 0.3 g hopper salt into the batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Heat a non-stick curved hopper pan over medium heat. Divide the measured 2 g olive oil across four to five hoppers with a brush. Weigh or divide batter equally; ladle a portion, quickly swirl it up the sides and cover. Cook 2-3 minutes until the centre is set and edges release. Repeat, adjusting heat to avoid burning.",
+      "If a second pan is unavailable, allow up to 65 minutes on cooking day for all hoppers and curry. Serve all the hoppers and curry as one serving, with the complete sauce. The finely sliced curry leaves are part of the eaten specification. Without a curved pan, the flat pancake result is a different practical variant requiring its own review."
+    ],
     "nutrition": {
       "calories": "827 kcal",
       "protein": "34.2 g",
@@ -2968,7 +2965,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "120 mins",
     "calories": "804 kcal",
     "protein": "39.7 g",
-    "equipment": "0.1 g scales, mixing bowls, knife, board, rolling pin, rimmed roasting tray, heavy frying pan, small mortar and whisk, clean probe thermometer",
+    "equipment": "0.1 g scales, mixing bowls, knife, board, rolling pin, rimmed roasting tray, heavy frying pan, small mortar and whisk, clean probe thermometer, Saucepan, Oven, Lid or bowl cover",
     "ingredients": [
       {
         "item": "Boneless skinless chicken thigh",
@@ -3102,18 +3099,17 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Flatten thigh pieces to an even thickness without mincing. Mix the shawarma lemon, garlic, oil, spices and 0.3 g salt; coat chicken and onion wedges. Cover and refrigerate for at least 60 minutes. Do not wash raw poultry. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Mix bread flour, yeast and 0.3 g bread salt. Add 50 g water, 5 g oil and the finely crushed 2 g bread garlic. Knead about 8 minutes; cover and prove around 60 minutes until puffy. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Cover the bowl so the surface cannot dry out.",
-  "Judge readiness by the dough becoming visibly puffy, because a cooler kitchen may make the rise slower than the stated guide time. Do not add unmeasured dusting flour.",
-  "Crush the 3 g sauce garlic with 0.15 g sauce salt in a small mortar to a smooth paste. Whisk in 20 g sauce oil drop by drop, alternating with the 5 g sauce lemon juice and 2.5 g water. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Aim for a loose emulsion rather than a large-batch restaurant toum.",
-  "Keep chilled and use this batch now; do not store garlic in oil at room temperature. Separation is a practical issue, not a reason to omit its oil from nutrition.",
-  "Heat oven to 220 C (200 C fan). Arrange chicken, onion and every bit of marinade in a single layer in a rimmed tray. Roast about 20-25 minutes until browned and chicken reaches 75 C for 30 seconds; extend cooking as needed.",
-  "Roll the dough into one approximately 20 cm flatbread. Cook in a hot dry heavy pan 2-3 minutes each side until cooked through with brown patches. Keep warm under a clean cloth.",
-  "Rest chicken 3 minutes, then slice thinly. Transfer tray juices and onions to the hot frying pan and bring to a bubbling simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Add sliced chicken and briefly toss to brown its edges and coat it with the cooked juices.",
-  "Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Use the listed oil only.",
-  "Serve all chicken, onions, juices, tomato and sauce with the one garlic flatbread. Allow up to 120 minutes elapsed if proofing or browning needs longer. This sliced-and-browned preparation, garlic bread and oil-based sauce distinguish it from tikka skewers and yoghurt marinade."
-],
+      "Do not wash raw poultry. Flatten thigh pieces to an even thickness without mincing. Mix the shawarma lemon, garlic, oil, spices and 0.3 g salt; coat chicken and onion wedges. Cover and refrigerate for at least 60 minutes.",
+      "Mix bread flour, yeast and 0.3 g bread salt. Add 50 g water, 5 g oil and the finely crushed 2 g bread garlic. Knead about 8 minutes; cover and prove around 60 minutes until puffy. Scrape dry patches from the bowl into the mixture and work them in with your hands. Cover the bowl so the surface cannot dry out.",
+      "Judge readiness by the dough becoming visibly puffy, because a cooler kitchen may make the rise slower than the stated guide time. Do not add unmeasured dusting flour.",
+      "Crush the 3 g sauce garlic with 0.15 g sauce salt in a small mortar to a smooth paste. Whisk in 20 g sauce oil drop by drop, alternating with the 5 g sauce lemon juice and 2.5 g water. Aim for a loose emulsion rather than a large-batch restaurant toum.",
+      "Keep chilled and use this batch now; do not store garlic in oil at room temperature.",
+      "Heat oven to 220 C (200 C fan). Arrange chicken, onion and every bit of marinade in a single layer in a rimmed tray. Roast about 20-25 minutes until browned and chicken reaches 75 C for 30 seconds; extend cooking as needed.",
+      "Roll the dough into one approximately 20 cm flatbread. Cook in a hot dry heavy pan 2-3 minutes each side until cooked through with brown patches. Keep warm under a clean cloth.",
+      "Rest chicken 3 minutes, then slice thinly. Transfer tray juices and onions to the hot frying pan and bring to a bubbling simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Add sliced chicken and briefly toss to brown its edges and coat it with the cooked juices.",
+      "Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Serve all chicken, onions, juices, tomato and sauce with the one garlic flatbread."
+    ],
     "nutrition": {
       "calories": "804 kcal",
       "protein": "39.7 g",
@@ -3153,7 +3149,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "50 mins",
     "calories": "730 kcal",
     "protein": "38.4 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Mixing bowl, Griddle pan, Saucepan, Grater, Food thermometer, Lid or bowl cover",
     "ingredients": [
       {
         "item": "Lamb mince",
@@ -3227,13 +3223,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Finely grate the kofta onion without discarding juice. Mix with lamb, parsley, cumin, pepper and kofta salt for 2 minutes until sticky. Form three equal oval kofta and chill 15 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Bring the bulgur and measured water to a simmer, cover for 10-12 minutes or until tender, then rest 5 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Check the packet grain size; record any additional weighed water as a revision.",
-  "Brush a griddle with the 5 g kofta oil and cook the kofta over medium-high heat for 10-12 minutes, turning to brown every side. Check their centres reach the meat safety endpoint. Keep and serve the cooked pan juices.",
-  "Fluff bulgur with its 9 g oil, lemon and salt. Fold in chopped tomato and bulgur parsley. Serve all three kofta with all the herbed grain as one serving.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds."
-],
+      "Finely grate the kofta onion without discarding juice. Mix with lamb, parsley, cumin, pepper and kofta salt for 2 minutes until sticky. Form three equal oval kofta and chill 15 minutes.",
+      "Bring the bulgur and measured water to a simmer, cover for 10-12 minutes or until tender, then rest 5 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Check the packet grain size; record any additional weighed water as a revision.",
+      "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds.",
+      "Brush a griddle with the 5 g kofta oil and cook the kofta over medium-high heat for 10-12 minutes, turning to brown every side. Check their centres reach the meat safety endpoint. Keep and serve the cooked pan juices.",
+      "Fluff bulgur with its 9 g oil, lemon and salt. Fold in chopped tomato and bulgur parsley. Serve all three kofta with all the herbed grain as one serving."
+    ],
     "nutrition": {
       "calories": "730 kcal",
       "protein": "38.4 g",
@@ -3273,7 +3268,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "70 mins",
     "calories": "643 kcal",
     "protein": "50.1 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Frying pan, Griddle pan, Saucepan, Metal skewers, Food thermometer, Lid or bowl cover",
     "ingredients": [
       {
         "item": "Skinless boneless chicken breast",
@@ -3352,13 +3347,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Cut chicken into even 2.5 cm pieces. Combine the skewer lemon, oil, garlic, oregano, salt and pepper; refrigerate chicken and onion wedges in this marinade for 30 minutes. Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
-  "Dice cucumber without squeezing or draining it. Combine half with yoghurt, sauce garlic and lemon; keep the remainder with chopped tomato as a side. Refrigerate until serving.",
-  "Thread the chicken and onion onto metal skewers. Griddle over medium-high heat 10-14 minutes, turning regularly, until chicken reaches the poultry safety endpoint. Simmer all reserved marinade in a small pan until bubbling and safely cooked, then spoon over the cooked skewers. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Warm pitta in a dry pan for 1 minute each side. Brush with the 5 g finish oil. Serve all the skewers, bread, cucumber sauce and tomato side as one serving.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Do not wash raw poultry, and use clean utensils for the cooked food. Cut chicken into even 2.5 cm pieces. Combine the skewer lemon, oil, garlic, oregano, salt and pepper; refrigerate chicken and onion wedges in this marinade for 30 minutes. Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
+      "Dice cucumber without squeezing or draining it. Combine half with yoghurt, sauce garlic and lemon; keep the remainder with chopped tomato as a side. Refrigerate until serving.",
+      "Thread the chicken and onion onto metal skewers. Griddle over medium-high heat 10-14 minutes, turning regularly, until chicken reaches the poultry safety endpoint. Simmer all reserved marinade in a small pan until bubbling and safely cooked, then spoon over the cooked skewers. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds.",
+      "Warm pitta in a dry pan for 1 minute each side. Brush with the 5 g finish oil. Serve all the skewers, bread, cucumber sauce and tomato side as one serving."
+    ],
     "nutrition": {
       "calories": "643 kcal",
       "protein": "50.1 g",
@@ -3398,7 +3392,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "40 mins",
     "calories": "679 kcal",
     "protein": "39.8 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Oven, Lid or bowl cover, Ovenproof dish",
     "ingredients": [
       {
         "item": "Cod fillet, flesh only",
@@ -3472,13 +3466,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Finely chop coriander, parsley and garlic; mix with lemon, 17.5 g oil, cumin, paprika and fish salt into chermoula. Coat cod and leave chilled for 15 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Cut carrot into 5 mm dice. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Simmer in the measured couscous water for 5 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Pour the complete boiling carrot-water mixture over couscous, add its oil and salt, cover for 10 minutes, then fluff.",
-  "Heat oven to 210 C conventional or 190 C fan. Place fish and every bit of chermoula in a small baking dish. Choose a dish that holds this portion without spreading it into a very thin layer. Arrange it evenly, so the centre and edges heat through at a similar rate. Bake 12-18 minutes, checking the thickest part is cooked safely and flakes. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
-  "Serve all the fish, its herb juices and the couscous as one serving. Keep the fresh green herb character; this is distinct from the cooked red harissa paste of D065.",
-  "Check that the fish is steaming hot and cooked throughout, with opaque flesh that flakes easily."
-],
+      "Finely chop coriander, parsley and garlic; mix with lemon, 17.5 g oil, cumin, paprika and fish salt into chermoula. Coat cod and leave chilled for 15 minutes.",
+      "Cut carrot into 5 mm dice. Simmer in the measured couscous water for 5 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Pour the complete boiling carrot-water mixture over couscous, add its oil and salt, cover for 10 minutes, then fluff.",
+      "Heat oven to 210 C conventional or 190 C fan. Place fish and every bit of chermoula in a small baking dish. Choose a dish that holds this portion without spreading it into a very thin layer. Arrange it evenly, so the centre and edges heat through at a similar rate. Bake 12-18 minutes, checking the thickest part is cooked safely and flakes. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+      "Serve all the fish, its herb juices and the couscous as one serving.",
+      "Check that the fish is steaming hot and cooked throughout, with opaque flesh that flakes easily."
+    ],
     "nutrition": {
       "calories": "679 kcal",
       "protein": "39.8 g",
@@ -3518,7 +3511,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "45 mins",
     "calories": "653 kcal",
     "protein": "25.9 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Frying pan, Saucepan, Lid or bowl cover",
     "ingredients": [
       {
         "item": "Whole egg, shell removed",
@@ -3587,13 +3580,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Chop onion and peppers into 1 cm pieces; crush garlic and dice tomato. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Heat the 15 g sauce oil in a wide lidded frying pan. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Soften onion and peppers for 8-10 minutes.",
-  "Stir in garlic, cumin, paprika and chilli for 30 seconds. Add tomato and salt. Simmer 15-20 minutes until thick enough to hold two wells; do not strain the sauce. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Weigh 110 g shelled eggs, approximately two large eggs, keeping individual yolks where possible. Divide between two wells. Cover on low heat until whites and yolks are fully set, roughly 7-10 minutes.",
-  "Warm the bread and brush with the 6 g bread oil. Scatter parsley over the pan. Serve both eggs and all the pepper-tomato sauce and bread as one serving.",
-  "Cook the egg mixture until fully set."
-],
+      "Chop onion and peppers into 1 cm pieces; crush garlic and dice tomato. Heat the 15 g sauce oil in a wide lidded frying pan. Soften onion and peppers for 8-10 minutes.",
+      "Stir in garlic, cumin, paprika and chilli for 30 seconds. Add tomato and salt. Simmer 15-20 minutes until thick enough to hold two wells; do not strain the sauce. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Weigh 110 g shelled eggs, approximately two large eggs, keeping individual yolks where possible. Divide between two wells. Cover on low heat until whites and yolks are fully set, roughly 7-10 minutes.",
+      "Warm the bread and brush with the 6 g bread oil. Scatter parsley over the pan. Serve both eggs and all the pepper-tomato sauce and bread as one serving.",
+      "Cook the egg mixture until fully set."
+    ],
     "nutrition": {
       "calories": "653 kcal",
       "protein": "25.9 g",
@@ -3633,7 +3625,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "85 mins",
     "calories": "724 kcal",
     "protein": "37.5 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Steamer and saucepan, Rolling pin, Food thermometer, Lid or bowl cover",
     "ingredients": [
       {
         "item": "Plain white flour",
@@ -3722,14 +3714,13 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Mix wrapper flour with its water and oil. Knead 6-8 minutes to a smooth firm dough and cover for 30 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Finely chop cabbage and spring onion; do not salt or squeeze out juice. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Mix pork, cabbage, spring onion, filling ginger and garlic, 9 g soy, 6 g sesame oil, sugar and pepper vigorously until cohesive. Keep refrigerated while rolling wrappers.",
-  "Divide dough and filling into 12 equal portions. Roll wrappers about 9 cm wide with thin edges on baking paper. Add one filling portion to each; wet edges with a little measured process water and pleat firmly, keeping filling off the seal. Keep the filling away from the joining edge and press the dough surfaces directly together. Check for open gaps before cooking so that the filling stays inside.",
-  "Line a steamer with perforated baking paper. Set dumplings apart and steam over boiling process water for 12-16 minutes in batches; check the centre of a thick dumpling reaches the mince safety endpoint. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Refill only the steamer reservoir, never pour water onto the dumplings.",
-  "Mix the dipping sauce ingredients. Serve all twelve dumplings and all the dipping sauce as one serving. Use all the listed dipping sauce for this portion.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds."
-],
+      "Mix wrapper flour with its water and oil. Knead 6-8 minutes to a smooth firm dough and cover for 30 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Finely chop cabbage and spring onion; do not salt or squeeze out juice.",
+      "Mix pork, cabbage, spring onion, filling ginger and garlic, 9 g soy, 6 g sesame oil, sugar and pepper vigorously until cohesive. Keep refrigerated while rolling wrappers.",
+      "Divide dough and filling into 12 equal portions. Roll wrappers about 9 cm wide with thin edges on baking paper. Add one filling portion to each; wet edges with a little measured process water and pleat firmly, keeping filling off the seal. Keep the filling away from the joining edge and press the dough surfaces directly together. Check for open gaps before cooking so that the filling stays inside.",
+      "Line a steamer with perforated baking paper. Set dumplings apart and steam over boiling process water for 12-16 minutes in batches; check the centre of a thick dumpling reaches the mince safety endpoint. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Refill only the steamer reservoir, never pour water onto the dumplings.",
+      "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds.",
+      "Mix the dipping sauce ingredients. Serve all twelve dumplings and all the dipping sauce as one serving."
+    ],
     "nutrition": {
       "calories": "724 kcal",
       "protein": "37.5 g",
@@ -3769,7 +3760,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "55 mins",
     "calories": "977 kcal",
     "protein": "51.8 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Frying pan, Saucepan, Food thermometer, Lid or bowl cover",
     "ingredients": [
       {
         "item": "Skinless boneless chicken breast",
@@ -3878,14 +3869,13 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Cook the rice component in its measured water, oil and salt in a close-fitting saucepan: bring to a simmer, cover on the lowest heat for 12-15 minutes, then rest off the heat for 10 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Do not drain. Keep the complete cooked rice for this serving.",
-  "Flatten the chicken into one 1.5 cm thick cutlet. Season with cutlet salt and pepper. Set out the measured flour, beaten egg and coarse dry crumbs. Coat the cutlet in that order. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Make the slaw from finely shredded cabbage and carrot, vinegar, sugar and sesame oil. Simmer the tomato sauce ingredients for 3-4 minutes until glossy. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. This is a specified homemade sharp-sweet sauce, not an unquantified bottled katsu sauce.",
-  "Heat the measured frying oil in a close-fitting non-stick pan over medium heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Fry the cutlet for 4-6 minutes per side, adjusting heat so crumbs brown without burning; check the poultry safety endpoint. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
-  "For the input calculation all coating and oil are counted. Do not pour unused raw egg/flour onto the plated food. Weigh uneaten coating/oil during the cooking trial before claiming consumed rather than input nutrients. Slice the cutlet and serve with all the rice, slaw and sauce as one serving.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food. Cook the egg mixture until fully set."
-],
+      "Do not wash raw poultry, and use clean utensils for the cooked food. Cook the rice component in its measured water, oil and salt in a close-fitting saucepan: bring to a simmer, cover on the lowest heat for 12-15 minutes, then rest off the heat for 10 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Do not drain.",
+      "Flatten the chicken into one 1.5 cm thick cutlet. Season with cutlet salt and pepper. Set out the measured flour, beaten egg and coarse dry crumbs. Coat the cutlet in that order.",
+      "Make the slaw from finely shredded cabbage and carrot, vinegar, sugar and sesame oil. Simmer the tomato sauce ingredients for 3-4 minutes until glossy. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Heat the measured frying oil in a close-fitting non-stick pan over medium heat. Fry the cutlet for 4-6 minutes per side, adjusting heat so crumbs brown without burning; check the poultry safety endpoint. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Do not pour unused raw egg/flour onto the plated food. Slice the cutlet and serve with all the rice, slaw and sauce as one serving.",
+      "Cook the egg mixture until fully set."
+    ],
     "nutrition": {
       "calories": "977 kcal",
       "protein": "51.8 g",
@@ -3925,7 +3915,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "65 mins",
     "calories": "825 kcal",
     "protein": "42.8 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Saucepan, Grater, Food thermometer, Lid or bowl cover",
     "ingredients": [
       {
         "item": "Beef sirloin, lean and edible fat",
@@ -4014,13 +4004,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Chill beef briefly until firm and slice across the grain 2-3 mm thick. Grate pear and onion; mix with garlic, ginger, soy, sugar, sesame oil and pepper. Marinate beef refrigerated for 30 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Cook the rice component in its measured water, oil and salt in a close-fitting saucepan: bring to a simmer, cover on the lowest heat for 12-15 minutes, then rest off the heat for 10 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Do not drain. Keep the complete cooked rice for this serving.",
-  "Separate washed lettuce leaves, pat dry and cut cucumber into fine batons. Heat a broad non-stick pan until hot. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Lift beef into two batches, searing 1-2 minutes per side; cook the collected marinade separately until bubbling and safely cooked.",
-  "Return beef and sliced spring onion to the reduced marinade briefly, then scatter sesame. Serve all the beef, cooked juices, rice, lettuce and cucumber as one serving, building small cups at the table.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds."
-],
+      "Chill beef briefly until firm and slice across the grain 2-3 mm thick. Grate pear and onion; mix with garlic, ginger, soy, sugar, sesame oil and pepper. Marinate beef refrigerated for 30 minutes.",
+      "Cook the rice component in its measured water, oil and salt in a close-fitting saucepan: bring to a simmer, cover on the lowest heat for 12-15 minutes, then rest off the heat for 10 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Do not drain.",
+      "Separate washed lettuce leaves, pat dry and cut cucumber into fine batons. Heat a broad non-stick pan until hot. Lift beef into two batches, searing 1-2 minutes per side; cook the collected marinade separately until bubbling and safely cooked.",
+      "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds.",
+      "Return beef and sliced spring onion to the reduced marinade briefly, then scatter sesame. Serve all the beef, cooked juices, rice, lettuce and cucumber as one serving, building small cups at the table."
+    ],
     "nutrition": {
       "calories": "825 kcal",
       "protein": "42.8 g",
@@ -4060,7 +4049,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "65 mins",
     "calories": "691 kcal",
     "protein": "39.0 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Griddle pan, Saucepan, Food thermometer, Colander or sieve",
     "ingredients": [
       {
         "item": "Skinless boneless chicken thigh",
@@ -4154,15 +4143,13 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Remove tough lemongrass layers before weighing the tender core. Mince extremely finely with garlic, then mix with the chicken fish sauce, sugar and oil. Flatten thigh pieces and marinate refrigerated for 30 minutes. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Soak or cook rice noodles in 750 g boiling process water according to their width, about 3-6 minutes; drain and cool. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Separate the pasta or noodles as they soften so they do not stick together.",
-  "Check the texture towards the end of the cooking time; it should be tender with no chalky centre. No leaching reduction is applied to the dry noodle input estimate.",
-  "Cut cucumber and carrot into fine batons and thinly slice shallot. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Mix every dressing ingredient until sugar dissolves. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Tear mint and coriander leaves.",
-  "Griddle chicken over medium-high heat for 6-8 minutes per side until the poultry endpoint is met. Simmer all leftover marinade and collected chicken juices to a safe bubbling finish. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-  "Slice chicken. Toss noodles, vegetables and herbs with the complete dressing; top with chicken and cooked marinade. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Serve the whole salad as one serving. Thai-style lime, chilli and fish-sauce dressing is distinct from Indonesian peanut-tamarind satay.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Do not wash raw poultry, and use clean utensils for the cooked food. Remove tough lemongrass layers before weighing the tender core. Mince extremely finely with garlic, then mix with the chicken fish sauce, sugar and oil. Flatten thigh pieces and marinate refrigerated for 30 minutes.",
+      "Soak or cook rice noodles in 750 g boiling process water according to their width, about 3-6 minutes; drain and cool. Separate the pasta or noodles as they soften so they do not stick together.",
+      "Check the texture towards the end of the cooking time; it should be tender with no chalky centre. No leaching reduction is applied to the dry noodle input estimate.",
+      "Cut cucumber and carrot into fine batons and thinly slice shallot. Mix every dressing ingredient until sugar dissolves. Tear mint and coriander leaves.",
+      "Griddle chicken over medium-high heat for 6-8 minutes per side until the poultry endpoint is met. Simmer all leftover marinade and collected chicken juices to a safe bubbling finish. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Slice chicken. Toss noodles, vegetables and herbs with the complete dressing; top with chicken and cooked marinade. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Serve the whole salad as one serving. Thai-style lime, chilli and fish-sauce dressing is distinct from Indonesian peanut-tamarind satay."
+    ],
     "nutrition": {
       "calories": "691 kcal",
       "protein": "39.0 g",
@@ -4178,7 +4165,7 @@ export const lunches: Recipe[] = [
     "phosphate": "Pending review",
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
-    "nutritionBasis": "CoFID ingredient-input estimate",
+    "nutritionBasis": "CoFID/USDA ingredient-input estimate",
     "nutritionIncomplete": [],
     "nutritionSourceNote": "Ingredient-input estimates with cited CoFID and secondary sources. Available carbohydrate by weight excludes dietary fibre. Completed missing-nutrient evidence and calculations: data/RecipeData/evidence/nutrition-gap-resolution.json. Ingredient and cooking variability remain.",
     "quantityConversionsEstimated": false,
@@ -4202,7 +4189,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "65 mins",
     "calories": "770 kcal",
     "protein": "42.6 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Saucepan, Oven, Food thermometer, Lid or bowl cover, Ovenproof dish",
     "ingredients": [
       {
         "item": "Skinless boneless chicken thigh",
@@ -4296,14 +4283,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Finely mince the tender lemongrass core and garlic. Combine chicken marinade ingredients and refrigerate flattened thigh meat in them for 30 minutes. Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
-  "Julienne carrot and mooli. Toss with the pickle vinegar, water, sugar and salt in a shallow bowl for 30 minutes. This is a small fresh pickle salad, not a preserved jar. Reserve all its liquor for serving.",
-  "Roast chicken and all marinade in a small rimmed dish at 220 C conventional or 200 C fan for 20-25 minutes, checking the poultry endpoint. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Rest 3 minutes and slice; safely simmer any thin juices if needed. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Warm the 120 g baguette portion and split it lengthways. Spread mayonnaise inside, then layer cucumber, chicken with cooked juices, pickle vegetables, coriander and finely sliced chilli.",
-  "Serve all the pickle liquor as a small side dressing for this serving so the measured sugar, vinegar and salt remain part of the eaten specification. Omitting or draining it requires a revised nutrition calculation.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Do not wash raw poultry, and use clean utensils for the cooked food. Finely mince the tender lemongrass core and garlic. Combine chicken marinade ingredients and refrigerate flattened thigh meat in them for 30 minutes. Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
+      "Julienne carrot and mooli. Toss with the pickle vinegar, water, sugar and salt in a shallow bowl for 30 minutes. This is a small fresh pickle salad, not a preserved jar. Reserve all its liquor for serving.",
+      "Roast chicken and all marinade in a small rimmed dish at 220 C conventional or 200 C fan for 20-25 minutes, checking the poultry endpoint. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Rest 3 minutes and slice; safely simmer any thin juices if needed. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Warm the 120 g baguette portion and split it lengthways. Spread mayonnaise inside, then layer cucumber, chicken with cooked juices, pickle vegetables, coriander and finely sliced chilli.",
+      "Serve all the pickle liquor as a small side dressing for this serving so the measured sugar, vinegar and salt remain part of the eaten specification."
+    ],
     "nutrition": {
       "calories": "770 kcal",
       "protein": "42.6 g",
@@ -4319,7 +4304,7 @@ export const lunches: Recipe[] = [
     "phosphate": "Pending review",
     "purines": "Pending review",
     "dietaryNote": "Development estimate requiring individual whole-day review; see guide dossier. No universal stage or dialysis suitability claim.",
-    "nutritionBasis": "CoFID ingredient-input estimate",
+    "nutritionBasis": "CoFID/USDA ingredient-input estimate",
     "nutritionIncomplete": [],
     "nutritionSourceNote": "Ingredient-input estimates with cited CoFID and secondary sources. Available carbohydrate by weight excludes dietary fibre. Completed missing-nutrient evidence and calculations: data/RecipeData/evidence/nutrition-gap-resolution.json. Ingredient and cooking variability remain.",
     "quantityConversionsEstimated": false,
@@ -4343,7 +4328,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "65 mins",
     "calories": "809 kcal",
     "protein": "50.3 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Metal skewers, Blender or food processor, Food thermometer, Colander or sieve, Grill",
     "ingredients": [
       {
         "item": "Skinless boneless chicken breast",
@@ -4442,14 +4427,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Cut chicken into thin strips and mix with all satay marinade ingredients. Refrigerate 30 minutes. Grind unsalted peanuts finely, keeping their fat; no defatting assumption is applied. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Mash seed-free tamarind flesh with 50 g sauce water. Blend with ground peanuts, sauce garlic, sugar, chilli and salt. Simmer 5-7 minutes to a pourable sauce; keep all pulp. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-  "Cook noodles in 750 g boiling process water according to their packet, drain, and toss with lime, thin cucumber and carrot, and coriander. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Thread chicken onto metal skewers and grill under a hot grill, turning, for 8-12 minutes until safely cooked. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Bubble all remaining marinade in the peanut sauce until the poultry safety endpoint is met.",
-  "Serve all the skewers, noodles and peanut-tamarind sauce as one serving. Peanut sauce, grilled skewers and tamarind distinguish this Indonesian-inspired adaptation from L061.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Do not wash raw poultry, and use clean utensils for the cooked food. Cut chicken into thin strips and mix with the marinade garlic, coriander, turmeric, sugar, soy sauce and oil. Refrigerate 30 minutes. Grind unsalted peanuts finely, keeping their fat; no defatting assumption is applied.",
+      "Mash seed-free tamarind flesh with 50 g sauce water. Blend with ground peanuts, sauce garlic, sugar, chilli and salt. Simmer 5-7 minutes to a pourable sauce; keep all pulp. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Cook noodles in 750 g boiling process water according to their packet, drain, and toss with lime, thin cucumber and carrot, and coriander. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Thread chicken onto metal skewers and grill under a hot grill, turning, for 8-12 minutes until safely cooked. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Bubble all remaining marinade in the peanut sauce until the poultry safety endpoint is met.",
+      "Serve all the skewers, noodles and peanut-tamarind sauce as one serving."
+    ],
     "nutrition": {
       "calories": "809 kcal",
       "protein": "50.3 g",
@@ -4489,7 +4472,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "45 mins",
     "calories": "851 kcal",
     "protein": "55.3 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Griddle pan, Grater, Food thermometer",
     "ingredients": [
       {
         "item": "Skinless boneless chicken breast",
@@ -4553,13 +4536,11 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Cut chicken into 1 cm pieces, slice pepper and onion and grate the cheese. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Heat 12.5 g oil in a broad pan and soften pepper and onion for 7 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Add chicken, cumin, paprika and salt. Cook 8-10 minutes, stirring, until chicken is safely cooked and the filling is fairly dry. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Fold in lime and coriander.",
-  "Divide filling and cheese between two tortillas, using half of each tortilla as the base, then fold closed. Use all 5 g griddle oil across the two folded tortillas.",
-  "Cook in batches over medium-low heat 2-3 minutes each side, pressing gently, until crisp and cheese melts. Serve both folded quesadillas as one serving with all filling and pan juices.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Do not wash raw poultry, and use clean utensils for the cooked food. Cut chicken into 1 cm pieces, slice pepper and onion and grate the cheese. Heat 12.5 g oil in a broad pan and soften pepper and onion for 7 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Add chicken, cumin, paprika and salt. Cook 8-10 minutes, stirring, until chicken is safely cooked and the filling is fairly dry. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Fold in lime and coriander.",
+      "Divide filling and cheese between two tortillas, using half of each tortilla as the base, then fold closed. Use all 5 g griddle oil across the two folded tortillas.",
+      "Cook in batches over medium-low heat 2-3 minutes each side, pressing gently, until crisp and cheese melts. Serve both folded quesadillas as one serving with all filling and pan juices."
+    ],
     "nutrition": {
       "calories": "851 kcal",
       "protein": "55.3 g",
@@ -4599,7 +4580,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "40 mins",
     "calories": "588 kcal",
     "protein": "39.2 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Frying pan",
     "ingredients": [
       {
         "item": "Cod fillet, flesh only",
@@ -4678,13 +4659,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Shred cabbage and onion finely and toss with yoghurt, slaw lime, coriander and chilli. Do not drain or discard the yoghurt dressing. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Cut cod into large strips and coat with fish oil, cumin, paprika, crushed garlic, salt and fish lime. Heat a non-stick frying pan over medium-high heat. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Sear fish 3-4 minutes on each broad side until cooked through, handling gently. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent. Add any remaining coating to the pan and heat fully; serve all cooked juices.",
-  "Brush tortillas with the measured 4 g finish oil, then warm briefly on both sides in a dry second pan. Divide fish and complete slaw between the tortillas and serve all as one serving. The tortilla gram allocation is authoritative; piece counts depend on the selected product.",
-  "Check that the fish is steaming hot and cooked throughout, with opaque flesh that flakes easily."
-],
+      "Shred cabbage and onion finely and toss with yoghurt, slaw lime, coriander and chilli. Do not drain or discard the yoghurt dressing. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation.",
+      "Cut cod into large strips and coat with fish oil, cumin, paprika, crushed garlic, salt and fish lime. Heat a non-stick frying pan over medium-high heat.",
+      "Sear fish 3-4 minutes on each broad side until cooked through, handling gently. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent. Add any remaining coating to the pan and heat fully; serve all cooked juices.",
+      "Brush tortillas with the measured 4 g finish oil, then warm briefly on both sides in a dry second pan. Divide fish and complete slaw between the tortillas and serve all as one serving.",
+      "Check that the fish is steaming hot and cooked throughout, with opaque flesh that flakes easily."
+    ],
     "nutrition": {
       "calories": "588 kcal",
       "protein": "39.2 g",
@@ -4724,7 +4704,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "100 mins",
     "calories": "731 kcal",
     "protein": "42.7 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Oven, Rolling pin, Blender or food processor, Food thermometer, Lid or bowl cover, Ovenproof dish",
     "ingredients": [
       {
         "item": "Skinless boneless chicken thigh",
@@ -4823,13 +4803,11 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Use 3 g Scotch bonnet flesh for the chilli specification, remove stem before weighing and handle with care. Blend all jerk seasonings, oil and salt with spring onion, ginger and garlic. Coat chicken and refrigerate 60 minutes. Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
-  "Mix the flatbread flour, water, oil and salt; knead 5 minutes and cover for 20 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Roll into one flatbread on reusable baking paper without extra flour, and cook in a hot dry heavy pan for 2-3 minutes per side until cooked through. Keep the complete flatbread for this serving. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Roast chicken with all marinade in a rimmed dish at 220 C conventional or 200 C fan for 25-30 minutes, turning once and checking the poultry endpoint. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Finish briefly under a hot grill for browned edges without burning the spices.",
-  "Shred cabbage, slice cucumber and dress with the 7.5 g side lime. Slice the chicken and serve it with every cooked jerk juice on the flatbread, with all the fresh side as one serving.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Do not wash raw poultry, and use clean utensils for the cooked food. Use 3 g Scotch bonnet flesh for the chilli specification, remove stem before weighing and handle with care. Blend all jerk seasonings, oil and salt with spring onion, ginger and garlic. Coat chicken and refrigerate 60 minutes. Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
+      "Mix the flatbread flour, water, oil and salt; knead 5 minutes and cover for 20 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Roll into one flatbread on reusable baking paper without extra flour, and cook in a hot dry heavy pan for 2-3 minutes per side until cooked through.",
+      "Roast chicken with all marinade in a rimmed dish at 220 C conventional or 200 C fan for 25-30 minutes, turning once and checking the poultry endpoint. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Finish briefly under a hot grill for browned edges without burning the spices.",
+      "Shred cabbage, slice cucumber and dress with the 7.5 g side lime. Slice the chicken and serve it with every cooked jerk juice on the flatbread, with all the fresh side as one serving."
+    ],
     "nutrition": {
       "calories": "731 kcal",
       "protein": "42.7 g",
@@ -4869,7 +4847,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "65 mins",
     "calories": "810 kcal",
     "protein": "53.3 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Metal skewers, Rolling pin, Blender or food processor, Food thermometer, Lid or bowl cover",
     "ingredients": [
       {
         "item": "Skinless boneless chicken breast",
@@ -4948,14 +4926,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Grind unsalted dry-roasted peanuts into a coarse powder before adding the ginger powder, paprika, cayenne and salt. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste. This uses full-fat ground peanuts, not defatted kuli-kuli; its fat remains counted.",
-  "Slice chicken across the grain into 1 cm strips. Rub with garlic, oil and the entire measured peanut spice blend. Thread onto metal skewers and refrigerate 20 minutes.",
-  "Mix the flatbread flour, water, oil and salt; knead 5 minutes and cover for 20 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Roll into one flatbread on reusable baking paper without extra flour, and cook in a hot dry heavy pan for 2-3 minutes per side until cooked through. Keep the complete flatbread for this serving. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Grill skewers over medium-high heat for 10-14 minutes, turning frequently, until chicken is safely cooked and peanut coating is toasted rather than scorched. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Safely cook and serve any raw-contact coating left in the bowl.",
-  "Slice tomato and onion, dress with lime and serve all the skewers, complete coating, flatbread and salad as one serving. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Do not wash raw poultry, and use clean utensils for the cooked food. Grind unsalted dry-roasted peanuts into a coarse powder before adding the ginger powder, paprika, cayenne and salt. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste. This uses full-fat ground peanuts, not defatted kuli-kuli; its fat remains counted.",
+      "Slice chicken across the grain into 1 cm strips. Rub with garlic, oil and the entire measured peanut spice blend. Thread onto metal skewers and refrigerate 20 minutes.",
+      "Mix the flatbread flour, water, oil and salt; knead 5 minutes and cover for 20 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Roll into one flatbread on reusable baking paper without extra flour, and cook in a hot dry heavy pan for 2-3 minutes per side until cooked through.",
+      "Grill skewers over medium-high heat for 10-14 minutes, turning frequently, until chicken is safely cooked and peanut coating is toasted rather than scorched. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Safely cook and serve any raw-contact coating left in the bowl.",
+      "Slice tomato and onion, dress with lime and serve all the skewers, complete coating, flatbread and salad as one serving. Use a sharp knife and steady the tomato on a board; make even slices so they warm through at the same rate."
+    ],
     "nutrition": {
       "calories": "810 kcal",
       "protein": "53.3 g",
@@ -4995,7 +4971,7 @@ export const lunches: Recipe[] = [
     "cookingTime": "55 mins",
     "calories": "731 kcal",
     "protein": "35.9 g",
-    "equipment": "0.1 g kitchen scales; knife and board; mixing bowls; pans or trays specified in method; clean food probe; metal skewers or steamer where specified",
+    "equipment": "Kitchen scales, Knife and chopping board, Griddle pan, Oven, Grater, Food thermometer, Baking tray",
     "ingredients": [
       {
         "item": "Ripe plantain flesh",
@@ -5074,13 +5050,12 @@ export const lunches: Recipe[] = [
       }
     ],
     "method": [
-  "Weigh the ingredients for one serving before starting. Keep any amounts for the dough, filling and sauce separate so that each goes into the correct part of the recipe.",
-  "Choose ripe yellow plantain with black speckles. Peel before weighing 230 g flesh and cut into 2 cm cubes. Toss with grated ginger, cayenne, cloves, 20 g oil and plantain salt.",
-  "Roast plantain in a single layer at 220 C conventional or 200 C fan for 25-35 minutes, turning twice, until golden outside and soft inside. Roast with the measured oil rather than deep-frying.",
-  "Flatten thigh meat, coat with chicken garlic, ginger, oil and salt, and griddle with onion wedges for 15-20 minutes until the poultry endpoint is met. Bubble all collected chicken juices safely.",
-  "Chop tomato and coriander with lime. Serve all roasted plantain, chicken, onion, juices and fresh finish in one bowl. Do not replace plantain with banana or assume the green-plantain CoFID entry measures the ripe ingredient.",
-  "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds. Do not wash raw poultry, and use clean utensils for the cooked food."
-],
+      "Do not wash raw poultry, and use clean utensils for the cooked food. Choose ripe yellow plantain with black speckles. Peel before weighing 230 g flesh and cut into 2 cm cubes. Toss with grated ginger, cayenne, cloves, 20 g oil and plantain salt.",
+      "Roast plantain in a single layer at 220 C conventional or 200 C fan for 25-35 minutes, turning twice, until golden outside and soft inside. Roast with the measured oil rather than deep-frying.",
+      "Flatten thigh meat, coat with chicken garlic, ginger, oil and salt, and griddle with onion wedges for 15-20 minutes until the poultry endpoint is met. Bubble all collected chicken juices safely.",
+      "Check the centre of the meat with a clean food thermometer: it should reach 75°C for at least 30 seconds.",
+      "Chop tomato and coriander with lime. Serve all roasted plantain, chicken, onion, juices and fresh finish in one bowl. Do not replace plantain with banana or assume the green-plantain CoFID entry measures the ripe ingredient."
+    ],
     "nutrition": {
       "calories": "731 kcal",
       "protein": "35.9 g",
@@ -5120,7 +5095,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "554 kcal",
   "protein": "15.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Toaster",
   "ingredients": [
     {
       "item": "Navy beans, boiled without salt and drained",
@@ -5169,10 +5144,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Grill the deseeded pepper for 10–12 minutes until tender. Chop it, retaining its juices. Use navy beans previously boiled without salt and drained; weigh the cooked beans. Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion.",
-  "Mash half the beans with half the oil, the crushed garlic and half the lemon juice. Stir in the remaining beans and roasted pepper. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Toast the bread. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre. Spoon over the beans. Chop the walnuts and parsley, mix with the remaining oil and lemon juice and black pepper, and spoon over the toast. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Serve the entire portion."
-],
+      "Grill the deseeded pepper for 10–12 minutes until tender. Chop it, retaining its juices. Use navy beans previously boiled without salt and drained; weigh the cooked beans. Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion.",
+      "Mash half the beans with half the oil, the crushed garlic and half the lemon juice. Stir in the remaining beans and roasted pepper.",
+      "Toast the bread. Spoon over the beans. Chop the walnuts and parsley, mix with the remaining oil and lemon juice and black pepper, and spoon over the toast. Serve the entire portion."
+    ],
   "nutrition": {
     "calories": "554 kcal",
     "protein": "15.5 g",
@@ -5211,7 +5186,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "532 kcal",
   "protein": "22.2 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Mixing bowl, Oven, Grater, Ovenproof dish",
   "ingredients": [
     {
       "item": "Courgette",
@@ -5265,11 +5240,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Heat the oven to 200°C, or 180°C fan. Finely grate the courgette, retaining its juice. Mix with the ricotta, egg white, torn basil, black pepper and one third of the oil. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Spoon into a small baking dish and scatter over the chopped walnuts. Bake for 18–22 minutes until completely set and steaming hot in the centre. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
-  "Brush the bread with another third of the oil and rub with the garlic. Toast under the grill for 2–3 minutes. Mix any remaining garlic with the lemon juice and remaining oil and spoon over the bake. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Serve the whole bake and toast.",
-  "Use vegetarian-rennet cheese for the vegetarian version specified here."
-],
+      "Heat the oven to 200°C, or 180°C fan. Finely grate the courgette, retaining its juice. Mix with the ricotta, egg white, torn basil, black pepper and one third of the oil.",
+      "Spoon into a small baking dish and scatter over the chopped walnuts. Bake for 18–22 minutes until completely set and steaming hot in the centre. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+      "Brush the bread with another third of the oil and rub with the garlic. Toast under the grill for 2–3 minutes. Mix any remaining garlic with the lemon juice and remaining oil and spoon over the bake. Serve the whole bake and toast.",
+      "Use vegetarian-rennet cheese for the vegetarian version specified here."
+    ],
   "nutrition": {
     "calories": "532 kcal",
     "protein": "22.2 g",
@@ -5307,7 +5282,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "526 kcal",
   "protein": "14.3 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Colander or sieve",
   "ingredients": [
     {
       "item": "Egg-free plain dried white wheat pasta",
@@ -5361,11 +5336,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the dry pasta shapes in a separate pan of unsalted water according to the packet until tender. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre. Drain. No nutrient reduction from draining has been assumed.",
-  "Finely chop the walnuts, basil and garlic. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste. Mix with the oil, lemon juice and pepper. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Dice the cucumber and pepper. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Toss all the pasta and vegetables with the dressing. Fold in the ricotta and serve the whole bowl.",
-  "Use vegetarian-rennet cheese for the vegetarian version specified here."
-],
+      "Cook the dry pasta shapes in a separate pan of unsalted water according to the packet until tender. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre. Drain. No nutrient reduction from draining has been assumed.",
+      "Finely chop the walnuts, basil and garlic. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste. Mix with the oil, lemon juice and pepper. Dice the cucumber and pepper.",
+      "Toss all the pasta and vegetables with the dressing. Fold in the ricotta and serve the whole bowl.",
+      "Use vegetarian-rennet cheese for the vegetarian version specified here."
+    ],
   "nutrition": {
     "calories": "526 kcal",
     "protein": "14.3 g",
@@ -5403,7 +5378,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "545 kcal",
   "protein": "12.4 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan",
   "ingredients": [
     {
       "item": "Navy beans, boiled without salt and drained",
@@ -5462,10 +5437,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Use navy beans previously boiled without salt and drained. Mash them, then mix with the flour, very finely chopped onion, cumin, chopped coriander and pepper. Form three thin patties. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Heat the oil in a non-stick pan. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Cook the patties over medium heat for 4–5 minutes per side until firm and steaming hot throughout, using all the oil across the batches. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
-  "Shred the cabbage and carrot. Mix the mayonnaise and lemon juice, toss with the vegetables and serve the whole slaw with all three patties. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving."
-],
+      "Use navy beans previously boiled without salt and drained. Mash them, then mix with the flour, very finely chopped onion, cumin, chopped coriander and pepper. Form three thin patties.",
+      "Heat the oil in a non-stick pan. Cook the patties over medium heat for 4–5 minutes per side until firm and steaming hot throughout, using all the oil across the batches. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+      "Shred the cabbage and carrot. Mix the mayonnaise and lemon juice, toss with the vegetables and serve the whole slaw with all three patties."
+    ],
   "nutrition": {
     "calories": "545 kcal",
     "protein": "12.4 g",
@@ -5504,7 +5479,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "537 kcal",
   "protein": "14.0 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Chickpeas, boiled without salt and drained",
@@ -5563,11 +5538,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Mix the flour with the measured water to make a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Knead briefly, cover and rest for 10 minutes. Roll between non-stick sheets without extra flour. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Finely dice the carrot. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cook it in one third of the oil in a covered non-stick pan for 8–10 minutes over low heat. Stir in the cumin and cooked, drained chickpeas, cover and heat through.",
-  "Dry-cook the flatbread in a separate hot pan for 2–3 minutes per side until cooked throughout. Finely shred the cabbage and chop the walnuts and parsley. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
-  "Mix the remaining oil and lemon juice with the walnuts, parsley and pepper. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Serve all the chickpeas, carrot and cabbage on the whole flatbread with all the dressing."
-],
+      "Mix the flour with the measured water to make a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Knead briefly, cover and rest for 10 minutes. Roll between non-stick sheets without extra flour.",
+      "Finely dice the carrot. Cook it in one third of the oil in a covered non-stick pan for 8–10 minutes over low heat. Stir in the cumin and cooked, drained chickpeas, cover and heat through.",
+      "Dry-cook the flatbread in a separate hot pan for 2–3 minutes per side until cooked throughout. Finely shred the cabbage and chop the walnuts and parsley. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
+      "Mix the remaining oil and lemon juice with the walnuts, parsley and pepper. Serve all the chickpeas, carrot and cabbage on the whole flatbread with all the dressing."
+    ],
   "nutrition": {
     "calories": "537 kcal",
     "protein": "14.0 g",
@@ -5607,7 +5582,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "483 kcal",
   "protein": "19.6 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Saucepan, Colander or sieve",
   "ingredients": [
     {
       "item": "Egg-free plain dried white wheat pasta",
@@ -5666,10 +5641,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Boil the whole egg for 10 minutes, cool, peel and chop. The listed egg weight excludes the shell. Cook the pasta in a separate pan of unsalted water according to the packet and drain. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Brush a small non-stick pan with half the oil. Pour in the weighed egg white and cook as a thin pancake for 2–3 minutes per side until fully set. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together. Slice into ribbons.",
-  "Crush or grind the mustard seeds. Mix with the mayonnaise, lemon juice, remaining oil, chives and pepper. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Toss with all the pasta, egg, egg-white ribbons, diced cucumber and pepper. Serve the entire salad. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning."
-],
+      "Boil the whole egg for 10 minutes, cool, peel and chop. The listed egg weight excludes the shell. Cook the pasta in a separate pan of unsalted water according to the packet and drain. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Brush a small non-stick pan with half the oil. Pour in the weighed egg white and cook as a thin pancake for 2–3 minutes per side until fully set. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together. Slice into ribbons.",
+      "Crush or grind the mustard seeds. Mix with the mayonnaise, lemon juice, remaining oil, chives and pepper. Toss with all the pasta, egg, egg-white ribbons, diced cucumber and pepper. Serve the entire salad."
+    ],
   "nutrition": {
     "calories": "483 kcal",
     "protein": "19.6 g",
@@ -5708,7 +5683,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "488 kcal",
   "protein": "29.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan, Oven, Baking tray",
   "ingredients": [
     {
       "item": "Whole egg, shell removed",
@@ -5757,11 +5732,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Heat the oven to 200°C, or 180°C fan. Finely chop the onion and pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cook in two thirds of the oil in a small ovenproof frying pan for 6–8 minutes.",
-  "Beat the whole egg and weighed egg white with the torn basil and black pepper. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Pour over the vegetables and scatter over all the diced mozzarella.",
-  "Bake for 12–15 minutes until the centre is completely set. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Brush the bread with the remaining oil, toast and serve with the whole frittata. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre.",
-  "Use vegetarian-rennet cheese for the vegetarian version specified here."
-],
+      "Heat the oven to 200°C, or 180°C fan. Finely chop the onion and pepper. Cook in two thirds of the oil in a small ovenproof frying pan for 6–8 minutes.",
+      "Beat the whole egg and weighed egg white with the torn basil and black pepper. Pour over the vegetables and scatter over all the diced mozzarella.",
+      "Bake for 12–15 minutes until the centre is completely set. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Brush the bread with the remaining oil, toast and serve with the whole frittata.",
+      "Use vegetarian-rennet cheese for the vegetarian version specified here."
+    ],
   "nutrition": {
     "calories": "488 kcal",
     "protein": "29.5 g",
@@ -5799,7 +5774,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "502 kcal",
   "protein": "12.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan",
   "ingredients": [
     {
       "item": "Black beans, boiled without salt and drained",
@@ -5858,10 +5833,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Use black beans previously boiled without salt and drained. Mash them and mix with the masa harina, sweetcorn, finely chopped onion, cumin and 20 g of the measured water. Form three thin cakes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Heat three quarters of the oil in a non-stick pan. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Cook the cakes over medium-low heat for 5–6 minutes per side until firm, fully cooked and steaming hot. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
-  "Shred the cabbage and dice the tomato. Mix the lime juice, remaining oil, remaining 15 g water and chopped coriander into a dressing. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Serve all the cakes with all the slaw and dressing."
-],
+      "Use black beans previously boiled without salt and drained. Mash them and mix with the masa harina, sweetcorn, finely chopped onion, cumin and 20 g of the measured water. Form three thin cakes.",
+      "Heat three quarters of the oil in a non-stick pan. Cook the cakes over medium-low heat for 5–6 minutes per side until firm, fully cooked and steaming hot. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+      "Shred the cabbage and dice the tomato. Mix the lime juice, remaining oil, remaining 15 g water and chopped coriander into a dressing. Serve all the cakes with all the slaw and dressing."
+    ],
   "nutrition": {
     "calories": "502 kcal",
     "protein": "12.5 g",
@@ -5901,7 +5876,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "575 kcal",
   "protein": "19.6 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan",
   "ingredients": [
     {
       "item": "Whole-groat buckwheat flour",
@@ -5965,12 +5940,12 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Whisk both flours with the egg white and measured water. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Rest for 10 minutes. Slice the leek and mushrooms. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Cook the vegetables in two thirds of the oil with the thyme and pepper for 8–10 minutes, retaining their juices. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Stir in the ricotta and lemon juice off the heat. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Brush a 24 cm non-stick pan with the remaining oil. Pour in the batter, swirl thinly and cook for 3–4 minutes, then turn and cook for another 2 minutes until fully set.",
-  "Spoon over all the filling and chopped walnuts, fold in the sides and warm for 1–2 minutes. Serve the whole galette.",
-  "Use vegetarian-rennet cheese for the vegetarian version specified here."
-],
+      "Whisk both flours with the egg white and measured water. Rest for 10 minutes. Slice the leek and mushrooms.",
+      "Cook the vegetables in two thirds of the oil with the thyme and pepper for 8–10 minutes, retaining their juices. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Stir in the ricotta and lemon juice off the heat.",
+      "Brush a 24 cm non-stick pan with the remaining oil. Pour in the batter, swirl thinly and cook for 3–4 minutes, then turn and cook for another 2 minutes until fully set.",
+      "Spoon over all the filling and chopped walnuts, fold in the sides and warm for 1–2 minutes. Serve the whole galette.",
+      "Use vegetarian-rennet cheese for the vegetarian version specified here."
+    ],
   "nutrition": {
     "calories": "575 kcal",
     "protein": "19.6 g",
@@ -6008,7 +5983,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "468 kcal",
   "protein": "24.6 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Saucepan",
   "ingredients": [
     {
       "item": "Chickpeas, boiled without salt and drained",
@@ -6057,10 +6032,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Boil the whole egg for 10 minutes, cool and peel. Use chickpeas previously boiled without salt and drained. Dice the cucumber and chop the parsley.",
-  "Cut the bread into cubes and toast in one third of the oil in a non-stick pan until crisp. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre. Set aside. Cook the weighed egg white in the same pan with another third of the oil as a thin pancake until fully set, then chop. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
-  "Mix the remaining oil with the lemon juice and pepper. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Toss with all the chickpeas, cucumber, parsley and chopped eggs. Scatter over all the croutons and serve. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute."
-],
+      "Boil the whole egg for 10 minutes, cool and peel. Use chickpeas previously boiled without salt and drained. Dice the cucumber and chop the parsley.",
+      "Cut the bread into cubes and toast in one third of the oil in a non-stick pan until crisp. Set aside. Cook the weighed egg white in the same pan with another third of the oil as a thin pancake until fully set, then chop. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+      "Mix the remaining oil with the lemon juice and pepper. Toss with all the chickpeas, cucumber, parsley and chopped eggs. Scatter over all the croutons and serve."
+    ],
   "nutrition": {
     "calories": "468 kcal",
     "protein": "24.6 g",
@@ -6098,7 +6073,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "553 kcal",
   "protein": "11.0 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Mixing bowl, Frying pan",
   "ingredients": [
     {
       "item": "Peeled potato, boiled in unsalted water and drained",
@@ -6152,10 +6127,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Use peeled potato already boiled in unsalted water and drained; weigh 75 g after cooking. Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion. Mash and cool, then mix with the rice flour, egg white, finely sliced leek, half the chives and pepper. Rest for 5 minutes. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Form three thin cakes. Heat the oil in a non-stick pan and cook over medium-low heat for 5–6 minutes per side until the leeks are tender and the centres are cooked through. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Use all the oil across the batches.",
-  "Mix the mayonnaise, lemon juice and remaining chives. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Serve all the cakes with sliced cucumber and all the mayonnaise."
-],
+      "Use peeled potato already boiled in unsalted water and drained; weigh 75 g after cooking. Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion. Mash and cool, then mix with the rice flour, egg white, finely sliced leek, half the chives and pepper. Rest for 5 minutes.",
+      "Form three thin cakes. Heat the oil in a non-stick pan and cook over medium-low heat for 5–6 minutes per side until the leeks are tender and the centres are cooked through. Use all the oil across the batches.",
+      "Mix the mayonnaise, lemon juice and remaining chives. Serve all the cakes with sliced cucumber and all the mayonnaise."
+    ],
   "nutrition": {
     "calories": "553 kcal",
     "protein": "11.0 g",
@@ -6194,7 +6169,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "60 mins",
   "calories": "569 kcal",
   "protein": "14.6 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Rolling pin, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Plain white flour",
@@ -6248,13 +6223,13 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Mix 50 g of the flour with 30 g of the water and one third of the oil. Knead for 5 minutes, cover and rest for 15 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Finely chop the cabbage, mushrooms and onion. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cook in the remaining oil and remaining 15 g water for 10–12 minutes until tender. Mash in the cooked, drained navy beans and ricotta. Mix the remaining 5 g flour with the filling and cook for 2 minutes to thicken; season with pepper and cool.",
-  "Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
-  "Roll the dough between non-stick sheets without extra flour. Cut six circles. Divide all the filling among them, fold and pinch the edges firmly. Keep the filling away from the joining edge and press the dough surfaces directly together. Check for open gaps before cooking so that the filling stays inside.",
-  "Poach in a separate pan of unsalted water for 3–4 minutes after the dumplings float, checking the dough is fully cooked. Lift out, turn in the melted butter and serve all six with any loose filling.",
-  "Use vegetarian-rennet cheese for the vegetarian version specified here."
-],
+      "Mix 50 g of the flour with 30 g of the water and one third of the oil. Knead for 5 minutes, cover and rest for 15 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands.",
+      "Finely chop the cabbage, mushrooms and onion. Cook in the remaining oil and remaining 15 g water for 10–12 minutes until tender. Mash in the cooked, drained navy beans and ricotta. Mix the remaining 5 g flour with the filling and cook for 2 minutes to thicken; season with pepper and cool.",
+      "Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+      "Roll the dough between non-stick sheets without extra flour. Cut six circles. Divide all the filling among them, fold and pinch the edges firmly. Keep the filling away from the joining edge and press the dough surfaces directly together. Check for open gaps before cooking so that the filling stays inside.",
+      "Poach in a separate pan of unsalted water for 3–4 minutes after the dumplings float, checking the dough is fully cooked. Lift out, turn in the melted butter and serve all six with any loose filling.",
+      "Use vegetarian-rennet cheese for the vegetarian version specified here."
+    ],
   "nutrition": {
     "calories": "569 kcal",
     "protein": "14.6 g",
@@ -6292,7 +6267,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "509 kcal",
   "protein": "10.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "equipment": "Kitchen scales, Knife and chopping board, Toaster, Saucepan, Blender or food processor, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Carrot",
@@ -6346,10 +6321,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Finely slice the onion and carrot. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Soften the onion in the oil in a small covered pan for 4 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Stir in the cumin, carrot, desiccated coconut and measured water. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Cover and simmer for 18–20 minutes until the carrot is tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Add the coriander and blend the entire contents until smooth.",
-  "Stir in the Greek-style yoghurt and pepper off the heat. Toast the bread and serve it with all the soup. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre. Measure the finished soup volume if tracking a fluid allowance."
-],
+      "Finely slice the onion and carrot. Soften the onion in the oil in a small covered pan for 4 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Stir in the cumin, carrot, desiccated coconut and measured water.",
+      "Cover and simmer for 18–20 minutes until the carrot is tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Add the coriander and blend the entire contents until smooth.",
+      "Stir in the Greek-style yoghurt and pepper off the heat. Toast the bread and serve it with all the soup. Measure the finished soup volume if tracking a fluid allowance."
+    ],
   "nutrition": {
     "calories": "509 kcal",
     "protein": "10.7 g",
@@ -6387,7 +6362,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "531 kcal",
   "protein": "11.9 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Saucepan, Colander or sieve",
   "ingredients": [
     {
       "item": "Egg-free plain dried white wheat pasta",
@@ -6446,10 +6421,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the dry white spaghetti in a separate pan of unsalted water according to the packet and drain. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Finely slice the onion, mushrooms and pepper. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cook in the oil for 7–8 minutes. Add the measured water and simmer for 2 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Take off the heat. Stir in the Greek-style yoghurt, lemon juice, parsley, walnuts and pepper. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Toss through all the pasta and warm gently without boiling. Serve the whole portion."
-],
+      "Cook the dry white spaghetti in a separate pan of unsalted water according to the packet and drain. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Finely slice the onion, mushrooms and pepper. Cook in the oil for 7–8 minutes. Add the measured water and simmer for 2 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Take off the heat. Stir in the Greek-style yoghurt, lemon juice, parsley, walnuts and pepper. Toss through all the pasta and warm gently without boiling. Serve the whole portion."
+    ],
   "nutrition": {
     "calories": "531 kcal",
     "protein": "11.9 g",
@@ -6487,7 +6462,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "519 kcal",
   "protein": "12.2 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan, Blender or food processor",
   "ingredients": [
     {
       "item": "White rice flour",
@@ -6546,11 +6521,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Whisk the rice flour with 90 g of the water and one third of the oil. Rest for 10 minutes. Finely chop the cabbage, onion and ginger. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Cook the vegetables in another third of the oil with 17.5 g of the water for 7–8 minutes. Stir in the cumin and cooked, drained chickpeas and heat through. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Brush a non-stick pan with the remaining oil. Use all the batter to make three thin pancakes, cooking each for 2–3 minutes per side until the rice flour is fully cooked.",
-  "Blend the peanuts, lime juice and remaining 17.5 g water. Fill all the pancakes with all the chickpeas and vegetables, scatter with coriander and serve with all the dressing."
-],
+      "Whisk the rice flour with 90 g of the water and one third of the oil. Rest for 10 minutes. Finely chop the cabbage, onion and ginger.",
+      "Cook the vegetables in another third of the oil with 17.5 g of the water for 7–8 minutes. Stir in the cumin and cooked, drained chickpeas and heat through.",
+      "Brush a non-stick pan with the remaining oil. Use all the batter to make three thin pancakes, cooking each for 2–3 minutes per side until the rice flour is fully cooked.",
+      "Blend the peanuts, lime juice and remaining 17.5 g water. Fill all the pancakes with all the chickpeas and vegetables, scatter with coriander and serve with all the dressing."
+    ],
   "nutrition": {
     "calories": "519 kcal",
     "protein": "12.2 g",
@@ -6590,7 +6565,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "486 kcal",
   "protein": "15.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Toaster",
   "ingredients": [
     {
       "item": "Chickpeas, boiled without salt and drained",
@@ -6649,10 +6624,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Use chickpeas and peeled potato previously boiled separately without salt and drained. Weigh each in its cooked state and cool. Dice the potato and cucumber and finely chop the onion and herbs. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Whisk the Greek-style yoghurt, oil, lemon juice and cumin. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Toss with all the chickpeas, potato, cucumber, onion, mint and coriander. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Toast the bread and serve with the entire salad and dressing. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre."
-],
+      "Use chickpeas and peeled potato previously boiled separately without salt and drained. Weigh each in its cooked state and cool. Dice the potato and cucumber and finely chop the onion and herbs.",
+      "Whisk the Greek-style yoghurt, oil, lemon juice and cumin. Toss with all the chickpeas, potato, cucumber, onion, mint and coriander.",
+      "Toast the bread and serve with the entire salad and dressing."
+    ],
   "nutrition": {
     "calories": "486 kcal",
     "protein": "15.7 g",
@@ -6690,7 +6665,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "493 kcal",
   "protein": "6.9 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Mixing bowl, Frying pan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Plain white flour",
@@ -6744,10 +6719,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Mix the flour, desiccated coconut and 35 g of the water into a soft dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Knead briefly, cover and rest for 10 minutes. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Heat the oil in a covered pan, add the mustard seeds and cover until they begin to pop. Add finely shredded cabbage, onion and carrot, the turmeric and remaining 5 g water. Cover and cook over low heat for 8–10 minutes until tender. Stir in the lime juice. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving.",
-  "Divide the dough into two. Flatten between non-stick sheets and dry-cook in a hot non-stick pan for 3–4 minutes per side until cooked throughout. Serve both roti with all the vegetables and their juices."
-],
+      "Mix the flour, desiccated coconut and 35 g of the water into a soft dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Knead briefly, cover and rest for 10 minutes.",
+      "Heat the oil in a covered pan, add the mustard seeds and cover until they begin to pop. Add finely shredded cabbage, onion and carrot, the turmeric and remaining 5 g water. Cover and cook over low heat for 8–10 minutes until tender. Stir in the lime juice.",
+      "Divide the dough into two. Flatten between non-stick sheets and dry-cook in a hot non-stick pan for 3–4 minutes per side until cooked throughout. Serve both roti with all the vegetables and their juices."
+    ],
   "nutrition": {
     "calories": "493 kcal",
     "protein": "6.9 g",
@@ -6786,7 +6761,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "482 kcal",
   "protein": "11.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "White basmati rice",
@@ -6845,10 +6820,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Rinse the dry rice and lentils. Finely chop the onion and ginger and cut the carrot and cauliflower into small pieces. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Soften the onion in the oil for 4–5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the ginger, cumin and turmeric and stir for 30 seconds. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Add the rice, lentils, vegetables, desiccated coconut and all the measured water. Cover and simmer gently for 20–25 minutes until the rice and lentils are tender. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Stir occasionally, then rest covered for 5 minutes and serve the entire portion."
-],
+      "Rinse the dry rice and lentils. Finely chop the onion and ginger and cut the carrot and cauliflower into small pieces.",
+      "Soften the onion in the oil for 4–5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the ginger, cumin and turmeric and stir for 30 seconds.",
+      "Add the rice, lentils, vegetables, desiccated coconut and all the measured water. Cover and simmer gently for 20–25 minutes until the rice and lentils are tender. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Stir occasionally, then rest covered for 5 minutes and serve the entire portion."
+    ],
   "nutrition": {
     "calories": "482 kcal",
     "protein": "11.5 g",
@@ -6887,7 +6862,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "596 kcal",
   "protein": "22.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Mixing bowl, Oven, Lid or bowl cover, Baking tray",
   "ingredients": [
     {
       "item": "White short-grain rice",
@@ -6941,10 +6916,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest covered for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Brush the salmon with half the oil and bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Retain the edible baking juices.",
-  "Mix the mayonnaise, remaining oil, vinegar, lemon juice and sesame seeds. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Toss with the warm rice, flaked salmon, sliced cucumber and spring onion and serve the entire bowl freshly prepared. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning."
-],
+      "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest covered for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Brush the salmon with half the oil and bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Retain the edible baking juices.",
+      "Mix the mayonnaise, remaining oil, vinegar, lemon juice and sesame seeds. Toss with the warm rice, flaked salmon, sliced cucumber and spring onion and serve the entire bowl freshly prepared. Use a fork or broad spoon and a light lifting motion so the grains stay separate."
+    ],
   "nutrition": {
     "calories": "596 kcal",
     "protein": "22.5 g",
@@ -6982,7 +6957,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "507 kcal",
   "protein": "16.4 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Mixing bowl, Frying pan, Grater",
   "ingredients": [
     {
       "item": "Regular tofu, made with calcium sulphate, gently drained",
@@ -7041,10 +7016,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Use regular calcium-sulphate tofu, gently drained without pressing. Mash the weighed tofu and mix with the rice flour, finely shredded cabbage and carrot, crushed garlic, grated ginger and 20 g of the water. Rest for 5 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Heat the rapeseed oil in a non-stick pan. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Cook four small, thin pancakes over medium-low heat for 4–5 minutes per side until firm and fully cooked, using all the oil across the batches.",
-  "Mix the sesame oil, soy sauce, lime juice and remaining 20 g water. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Serve all four pancakes with all the dip."
-],
+      "Use regular calcium-sulphate tofu, gently drained without pressing. Mash the weighed tofu and mix with the rice flour, finely shredded cabbage and carrot, crushed garlic, grated ginger and 20 g of the water. Rest for 5 minutes.",
+      "Heat the rapeseed oil in a non-stick pan. Cook four small, thin pancakes over medium-low heat for 4–5 minutes per side until firm and fully cooked, using all the oil across the batches.",
+      "Mix the sesame oil, soy sauce, lime juice and remaining 20 g water. Serve all four pancakes with all the dip."
+    ],
   "nutrition": {
     "calories": "507 kcal",
     "protein": "16.4 g",
@@ -7084,7 +7059,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "100 mins",
   "calories": "533 kcal",
   "protein": "12.2 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Steamer and saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Plain white flour",
@@ -7148,11 +7123,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Mix the flour, yeast, sugar and 40 g lukewarm water into a soft dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Knead for 6–8 minutes, cover and leave in a warm place for about 45 minutes until puffy. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Finely chop the cabbage, mushroom, onion and ginger. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cook in two thirds of the olive oil with the remaining 5 g water for 8–10 minutes until tender and no loose liquid remains. Mash in the cooked, drained navy beans, soy sauce and sesame oil. Cool.",
-  "Divide the dough into three. Flatten between non-stick sheets without extra flour. Fill with all the bean mixture and pinch closed. Brush the bases with the remaining olive oil and set on parchment squares. Rest for 10 minutes.",
-  "Steam over a separate pan of boiling water for 15 minutes, keeping the buns clear of the water. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Turn off the heat, leave covered for 3 minutes and serve all three buns."
-],
+      "Mix the flour, yeast, sugar and 40 g lukewarm water into a soft dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Knead for 6–8 minutes, cover and leave in a warm place for about 45 minutes until puffy.",
+      "Finely chop the cabbage, mushroom, onion and ginger. Cook in two thirds of the olive oil with the remaining 5 g water for 8–10 minutes until tender and no loose liquid remains. Mash in the cooked, drained navy beans, soy sauce and sesame oil. Cool.",
+      "Divide the dough into three. Flatten between non-stick sheets without extra flour. Fill with all the bean mixture and pinch closed. Brush the bases with the remaining olive oil and set on parchment squares. Rest for 10 minutes.",
+      "Steam over a separate pan of boiling water for 15 minutes, keeping the buns clear of the water. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Turn off the heat, leave covered for 3 minutes and serve all three buns."
+    ],
   "nutrition": {
     "calories": "533 kcal",
     "protein": "12.2 g",
@@ -7192,7 +7167,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "515 kcal",
   "protein": "27.9 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer, blender, food thermometer",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan, Saucepan, Steamer and saucepan, Blender or food processor, Food thermometer, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Skinless boneless chicken breast",
@@ -7256,11 +7231,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Whisk the rice flour with 75 g of the water and half the rapeseed oil. Rest for 10 minutes. Steam the chicken until its centre reaches 75°C for 30 seconds, then shred it, retaining the edible juices. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
-  "Brush a non-stick pan with the remaining rapeseed oil. Use all the batter to make two very thin rice pancakes, cooking for 2–3 minutes per side until fully cooked and crisp at the edges. Cut into wedges.",
-  "Blend the peanuts, sesame oil, lime juice, soy sauce, ginger and remaining 25 g water into a dressing. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Divide all the chicken, finely sliced cucumber and carrot between the lettuce leaves. Spoon over all the dressing and serve with all the pancake wedges."
-],
+      "Whisk the rice flour with 75 g of the water and half the rapeseed oil. Rest for 10 minutes. Steam the chicken until its centre reaches 75°C for 30 seconds, then shred it, retaining the edible juices. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+      "Brush a non-stick pan with the remaining rapeseed oil. Use all the batter to make two very thin rice pancakes, cooking for 2–3 minutes per side until fully cooked and crisp at the edges. Cut into wedges.",
+      "Blend the peanuts, sesame oil, lime juice, soy sauce, ginger and remaining 25 g water into a dressing.",
+      "Divide all the chicken, finely sliced cucumber and carrot between the lettuce leaves. Spoon over all the dressing and serve with all the pancake wedges."
+    ],
   "nutrition": {
     "calories": "515 kcal",
     "protein": "27.9 g",
@@ -7298,7 +7273,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "565 kcal",
   "protein": "27.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Colander or sieve",
   "ingredients": [
     {
       "item": "Cod fillet, flesh only",
@@ -7367,12 +7342,12 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Finely chop or pulse the cod. Mix with the egg white, rice flour, finely sliced green beans, ginger and coriander. Form four thin fish cakes. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Heat the oil in a non-stick pan. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Cook the cakes over medium heat for 4–5 minutes per side until the fish is opaque and the centres are steaming hot and fully set. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
-  "Cook the dry rice noodles in a separate pan of unsalted water according to the packet and drain. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Separate the pasta or noodles as they soften so they do not stick together.",
-  "Check the texture towards the end of the cooking time; it should be tender with no chalky centre. Mix half the lime juice with the measured water and toss through the noodles and sliced cucumber and carrot.",
-  "Mix the mayonnaise with the remaining lime juice. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Serve all the cakes, noodles, salad and mayonnaise."
-],
+      "Finely chop or pulse the cod. Mix with the egg white, rice flour, finely sliced green beans, ginger and coriander. Form four thin fish cakes.",
+      "Heat the oil in a non-stick pan. Cook the cakes over medium heat for 4–5 minutes per side until the fish is opaque and the centres are steaming hot and fully set. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+      "Cook the dry rice noodles in a separate pan of unsalted water according to the packet and drain. Separate the pasta or noodles as they soften so they do not stick together.",
+      "Check the texture towards the end of the cooking time; it should be tender with no chalky centre. Mix half the lime juice with the measured water and toss through the noodles and sliced cucumber and carrot.",
+      "Mix the mayonnaise with the remaining lime juice. Serve all the cakes, noodles, salad and mayonnaise."
+    ],
   "nutrition": {
     "calories": "565 kcal",
     "protein": "27.7 g",
@@ -7410,7 +7385,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "525 kcal",
   "protein": "20.2 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan",
   "ingredients": [
     {
       "item": "Regular tofu, made with calcium sulphate, gently drained",
@@ -7479,11 +7454,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Whisk the flour, egg white and 65 g of the water into a thin batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes. Brush a non-stick pan with one third of the oil and use all the batter to make three pancakes, cooking both sides until fully set. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Use regular calcium-sulphate tofu, gently drained without pressing, and crumble it. Finely shred the cabbage and carrot and chop the garlic.",
-  "Cook the tofu, vegetables, garlic and beansprouts in the remaining oil and remaining 25 g water for 6–8 minutes until the beansprouts are steaming hot. Stir in the soy sauce, vinegar and sugar and cook until there is no loose liquid.",
-  "Divide all the filling between the pancakes, add all the chopped peanuts, fold in the sides and roll. Serve all three."
-],
+      "Whisk the flour, egg white and 65 g of the water into a thin batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes. Brush a non-stick pan with one third of the oil and use all the batter to make three pancakes, cooking both sides until fully set.",
+      "Use regular calcium-sulphate tofu, gently drained without pressing, and crumble it. Finely shred the cabbage and carrot and chop the garlic.",
+      "Cook the tofu, vegetables, garlic and beansprouts in the remaining oil and remaining 25 g water for 6–8 minutes until the beansprouts are steaming hot. Stir in the soy sauce, vinegar and sugar and cook until there is no loose liquid.",
+      "Divide all the filling between the pancakes, add all the chopped peanuts, fold in the sides and roll. Serve all three."
+    ],
   "nutrition": {
     "calories": "525 kcal",
     "protein": "20.2 g",
@@ -7522,7 +7497,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "509 kcal",
   "protein": "18.1 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer, blender",
+  "equipment": "Kitchen scales, Saucepan, Steamer and saucepan, Blender or food processor, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Peeled potato, boiled in unsalted water and drained",
@@ -7591,10 +7566,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Use peeled potato previously boiled in unsalted water and drained; weigh 100 g cooked potato. Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion. Boil the egg for 10 minutes, cool and peel. Steam the sliced cabbage, beans and carrot for 6–8 minutes until tender. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
-  "Blend the peanuts, desiccated coconut, measured water, soy sauce, sugar, garlic and lime juice until smooth.",
-  "Warm the oil in a small pan, add the dressing and simmer gently for 2–3 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Arrange all the vegetables and quartered egg in a bowl and spoon over all the dressing. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute."
-],
+      "Use peeled potato previously boiled in unsalted water and drained; weigh 100 g cooked potato. Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion. Boil the egg for 10 minutes, cool and peel. Steam the sliced cabbage, beans and carrot for 6–8 minutes until tender. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+      "Blend the peanuts, desiccated coconut, measured water, soy sauce, sugar, garlic and lime juice until smooth.",
+      "Warm the oil in a small pan, add the dressing and simmer gently for 2–3 minutes. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Arrange all the vegetables and quartered egg in a bowl and spoon over all the dressing."
+    ],
   "nutrition": {
     "calories": "509 kcal",
     "protein": "18.1 g",
@@ -7632,7 +7607,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "493 kcal",
   "protein": "13.0 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Mixing bowl, Oven, Baking tray",
   "ingredients": [
     {
       "item": "White masa harina, unenriched",
@@ -7696,10 +7671,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Mix the masa harina and measured water into a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Divide into two, press between non-stick sheets and dry-cook in a hot pan for 1–2 minutes per side. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Brush with one third of the oil and bake at 200°C, or 180°C fan, for 8–10 minutes until crisp. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Heat the cooked, drained black beans and sweetcorn in another third of the oil with the cumin until steaming hot.",
-  "Mix the diced tomato, onion, weighed avocado flesh, coriander, lime juice and remaining oil. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Top both tostadas with all the beans, corn, lettuce and salsa and serve."
-],
+      "Mix the masa harina and measured water into a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Divide into two, press between non-stick sheets and dry-cook in a hot pan for 1–2 minutes per side.",
+      "Brush with one third of the oil and bake at 200°C, or 180°C fan, for 8–10 minutes until crisp. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Heat the cooked, drained black beans and sweetcorn in another third of the oil with the cumin until steaming hot.",
+      "Mix the diced tomato, onion, weighed avocado flesh, coriander, lime juice and remaining oil. Top both tostadas with all the beans, corn, lettuce and salsa and serve."
+    ],
   "nutrition": {
     "calories": "493 kcal",
     "protein": "13.0 g",
@@ -7739,7 +7714,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "472 kcal",
   "protein": "22.3 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl",
   "ingredients": [
     {
       "item": "Peeled potato, boiled in unsalted water and drained",
@@ -7788,10 +7763,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Use peeled potato previously boiled in unsalted water and drained. Weigh 115 g while warm and mash with the oil, lime juice, chilli and pepper. Cool.",
-  "Drain brine-canned tuna and weigh the drained fish. Mix with the mayonnaise. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Finely dice the cucumber. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
-  "Layer half the potato, all the tuna and cucumber, then the remaining potato in a small bowl or ring mould. Serve with all the lettuce. Refrigerate promptly if not serving immediately."
-],
+      "Use peeled potato previously boiled in unsalted water and drained. Weigh 115 g while warm and mash with the oil, lime juice, chilli and pepper. Cool.",
+      "Drain brine-canned tuna and weigh the drained fish. Mix with the mayonnaise. Finely dice the cucumber. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
+      "Layer half the potato, all the tuna and cucumber, then the remaining potato in a small bowl or ring mould. Serve with all the lettuce. Refrigerate promptly if not serving immediately."
+    ],
   "nutrition": {
     "calories": "472 kcal",
     "protein": "22.3 g",
@@ -7829,7 +7804,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "517 kcal",
   "protein": "14.0 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Black beans, boiled without salt and drained",
@@ -7883,10 +7858,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the rice with 65 g of the measured water, covered, for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Soften the chopped onion and garlic in two thirds of the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the cooked, drained black beans, remaining 15 g water and pepper. Simmer for 5–7 minutes, mashing a spoonful of beans to thicken. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Toss the shredded cabbage and chopped parsley with the remaining oil and lime juice. Serve all the beans, rice and salad."
-],
+      "Cook the rice with 65 g of the measured water, covered, for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Soften the chopped onion and garlic in two thirds of the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the cooked, drained black beans, remaining 15 g water and pepper. Simmer for 5–7 minutes, mashing a spoonful of beans to thicken. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Toss the shredded cabbage and chopped parsley with the remaining oil and lime juice. Serve all the beans, rice and salad."
+    ],
   "nutrition": {
     "calories": "517 kcal",
     "protein": "14.0 g",
@@ -7926,7 +7901,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "525 kcal",
   "protein": "14.4 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Frying pan",
   "ingredients": [
     {
       "item": "Black-eyed peas, boiled without salt and drained",
@@ -7985,10 +7960,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Use black-eyed peas previously boiled without salt and drained. Mash with the weighed peeled ripe plantain, rice flour, finely chopped onion, ginger, cumin and all the measured water.",
-  "Form four thin patties. Heat the oil in a non-stick pan and cook over medium-low heat for 5–6 minutes per side until the plantain and flour are fully cooked and the centres are steaming hot. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing.",
-  "Toss the shredded cabbage with the lime juice and chopped peanuts. Serve all four fritters with all the cabbage."
-],
+      "Use black-eyed peas previously boiled without salt and drained. Mash with the weighed peeled ripe plantain, rice flour, finely chopped onion, ginger, cumin and all the measured water.",
+      "Form four thin patties. Heat the oil in a non-stick pan and cook over medium-low heat for 5–6 minutes per side until the plantain and flour are fully cooked and the centres are steaming hot.",
+      "Toss the shredded cabbage with the lime juice and chopped peanuts. Serve all four fritters with all the cabbage."
+    ],
   "nutrition": {
     "calories": "525 kcal",
     "protein": "14.4 g",
@@ -8028,7 +8003,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "511 kcal",
   "protein": "14.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Mixing bowl, Fork or whisk, Saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Black-eyed peas, boiled without salt and drained",
@@ -8082,10 +8057,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Bring 130 g of the water to a gentle simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Whisk in the cornmeal and cook over low heat for 20–25 minutes, stirring often, until fully tender. Cover off the heat if ready early. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Meanwhile soften the chopped onion, ginger and garlic in the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add chopped tomato, paprika, chilli and remaining 50 g water and simmer for 8 minutes.",
-  "Add the cooked, drained black-eyed peas and simmer for 5–7 minutes until hot and thickened. Serve all the stew over all the polenta."
-],
+      "Bring 130 g of the water to a gentle simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Whisk in the cornmeal and cook over low heat for 20–25 minutes, stirring often, until fully tender. Cover off the heat if ready early.",
+      "Meanwhile soften the chopped onion, ginger and garlic in the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add chopped tomato, paprika, chilli and remaining 50 g water and simmer for 8 minutes.",
+      "Add the cooked, drained black-eyed peas and simmer for 5–7 minutes until hot and thickened. Serve all the stew over all the polenta."
+    ],
   "nutrition": {
     "calories": "511 kcal",
     "protein": "14.5 g",
@@ -8124,7 +8099,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "40 mins",
   "calories": "542 kcal",
   "protein": "16.9 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Rolling pin, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Dried split red lentils",
@@ -8193,11 +8168,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Mix the flour with 25 g of the water to make a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Keep to the measured dry ingredients and liquid; unmeasured additions change the portion and can make the dough tough. Knead briefly, cover and rest for 10 minutes. Finely chop the vegetables, garlic and ginger and grind the peanuts. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Soften the onion in the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add garlic, ginger, cumin, paprika and tomato puree and cook for 30 seconds.",
-  "Add the rinsed red lentils, carrot, cabbage, ground peanuts and remaining 200 g water. Cover and simmer for 20–25 minutes until the lentils are soft, stirring regularly. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-  "Roll the dough between non-stick sheets without extra flour. Dry-cook in a hot pan for 2–3 minutes per side until cooked throughout. Serve all the stew with the whole flatbread."
-],
+      "Mix the flour with 25 g of the water to make a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Knead briefly, cover and rest for 10 minutes. Finely chop the vegetables, garlic and ginger and grind the peanuts.",
+      "Soften the onion in the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add garlic, ginger, cumin, paprika and tomato puree and cook for 30 seconds.",
+      "Add the rinsed red lentils, carrot, cabbage, ground peanuts and remaining 200 g water. Cover and simmer for 20–25 minutes until the lentils are soft, stirring regularly. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Roll the dough between non-stick sheets without extra flour. Dry-cook in a hot pan for 2–3 minutes per side until cooked throughout. Serve all the stew with the whole flatbread."
+    ],
   "nutrition": {
     "calories": "542 kcal",
     "protein": "16.9 g",
@@ -8237,7 +8212,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "517 kcal",
   "protein": "15.2 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Toaster, Saucepan, Blender or food processor, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Frozen peas",
@@ -8296,10 +8271,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Slice the onion and leek and soften in the oil in a covered pan for 5 minutes. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Mix the rice flour with 40 g of the measured water to make a smooth slurry. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Add the frozen peas and remaining 210 g water to the pan. Bring to a simmer, stir in the slurry and cook for 8–10 minutes until the peas and rice flour are fully cooked.",
-  "Add the mint, lemon juice and pepper, then blend until smooth. Stir in the Greek-style yoghurt off the heat. Toast the bread and serve with all the soup; measure the finished soup volume if tracking a fluid allowance. Aim for a lightly golden surface with a little crispness at the edges, rather than a hard or heavily browned centre."
-],
+      "Slice the onion and leek and soften in the oil in a covered pan for 5 minutes. Mix the rice flour with 40 g of the measured water to make a smooth slurry.",
+      "Add the frozen peas and remaining 210 g water to the pan. Bring to a simmer, stir in the slurry and cook for 8–10 minutes until the peas and rice flour are fully cooked.",
+      "Add the mint, lemon juice and pepper, then blend until smooth. Stir in the Greek-style yoghurt off the heat. Toast the bread and serve with all the soup; measure the finished soup volume if tracking a fluid allowance."
+    ],
   "nutrition": {
     "calories": "517 kcal",
     "protein": "15.2 g",
@@ -8337,7 +8312,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "433 kcal",
   "protein": "22.1 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Oven, Baking tray",
   "ingredients": [
     {
       "item": "Farmed salmon fillet, flesh only",
@@ -8381,10 +8356,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Brush the salmon with one third of the oil. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Retain edible baking juices.",
-  "Weigh the avocado flesh after removing its skin and stone. Dice with the cucumber and shred the lettuce.",
-  "Mix the remaining oil, lemon juice, chopped chives and pepper. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Serve all the salad with all the salmon, edible juices and dressing. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning."
-],
+      "Brush the salmon with one third of the oil. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Retain edible baking juices.",
+      "Weigh the avocado flesh after removing its skin and stone. Dice with the cucumber and shred the lettuce.",
+      "Mix the remaining oil, lemon juice, chopped chives and pepper. Serve all the salad with all the salmon, edible juices and dressing."
+    ],
   "nutrition": {
     "calories": "433 kcal",
     "protein": "22.1 g",
@@ -8423,7 +8398,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "393 kcal",
   "protein": "24.0 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Food thermometer",
   "ingredients": [
     {
       "item": "Skinless boneless chicken breast",
@@ -8472,10 +8447,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Slice the chicken thinly. Cook in half the oil with crushed garlic and pepper for 8–10 minutes until its centre reaches 75°C for 30 seconds.",
-  "Dice the weighed avocado flesh and cucumber. Mix with the lime juice, chopped coriander and remaining oil. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Divide all the chicken and edible pan juices among the lettuce leaves. Add all the avocado mixture and serve the whole portion."
-],
+      "Slice the chicken thinly. Cook in half the oil with crushed garlic and pepper for 8–10 minutes until its centre reaches 75°C for 30 seconds.",
+      "Dice the weighed avocado flesh and cucumber. Mix with the lime juice, chopped coriander and remaining oil.",
+      "Divide all the chicken and edible pan juices among the lettuce leaves. Add all the avocado mixture and serve the whole portion."
+    ],
   "nutrition": {
     "calories": "393 kcal",
     "protein": "24.0 g",
@@ -8514,7 +8489,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "435 kcal",
   "protein": "25.8 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Mixing bowl, Fork or whisk, Oven, Baking tray",
   "ingredients": [
     {
       "item": "Whole egg, shell removed",
@@ -8558,11 +8533,11 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Heat the oven to 200°C, or 180°C fan. Warm half the oil in a small ovenproof pan. Add chopped tomato and spinach and cook for 3 minutes. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Beat the weighed whole egg and egg white with the basil and pepper. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Pour into the pan and scatter over all the diced mozzarella. Drizzle with the remaining oil.",
-  "Bake for 12–15 minutes until the centre is completely set and steaming hot. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the whole skillet.",
-  "Use vegetarian-rennet cheese for the vegetarian version specified here."
-],
+      "Heat the oven to 200°C, or 180°C fan. Warm half the oil in a small ovenproof pan. Add chopped tomato and spinach and cook for 3 minutes.",
+      "Beat the weighed whole egg and egg white with the basil and pepper. Pour into the pan and scatter over all the diced mozzarella. Drizzle with the remaining oil.",
+      "Bake for 12–15 minutes until the centre is completely set and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the whole skillet.",
+      "Use vegetarian-rennet cheese for the vegetarian version specified here."
+    ],
   "nutrition": {
     "calories": "435 kcal",
     "protein": "25.8 g",
@@ -8602,7 +8577,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "420 kcal",
   "protein": "32.8 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, steamer",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Steamer and saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Tuna canned in brine, drained",
@@ -8646,10 +8621,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Brush a small ramekin with 5 g of the oil. Add the weighed raw egg and steam over a separate pan of water for 8–10 minutes until fully set. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Cool and chop, retaining the oil. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Drain brine-canned tuna and weigh 100 g. Mix with the egg, remaining 20 g oil, lemon juice, chives and pepper. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving.",
-  "Halve the cucumber lengthways and scoop out its centre, keeping all the edible flesh. Chop that flesh into the tuna mixture, fill both cucumber halves and serve on all the lettuce. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling."
-],
+      "Brush a small ramekin with 5 g of the oil. Add the weighed raw egg and steam over a separate pan of water for 8–10 minutes until fully set. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Cool and chop, retaining the oil.",
+      "Drain brine-canned tuna and weigh 100 g. Mix with the egg, remaining 20 g oil, lemon juice, chives and pepper.",
+      "Halve the cucumber lengthways and scoop out its centre, keeping all the edible flesh. Chop that flesh into the tuna mixture, fill both cucumber halves and serve on all the lettuce. Make sure washed salad leaves are dry before assembling, so they do not make the bread or filling soggy. Spread the filling evenly across the portion and serve soon after assembling."
+    ],
   "nutrition": {
     "calories": "420 kcal",
     "protein": "32.8 g",
@@ -8688,7 +8663,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "457 kcal",
   "protein": "29.3 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Grater",
   "ingredients": [
     {
       "item": "Beef sirloin, lean and edible fat",
@@ -8732,10 +8707,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Slice the beef across the grain. Cook in two thirds of the oil in a hot non-stick pan for 3–4 minutes until the surfaces are thoroughly seared. Season with pepper. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Grind the mustard seeds and mix with the vinegar and remaining oil. Dice the cucumber and grate the Cheddar.",
-  "Divide all the beef, edible pan juices, cheese and cucumber between the lettuce leaves. Spoon over all the dressing and serve."
-],
+      "Slice the beef across the grain. Cook in two thirds of the oil in a hot non-stick pan for 3–4 minutes until the surfaces are thoroughly seared. Season with pepper.",
+      "Grind the mustard seeds and mix with the vinegar and remaining oil. Dice the cucumber and grate the Cheddar.",
+      "Divide all the beef, edible pan juices, cheese and cucumber between the lettuce leaves. Spoon over all the dressing and serve."
+    ],
   "nutrition": {
     "calories": "457 kcal",
     "protein": "29.3 g",
@@ -8774,7 +8749,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "394 kcal",
   "protein": "26.8 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Mixing bowl, Fork or whisk, Frying pan, Oven, Ovenproof dish",
   "ingredients": [
     {
       "item": "Farmed salmon fillet, flesh only",
@@ -8798,10 +8773,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Heat the oven to 190°C, or 170°C fan. Put the salmon in a small dish with 5 g of the butter and bake for 12–15 minutes until opaque and steaming hot. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
-  "Beat the weighed egg with the measured water. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Melt the remaining 10 g butter in a non-stick pan and cook the egg gently, stirring, until fully set. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Serve all the salmon, edible baking juices, egg and butter together."
-],
+      "Heat the oven to 190°C, or 170°C fan. Put the salmon in a small dish with 5 g of the butter and bake for 12–15 minutes until opaque and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+      "Beat the weighed egg with the measured water. Melt the remaining 10 g butter in a non-stick pan and cook the egg gently, stirring, until fully set. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Serve all the salmon, edible baking juices, egg and butter together."
+    ],
   "nutrition": {
     "calories": "394 kcal",
     "protein": "26.8 g",
@@ -8840,7 +8815,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "418 kcal",
   "protein": "32.3 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Frying pan, Oven, Ramekin",
   "ingredients": [
     {
       "item": "Beef sirloin, lean and edible fat",
@@ -8864,10 +8839,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Heat the oven to 190°C, or 170°C fan. Brush a small ramekin with 5 g of the butter, add the weighed egg and water and bake for 10–12 minutes until fully set. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
-  "Heat the remaining 10 g butter in a non-stick pan. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Sear the steak on every surface and cook to preference. Rest for 3 minutes, retaining the edible juices.",
-  "Serve the entire steak, baked egg and all edible pan juices."
-],
+      "Heat the oven to 190°C, or 170°C fan. Brush a small ramekin with 5 g of the butter, add the weighed egg and water and bake for 10–12 minutes until fully set. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+      "Heat the remaining 10 g butter in a non-stick pan. Sear the steak on every surface and cook to preference. Rest for 3 minutes, retaining the edible juices.",
+      "Serve the entire steak, baked egg and all edible pan juices."
+    ],
   "nutrition": {
     "calories": "418 kcal",
     "protein": "32.3 g",
@@ -8906,7 +8881,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "444 kcal",
   "protein": "39.9 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan, Food thermometer",
   "ingredients": [
     {
       "item": "Pork fillet, lean and visible edible fat",
@@ -8930,10 +8905,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Slice the pork into medallions. Cook in 10 g of the butter over medium heat, turning, until the centres reach 75°C for 30 seconds. Keep warm with all edible pan juices.",
-  "Beat the weighed egg and water. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Melt the remaining 15 g butter in a clean non-stick pan and cook the eggs gently until fully set. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
-  "Serve all the pork, eggs, butter and edible juices."
-],
+      "Slice the pork into medallions. Cook in 10 g of the butter over medium heat, turning, until the centres reach 75°C for 30 seconds. Keep warm with all edible pan juices.",
+      "Beat the weighed egg and water. Melt the remaining 15 g butter in a clean non-stick pan and cook the eggs gently until fully set. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added.",
+      "Serve all the pork, eggs, butter and edible juices."
+    ],
   "nutrition": {
     "calories": "444 kcal",
     "protein": "39.9 g",
@@ -8972,7 +8947,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "367 kcal",
   "protein": "35.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Food thermometer",
   "ingredients": [
     {
       "item": "Skinless boneless chicken thigh",
@@ -8996,10 +8971,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Mince the plain skinless boneless chicken thigh at home. Mix with the weighed egg and form four small, thin patties.",
-  "Melt all the butter in a non-stick pan. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added. Cook the patties over medium-low heat for 5–6 minutes per side until the centres reach 75°C for 30 seconds. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
-  "Transfer the patties to a plate. Add the measured water to the pan, heat briefly and spoon all the edible butter and juices over all four patties."
-],
+      "Mince the plain skinless boneless chicken thigh at home. Mix with the weighed egg and form four small, thin patties.",
+      "Melt all the butter in a non-stick pan. Swirl the pan as the butter melts to coat its base. Keep it from browning or smoking before the next ingredient is added. Cook the patties over medium-low heat for 5–6 minutes per side until the centres reach 75°C for 30 seconds. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+      "Transfer the patties to a plate. Add the measured water to the pan, heat briefly and spoon all the edible butter and juices over all four patties."
+    ],
   "nutrition": {
     "calories": "367 kcal",
     "protein": "35.7 g",
@@ -9038,7 +9013,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "484 kcal",
   "protein": "28.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "equipment": "Kitchen scales, Knife and chopping board, Grater, Food thermometer, Lid or bowl cover",
   "ingredients": [
     {
       "item": "White basmati rice",
@@ -9082,10 +9057,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Keep the entire cooked rice portion.",
-  "Finely slice the chicken and carrot. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cook in the oil with grated ginger for 8–10 minutes, covering briefly if needed, until the carrot is tender and chicken reaches 75°C for 30 seconds.",
-  "Add the salt and chopped chives and serve all the chicken, carrot and edible pan juices with all the rice. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute."
-],
+      "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Keep the entire cooked rice portion.",
+      "Finely slice the chicken and carrot. Cook in the oil with grated ginger for 8–10 minutes, covering briefly if needed, until the carrot is tender and chicken reaches 75°C for 30 seconds.",
+      "Add the salt and chopped chives and serve all the chicken, carrot and edible pan juices with all the rice."
+    ],
   "nutrition": {
     "calories": "484 kcal",
     "protein": "28.5 g",
@@ -9123,7 +9098,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "25 mins",
   "calories": "460 kcal",
   "protein": "24.6 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Grater, Lid or bowl cover",
   "ingredients": [
     {
       "item": "White basmati rice",
@@ -9167,10 +9142,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Drain plain brine-canned tuna and weigh the drained fish. Check the packet contains no onion, garlic, flavouring or added sauce. Dice the cucumber and grate the carrot. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first.",
-  "Mix the oil, lemon juice and parsley. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Toss with all the rice, tuna and vegetables and serve the entire salad freshly prepared. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute."
-],
+      "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Drain plain brine-canned tuna and weigh the drained fish. Check the packet contains no onion, garlic, flavouring or added sauce. Dice the cucumber and grate the carrot.",
+      "Mix the oil, lemon juice and parsley. Toss with all the rice, tuna and vegetables and serve the entire salad freshly prepared. Use a fork or broad spoon and a light lifting motion so the grains stay separate."
+    ],
   "nutrition": {
     "calories": "460 kcal",
     "protein": "24.6 g",
@@ -9208,7 +9183,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "450 kcal",
   "protein": "18.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan",
   "ingredients": [
     {
       "item": "White rice flour",
@@ -9252,10 +9227,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Whisk the rice flour, weighed whole egg, egg white, measured water and salt into a smooth batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Finely chop the spinach and chives and stir into the batter.",
-  "Divide all the oil between three batches in a non-stick pan. Cook three medium pancakes for 3–4 minutes per side until the egg and rice flour are fully cooked. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Serve all three."
-],
+      "Whisk the rice flour, weighed whole egg, egg white, measured water and salt into a smooth batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes.",
+      "Finely chop the spinach and chives and stir into the batter.",
+      "Divide all the oil between three batches in a non-stick pan. Cook three medium pancakes for 3–4 minutes per side until the egg and rice flour are fully cooked. Serve all three."
+    ],
   "nutrition": {
     "calories": "450 kcal",
     "protein": "18.7 g",
@@ -9294,7 +9269,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "450 kcal",
   "protein": "22.2 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Mixing bowl, Oven, Grater, Lid or bowl cover, Baking tray",
   "ingredients": [
     {
       "item": "Cod fillet, flesh only",
@@ -9343,10 +9318,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Brush the cod with half the oil and season with the salt. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Mix the remaining oil, lemon juice and chopped basil with the rice, grated carrot and diced cucumber. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Serve all the salad with all the fish and edible juices."
-],
+      "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Brush the cod with half the oil and season with the salt. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+      "Mix the remaining oil, lemon juice and chopped basil with the rice, grated carrot and diced cucumber. Serve all the salad with all the fish and edible juices."
+    ],
   "nutrition": {
     "calories": "450 kcal",
     "protein": "22.2 g",
@@ -9384,7 +9359,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "579 kcal",
   "protein": "26.1 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl",
+  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, Frying pan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Beef sirloin, lean and edible fat",
@@ -9428,10 +9403,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the rice in all the measured water, covered, for 12–15 minutes and rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Slice the beef and carrot thinly. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Heat the oil and sear the beef surfaces. Add the carrot and ginger, cover and cook over medium-low heat for 5–7 minutes until the carrot is tender and the beef is cooked to preference. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Stir in the salt and chives. Serve all the beef, carrot and edible juices with all the rice."
-],
+      "Cook the rice in all the measured water, covered, for 12–15 minutes and rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Slice the beef and carrot thinly. Heat the oil and sear the beef surfaces. Add the carrot and ginger, cover and cook over medium-low heat for 5–7 minutes until the carrot is tender and the beef is cooked to preference.",
+      "Stir in the salt and chives. Serve all the beef, carrot and edible juices with all the rice."
+    ],
   "nutrition": {
     "calories": "579 kcal",
     "protein": "26.1 g",
@@ -9469,7 +9444,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "446 kcal",
   "protein": "23.8 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan, Saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Whole egg, shell removed",
@@ -9513,10 +9488,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Bring all the measured water to a simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Whisk in the cornmeal and half the salt and cook gently for 20–25 minutes, stirring often, until fully tender. Retain the whole portion. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Finely slice the carrot. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cook in 5 g of the oil in a covered non-stick pan over low heat for 8–10 minutes until tender; set aside with any edible juices.",
-  "Beat the weighed egg and egg white with the chives and remaining salt. Beat until the mixture has an even colour and consistency, with no long strands of unmixed egg white. Heat the remaining 10 g oil and cook the egg as an omelette until fully set. Serve the whole omelette, all the polenta and carrots."
-],
+      "Bring all the measured water to a simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Whisk in the cornmeal and half the salt and cook gently for 20–25 minutes, stirring often, until fully tender. Retain the whole portion.",
+      "Finely slice the carrot. Cook in 5 g of the oil in a covered non-stick pan over low heat for 8–10 minutes until tender; set aside with any edible juices.",
+      "Beat the weighed egg and egg white with the chives and remaining salt. Heat the remaining 10 g oil and cook the egg as an omelette until fully set. Serve the whole omelette, all the polenta and carrots."
+    ],
   "nutrition": {
     "calories": "446 kcal",
     "protein": "23.8 g",
@@ -9555,7 +9530,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "438 kcal",
   "protein": "11.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Navy beans, boiled without salt and drained",
@@ -9609,10 +9584,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Simmer the brown rice in 70 g of the water, covered, for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 40 g water and simmer for another 12–15 minutes until both are tender; retain any liquid. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Use navy beans previously boiled without salt and drained. Dice the cucumber and pepper and chop the parsley and walnuts. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
-  "Mix the oil and lemon juice and toss with all the rice, beans, vegetables, herbs and walnuts. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains. Serve the entire portion."
-],
+      "Simmer the brown rice in 70 g of the water, covered, for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 40 g water and simmer for another 12–15 minutes until both are tender; retain any liquid.",
+      "Use navy beans previously boiled without salt and drained. Dice the cucumber and pepper and chop the parsley and walnuts. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
+      "Mix the oil and lemon juice and toss with all the rice, beans, vegetables, herbs and walnuts. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Serve the entire portion."
+    ],
   "nutrition": {
     "calories": "438 kcal",
     "protein": "11.7 g",
@@ -9652,7 +9627,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "481 kcal",
   "protein": "17.6 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Quinoa",
@@ -9706,10 +9681,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Rinse the dry quinoa and cook in all the measured water, covered, for 15–18 minutes until tender and the water is absorbed. Rest for 5 minutes.",
-  "Finely slice the carrot and cabbage. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Cook in the oil with the cumin over low heat in a covered pan for 8–10 minutes. Add the cooked, drained chickpeas and heat through. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Fold in all the quinoa, lemon juice, parsley and chopped walnuts and serve the entire bowl. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains."
-],
+      "Rinse the dry quinoa and cook in all the measured water, covered, for 15–18 minutes until tender and the water is absorbed. Rest for 5 minutes.",
+      "Finely slice the carrot and cabbage. Cook in the oil with the cumin over low heat in a covered pan for 8–10 minutes. Add the cooked, drained chickpeas and heat through.",
+      "Fold in all the quinoa, lemon juice, parsley and chopped walnuts and serve the entire bowl."
+    ],
   "nutrition": {
     "calories": "481 kcal",
     "protein": "17.6 g",
@@ -9749,7 +9724,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "418 kcal",
   "protein": "20.9 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Mixing bowl, Frying pan, Grater",
   "ingredients": [
     {
       "item": "Unfortified porridge oats",
@@ -9803,10 +9778,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Grind the oats to a coarse flour. Mix with the egg white and measured water and rest for 10 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Mash the cooked, drained navy beans and stir into the batter with finely grated carrot, chives and pepper. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan.",
-  "Heat all the oil in a non-stick pan and cook three thin pancakes for 4–5 minutes per side until fully set and the carrots are tender. Let the pan warm before the food goes in. If the oil begins to smoke or the food catches immediately, lower the heat before continuing. Mix the yoghurt and lemon juice and serve with all three pancakes. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving."
-],
+      "Grind the oats to a coarse flour. Mix with the egg white and measured water and rest for 10 minutes.",
+      "Mash the cooked, drained navy beans and stir into the batter with finely grated carrot, chives and pepper. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan.",
+      "Heat all the oil in a non-stick pan and cook three thin pancakes for 4–5 minutes per side until fully set and the carrots are tender. Mix the yoghurt and lemon juice and serve with all three pancakes."
+    ],
   "nutrition": {
     "calories": "418 kcal",
     "protein": "20.9 g",
@@ -9845,7 +9820,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "45 mins",
   "calories": "436 kcal",
   "protein": "13.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Lid or bowl cover, Colander or sieve",
   "ingredients": [
     {
       "item": "Green or brown lentils, boiled without salt and drained",
@@ -9894,10 +9869,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Simmer the dry pearl barley with all the measured water, covered, for 30–35 minutes until tender. Retain any remaining liquid and cool until just warm.",
-  "Use green or brown lentils previously boiled without salt and drained. Dice the pepper and cucumber and chop the parsley and walnuts. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
-  "Mix the oil and lemon juice and toss with all the barley, lentils, vegetables, herbs and walnuts. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Work gently from the bottom of the bowl without pressing or mashing the grains. Serve the entire salad. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute."
-],
+      "Simmer the dry pearl barley with all the measured water, covered, for 30–35 minutes until tender. Retain any remaining liquid and cool until just warm.",
+      "Use green or brown lentils previously boiled without salt and drained. Dice the pepper and cucumber and chop the parsley and walnuts. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
+      "Mix the oil and lemon juice and toss with all the barley, lentils, vegetables, herbs and walnuts. Serve the entire salad."
+    ],
   "nutrition": {
     "calories": "436 kcal",
     "protein": "13.7 g",
@@ -9937,7 +9912,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "40 mins",
   "calories": "427 kcal",
   "protein": "14.3 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Saucepan, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Wholegrain brown basmati rice",
@@ -9996,10 +9971,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Simmer the brown rice in 80 g of the water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 40 g water and cook covered for another 12–15 minutes until tender, retaining any liquid. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Use regular calcium-sulphate tofu, gently drained without pressing. Cube it and cook in the oil for 5 minutes. Add finely shredded carrot, cabbage and ginger, cover and cook for 6–8 minutes until tender.",
-  "Add the soy sauce, coriander and sesame. Serve all the tofu, vegetables and edible juices with all the rice."
-],
+      "Simmer the brown rice in 80 g of the water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 40 g water and cook covered for another 12–15 minutes until tender, retaining any liquid.",
+      "Use regular calcium-sulphate tofu, gently drained without pressing. Cube it and cook in the oil for 5 minutes. Add finely shredded carrot, cabbage and ginger, cover and cook for 6–8 minutes until tender.",
+      "Add the soy sauce, coriander and sesame. Serve all the tofu, vegetables and edible juices with all the rice."
+    ],
   "nutrition": {
     "calories": "427 kcal",
     "protein": "14.3 g",
@@ -10039,7 +10014,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "723 kcal",
   "protein": "28.1 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Colander or sieve",
   "ingredients": [
     {
       "item": "Egg-free plain dried white wheat pasta",
@@ -10098,10 +10073,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the dry pasta in a separate pan of unsalted water according to the packet and drain. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre. Cook the weighed egg white in 5 g of the oil as a thin pancake until fully set; cut into ribbons. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
-  "Dice the courgette and pepper and cook in the remaining 15 g oil for 6–8 minutes. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Add the cooked, drained navy beans and all the measured water and heat through. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Toss in all the pasta, chopped walnuts, basil, lemon juice and pepper. Add all the frittata ribbons and serve the entire portion."
-],
+      "Cook the dry pasta in a separate pan of unsalted water according to the packet and drain. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre. Cook the weighed egg white in 5 g of the oil as a thin pancake until fully set; cut into ribbons. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+      "Dice the courgette and pepper and cook in the remaining 15 g oil for 6–8 minutes. Add the cooked, drained navy beans and all the measured water and heat through.",
+      "Toss in all the pasta, chopped walnuts, basil, lemon juice and pepper. Add all the frittata ribbons and serve the entire portion."
+    ],
   "nutrition": {
     "calories": "723 kcal",
     "protein": "28.1 g",
@@ -10142,7 +10117,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "40 mins",
   "calories": "738 kcal",
   "protein": "41.2 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, food thermometer",
+  "equipment": "Kitchen scales, Knife and chopping board, Saucepan, Food thermometer, Lid or bowl cover",
   "ingredients": [
     {
       "item": "Skinless boneless chicken breast",
@@ -10211,10 +10186,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the rice with 125 g of the water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Dice the chicken and vegetables and grind the peanuts. Keep the pieces a similar size so they cook evenly. Keep any ingredients that are added later separate from those that go into the pan first. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste. Soften onion, garlic and ginger in the oil for 4 minutes. Add chicken and paprika and cook for 4 minutes. Use the measured seasoning and sauces shown in the ingredients; do not add extra salt or a potassium-based salt substitute.",
-  "Add chopped tomato, pepper, cooked drained black-eyed peas, ground peanuts and remaining 5 g water. Cover and simmer gently for 12–15 minutes until chicken reaches 75°C for 30 seconds and vegetables are tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Stir in the coriander and serve all the stew with all the rice."
-],
+      "Cook the rice with 125 g of the water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Dice the chicken and vegetables and grind the peanuts. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste. Soften onion, garlic and ginger in the oil for 4 minutes. Add chicken and paprika and cook for 4 minutes.",
+      "Add chopped tomato, pepper, cooked drained black-eyed peas, ground peanuts and remaining 5 g water. Cover and simmer gently for 12–15 minutes until chicken reaches 75°C for 30 seconds and vegetables are tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Stir in the coriander and serve all the stew with all the rice."
+    ],
   "nutrition": {
     "calories": "738 kcal",
     "protein": "41.2 g",
@@ -10253,7 +10228,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "782 kcal",
   "protein": "28.6 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, oven, baking dish or tray",
+  "equipment": "Kitchen scales, Mixing bowl, Oven, Lid or bowl cover, Baking tray",
   "ingredients": [
     {
       "item": "Cod fillet, flesh only",
@@ -10312,10 +10287,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the rice with all the measured water, covered, for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
-  "Brush the cod with 10 g of the oil and half the lime juice. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque and steaming hot. Put the dish or tray on a stable oven shelf and begin checking towards the end of the stated time. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
-  "Mix mayonnaise, remaining 15 g oil, remaining lime juice, chopped coriander and pepper. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Toss with shredded cabbage and carrot. Serve all the fish and edible juices with all the rice, weighed avocado flesh and slaw. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning."
-],
+      "Cook the rice with all the measured water, covered, for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "Brush the cod with 10 g of the oil and half the lime juice. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+      "Mix mayonnaise, remaining 15 g oil, remaining lime juice, chopped coriander and pepper. Toss with shredded cabbage and carrot. Serve all the fish and edible juices with all the rice, weighed avocado flesh and slaw."
+    ],
   "nutrition": {
     "calories": "782 kcal",
     "protein": "28.6 g",
@@ -10354,7 +10329,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "40 mins",
   "calories": "710 kcal",
   "protein": "23.7 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl",
   "ingredients": [
     {
       "item": "Peeled potato, boiled in unsalted water and drained",
@@ -10413,10 +10388,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Use peeled potato previously boiled without salt and drained; weigh 140 g cooked. Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion. Mash, cool and mix with the rice flour, weighed egg white, half the chives and pepper. Form four thin cakes. Use the listed herbs, spices or citrus for flavour before considering any extra seasoning.",
-  "Cook the weighed whole egg in a small ramekin brushed with 5 g of the oil, steaming until fully set. Cool and chop. Cook all four potato cakes in the remaining 15 g oil over medium-low heat for 5–6 minutes per side until fully cooked. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
-  "Mix the mayonnaise, lemon juice and remaining chives. Mix until the added ingredients are evenly distributed. Scrape around the sides of the bowl or pan as appropriate, so the measured mixture is used throughout the serving. Toss with chopped egg, sliced cucumber and lettuce. Serve all the cakes and salad."
-],
+      "Use peeled potato previously boiled without salt and drained; weigh 140 g cooked. Weigh this ingredient after the cooking and draining described here; the same weight of the dry or raw ingredient would make a different portion. Mash, cool and mix with the rice flour, weighed egg white, half the chives and pepper. Form four thin cakes.",
+      "Cook the weighed whole egg in a small ramekin brushed with 5 g of the oil, steaming until fully set. Cool and chop. Cook all four potato cakes in the remaining 15 g oil over medium-low heat for 5–6 minutes per side until fully cooked. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+      "Mix the mayonnaise, lemon juice and remaining chives. Toss with chopped egg, sliced cucumber and lettuce. Serve all the cakes and salad."
+    ],
   "nutrition": {
     "calories": "710 kcal",
     "protein": "23.7 g",
@@ -10456,7 +10431,7 @@ export const lunches: Recipe[] = [
   "cookingTime": "30 mins",
   "calories": "738 kcal",
   "protein": "24.5 g",
-  "equipment": "Kitchen scales, knife, chopping board, mixing bowl, saucepan or frying pan, blender",
+  "equipment": "Kitchen scales, Knife and chopping board, Blender or food processor, Grater, Colander or sieve",
   "ingredients": [
     {
       "item": "Rice noodles",
@@ -10520,10 +10495,10 @@ export const lunches: Recipe[] = [
     }
   ],
   "method": [
-  "Cook the rice noodles in a separate pan of unsalted water according to the packet and drain. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
-  "Use regular calcium-sulphate tofu, gently drained without pressing. Cut into cubes and cook in all the rapeseed oil for 6–8 minutes until hot.",
-  "Blend the peanuts, sesame oil, soy sauce, lime juice, ginger and measured water. Toss with all the noodles, tofu and edible pan juices, sliced cucumber, grated carrot and coriander. Serve the entire bowl freshly prepared."
-],
+      "Cook the rice noodles in a separate pan of unsalted water according to the packet and drain. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+      "Use regular calcium-sulphate tofu, gently drained without pressing. Cut into cubes and cook in all the rapeseed oil for 6–8 minutes until hot.",
+      "Blend the peanuts, sesame oil, soy sauce, lime juice, ginger and measured water. Toss with all the noodles, tofu and edible pan juices, sliced cucumber, grated carrot and coriander. Serve the entire bowl freshly prepared."
+    ],
   "nutrition": {
     "calories": "738 kcal",
     "protein": "24.5 g",

@@ -714,10 +714,10 @@ export default function RecipeDetailPage() {
           <summary className={styles.guideSummary}><h2 id="recipe-guide"><RecipeIcon name="Potassium" />Dietary Guide</h2></summary>
           <div className={styles.guideSections}>
             {dietaryGuideSections.map((section) => (
-              <details className={styles.guideSection} key={section.title}>
-                <summary>{section.title}</summary>
-                <div className={styles.guideSectionContent}><div><p>{section.text}</p></div></div>
-              </details>
+              <div className={styles.guideSection} key={section.title}>
+                {dietaryGuideSections.length !== 1 || section.title !== "About this meal" ? <h3>{section.title}</h3> : null}
+                <p>{section.text}</p>
+              </div>
             ))}
           </div>
         </details> : null}

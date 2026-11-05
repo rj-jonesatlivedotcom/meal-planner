@@ -687,7 +687,7 @@ export default function RecipeDetailPage() {
               const display = presentIngredient(ingredient);
               return <li key={index}>
               <IngredientIcon item={ingredient.item} />
-              <div><strong>{display.name}</strong><small>{display.quantity}</small>{display.component && <small>For the {display.component}</small>}</div>
+              <div><strong>{display.name}</strong>{" "}<small>{display.quantity}</small></div>
             </li>;
             })}
           </ul>

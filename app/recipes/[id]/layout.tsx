@@ -140,7 +140,7 @@ export default async function RecipeLayout({
     recipeIngredient: recipe.ingredients.map(
       (ingredient) => {
         const display = presentIngredient(ingredient);
-        return `${display.quantity} ${display.name}${display.component ? ` — for the ${display.component}` : ""}`;
+        return `${display.quantity} ${display.name}`;
       }
     ),
 

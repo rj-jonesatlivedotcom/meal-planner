@@ -9,12 +9,13 @@ import RecipeNutrition from "@/components/RecipeNutrition";
 import RecipeIcon from "@/components/RecipeIcon";
 import IngredientIcon from "@/components/IngredientIcon";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getDietaryGuide, getDietaryGuideSections } from "@/lib/dietaryGuides";
 import { presentIngredient, presentMethods } from "@/lib/recipePresentation";
+import { watchRecipeGuideLayout } from "@/lib/recipeGuideLayout";
 
 const days = [
   "Monday",
@@ -81,6 +82,9 @@ function formatSalt(sodiumValue: string | undefined) {
 }
 
 export default function RecipeDetailPage() {
+  const ingredientsRef = useRef<HTMLElement>(null);
+  const methodColumnRef = useRef<HTMLDivElement>(null);
+  const guideRef = useRef<HTMLDetailsElement>(null);
   const weeklyPageStorage = useWeeklyPageStorage();
   const router = useRouter();
   const params = useParams();
@@ -622,6 +626,15 @@ export default function RecipeDetailPage() {
     }
   }
 
+  useEffect(() => {
+    const ingredients = ingredientsRef.current;
+    const methodColumn = methodColumnRef.current;
+    const guide = guideRef.current;
+    if (ingredients && methodColumn && guide) {
+      return watchRecipeGuideLayout(ingredients, guide, methodColumn);
+    }
+  }, [recipe?.id]);
+
   /*
    * Recipe not found.
    */
@@ -677,7 +690,7 @@ export default function RecipeDetailPage() {
         </div>
       </section>
       <div className={styles.sections}>
-        <section className={styles.panel} aria-labelledby="recipe-ingredients">
+        <section ref={ingredientsRef} className={styles.panel} aria-labelledby="recipe-ingredients">
           <div className={styles.panelHeading}>
             <h2 id="recipe-ingredients"><RecipeIcon name="ingredients" />Ingredients</h2>
             <span>{recipe.servings} {recipe.servings === 1 ? "serving" : "servings"}</span>
@@ -696,14 +709,13 @@ export default function RecipeDetailPage() {
             <p>{recipe.equipment}</p>
           </div>
         </section>
+        <div ref={methodColumnRef} className={styles.methodColumn}>
         <section className={styles.panel} aria-labelledby="recipe-method">
           <div className={styles.panelHeading}><h2 id="recipe-method"><RecipeIcon name="method" />Method</h2></div>
           <ol className={styles.method}>
             {presentMethods(recipe.method).map((step, index) => <li key={index}><span aria-hidden="true">{index + 1}</span><p>{step}</p></li>)}
           </ol>
         </section>
-      </div>
-      <div className={styles.lowerSections}>
         <section className={styles.panel} aria-labelledby="recipe-nutrition">
           <div className={styles.panelHeading}><h2 id="recipe-nutrition">Nutrition <small style={{fontSize: ".7rem", fontWeight: 400}}>(per serving)</small></h2></div>
           <RecipeNutrition detailed estimated={nutritionEstimated} unavailableLabels={nutritionUnavailableLabels} values={[
@@ -714,7 +726,8 @@ export default function RecipeDetailPage() {
           ]} />
           <p className={styles.methodologyLink}><Link href="/about#nutrition-sources-methodology">Nutrition sources &amp; methodology</Link></p>
         </section>
-        {dietaryGuideSections.length > 0 ? <details className={styles.guidePanel} aria-labelledby="recipe-guide" key={recipe.id}>
+        </div>
+        {dietaryGuideSections.length > 0 ? <details ref={guideRef} className={styles.guidePanel} aria-labelledby="recipe-guide" key={recipe.id}>
           <summary className={styles.guideSummary}><h2 id="recipe-guide"><RecipeIcon name="Potassium" />Dietary Guide</h2></summary>
           <div className={styles.guideSections}>
             {dietaryGuideSections.map((section) => (

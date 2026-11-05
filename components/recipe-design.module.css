@@ -41,6 +41,7 @@
 .nutrition [data-nutrient="Phosphorus"], .nutrition [data-nutrient="Fat"] { --tile-bg: #f4eefd; --tile-ink: #7531b5; }
 .nutrition [data-nutrient="Carbohydrates"] { --tile-bg: #fff7e5; --tile-ink: #986000; }
 .sections, .lowerSections { display: grid; gap: 18px; margin-top: 18px; align-items: start; align-content: start; }
+.methodColumn { display: grid; gap: 18px; min-width: 0; }
 .panel, .guidePanel, .related { background: var(--recipe-surface); border: 1px solid var(--recipe-line); border-radius: 20px; padding: 22px; box-shadow: 0 3px 12px #223b2608; }
 .sections > .panel, .lowerSections > .panel, .lowerSections > .guidePanel { align-self: start; height: auto; min-height: 0; }
 .panelHeading { margin-bottom: 20px; }
@@ -48,7 +49,7 @@
 .panelHeading > span { background: #eaf8ef; border-radius: 20px; padding: 7px 12px; font-size: .72rem; white-space: nowrap; }
 .panelHeading h2 svg { width: 25px; height: 25px; }
 .ingredients { list-style: none; margin: 0; padding: 0; }
-.ingredients li { display: flex; align-items: center; gap: 16px; padding: 15px 0; border-bottom: 1px solid var(--recipe-line); }
+.ingredients li { display: flex; align-items: center; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--recipe-line); }
 .ingredients li:last-child { border: 0; }
 .ingredientIcon { width: 42px; flex-shrink: 0; text-align: center; font-size: 2rem; }
 .ingredients li > div { min-width: 0; line-height: 1.5; }
@@ -131,9 +132,16 @@
  .heroContent > .nutrition > div { display:flex; flex-direction:column; text-align:center; padding:14px 6px; gap:5px; }
  .heroContent > .nutrition dt { order:2; margin:0; } .heroContent > .nutrition dd { order:1; }
  .sections { grid-template-columns:.95fr 1.05fr; background-image: url('/images/recipe-herb-sprig.svg'), url('/images/recipe-herb-sprig.svg'); background-repeat: no-repeat; background-size: 220px 85px; background-position: left 18% bottom 12px, right 18% bottom 12px; }
+ .sections { grid-template-areas:"ingredients method"; }
+ .sections > .panel { grid-area:ingredients; }
+ .sections > .methodColumn { grid-area:method; }
+ .sections > .guidePanel { grid-area:guide; }
+ .sections:has(> .guidePanel) { grid-template-areas:"ingredients method" "ingredients guide"; grid-template-rows:min-content 1fr; }
+ .sections[data-guide-placement="ingredients"] { grid-template-areas:"ingredients method" "guide method"; }
 }
-@media (min-width:640px) { .lowerSections .detailedNutrition { grid-template-columns:repeat(4,minmax(0,1fr)); } }
-@media (min-width:1152px) { .lowerSections .detailedNutrition { grid-template-columns:repeat(8,minmax(0,1fr)); } }
+@media (min-width:640px) { .methodColumn .detailedNutrition { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media (min-width:1024px) { .methodColumn .detailedNutrition { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (min-width:1280px) { .methodColumn .detailedNutrition { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media (max-width:374px) { .detail { padding:12px 12px 48px; } .heroContent,.panel,.guidePanel,.related { padding:16px; } .nutrition { gap:8px; } .nutrition > div { padding:11px 9px; column-gap:6px; } .nutrition dd { font-size:.92rem; } .panelHeading h2 { font-size:1.15rem; } }
 @media (hover:hover) and (prefers-reduced-motion:no-preference) { .card:hover { transform:translateY(-2px); box-shadow:0 8px 22px #253e2915; } .card:hover .cardImage img { transform:scale(1.02); } .relatedCard:hover { border-color:#72b997; } }
 @media (prefers-reduced-motion:reduce) { .card,.cardImage img,.primary { transition:none; } }

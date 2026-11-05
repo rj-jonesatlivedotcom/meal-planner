@@ -51,9 +51,10 @@ export const dinners: Recipe[] = [
       }
     ],
     method: [
+      "The listed 70 g of chicken is the cooked edible weight. Cook a plain portion as directed below, then weigh out 70 g after cooking for this meal; it is not a 70 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
       "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
       "Boil the cabbage and onion in unsalted water until tender, then drain well.",
-      "Brush the chicken with a little of the olive oil and cook in a hot griddle pan until cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Brush the chicken with a little of the olive oil and cook in a hot griddle pan until cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Weigh the cooked chicken now and use the listed 70 g portion.",
       "Add the remaining olive oil, lemon juice and dried parsley to the cooked vegetables and toss gently.",
       "Serve the chicken with the rice and vegetables."
     ],
@@ -128,10 +129,11 @@ export const dinners: Recipe[] = [
       }
     ],
     method: [
+      "The listed 60 g of turkey is the cooked edible weight. Cook a plain portion as directed below, then weigh out 60 g after cooking for this meal; it is not a 60 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
       "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
       "Boil the cabbage and carrots in unsalted water until tender, then drain.",
       "Rub the turkey with the dried rosemary.",
-      "Heat half the olive oil in a frying pan and cook the turkey until browned and cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+      "Heat half the olive oil in a frying pan and cook the turkey until browned and cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Weigh the cooked turkey now and use the listed 60 g portion.",
       "Toss the vegetables with the remaining olive oil and serve with the turkey and rice. Use a fork or broad spoon and a light lifting motion so the grains stay separate."
     ],
     nutrition: {
@@ -205,10 +207,11 @@ export const dinners: Recipe[] = [
       }
     ],
     method: [
+      "The listed 80 g of pork is the cooked edible weight. Cook a plain portion as directed below, then weigh out 80 g after cooking for this meal; it is not a 80 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
       "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
       "Boil the carrots and cabbage in unsalted water until tender, then drain well.",
       "Season the pork with the dried thyme.",
-      "Heat half the olive oil in a griddle pan and cook the pork until cooked through.",
+      "Heat half the olive oil in a griddle pan and cook the pork until cooked through. Weigh the cooked pork now and use the listed 80 g portion.",
       "Toss the vegetables with the remaining olive oil and serve with the pork and rice. Use a fork or broad spoon and a light lifting motion so the grains stay separate."
     ],
     nutrition: {
@@ -287,8 +290,9 @@ export const dinners: Recipe[] = [
       }
     ],
     method: [
+      "The listed 100 g of cod is the cooked edible weight. Cook a plain portion as directed below, then weigh out 100 g after cooking for this meal; it is not a 100 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
       "Preheat the oven to 200°C (180°C fan).",
-      "Place the cod on a baking tray and bake until cooked through and opaque. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+      "Place the cod on a baking tray and bake until cooked through and opaque. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Weigh the cooked cod now and use the listed 100 g portion.",
       "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
       "Boil the cabbage and onion in unsalted water until tender, then drain.",
       "Drizzle the olive oil and lemon juice over the vegetables and finish with dried parsley.",
@@ -365,8 +369,9 @@ export const dinners: Recipe[] = [
       }
     ],
     method: [
+      "The listed 80 g of salmon is the cooked edible weight. Cook a plain portion as directed below, then weigh out 80 g after cooking for this meal; it is not a 80 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
       "Preheat the oven to 200°C (180°C fan).",
-      "Place the salmon on a baking tray and bake until cooked through. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent.",
+      "Place the salmon on a baking tray and bake until cooked through. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent. Weigh the cooked salmon now and use the listed 80 g portion.",
       "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
       "Boil the cabbage and onion in unsalted water until tender, then drain.",
       "Toss the vegetables with the olive oil and lemon juice.",
@@ -3646,7 +3651,7 @@ export const dinners: Recipe[] = [
     "cookingTime": "85 mins",
     "calories": "1080 kcal",
     "protein": "56.9 g",
-    "equipment": "Kitchen scales, Knife and chopping board, Grater, Food thermometer, Lid or bowl cover",
+    "equipment": "Kitchen scales, Knife and chopping board, Grater, Food thermometer, Lid or bowl cover, Saucepan, Second saucepan",
     "ingredients": [
       {
         "item": "Skinless boneless chicken thigh",
@@ -6071,10 +6076,10 @@ export const dinners: Recipe[] = [
     "method": [
       "Do not wash raw poultry, and use clean utensils for the cooked food. Blend tomato, half the stew onion, ginger, garlic and chilli. Slice the remaining stew onion. Brown chicken gently in half the stew oil for 6 minutes, then set aside with its juices.",
       "Soften sliced onion in remaining stew oil for 8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add blended vegetables and cook uncovered 25-30 minutes until the raw tomato flavour mellows.",
-      "Return chicken and juices with coriander, pepper, stew salt and listed stew water. Cover and simmer 25-30 minutes until chicken is tender and safely cooked. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds.",
+      "Return chicken and juices with coriander, pepper, stew salt and listed stew water. Start the seasoned rice in a second pan as soon as this final simmer begins. Cover the stew and simmer 25-30 minutes until chicken is tender and safely cooked. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds.",
       "Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Keep a looser sauce than jollof base.",
-      "For seasoned rice, soften its finely chopped onion and ginger in 7.5 g oil for 5 minutes. Add rice, rice water and rice salt, cover and simmer 12-15 minutes, then rest 10 minutes.",
-      "Serve all the separate seasoned rice and stew as one serving. No step cooks rice in the tomato base, preserving its distinction from D077."
+      "While the stew completes its final simmer, for the seasoned rice, soften its finely chopped onion and ginger in 7.5 g oil for 5 minutes. Add rice, rice water and rice salt, cover and simmer 12-15 minutes, then rest 10 minutes.",
+      "Keep the stew covered over the lowest heat if it finishes before the rice. Serve all the separate seasoned rice and stew as one serving. No step cooks rice in the tomato base, preserving its distinction from D077."
     ],
     "nutrition": {
       "calories": "969 kcal",
@@ -6378,7 +6383,7 @@ export const dinners: Recipe[] = [
     "cookingTime": "105 mins",
     "calories": "1161 kcal",
     "protein": "67.1 g",
-    "equipment": "Kitchen scales, Knife and chopping board, Saucepan, Oven, Steamer and saucepan, Food thermometer, Lid or bowl cover, Ovenproof dish",
+    "equipment": "Kitchen scales, Knife and chopping board, Saucepan, Oven, Food thermometer, Lid or bowl cover, Ovenproof dish",
     "ingredients": [
       {
         "item": "Skinless boneless chicken breast",
@@ -6455,7 +6460,7 @@ export const dinners: Recipe[] = [
       "Do not wash raw poultry, and use clean utensils for the cooked food. Use uncooked retail puff pastry, not cooked pastry weight. Cut chicken into 2 cm pieces and slice mushrooms and onion. Heat oil and filling butter in a wide saucepan; soften onion 7 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
       "Add chicken and mushrooms and cook 10-12 minutes until chicken is safely cooked and released mushroom liquid has reduced. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Add garlic, thyme and flour; stir 1 minute, then gradually add milk and cream. Simmer 5 minutes, season and cool the thick filling until it stops steaming.",
       "Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-      "Heat oven to 210 C conventional or 190 C fan. Transfer filling to a 14 cm deep pie dish. Roll pastry between baking paper to cover the dish without added flour. Lay over the filling, crimp edges and make two steam slits. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+      "Heat oven to 210 C conventional or 190 C fan. Transfer filling to a 14 cm deep pie dish. Roll pastry between baking paper to cover the dish without added flour. Lay over the filling, crimp edges and make two steam slits.",
       "Brush all 20 g beaten egg over the lid and exposed pastry scraps; bake scraps beside the pie and include them in this serving. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Bake 30-40 minutes until pastry is risen and cooked underneath and filling is piping hot.",
       "Rest 10 minutes and serve the whole small pie, including all the filling, lid and pastry scraps, as one serving. Product butter/vegetable-fat formulation and additive labels remain a required check.",
       "Cook the egg mixture until fully set."
@@ -6616,10 +6621,10 @@ export const dinners: Recipe[] = [
   "image": "/images/recipes/D083.webp",
   "name": "Roasted pepper and white-bean lasagne",
   "description": "Lasagne layered with white beans, roasted peppers, ricotta and a walnut topping.",
-  "cookingTime": "55 mins",
+  "cookingTime": "70 mins",
   "calories": "717 kcal",
   "protein": "23.2 g",
-  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Lid or bowl cover, Colander or sieve, Ovenproof dish",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Lid or bowl cover, Colander or sieve, Ovenproof dish, Second saucepan",
   "ingredients": [
     {
       "item": "Egg-free plain dried white wheat pasta",
@@ -6690,7 +6695,7 @@ export const dinners: Recipe[] = [
   "method": [
       "Heat the oven to 200°C, or 180°C fan. Finely dice the pepper and onion. Cook in half the oil for 8 minutes. Add crushed garlic, cooked drained navy beans and 20 g of the measured water and simmer for 3 minutes. Look for small, gentle bubbles rather than a rolling boil.",
       "Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Mash some beans to thicken.",
-      "In a small pan, stir the flour into one quarter of the oil. Gradually whisk in the milk and remaining 45 g water. Simmer for 3 minutes, then stir in the ricotta, chopped basil and pepper.",
+      "While the vegetables cook, in a second small pan, stir the flour into one quarter of the oil. Gradually whisk in the milk and remaining 45 g water. Simmer for 3 minutes, then stir in the ricotta, chopped basil and pepper.",
       "Use no-preboil dry white lasagne sheets. Layer all the beans, pasta and sauce in a small baking dish, with sauce covering every pasta edge. Chop the walnuts and mix with the remaining oil for the topping. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
       "Cover tightly and bake for 30 minutes. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Uncover, scatter over all the walnut topping and bake for another 8–10 minutes until the pasta is tender and the centre is steaming hot. Rest for 5 minutes and serve the whole bake.",
       "Use vegetarian-rennet cheese for the vegetarian version specified here."
@@ -6733,7 +6738,7 @@ export const dinners: Recipe[] = [
   "cookingTime": "55 mins",
   "calories": "706 kcal",
   "protein": "34.6 g",
-  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Oven, Steamer and saucepan, Food thermometer, Lid or bowl cover, Ovenproof dish",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Oven, Food thermometer, Lid or bowl cover, Ovenproof dish",
   "ingredients": [
     {
       "item": "Plain white flour",
@@ -6796,7 +6801,7 @@ export const dinners: Recipe[] = [
       "Cover and rest while making the filling.",
       "Dice the turkey and slice the leek and carrot thinly. Cook in the remaining 11 g oil for 5 minutes. Stir in the remaining 5 g flour and thyme, then gradually add the milk and remaining 90 g water. Simmer for 8–10 minutes until the vegetables are tender and the sauce thickens.",
       "Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-      "Stir in the parsley and pepper and transfer all the filling and sauce to a small pie dish. Roll the pastry between non-stick sheets without extra flour and place over the top. Make a steam slit. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+      "Stir in the parsley and pepper and transfer all the filling and sauce to a small pie dish. Roll the pastry between non-stick sheets without extra flour and place over the top. Make a steam slit.",
       "Bake for 25–30 minutes until the pastry is cooked and the centre of the turkey filling reaches 75°C for 30 seconds. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the whole pie."
     ],
   "nutrition": {
@@ -6949,7 +6954,7 @@ export const dinners: Recipe[] = [
   "cookingTime": "40 mins",
   "calories": "647 kcal",
   "protein": "16.5 g",
-  "equipment": "Kitchen scales, Saucepan, Lid or bowl cover",
+  "equipment": "Kitchen scales, Saucepan, Lid or bowl cover, Second saucepan",
   "ingredients": [
     {
       "item": "Chickpeas, boiled without salt and drained",
@@ -7025,7 +7030,7 @@ export const dinners: Recipe[] = [
   "method": [
       "Soften the chopped onion in three fifths of the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add cumin, cinnamon and ginger for 30 seconds.",
       "Add diced carrot, courgette and tomato, cooked drained chickpeas and 65 g of the measured water. Cover and simmer for 20–25 minutes until tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-      "Bring the remaining 100 g water to a boil in a separate pan. Stir in the couscous, cover, turn off the heat and leave for 5–7 minutes.",
+      "During the final 10 minutes of the tagine simmer, bring the remaining 100 g water to a boil in a separate pan. Stir in the couscous, cover, turn off the heat and leave for 5–7 minutes.",
       "Fluff the couscous and fold in the remaining oil, chopped almonds and half the lemon juice. Add the remaining lemon juice and chopped coriander to the tagine. Serve both whole portions."
     ],
   "nutrition": {
@@ -7595,7 +7600,7 @@ export const dinners: Recipe[] = [
   "image": "/images/recipes/D092.webp",
   "name": "Cabbage rolls with barley, mushrooms and seitan",
   "description": "Tender cabbage leaves filled with barley, mushrooms, walnuts and homemade seitan.",
-  "cookingTime": "65 mins",
+  "cookingTime": "85 mins",
   "calories": "621 kcal",
   "protein": "24.1 g",
   "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Steamer and saucepan, Lid or bowl cover",
@@ -7674,8 +7679,8 @@ export const dinners: Recipe[] = [
   "method": [
       "Mix 20 g pure vital wheat gluten with 30 g of the water into a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Knead for 2 minutes, rest for 5 minutes, flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked.",
       "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Keep the entire portion and chop finely.",
-      "Simmer the barley in 120 g of the water, covered, for 15 minutes. Add the rice and cook for another 15–20 minutes until both grains are tender, keeping all liquid.",
-      "Steam the cabbage leaves until flexible, finely chopping any edible stalk trimmings. Cook chopped onion, garlic, mushrooms and cabbage trimmings in three quarters of the oil for 6–8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Mix with all the cooked grains, seitan, walnuts, thyme and pepper.",
+      "Start the grain pan as soon as the seitan begins steaming. Simmer the barley in 120 g of the water, covered, for 15 minutes. Add the rice and cook for another 15–20 minutes until both grains are tender, keeping all liquid.",
+      "While the grains cook, prepare the vegetables. Once the seitan is cooked, use the steamer to steam the cabbage leaves until flexible, finely chopping any edible stalk trimmings. Cook chopped onion, garlic, mushrooms and cabbage trimmings in three quarters of the oil for 6–8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Mix with all the cooked grains, seitan, walnuts, thyme and pepper.",
       "Divide the entire filling between three large cabbage leaves, fold in the sides and roll. Put chopped tomato, paprika, remaining oil and remaining 80 g water in a covered casserole. Choose a dish that holds this portion without spreading it into a very thin layer. Arrange it evenly, so the centre and edges heat through at a similar rate. Add the rolls and simmer for 20–25 minutes until tender and steaming hot. Look for small, gentle bubbles rather than a rolling boil.",
       "Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Serve all the rolls and sauce."
     ],
@@ -8197,7 +8202,7 @@ export const dinners: Recipe[] = [
   "cookingTime": "45 mins",
   "calories": "681 kcal",
   "protein": "20.2 g",
-  "equipment": "Kitchen scales, Oven, Grater, Lid or bowl cover, Ovenproof dish",
+  "equipment": "Kitchen scales, Oven, Grater, Lid or bowl cover, Ovenproof dish, Saucepan, Frying pan",
   "ingredients": [
     {
       "item": "White basmati rice",
@@ -9477,7 +9482,7 @@ export const dinners: Recipe[] = [
   "cookingTime": "35 mins",
   "calories": "649 kcal",
   "protein": "27.9 g",
-  "equipment": "Kitchen scales, Mixing bowl, Oven, Grater, Lid or bowl cover, Baking tray",
+  "equipment": "Kitchen scales, Mixing bowl, Oven, Grater, Lid or bowl cover, Baking tray, Saucepan",
   "ingredients": [
     {
       "item": "White basmati rice",
@@ -9619,7 +9624,7 @@ export const dinners: Recipe[] = [
   "method": [
       "Mince plain turkey breast at home and mix with the egg white, chives, thyme and half the salt. Shape into five small meatballs.",
       "Bring all the measured water to a simmer and whisk in the cornmeal and remaining salt. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Cook over low heat for 20–25 minutes until fully tender, stirring frequently.",
-      "Heat all the oil in a non-stick pan. Cook the meatballs and thinly sliced carrot over medium-low heat for 12–15 minutes, turning and covering briefly, until the carrot is tender and meatball centres reach 75°C for 30 seconds. Serve everything, including edible pan juices."
+      "During the final 12–15 minutes of the polenta cooking time, heat all the oil in a non-stick pan. Cook the meatballs and thinly sliced carrot over medium-low heat for 12–15 minutes, turning and covering briefly, until the carrot is tender and meatball centres reach 75°C for 30 seconds. Stir the polenta regularly while the meatballs cook; keep it covered over the lowest heat if ready first. Serve everything, including edible pan juices."
     ],
   "nutrition": {
     "calories": "511 kcal",
@@ -10197,8 +10202,8 @@ export const dinners: Recipe[] = [
     }
   ],
   "method": [
-      "Simmer the brown rice in 100 g of the water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 50 g water and cook covered for another 12–15 minutes until tender, retaining any liquid.",
-      "Slice the turkey and vegetables thinly. Cook in all the oil with the thyme and pepper over medium-low heat for 10–12 minutes until vegetables are tender and turkey centres reach 75°C for 30 seconds.",
+      "Simmer the brown rice in 100 g of the water, covered, for 15 minutes. Add the white rice and remaining 50 g water and cook covered for another 12–15 minutes until tender, retaining any liquid. Check both types of rice are tender, then rest covered off the heat for 5 minutes before loosening with a fork.",
+      "While the rice cooks and rests, slice the turkey and vegetables thinly. Cook in all the oil with the thyme and pepper over medium-low heat for 10–12 minutes until vegetables are tender and turkey centres reach 75°C for 30 seconds.",
       "Stir in the lemon juice and serve all the turkey, vegetables and edible juices with all the rice."
     ],
   "nutrition": {
@@ -10338,10 +10343,10 @@ export const dinners: Recipe[] = [
   "image": "/images/recipes/D120.webp",
   "name": "Spinach and egg brown rice bake",
   "description": "Brown rice baked with spinach, carrots and egg, with chive yoghurt.",
-  "cookingTime": "50 mins",
+  "cookingTime": "60 mins",
   "calories": "555 kcal",
   "protein": "33.4 g",
-  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Grater, Lid or bowl cover, Ovenproof dish",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Grater, Lid or bowl cover, Ovenproof dish, Frying pan",
   "ingredients": [
     {
       "item": "Whole egg, shell removed",
@@ -10400,8 +10405,8 @@ export const dinners: Recipe[] = [
     }
   ],
   "method": [
-      "Simmer the brown rice in 105 g of the water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender.",
-      "Heat the oven to 190°C, or 170°C fan. Finely grate the carrot and chop the spinach. Cook in the oil for 5 minutes, then mix with all the rice and any liquid.",
+      "Heat the oven to 190°C, or 170°C fan. Simmer the brown rice in 105 g of the water, covered, for 15 minutes. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender. Check both types of rice are tender before mixing with the vegetables.",
+      "While the rice cooks, finely grate the carrot and chop the spinach. Cook in the oil for 5 minutes, then mix with all the rice and any liquid.",
       "Beat the weighed whole egg and egg white with the pepper and mix through the warm rice. Put in a small dish and bake for 18–22 minutes until fully set and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
       "Mix the yoghurt and chives and serve with the entire bake."
     ],
@@ -10580,7 +10585,7 @@ export const dinners: Recipe[] = [
   "cookingTime": "50 mins",
   "calories": "787 kcal",
   "protein": "23.6 g",
-  "equipment": "Kitchen scales, Mixing bowl, Oven, Lid or bowl cover, Ovenproof dish",
+  "equipment": "Kitchen scales, Mixing bowl, Oven, Lid or bowl cover, Ovenproof dish, Saucepan, Frying pan",
   "ingredients": [
     {
       "item": "White basmati rice",
@@ -10789,7 +10794,7 @@ export const dinners: Recipe[] = [
   "cookingTime": "45 mins",
   "calories": "768 kcal",
   "protein": "38.3 g",
-  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Lid or bowl cover",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Lid or bowl cover, Second saucepan",
   "ingredients": [
     {
       "item": "Beef sirloin, lean and edible fat",
@@ -10858,9 +10863,9 @@ export const dinners: Recipe[] = [
     }
   ],
   "method": [
-      "Bring 210 g of the measured water to a simmer, whisk in the cornmeal and cook over low heat for 20–25 minutes until tender, stirring frequently. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-      "Dice the beef small and finely chop the vegetables and garlic. Brown the beef surfaces in all the oil for 3 minutes. Add onion, carrot, garlic, cumin and paprika and cook for 5 minutes.",
-      "Add chopped tomato, cooked drained black-eyed peas and remaining 30 g water. Cover and simmer over low heat for 15 minutes until the carrot is tender and stew is steaming hot. Stir in parsley and pepper and serve all the stew over all the polenta."
+      "Before heating the pans, dice the beef small and finely chop the vegetables and garlic. Bring 210 g of the measured water to a simmer, whisk in the cornmeal and cook over low heat for 20–25 minutes until tender, stirring frequently. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "While the polenta simmers, brown the beef surfaces in all the oil for 3 minutes. Add onion, carrot, garlic, cumin and paprika and cook for 5 minutes.",
+      "Add chopped tomato, cooked drained black-eyed peas and remaining 30 g water. Cover and simmer over low heat for 15 minutes until the carrot is tender and stew is steaming hot. Keep the polenta covered over the lowest heat if it finishes first. Stir in parsley and pepper and serve all the stew over all the polenta."
     ],
   "nutrition": {
     "calories": "768 kcal",
@@ -10896,10 +10901,10 @@ export const dinners: Recipe[] = [
   "image": "/images/recipes/D125.webp",
   "name": "Salmon and leek rice pie",
   "description": "Salmon and leeks baked under a light egg and rice topping.",
-  "cookingTime": "50 mins",
+  "cookingTime": "60 mins",
   "calories": "764 kcal",
   "protein": "47.1 g",
-  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Lid or bowl cover, Ovenproof dish",
+  "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Lid or bowl cover, Ovenproof dish, Second saucepan",
   "ingredients": [
     {
       "item": "White basmati rice",
@@ -10963,9 +10968,9 @@ export const dinners: Recipe[] = [
     }
   ],
   "method": [
-      "Cook the rice with 115 g of the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Heat the oven to 190°C, or 170°C fan.",
-      "Slice the leek and soften in all the oil for 6 minutes. Stir in the flour, then gradually add the milk and remaining 10 g water. Simmer for 3 minutes and add the salmon in small pieces, parsley, lemon juice and pepper. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-      "Transfer all the filling to a small dish. Beat the weighed whole egg and egg white and mix with all the warm rice. Spoon over the fish.",
+      "Heat the oven to 190°C, or 170°C fan. Cook the rice with 115 g of the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+      "While the rice cooks and rests, slice the leek and soften in all the oil for 6 minutes. Stir in the flour, then gradually add the milk and remaining 10 g water. Simmer for 3 minutes, then take the sauce off the heat and keep covered until the rice has finished resting. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Once the rice is ready, stir the raw salmon pieces, parsley, lemon juice and pepper into the leek sauce and immediately transfer all the filling to a small dish. Beat the weighed whole egg and egg white and mix with all the warm rice. Spoon over the fish and put straight into the preheated oven.",
       "Bake for 25–30 minutes until the topping is fully set and the salmon is opaque and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the entire pie and sauce."
     ],
   "nutrition": {

@@ -1,0 +1,1681 @@
+{
+  "version": 1,
+  "date": "2026-11-05",
+  "baselineCommit": "efdf7cd7cb0fc527922fc7b9e9244d27b89e38e0",
+  "scope": "Cooking safety, timings, sequencing and equipment corrections; two ingredient count annotations corrected without changing measured amounts. All nutrition, images, categories, servings and guide wording preserved.",
+  "timingBasis": "Conservative estimates from the explicit sequence and batch counts; not kitchen-tested.",
+  "allowedRecipeFields": [
+    "method",
+    "equipment",
+    "cookingTime",
+    "ingredients"
+  ],
+  "recipeCount": 310,
+  "changedRecipeCount": 49,
+  "guideFingerprintsRefreshed": [
+    "B048",
+    "B052",
+    "B056",
+    "B060",
+    "L009",
+    "L012",
+    "L029",
+    "L034",
+    "L038",
+    "L047",
+    "L049",
+    "L050",
+    "L051",
+    "L053",
+    "L065",
+    "L076",
+    "L083",
+    "L088",
+    "L096",
+    "L098",
+    "L112",
+    "L116",
+    "L118",
+    "L120",
+    "D001",
+    "D002",
+    "D003",
+    "D004",
+    "D005",
+    "D078",
+    "D081",
+    "D083",
+    "D084",
+    "D086",
+    "D092",
+    "D112",
+    "D118",
+    "D120",
+    "D124",
+    "D125"
+  ],
+  "recipes": [
+    {
+      "code": "B048",
+      "id": "blueberry-cottage-cheese-overnight-oats",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "c9d150b629923a3a1c23b9610940b2685476b1c0186db00f3188e67278c998f1",
+      "before": {
+        "method": [
+          "Blend or mash the cottage cheese and Greek-style yoghurt until creamy.",
+          "Stir in the oats and milk until evenly combined. Stir across the bottom and into the corners of the pan as it thickens. The cereal should be soft and creamy, with no dry or gritty pieces; reduce the heat if it spits.",
+          "Fold through the blueberries and sprinkle the pumpkin seeds over the top.",
+          "Cover and refrigerate overnight, or for at least 4 hours.",
+          "Stir before serving chilled."
+        ]
+      },
+      "after": {
+        "method": [
+          "Blend or mash the cottage cheese and Greek-style yoghurt until creamy.",
+          "Stir in the oats and milk until evenly combined. This is an uncooked overnight mixture; no heating is needed.",
+          "Fold through the blueberries and sprinkle the pumpkin seeds over the top.",
+          "Cover and refrigerate overnight, or for at least 4 hours.",
+          "Stir before serving chilled."
+        ]
+      }
+    },
+    {
+      "code": "B052",
+      "id": "blueberry-oat-and-tofu-pancakes",
+      "changedFields": [
+        "method",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "61a57360d452f33aa03fe9ff44066182485bb24a6d44fe267084c7077cd82e43",
+      "before": {
+        "method": [
+          "Use regular calcium-sulphate tofu, gently drained without pressing. Blend the weighed tofu, oats, rice flour, cinnamon and 50 g of the water into a thick batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes.",
+          "Put the blueberries, sugar, lemon juice and remaining 20 g water in a small pan. Simmer for 5 minutes to make a warm topping. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Divide all the oil between three pancakes in a non-stick pan. Cook each over medium-low heat for 4–5 minutes per side until fully cooked and firm in the centre. Serve all three pancakes with all the topping."
+        ],
+        "cookingTime": "35 mins"
+      },
+      "after": {
+        "method": [
+          "Use regular calcium-sulphate tofu, gently drained without pressing. Blend the weighed tofu, oats, rice flour, cinnamon and 50 g of the water into a thick batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes.",
+          "While the batter rests, put the blueberries, sugar, lemon juice and remaining 20 g water in a small pan. Simmer for 5 minutes to make a warm topping. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Heat a non-stick pan over medium-low heat. Divide all the oil between three pancakes, cooking one at a time. Cook each over medium-low heat for 4–5 minutes per side until fully cooked and firm in the centre. Keep each cooked pancake covered on a warm plate while cooking the next. Gently rewarm the blueberry topping just before serving all three pancakes with all the topping."
+        ],
+        "cookingTime": "45 mins"
+      }
+    },
+    {
+      "code": "B056",
+      "id": "lentil-and-groundnut-breakfast-fritters",
+      "changedFields": [
+        "method",
+        "equipment",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "77086dd7c9fd4961ef0a27628c63ee308d9023c8d4dde523287b6494cb4f471a",
+      "before": {
+        "method": [
+          "Rinse the dry lentils and cook with 90 g of the water in a covered pan for 15–20 minutes until very soft, retaining any liquid. Cool until just warm.",
+          "Mix the rice flour and remaining 60 g water with the lentils. Add finely grated carrot, finely shredded cabbage and onion, cumin, chopped coriander and chopped peanuts. Rest for 5 minutes.",
+          "Divide all the oil between four thin fritters in a non-stick pan. Cook over medium-low heat for 5–6 minutes per side until fully cooked and the vegetables are tender. Serve all four with all the lemon juice."
+        ],
+        "equipment": "Kitchen scales, Mixing bowl, Frying pan, Grater, Lid or bowl cover",
+        "cookingTime": "40 mins"
+      },
+      "after": {
+        "method": [
+          "Rinse the dry lentils and cook with 90 g of the water in a covered pan for 15–20 minutes until very soft, retaining any liquid. Spread the lentils in a shallow bowl and allow about 5 minutes to cool until just warm. Prepare the grated and shredded vegetables while the lentils cook and cool.",
+          "Mix the rice flour and remaining 60 g water with the lentils. Add finely grated carrot, finely shredded cabbage and onion, cumin, chopped coriander and chopped peanuts. Rest for 5 minutes.",
+          "Use a wide non-stick pan that holds all four thin fritters without crowding and add all the measured oil. Cook over medium-low heat for 5–6 minutes per side until fully cooked and the vegetables are tender. Serve all four with all the lemon juice."
+        ],
+        "equipment": "Kitchen scales, Mixing bowl, Frying pan, Grater, Lid or bowl cover, Saucepan",
+        "cookingTime": "50 mins"
+      }
+    },
+    {
+      "code": "B060",
+      "id": "bean-and-seitan-brunch-rice-bowl",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "fb45c239b9a912a834344094d27e8b2ecf86740ffb3bf17567ec1781eff1bfde",
+      "before": {
+        "method": [
+          "Mix the vital wheat gluten with 50 g water, knead for 2 minutes and rest for 5 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked.",
+          "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+          "Simmer the brown rice in 80 g water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender, keeping any liquid.",
+          "Dice the seitan. Cook chopped onion and pepper in all the oil for 8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the cooked, drained navy beans and all the seitan and heat through.",
+          "Fold in all the rice, chopped walnuts, parsley, lemon juice and pepper. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Serve the entire bowl and edible juices."
+        ]
+      },
+      "after": {
+        "method": [
+          "Mix the vital wheat gluten with 50 g water, knead for 2 minutes and rest for 5 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked.",
+          "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+          "While the seitan steams, simmer the brown rice in 80 g water for 15 minutes. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender, keeping any liquid. Check both types of rice are tender, then rest covered off the heat for 5 minutes before loosening with a fork.",
+          "Dice the seitan. Cook chopped onion and pepper in all the oil for 8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the cooked, drained navy beans and all the seitan and heat through.",
+          "Fold in all the rice, chopped walnuts, parsley, lemon juice and pepper. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Serve the entire bowl and edible juices."
+        ]
+      }
+    },
+    {
+      "code": "L009",
+      "id": "chicken-lettuce-wrap",
+      "changedFields": [
+        "method",
+        "equipment",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "f6073eee2690bc06970623c8ab0935f308a7de03cea5c45c9f05a43bb2b0d14c",
+      "before": {
+        "method": [
+          "Prepare the chicken and salad ingredients.",
+          "Spread the measured mayonnaise over the tortilla.",
+          "Add the chicken and prepared vegetables down the centre.",
+          "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+          "Close the sandwich, cut in half if desired and serve immediately."
+        ],
+        "equipment": "Knife, Chopping board, Butter knife",
+        "cookingTime": "15 minutes"
+      },
+      "after": {
+        "method": [
+          "Slice the raw chicken breast into thin, even strips. Heat a non-stick frying pan over medium heat and cook for about 6–8 minutes, turning regularly, until cooked through. Check the thickest pieces with a clean food thermometer: they must reach 75°C for at least 30 seconds; continue cooking if needed. Transfer to a clean plate and let the steam subside while preparing the filling.",
+          "Using a clean board and knife, wash, dry and prepare the listed salad vegetables. Keep them separate from raw chicken and its utensils.",
+          "Spread the measured mayonnaise over the tortilla.",
+          "Add the cooked chicken and prepared vegetables down the centre.",
+          "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+          "Cut the wrap in half if desired and serve immediately."
+        ],
+        "equipment": "Knife, Chopping board, Butter knife, Frying pan, Food thermometer",
+        "cookingTime": "20 mins"
+      }
+    },
+    {
+      "code": "L012",
+      "id": "chicken-cucumber-wrap",
+      "changedFields": [
+        "method",
+        "equipment",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "e2b9cefbd187f64ac9287bb965f64d34f3a7d6bb1d61b6b4daedc024a3aa1cf5",
+      "before": {
+        "method": [
+          "Prepare the chicken and salad ingredients.",
+          "Spread the measured mayonnaise over the tortilla.",
+          "Add the chicken and prepared vegetables down the centre.",
+          "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+          "Close the sandwich, cut in half if desired and serve immediately."
+        ],
+        "equipment": "Knife, Chopping board, Butter knife",
+        "cookingTime": "15 minutes"
+      },
+      "after": {
+        "method": [
+          "Slice the raw chicken breast into thin, even strips. Heat a non-stick frying pan over medium heat and cook for about 6–8 minutes, turning regularly, until cooked through. Check the thickest pieces with a clean food thermometer: they must reach 75°C for at least 30 seconds; continue cooking if needed. Transfer to a clean plate and let the steam subside while preparing the filling.",
+          "Using a clean board and knife, wash, dry and prepare the listed salad vegetables. Keep them separate from raw chicken and its utensils.",
+          "Spread the measured mayonnaise over the tortilla.",
+          "Add the cooked chicken and prepared vegetables down the centre.",
+          "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+          "Cut the wrap in half if desired and serve immediately."
+        ],
+        "equipment": "Knife, Chopping board, Butter knife, Frying pan, Food thermometer",
+        "cookingTime": "20 mins"
+      }
+    },
+    {
+      "code": "L029",
+      "id": "egg-potato-hash",
+      "changedFields": [
+        "method",
+        "equipment"
+      ],
+      "protectedFieldsSha256": "23c5ae5c5e2f9f5328615fab1b24b4447fa1a9f4fee2ed1eb77533682a9e4ac9",
+      "before": {
+        "method": [
+          "Peel the potato and cut it into small pieces.",
+          "Put the potato into a saucepan of fresh water and bring to the boil. Keep the pieces at a steady simmer and test the thickest piece with the tip of a knife. Stop when it goes in without a hard centre, before the potato breaks apart.",
+          "Boil until tender, then drain and discard the cooking water. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
+          "While the potato cooks, prepare the onion and red pepper.",
+          "Heat the oil in a frying pan over medium heat.",
+          "Cook the onion and pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+          "Add the drained potato and cook for 3 minutes.",
+          "Add the chopped cooked egg and toss gently with the potato and vegetables.",
+          "Heat everything through and serve immediately."
+        ],
+        "equipment": "Knife, Chopping board, Saucepan, Frying pan"
+      },
+      "after": {
+        "method": [
+          "Peel the potato and cut it into small pieces.",
+          "Put the potato into a saucepan of fresh water and bring to the boil. Keep the pieces at a steady simmer and test the thickest piece with the tip of a knife. Stop when it goes in without a hard centre, before the potato breaks apart.",
+          "While the potatoes simmer, put the eggs in a separate saucepan, cover with cold water and bring to the boil. Simmer for 8–10 minutes while the potatoes cook. Cool briefly under cold running water, peel and chop, keeping ready for the final step.",
+          "Boil until tender, then drain and discard the cooking water. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation. Boiling and discarding the water can remove some potassium, but it does not make the portion potassium-free or establish a precise reduction.",
+          "While the potato cooks, prepare the onion and red pepper.",
+          "Heat the oil in a frying pan over medium heat.",
+          "Cook the onion and pepper until softened. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+          "Add the drained potato and cook for 3 minutes.",
+          "Add the chopped cooked egg and toss gently with the potato and vegetables.",
+          "Heat everything through and serve immediately."
+        ],
+        "equipment": "Knife, Chopping board, Saucepan, Frying pan, Second saucepan"
+      }
+    },
+    {
+      "code": "L034",
+      "id": "chicken-pepper-toastie",
+      "changedFields": [
+        "method",
+        "equipment",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "62f822f07680615cdf5cc678778111328ccd983c7cafa8b2b7cd417c922f342f",
+      "before": {
+        "method": [
+          "Spread the cream cheese over the bread.",
+          "Slice the chicken and prepare the pepper.",
+          "Add the chicken and pepper to the sandwich.",
+          "Butter the outside lightly.",
+          "Heat a sandwich press or non-stick frying pan.",
+          "Toast until the bread is golden and the filling is hot.",
+          "Remove, cut in half and serve."
+        ],
+        "equipment": "Knife, Chopping board, Butter knife, Frying pan",
+        "cookingTime": "13 minutes"
+      },
+      "after": {
+        "method": [
+          "Slice the raw chicken breast into thin, even strips. Heat a non-stick frying pan over medium heat and cook for about 6–8 minutes, turning regularly, until cooked through. Check the thickest pieces with a clean food thermometer: they must reach 75°C for at least 30 seconds; continue cooking if needed. Transfer to a clean plate and let the steam subside while preparing the filling.",
+          "Prepare the pepper on a clean board. Spread the measured cream cheese over the bread and add the cooked chicken and pepper.",
+          "Close the sandwich and spread the measured butter lightly over the outside.",
+          "Heat a sandwich press or non-stick frying pan over medium-low heat. Toast for about 2–3 minutes per side until the bread is golden and the cooked filling is steaming hot throughout.",
+          "Cut in half and serve immediately."
+        ],
+        "equipment": "Knife, Chopping board, Butter knife, Frying pan, Food thermometer",
+        "cookingTime": "20 mins"
+      }
+    },
+    {
+      "code": "L038",
+      "id": "chicken-cream-cheese-wrap",
+      "changedFields": [
+        "method",
+        "equipment",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "f051674c73f6faa4269cc2f62ca7770b6ecaa7d289a14b1fd84661b04fd29b6f",
+      "before": {
+        "method": [
+          "Prepare the chicken and salad ingredients.",
+          "Spread the measured cream cheese over the tortilla.",
+          "Add the chicken and prepared vegetables down the centre.",
+          "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+          "Close the sandwich, cut in half if desired and serve immediately."
+        ],
+        "equipment": "Knife, Chopping board, Butter knife",
+        "cookingTime": "15 minutes"
+      },
+      "after": {
+        "method": [
+          "Slice the raw chicken breast into thin, even strips. Heat a non-stick frying pan over medium heat and cook for about 6–8 minutes, turning regularly, until cooked through. Check the thickest pieces with a clean food thermometer: they must reach 75°C for at least 30 seconds; continue cooking if needed. Transfer to a clean plate and let the steam subside while preparing the filling.",
+          "Using a clean board and knife, wash, dry and prepare the listed salad vegetables. Keep them separate from raw chicken and its utensils.",
+          "Spread the measured cream cheese over the tortilla.",
+          "Add the cooked chicken and prepared vegetables down the centre.",
+          "Fold in the sides and roll the tortilla tightly. Keep the filling in a compact strip rather than spreading it to every edge. Fold the sides in first where the recipe calls for a closed wrap, then roll firmly without squeezing the filling out.",
+          "Cut the wrap in half if desired and serve immediately."
+        ],
+        "equipment": "Knife, Chopping board, Butter knife, Frying pan, Food thermometer",
+        "cookingTime": "20 mins"
+      }
+    },
+    {
+      "code": "L047",
+      "id": "cod-cucumber-pasta-salad",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "993b289c718896c6c9a8a76eda7d98879226d3f5593df450f43ad485f6869756",
+      "before": {
+        "method": [
+          "Heat the oven to 200°C (180°C fan) and bake the cod until cooked through. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent.",
+          "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+          "Drain the pasta thoroughly and allow to cool slightly.",
+          "Flake the cod and combine with the pasta, cucumber and lettuce.",
+          "Add the olive oil, lemon juice and parsley.",
+          "Serve."
+        ]
+      },
+      "after": {
+        "method": [
+          "The listed 120 g of cod is the cooked edible weight. Cook a plain portion as directed below, then weigh out 120 g after cooking for this meal; it is not a 120 g raw starting portion. Keep any extra cooked food separate from this serving.",
+          "Heat the oven to 200°C (180°C fan) and bake the cod until cooked through. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent. Weigh the cooked cod now and use the listed 120 g portion.",
+          "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
+          "Drain the pasta thoroughly and allow to cool slightly.",
+          "Flake the cod and combine with the pasta, cucumber and lettuce.",
+          "Add the olive oil, lemon juice and parsley.",
+          "Serve."
+        ]
+      }
+    },
+    {
+      "code": "L049",
+      "id": "chicken-tikka-naan-style-flatbread",
+      "changedFields": [
+        "method",
+        "equipment"
+      ],
+      "protectedFieldsSha256": "d27e5e883463e750de12cdbe6c6741a070e716d50a9f79272432bd5b7728eac2",
+      "before": {
+        "method": [
+          "Do not wash raw chicken. Weigh every ingredient, including the spices. Cut it into approximately 25 mm pieces; cut the onion into wedges. Mix the tikka yoghurt, garlic, ginger, lemon, 10 g oil, listed spices and 0.3 g salt. Coat chicken and onion in a covered bowl and refrigerate for 60 minutes.",
+          "Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
+          "Mix flour, yeast, sugar and 0.3 g bread salt. Add 20 g yoghurt, 40 g weighed lukewarm water and 5 g oil. Knead 6-8 minutes into a soft dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Cover and prove for about 60 minutes at ordinary warm room temperature, until visibly puffy.",
+          "Cover the bowl so the surface cannot dry out. Judge readiness by the dough becoming visibly puffy, because a cooler kitchen may make the rise slower than the stated guide time. Avoid extra flour; use the measured oil or baking paper if sticking.",
+          "Preheat the grill to medium-high and place a rimmed tray below the skewers to catch juices. Roll the dough into one flatbread approximately 20 cm across and 4-5 mm thick. If the dough has not puffed, leave it covered for another 15–30 minutes before rolling.",
+          "Thread chicken and onion loosely onto metal skewers. Spread all remaining marinade over them. Grill for approximately 18-25 minutes, turning several times, until browned. Check the thickest chicken reaches 75 C for at least 30 seconds; extend cooking as needed.",
+          "In parallel, heat the dry heavy frying pan over medium-high heat. Cook each bread for about 2-3 minutes on the first side and 1-2 on the other, with a brief lid-on period if needed to cook its centre. Look for cooked, airy crumb and brown patches. Brush the flatbread with all the measured butter.",
+          "Transfer skewer food to a plate. Put collected marinade and juices in a small pan; bring to a bubbling simmer and heat thoroughly before serving. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Serve all chicken, onion, bread, butter, cucumber, coriander and cooked juices on one plate.",
+          "Check more than one piece if their sizes differ, and use clean utensils for the cooked food."
+        ],
+        "equipment": "0.01 g scales, mixing bowls, knife, board, rolling pin, heavy frying pan, oven tray, metal skewers, clean probe thermometer, Saucepan, Lid or bowl cover"
+      },
+      "after": {
+        "method": [
+          "Do not wash raw chicken. Weigh every ingredient, including the spices. Cut it into approximately 25 mm pieces; cut the onion into wedges. Mix the tikka yoghurt, garlic, ginger, lemon, 10 g oil, listed spices and 0.3 g salt. Coat chicken and onion in a covered bowl and refrigerate for 60 minutes.",
+          "Cover and keep chilled while you prepare the other parts of the recipe. Keep raw meat and its utensils separate from ready-to-eat salad and cooked food.",
+          "While the chicken marinates, mix flour, yeast, sugar and 0.3 g bread salt. Add 20 g yoghurt, 40 g weighed lukewarm water and 5 g oil. Knead 6-8 minutes into a soft dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Cover and prove for about 60 minutes at ordinary warm room temperature, until visibly puffy.",
+          "Cover the bowl so the surface cannot dry out. Judge readiness by the dough becoming visibly puffy, because a cooler kitchen may make the rise slower than the stated guide time. Avoid extra flour; use the measured oil or baking paper if sticking.",
+          "Preheat the grill to medium-high and place a rimmed tray below the skewers to catch juices. Roll the dough into one flatbread approximately 20 cm across and 4-5 mm thick. If the dough has not puffed, leave it covered for another 15–30 minutes before rolling.",
+          "Thread chicken and onion loosely onto metal skewers. Spread all remaining marinade over them. Grill for approximately 18-25 minutes, turning several times, until browned. Check the thickest chicken reaches 75 C for at least 30 seconds; extend cooking as needed.",
+          "In parallel, heat the dry heavy frying pan over medium-high heat. Cook each bread for about 2-3 minutes on the first side and 1-2 on the other, with a brief lid-on period if needed to cook its centre. Look for cooked, airy crumb and brown patches. Brush the flatbread with all the measured butter.",
+          "Transfer skewer food to a plate. Put collected marinade and juices in a small pan; bring to a bubbling simmer and heat thoroughly before serving. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Serve all chicken, onion, bread, butter, cucumber, coriander and cooked juices on one plate.",
+          "Check more than one piece if their sizes differ, and use clean utensils for the cooked food."
+        ],
+        "equipment": "0.01 g scales, mixing bowls, knife, board, rolling pin, heavy frying pan, oven tray, metal skewers, clean probe thermometer, Saucepan, Lid or bowl cover, Grill"
+      }
+    },
+    {
+      "code": "L050",
+      "id": "spiced-turkey-keema-stuffed-pitta",
+      "changedFields": [
+        "ingredients"
+      ],
+      "protectedFieldsSha256": "2e799166a7dab7d4c6b9d99bc81ea451069758040f52ec73d6f4ba8c4efa1919",
+      "before": {
+        "ingredients": [
+          {
+            "item": "Skinless turkey breast, finely minced",
+            "shoppingItem": "Skinless turkey breast, finely minced",
+            "quantity": "120 g (raw edible input; keema)"
+          },
+          {
+            "item": "Onion",
+            "shoppingItem": "Onion",
+            "quantity": "60 g (raw edible input; keema)"
+          },
+          {
+            "item": "Tomato",
+            "shoppingItem": "Tomato",
+            "quantity": "80 g (raw edible input; keema)"
+          },
+          {
+            "item": "Frozen peas",
+            "shoppingItem": "Frozen peas",
+            "quantity": "40 g (frozen raw edible weight; keema)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "15 g (raw edible input; keema)"
+          },
+          {
+            "item": "Garlic",
+            "shoppingItem": "Garlic",
+            "quantity": "6 g (raw edible input; keema)"
+          },
+          {
+            "item": "Fresh ginger",
+            "shoppingItem": "Fresh ginger",
+            "quantity": "6 g (raw edible input; keema)"
+          },
+          {
+            "item": "Cumin seeds, ground",
+            "shoppingItem": "Cumin seeds, ground",
+            "quantity": "1 g (raw edible input; keema)"
+          },
+          {
+            "item": "Coriander seeds, ground",
+            "shoppingItem": "Coriander seeds, ground",
+            "quantity": "1 g (raw edible input; keema)"
+          },
+          {
+            "item": "Ground turmeric",
+            "shoppingItem": "Ground turmeric",
+            "quantity": "0.3 g (raw edible input; keema)"
+          },
+          {
+            "item": "Ground cinnamon",
+            "shoppingItem": "Ground cinnamon",
+            "quantity": "0.15 g (raw edible input; keema)"
+          },
+          {
+            "item": "Ground black pepper",
+            "shoppingItem": "Ground black pepper",
+            "quantity": "0.2 g (raw edible input; keema)"
+          },
+          {
+            "item": "Cayenne chilli powder",
+            "shoppingItem": "Cayenne chilli powder",
+            "quantity": "0.3 g (raw edible input; keema)"
+          },
+          {
+            "item": "Table salt",
+            "shoppingItem": "Table salt",
+            "quantity": "0.5 g (raw edible input; keema)"
+          },
+          {
+            "item": "Water",
+            "shoppingItem": "Water",
+            "quantity": "30 g (weighed water; keema)"
+          },
+          {
+            "item": "Fresh coriander",
+            "shoppingItem": "Fresh coriander",
+            "quantity": "5 g (raw edible input; keema finish)"
+          },
+          {
+            "item": "White pitta bread",
+            "shoppingItem": "White pitta bread",
+            "quantity": "90 g (as sold, four 45 g pittas; bread)"
+          },
+          {
+            "item": "Plain whole-milk yoghurt",
+            "shoppingItem": "Plain whole-milk yoghurt",
+            "quantity": "30 g (raw edible input; raita)"
+          },
+          {
+            "item": "Cucumber",
+            "shoppingItem": "Cucumber",
+            "quantity": "30 g (raw edible input; raita)"
+          }
+        ]
+      },
+      "after": {
+        "ingredients": [
+          {
+            "item": "Skinless turkey breast, finely minced",
+            "shoppingItem": "Skinless turkey breast, finely minced",
+            "quantity": "120 g (raw edible input; keema)"
+          },
+          {
+            "item": "Onion",
+            "shoppingItem": "Onion",
+            "quantity": "60 g (raw edible input; keema)"
+          },
+          {
+            "item": "Tomato",
+            "shoppingItem": "Tomato",
+            "quantity": "80 g (raw edible input; keema)"
+          },
+          {
+            "item": "Frozen peas",
+            "shoppingItem": "Frozen peas",
+            "quantity": "40 g (frozen raw edible weight; keema)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "15 g (raw edible input; keema)"
+          },
+          {
+            "item": "Garlic",
+            "shoppingItem": "Garlic",
+            "quantity": "6 g (raw edible input; keema)"
+          },
+          {
+            "item": "Fresh ginger",
+            "shoppingItem": "Fresh ginger",
+            "quantity": "6 g (raw edible input; keema)"
+          },
+          {
+            "item": "Cumin seeds, ground",
+            "shoppingItem": "Cumin seeds, ground",
+            "quantity": "1 g (raw edible input; keema)"
+          },
+          {
+            "item": "Coriander seeds, ground",
+            "shoppingItem": "Coriander seeds, ground",
+            "quantity": "1 g (raw edible input; keema)"
+          },
+          {
+            "item": "Ground turmeric",
+            "shoppingItem": "Ground turmeric",
+            "quantity": "0.3 g (raw edible input; keema)"
+          },
+          {
+            "item": "Ground cinnamon",
+            "shoppingItem": "Ground cinnamon",
+            "quantity": "0.15 g (raw edible input; keema)"
+          },
+          {
+            "item": "Ground black pepper",
+            "shoppingItem": "Ground black pepper",
+            "quantity": "0.2 g (raw edible input; keema)"
+          },
+          {
+            "item": "Cayenne chilli powder",
+            "shoppingItem": "Cayenne chilli powder",
+            "quantity": "0.3 g (raw edible input; keema)"
+          },
+          {
+            "item": "Table salt",
+            "shoppingItem": "Table salt",
+            "quantity": "0.5 g (raw edible input; keema)"
+          },
+          {
+            "item": "Water",
+            "shoppingItem": "Water",
+            "quantity": "30 g (weighed water; keema)"
+          },
+          {
+            "item": "Fresh coriander",
+            "shoppingItem": "Fresh coriander",
+            "quantity": "5 g (raw edible input; keema finish)"
+          },
+          {
+            "item": "White pitta bread",
+            "shoppingItem": "White pitta bread",
+            "quantity": "90 g (as sold, two 45 g pittas; bread)"
+          },
+          {
+            "item": "Plain whole-milk yoghurt",
+            "shoppingItem": "Plain whole-milk yoghurt",
+            "quantity": "30 g (raw edible input; raita)"
+          },
+          {
+            "item": "Cucumber",
+            "shoppingItem": "Cucumber",
+            "quantity": "30 g (raw edible input; raita)"
+          }
+        ]
+      }
+    },
+    {
+      "code": "L051",
+      "id": "bombay-style-cauliflower-and-egg-rolls",
+      "changedFields": [
+        "ingredients"
+      ],
+      "protectedFieldsSha256": "7b554187d82bfd5ea02d39e3afd07b49e098fc7cd6710fd37e00cb783da863ba",
+      "before": {
+        "ingredients": [
+          {
+            "item": "Plain white flour",
+            "shoppingItem": "Plain white flour",
+            "quantity": "80 g (dry flour; flatbreads)"
+          },
+          {
+            "item": "Water",
+            "shoppingItem": "Water",
+            "quantity": "45 g (weighed water; flatbreads)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "5 g (raw edible input; flatbreads)"
+          },
+          {
+            "item": "Table salt",
+            "shoppingItem": "Table salt",
+            "quantity": "0.3 g (raw edible input; flatbreads)"
+          },
+          {
+            "item": "Cauliflower florets",
+            "shoppingItem": "Cauliflower florets",
+            "quantity": "150 g (raw edible input; filling)"
+          },
+          {
+            "item": "Onion",
+            "shoppingItem": "Onion",
+            "quantity": "35 g (raw edible input; filling)"
+          },
+          {
+            "item": "Garlic",
+            "shoppingItem": "Garlic",
+            "quantity": "4 g (raw edible input; filling)"
+          },
+          {
+            "item": "Fresh ginger",
+            "shoppingItem": "Fresh ginger",
+            "quantity": "5 g (raw edible input; filling)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "7.5 g (raw edible input; filling)"
+          },
+          {
+            "item": "Cumin seeds, ground",
+            "shoppingItem": "Cumin seeds, ground",
+            "quantity": "1 g (raw edible input; filling)"
+          },
+          {
+            "item": "Coriander seeds, ground",
+            "shoppingItem": "Coriander seeds, ground",
+            "quantity": "1 g (raw edible input; filling)"
+          },
+          {
+            "item": "Ground turmeric",
+            "shoppingItem": "Ground turmeric",
+            "quantity": "0.5 g (raw edible input; filling)"
+          },
+          {
+            "item": "Cayenne chilli powder",
+            "shoppingItem": "Cayenne chilli powder",
+            "quantity": "0.2 g (raw edible input; filling)"
+          },
+          {
+            "item": "Table salt",
+            "shoppingItem": "Table salt",
+            "quantity": "0.3 g (raw edible input; filling)"
+          },
+          {
+            "item": "Water",
+            "shoppingItem": "Water",
+            "quantity": "15 g (weighed water; filling)"
+          },
+          {
+            "item": "Whole egg, shell removed",
+            "shoppingItem": "Whole egg, shell removed",
+            "quantity": "100 g (raw edible weight, approximately four medium eggs; egg coating)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "5 g (raw edible input; egg coating)"
+          },
+          {
+            "item": "Onion",
+            "shoppingItem": "Onion",
+            "quantity": "15 g (raw edible input; fresh finish)"
+          },
+          {
+            "item": "Fresh lemon juice",
+            "shoppingItem": "Fresh lemon juice",
+            "quantity": "10 g (raw edible input; fresh finish)"
+          },
+          {
+            "item": "Fresh coriander",
+            "shoppingItem": "Fresh coriander",
+            "quantity": "5 g (raw edible input; fresh finish)"
+          }
+        ]
+      },
+      "after": {
+        "ingredients": [
+          {
+            "item": "Plain white flour",
+            "shoppingItem": "Plain white flour",
+            "quantity": "80 g (dry flour; flatbreads)"
+          },
+          {
+            "item": "Water",
+            "shoppingItem": "Water",
+            "quantity": "45 g (weighed water; flatbreads)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "5 g (raw edible input; flatbreads)"
+          },
+          {
+            "item": "Table salt",
+            "shoppingItem": "Table salt",
+            "quantity": "0.3 g (raw edible input; flatbreads)"
+          },
+          {
+            "item": "Cauliflower florets",
+            "shoppingItem": "Cauliflower florets",
+            "quantity": "150 g (raw edible input; filling)"
+          },
+          {
+            "item": "Onion",
+            "shoppingItem": "Onion",
+            "quantity": "35 g (raw edible input; filling)"
+          },
+          {
+            "item": "Garlic",
+            "shoppingItem": "Garlic",
+            "quantity": "4 g (raw edible input; filling)"
+          },
+          {
+            "item": "Fresh ginger",
+            "shoppingItem": "Fresh ginger",
+            "quantity": "5 g (raw edible input; filling)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "7.5 g (raw edible input; filling)"
+          },
+          {
+            "item": "Cumin seeds, ground",
+            "shoppingItem": "Cumin seeds, ground",
+            "quantity": "1 g (raw edible input; filling)"
+          },
+          {
+            "item": "Coriander seeds, ground",
+            "shoppingItem": "Coriander seeds, ground",
+            "quantity": "1 g (raw edible input; filling)"
+          },
+          {
+            "item": "Ground turmeric",
+            "shoppingItem": "Ground turmeric",
+            "quantity": "0.5 g (raw edible input; filling)"
+          },
+          {
+            "item": "Cayenne chilli powder",
+            "shoppingItem": "Cayenne chilli powder",
+            "quantity": "0.2 g (raw edible input; filling)"
+          },
+          {
+            "item": "Table salt",
+            "shoppingItem": "Table salt",
+            "quantity": "0.3 g (raw edible input; filling)"
+          },
+          {
+            "item": "Water",
+            "shoppingItem": "Water",
+            "quantity": "15 g (weighed water; filling)"
+          },
+          {
+            "item": "Whole egg, shell removed",
+            "shoppingItem": "Whole egg, shell removed",
+            "quantity": "100 g (raw edible weight, approximately two medium eggs; egg coating)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "5 g (raw edible input; egg coating)"
+          },
+          {
+            "item": "Onion",
+            "shoppingItem": "Onion",
+            "quantity": "15 g (raw edible input; fresh finish)"
+          },
+          {
+            "item": "Fresh lemon juice",
+            "shoppingItem": "Fresh lemon juice",
+            "quantity": "10 g (raw edible input; fresh finish)"
+          },
+          {
+            "item": "Fresh coriander",
+            "shoppingItem": "Fresh coriander",
+            "quantity": "5 g (raw edible input; fresh finish)"
+          }
+        ]
+      }
+    },
+    {
+      "code": "L053",
+      "id": "chicken-shawarma-with-garlic-flatbread",
+      "changedFields": [
+        "method",
+        "equipment"
+      ],
+      "protectedFieldsSha256": "52cb9f413c93d027e451cefe4881c39f49ad583880228e2b93c29df9bab7bf16",
+      "before": {
+        "method": [
+          "Do not wash raw poultry. Flatten thigh pieces to an even thickness without mincing. Mix the shawarma lemon, garlic, oil, spices and 0.3 g salt; coat chicken and onion wedges. Cover and refrigerate for at least 60 minutes.",
+          "Mix bread flour, yeast and 0.3 g bread salt. Add 50 g water, 5 g oil and the finely crushed 2 g bread garlic. Knead about 8 minutes; cover and prove around 60 minutes until puffy. Scrape dry patches from the bowl into the mixture and work them in with your hands. Cover the bowl so the surface cannot dry out.",
+          "Judge readiness by the dough becoming visibly puffy, because a cooler kitchen may make the rise slower than the stated guide time. Do not add unmeasured dusting flour.",
+          "Crush the 3 g sauce garlic with 0.15 g sauce salt in a small mortar to a smooth paste. Whisk in 20 g sauce oil drop by drop, alternating with the 5 g sauce lemon juice and 2.5 g water. Aim for a loose emulsion rather than a large-batch restaurant toum.",
+          "Keep chilled and use this batch now; do not store garlic in oil at room temperature.",
+          "Heat oven to 220 C (200 C fan). Arrange chicken, onion and every bit of marinade in a single layer in a rimmed tray. Roast about 20-25 minutes until browned and chicken reaches 75 C for 30 seconds; extend cooking as needed.",
+          "Roll the dough into one approximately 20 cm flatbread. Cook in a hot dry heavy pan 2-3 minutes each side until cooked through with brown patches. Keep warm under a clean cloth.",
+          "Rest chicken 3 minutes, then slice thinly. Transfer tray juices and onions to the hot frying pan and bring to a bubbling simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Add sliced chicken and briefly toss to brown its edges and coat it with the cooked juices.",
+          "Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+          "Serve all chicken, onions, juices, tomato and sauce with the one garlic flatbread."
+        ],
+        "equipment": "0.1 g scales, mixing bowls, knife, board, rolling pin, rimmed roasting tray, heavy frying pan, small mortar and whisk, clean probe thermometer, Saucepan, Oven, Lid or bowl cover"
+      },
+      "after": {
+        "method": [
+          "Do not wash raw poultry. Flatten thigh pieces to an even thickness without mincing. Mix the shawarma lemon, garlic, oil, spices and 0.3 g salt; coat chicken and onion wedges. Cover and refrigerate for at least 60 minutes.",
+          "While the chicken marinates, mix bread flour, yeast and 0.3 g bread salt. Add 50 g water, 5 g oil and the finely crushed 2 g bread garlic. Knead about 8 minutes; cover and prove around 60 minutes until puffy. Scrape dry patches from the bowl into the mixture and work them in with your hands. Cover the bowl so the surface cannot dry out.",
+          "Judge readiness by the dough becoming visibly puffy, because a cooler kitchen may make the rise slower than the stated guide time. Do not add unmeasured dusting flour.",
+          "Crush the 3 g sauce garlic with 0.15 g sauce salt in a small mortar to a smooth paste. Whisk in 20 g sauce oil drop by drop, alternating with the 5 g sauce lemon juice and 2.5 g water. Aim for a loose emulsion rather than a large-batch restaurant toum.",
+          "Keep chilled and use this batch now; do not store garlic in oil at room temperature.",
+          "Heat oven to 220 C (200 C fan). Arrange chicken, onion and every bit of marinade in a single layer in a rimmed tray. Roast about 20-25 minutes until browned and chicken reaches 75 C for 30 seconds; extend cooking as needed.",
+          "While the chicken roasts, roll the dough into one approximately 20 cm flatbread. Cook in a hot dry heavy pan 2-3 minutes each side until cooked through with brown patches. Keep warm under a clean cloth.",
+          "Rest chicken 3 minutes, then slice thinly. Transfer tray juices and onions to the hot frying pan and bring to a bubbling simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Add sliced chicken and briefly toss to brown its edges and coat it with the cooked juices.",
+          "Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+          "Serve all chicken, onions, juices, tomato and sauce with the one garlic flatbread."
+        ],
+        "equipment": "0.1 g scales, mixing bowls, knife, board, rolling pin, rimmed roasting tray, heavy frying pan, small mortar and whisk, clean probe thermometer, Saucepan, Oven, Lid or bowl cover, Cloth or lid to keep the flatbread warm"
+      }
+    },
+    {
+      "code": "L065",
+      "id": "soft-fish-tacos-with-lime-slaw",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "d22504add402666ccd125dd06cba531e74dcac1a0d79fedef7bd2e37edc17298",
+      "before": {
+        "method": [
+          "Shred cabbage and onion finely and toss with yoghurt, slaw lime, coriander and chilli. Do not drain or discard the yoghurt dressing. Use a colander and let the cooking water run away completely. Do not return that water to the sauce or mash: draining it away is part of this preparation.",
+          "Cut cod into large strips and coat with fish oil, cumin, paprika, crushed garlic, salt and fish lime. Heat a non-stick frying pan over medium-high heat.",
+          "Sear fish 3-4 minutes on each broad side until cooked through, handling gently. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent. Add any remaining coating to the pan and heat fully; serve all cooked juices.",
+          "Brush tortillas with the measured 4 g finish oil, then warm briefly on both sides in a dry second pan. Divide fish and complete slaw between the tortillas and serve all as one serving.",
+          "Check that the fish is steaming hot and cooked throughout, with opaque flesh that flakes easily."
+        ]
+      },
+      "after": {
+        "method": [
+          "Shred cabbage and onion finely and toss with yoghurt, slaw lime, coriander and chilli. Do not drain or discard the yoghurt dressing.",
+          "Cut cod into large strips and coat with fish oil, cumin, paprika, crushed garlic, salt and fish lime. Heat a non-stick frying pan over medium-high heat.",
+          "Sear fish 3-4 minutes on each broad side until cooked through, handling gently. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent. Add any remaining coating to the pan and heat fully; serve all cooked juices.",
+          "Brush tortillas with the measured 4 g finish oil, then warm briefly on both sides in a dry second pan. Divide fish and complete slaw between the tortillas and serve all as one serving.",
+          "Check that the fish is steaming hot and cooked throughout, with opaque flesh that flakes easily."
+        ]
+      }
+    },
+    {
+      "code": "L076",
+      "id": "black-bean-and-sweetcorn-cakes-with-lime-slaw",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "00ec1f45d563eb86c58a82e9bc4ecbff629c2c33e17495cd455138daf752dcb6",
+      "before": {
+        "method": [
+          "Use black beans previously boiled without salt and drained. Mash them and mix with the masa harina, sweetcorn, finely chopped onion, cumin and 20 g of the measured water. Form three thin cakes.",
+          "Heat three quarters of the oil in a non-stick pan. Cook the cakes over medium-low heat for 5–6 minutes per side until firm, fully cooked and steaming hot. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+          "Shred the cabbage and dice the tomato. Mix the lime juice, remaining oil, remaining 15 g water and chopped coriander into a dressing. Serve all the cakes with all the slaw and dressing."
+        ]
+      },
+      "after": {
+        "method": [
+          "Use black beans previously boiled without salt and drained. Mash them and mix with the masa harina, sweetcorn, finely chopped onion, cumin and 20 g of the measured water. Form three thin cakes.",
+          "Heat three quarters of the oil in a non-stick pan. Cook the cakes over medium-low heat for 5–6 minutes per side until firm, fully cooked and steaming hot. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+          "Shred the cabbage and dice the tomato. Mix the lime juice, remaining oil, remaining 25 g water and chopped coriander into a dressing. Serve all the cakes with all the slaw and dressing."
+        ]
+      }
+    },
+    {
+      "code": "L083",
+      "id": "crisp-rice-pancakes-with-cabbage-and-peanut-dressing",
+      "changedFields": [
+        "method",
+        "equipment",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "451af931f4b15225bcadb31e210d7c3ee6d9d9501cd5a6c8f6bc378e85c90c5e",
+      "before": {
+        "method": [
+          "Whisk the rice flour with 90 g of the water and one third of the oil. Rest for 10 minutes. Finely chop the cabbage, onion and ginger.",
+          "Cook the vegetables in another third of the oil with 17.5 g of the water for 7–8 minutes. Stir in the cumin and cooked, drained chickpeas and heat through.",
+          "Brush a non-stick pan with the remaining oil. Use all the batter to make three thin pancakes, cooking each for 2–3 minutes per side until the rice flour is fully cooked.",
+          "Blend the peanuts, lime juice and remaining 17.5 g water. Fill all the pancakes with all the chickpeas and vegetables, scatter with coriander and serve with all the dressing."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan, Blender or food processor",
+        "cookingTime": "35 mins"
+      },
+      "after": {
+        "method": [
+          "Whisk the rice flour with 90 g of the water and one third of the oil. Rest for 10 minutes. Finely chop the cabbage, onion and ginger.",
+          "While the batter rests, cook the vegetables in another third of the oil with 17.5 g of the water for 7–8 minutes. Stir in the cumin and cooked, drained chickpeas and heat through.",
+          "Keep the filling covered over the lowest heat while cooking the pancakes. Brush a second non-stick pan with the remaining oil. Use all the batter to make three thin pancakes, cooking each for 2–3 minutes per side until the rice flour is fully cooked. Stack the cooked pancakes on a warm plate and cover until all three are ready to fill.",
+          "Blend the peanuts, lime juice and remaining 17.5 g water. Fill all the pancakes with all the chickpeas and vegetables, scatter with coriander and serve with all the dressing."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Frying pan, Blender or food processor, Second frying pan",
+        "cookingTime": "40 mins"
+      }
+    },
+    {
+      "code": "L087",
+      "id": "salmon-and-cucumber-rice-salad",
+      "changedFields": [
+        "equipment"
+      ],
+      "protectedFieldsSha256": "70e1f3394a4d746e99143194d4be524cbc98652a8a4bb79abcd8c6b748793934",
+      "before": {
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Lid or bowl cover, Baking tray"
+      },
+      "after": {
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Lid or bowl cover, Baking tray, Saucepan"
+      }
+    },
+    {
+      "code": "L088",
+      "id": "tofu-cabbage-and-ginger-pancakes",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "e79d4d757f1fb72be603bef0cef7a210ee4eca44b330e5d7ee1f68fdce9ba412",
+      "before": {
+        "method": [
+          "Use regular calcium-sulphate tofu, gently drained without pressing. Mash the weighed tofu and mix with the rice flour, finely shredded cabbage and carrot, crushed garlic, grated ginger and 20 g of the water. Rest for 5 minutes.",
+          "Heat the rapeseed oil in a non-stick pan. Cook four small, thin pancakes over medium-low heat for 4–5 minutes per side until firm and fully cooked, using all the oil across the batches.",
+          "Mix the sesame oil, soy sauce, lime juice and remaining 20 g water. Serve all four pancakes with all the dip."
+        ]
+      },
+      "after": {
+        "method": [
+          "Use regular calcium-sulphate tofu, gently drained without pressing. Mash the weighed tofu and mix with the rice flour, finely shredded cabbage and carrot, crushed garlic, grated ginger and 20 g of the water. Rest for 5 minutes.",
+          "Heat all the rapeseed oil in a wide non-stick pan large enough to hold all four small pancakes without crowding. Cook four small, thin pancakes over medium-low heat for 4–5 minutes per side until firm and fully cooked, in one batch.",
+          "Mix the sesame oil, soy sauce, lime juice and remaining 20 g water. Serve all four pancakes with all the dip."
+        ]
+      }
+    },
+    {
+      "code": "L096",
+      "id": "black-beans-and-rice-with-lime-dressed-cabbage",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "b072dfa9c79a02148c85aef4756ac2c3e1bd3de1f9178ae4575f3d60d6f91eb1",
+      "before": {
+        "method": [
+          "Cook the rice with 65 g of the measured water, covered, for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Soften the chopped onion and garlic in two thirds of the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the cooked, drained black beans, remaining 15 g water and pepper. Simmer for 5–7 minutes, mashing a spoonful of beans to thicken. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Toss the shredded cabbage and chopped parsley with the remaining oil and lime juice. Serve all the beans, rice and salad."
+        ]
+      },
+      "after": {
+        "method": [
+          "Cook the rice with 65 g of the measured water, covered, for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Soften the chopped onion and garlic in two thirds of the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the cooked, drained black beans, remaining 35 g water and pepper. Simmer for 5–7 minutes, mashing a spoonful of beans to thicken. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Toss the shredded cabbage and chopped parsley with the remaining oil and lime juice. Serve all the beans, rice and salad."
+        ]
+      }
+    },
+    {
+      "code": "L098",
+      "id": "black-eyed-pea-and-tomato-stew-with-soft-polenta",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "bfcb7776c7f6061dd06d0cad4eeacedd4f1d0e7def10b97540751d8f7bfdf851",
+      "before": {
+        "method": [
+          "Bring 130 g of the water to a gentle simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Whisk in the cornmeal and cook over low heat for 20–25 minutes, stirring often, until fully tender. Cover off the heat if ready early.",
+          "Meanwhile soften the chopped onion, ginger and garlic in the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add chopped tomato, paprika, chilli and remaining 50 g water and simmer for 8 minutes.",
+          "Add the cooked, drained black-eyed peas and simmer for 5–7 minutes until hot and thickened. Serve all the stew over all the polenta."
+        ]
+      },
+      "after": {
+        "method": [
+          "Bring 175 g of the water to a gentle simmer. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Whisk in the cornmeal and cook over low heat for 20–25 minutes, stirring often, until fully tender. Cover off the heat if ready early.",
+          "Meanwhile soften the chopped onion, ginger and garlic in the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add chopped tomato, paprika, chilli and remaining 50 g water and simmer for 8 minutes.",
+          "Add the cooked, drained black-eyed peas and simmer for 5–7 minutes until hot and thickened. Serve all the stew over all the polenta."
+        ]
+      }
+    },
+    {
+      "code": "L110",
+      "id": "ginger-chicken-and-carrot-rice-bowl",
+      "changedFields": [
+        "equipment"
+      ],
+      "protectedFieldsSha256": "b158b48ccae2e41f616a1360b294bbaa114a69ba168f2959561ca199a970f2a0",
+      "before": {
+        "equipment": "Kitchen scales, Knife and chopping board, Grater, Food thermometer, Lid or bowl cover"
+      },
+      "after": {
+        "equipment": "Kitchen scales, Knife and chopping board, Grater, Food thermometer, Lid or bowl cover, Saucepan, Frying pan"
+      }
+    },
+    {
+      "code": "L111",
+      "id": "tuna-and-cucumber-rice-salad",
+      "changedFields": [
+        "equipment"
+      ],
+      "protectedFieldsSha256": "ec8e92e29026edcd234e650204912fad56af342f81a8936dac73df8b77ebbf94",
+      "before": {
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Grater, Lid or bowl cover"
+      },
+      "after": {
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Grater, Lid or bowl cover, Saucepan"
+      }
+    },
+    {
+      "code": "L112",
+      "id": "chive-and-spinach-rice-pancakes",
+      "changedFields": [
+        "method",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "00d7e6e743f586a83335509868de485579b1af8c14fdb26c4cbc6380d915bb3f",
+      "before": {
+        "method": [
+          "Whisk the rice flour, weighed whole egg, egg white, measured water and salt into a smooth batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes.",
+          "Finely chop the spinach and chives and stir into the batter.",
+          "Divide all the oil between three batches in a non-stick pan. Cook three medium pancakes for 3–4 minutes per side until the egg and rice flour are fully cooked. Serve all three."
+        ],
+        "cookingTime": "30 mins"
+      },
+      "after": {
+        "method": [
+          "Whisk the rice flour, weighed whole egg, egg white, measured water and salt into a smooth batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes.",
+          "Finely chop the spinach and chives and stir into the batter.",
+          "Divide all the oil between three batches in a non-stick pan. Cook three medium pancakes for 3–4 minutes per side until the egg and rice flour are fully cooked. Keep the finished pancakes covered on a warm plate while cooking the remaining batches, then serve all three together."
+        ],
+        "cookingTime": "40 mins"
+      }
+    },
+    {
+      "code": "L113",
+      "id": "basil-cod-with-warm-rice-salad",
+      "changedFields": [
+        "equipment"
+      ],
+      "protectedFieldsSha256": "910b7cf7385a08219c90cf9e5c1e1de8a87720be2ce2777df2cd4d38684ce43f",
+      "before": {
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Grater, Lid or bowl cover, Baking tray"
+      },
+      "after": {
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Grater, Lid or bowl cover, Baking tray, Saucepan"
+      }
+    },
+    {
+      "code": "L116",
+      "id": "white-bean-and-brown-rice-salad",
+      "changedFields": [
+        "method",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "054b4b692b78f43d57b82a3c39a6b04de6b06b39b8bab66ebd6408dca6aca244",
+      "before": {
+        "method": [
+          "Simmer the brown rice in 70 g of the water, covered, for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 40 g water and simmer for another 12–15 minutes until both are tender; retain any liquid.",
+          "Use navy beans previously boiled without salt and drained. Dice the cucumber and pepper and chop the parsley and walnuts. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
+          "Mix the oil and lemon juice and toss with all the rice, beans, vegetables, herbs and walnuts. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Serve the entire portion."
+        ],
+        "cookingTime": "30 mins"
+      },
+      "after": {
+        "method": [
+          "Simmer the brown rice in 70 g of the water, covered, for 15 minutes. Add the white rice and remaining 40 g water and simmer for another 12–15 minutes until both are tender; retain any liquid. Check both types of rice are tender, then rest covered off the heat for 5 minutes before loosening with a fork.",
+          "Use navy beans previously boiled without salt and drained. Dice the cucumber and pepper and chop the parsley and walnuts. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
+          "Mix the oil and lemon juice and toss with all the rice, beans, vegetables, herbs and walnuts. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Serve the entire portion."
+        ],
+        "cookingTime": "40 mins"
+      }
+    },
+    {
+      "code": "L117",
+      "id": "lemon-chickpea-and-quinoa-bowl",
+      "changedFields": [
+        "equipment"
+      ],
+      "protectedFieldsSha256": "392e60bc2b4189ee914d2d2c09667aae0bcf60e541d669ea8baf2e4403b696fd",
+      "before": {
+        "equipment": "Kitchen scales, Knife and chopping board, Lid or bowl cover"
+      },
+      "after": {
+        "equipment": "Kitchen scales, Knife and chopping board, Lid or bowl cover, Saucepan, Frying pan"
+      }
+    },
+    {
+      "code": "L118",
+      "id": "oat-and-carrot-pancakes-with-white-beans",
+      "changedFields": [
+        "method",
+        "equipment"
+      ],
+      "protectedFieldsSha256": "7930d63be964801a311b30b5bcf7245fbbcb07fd5a7fd7a3862e4fc5b7caafa3",
+      "before": {
+        "method": [
+          "Grind the oats to a coarse flour. Mix with the egg white and measured water and rest for 10 minutes.",
+          "Mash the cooked, drained navy beans and stir into the batter with finely grated carrot, chives and pepper. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan.",
+          "Heat all the oil in a non-stick pan and cook three thin pancakes for 4–5 minutes per side until fully set and the carrots are tender. Mix the yoghurt and lemon juice and serve with all three pancakes."
+        ],
+        "equipment": "Kitchen scales, Mixing bowl, Frying pan, Grater"
+      },
+      "after": {
+        "method": [
+          "Grind the oats to a coarse flour. Mix with the egg white and measured water and rest for 10 minutes.",
+          "Mash the cooked, drained navy beans and stir into the batter with finely grated carrot, chives and pepper. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan.",
+          "Heat all the oil in a wide non-stick pan large enough to hold three thin pancakes without crowding. Cook all three in one batch for 4–5 minutes per side until fully set and the carrots are tender. Mix the yoghurt and lemon juice and serve with all three pancakes."
+        ],
+        "equipment": "Kitchen scales, Mixing bowl, Frying pan, Grater, Blender or grinder"
+      }
+    },
+    {
+      "code": "L120",
+      "id": "ginger-tofu-and-brown-rice-bowl",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "82233998fcc96f61fb6ad2dfde9f0f3acbae73fb5bfcf8e0aa061e430f66445b",
+      "before": {
+        "method": [
+          "Simmer the brown rice in 80 g of the water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 40 g water and cook covered for another 12–15 minutes until tender, retaining any liquid.",
+          "Use regular calcium-sulphate tofu, gently drained without pressing. Cube it and cook in the oil for 5 minutes. Add finely shredded carrot, cabbage and ginger, cover and cook for 6–8 minutes until tender.",
+          "Add the soy sauce, coriander and sesame. Serve all the tofu, vegetables and edible juices with all the rice."
+        ]
+      },
+      "after": {
+        "method": [
+          "Simmer the brown rice in 80 g of the water, covered, for 15 minutes. Add the white rice and remaining 40 g water and cook covered for another 12–15 minutes until tender, retaining any liquid. Check both types of rice are tender, then rest covered off the heat for 5 minutes before loosening with a fork.",
+          "While the rice cooks, use regular calcium-sulphate tofu, gently drained without pressing. Cube it and cook in the oil for 5 minutes. Add finely shredded carrot, cabbage and ginger, cover and cook for 6–8 minutes until tender.",
+          "Add the soy sauce, coriander and sesame. Serve all the tofu, vegetables and edible juices with all the rice."
+        ]
+      }
+    },
+    {
+      "code": "D001",
+      "id": "lemon-herb-chicken-rice",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "44ede0ed689438b4bd4f39a3b293c094a65c050741e6907355c8ba689827ab4e",
+      "before": {
+        "method": [
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the cabbage and onion in unsalted water until tender, then drain well.",
+          "Brush the chicken with a little of the olive oil and cook in a hot griddle pan until cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+          "Add the remaining olive oil, lemon juice and dried parsley to the cooked vegetables and toss gently.",
+          "Serve the chicken with the rice and vegetables."
+        ]
+      },
+      "after": {
+        "method": [
+          "The listed 70 g of chicken is the cooked edible weight. Cook a plain portion as directed below, then weigh out 70 g after cooking for this meal; it is not a 70 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the cabbage and onion in unsalted water until tender, then drain well.",
+          "Brush the chicken with a little of the olive oil and cook in a hot griddle pan until cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Weigh the cooked chicken now and use the listed 70 g portion.",
+          "Add the remaining olive oil, lemon juice and dried parsley to the cooked vegetables and toss gently.",
+          "Serve the chicken with the rice and vegetables."
+        ]
+      }
+    },
+    {
+      "code": "D002",
+      "id": "turkey-rosemary-rice",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "d71d6052e04f3722d99c3eb0eddc9c13e62467569536440f92c21d2df516c8fd",
+      "before": {
+        "method": [
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the cabbage and carrots in unsalted water until tender, then drain.",
+          "Rub the turkey with the dried rosemary.",
+          "Heat half the olive oil in a frying pan and cook the turkey until browned and cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
+          "Toss the vegetables with the remaining olive oil and serve with the turkey and rice. Use a fork or broad spoon and a light lifting motion so the grains stay separate."
+        ]
+      },
+      "after": {
+        "method": [
+          "The listed 60 g of turkey is the cooked edible weight. Cook a plain portion as directed below, then weigh out 60 g after cooking for this meal; it is not a 60 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the cabbage and carrots in unsalted water until tender, then drain.",
+          "Rub the turkey with the dried rosemary.",
+          "Heat half the olive oil in a frying pan and cook the turkey until browned and cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Weigh the cooked turkey now and use the listed 60 g portion.",
+          "Toss the vegetables with the remaining olive oil and serve with the turkey and rice. Use a fork or broad spoon and a light lifting motion so the grains stay separate."
+        ]
+      }
+    },
+    {
+      "code": "D003",
+      "id": "pork-herb-rice",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "a85b75804738cb9dcf746d2eb050b6488e09582a650842e07f7fd678e894db7c",
+      "before": {
+        "method": [
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the carrots and cabbage in unsalted water until tender, then drain well.",
+          "Season the pork with the dried thyme.",
+          "Heat half the olive oil in a griddle pan and cook the pork until cooked through.",
+          "Toss the vegetables with the remaining olive oil and serve with the pork and rice. Use a fork or broad spoon and a light lifting motion so the grains stay separate."
+        ]
+      },
+      "after": {
+        "method": [
+          "The listed 80 g of pork is the cooked edible weight. Cook a plain portion as directed below, then weigh out 80 g after cooking for this meal; it is not a 80 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the carrots and cabbage in unsalted water until tender, then drain well.",
+          "Season the pork with the dried thyme.",
+          "Heat half the olive oil in a griddle pan and cook the pork until cooked through. Weigh the cooked pork now and use the listed 80 g portion.",
+          "Toss the vegetables with the remaining olive oil and serve with the pork and rice. Use a fork or broad spoon and a light lifting motion so the grains stay separate."
+        ]
+      }
+    },
+    {
+      "code": "D004",
+      "id": "lemon-cod-rice",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "fda64270b708e620ac849e1e99befecc9a2586e03860611f11164ccb7860a003",
+      "before": {
+        "method": [
+          "Preheat the oven to 200°C (180°C fan).",
+          "Place the cod on a baking tray and bake until cooked through and opaque. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the cabbage and onion in unsalted water until tender, then drain.",
+          "Drizzle the olive oil and lemon juice over the vegetables and finish with dried parsley.",
+          "Serve the cod with the rice and vegetables."
+        ]
+      },
+      "after": {
+        "method": [
+          "The listed 100 g of cod is the cooked edible weight. Cook a plain portion as directed below, then weigh out 100 g after cooking for this meal; it is not a 100 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
+          "Preheat the oven to 200°C (180°C fan).",
+          "Place the cod on a baking tray and bake until cooked through and opaque. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Weigh the cooked cod now and use the listed 100 g portion.",
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the cabbage and onion in unsalted water until tender, then drain.",
+          "Drizzle the olive oil and lemon juice over the vegetables and finish with dried parsley.",
+          "Serve the cod with the rice and vegetables."
+        ]
+      }
+    },
+    {
+      "code": "D005",
+      "id": "lemon-salmon-rice",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "b2c08979864bf6a2175fb76869875db99471449182c2ffdc4340e04fb1f60b49",
+      "before": {
+        "method": [
+          "Preheat the oven to 200°C (180°C fan).",
+          "Place the salmon on a baking tray and bake until cooked through. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent.",
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the cabbage and onion in unsalted water until tender, then drain.",
+          "Toss the vegetables with the olive oil and lemon juice.",
+          "Serve the salmon with the rice and vegetables."
+        ]
+      },
+      "after": {
+        "method": [
+          "The listed 80 g of salmon is the cooked edible weight. Cook a plain portion as directed below, then weigh out 80 g after cooking for this meal; it is not a 80 g raw starting portion. Keep any extra cooked food separate from this serving. For vegetables listed as boiled, weigh the stated gram amounts after boiling and draining; the whole-vegetable fractions are approximate shopping guides.",
+          "Preheat the oven to 200°C (180°C fan).",
+          "Place the salmon on a baking tray and bake until cooked through. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Check the thickest part: it should be opaque, steaming hot and separate readily into flakes with a fork. Continue cooking if the centre is still cool or translucent. Weigh the cooked salmon now and use the listed 80 g portion.",
+          "Cook the basmati rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Boil the cabbage and onion in unsalted water until tender, then drain.",
+          "Toss the vegetables with the olive oil and lemon juice.",
+          "Serve the salmon with the rice and vegetables."
+        ]
+      }
+    },
+    {
+      "code": "D061",
+      "id": "saffron-chicken-with-jewelled-rice",
+      "changedFields": [
+        "equipment"
+      ],
+      "protectedFieldsSha256": "36c9fcd3c59c825b142cc4596df37a1a4c999cd7d6652733a14e0cef72ae2363",
+      "before": {
+        "equipment": "Kitchen scales, Knife and chopping board, Grater, Food thermometer, Lid or bowl cover"
+      },
+      "after": {
+        "equipment": "Kitchen scales, Knife and chopping board, Grater, Food thermometer, Lid or bowl cover, Saucepan, Second saucepan"
+      }
+    },
+    {
+      "code": "D078",
+      "id": "light-chicken-stew-with-seasoned-rice",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "43e6a4c5aca5bd896a685ae22f47d58f9f74c99a650bc650f51e408f2c8d5239",
+      "before": {
+        "method": [
+          "Do not wash raw poultry, and use clean utensils for the cooked food. Blend tomato, half the stew onion, ginger, garlic and chilli. Slice the remaining stew onion. Brown chicken gently in half the stew oil for 6 minutes, then set aside with its juices.",
+          "Soften sliced onion in remaining stew oil for 8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add blended vegetables and cook uncovered 25-30 minutes until the raw tomato flavour mellows.",
+          "Return chicken and juices with coriander, pepper, stew salt and listed stew water. Cover and simmer 25-30 minutes until chicken is tender and safely cooked. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds.",
+          "Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Keep a looser sauce than jollof base.",
+          "For seasoned rice, soften its finely chopped onion and ginger in 7.5 g oil for 5 minutes. Add rice, rice water and rice salt, cover and simmer 12-15 minutes, then rest 10 minutes.",
+          "Serve all the separate seasoned rice and stew as one serving. No step cooks rice in the tomato base, preserving its distinction from D077."
+        ]
+      },
+      "after": {
+        "method": [
+          "Do not wash raw poultry, and use clean utensils for the cooked food. Blend tomato, half the stew onion, ginger, garlic and chilli. Slice the remaining stew onion. Brown chicken gently in half the stew oil for 6 minutes, then set aside with its juices.",
+          "Soften sliced onion in remaining stew oil for 8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add blended vegetables and cook uncovered 25-30 minutes until the raw tomato flavour mellows.",
+          "Return chicken and juices with coriander, pepper, stew salt and listed stew water. Start the seasoned rice in a second pan as soon as this final simmer begins. Cover the stew and simmer 25-30 minutes until chicken is tender and safely cooked. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds.",
+          "Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Keep a looser sauce than jollof base.",
+          "While the stew completes its final simmer, for the seasoned rice, soften its finely chopped onion and ginger in 7.5 g oil for 5 minutes. Add rice, rice water and rice salt, cover and simmer 12-15 minutes, then rest 10 minutes.",
+          "Keep the stew covered over the lowest heat if it finishes before the rice. Serve all the separate seasoned rice and stew as one serving. No step cooks rice in the tomato base, preserving its distinction from D077."
+        ]
+      }
+    },
+    {
+      "code": "D081",
+      "id": "chicken-and-mushroom-puff-pastry-pie",
+      "changedFields": [
+        "method",
+        "equipment"
+      ],
+      "protectedFieldsSha256": "36b14a7a80f5ef301cb401235960f74a0b676bdadbe97925c03ac8e05505c33d",
+      "before": {
+        "method": [
+          "Do not wash raw poultry, and use clean utensils for the cooked food. Use uncooked retail puff pastry, not cooked pastry weight. Cut chicken into 2 cm pieces and slice mushrooms and onion. Heat oil and filling butter in a wide saucepan; soften onion 7 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+          "Add chicken and mushrooms and cook 10-12 minutes until chicken is safely cooked and released mushroom liquid has reduced. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Add garlic, thyme and flour; stir 1 minute, then gradually add milk and cream. Simmer 5 minutes, season and cool the thick filling until it stops steaming.",
+          "Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Heat oven to 210 C conventional or 190 C fan. Transfer filling to a 14 cm deep pie dish. Roll pastry between baking paper to cover the dish without added flour. Lay over the filling, crimp edges and make two steam slits. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+          "Brush all 20 g beaten egg over the lid and exposed pastry scraps; bake scraps beside the pie and include them in this serving. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Bake 30-40 minutes until pastry is risen and cooked underneath and filling is piping hot.",
+          "Rest 10 minutes and serve the whole small pie, including all the filling, lid and pastry scraps, as one serving. Product butter/vegetable-fat formulation and additive labels remain a required check.",
+          "Cook the egg mixture until fully set."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Saucepan, Oven, Steamer and saucepan, Food thermometer, Lid or bowl cover, Ovenproof dish"
+      },
+      "after": {
+        "method": [
+          "Do not wash raw poultry, and use clean utensils for the cooked food. Use uncooked retail puff pastry, not cooked pastry weight. Cut chicken into 2 cm pieces and slice mushrooms and onion. Heat oil and filling butter in a wide saucepan; soften onion 7 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender.",
+          "Add chicken and mushrooms and cook 10-12 minutes until chicken is safely cooked and released mushroom liquid has reduced. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food. Add garlic, thyme and flour; stir 1 minute, then gradually add milk and cream. Simmer 5 minutes, season and cool the thick filling until it stops steaming.",
+          "Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Heat oven to 210 C conventional or 190 C fan. Transfer filling to a 14 cm deep pie dish. Roll pastry between baking paper to cover the dish without added flour. Lay over the filling, crimp edges and make two steam slits.",
+          "Brush all 20 g beaten egg over the lid and exposed pastry scraps; bake scraps beside the pie and include them in this serving. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Bake 30-40 minutes until pastry is risen and cooked underneath and filling is piping hot.",
+          "Rest 10 minutes and serve the whole small pie, including all the filling, lid and pastry scraps, as one serving. Product butter/vegetable-fat formulation and additive labels remain a required check.",
+          "Cook the egg mixture until fully set."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Saucepan, Oven, Food thermometer, Lid or bowl cover, Ovenproof dish"
+      }
+    },
+    {
+      "code": "D083",
+      "id": "roasted-pepper-and-white-bean-lasagne",
+      "changedFields": [
+        "method",
+        "equipment",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "af0bbb73c97b8bb7c033656ab911c79a64006f64bcb32b807ca2971c4455f0b5",
+      "before": {
+        "method": [
+          "Heat the oven to 200°C, or 180°C fan. Finely dice the pepper and onion. Cook in half the oil for 8 minutes. Add crushed garlic, cooked drained navy beans and 20 g of the measured water and simmer for 3 minutes. Look for small, gentle bubbles rather than a rolling boil.",
+          "Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Mash some beans to thicken.",
+          "In a small pan, stir the flour into one quarter of the oil. Gradually whisk in the milk and remaining 45 g water. Simmer for 3 minutes, then stir in the ricotta, chopped basil and pepper.",
+          "Use no-preboil dry white lasagne sheets. Layer all the beans, pasta and sauce in a small baking dish, with sauce covering every pasta edge. Chop the walnuts and mix with the remaining oil for the topping. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
+          "Cover tightly and bake for 30 minutes. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Uncover, scatter over all the walnut topping and bake for another 8–10 minutes until the pasta is tender and the centre is steaming hot. Rest for 5 minutes and serve the whole bake.",
+          "Use vegetarian-rennet cheese for the vegetarian version specified here."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Lid or bowl cover, Colander or sieve, Ovenproof dish",
+        "cookingTime": "55 mins"
+      },
+      "after": {
+        "method": [
+          "Heat the oven to 200°C, or 180°C fan. Finely dice the pepper and onion. Cook in half the oil for 8 minutes. Add crushed garlic, cooked drained navy beans and 20 g of the measured water and simmer for 3 minutes. Look for small, gentle bubbles rather than a rolling boil.",
+          "Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Mash some beans to thicken.",
+          "While the vegetables cook, in a second small pan, stir the flour into one quarter of the oil. Gradually whisk in the milk and remaining 45 g water. Simmer for 3 minutes, then stir in the ricotta, chopped basil and pepper.",
+          "Use no-preboil dry white lasagne sheets. Layer all the beans, pasta and sauce in a small baking dish, with sauce covering every pasta edge. Chop the walnuts and mix with the remaining oil for the topping. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste.",
+          "Cover tightly and bake for 30 minutes. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Uncover, scatter over all the walnut topping and bake for another 8–10 minutes until the pasta is tender and the centre is steaming hot. Rest for 5 minutes and serve the whole bake.",
+          "Use vegetarian-rennet cheese for the vegetarian version specified here."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Lid or bowl cover, Colander or sieve, Ovenproof dish, Second saucepan",
+        "cookingTime": "70 mins"
+      }
+    },
+    {
+      "code": "D084",
+      "id": "turkey-and-leek-pie-with-walnut-pastry",
+      "changedFields": [
+        "method",
+        "equipment"
+      ],
+      "protectedFieldsSha256": "9cb02facb124e978265ff33723501e8ac14e81181c46bc7536039996b19ac7c6",
+      "before": {
+        "method": [
+          "Heat the oven to 200°C, or 180°C fan. Grind the walnuts finely. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste. Mix with 45 g of the flour, 17 g of the oil and 20 g of the water to make a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands.",
+          "Cover and rest while making the filling.",
+          "Dice the turkey and slice the leek and carrot thinly. Cook in the remaining 11 g oil for 5 minutes. Stir in the remaining 5 g flour and thyme, then gradually add the milk and remaining 90 g water. Simmer for 8–10 minutes until the vegetables are tender and the sauce thickens.",
+          "Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Stir in the parsley and pepper and transfer all the filling and sauce to a small pie dish. Roll the pastry between non-stick sheets without extra flour and place over the top. Make a steam slit. Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
+          "Bake for 25–30 minutes until the pastry is cooked and the centre of the turkey filling reaches 75°C for 30 seconds. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the whole pie."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Oven, Steamer and saucepan, Food thermometer, Lid or bowl cover, Ovenproof dish"
+      },
+      "after": {
+        "method": [
+          "Heat the oven to 200°C, or 180°C fan. Grind the walnuts finely. Keep the nuts together on the board and chop to a similar size. Leave some texture where the recipe uses them as a topping, rather than turning them into a smooth paste. Mix with 45 g of the flour, 17 g of the oil and 20 g of the water to make a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands.",
+          "Cover and rest while making the filling.",
+          "Dice the turkey and slice the leek and carrot thinly. Cook in the remaining 11 g oil for 5 minutes. Stir in the remaining 5 g flour and thyme, then gradually add the milk and remaining 90 g water. Simmer for 8–10 minutes until the vegetables are tender and the sauce thickens.",
+          "Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Stir in the parsley and pepper and transfer all the filling and sauce to a small pie dish. Roll the pastry between non-stick sheets without extra flour and place over the top. Make a steam slit.",
+          "Bake for 25–30 minutes until the pastry is cooked and the centre of the turkey filling reaches 75°C for 30 seconds. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the whole pie."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Saucepan, Oven, Food thermometer, Lid or bowl cover, Ovenproof dish"
+      }
+    },
+    {
+      "code": "D086",
+      "id": "vegetable-and-chickpea-tagine-with-almond-couscous",
+      "changedFields": [
+        "method",
+        "equipment"
+      ],
+      "protectedFieldsSha256": "79f14ddf00ef60b1185acfab70cce61c94d1ad1c27a1acd039e7f1ec5cd16271",
+      "before": {
+        "method": [
+          "Soften the chopped onion in three fifths of the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add cumin, cinnamon and ginger for 30 seconds.",
+          "Add diced carrot, courgette and tomato, cooked drained chickpeas and 65 g of the measured water. Cover and simmer for 20–25 minutes until tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Bring the remaining 100 g water to a boil in a separate pan. Stir in the couscous, cover, turn off the heat and leave for 5–7 minutes.",
+          "Fluff the couscous and fold in the remaining oil, chopped almonds and half the lemon juice. Add the remaining lemon juice and chopped coriander to the tagine. Serve both whole portions."
+        ],
+        "equipment": "Kitchen scales, Saucepan, Lid or bowl cover"
+      },
+      "after": {
+        "method": [
+          "Soften the chopped onion in three fifths of the oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add cumin, cinnamon and ginger for 30 seconds.",
+          "Add diced carrot, courgette and tomato, cooked drained chickpeas and 65 g of the measured water. Cover and simmer for 20–25 minutes until tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "During the final 10 minutes of the tagine simmer, bring the remaining 100 g water to a boil in a separate pan. Stir in the couscous, cover, turn off the heat and leave for 5–7 minutes.",
+          "Fluff the couscous and fold in the remaining oil, chopped almonds and half the lemon juice. Add the remaining lemon juice and chopped coriander to the tagine. Serve both whole portions."
+        ],
+        "equipment": "Kitchen scales, Saucepan, Lid or bowl cover, Second saucepan"
+      }
+    },
+    {
+      "code": "D092",
+      "id": "cabbage-rolls-with-barley-mushrooms-and-seitan",
+      "changedFields": [
+        "method",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "d6d556a9f9f0e9429f6a46b619cbd7c7d0ccb7a8099f18c3f719462b2e607de7",
+      "before": {
+        "method": [
+          "Mix 20 g pure vital wheat gluten with 30 g of the water into a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Knead for 2 minutes, rest for 5 minutes, flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked.",
+          "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Keep the entire portion and chop finely.",
+          "Simmer the barley in 120 g of the water, covered, for 15 minutes. Add the rice and cook for another 15–20 minutes until both grains are tender, keeping all liquid.",
+          "Steam the cabbage leaves until flexible, finely chopping any edible stalk trimmings. Cook chopped onion, garlic, mushrooms and cabbage trimmings in three quarters of the oil for 6–8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Mix with all the cooked grains, seitan, walnuts, thyme and pepper.",
+          "Divide the entire filling between three large cabbage leaves, fold in the sides and roll. Put chopped tomato, paprika, remaining oil and remaining 80 g water in a covered casserole. Choose a dish that holds this portion without spreading it into a very thin layer. Arrange it evenly, so the centre and edges heat through at a similar rate. Add the rolls and simmer for 20–25 minutes until tender and steaming hot. Look for small, gentle bubbles rather than a rolling boil.",
+          "Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Serve all the rolls and sauce."
+        ],
+        "cookingTime": "65 mins"
+      },
+      "after": {
+        "method": [
+          "Mix 20 g pure vital wheat gluten with 30 g of the water into a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Knead for 2 minutes, rest for 5 minutes, flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked.",
+          "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food. Keep the entire portion and chop finely.",
+          "Start the grain pan as soon as the seitan begins steaming. Simmer the barley in 120 g of the water, covered, for 15 minutes. Add the rice and cook for another 15–20 minutes until both grains are tender, keeping all liquid.",
+          "While the grains cook, prepare the vegetables. Once the seitan is cooked, use the steamer to steam the cabbage leaves until flexible, finely chopping any edible stalk trimmings. Cook chopped onion, garlic, mushrooms and cabbage trimmings in three quarters of the oil for 6–8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Mix with all the cooked grains, seitan, walnuts, thyme and pepper.",
+          "Divide the entire filling between three large cabbage leaves, fold in the sides and roll. Put chopped tomato, paprika, remaining oil and remaining 80 g water in a covered casserole. Choose a dish that holds this portion without spreading it into a very thin layer. Arrange it evenly, so the centre and edges heat through at a similar rate. Add the rolls and simmer for 20–25 minutes until tender and steaming hot. Look for small, gentle bubbles rather than a rolling boil.",
+          "Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Serve all the rolls and sauce."
+        ],
+        "cookingTime": "85 mins"
+      }
+    },
+    {
+      "code": "D097",
+      "id": "black-bean-and-rice-stuffed-peppers",
+      "changedFields": [
+        "equipment"
+      ],
+      "protectedFieldsSha256": "d951620889404f5cdaf9e178d9784321f4981c3bf5a4b2f0878cc9acaceec5f6",
+      "before": {
+        "equipment": "Kitchen scales, Oven, Grater, Lid or bowl cover, Ovenproof dish"
+      },
+      "after": {
+        "equipment": "Kitchen scales, Oven, Grater, Lid or bowl cover, Ovenproof dish, Saucepan, Frying pan"
+      }
+    },
+    {
+      "code": "D111",
+      "id": "salmon-with-carrot-rice-and-cucumber-salad",
+      "changedFields": [
+        "equipment"
+      ],
+      "protectedFieldsSha256": "9f0dab1c7157e8802980122a8e978a197fc60321c0235cf0970ddd4283d433ed",
+      "before": {
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Grater, Lid or bowl cover, Baking tray"
+      },
+      "after": {
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Grater, Lid or bowl cover, Baking tray, Saucepan"
+      }
+    },
+    {
+      "code": "D112",
+      "id": "turkey-and-chive-meatballs-with-polenta",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "eea3c5dcd58278e229d8987ba3f445df0b6662457b20cfb5a0bf2f0598b20211",
+      "before": {
+        "method": [
+          "Mince plain turkey breast at home and mix with the egg white, chives, thyme and half the salt. Shape into five small meatballs.",
+          "Bring all the measured water to a simmer and whisk in the cornmeal and remaining salt. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Cook over low heat for 20–25 minutes until fully tender, stirring frequently.",
+          "Heat all the oil in a non-stick pan. Cook the meatballs and thinly sliced carrot over medium-low heat for 12–15 minutes, turning and covering briefly, until the carrot is tender and meatball centres reach 75°C for 30 seconds. Serve everything, including edible pan juices."
+        ]
+      },
+      "after": {
+        "method": [
+          "Mince plain turkey breast at home and mix with the egg white, chives, thyme and half the salt. Shape into five small meatballs.",
+          "Bring all the measured water to a simmer and whisk in the cornmeal and remaining salt. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Cook over low heat for 20–25 minutes until fully tender, stirring frequently.",
+          "During the final 12–15 minutes of the polenta cooking time, heat all the oil in a non-stick pan. Cook the meatballs and thinly sliced carrot over medium-low heat for 12–15 minutes, turning and covering briefly, until the carrot is tender and meatball centres reach 75°C for 30 seconds. Stir the polenta regularly while the meatballs cook; keep it covered over the lowest heat if ready first. Serve everything, including edible pan juices."
+        ]
+      }
+    },
+    {
+      "code": "D118",
+      "id": "turkey-with-brown-rice-and-herb-vegetables",
+      "changedFields": [
+        "method"
+      ],
+      "protectedFieldsSha256": "e7dd57a8374150871ee8be23ab8a2193b7b60912240e6e74d5b048eec5befc2b",
+      "before": {
+        "method": [
+          "Simmer the brown rice in 100 g of the water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 50 g water and cook covered for another 12–15 minutes until tender, retaining any liquid.",
+          "Slice the turkey and vegetables thinly. Cook in all the oil with the thyme and pepper over medium-low heat for 10–12 minutes until vegetables are tender and turkey centres reach 75°C for 30 seconds.",
+          "Stir in the lemon juice and serve all the turkey, vegetables and edible juices with all the rice."
+        ]
+      },
+      "after": {
+        "method": [
+          "Simmer the brown rice in 100 g of the water, covered, for 15 minutes. Add the white rice and remaining 50 g water and cook covered for another 12–15 minutes until tender, retaining any liquid. Check both types of rice are tender, then rest covered off the heat for 5 minutes before loosening with a fork.",
+          "While the rice cooks and rests, slice the turkey and vegetables thinly. Cook in all the oil with the thyme and pepper over medium-low heat for 10–12 minutes until vegetables are tender and turkey centres reach 75°C for 30 seconds.",
+          "Stir in the lemon juice and serve all the turkey, vegetables and edible juices with all the rice."
+        ]
+      }
+    },
+    {
+      "code": "D120",
+      "id": "spinach-and-egg-brown-rice-bake",
+      "changedFields": [
+        "method",
+        "equipment",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "9711d7f1af384c72d3b49679175cd9863906dd969f67067c3086ae928dc3b8ce",
+      "before": {
+        "method": [
+          "Simmer the brown rice in 105 g of the water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender.",
+          "Heat the oven to 190°C, or 170°C fan. Finely grate the carrot and chop the spinach. Cook in the oil for 5 minutes, then mix with all the rice and any liquid.",
+          "Beat the weighed whole egg and egg white with the pepper and mix through the warm rice. Put in a small dish and bake for 18–22 minutes until fully set and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+          "Mix the yoghurt and chives and serve with the entire bake."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Grater, Lid or bowl cover, Ovenproof dish",
+        "cookingTime": "50 mins"
+      },
+      "after": {
+        "method": [
+          "Heat the oven to 190°C, or 170°C fan. Simmer the brown rice in 105 g of the water, covered, for 15 minutes. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender. Check both types of rice are tender before mixing with the vegetables.",
+          "While the rice cooks, finely grate the carrot and chop the spinach. Cook in the oil for 5 minutes, then mix with all the rice and any liquid.",
+          "Beat the weighed whole egg and egg white with the pepper and mix through the warm rice. Put in a small dish and bake for 18–22 minutes until fully set and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+          "Mix the yoghurt and chives and serve with the entire bake."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Grater, Lid or bowl cover, Ovenproof dish, Frying pan",
+        "cookingTime": "60 mins"
+      }
+    },
+    {
+      "code": "D122",
+      "id": "white-bean-and-ricotta-stuffed-peppers-with-rice",
+      "changedFields": [
+        "equipment"
+      ],
+      "protectedFieldsSha256": "486e0acbcffd7ff09a77371706d2b02aea2cdf071d6dfa287eb6b79086636c87",
+      "before": {
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Lid or bowl cover, Ovenproof dish"
+      },
+      "after": {
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Lid or bowl cover, Ovenproof dish, Saucepan, Frying pan"
+      }
+    },
+    {
+      "code": "D124",
+      "id": "beef-and-black-eyed-pea-stew-with-polenta",
+      "changedFields": [
+        "method",
+        "equipment"
+      ],
+      "protectedFieldsSha256": "07f5c2a25d0193ed32c4edfffe322932b813af22bca3bbcf0c63702648f43b7b",
+      "before": {
+        "method": [
+          "Bring 210 g of the measured water to a simmer, whisk in the cornmeal and cook over low heat for 20–25 minutes until tender, stirring frequently. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Dice the beef small and finely chop the vegetables and garlic. Brown the beef surfaces in all the oil for 3 minutes. Add onion, carrot, garlic, cumin and paprika and cook for 5 minutes.",
+          "Add chopped tomato, cooked drained black-eyed peas and remaining 30 g water. Cover and simmer over low heat for 15 minutes until the carrot is tender and stew is steaming hot. Stir in parsley and pepper and serve all the stew over all the polenta."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Lid or bowl cover"
+      },
+      "after": {
+        "method": [
+          "Before heating the pans, dice the beef small and finely chop the vegetables and garlic. Bring 210 g of the measured water to a simmer, whisk in the cornmeal and cook over low heat for 20–25 minutes until tender, stirring frequently. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "While the polenta simmers, brown the beef surfaces in all the oil for 3 minutes. Add onion, carrot, garlic, cumin and paprika and cook for 5 minutes.",
+          "Add chopped tomato, cooked drained black-eyed peas and remaining 30 g water. Cover and simmer over low heat for 15 minutes until the carrot is tender and stew is steaming hot. Keep the polenta covered over the lowest heat if it finishes first. Stir in parsley and pepper and serve all the stew over all the polenta."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Lid or bowl cover, Second saucepan"
+      }
+    },
+    {
+      "code": "D125",
+      "id": "salmon-and-leek-rice-pie",
+      "changedFields": [
+        "method",
+        "equipment",
+        "cookingTime"
+      ],
+      "protectedFieldsSha256": "b1636e647f98f7ae4ff274cf258d9185d0ca21dfc0dc806465ef6c068a89dc71",
+      "before": {
+        "method": [
+          "Cook the rice with 115 g of the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Heat the oven to 190°C, or 170°C fan.",
+          "Slice the leek and soften in all the oil for 6 minutes. Stir in the flour, then gradually add the milk and remaining 10 g water. Simmer for 3 minutes and add the salmon in small pieces, parsley, lemon juice and pepper. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Transfer all the filling to a small dish. Beat the weighed whole egg and egg white and mix with all the warm rice. Spoon over the fish.",
+          "Bake for 25–30 minutes until the topping is fully set and the salmon is opaque and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the entire pie and sauce."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Lid or bowl cover, Ovenproof dish",
+        "cookingTime": "50 mins"
+      },
+      "after": {
+        "method": [
+          "Heat the oven to 190°C, or 170°C fan. Cook the rice with 115 g of the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "While the rice cooks and rests, slice the leek and soften in all the oil for 6 minutes. Stir in the flour, then gradually add the milk and remaining 10 g water. Simmer for 3 minutes, then take the sauce off the heat and keep covered until the rice has finished resting. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+          "Once the rice is ready, stir the raw salmon pieces, parsley, lemon juice and pepper into the leek sauce and immediately transfer all the filling to a small dish. Beat the weighed whole egg and egg white and mix with all the warm rice. Spoon over the fish and put straight into the preheated oven.",
+          "Bake for 25–30 minutes until the topping is fully set and the salmon is opaque and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Serve the entire pie and sauce."
+        ],
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Fork or whisk, Saucepan, Oven, Lid or bowl cover, Ovenproof dish, Second saucepan",
+        "cookingTime": "60 mins"
+      }
+    }
+  ]
+}

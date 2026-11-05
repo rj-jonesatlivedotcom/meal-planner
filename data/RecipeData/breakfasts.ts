@@ -2634,7 +2634,7 @@ export const breakfasts: Recipe[] = [
     ],
     method: [
       "Blend or mash the cottage cheese and Greek-style yoghurt until creamy.",
-      "Stir in the oats and milk until evenly combined. Stir across the bottom and into the corners of the pan as it thickens. The cereal should be soft and creamy, with no dry or gritty pieces; reduce the heat if it spits.",
+      "Stir in the oats and milk until evenly combined. This is an uncooked overnight mixture; no heating is needed.",
       "Fold through the blueberries and sprinkle the pumpkin seeds over the top.",
       "Cover and refrigerate overnight, or for at least 4 hours.",
       "Stir before serving chilled."
@@ -2856,7 +2856,7 @@ export const breakfasts: Recipe[] = [
   "image": "/images/recipes/B052.webp",
   "name": "Blueberry oat and tofu pancakes",
   "description": "Tender oat pancakes with tofu in the batter and a warm blueberry topping.",
-  "cookingTime": "35 mins",
+  "cookingTime": "45 mins",
   "calories": "463 kcal",
   "protein": "14.5 g",
   "equipment": "Kitchen scales, Mixing bowl, Frying pan, Saucepan, Blender or food processor",
@@ -2909,8 +2909,8 @@ export const breakfasts: Recipe[] = [
   ],
   "method": [
       "Use regular calcium-sulphate tofu, gently drained without pressing. Blend the weighed tofu, oats, rice flour, cinnamon and 50 g of the water into a thick batter. Mix until the dry flour is incorporated and scrape down the sides of the bowl. The batter should be evenly combined before each portion is spooned into the pan. Rest for 10 minutes.",
-      "Put the blueberries, sugar, lemon juice and remaining 20 g water in a small pan. Simmer for 5 minutes to make a warm topping. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
-      "Divide all the oil between three pancakes in a non-stick pan. Cook each over medium-low heat for 4–5 minutes per side until fully cooked and firm in the centre. Serve all three pancakes with all the topping."
+      "While the batter rests, put the blueberries, sugar, lemon juice and remaining 20 g water in a small pan. Simmer for 5 minutes to make a warm topping. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly.",
+      "Heat a non-stick pan over medium-low heat. Divide all the oil between three pancakes, cooking one at a time. Cook each over medium-low heat for 4–5 minutes per side until fully cooked and firm in the centre. Keep each cooked pancake covered on a warm plate while cooking the next. Gently rewarm the blueberry topping just before serving all three pancakes with all the topping."
     ],
   "nutrition": {
     "calories": "463 kcal",
@@ -3230,10 +3230,10 @@ export const breakfasts: Recipe[] = [
   "image": "/images/recipes/B056.webp",
   "name": "Lentil and groundnut breakfast fritters",
   "description": "Savoury lentil and rice fritters with carrots, cabbage and groundnuts.",
-  "cookingTime": "40 mins",
+  "cookingTime": "50 mins",
   "calories": "482 kcal",
   "protein": "13.7 g",
-  "equipment": "Kitchen scales, Mixing bowl, Frying pan, Grater, Lid or bowl cover",
+  "equipment": "Kitchen scales, Mixing bowl, Frying pan, Grater, Lid or bowl cover, Saucepan",
   "ingredients": [
     {
       "item": "Dried split red lentils",
@@ -3292,9 +3292,9 @@ export const breakfasts: Recipe[] = [
     }
   ],
   "method": [
-      "Rinse the dry lentils and cook with 90 g of the water in a covered pan for 15–20 minutes until very soft, retaining any liquid. Cool until just warm.",
+      "Rinse the dry lentils and cook with 90 g of the water in a covered pan for 15–20 minutes until very soft, retaining any liquid. Spread the lentils in a shallow bowl and allow about 5 minutes to cool until just warm. Prepare the grated and shredded vegetables while the lentils cook and cool.",
       "Mix the rice flour and remaining 60 g water with the lentils. Add finely grated carrot, finely shredded cabbage and onion, cumin, chopped coriander and chopped peanuts. Rest for 5 minutes.",
-      "Divide all the oil between four thin fritters in a non-stick pan. Cook over medium-low heat for 5–6 minutes per side until fully cooked and the vegetables are tender. Serve all four with all the lemon juice."
+      "Use a wide non-stick pan that holds all four thin fritters without crowding and add all the measured oil. Cook over medium-low heat for 5–6 minutes per side until fully cooked and the vegetables are tender. Serve all four with all the lemon juice."
     ],
   "nutrition": {
     "calories": "482 kcal",
@@ -3660,7 +3660,7 @@ export const breakfasts: Recipe[] = [
   "method": [
       "Mix the vital wheat gluten with 50 g water, knead for 2 minutes and rest for 5 minutes. Scrape dry patches from the bowl into the mixture and work them in with your hands. Flatten to 1 cm thick and steam over a separate pan of water for 20–25 minutes until firm and fully cooked.",
       "Keep the food above the water rather than sitting in it, with the lid fitted so steam circulates around the portion. Check the pan does not boil dry without letting water splash onto the food.",
-      "Simmer the brown rice in 80 g water for 15 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender, keeping any liquid.",
+      "While the seitan steams, simmer the brown rice in 80 g water for 15 minutes. Add the white rice and remaining 45 g water and cook covered for another 12–15 minutes until tender, keeping any liquid. Check both types of rice are tender, then rest covered off the heat for 5 minutes before loosening with a fork.",
       "Dice the seitan. Cook chopped onion and pepper in all the oil for 8 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add the cooked, drained navy beans and all the seitan and heat through.",
       "Fold in all the rice, chopped walnuts, parsley, lemon juice and pepper. Use a fork or broad spoon and a light lifting motion so the grains stay separate. Serve the entire bowl and edible juices."
     ],

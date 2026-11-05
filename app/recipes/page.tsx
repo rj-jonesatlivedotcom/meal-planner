@@ -688,6 +688,7 @@ export default function RecipesPage() {
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-green-700 dark:text-green-300">The RenalPlan kitchen</p>
           <h1 className={styles.discoveryTitle}>Find your next favourite recipe.</h1>
           <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300">Find your next favourite, explore the nutrition and make it part of your week.</p>
+          <Link href="/kidney-friendly-chinese-recipes" className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-green-800 underline underline-offset-4 dark:text-green-300">Explore kidney-friendly Chinese recipes</Link>
         </header>
         <nav aria-label="Recipe categories" className={styles.categories}>
           {mealTypes.map((mealType) => (

@@ -12,6 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/recipes`,
     },
     {
+      url: `${baseUrl}/kidney-friendly-chinese-recipes`,
+    },
+    {
       url: `${baseUrl}/about`,
     },
   ];

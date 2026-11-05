@@ -9,5 +9,6 @@ export function normalizePlannerNutrient(value: unknown): PlannerNutrient {
 
 export function visiblePlannerNutrients(requirements: Partial<Requirements> | null): PlannerNutrient[] {
   const nutrients = { Calories: "calories", Protein: "protein", Carbohydrate: "carbohydrate", Sodium: "sodium", Potassium: "potassium", Phosphorus: "phosphate" } as const;
-  return plannerNutrients.filter(nutrient => requirements?.monitoredNutrients == null || requirements.monitoredNutrients.includes(nutrients[nutrient]));
+  const tracked = requirements?.monitoredNutrients;
+  return plannerNutrients.filter(nutrient => tracked?.includes(nutrients[nutrient]) ?? nutrient !== "Protein");
 }

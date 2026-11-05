@@ -17,9 +17,9 @@ type Props = {
   onSave: (next: Requirements, pendingDraft?: Requirements) => Promise<void>;
   onExit: () => void;
 };
-const fieldClass = `${styles.field} mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 focus:border-[#067b3a] focus:outline-none focus:ring-2 focus:ring-emerald-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100`;
-const primaryClass = `${styles.primary} min-h-11 rounded-xl bg-[#067b3a] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#056b32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#067b3a] disabled:opacity-60`;
-const secondaryClass = `${styles.secondary} min-h-11 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-[#12396b] hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12396b] disabled:opacity-60 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100`;
+const fieldClass = `${styles.field} mt-2 min-h-11 w-full rounded-xl border px-3 py-2 text-base`;
+const primaryClass = `${styles.primary} min-h-11 rounded-xl px-5 py-3 text-sm font-bold transition`;
+const secondaryClass = `${styles.secondary} min-h-11 rounded-xl border px-4 py-3 text-sm font-bold`;
 
 const poses = ["hello", "point", "explain", "encourage", "celebrate"];
 const poseDescriptions = ["waving hello", "pointing to your choices", "explaining your choices", "encouraging you", "celebrating"];
@@ -111,7 +111,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
             <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Step {step} of {onboardingSteps.length}</p>
             <ol aria-label="Setup progress" className="flex gap-1.5">
               {onboardingSteps.map((title, index) => <li key={title} aria-current={step === index + 1 ? "step" : undefined} title={title}
-                className={"h-2 w-7 rounded-full sm:w-9 " + (index < step ? "bg-[#067b3a]" : "bg-slate-200 dark:bg-slate-700")}>
+                className={"h-2 w-5 rounded-full sm:w-9 " + (index < step ? "bg-[#067b3a] dark:bg-emerald-400" : "bg-slate-200 dark:bg-slate-600")}>
                 <span className="sr-only">{index + 1}. {title}</span>
               </li>)}
             </ol>
@@ -129,7 +129,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
               {preview ? "Return to My Diet" : "Back to My Diet"}
             </button>
           </div> : <form noValidate={preview} onSubmit={event => { event.preventDefault(); void accept(step === onboardingSteps.length ? "complete" : "continue"); }} aria-busy={busy}>
-            {(error || preview) && <div ref={errorRef} tabIndex={-1} role="alert" className="mt-4 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm leading-6 text-amber-950 outline-none dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100">
+            {(error || preview) && <div ref={errorRef} tabIndex={-1} role="alert" className={styles.alert + " mt-4 rounded-xl border p-4 text-sm leading-6"}>
               {preview && <p>Unsaved preview — your answers are kept here, not saved to your account. Setup is not complete.</p>}
               {error && <p>{error}</p>}
               {!preview && failedAction === "continue" && step < onboardingSteps.length && <button type="button" className="mt-2 block min-h-11 text-left font-bold underline" onClick={() => {
@@ -145,15 +145,15 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
                   onChange={event => edit({ ...draft, preferredName: event.target.value || null })} />
               </label>}
               {step === 2 && <div className="grid gap-2 sm:grid-cols-2">
-                {kidneyStages.map(choice => <label key={choice.value} className="flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border border-slate-300 px-3 py-3 text-sm font-semibold dark:border-slate-600 dark:text-slate-100">
-                  <input type="radio" name={id + "-stage"} value={choice.value} checked={kidneyStageChoice(draft) === choice.value} className="h-5 w-5 shrink-0 accent-[#067b3a]"
+                {kidneyStages.map(choice => <label key={choice.value} className={styles.choice + " flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border px-3 py-3 text-sm font-semibold"}>
+                  <input type="radio" name={id + "-stage"} value={choice.value} checked={kidneyStageChoice(draft) === choice.value}
                     onChange={() => edit(withKidneyStage(draft, choice.value))} />{choice.label}
                 </label>)}
               </div>}
               {step === 3 && <div className={styles.nutrientGrid}>
                 {monitoredNutrients.map(nutrient => <div key={nutrient} data-nutrient={nutrient} className={styles.tile + (selectedNutrients.includes(nutrient) ? " " + styles.selected : "")}>
                   <label className="flex min-h-11 cursor-pointer items-center gap-3 text-sm font-bold">
-                    <input type="checkbox" value={nutrient} checked={selectedNutrients.includes(nutrient)} className="h-5 w-5 accent-[#067b3a]" onChange={event => edit({ ...draft,
+                    <input type="checkbox" value={nutrient} checked={selectedNutrients.includes(nutrient)} onChange={event => edit({ ...draft,
                       monitoredNutrients: monitoredNutrients.filter(value => value === nutrient ? event.target.checked : selectedNutrients.includes(value)) })} />
                     <span aria-hidden="true" className={styles.nutrientIcon}>{nutrientIcons[nutrient]}</span><span className={styles.nutrientName}>{nutrientLabels[nutrient]}</span>
                   </label>
@@ -189,7 +189,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
                 <fieldset className="space-y-2">
                   <legend className="mb-2 text-sm font-bold">Your food allergies</legend>
                   {([['none', 'No known food allergies'], ['listed', 'I have food allergies']] as const).map(([value, label]) => <label key={value} className="flex min-h-11 cursor-pointer items-center gap-3 text-sm font-semibold dark:text-slate-100">
-                    <input type="radio" name={id + "-allergies"} value={value} checked={allergyAnswer === value} className="h-5 w-5 accent-[#067b3a]" onChange={() => {
+                    <input type="radio" name={id + "-allergies"} value={value} checked={allergyAnswer === value} onChange={() => {
                       setAllergyAnswer(value);
                       const foods = parseFoodList(allergyText);
                       edit({ ...draft, foodAllergies: value === "none" ? [] : foods.length ? foods : null });
@@ -204,7 +204,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
                   </label>}
                 </fieldset>
                 <p className="text-xs leading-5 text-slate-600 dark:text-slate-300">You can update this in My Diet → My Allergies. Check packaging, ingredients and cross-contact information each time; recipe matching cannot guarantee safety.</p>
-                <div className="rounded-xl bg-emerald-50 p-4 text-sm text-emerald-950 dark:bg-emerald-950 dark:text-emerald-100">
+                <div className={styles.review + " rounded-xl p-4 text-sm"}>
                   <h2 className="font-bold">Your setup at a glance</h2>
                   <p className="mt-2">{draft.preferredName?.trim() || "Name not provided"} · {stageLabel}</p>
                   <ul className="mt-2 space-y-2">{selectedNutrients.map(nutrient => <li key={nutrient}><strong>{nutrientLabels[nutrient]}</strong>: {targetSummary(draft, nutrient)}</li>)}</ul>

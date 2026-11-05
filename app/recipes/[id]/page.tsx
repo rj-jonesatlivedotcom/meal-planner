@@ -14,6 +14,7 @@ import { useParams, useRouter } from "next/navigation";
 import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getDietaryGuide, getDietaryGuideSections } from "@/lib/dietaryGuides";
+import { presentIngredient, presentMethods } from "@/lib/recipePresentation";
 
 const days = [
   "Monday",
@@ -682,10 +683,13 @@ export default function RecipeDetailPage() {
             <span>{recipe.servings} {recipe.servings === 1 ? "serving" : "servings"}</span>
           </div>
           <ul className={styles.ingredients}>
-            {recipe.ingredients.map((ingredient, index) => <li key={index}>
+            {recipe.ingredients.map((ingredient, index) => {
+              const display = presentIngredient(ingredient);
+              return <li key={index}>
               <IngredientIcon item={ingredient.item} />
-              <div><strong>{ingredient.item}</strong><small>{ingredient.quantity}</small></div>
-            </li>)}
+              <div><strong>{display.name}</strong><small>{display.quantity}</small>{display.component && <small>For the {display.component}</small>}</div>
+            </li>;
+            })}
           </ul>
           <div className={styles.equipment}>
             <h3><RecipeIcon name="method" />Equipment</h3>
@@ -695,7 +699,7 @@ export default function RecipeDetailPage() {
         <section className={styles.panel} aria-labelledby="recipe-method">
           <div className={styles.panelHeading}><h2 id="recipe-method"><RecipeIcon name="method" />Method</h2></div>
           <ol className={styles.method}>
-            {recipe.method.map((step, index) => <li key={index}><span aria-hidden="true">{index + 1}</span><p>{step}</p></li>)}
+            {presentMethods(recipe.method).map((step, index) => <li key={index}><span aria-hidden="true">{index + 1}</span><p>{step}</p></li>)}
           </ol>
         </section>
       </div>

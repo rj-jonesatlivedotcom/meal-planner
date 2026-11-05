@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { recipes } from "@/data/RecipeData";
 import { parseRecipeQuantity, formatQuantityNumber, unmeasuredShoppingQuantity } from "@/lib/recipeQuantities";
+import { presentIngredientName } from "@/lib/recipePresentation";
 import { createClient } from "@/lib/supabase/client";
 
 type ShoppingItem = {
@@ -2358,7 +2359,7 @@ export default function ShoppingPage() {
           const checked = checkedItems.includes(item.item) ? " checked" : "";
           return `<label class="item" for="${id}">
             <input id="${id}" type="checkbox"${checked}>
-            <span class="name">${escapeHtml(item.item)}</span>
+            <span class="name">${escapeHtml(presentIngredientName(item.item))}</span>
             <span class="quantity">${escapeHtml(item.quantity)}</span>
           </label>`;
         }).join("")}
@@ -2725,7 +2726,7 @@ ${checklistHtml}
                   <span
                     className={`shopping-list-item-name truncate ${checked ? "line-through" : ""}`}
                   >
-                    {item.item}
+                    {presentIngredientName(item.item)}
                   </span>
                 </label>
 

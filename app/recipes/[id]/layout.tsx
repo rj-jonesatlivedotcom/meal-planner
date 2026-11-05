@@ -1,6 +1,7 @@
 
 import type { Metadata } from "next";
 import { recipes } from "@/data/RecipeData";
+import { presentIngredient, presentMethods } from "@/lib/recipePresentation";
 
 const SITE_URL = "https://www.renalplan.com";
 
@@ -137,11 +138,13 @@ export default async function RecipeLayout({
       : {}),
 
     recipeIngredient: recipe.ingredients.map(
-      (ingredient) =>
-        `${ingredient.quantity} ${ingredient.item}`
+      (ingredient) => {
+        const display = presentIngredient(ingredient);
+        return `${display.quantity} ${display.name}${display.component ? ` — for the ${display.component}` : ""}`;
+      }
     ),
 
-    recipeInstructions: recipe.method.map(
+    recipeInstructions: presentMethods(recipe.method).map(
       (step, index) => ({
         "@type": "HowToStep",
         position: index + 1,

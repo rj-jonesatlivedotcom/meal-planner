@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { recipes } from "@/data/RecipeData";
 import { presentIngredient, presentMethods } from "@/lib/recipePresentation";
+import { recipeStepId, recipeStepName } from "@/lib/recipeInstructions";
 
 const SITE_URL = "https://www.renalplan.com";
 
@@ -65,7 +66,7 @@ export async function generateMetadata({
         ? {
             images: [
               {
-                url: `${SITE_URL}${recipe.image}`,
+                url: new URL(recipe.image.trim(), SITE_URL).href,
                 alt: recipe.name,
               },
             ],
@@ -93,9 +94,10 @@ export default async function RecipeLayout({
 
   const recipeUrl = `${SITE_URL}/recipes/${recipe.id}`;
   const recipeImage = recipe.image?.trim()
-    ? `${SITE_URL}${recipe.image}`
+    ? new URL(recipe.image.trim(), SITE_URL).href
     : undefined;
   const totalTime = toIsoDuration(recipe.cookingTime);
+  const cuisine = recipe.cuisine?.trim();
 
   const recipeSchema = {
     "@context": "https://schema.org",
@@ -127,6 +129,11 @@ export default async function RecipeLayout({
 
     recipeCategory: recipe.category,
 
+    // "Simple cooking" is a catalogue filter, not a cuisine classification.
+    ...(cuisine && cuisine.toLowerCase() !== "simple cooking"
+      ? { recipeCuisine: cuisine }
+      : {}),
+
     recipeYield: `${recipe.servings} ${
       recipe.servings === 1 ? "serving" : "servings"
     }`,
@@ -148,7 +155,9 @@ export default async function RecipeLayout({
       (step, index) => ({
         "@type": "HowToStep",
         position: index + 1,
+        name: recipeStepName(step),
         text: step,
+        url: `${recipeUrl}#${recipeStepId(index)}`,
       })
     ),
 
@@ -169,7 +178,7 @@ export default async function RecipeLayout({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(recipeSchema),
+          __html: JSON.stringify(recipeSchema).replace(/</g, "\\u003c"),
         }}
       />
 

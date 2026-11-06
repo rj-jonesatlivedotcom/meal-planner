@@ -15,6 +15,7 @@ import { recipes } from "@/data/RecipeData";
 import { createClient } from "@/lib/supabase/client";
 import { getDietaryGuide, getDietaryGuideSections } from "@/lib/dietaryGuides";
 import { presentIngredient, presentMethods } from "@/lib/recipePresentation";
+import { recipeStepId } from "@/lib/recipeInstructions";
 import { watchRecipeGuideLayout } from "@/lib/recipeGuideLayout";
 
 const days = [
@@ -713,7 +714,7 @@ export default function RecipeDetailPage() {
         <section className={styles.panel} aria-labelledby="recipe-method">
           <div className={styles.panelHeading}><h2 id="recipe-method"><RecipeIcon name="method" />Method</h2></div>
           <ol className={styles.method}>
-            {presentMethods(recipe.method).map((step, index) => <li key={index}><span aria-hidden="true">{index + 1}</span><p>{step}</p></li>)}
+            {presentMethods(recipe.method).map((step, index) => <li key={index} id={recipeStepId(index)}><span aria-hidden="true">{index + 1}</span><p>{step}</p></li>)}
           </ol>
         </section>
         <section className={styles.panel} aria-labelledby="recipe-nutrition">

@@ -1997,9 +1997,9 @@ function formatPotassiumMg(mg: number): string {
   .planner-mobile-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
   .planner-mobile-actions .planner-mobile-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; width: 100%; height: 90px; min-width: 0; padding: 8px 5px; border: 1.5px solid; border-radius: 17px; box-shadow: 0 3px 7px #17344a12; color: #10243e; font-size: clamp(11px, 3.3vw, 14px); font-weight: 750; line-height: 1.2; text-align: center; cursor: pointer; transition: transform 120ms, box-shadow 120ms; }
   .planner-mobile-actions .planner-mobile-tile svg { width: 30px; height: 30px; flex-shrink: 0; }
-  .planner-mobile-actions .planner-mobile-chef { background: #e8f5ff; border-color: #acdcfa; }
-  .planner-mobile-actions .planner-mobile-calendar { background: #fff1e5; border-color: #fdc692; }
-  .planner-mobile-actions .planner-mobile-calendar > svg { color: #fb781d; }
+  .planner-mobile-actions .planner-mobile-chef { background: #fff1e5; border-color: #fdc692; }
+  .planner-mobile-actions .planner-mobile-chef > svg { color: #fb781d; }
+  .planner-mobile-actions .planner-mobile-calendar { background: #e8f5ff; border-color: #acdcfa; }
   .planner-mobile-actions .planner-mobile-clear { background: #e2faed; border-color: #a0ecc3; }
   .planner-mobile-actions .planner-mobile-clear svg { color: #168b54; }
   .planner-mobile-actions .planner-mobile-tile:active { transform: scale(.97); box-shadow: 0 1px 3px #17344a12; }
@@ -2012,10 +2012,10 @@ function formatPotassiumMg(mg: number): string {
   .planner-mobile-empty > svg { width: 14px; height: 20px; color: #233c58; }
   /* Dark-mode action tiles: retain distinct accents without pastel glare. */
   html[data-theme="dark"] .planner-mobile-actions .planner-mobile-tile { color: #f1f5f9; box-shadow: 0 2px 6px #07131d35; }
-  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-chef { background: #253c50; border-color: #52738c; }
-  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-chef svg { color: #a9d5f5; }
-  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-calendar { background: #49352b; border-color: #a36d49; }
-  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-calendar > svg { color: #ffac6c; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-chef { background: #49352b; border-color: #a36d49; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-chef svg { color: #ffac6c; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-calendar { background: #253c50; border-color: #52738c; }
+  html[data-theme="dark"] .planner-mobile-actions .planner-mobile-calendar > svg { color: #a9d5f5; }
   html[data-theme="dark"] .planner-mobile-actions .planner-mobile-clear { background: #203e35; border-color: #4c9070; }
   html[data-theme="dark"] .planner-mobile-actions .planner-mobile-clear svg { color: #83d8aa; }
   html[data-theme="dark"] .planner-mobile-week-heading, html[data-theme="dark"] .planner-mobile-empty-copy strong { color: #f1f5f9; }

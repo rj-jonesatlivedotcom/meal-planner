@@ -298,6 +298,20 @@ export default function AccountPage() {
                 </span>
               </Link>
 
+              <Link href="/feedback" className="group flex items-center gap-4 border-t border-slate-200 px-5 py-4 transition hover:bg-slate-50 sm:px-6">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#0B3B75] dark:bg-blue-950 dark:text-blue-200">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6" aria-hidden="true">
+                    <path d="M21 11a8 8 0 0 1-8 8H5l-3 3V11a9 9 0 0 1 19 0Z" />
+                    <path d="M7 10h10M7 14h6" />
+                  </svg>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-base text-[#0B3B75] dark:text-blue-200 sm:text-lg">Feedback &amp; Suggestions</p>
+                  <p className="mt-0.5 text-sm leading-5 text-slate-600 sm:text-base">Share an idea, report a problem or tell us about your experience.</p>
+                </div>
+                <span className="shrink-0 text-2xl font-light text-[#0B3B75] transition-transform group-hover:translate-x-1 dark:text-blue-200" aria-hidden="true">›</span>
+              </Link>
+
               {/* DELETE ACCOUNT */}
               <button
                 type="button"

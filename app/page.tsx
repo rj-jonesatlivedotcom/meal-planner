@@ -1589,6 +1589,8 @@ function LoggedInHome() {
               Privacy and Data Protection
             </Link>
 
+            <Link href="/feedback" className="font-semibold text-[#1266c3] transition hover:text-[#067b3a] hover:underline">Feedback</Link>
+
             <span>
               <span>Do you have any questions or need help? </span>
               <a
@@ -2319,6 +2321,8 @@ export default function Home() {
               <span className="renal-home-about-label">About </span><span className="renal-home-brand-renal text-[#12396b]">Renal</span>
               <span className="renal-home-brand-plan text-[#067b3a]">Plan</span>
             </Link>
+
+            <Link href="/feedback" className="font-semibold text-[#1266c3] transition hover:text-[#067b3a] hover:underline">Feedback</Link>
 
             <span>
               <span>Do you have any questions or need help? </span>

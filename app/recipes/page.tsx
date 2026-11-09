@@ -688,7 +688,6 @@ export default function RecipesPage() {
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-green-700 dark:text-green-300">The RenalPlan kitchen</p>
           <h1 className={styles.discoveryTitle}>Find your next favourite recipe.</h1>
           <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300">Find your next favourite, explore the nutrition and make it part of your week.</p>
-          <Link href="/kidney-friendly-chinese-recipes" className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-green-800 underline underline-offset-4 dark:text-green-300">Explore kidney-friendly Chinese recipes</Link>
         </header>
         <nav aria-label="Recipe categories" className={styles.categories}>
           {mealTypes.map((mealType) => (
@@ -801,6 +800,11 @@ export default function RecipesPage() {
                       <select id="recipe-diet-desktop" value={selectedDiet} onChange={(event) => setSelectedDiet(event.target.value)} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
                         {DIET_TYPES.map((diet) => <option key={diet} value={diet}>{diet === "All" ? "All diets" : diet}</option>)}
                       </select>
+                    </div>
+
+                    <div>
+                      <p className="mb-2 block font-semibold text-slate-800">Cuisine collections</p>
+                      <Link href="/kidney-friendly-chinese-recipes" className="inline-flex min-h-11 items-center text-sm font-semibold text-green-800 underline underline-offset-4 dark:text-green-300">Chinese recipes</Link>
                     </div>
 
                     {/* Favourites */}
@@ -1053,6 +1057,11 @@ export default function RecipesPage() {
                     <select id="recipe-diet-mobile" value={selectedDiet} onChange={(event) => setSelectedDiet(event.target.value)} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
                       {DIET_TYPES.map((diet) => <option key={diet} value={diet}>{diet === "All" ? "All diets" : diet}</option>)}
                     </select>
+                  </div>
+
+                  <div>
+                    <p className="mb-2 block font-semibold text-slate-800">Cuisine collections</p>
+                    <Link href="/kidney-friendly-chinese-recipes" className="inline-flex min-h-11 items-center text-sm font-semibold text-green-800 underline underline-offset-4 dark:text-green-300">Chinese recipes</Link>
                   </div>
 
                   {/* Favourites */}

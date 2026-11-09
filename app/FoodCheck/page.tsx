@@ -1358,14 +1358,17 @@ export default function FoodCheckPage() {
                     const nutrients = warnings.map(warning => warning.key);
                     const names = nutrients.length === 2 ? "Potassium and phosphorus" : nutrients[0] === "potassium" ? "Potassium" : "Phosphorus";
                     const hasWarning = warnings.some(warning => warning.severity === "warning");
+                    const informationSummary = `Contains additives that contribute small or trace amounts of ${nutrients.length === 2 ? "potassium and phosphorus" : nutrients[0]}. Exact quantities are not available.`;
                     return (
-                      <details className="mx-4 mb-3 rounded-xl border border-amber-200 bg-amber-50/70 px-3 py-2 text-amber-950 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100" open={hasWarning}>
-                        <summary className="cursor-pointer text-sm font-semibold leading-5 marker:text-amber-700 dark:marker:text-amber-300">
-                          <span className="ml-1">{hasWarning ? "⚠" : "ⓘ"} {names} additives detected</span>
-                          <span className="ml-2 font-normal text-amber-800 dark:text-amber-200">{hasWarning ? "Actual amounts may exceed estimates." : "Generally small or trace contributions; exact amounts unknown."}</span>
+                      <details className={`mx-4 mb-3 rounded-xl border px-3 py-2 ${hasWarning
+                        ? "border-amber-200 bg-amber-50/70 text-amber-950 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100"
+                        : "border-blue-200 bg-blue-50 text-blue-950 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-100"}`} open={hasWarning}>
+                        <summary className={`cursor-pointer text-sm font-semibold leading-5 ${hasWarning ? "marker:text-amber-700 dark:marker:text-amber-300" : "marker:text-blue-700 dark:marker:text-blue-300"}`}>
+                          <span className="ml-1"><span aria-hidden="true" className={hasWarning ? "text-amber-700 dark:text-amber-300" : "text-blue-700 dark:text-blue-300"}>{hasWarning ? "⚠" : "ⓘ"}</span> {hasWarning ? `${names} additives detected` : "Additional ingredient information"}</span>
+                          <span className={`ml-2 font-normal ${hasWarning ? "text-amber-800 dark:text-amber-200" : "text-blue-900 dark:text-blue-100"}`}>{hasWarning ? "Actual amounts may exceed estimates." : informationSummary}</span>
                           <span className="ml-2 text-xs font-medium underline underline-offset-2">Details</span>
                         </summary>
-                        <div className="mt-2 space-y-2 border-t border-amber-200 pt-2 text-xs leading-5 dark:border-amber-800">
+                        <div className={`mt-2 space-y-2 border-t pt-2 text-xs leading-5 ${hasWarning ? "border-amber-200 dark:border-amber-800" : "border-blue-200 dark:border-blue-800"}`}>
                           {warnings.map(warning => <p key={warning.key}>{warning.text}</p>)}
                           {nutrients.includes("phosphorus") && <a className="underline" href="https://www.bda.uk.com/static/f14711e0-ecbe-4f5a-bb63fb859271c7f0/phosphorusinfoodsconsiderationsinchronickidneydisease.pdf" target="_blank" rel="noreferrer">BDA Renal Nutrition Group: Phosphorus in Foods</a>}
                         </div>

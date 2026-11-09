@@ -169,7 +169,7 @@ test('additives retain valid baseline values with independent identified uncerta
   const snap=snapshots.foodSnapshot({potassium:null,phosphorus:null,minerals:resolved},'g','as-sold','test');
   assert.equal(snapshots.snapshotForQuantity(snap,40).nutrients.potassium.additiveUncertainty,resolved.potassium.additiveUncertainty);
   const page=read('app/FoodCheck/page.tsx');
-  assert.match(page,/Compact additive notice/);assert.match(page,/<details className="mx-4 mb-3/);assert.doesNotMatch(page,/border-2 border-red-700/);
+  assert.match(page,/Compact additive notice/);assert.match(page,/<details className=\{`mx-4 mb-3/);assert.doesNotMatch(page,/border-2 border-red-700/);
 });
 
 test('reviewed bowl allows a fresh evidence search but never assumes a value after query failure',async()=>{

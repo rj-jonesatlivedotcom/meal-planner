@@ -81,7 +81,7 @@ export default function FeedbackForm() {
       <input id="feedback-website" name="website" type="text" tabIndex={-1} autoComplete="off" maxLength={200} />
     </div>
     {error && <p id="feedback-error" role="alert" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-100">{error}</p>}
-    <button type="submit" disabled={!ready || sending} className="min-h-11 w-full rounded-xl bg-[#067b3a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#056530] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
+    <button type="submit" disabled={!ready || sending} style={{ color: "#fff" }} className="min-h-11 w-full rounded-xl bg-[#067b3a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#056530] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
       {sending ? "Sending…" : "Send feedback"}
     </button>
   </form>;

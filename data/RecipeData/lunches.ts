@@ -5,6 +5,7 @@ export const lunches: Recipe[] = [
     id: "chicken-lettuce-sandwich",
     code: "L001", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L001.webp",
     name: "Chicken & Lettuce Sandwich",
@@ -57,6 +58,7 @@ export const lunches: Recipe[] = [
     id: "egg-lettuce-sandwich",
     code: "L002", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L002.webp",
     name: "Egg & Lettuce Sandwich",
@@ -109,6 +111,7 @@ export const lunches: Recipe[] = [
     id: "tuna-lettuce-sandwich",
     code: "L003", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L003.webp",
     name: "Tuna & Lettuce Sandwich",
@@ -160,6 +163,7 @@ export const lunches: Recipe[] = [
     id: "chicken-cucumber-sandwich",
     code: "L004", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L004.webp",
     name: "Chicken & Cucumber Sandwich",
@@ -212,6 +216,7 @@ export const lunches: Recipe[] = [
     id: "egg-mayo-sandwich",
     code: "L005", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L005.webp",
     name: "Egg Mayo Sandwich",
@@ -264,6 +269,7 @@ export const lunches: Recipe[] = [
     id: "chicken-red-pepper-sandwich",
     code: "L006", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L006.webp",
     name: "Chicken & Red Pepper Sandwich",
@@ -316,6 +322,7 @@ export const lunches: Recipe[] = [
     id: "ham-lettuce-sandwich",
     code: "L007", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L002.webp",
     name: "Egg & Lettuce Sandwich with Chives",
@@ -369,6 +376,7 @@ export const lunches: Recipe[] = [
     id: "chicken-cream-cheese-sandwich",
     code: "L008", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L008.webp",
     name: "Chicken & Cream Cheese Sandwich",
@@ -1018,6 +1026,7 @@ export const lunches: Recipe[] = [
     id: "chicken-fried-rice",
     code: "L020", mealFamily: "rice-bowl",
     category: "Lunch",
+    cuisine: "Chinese",
     emoji: "🍚",
     image: "/images/recipes/L020.webp",
     name: "Chicken Fried Rice",
@@ -1296,6 +1305,7 @@ export const lunches: Recipe[] = [
     id: "chicken-jacket-potato",
     code: "L025", mealFamily: "jacket-potato",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥔",
     image: "/images/recipes/L025.webp",
     name: "Chicken Jacket Potato",
@@ -1351,6 +1361,7 @@ export const lunches: Recipe[] = [
     id: "tuna-jacket-potato",
     code: "L026", mealFamily: "jacket-potato",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥔",
     image: "/images/recipes/L026.webp",
     name: "Tuna Jacket Potato",
@@ -1404,6 +1415,7 @@ export const lunches: Recipe[] = [
     id: "egg-mayo-jacket-potato",
     code: "L027", mealFamily: "jacket-potato",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥔",
     image: "/images/recipes/L027.webp",
     name: "Egg Mayo Jacket Potato",
@@ -1789,6 +1801,7 @@ export const lunches: Recipe[] = [
     id: "chicken-pepper-toastie",
     code: "L034", mealFamily: "toastie",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🍞",
     image: "/images/recipes/L034.webp",
     name: "Chicken & Pepper Toastie",
@@ -1842,6 +1855,7 @@ export const lunches: Recipe[] = [
     id: "tuna-cucumber-toastie",
     code: "L035", mealFamily: "toastie",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🍞",
     image: "/images/recipes/L035.webp",
     name: "Tuna & Cucumber Toastie",
@@ -1895,6 +1909,7 @@ export const lunches: Recipe[] = [
     id: "chicken-apple-sandwich",
     code: "L036", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L036.webp",
     name: "Chicken & Apple Sandwich",
@@ -1948,6 +1963,7 @@ export const lunches: Recipe[] = [
     id: "egg-cucumber-sandwich",
     code: "L037", mealFamily: "sandwich",
     category: "Lunch",
+    cuisine: "British",
     emoji: "🥪",
     image: "/images/recipes/L037.webp",
     name: "Egg & Cucumber Sandwich",
@@ -5173,7 +5189,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegan",
   "dietCategories": [
     "Vegan",
-    "Vegetarian"
+    "Vegetarian",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -5863,7 +5880,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "Mediterranean-style"
+    "Mediterranean-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -7701,7 +7719,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "Mediterranean-style"
+    "Mediterranean-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -7888,7 +7907,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "Mediterranean-style"
+    "Mediterranean-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -9614,7 +9634,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "DASH-style"
+    "DASH-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -9711,7 +9732,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "DASH-style"
+    "DASH-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -9899,7 +9921,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "DASH-style"
+    "DASH-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -10001,7 +10024,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "DASH-style"
+    "DASH-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -10525,7 +10549,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "Intermittent fasting — eating-window meal"
+    "Intermittent fasting — eating-window meal",
+    "Blue Zone-inspired"
   ]
 }
 ];

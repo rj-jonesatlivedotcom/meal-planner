@@ -60,6 +60,7 @@ export const breakfasts: Recipe[] = [
     id: "apple-honey-porridge",
     code: "B002",
     category: "Breakfast",
+    cuisine: "British",
     mealFamily: "oats",
     emoji: "🍎",
     image: "/images/recipes/B002.webp",
@@ -395,6 +396,7 @@ export const breakfasts: Recipe[] = [
     id: "jam-butter-breakfast-toast",
     code: "B008",
     category: "Breakfast",
+    cuisine: "British",
     mealFamily: "toast",
     emoji: "🍊",
     image: "/images/recipes/B008.webp",
@@ -1293,6 +1295,7 @@ export const breakfasts: Recipe[] = [
     id: "boiled-egg-soldiers",
     code: "B024",
     category: "Breakfast",
+    cuisine: "British",
     mealFamily: "toast",
     emoji: "🥚",
     image: "/images/recipes/B024.webp",
@@ -2501,7 +2504,10 @@ export const breakfasts: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: [
+      "Vegetarian",
+      "Blue Zone-inspired"
+    ]
   },
 {
     id: "apple-cinnamon-overnight-oats",
@@ -2555,7 +2561,10 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.054980 g per serving, 0.1251% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: [
+      "Vegetarian",
+      "Blue Zone-inspired"
+    ]
   },
 {
     id: "peanut-butter-greek-yoghurt-overnight-oats",
@@ -2935,7 +2944,8 @@ export const breakfasts: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "DASH-style"
+    "DASH-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -3217,7 +3227,8 @@ export const breakfasts: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "DASH-style"
+    "DASH-style",
+    "Blue Zone-inspired"
   ]
 },
 {

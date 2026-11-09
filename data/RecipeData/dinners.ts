@@ -1455,7 +1455,8 @@ export const dinners: Recipe[] = [
     dietCategories: ["Mixed diet"]
   },
   {
-    id: "herb-cod-potatoes-cabbage", code: "D023", mealFamily: "potato-dish", category: "Dinner", emoji: "🐟", image: "/images/recipes/D023.png",
+    id: "herb-cod-potatoes-cabbage", code: "D023", mealFamily: "potato-dish", category: "Dinner",
+    cuisine: "British", emoji: "🐟", image: "/images/recipes/D023.png",
     name: "Herb Cod with Potatoes & Cabbage", description: "Baked cod served with boiled potatoes and tender cabbage with lemon and herbs.", cookingTime: "35 minutes", calories: "449 kcal", protein: "30.7 g", equipment: "Baking tray, saucepan, steamer or second saucepan, knife, chopping board, Oven, Colander or sieve",
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1513,7 +1514,8 @@ export const dinners: Recipe[] = [
     dietCategories: ["Vegetarian"]
   },
   {
-    id: "pork-apple-cabbage", code: "D025", mealFamily: "meat-and-vegetable-dish", category: "Dinner", emoji: "🍖", image: "/images/recipes/D025.png",
+    id: "pork-apple-cabbage", code: "D025", mealFamily: "meat-and-vegetable-dish", category: "Dinner",
+    cuisine: "British", emoji: "🍖", image: "/images/recipes/D025.png",
     name: "Pork, Apple & Cabbage", description: "Grilled pork with warm apple and tender cabbage, finished with herbs.", cookingTime: "30 minutes", calories: "396 kcal", protein: "36.9 g", equipment: "Grill pan, saucepan, frying pan, knife, chopping board",
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "140 g" }, { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (100 g)" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "0.2 g (small pinch)" }
@@ -2162,6 +2164,7 @@ export const dinners: Recipe[] = [
     id: "d040-cod-sweetcorn-potato-bake",
     code: "D040", mealFamily: "potato-bake",
     category: "Dinner",
+    cuisine: "British",
     emoji: "🐟",
     image: "/images/recipes/D040.png",
     name: "Cod & Sweetcorn Potato Bake",
@@ -2310,7 +2313,8 @@ export const dinners: Recipe[] = [
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
-  { id: "chicken-carrot-noodle-stir-fry", code: "D045", mealFamily: "noodle-stir-fry", category: "Dinner", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "386 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
+  { id: "chicken-carrot-noodle-stir-fry", code: "D045", mealFamily: "noodle-stir-fry", category: "Dinner",
+    cuisine: "Chinese", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "386 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
       { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (30 g)" },
@@ -8299,7 +8303,8 @@ export const dinners: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian",
-    "Intermittent fasting — eating-window meal"
+    "Intermittent fasting — eating-window meal",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -9841,7 +9846,7 @@ export const dinners: Recipe[] = [
   "id": "ginger-egg-and-carrot-fried-rice",
   "code": "D115",
   "category": "Dinner",
-  "cuisine": "East Asia",
+  "cuisine": "Chinese",
   "mealFamily": "rice",
   "emoji": "🍽️",
   "image": "/images/recipes/D115.webp",
@@ -10032,7 +10037,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "DASH-style"
+    "DASH-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -10330,7 +10336,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian",
-    "DASH-style"
+    "DASH-style",
+    "Blue Zone-inspired"
   ]
 },
 {
@@ -10673,7 +10680,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Mediterranean-style",
-    "Intermittent fasting — eating-window meal"
+    "Intermittent fasting — eating-window meal",
+    "Blue Zone-inspired"
   ]
 },
 {

@@ -2,7 +2,7 @@ import type { Recipe } from "@/data/RecipeData";
 
 export const DIET_TYPES = [
   "All", "Keto", "Atkins Phase 1", "Carnivore", "Mediterranean-style",
-  "Low FODMAP", "Vegan", "Vegetarian", "DASH-style",
+  "Low FODMAP", "Vegan", "Vegetarian", "Blue Zone-inspired", "DASH-style",
   "Intermittent fasting — eating-window meal", "Mixed diet",
 ] as const;
 
@@ -23,6 +23,7 @@ export function matchesDietSearch(recipe: Pick<Recipe, "dietCategories">, query:
     [/\bcarnivore\b/i, "Carnivore"], [/\bmediterranean\b/i, "Mediterranean-style"],
     [/\bfodmap\b/i, "Low FODMAP"], [/\bvegan\b/i, "Vegan"],
     [/\bvegetarian\b/i, "Vegetarian"], [/\bdash\b/i, "DASH-style"],
+    [/\bblue[\s-]+zones?(?:[\s-]+inspired)?\b/i, "Blue Zone-inspired"],
     [/\bintermittent\s+fasting\b/i, "Intermittent fasting — eating-window meal"],
     [/\bmixed\s+diet\b/i, "Mixed diet"],
   ];

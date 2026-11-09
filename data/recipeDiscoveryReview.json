@@ -1,0 +1,739 @@
+{
+  "baselineCommit": "424a548f861d70dde78a1d87361c35cf85161370",
+  "reviewed": "2026-11-09",
+  "method": "Explicit recipe metadata after ingredient and preparation review. No runtime ingredient guessing and no nutrient thresholds. Broader or uncertain cuisine remains Other in discovery. Blue Zone-inspired denotes a food pattern, not origin, approval or a health or longevity claim.",
+  "references": [
+    "https://www.bluezones.com/recipes/food-guidelines/",
+    "https://www.bluezones.com/wp-content/uploads/2019/12/BZL_Food-Guidelines-Printable_02.pdf",
+    "https://www.renalplan.com/kidney-friendly-chinese-recipes"
+  ],
+  "recipes": [
+    {
+      "code": "B002",
+      "id": "apple-honey-porridge",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Oat porridge cooked with milk, apple and honey; British breakfast preparation, not oats alone.",
+      "protectedContentSha256": "5a9c5f8bd4e9600edc073ee856874fe12fd5934c7ab7dca3361bd60d0f736826"
+    },
+    {
+      "code": "B008",
+      "id": "jam-butter-breakfast-toast",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Buttered white toast with marmalade is a documented British breakfast presentation.",
+      "protectedContentSha256": "8b16eaa4f4ebeffb1b72954e3c16d6e92131fa6179f8257eaebde3a558fc01f2"
+    },
+    {
+      "code": "B024",
+      "id": "boiled-egg-soldiers",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Soft-boiled egg served with buttered toast soldiers is a distinctive British preparation.",
+      "protectedContentSha256": "4baac3ebea7974f90801a8f34f8c825f2dd137c904df077a5e8c6bc1a6fc1d30"
+    },
+    {
+      "code": "B045",
+      "id": "mixed-berry-overnight-oats",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegetarian"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegetarian",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Loma Linda-inspired",
+      "blueZoneRationale": "Whole oats and berries form the plant base; 100ml milk and 5g honey are supporting ingredients.",
+      "protectedContentSha256": "07650fe7bdc517fc9d50f9da67e11c77cd968ea04d43c78ea41b41f0e95b7477"
+    },
+    {
+      "code": "B046",
+      "id": "apple-cinnamon-overnight-oats",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegetarian"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegetarian",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Loma Linda-inspired",
+      "blueZoneRationale": "Whole oats and apple with cinnamon; 100ml milk and 5g honey support a minimally processed grain-and-fruit breakfast.",
+      "protectedContentSha256": "b6c374cc6a72f15887fba7b433c817d6093a1d600506fdc115b12c717b66c7b0"
+    },
+    {
+      "code": "B052",
+      "id": "blueberry-oat-and-tofu-pancakes",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Okinawa / Loma Linda-inspired",
+      "blueZoneRationale": "Tofu, whole oats and blueberries form a plant-based breakfast; rice flour and 5g sugar are secondary ingredients.",
+      "protectedContentSha256": "49ea745a4248dc0e5b7152354af9ce67684312b85ea7745a6ef12c4c04e2c41c"
+    },
+    {
+      "code": "B055",
+      "id": "white-bean-and-basil-breakfast-polenta",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Sardinia / Nicoya-inspired",
+      "blueZoneRationale": "White beans, cornmeal, tomato, pepper and walnuts combine legumes, maize and vegetables without meat or dairy.",
+      "protectedContentSha256": "61eeae4c82070c1250a0a2269659f67bf74a4eadddcac0efda25b1133de32a7c"
+    },
+    {
+      "code": "L001",
+      "id": "chicken-lettuce-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Cold sliced white-bread sandwich with chicken, lettuce and mayonnaise.",
+      "protectedContentSha256": "cefc4ca4e21f1721e2e298b7ec4a4d8881cb3a2d1b0453ecfc38250a2ecc032d"
+    },
+    {
+      "code": "L002",
+      "id": "egg-lettuce-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Cold sliced white-bread sandwich with boiled egg, lettuce and mayonnaise.",
+      "protectedContentSha256": "042fdf27404b67560e769578e11c3d094d6249c1793f32c2e5d5a72a56b60561"
+    },
+    {
+      "code": "L003",
+      "id": "tuna-lettuce-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Cold white-bread tuna, lettuce and mayonnaise sandwich.",
+      "protectedContentSha256": "9c6331e25583daf4c658d1f7ffc0bbe2a3f8a9ac0185dcdef43383a6f04b5c1d"
+    },
+    {
+      "code": "L004",
+      "id": "chicken-cucumber-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Cold sliced white-bread chicken and cucumber mayonnaise sandwich.",
+      "protectedContentSha256": "b7c8c4adcac916ba2e0a72e43c05673528eb780f58a4d6eec4f3a647c6975fb9"
+    },
+    {
+      "code": "L005",
+      "id": "egg-mayo-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Boiled egg mayonnaise and chive sandwich on sliced white bread.",
+      "protectedContentSha256": "44ca070cb31aedcca68b268be08388e31a609558b3287362aa6ae515662065b4"
+    },
+    {
+      "code": "L006",
+      "id": "chicken-red-pepper-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Sliced white-bread chicken, red pepper and mayonnaise sandwich.",
+      "protectedContentSha256": "9cec12a028ac24360b8adfaf6c913e01b97592d63c5a46f3fe2943bed7812a85"
+    },
+    {
+      "code": "L007",
+      "id": "ham-lettuce-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Boiled egg, lettuce and chives layered on buttered sliced white bread.",
+      "protectedContentSha256": "b4ef67e73801e109aad4ef86f2021da613cb00a36b7d892e511bb6e7e389715d"
+    },
+    {
+      "code": "L008",
+      "id": "chicken-cream-cheese-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Sliced white-bread sandwich with chicken, cucumber and cream cheese.",
+      "protectedContentSha256": "4ccdd1ca1223773e23f89eacb08a472f5e198781fa53829d921ac359a97a02ad"
+    },
+    {
+      "code": "L020",
+      "id": "chicken-fried-rice",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "Chinese"
+      },
+      "cuisineRationale": "Chinese-inspired egg/chicken fried rice; explicitly included in the existing Chinese collection and pan-fried with cooked rice.",
+      "protectedContentSha256": "3226a82f4ad64fd77e9a156928f74e89a6aba68ddecf8bb45f38ea5e901137e2"
+    },
+    {
+      "code": "L025",
+      "id": "chicken-jacket-potato",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Jacket potato split open and filled with chicken and cream cheese.",
+      "protectedContentSha256": "ef490d38f2d4984b26e9f9002b3d294522798cce41e360df31a7556b72b5d99e"
+    },
+    {
+      "code": "L026",
+      "id": "tuna-jacket-potato",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Crisp-skinned jacket potato split and filled with tuna mayonnaise.",
+      "protectedContentSha256": "5582be3dd76dc5043f38130de50ad3206a33ed267d154768de0d09543b307566"
+    },
+    {
+      "code": "L027",
+      "id": "egg-mayo-jacket-potato",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Crisp-skinned jacket potato with egg mayonnaise and chives.",
+      "protectedContentSha256": "edb206853931a350c1617d78c8ce0a3f7197c6211fb65634b8484d438b55f622"
+    },
+    {
+      "code": "L034",
+      "id": "chicken-pepper-toastie",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Buttered closed toastie cooked in a sandwich press or pan.",
+      "protectedContentSha256": "d01ed3f8684549d587c3992915f115fe4c9b4c023a66fa49caac3544c6bba560"
+    },
+    {
+      "code": "L035",
+      "id": "tuna-cucumber-toastie",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Buttered closed tuna toastie cooked in a sandwich press or pan.",
+      "protectedContentSha256": "20b2baa77aa3f2ca4235f8131f2453fdba3604628c84ee8ea46fc56ac8c332c7"
+    },
+    {
+      "code": "L036",
+      "id": "chicken-apple-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Cold sliced white-bread chicken, apple and lettuce mayonnaise sandwich.",
+      "protectedContentSha256": "d99bd277c0c599f72687ea465ef08ae7e4661f59e6f57ae575db4bbb0e6211fc"
+    },
+    {
+      "code": "L037",
+      "id": "egg-cucumber-sandwich",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Sliced boiled egg and cucumber mayonnaise sandwich on white bread.",
+      "protectedContentSha256": "694ebca1ef6fee6dc4a703a05b202291e9bf125d14a865d3a1b0ff60507d74c7"
+    },
+    {
+      "code": "L069",
+      "id": "white-bean-and-roasted-pepper-bruschetta",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Sardinia / Ikaria-inspired",
+      "blueZoneRationale": "White beans, roasted pepper, walnuts, olive oil and herbs are the main filling; white bread is a supporting grain component.",
+      "protectedContentSha256": "a3243c2f280a67e83a64e17a36dcf752ab3abedbbf5dfee1bf0c6c4bc16366bf"
+    },
+    {
+      "code": "L076",
+      "id": "black-bean-and-sweetcorn-cakes-with-lime-slaw",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Mediterranean-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Mediterranean-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Nicoya-inspired",
+      "blueZoneRationale": "Black beans, homemade masa cakes, sweetcorn and cabbage reflect the beans-maize-vegetable pattern.",
+      "protectedContentSha256": "e18ae7f2ca9ea960d5348621a7fa2aaf81b5ddd26f065446ad010763e47589b2"
+    },
+    {
+      "code": "L094",
+      "id": "black-bean-tostadas-with-avocado-and-lime",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Mediterranean-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Mediterranean-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Nicoya-inspired",
+      "blueZoneRationale": "Homemade masa tostadas with black beans, sweetcorn, vegetables and avocado; plant staples rather than processed toppings.",
+      "protectedContentSha256": "b0df915dda0d0b8c792a4dc1f2db9d8a11580b16683294034429c8a3a75e89b3"
+    },
+    {
+      "code": "L096",
+      "id": "black-beans-and-rice-with-lime-dressed-cabbage",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Mediterranean-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Mediterranean-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Nicoya-inspired",
+      "blueZoneRationale": "Black beans and rice with cabbage, onion, lime and herbs; a traditional beans-and-rice plant staple pattern.",
+      "protectedContentSha256": "7053a12926609330c82cf523051da8946f71212ca0d74c71f0ba52d02900a8d6"
+    },
+    {
+      "code": "L116",
+      "id": "white-bean-and-brown-rice-salad",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Sardinia / Ikaria-inspired",
+      "blueZoneRationale": "White beans, mixed brown/white rice, vegetables, walnuts and herbs; a legume-grain-vegetable meal.",
+      "protectedContentSha256": "452037e6e0c28e568cafc408046641d57b22a8ea9a3038948b836c10f8907d4d"
+    },
+    {
+      "code": "L117",
+      "id": "lemon-chickpea-and-quinoa-bowl",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Loma Linda-inspired",
+      "blueZoneRationale": "Chickpeas, quinoa, vegetables and walnuts form a minimally processed legume and whole-grain meal.",
+      "protectedContentSha256": "28aaccaad4cbb36f59f54c38145a14aba8c89131bbe1e46c74f5f37d3283c6da"
+    },
+    {
+      "code": "L119",
+      "id": "lentil-and-barley-herb-salad",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Sardinia / Ikaria-inspired",
+      "blueZoneRationale": "Lentils, barley, pepper, cucumber, walnuts and herbs; plant staples without meat or dairy.",
+      "protectedContentSha256": "6c59a931149184287bca568f2f38fa5303824a09411c771b86adb55d6fa7c30f"
+    },
+    {
+      "code": "L120",
+      "id": "ginger-tofu-and-brown-rice-bowl",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Okinawa-inspired",
+      "blueZoneRationale": "Tofu, brown/white rice, cabbage, carrot, ginger and sesame; soy and vegetables remain central.",
+      "protectedContentSha256": "d2bff14f8194850a6160a6bb872d7b0fe9e54acf40f8f464e9028210e25b4a4e"
+    },
+    {
+      "code": "L125",
+      "id": "ginger-tofu-and-peanut-noodle-salad",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Intermittent fasting — eating-window meal"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Intermittent fasting — eating-window meal",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Okinawa-inspired",
+      "blueZoneRationale": "Tofu, peanuts, cucumber, carrot and ginger with rice noodles; a plant-based soy, vegetable and grain meal.",
+      "protectedContentSha256": "71f6a5fa4dd8ef9a7e2ff2c686752e3ca2057d7707db91a14b0ffe4d2147718d"
+    },
+    {
+      "code": "D023",
+      "id": "herb-cod-potatoes-cabbage",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Baked herb fish served with boiled buttered potatoes and cabbage; British fish-and-vegetable supper preparation.",
+      "protectedContentSha256": "fb92b4d19e604c042a207cee8b3761d6e03f753a43a29fe113e04557b05fe0e5"
+    },
+    {
+      "code": "D025",
+      "id": "pork-apple-cabbage",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Pork, apple and cabbage cooked with butter and rosemary, a British-style pork-and-apple supper.",
+      "protectedContentSha256": "f215bb0298b326ae05a274af44c9b4d9e95a05496fde1591684d7f5ddeff3583"
+    },
+    {
+      "code": "D040",
+      "id": "d040-cod-sweetcorn-potato-bake",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "British"
+      },
+      "cuisineRationale": "Cream-and-butter fish and potato bake with cabbage, a British fish-pie-style preparation.",
+      "protectedContentSha256": "b5217995bf853c7c5e27fff6572de105b531ced713091bdd374b6d5e323a33c6"
+    },
+    {
+      "code": "D045",
+      "id": "chicken-carrot-noodle-stir-fry",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {},
+      "after": {
+        "cuisine": "Chinese"
+      },
+      "cuisineRationale": "Ginger chicken and vegetable noodle stir-fry; explicitly described as Chinese-inspired in the existing Chinese collection.",
+      "protectedContentSha256": "65d927b7fb3cdc2953ec01e5b4056ef2b85ee309b39be46750ebd9c71c0b5a38"
+    },
+    {
+      "code": "D097",
+      "id": "black-bean-and-rice-stuffed-peppers",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegetarian",
+          "Intermittent fasting — eating-window meal"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegetarian",
+          "Intermittent fasting — eating-window meal",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Nicoya-inspired",
+      "blueZoneRationale": "Black beans, rice, pepper, tomato and avocado dominate; 20g cheddar is a small topping.",
+      "protectedContentSha256": "06b0d15ae92b9e3bbbf842dea39af6aa5e73e3f980ad31bb9060b0d8172cf34a"
+    },
+    {
+      "code": "D115",
+      "id": "ginger-egg-and-carrot-fried-rice",
+      "changedFields": [
+        "cuisine"
+      ],
+      "before": {
+        "cuisine": "East Asia"
+      },
+      "after": {
+        "cuisine": "Chinese"
+      },
+      "cuisineRationale": "Ginger and egg fried rice; refines the broad East Asia metadata using the existing Chinese collection and stir-fry method.",
+      "protectedContentSha256": "69870e0f82075511b841a9b10b5ddc819f40988046b9b9348fe8f9346e217bfa"
+    },
+    {
+      "code": "D116",
+      "id": "spiced-lentil-and-brown-rice-pilaf",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Loma Linda-inspired",
+      "blueZoneRationale": "Lentils, predominantly brown rice, cabbage and carrot make a minimally processed plant-based main meal.",
+      "protectedContentSha256": "20d9ff973bd12c47b4ec828b8892c19050139d135dabddd40f8e1314beedd089"
+    },
+    {
+      "code": "D119",
+      "id": "tofu-white-bean-and-barley-bake",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "DASH-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Sardinia / Okinawa-inspired",
+      "blueZoneRationale": "White beans, barley, tomato and courgette with tofu; a modern plant-based adaptation of legume-grain-vegetable staples.",
+      "protectedContentSha256": "abe8af1fbd7e45da9e86c867dd4ed6ed077505949209d96ac56555f016e82f57"
+    },
+    {
+      "code": "D122",
+      "id": "white-bean-and-ricotta-stuffed-peppers-with-rice",
+      "changedFields": [
+        "dietCategories"
+      ],
+      "before": {
+        "dietCategories": [
+          "Vegetarian",
+          "Mediterranean-style",
+          "Intermittent fasting — eating-window meal"
+        ]
+      },
+      "after": {
+        "dietCategories": [
+          "Vegetarian",
+          "Mediterranean-style",
+          "Intermittent fasting — eating-window meal",
+          "Blue Zone-inspired"
+        ]
+      },
+      "blueZonePattern": "Sardinia-inspired",
+      "blueZoneRationale": "White beans, peppers, tomato, onion, rice and walnuts dominate; 50g ricotta is a modest addition.",
+      "protectedContentSha256": "0c613ea037164ac1b410e1710bc2257ea0ff4bdfb51bcb34fb56ec5741a7ad00"
+    }
+  ]
+}

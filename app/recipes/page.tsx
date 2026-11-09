@@ -8,12 +8,16 @@ import RecipeCard from "@/components/RecipeCard";
 import { recipes } from "../../data/RecipeData";
 import { matchesProteinFilter } from "@/lib/recipeProtein";
 import { DIET_TYPES, matchesDietFilter, matchesDietSearch, recipeDietSearchTerms } from "@/lib/recipeDiets";
+import { matchesCuisineFilter, recipeCuisineOptions, recipeCuisineSearchTerms } from "@/lib/recipeCuisines";
 import { createClient } from "@/lib/supabase/client";
+
+const cuisineOptions = recipeCuisineOptions(recipes);
 
 export default function RecipesPage() {
   const [selectedMealType, setSelectedMealType] = useState("All");
   const [selectedProtein, setSelectedProtein] = useState("All");
   const [selectedDiet, setSelectedDiet] = useState("All");
+  const [selectedCuisine, setSelectedCuisine] = useState("All");
   const [searchText, setSearchText] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [showFavourites, setShowFavourites] = useState(false);
@@ -120,6 +124,7 @@ export default function RecipesPage() {
         setSelectedMealType("All");
         setSelectedProtein("All");
         setSelectedDiet("All");
+        setSelectedCuisine("All");
         setShowFavourites(true);
         setSearchText("");
         setSortBy("default");
@@ -134,6 +139,7 @@ export default function RecipesPage() {
         setSelectedMealType(plannerMeal);
         setSelectedProtein("All");
         setSelectedDiet("All");
+        setSelectedCuisine("All");
         setShowFavourites(false);
         setSearchText("");
         setSortBy("default");
@@ -157,6 +163,7 @@ export default function RecipesPage() {
         selectedMealType?: unknown;
         selectedProtein?: unknown;
         selectedDiet?: unknown;
+        selectedCuisine?: unknown;
         showFavourites?: unknown;
         searchText?: unknown;
         sortBy?: unknown;
@@ -187,6 +194,8 @@ export default function RecipesPage() {
         );
         const savedDiet = savedFilters.selectedDiet;
         setSelectedDiet(typeof savedDiet === "string" && DIET_TYPES.some(diet => diet === savedDiet) ? savedDiet : "All");
+        const savedCuisine = savedFilters.selectedCuisine;
+        setSelectedCuisine(typeof savedCuisine === "string" && cuisineOptions.some(cuisine => cuisine === savedCuisine) ? savedCuisine : "All");
         setShowFavourites(savedFilters.showFavourites === true);
         setSearchText(
           typeof savedFilters.searchText === "string"
@@ -203,6 +212,7 @@ export default function RecipesPage() {
         setSelectedMealType("All");
         setSelectedProtein("All");
         setSelectedDiet("All");
+        setSelectedCuisine("All");
         setShowFavourites(false);
         setSearchText("");
         setSortBy("default");
@@ -235,6 +245,7 @@ export default function RecipesPage() {
           selectedMealType,
           selectedProtein,
           selectedDiet,
+          selectedCuisine,
           showFavourites,
           searchText,
           sortBy,
@@ -248,6 +259,7 @@ export default function RecipesPage() {
     selectedMealType,
     selectedProtein,
     selectedDiet,
+    selectedCuisine,
     showFavourites,
     searchText,
     sortBy,
@@ -480,6 +492,7 @@ export default function RecipesPage() {
         recipe.equipment,
         recipe.category,
         recipeDietSearchTerms(recipe),
+        recipeCuisineSearchTerms(recipe),
         ...recipe.ingredients.map((ingredient) => ingredient.item),
       ]
         .filter(Boolean)
@@ -522,6 +535,7 @@ export default function RecipesPage() {
         matchesMealType &&
         matchesProtein &&
         matchesDietFilter(recipe, selectedDiet) &&
+        matchesCuisineFilter(recipe, selectedCuisine) &&
         matchesDietSearch(recipe, searchText) &&
         matchesFavourite &&
         matchesSearch
@@ -609,6 +623,7 @@ export default function RecipesPage() {
       recipe.equipment,
       recipe.category,
       recipeDietSearchTerms(recipe),
+      recipeCuisineSearchTerms(recipe),
       ...recipe.ingredients.map((ingredient) => ingredient.item),
     ]
       .filter(Boolean)
@@ -633,7 +648,7 @@ export default function RecipesPage() {
         return variants.some((variant) => searchableText.includes(variant));
       });
 
-    return matchesProtein && matchesDietFilter(recipe, selectedDiet) && matchesDietSearch(recipe, searchText) && matchesFavourite && matchesSearch;
+    return matchesProtein && matchesDietFilter(recipe, selectedDiet) && matchesCuisineFilter(recipe, selectedCuisine) && matchesDietSearch(recipe, searchText) && matchesFavourite && matchesSearch;
   });
 
   const mealTypeCounts = {
@@ -676,7 +691,8 @@ export default function RecipesPage() {
     setShowFavourites((current) => !current);
     setSelectedMealType("All");
     setSelectedProtein("All");
-        setSelectedDiet("All");
+    setSelectedDiet("All");
+    setSelectedCuisine("All");
     setSearchText("");
     setSortBy("default");
   }
@@ -744,8 +760,8 @@ export default function RecipesPage() {
               </button>
 
               {showFilters && (
-                <div className="absolute right-0 top-full z-30 mt-3 w-[min(900px,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
-                  <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+                <div className="absolute right-0 top-full z-30 mt-3 w-[min(720px,calc(100vw-16rem))] max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 
                     {/* Meal type */}
                     <div>
@@ -803,8 +819,12 @@ export default function RecipesPage() {
                     </div>
 
                     <div>
-                      <p className="mb-2 block font-semibold text-slate-800">Cuisine collections</p>
-                      <Link href="/kidney-friendly-chinese-recipes" className="inline-flex min-h-11 items-center text-sm font-semibold text-green-800 underline underline-offset-4 dark:text-green-300">Chinese recipes</Link>
+                      <label htmlFor="recipe-cuisine-desktop" className="mb-2 block font-semibold text-slate-800">Cuisine</label>
+                      <select id="recipe-cuisine-desktop" value={selectedCuisine} onChange={event => setSelectedCuisine(event.target.value)} className="w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                        <option value="All">All cuisines</option>
+                        {cuisineOptions.map(cuisine => <option key={cuisine} value={cuisine}>{cuisine}</option>)}
+                      </select>
+                      <Link href="/kidney-friendly-chinese-recipes" className="mt-2 inline-block text-xs font-semibold text-green-800 underline underline-offset-4 dark:text-green-300">Chinese recipe collection</Link>
                     </div>
 
                     {/* Favourites */}
@@ -842,7 +862,7 @@ export default function RecipesPage() {
                     </div>
 
                     {/* Sort */}
-                    <div className="md:col-span-4">
+                    <div>
                       <label className="mb-2 block font-semibold text-slate-800">
                         Sort by
                       </label>
@@ -888,6 +908,8 @@ export default function RecipesPage() {
                       searchText ||
                       selectedMealType !== "All" ||
                       selectedProtein !== "All" ||
+                      selectedDiet !== "All" ||
+                      selectedCuisine !== "All" ||
                       showFavourites ||
                       sortBy !== "default"
                     ) ? (
@@ -897,7 +919,8 @@ export default function RecipesPage() {
                           setSearchText("");
                           setSelectedMealType("All");
                           setSelectedProtein("All");
-        setSelectedDiet("All");
+                          setSelectedDiet("All");
+                          setSelectedCuisine("All");
                           setShowFavourites(false);
                           setSortBy("default");
 
@@ -1060,9 +1083,13 @@ export default function RecipesPage() {
                   </div>
 
                   <div>
-                    <p className="mb-2 block font-semibold text-slate-800">Cuisine collections</p>
-                    <Link href="/kidney-friendly-chinese-recipes" className="inline-flex min-h-11 items-center text-sm font-semibold text-green-800 underline underline-offset-4 dark:text-green-300">Chinese recipes</Link>
-                  </div>
+                      <label htmlFor="recipe-cuisine-mobile" className="mb-2 block font-semibold text-slate-800">Cuisine</label>
+                      <select id="recipe-cuisine-mobile" value={selectedCuisine} onChange={event => setSelectedCuisine(event.target.value)} className="w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                        <option value="All">All cuisines</option>
+                        {cuisineOptions.map(cuisine => <option key={cuisine} value={cuisine}>{cuisine}</option>)}
+                      </select>
+                      <Link href="/kidney-friendly-chinese-recipes" className="mt-2 inline-block text-xs font-semibold text-green-800 underline underline-offset-4 dark:text-green-300">Chinese recipe collection</Link>
+                    </div>
 
                   {/* Favourites */}
                     <div>
@@ -1148,6 +1175,8 @@ export default function RecipesPage() {
                       searchText ||
                       selectedMealType !== "All" ||
                       selectedProtein !== "All" ||
+                      selectedDiet !== "All" ||
+                      selectedCuisine !== "All" ||
                       showFavourites ||
                       sortBy !== "default"
                     ) ? (
@@ -1157,7 +1186,8 @@ export default function RecipesPage() {
                           setSearchText("");
                           setSelectedMealType("All");
                           setSelectedProtein("All");
-        setSelectedDiet("All");
+                          setSelectedDiet("All");
+                          setSelectedCuisine("All");
                           setShowFavourites(false);
                           setSortBy("default");
 

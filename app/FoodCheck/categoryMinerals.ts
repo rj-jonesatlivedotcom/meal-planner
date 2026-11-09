@@ -84,16 +84,36 @@ export function questionableMineralZeros(p: CategoryProduct): Partial<Record<Min
     flags[key] = "Unverified Open Food Facts zero in a cluster of mineral zeros for an identified food containing protein; not established as a measured zero.";
   return flags;
 }
-export function additiveConcern(p: CategoryProduct, nutrient: Mineral): string | null {
-  const text = `${p.ingredients_text ?? ""} ${(p.additives_tags ?? []).join(" ")}`.toLowerCase();
+export function additiveNotice(p: CategoryProduct, nutrient: Mineral): { text: string; severity: "warning" | "notice" } | null {
+  const text = `${p.ingredients_text ?? ""} ${(p.additives_tags ?? []).join(" ")}`.toLowerCase()
+    // OFF transcribes the label's capital I as lowercase l for this identity.
+    .replace(/\bpotassium[ -]+lod(ate|ide)\b/g, "potassium iod$1");
+  const notices: string[] = [];
+  let remaining = text;
+  if (nutrient === "potassium") {
+    remaining = remaining.replace(/\bpotassium[ -]+iod(?:ate|ide)\b/g, identity => {
+      notices.push(`Contains a potassium compound used for iodisation (${identity}). Its contribution to potassium intake is generally very small. The exact amount is not available.`);
+      return " ";
+    });
+  } else {
+    const enhancers = [...new Set(text.match(/\b(?:(?:disodium|dipotassium|potassium|calcium|sodium)[ -]+)?(?:5[’']?[ -]*)?(?:ribonucleotides?|guanylates?|inosinates?|guanylic acid|inosinic acid)\b|\be[ -]?6(?:2[6-9]|3[0-5])(?:[ivx]+)?\b/g) ?? [])];
+    if (enhancers.length) {
+      notices.push(`Contains a phosphorus-containing flavour enhancer (${enhancers.join(", ")}). Its contribution to total phosphorus is generally considered small. The exact amount is not available.`);
+      // Remove only identified flavour enhancers; phosphates elsewhere still warn.
+      remaining = remaining.replace(/\b(?:(?:disodium|dipotassium|potassium|calcium|sodium)[ -]+)?(?:5[’']?[ -]*)?(?:ribonucleotides?|guanylates?|inosinates?|guanylic acid|inosinic acid)\b|\be[ -]?6(?:2[6-9]|3[0-5])(?:[ivx]+)?\b/g, " ");
+    }
+  }
   // Identity only, never a quantity or absorption calculation. E-number names:
   // https://www.gov.uk/government/publications/approved-additives-and-e-numbers/approved-additives-and-e-numbers
   const pattern = nutrient === "potassium"
     ? /potassium(?:[ -]+[a-z]+){0,2}|acesulfa?me[ -]+k\b|\be[ -]?(?:202|212|224|228|249|252|261|283|303|326|332|336|337|340|351|357|402|501|508|515|522|525|536|555|577|622|628|632|950)(?:[ivx]+)?\b/g
-    : /(?:[a-z]+[ -]+)?(?:[a-z]*phosphat[a-z]*|phosphoric acid|lecithin[s]?|ribonucleotide[s]?|guanylate[s]?|inosinate[s]?)|\be[ -]?(?:322|338|339|340|341|343|442|450|451|452|541|626|627|628|629|630|631|632|633|634|635|1410|1412|1413|1414|1442)(?:[ivx]+)?\b/g;
-  const found = [...new Set(text.match(pattern) ?? [])];
-  if (!found.length) return null;
-  return `${nutrient === "potassium" ? "Potassium" : "Phosphorus"}-containing additive listed: ${found.join(", ")}. Actual ${nutrient} may be significantly higher than the baseline estimate. The additive quantity is unknown; its contribution is not calculated or included in the reference range.`;
+    : /(?:[a-z]+[ -]+)?(?:[a-z]*phosphat[a-z]*|phosphoric acid|lecithin[s]?)|\be[ -]?(?:322|338|339|340|341|342|343|442|450|451|452|541|1410|1412|1413|1414|1442)(?:[ivx]+)?\b/g;
+  const found = [...new Set(remaining.match(pattern) ?? [])];
+  if (found.length) notices.unshift(`${nutrient === "potassium" ? "Potassium" : "Phosphorus"}-containing additive listed: ${found.join(", ")}. ${nutrient === "phosphorus" && /phosphat|phosphoric|\be[ -]?(?:33[8-9]|34[0-3]|45[0-2])/.test(found.join(" ")) ? "Added inorganic phosphates may increase phosphorus exposure beyond the baseline estimate. " : ""}Actual ${nutrient} may be significantly higher than the baseline estimate. The additive quantity is unknown; its contribution is not calculated or included in the reference range.`);
+  return notices.length ? { text: notices.join(" "), severity: found.length ? "warning" : "notice" } : null;
+}
+export function additiveConcern(p: CategoryProduct, nutrient: Mineral): string | null {
+  return additiveNotice(p, nutrient)?.text ?? null;
 }
 
 export async function resolveCategoryMinerals(code: string, p: CategoryProduct, current: MineralResults,
@@ -104,8 +124,11 @@ export async function resolveCategoryMinerals(code: string, p: CategoryProduct, 
   p = reviewedLabelBasis(code, p);
   const results = { potassium: { ...current.potassium }, phosphorus: { ...current.phosphorus } };
   for (const key of ["potassium", "phosphorus"] as const) {
-    const concern = additiveConcern(p, key);
-    if (concern) results[key].additiveUncertainty = concern;
+    const notice = additiveNotice(p, key);
+    if (notice) {
+      results[key].additiveUncertainty = notice.text;
+      results[key].additiveSeverity = notice.severity;
+    }
   }
   // Supplied and verified values stay first. If a reviewed reference could not
   // be loaded, continue discovery without authorising that failed reference.

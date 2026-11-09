@@ -8,6 +8,12 @@ export function reviewedLabelBasis<T extends { nutrition_basis?: string; prepara
     "5606677004959": { basis: "Per 100g drained", source: "https://images.openfoodfacts.org/images/products/560/667/700/4959/nutrition_en.5.full.jpg" },
   };
   if (labels[code]) return { ...product, nutrition_basis: `${labels[code].basis}; label: ${labels[code].source}` };
+  // Curry label checked 9 November 2026: 85g dry, nutrition made up as directed,
+  // retain water. OFF declares 1 bowl (435g), but omits its prepared-data flag.
+  // Serving evidence: https://world.openfoodfacts.org/api/v2/product/4061464935242.json
+  if (code === "4061464935242") return { ...product, nutrition_basis: "Per 100g prepared, whole bowl including seasoning and retained water",
+    preparationYield: { dryGrams: 85, preparedGrams: 435, retainsAllContents: true,
+      source: "https://images.openfoodfacts.org/images/products/406/146/493/5242/ingredients_en.7.full.jpg" } };
   if (code === "4061464935198") return { ...product, nutrition_basis: "Per 100g prepared, whole bowl including seasoning and retained water",
     preparationYield: { dryGrams: 85, preparedGrams: 435, retainsAllContents: true,
       source: "https://images.openfoodfacts.org/images/products/406/146/493/5198/nutrition_en.14.full.jpg" } };

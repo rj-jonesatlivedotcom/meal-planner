@@ -57,6 +57,7 @@ const verified = {
   "5000295141599": { dry: 350, amount: 350, basis: "as-sold", label: "Whole pack (350g)" },
   "5000157024671": { dry: 415, amount: 415, basis: "as-sold", label: "Whole can with sauce (415g)" },
   "4061464935198": { dry: 85, amount: 435, basis: "prepared", label: "Whole prepared bowl (435g; 85g dry pack)" },
+  "4061464935242": { dry: 85, amount: 435, basis: "prepared", label: "Whole prepared bowl (435g; 85g dry pack)" },
 } as const;
 
 function baseBarcodePortion(code: string, product: ProductQuantity): BarcodePortion {
@@ -73,6 +74,8 @@ function baseBarcodePortion(code: string, product: ProductQuantity): BarcodePort
   const basis: PreparationBasis = prepared ? "prepared" : state.preparation === "dry" ? "dry" : "as-sold";
   const referenceLabel = `Per 100${unit}${prepared ? " prepared" : basis === "dry" ? " dry" : state.contents === "drained" ? " drained" : ""}`;
   const fallback = (limitation: string): BarcodePortion => ({ amount: null, unit, basis, label: referenceLabel, referenceLabel, limitation });
+  if (code === "4061464935242" && product.nutrition_basis && !/\bprepared\b/i.test(product.nutrition_basis))
+    return { ...fallback("Current nutrition basis conflicts with the reviewed prepared bowl. Verify the label and enter a quantity on the source nutrition basis."), basis: "unknown", referenceLabel: "Per 100g (preparation basis unconfirmed)", label: "Preparation basis unconfirmed" };
   if (product.nutrition_data_per === "100ml" && (single && /^(g|kg)$/i.test(single[2]) || multi?.[4].toLowerCase() === "g"))
     return fallback("Nutrition is per 100ml but the pack quantity is a mass. No mass/volume conversion has been made.");
   if (isVolume && product.nutrition_data_per !== "100ml")

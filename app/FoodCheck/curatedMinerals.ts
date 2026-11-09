@@ -140,6 +140,7 @@ export type CofidMinerals = {
 export type MineralResult = {
   diagnostics?: import("./referenceMatching").MineralDiagnostic;
   additiveUncertainty?: string;
+  additiveSeverity?: "warning" | "notice";
   sourceState?: "reported" | "missing" | "questionable";
   reason?: string;
   categoryId?: string;

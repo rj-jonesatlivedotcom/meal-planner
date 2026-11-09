@@ -24,6 +24,81 @@ function load(path, overrides = {}) {
 }
 const curated = load("app/FoodCheck/curatedMinerals.ts"), category = load("app/FoodCheck/categoryMinerals.ts");
 const portions = load("app/FoodCheck/barcodePortions.ts"), snapshots = load("lib/foodSnacks.ts");
+
+test("flavour enhancers E626–E635 are lower-concern by identity, not phosphate warnings", () => {
+  for (let code = 626; code <= 635; code++) {
+    const notice = category.additiveNotice({ additives_tags: [`en:e${code}`] }, "phosphorus");
+    assert.equal(notice.severity, "notice");
+    assert.match(notice.text, /flavour enhancer.*generally considered small.*exact amount is not available/i);
+    assert.doesNotMatch(notice.text, /significantly higher/);
+  }
+  assert.equal(category.additiveNotice({ ingredients_text: "Disodium 5'-ribonucleotides" }, "phosphorus").severity, "notice");
+  assert.equal(category.additiveNotice({ ingredients_text: "guanylic acid, inosinic acid" }, "phosphorus").severity, "notice");
+});
+
+test("iodisation compounds alone are trace notices, other potassium additives retain warnings", () => {
+  for (const name of ["potassium iodate", "potassium iodide", "Potassium lodate"]) {
+    const notice = category.additiveNotice({ ingredients_text: name }, "potassium");
+    assert.equal(notice.severity, "notice");
+    assert.match(notice.text, /iodisation.*generally very small/);
+    assert.doesNotMatch(notice.text, /significantly higher/);
+  }
+  for (const p of [{ ingredients_text: "potassium chloride" }, { additives_tags: ["en:e508"] }, { ingredients_text: "potassium citrate" }])
+    assert.equal(category.additiveNotice(p, "potassium").severity, "warning");
+});
+
+test("inorganic phosphates remain stronger warnings and mixed notices put warnings first", () => {
+  for (const code of [338,339,340,341,342,343,450,451,452])
+    assert.equal(category.additiveNotice({ additives_tags: [`en:e${code}`] }, "phosphorus").severity, "warning");
+  const p = { ingredients_text: "potassium iodate, potassium chloride, disodium 5'-ribonucleotides, sodium phosphate", additives_tags: ["en:e635", "en:e450i"] };
+  const k = category.additiveNotice(p, "potassium"), ph = category.additiveNotice(p, "phosphorus");
+  assert.equal(k.severity, "warning"); assert.equal(ph.severity, "warning");
+  assert.match(k.text, /potassium chloride.*significantly higher.*iodisation/);
+  assert.match(ph.text, /sodium phosphate.*inorganic phosphates.*significantly higher.*flavour enhancer/);
+  assert.equal(category.additiveNotice({ingredients_text:"sodium phosphate ribonucleotides"}, "phosphorus").severity,"warning");
+  assert.equal(category.additiveNotice({ ingredients_text: "sodium chloride, E621" }, "potassium"), null);
+});
+
+test("curry 85g dry / 435g prepared bowl uses the same nutrition basis in Food Check and Planner", async () => {
+  // OFF fields checked 9 November 2026; package photo states 85g and made up as directed.
+  const product = { product_name: "Noodle Bowl Curry", serving_size: "1 per bowl (435 g)", serving_quantity: 435, serving_quantity_unit: "g", nutrition_data_per: "100g",
+    ingredients_text: "Noodles, lodised salt (Potassium lodate), disodium 5'-ribonucleotides", additives_tags: ["en:e635"],
+    nutriments: { "energy-kcal_100g": 379 / 4.35, proteins_100g: 7.7 / 4.35, fat_100g: 14.9 / 4.35, carbohydrates_100g: 51.8 / 4.35 } };
+  const food = await lookup("4061464935242", product);
+  assert.equal(food.portion.amount,435); assert.equal(food.portion.basis,"prepared");
+  assert.match(food.portion.label,/435g; 85g dry/); assert.equal(food.portion.naturalUnit.unit,"pots");
+  const entry = planned(food,1,"pots"), display = portions.portionNutrition(food,food.portion);
+  assert.equal(entry.quantity,435); assert.equal(entry.snapshot.basis,"prepared");
+  assert.ok(Math.abs(display.energyKcal-379)<1e-9); assert.equal(entry.snapshot.nutrients.calories.value,display.energyKcal);
+  assert.equal(entry.snapshot.nutrients.potassium.value,null); assert.equal(entry.snapshot.nutrients.phosphate.value,null);
+  assert.equal(food.minerals.potassium.additiveSeverity,"notice"); assert.equal(food.minerals.phosphorus.additiveSeverity,"notice");
+  assert.equal(portions.barcodePortion("4061464935242",{...product,quantity:"85g"}).amount,435);
+  assert.equal(portions.barcodePortion("4061464935242",{...product,quantity:"100g"}).amount,null);
+  const ambiguous = portions.barcodePortion("unknown",{product_name:"Instant noodle bowl",quantity:"85g",nutrition_data_prepared:"on"});
+  assert.equal(ambiguous.amount,null); assert.equal(ambiguous.naturalUnit,undefined);
+  const conflict = portions.barcodePortion("4061464935242",{...product,nutrition_basis:"Per 100g dry"});
+  assert.equal(conflict.amount,null); assert.match(conflict.referenceLabel,/unconfirmed/);
+  const React=require("react"), render=require("react-dom/server").renderToStaticMarkup, Fields=load("components/food/QuantityFields.tsx").default;
+  const html=render(React.createElement(Fields,{snapshot:snapshot(food),value:{amount:1,unit:"pots"},onChange(){},showSource:true}));
+  assert.match(html,/435g prepared/); assert.match(html,/85g dry/);
+});
+
+test("notice severity changes preserve numeric estimates, ranges and upper-endpoint planning", async () => {
+  const product = { product_name:"Digestives", nutriments:{ "energy-kcal_100g":446,proteins_100g:8,fat_100g:19,carbohydrates_100g:63 } };
+  const initial = await curated.resolveCuratedMinerals("unknown",{potassium:null,phosphorus:null},async()=>null,{basis:"as-sold"});
+  const reference = { source:"CoFID 2021",code:"test",description:"Digestive biscuits",url:"https://example.com",potassiumMg:200,phosphorusMg:100 };
+  const options = {basis:"as-sold",unit:"g",searchReferences:async()=>({matches:{potassium:reference,phosphorus:reference},comparables:{potassium:[{...reference,code:"test2",potassiumMg:240}],phosphorus:[{...reference,code:"test2",phosphorusMg:120}]},reasons:{},searches:[]})};
+  const plain=await category.resolveCategoryMinerals("unknown",product,initial,async()=>null,options);
+  const notice=await category.resolveCategoryMinerals("unknown",{...product,ingredients_text:"potassium iodate",additives_tags:["en:e635"]},initial,async()=>null,options);
+  for(const key of ["potassium","phosphorus"]) {
+    assert.equal(notice[key].valueMg,plain[key].valueMg); assert.deepEqual(notice[key].rangeMg,plain[key].rangeMg);
+    assert.equal(notice[key].provenance,"estimated"); assert.equal(notice[key].additiveSeverity,"notice");
+  }
+  const snap=snapshots.foodSnapshot({minerals:notice},"g","as-sold","test");
+  const scaled=snapshots.snapshotForQuantity(snap,50);
+  assert.equal(scaled.nutrients.potassium.value,120); assert.equal(scaled.nutrients.phosphate.value,60);
+  assert.equal(scaled.nutrients.potassium.kind,"estimated");
+});
 // Exact OFF API fields retrieved 19 October 2026. These are acceptance fixtures,
 // not copied production nutrition or new source records.
 const products = {

@@ -2,10 +2,10 @@
   "sources": {
     "CoFID": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid",
     "USDA": "https://fdc.nal.usda.gov/download-datasets/",
-    "cookingSafety": "https://www.food.gov.uk/safety-hygiene/cooking-your-food"
+    "cookingSafety": "https://www.food.gov.uk/print/pdf/node/193"
   },
   "sourceRegister": "balanced-110/food-register.json",
-  "method": "Retained ingredient-register nutrient values per 100 g multiplied by the listed edible grams / 100. The register contains per-nutrient references, source cells, carbohydrate harmonisation and substitutions. Sum unrounded contributions per serving. Derive salt from total unrounded sodium. Phosphate stores elemental phosphorus in mg. Cooking yield and clinical suitability were not validated.",
+  "method": "Retained ingredient-register nutrient values per 100 g multiplied by the listed edible grams / 100. Additional food records below cover fresh dill and canned coconut milk. The register contains per-nutrient references, source cells, carbohydrate harmonisation and substitutions. Sum unrounded contributions per serving. Derive salt from total unrounded sodium. Phosphate stores elemental phosphorus in mg. Cooking yield and clinical suitability were not validated.",
   "recipes": [
     {
       "code": "B061",
@@ -297,6 +297,674 @@
         "potassium": 494.45,
         "phosphate": 252.05999999999997
       }
+    },
+    {
+      "code": "D128",
+      "id": "korean-style-tofu-and-mushroom-soup",
+      "servings": 1,
+      "timing": "Estimated elapsed time with the side prepared in parallel. Not timed in a kitchen.",
+      "inspiration": [
+        "https://www.koreanbapsang.com/deulkkae-soondubu-jjigae/",
+        "https://www.maangchi.com/recipe/beoseot-deulkkae-tang/comment-page-1"
+      ],
+      "assumptions": [
+        "An adapted soy and mushroom broth with regular tofu. The dish uses no packaged stock. All 250 g of added broth water remains in the calculation, and the finished soup volume is unmeasured."
+      ],
+      "ingredients": [
+        {
+          "registerKey": "shortRice",
+          "grams": 55,
+          "item": "White short-grain rice",
+          "shoppingItem": "White short-grain rice",
+          "quantity": "55 g (dry)"
+        },
+        {
+          "registerKey": "water",
+          "grams": 110,
+          "item": "Water for the rice",
+          "shoppingItem": "Water",
+          "quantity": "110 g"
+        },
+        {
+          "registerKey": "tofu",
+          "grams": 150,
+          "item": "Plain calcium-sulphate tofu, gently drained",
+          "shoppingItem": "Tofu",
+          "quantity": "150 g"
+        },
+        {
+          "registerKey": "mushroom",
+          "grams": 75,
+          "item": "White mushrooms",
+          "shoppingItem": "Mushrooms",
+          "quantity": "75 g (raw)"
+        },
+        {
+          "registerKey": "cabbage",
+          "grams": 55,
+          "item": "White cabbage",
+          "shoppingItem": "White cabbage",
+          "quantity": "55 g (raw)"
+        },
+        {
+          "registerKey": "garlic",
+          "grams": 4,
+          "item": "Garlic",
+          "shoppingItem": "Garlic",
+          "quantity": "4 g (raw)"
+        },
+        {
+          "registerKey": "rapeseedOil",
+          "grams": 8,
+          "item": "Rapeseed oil",
+          "shoppingItem": "Rapeseed oil",
+          "quantity": "8 g"
+        },
+        {
+          "registerKey": "water",
+          "grams": 250,
+          "item": "Water for the broth",
+          "shoppingItem": "Water",
+          "quantity": "250 g"
+        },
+        {
+          "registerKey": "soy",
+          "grams": 5,
+          "item": "Soy sauce",
+          "shoppingItem": "Soy sauce",
+          "quantity": "5 g"
+        },
+        {
+          "registerKey": "springOnion",
+          "grams": 12,
+          "item": "Spring onion",
+          "shoppingItem": "Spring onion",
+          "quantity": "12 g (raw)"
+        },
+        {
+          "registerKey": "sesameOil",
+          "grams": 4,
+          "item": "Sesame oil",
+          "shoppingItem": "Sesame oil",
+          "quantity": "4 g"
+        }
+      ],
+      "unroundedTotals": {
+        "calories": 444.52000000000004,
+        "protein": 17.323999999999995,
+        "carbohydrates": 49.83630735930735,
+        "fat": 19.934,
+        "fibre": 3.5709999999999997,
+        "sodium": 308.37999999999994,
+        "salt": 0.7709499999999998,
+        "potassium": 701.8499999999999,
+        "phosphate": 301.2300000000001
+      }
+    },
+    {
+      "code": "D129",
+      "id": "dak-bulgogi-style-chicken-with-vegetables",
+      "servings": 1,
+      "timing": "Estimated elapsed time with the side prepared in parallel. Not timed in a kitchen.",
+      "inspiration": [
+        "https://www.koreanbapsang.com/dak-bulgogi-korean-bbq-chicken/"
+      ],
+      "assumptions": [
+        "The pan glaze is added to cooked chicken and retained. The recipe uses a short, measured glaze in place of a separate marinade."
+      ],
+      "ingredients": [
+        {
+          "registerKey": "shortRice",
+          "grams": 55,
+          "item": "White short-grain rice",
+          "shoppingItem": "White short-grain rice",
+          "quantity": "55 g (dry)"
+        },
+        {
+          "registerKey": "water",
+          "grams": 110,
+          "item": "Water for the rice",
+          "shoppingItem": "Water",
+          "quantity": "110 g"
+        },
+        {
+          "registerKey": "thigh",
+          "grams": 120,
+          "item": "Skinless boneless chicken thigh",
+          "shoppingItem": "Chicken thigh",
+          "quantity": "120 g (raw)"
+        },
+        {
+          "registerKey": "cabbage",
+          "grams": 70,
+          "item": "White cabbage",
+          "shoppingItem": "White cabbage",
+          "quantity": "70 g (raw)"
+        },
+        {
+          "registerKey": "carrot",
+          "grams": 55,
+          "item": "Carrot",
+          "shoppingItem": "Carrot",
+          "quantity": "55 g (raw)"
+        },
+        {
+          "registerKey": "springOnion",
+          "grams": 12,
+          "item": "Spring onion",
+          "shoppingItem": "Spring onion",
+          "quantity": "12 g (raw)"
+        },
+        {
+          "registerKey": "soy",
+          "grams": 6,
+          "item": "Soy sauce",
+          "shoppingItem": "Soy sauce",
+          "quantity": "6 g"
+        },
+        {
+          "registerKey": "ginger",
+          "grams": 6,
+          "item": "Fresh ginger",
+          "shoppingItem": "Fresh ginger",
+          "quantity": "6 g (raw)"
+        },
+        {
+          "registerKey": "garlic",
+          "grams": 4,
+          "item": "Garlic",
+          "shoppingItem": "Garlic",
+          "quantity": "4 g (raw)"
+        },
+        {
+          "registerKey": "sugar",
+          "grams": 5,
+          "item": "White sugar",
+          "shoppingItem": "White sugar",
+          "quantity": "5 g (dry)"
+        },
+        {
+          "registerKey": "lemon",
+          "grams": 8,
+          "item": "Fresh lemon juice",
+          "shoppingItem": "Fresh lemon juice",
+          "quantity": "8 g"
+        },
+        {
+          "registerKey": "sesameOil",
+          "grams": 4,
+          "item": "Sesame oil",
+          "shoppingItem": "Sesame oil",
+          "quantity": "4 g"
+        },
+        {
+          "registerKey": "water",
+          "grams": 12,
+          "item": "Water for the glaze",
+          "shoppingItem": "Water",
+          "quantity": "12 g"
+        },
+        {
+          "registerKey": "rapeseedOil",
+          "grams": 9,
+          "item": "Rapeseed oil",
+          "shoppingItem": "Rapeseed oil",
+          "quantity": "9 g"
+        }
+      ],
+      "unroundedTotals": {
+        "calories": 511.04999999999995,
+        "protein": 30.150999999999993,
+        "carbohydrates": 57.80879653679652,
+        "fat": 17.256,
+        "fibre": 5.335,
+        "sodium": 465.37,
+        "salt": 1.163425,
+        "potassium": 874.1499999999999,
+        "phosphate": 233.13
+      }
+    },
+    {
+      "code": "D130",
+      "id": "hanoi-style-turmeric-cod-with-dill",
+      "servings": 1,
+      "timing": "Estimated elapsed time with the side prepared in parallel. Not timed in a kitchen.",
+      "inspiration": [
+        "https://vietnam.travel/things-to-do/21-must-try-vietnamese-dishes/"
+      ],
+      "assumptions": [
+        "A chả cá–inspired adaptation using cod, with measured dill, turmeric and peanuts. Noodles are weighed dry, then drained. Discarded cooking water is excluded."
+      ],
+      "ingredients": [
+        {
+          "registerKey": "cod",
+          "grams": 130,
+          "item": "Cod fillet, flesh only",
+          "shoppingItem": "Cod fillet",
+          "quantity": "130 g (raw)"
+        },
+        {
+          "registerKey": "riceNoodles",
+          "grams": 60,
+          "item": "Thin rice vermicelli noodles",
+          "shoppingItem": "Rice noodles",
+          "quantity": "60 g (dry)"
+        },
+        {
+          "registerKey": "turmeric",
+          "grams": 0.8,
+          "item": "Ground turmeric",
+          "shoppingItem": "Ground turmeric",
+          "quantity": "0.8 g (dry)"
+        },
+        {
+          "registerKey": "garlic",
+          "grams": 4,
+          "item": "Garlic",
+          "shoppingItem": "Garlic",
+          "quantity": "4 g (raw)"
+        },
+        {
+          "registerKey": "rapeseedOil",
+          "grams": 10,
+          "item": "Rapeseed oil",
+          "shoppingItem": "Rapeseed oil",
+          "quantity": "10 g"
+        },
+        {
+          "registerKey": "springOnion",
+          "grams": 25,
+          "item": "Spring onion",
+          "shoppingItem": "Spring onion",
+          "quantity": "25 g (raw)"
+        },
+        {
+          "registerKey": "freshDill",
+          "grams": 12,
+          "item": "Fresh dill",
+          "shoppingItem": "Fresh dill",
+          "quantity": "12 g (raw)"
+        },
+        {
+          "registerKey": "peanutsRoasted",
+          "grams": 15,
+          "item": "Unsalted dry-roasted peanuts",
+          "shoppingItem": "Unsalted dry-roasted peanuts",
+          "quantity": "15 g"
+        },
+        {
+          "registerKey": "lime",
+          "grams": 12,
+          "item": "Fresh lime juice",
+          "shoppingItem": "Fresh lime juice",
+          "quantity": "12 g"
+        }
+      ],
+      "unroundedTotals": {
+        "calories": 512.2560000000001,
+        "protein": 31.305299999999995,
+        "carbohydrates": 51.546253333333354,
+        "fat": 18.906399999999998,
+        "fibre": 3.4356,
+        "sodium": 237.998,
+        "salt": 0.594995,
+        "potassium": 746.5400000000001,
+        "phosphate": 391.08
+      }
+    },
+    {
+      "code": "D131",
+      "id": "sri-lankan-style-coconut-red-lentil-dhal",
+      "servings": 1,
+      "timing": "Estimated elapsed time with the side prepared in parallel. Not timed in a kitchen.",
+      "inspiration": [
+        "https://www.theflavorbender.com/dhal-red-lentil-curry/",
+        "https://www.hungrylankan.com/recipes/sri-lankan-spicy-lentil-curry/"
+      ],
+      "assumptions": [
+        "An adapted parippu-style dhal with a mustard seed and onion temper. The coconut milk estimate uses CoFID retail proximates and USDA canned coconut milk minerals. All lentil cooking liquid and tempering oil are retained."
+      ],
+      "ingredients": [
+        {
+          "registerKey": "rice",
+          "grams": 50,
+          "item": "White basmati rice",
+          "shoppingItem": "White basmati rice",
+          "quantity": "50 g (dry)"
+        },
+        {
+          "registerKey": "water",
+          "grams": 110,
+          "item": "Water for the rice",
+          "shoppingItem": "Water",
+          "quantity": "110 g"
+        },
+        {
+          "registerKey": "redLentils",
+          "grams": 55,
+          "item": "Dried split red lentils",
+          "shoppingItem": "Dried split red lentils",
+          "quantity": "55 g (dry)"
+        },
+        {
+          "registerKey": "water",
+          "grams": 180,
+          "item": "Water for the lentils",
+          "shoppingItem": "Water",
+          "quantity": "180 g"
+        },
+        {
+          "registerKey": "cannedCoconutMilk",
+          "grams": 65,
+          "item": "Full-fat canned coconut milk",
+          "shoppingItem": "Full-fat canned coconut milk",
+          "quantity": "65 g"
+        },
+        {
+          "registerKey": "turmeric",
+          "grams": 0.7,
+          "item": "Ground turmeric",
+          "shoppingItem": "Ground turmeric",
+          "quantity": "0.7 g (dry)"
+        },
+        {
+          "registerKey": "onion",
+          "grams": 35,
+          "item": "Onion",
+          "shoppingItem": "Onion",
+          "quantity": "35 g (raw)"
+        },
+        {
+          "registerKey": "garlic",
+          "grams": 4,
+          "item": "Garlic",
+          "shoppingItem": "Garlic",
+          "quantity": "4 g (raw)"
+        },
+        {
+          "registerKey": "rapeseedOil",
+          "grams": 8,
+          "item": "Rapeseed oil",
+          "shoppingItem": "Rapeseed oil",
+          "quantity": "8 g"
+        },
+        {
+          "registerKey": "mustard",
+          "grams": 0.7,
+          "item": "Mustard seeds",
+          "shoppingItem": "Mustard seeds",
+          "quantity": "0.7 g (dry)"
+        },
+        {
+          "registerKey": "chilli",
+          "grams": 0.1,
+          "item": "Pure cayenne chilli powder",
+          "shoppingItem": "Pure cayenne chilli powder",
+          "quantity": "0.1 g (dry)"
+        },
+        {
+          "registerKey": "lime",
+          "grams": 10,
+          "item": "Fresh lime juice",
+          "shoppingItem": "Fresh lime juice",
+          "quantity": "10 g"
+        }
+      ],
+      "unroundedTotals": {
+        "calories": 551.448,
+        "protein": 19.784209999999998,
+        "carbohydrates": 69.62137203463205,
+        "fat": 20.55387,
+        "fibre": 11.545499999999997,
+        "sodium": 22.142000000000003,
+        "salt": 0.055355,
+        "potassium": 687.0939999999999,
+        "phosphate": 328.60299999999995
+      }
     }
-  ]
+  ],
+  "additionalFoodRecords": {
+    "freshDill": {
+      "name": "Fresh dill weed",
+      "state": "raw edible input",
+      "rawFoodDescription": "~02045~^~0200~^~Dill weed, fresh~^~DILL WEED,FRSH~^~~^~~^~~^~Tough stems and trimmings~^41^~Anethum graveolens~^6.25^2.44^8.37^3.57",
+      "nutrients": {
+        "calories": {
+          "value": 43,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "02045",
+            "nutrientId": "208",
+            "raw": "~02045~^~208~^43^0^^~4~^~NC~^~~^~~^^^^^^^~~^01/1977^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "protein": {
+          "value": 3.46,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "02045",
+            "nutrientId": "203",
+            "raw": "~02045~^~203~^3.46^2^^~1~^~~^~~^~~^^^^^^^~~^01/1977^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "carbohydrates": {
+          "value": 4.92,
+          "formula": "Same-record total carbohydrate by difference minus dietary fibre, USDA nutrients 205 − 291",
+          "references": [
+            {
+              "dataset": "USDA SR28",
+              "code": "02045",
+              "nutrientId": "205",
+              "raw": "~02045~^~205~^7.02^0^^~4~^~NC~^~~^~~^^^^^^^~~^01/1977^",
+              "url": "https://fdc.nal.usda.gov/download-datasets/"
+            },
+            {
+              "dataset": "USDA SR28",
+              "code": "02045",
+              "nutrientId": "291",
+              "raw": "~02045~^~291~^2.1^0^^~4~^~~^~~^~~^^^^^^^~~^11/1994^",
+              "url": "https://fdc.nal.usda.gov/download-datasets/"
+            }
+          ]
+        },
+        "fat": {
+          "value": 1.12,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "02045",
+            "nutrientId": "204",
+            "raw": "~02045~^~204~^1.12^2^^~1~^~~^~~^~~^^^^^^^~~^01/1977^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "fibre": {
+          "value": 2.1,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "02045",
+            "nutrientId": "291",
+            "raw": "~02045~^~291~^2.1^0^^~4~^~~^~~^~~^^^^^^^~~^11/1994^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "sodium": {
+          "value": 61,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "02045",
+            "nutrientId": "307",
+            "raw": "~02045~^~307~^61^2^^~1~^~~^~~^~~^^^^^^^~~^01/1977^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "potassium": {
+          "value": 738,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "02045",
+            "nutrientId": "306",
+            "raw": "~02045~^~306~^738^2^^~1~^~~^~~^~~^^^^^^^~~^01/1977^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "phosphate": {
+          "value": 66,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "02045",
+            "nutrientId": "305",
+            "raw": "~02045~^~305~^66^2^^~1~^~~^~~^~~^^^^^^^~~^01/1977^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "salt": {
+          "value": 0.1525,
+          "formula": "Sodium (mg) × 2.5 / 1000"
+        }
+      }
+    },
+    "cannedCoconutMilk": {
+      "name": "Full-fat canned coconut milk",
+      "state": "as sold, weighed grams",
+      "rawFoodDescription": "~12118~^~1200~^~Nuts, coconut milk, canned (liquid expressed from grated meat and water)~^~COCONUT MILK,CND (LIQ EXPRESSED FROM GRATED MEAT&H2O)~^~~^~~^~~^~~^0^~~^5.30^3.47^8.37^4.07",
+      "matchingNote": "CoFID retail coconut milk supplies proximates. The USDA canned coconut milk record supplies reported sodium, potassium and phosphorus. Actual products vary by brand.",
+      "nutrients": {
+        "calories": {
+          "value": 169,
+          "reference": {
+            "dataset": "CoFID 2021",
+            "code": "14-889",
+            "sheet": "1.3 Proximates",
+            "row": 789,
+            "columns": [
+              "M"
+            ],
+            "raw": {
+              "M": "169"
+            },
+            "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          }
+        },
+        "protein": {
+          "value": 1.1,
+          "reference": {
+            "dataset": "CoFID 2021",
+            "code": "14-889",
+            "sheet": "1.3 Proximates",
+            "row": 789,
+            "columns": [
+              "J"
+            ],
+            "raw": {
+              "J": "1.1000000000000001"
+            },
+            "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          }
+        },
+        "carbohydrates": {
+          "value": 3.086580086580086,
+          "reference": {
+            "dataset": "CoFID 2021",
+            "code": "14-889",
+            "sheet": "1.3 Proximates",
+            "row": 789,
+            "columns": [
+              "L",
+              "O",
+              "P",
+              "Q",
+              "R",
+              "S",
+              "T",
+              "U",
+              "V",
+              "W"
+            ],
+            "raw": {
+              "L": "3.3",
+              "O": "1.3",
+              "P": null,
+              "Q": "2",
+              "R": "N",
+              "S": "0.0",
+              "T": "N",
+              "U": "N",
+              "V": "0.0",
+              "W": "0.0"
+            },
+            "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          },
+          "formula": "starchME / 1.10 + (totalME − starchME) / 1.05, matching the existing international recipe calculation for retail coconut milk"
+        },
+        "fat": {
+          "value": 16.9,
+          "reference": {
+            "dataset": "CoFID 2021",
+            "code": "14-889",
+            "sheet": "1.3 Proximates",
+            "row": 789,
+            "columns": [
+              "K"
+            ],
+            "raw": {
+              "K": "16.9"
+            },
+            "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          }
+        },
+        "fibre": {
+          "value": 0.4,
+          "reference": {
+            "dataset": "CoFID 2021",
+            "code": "14-889",
+            "sheet": "1.3 Proximates",
+            "row": 789,
+            "columns": [
+              "Z"
+            ],
+            "raw": {
+              "Z": "0.4"
+            },
+            "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+          }
+        },
+        "sodium": {
+          "value": 13,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "12118",
+            "nutrientId": "307",
+            "raw": "~12118~^~307~^13^0^^~1~^~~^~~^~~^^^^^^^~~^09/1984^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "potassium": {
+          "value": 220,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "12118",
+            "nutrientId": "306",
+            "raw": "~12118~^~306~^220^0^^~1~^~~^~~^~~^^^^^^^~~^09/1984^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "phosphate": {
+          "value": 96,
+          "reference": {
+            "dataset": "USDA SR28",
+            "code": "12118",
+            "nutrientId": "305",
+            "raw": "~12118~^~305~^96^1^^~1~^~~^~~^~~^^^^^^^~~^09/1984^",
+            "url": "https://fdc.nal.usda.gov/download-datasets/"
+          }
+        },
+        "salt": {
+          "value": 0.0325,
+          "formula": "Sodium (mg) × 2.5 / 1000"
+        }
+      }
+    }
+  }
 }

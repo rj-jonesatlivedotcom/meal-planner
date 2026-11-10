@@ -606,6 +606,23 @@ export default function RecipesPage() {
 
   const searchDisplay = searchText.trim();
 
+  const activeFilters: { key: string; label: string; remove: () => void }[] = [];
+  if (searchDisplay) activeFilters.push({ key: "search", label: `Search: ${searchDisplay}`, remove: () => setSearchText("") });
+  if (selectedMealType !== "All") activeFilters.push({ key: "meal", label: `Meal: ${selectedMealType}`, remove: () => setSelectedMealType("All") });
+  if (selectedProtein !== "All") activeFilters.push({ key: "protein", label: `Protein: ${selectedProtein}`, remove: () => setSelectedProtein("All") });
+  if (selectedDiet !== "All") activeFilters.push({ key: "diet", label: `Diet: ${selectedDiet}`, remove: () => setSelectedDiet("All") });
+  if (selectedCuisine !== "All") activeFilters.push({ key: "cuisine", label: `Cuisine: ${selectedCuisine}`, remove: () => setSelectedCuisine("All") });
+  if (showFavourites) activeFilters.push({ key: "favourites", label: "My favourites", remove: () => setShowFavourites(false) });
+  const activeSortLabel: Record<string, string> = {
+    "time-asc": "Quickest first",
+    "time-desc": "Longest first",
+    "calories-asc": "Lowest calories first",
+    "calories-desc": "Highest calories first",
+    "potassium-asc": "Lowest potassium first",
+    "phosphate-asc": "Lowest phosphorus first",
+  };
+  if (sortBy !== "default" && activeSortLabel[sortBy]) activeFilters.push({ key: "sort", label: `Sort: ${activeSortLabel[sortBy]}`, remove: () => setSortBy("default") });
+
   // Keep the green results count in sync with the actual recipe browsing
   // filters. My Diet is assessed against daily nutrition totals, not per recipe.
   const filteredRecipeCount = filteredRecipes.length;
@@ -1248,20 +1265,29 @@ export default function RecipesPage() {
             </button>
           </div>
 
-          {/* Mobile helper text */}
-          <p className={`${styles.countPill} mt-3`} aria-live="polite">
-            <RecipeIcon name="ingredients" /><span>{helperText}</span>
-          </p>
         </div>
 
         {/* =====================================================
-            DESKTOP RECIPE COUNT BAR
+            RECIPE COUNT AND ACTIVE FILTERS
             ===================================================== */}
         <div className={styles.resultsBar}>
-          <p className={styles.countPill} aria-live="polite"><RecipeIcon name="ingredients" /><span>{filteredRecipeCount} {filteredRecipeCount === 1 ? "recipe" : "recipes"}</span></p>
+          <p className={styles.countPill} aria-live="polite"><RecipeIcon name="ingredients" /><span className="hidden md:inline">{filteredRecipeCount} {filteredRecipeCount === 1 ? "recipe" : "recipes"}</span><span className="md:hidden">{helperText}</span></p>
+
+          {activeFilters.length > 0 && (
+            <div className={styles.activeFilters} role="group" aria-label="Active recipe filters">
+              <span className={styles.activeFiltersLabel}>Active filters:</span>
+              {activeFilters.map(filter => (
+                <button key={filter.key} type="button" onClick={filter.remove}
+                  className={styles.filterChip} aria-label={`Remove ${filter.label}`}>
+                  <span>{filter.label}</span>
+                  <span aria-hidden="true">×</span>
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Meal type quick filters */}
-          <div className="flex shrink-0 items-center gap-2">
+          <div className={styles.mealTypeQuickFilters}>
             {mealTypes.map((mealType) => {
               const active =
                 selectedMealType === mealType;

@@ -116,16 +116,24 @@
 .discovery input, .discovery select { border-radius: 12px; }
 .discovery > div > header { background: transparent !important; }
 .categories { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 4px; margin-bottom: 12px; }
-.resultsBar { display: none; align-items: center; justify-content: space-between; gap: 16px; margin: 12px 0; }
+.resultsBar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 12px 0; }
+.mealTypeQuickFilters { display: none; flex-wrap: wrap; align-items: center; gap: 8px; margin-left: auto; }
 .resultsBar > p { color: var(--recipe-muted); font-size: .85rem; }
 .discovery .countPill { display: inline-flex; align-items: center; gap: 7px; width: fit-content; max-width: 100%; padding: 7px 12px; border: 1px solid #cce7d6; border-radius: 999px; background: #eaf7ee; color: #246341; font-size: .8rem; font-weight: 600; line-height: 1.4; }
 .countPill svg { width: 17px; height: 17px; flex-shrink: 0; }
 .countPill span { overflow-wrap: anywhere; }
+.activeFilters { display: flex; flex: 1 1 240px; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }
+.activeFiltersLabel { color: var(--recipe-muted); font-size: .8rem; font-weight: 600; }
+.filterChip { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; max-width: 100%; padding: 8px 12px; border: 1px solid #cce7d6; border-radius: 999px; background: #eaf7ee; color: #246341; font-size: .8rem; font-weight: 600; text-align: left; }
+.filterChip > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.filterChip > span:last-child { flex-shrink: 0; font-size: 1rem; }
+.filterChip:hover { border-color: #72b997; background: #def0e4; }
+.filterChip:focus-visible { outline: 2px solid #167744; outline-offset: 3px; }
 .recipeGrid { display: grid; gap: 22px; grid-template-columns: minmax(0,1fr); }
 .recipeGrid > :global(.col-span-full) { grid-column: 1 / -1; }
 @media (min-width: 768px) { .recipeGrid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (min-width: 1280px) { .recipeGrid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
-@media (min-width:768px) { .categories { display:none; } .resultsBar { display:flex; } .relatedGrid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media (min-width:768px) { .categories { display:none; } .mealTypeQuickFilters { display:flex; } .relatedGrid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media (min-width:1024px) {
  .hero { grid-template-columns: 1.12fr 1fr; } .heroPhoto { aspect-ratio:auto; min-height:460px; }
  .heroContent { padding:26px; gap:18px; } .heroContent > .nutrition { grid-template-columns:repeat(4,minmax(0,1fr)); }
@@ -159,4 +167,7 @@
 :global(html[data-theme="dark"]) .cardTime { color: #bacbd5; }
 :global(html[data-theme="dark"]) .cardFavourite { background:#24323bf2; border-color:#3d4b52; color:#edf2f7; }
 :global(html[data-theme="dark"]) .discovery .countPill { background: #203c2e; border-color: #3b6350; color: #b2e4c5; }
+:global(html[data-theme="dark"]) .filterChip { background: #203c2e; border-color: #3b6350; color: #b2e4c5; }
+:global(html[data-theme="dark"]) .filterChip:hover { background: #2b4c3a; border-color: #72b997; }
+:global(html[data-theme="dark"]) .filterChip:focus-visible { outline-color: #9bddb3; }
 :global(html[data-theme="dark"]) .backLink:hover { background: #243b30; border-color: #63836c; }

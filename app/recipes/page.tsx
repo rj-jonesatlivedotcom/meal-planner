@@ -6,16 +6,13 @@ import styles from "@/components/recipe-design.module.css";
 import RecipeIcon from "@/components/RecipeIcon";
 import RecipeCard from "@/components/RecipeCard";
 import { browseRecipes, recipes } from "../../data/RecipeData";
+import { defaultBrowseRecipes } from "../../data/RecipeData/browseOrder";
 import { matchesProteinFilter } from "@/lib/recipeProtein";
 import { DIET_TYPES, matchesDietFilter, matchesDietSearch, recipeDietSearchTerms } from "@/lib/recipeDiets";
 import { matchesCuisineFilter, recipeCuisineOptions, recipeCuisineSearchTerms } from "@/lib/recipeCuisines";
 import { createClient } from "@/lib/supabase/client";
 
 const cuisineOptions = recipeCuisineOptions(recipes);
-const featuredBreakfastRank = new Map([
-  ["peanut-butter-greek-yoghurt-overnight-oats", 0],
-  ["blueberry-cottage-cheese-overnight-oats", 1],
-]);
 
 export default function RecipesPage() {
   const [selectedMealType, setSelectedMealType] = useState("All");
@@ -461,9 +458,8 @@ export default function RecipesPage() {
     .split(/\s+/)
     .filter(Boolean);
 
-  const showFeaturedBreakfasts =
-    (selectedMealType === "All" ||
-      (selectedMealType === "Breakfast" && !openedFromPlanner)) &&
+  const useDefaultBrowseOrder =
+    sortBy === "default" &&
     selectedProtein === "All" &&
     selectedDiet === "All" &&
     selectedCuisine === "All" &&
@@ -488,7 +484,7 @@ export default function RecipesPage() {
 
   const availableRecipes = showFavourites || (openedFromPlanner && selectedMealType !== "All")
     ? recipes
-    : browseRecipes;
+    : useDefaultBrowseOrder ? defaultBrowseRecipes : browseRecipes;
 
   const filteredRecipes = availableRecipes
     .filter((recipe) => {
@@ -600,11 +596,7 @@ export default function RecipesPage() {
             Other: 4,
           };
 
-          const mealDifference = mealOrder[getMealType(a)] - mealOrder[getMealType(b)];
-          if (mealDifference !== 0 || !showFeaturedBreakfasts) return mealDifference;
-
-          return (featuredBreakfastRank.get(a.id) ?? featuredBreakfastRank.size) -
-            (featuredBreakfastRank.get(b.id) ?? featuredBreakfastRank.size);
+          return mealOrder[getMealType(a)] - mealOrder[getMealType(b)];
         }
       }
     });

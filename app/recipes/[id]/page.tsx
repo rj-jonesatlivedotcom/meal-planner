@@ -11,7 +11,8 @@ import IngredientIcon from "@/components/IngredientIcon";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { recipes } from "@/data/RecipeData";
+import { browseRecipes, recipes } from "@/data/RecipeData";
+import { getRecipeVariation } from "@/data/RecipeData/variants";
 import { createClient } from "@/lib/supabase/client";
 import { getDietaryGuide, getDietaryGuideSections } from "@/lib/dietaryGuides";
 import { presentIngredient, presentMethods } from "@/lib/recipePresentation";
@@ -651,7 +652,8 @@ export default function RecipeDetailPage() {
     );
   }
 
-  const relatedRecipes = recipes.filter((item) => item.id !== recipe.id && item.category === recipe.category).slice(0, 4);
+  const variation = getRecipeVariation(recipe.id);
+  const relatedRecipes = browseRecipes.filter((item) => item.id !== recipe.id && item.id !== variation?.id && item.category === recipe.category).slice(0, 4);
   const dietaryGuideSections = getDietaryGuideSections(getDietaryGuide(recipe));
   const nutritionEstimated = recipe.conditionalProxyPending === true;
   const nutritionUnavailableLabels = [
@@ -726,6 +728,9 @@ export default function RecipeDetailPage() {
             ["Potassium", recipe.nutrition.potassium], ["Phosphorus", recipe.nutrition.phosphate],
           ]} />
           <p className={styles.methodologyLink}><Link href="/about#nutrition-sources-methodology">Nutrition sources &amp; methodology</Link></p>
+          {variation && <p className={styles.methodologyLink}>
+            Recipe variation <Link href={`/recipes/${variation.id}`}>{variation.label} →</Link>
+          </p>}
         </section>
         </div>
         {dietaryGuideSections.length > 0 ? <details ref={guideRef} className={styles.guidePanel} aria-labelledby="recipe-guide" key={recipe.id}>

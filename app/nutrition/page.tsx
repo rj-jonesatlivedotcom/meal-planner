@@ -2208,12 +2208,9 @@ const readFluidLog = useCallback(function readFluidLog(): FluidEntry[] {
 
 
           <p className="nutrition-print-hidden mx-auto mt-5 max-w-5xl text-center text-xs leading-5 text-slate-500">
-            RenalPlan nutrition figures are intended as a
-            planning aid and should not replace advice from your
-            renal or healthcare team. Calculations follow the recorded source mappings,
-            quantity conversions and approved estimation assumptions; they are not
-            measured plate values. Clinical suitability, dietary guidance and qualitative
-            classifications remain pending qualified renal dietitian review. A dash means nutrition is unavailable or incomplete, never zero. Affected daily and weekly totals cannot be assessed against your goals. These estimates do not establish personal dietary suitability.
+            RenalPlan nutrition figures are estimates based on recorded food sources and quantity conversions.
+            Use them as a planning aid alongside advice from your renal or healthcare team.
+            A dash indicates unavailable or incomplete nutrition data. Affected daily and weekly totals cannot be assessed against your goals.
           </p>
             </div>
           </div>

@@ -9,7 +9,7 @@ import { browseRecipes, recipes } from "../../data/RecipeData";
 import { defaultBrowseRecipes } from "../../data/RecipeData/browseOrder";
 import { matchesProteinFilter } from "@/lib/recipeProtein";
 import { DIET_TYPES, matchesDietFilter, matchesDietSearch, recipeDietSearchTerms } from "@/lib/recipeDiets";
-import { matchesCuisineFilter, recipeCuisineOptions, recipeCuisineSearchTerms } from "@/lib/recipeCuisines";
+import { matchesCuisineFilter, recipeCuisineOptions, recipeCuisineSearchTerms, restoreCuisineFilter } from "@/lib/recipeCuisines";
 import { createClient } from "@/lib/supabase/client";
 
 const cuisineOptions = recipeCuisineOptions(recipes);
@@ -197,8 +197,7 @@ export default function RecipesPage() {
         );
         const savedDiet = savedFilters.selectedDiet;
         setSelectedDiet(typeof savedDiet === "string" && DIET_TYPES.some(diet => diet === savedDiet) ? savedDiet : "All");
-        const savedCuisine = savedFilters.selectedCuisine;
-        setSelectedCuisine(typeof savedCuisine === "string" && cuisineOptions.some(cuisine => cuisine === savedCuisine) ? savedCuisine : "All");
+        setSelectedCuisine(restoreCuisineFilter(savedFilters.selectedCuisine, cuisineOptions));
         setShowFavourites(savedFilters.showFavourites === true);
         setSearchText(
           typeof savedFilters.searchText === "string"

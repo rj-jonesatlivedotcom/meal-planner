@@ -1,24 +1,33 @@
 import type { Recipe } from "@/data/RecipeData";
 
-export const CUISINES = ["British", "Italian", "Chinese", "Indian", "Thai", "Vietnamese", "Mediterranean", "Mexican", "Middle Eastern", "Other"] as const;
+export const CUISINES = [
+  "British", "Italian", "Chinese", "Indian", "Thai", "Vietnamese", "Mediterranean", "Mexican", "Middle Eastern",
+  "Bangladeshi", "Brazilian", "Caribbean", "East Asia", "French", "Ghanaian", "Hungarian", "Indonesian",
+  "Japanese", "Korean", "Malaysian", "Moroccan", "Nigerian", "North Africa", "Pakistani", "Peruvian",
+  "Polish", "Portuguese", "South African", "South America", "Southeast Asia", "Sri Lankan", "Tunisian", "West Africa",
+  "Other",
+] as const;
 export type Cuisine = typeof CUISINES[number];
 type CuisineRecipe = Pick<Recipe, "cuisine">;
 
-// Group existing country/adjective metadata for discovery, retaining its original
-// specificity for recipe pages and schema. Other includes unclassified recipes.
-const taxonomy: Record<string, Cuisine> = {
-  britain: "British", british: "British",
-  italy: "Italian", italian: "Italian",
-  china: "Chinese", chinese: "Chinese",
-  india: "Indian", indian: "Indian", "south-indian": "Indian",
-  thailand: "Thai", thai: "Thai",
-  vietnam: "Vietnamese", vietnamese: "Vietnamese",
-  mediterranean: "Mediterranean", greek: "Mediterranean", greece: "Mediterranean", spanish: "Mediterranean", spain: "Mediterranean",
-  mexico: "Mexican", mexican: "Mexican",
-  "middle eastern": "Middle Eastern", lebanese: "Middle Eastern", lebanon: "Middle Eastern", turkish: "Middle Eastern", turkey: "Middle Eastern", persian: "Middle Eastern", iran: "Middle Eastern",
-};
+const normalizeCuisine = (value: string) => value.trim().toLowerCase().replace(/-/g, " ");
+const cuisineNames = new Map(CUISINES.map(cuisine => [normalizeCuisine(cuisine), cuisine]));
+
+// Map only explicit tags. Regional labels stay regional and unknowns go to Other.
+const cuisineAliases = new Map<string, Cuisine>([
+  ["britain", "British"], ["italy", "Italian"], ["china", "Chinese"], ["india", "Indian"], ["south indian", "Indian"],
+  ["thailand", "Thai"], ["vietnam", "Vietnamese"], ["mexico", "Mexican"],
+  ["greek", "Mediterranean"], ["greece", "Mediterranean"], ["spanish", "Mediterranean"], ["spain", "Mediterranean"],
+  ["lebanese", "Middle Eastern"], ["lebanon", "Middle Eastern"], ["turkish", "Middle Eastern"], ["turkey", "Middle Eastern"],
+  ["persian", "Middle Eastern"], ["iran", "Middle Eastern"],
+  ["bangladesh", "Bangladeshi"], ["brazil", "Brazilian"], ["france", "French"], ["ghana", "Ghanaian"],
+  ["indonesia", "Indonesian"], ["japan", "Japanese"], ["malaysia", "Malaysian"], ["morocco", "Moroccan"],
+  ["pakistan", "Pakistani"], ["peru", "Peruvian"], ["poland", "Polish"], ["portugal", "Portuguese"],
+  ["south africa", "South African"], ["sri lanka", "Sri Lankan"],
+]);
 export function recipeCuisine(recipe: CuisineRecipe): Cuisine {
-  return taxonomy[recipe.cuisine?.trim().toLowerCase() ?? ""] ?? "Other";
+  const label = normalizeCuisine(recipe.cuisine ?? "");
+  return cuisineNames.get(label) ?? cuisineAliases.get(label) ?? "Other";
 }
 export function recipeCuisineOptions(recipes: readonly CuisineRecipe[]): Cuisine[] {
   const represented = new Set(recipes.map(recipeCuisine));

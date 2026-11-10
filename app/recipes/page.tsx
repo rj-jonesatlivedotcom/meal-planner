@@ -5,13 +5,17 @@ import Link from "next/link";
 import styles from "@/components/recipe-design.module.css";
 import RecipeIcon from "@/components/RecipeIcon";
 import RecipeCard from "@/components/RecipeCard";
-import { recipes } from "../../data/RecipeData";
+import { browseRecipes, recipes } from "../../data/RecipeData";
 import { matchesProteinFilter } from "@/lib/recipeProtein";
 import { DIET_TYPES, matchesDietFilter, matchesDietSearch, recipeDietSearchTerms } from "@/lib/recipeDiets";
 import { matchesCuisineFilter, recipeCuisineOptions, recipeCuisineSearchTerms } from "@/lib/recipeCuisines";
 import { createClient } from "@/lib/supabase/client";
 
 const cuisineOptions = recipeCuisineOptions(recipes);
+const featuredBreakfastRank = new Map([
+  ["peanut-butter-greek-yoghurt-overnight-oats", 0],
+  ["blueberry-cottage-cheese-overnight-oats", 1],
+]);
 
 export default function RecipesPage() {
   const [selectedMealType, setSelectedMealType] = useState("All");
@@ -23,6 +27,7 @@ export default function RecipesPage() {
   const [showFavourites, setShowFavourites] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [filtersLoaded, setFiltersLoaded] = useState(false);
+  const [openedFromPlanner, setOpenedFromPlanner] = useState(false);
   const [favouriteRecipeIds, setFavouriteRecipeIds] = useState<string[]>([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -136,6 +141,7 @@ export default function RecipesPage() {
       // user's previous browse state, and is consumed after this visit.
       if (plannerMeal && validMealTypes.includes(plannerMeal)) {
         plannerFilterRef.current = true;
+        setOpenedFromPlanner(true);
         setSelectedMealType(plannerMeal);
         setSelectedProtein("All");
         setSelectedDiet("All");
@@ -455,6 +461,15 @@ export default function RecipesPage() {
     .split(/\s+/)
     .filter(Boolean);
 
+  const showFeaturedBreakfasts =
+    (selectedMealType === "All" ||
+      (selectedMealType === "Breakfast" && !openedFromPlanner)) &&
+    selectedProtein === "All" &&
+    selectedDiet === "All" &&
+    selectedCuisine === "All" &&
+    searchWords.length === 0 &&
+    !showFavourites;
+
   // Missing values sort last, independently of the unreviewed clinical labels.
   const nutrientAmount = (value: string | undefined) => {
     const match = value?.replace(/,/g, "").match(/\d+(?:\.\d+)?/);
@@ -471,7 +486,11 @@ export default function RecipesPage() {
     return match ? Number(match[0]) : 0;
   };
 
-  const filteredRecipes = recipes
+  const availableRecipes = showFavourites || (openedFromPlanner && selectedMealType !== "All")
+    ? recipes
+    : browseRecipes;
+
+  const filteredRecipes = availableRecipes
     .filter((recipe) => {
       const recipeMealType = getMealType(recipe);
 
@@ -581,10 +600,11 @@ export default function RecipesPage() {
             Other: 4,
           };
 
-          return (
-            mealOrder[getMealType(a)] -
-            mealOrder[getMealType(b)]
-          );
+          const mealDifference = mealOrder[getMealType(a)] - mealOrder[getMealType(b)];
+          if (mealDifference !== 0 || !showFeaturedBreakfasts) return mealDifference;
+
+          return (featuredBreakfastRank.get(a.id) ?? featuredBreakfastRank.size) -
+            (featuredBreakfastRank.get(b.id) ?? featuredBreakfastRank.size);
         }
       }
     });
@@ -629,7 +649,7 @@ export default function RecipesPage() {
 
   // Meal-type button counts reflect search/protein/favourites selections,
   // but do not depend on the currently selected meal type.
-  const recipesMatchingBrowseFilters = recipes.filter((recipe) => {
+  const recipesMatchingBrowseFilters = availableRecipes.filter((recipe) => {
     const matchesProtein =
       matchesProteinFilter(recipe, selectedProtein);
     const matchesFavourite =
@@ -698,6 +718,7 @@ export default function RecipesPage() {
   }
 
   function handleMealTypeChange(mealType: string) {
+    setOpenedFromPlanner(false);
     setSelectedMealType(mealType);
     setShowFavourites(false);
   }

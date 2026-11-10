@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { recipes } from "@/data/RecipeData";
+import { browseRecipes } from "@/data/RecipeData";
 
 const SITE_URL = "https://www.renalplan.com";
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const recipeListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  itemListElement: recipes.map((recipe, index) => ({
+  itemListElement: browseRecipes.map((recipe, index) => ({
     "@type": "ListItem",
     position: index + 1,
     url: `${SITE_URL}/recipes/${recipe.id}`,

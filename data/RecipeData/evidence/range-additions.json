@@ -1,0 +1,302 @@
+{
+  "sources": {
+    "CoFID": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid",
+    "USDA": "https://fdc.nal.usda.gov/download-datasets/",
+    "cookingSafety": "https://www.food.gov.uk/safety-hygiene/cooking-your-food"
+  },
+  "sourceRegister": "balanced-110/food-register.json",
+  "method": "Retained ingredient-register nutrient values per 100 g multiplied by the listed edible grams / 100. The register contains per-nutrient references, source cells, carbohydrate harmonisation and substitutions. Sum unrounded contributions per serving. Derive salt from total unrounded sodium. Phosphate stores elemental phosphorus in mg. Cooking yield and clinical suitability were not validated.",
+  "recipes": [
+    {
+      "code": "B061",
+      "id": "full-english-style-breakfast",
+      "servings": 1,
+      "timing": "Estimated elapsed time, with parallel steps as described. Not timed in a kitchen.",
+      "assumptions": [
+        "Use fully cooked, unsalted beans. The listed pork weight is raw. Retain all measured cooking oil and bean sauce."
+      ],
+      "ingredients": [
+        {
+          "registerKey": "porkFillet",
+          "grams": 70,
+          "item": "Pork fillet, finely chopped",
+          "shoppingItem": "Pork fillet",
+          "quantity": "70 g (raw)"
+        },
+        {
+          "registerKey": "thyme",
+          "grams": 0.3,
+          "item": "Dried thyme",
+          "shoppingItem": "Dried thyme",
+          "quantity": "0.3 g (dry)"
+        },
+        {
+          "registerKey": "pepper",
+          "grams": 0.2,
+          "item": "Ground black pepper",
+          "shoppingItem": "Ground black pepper",
+          "quantity": "0.2 g (dry)"
+        },
+        {
+          "registerKey": "whiteBeans",
+          "grams": 70,
+          "item": "Navy beans, cooked without salt and drained",
+          "shoppingItem": "Cooked unsalted navy beans",
+          "quantity": "70 g (cooked, drained)"
+        },
+        {
+          "registerKey": "tomatoPuree",
+          "grams": 10,
+          "item": "Tomato purée",
+          "shoppingItem": "Tomato purée",
+          "quantity": "10 g"
+        },
+        {
+          "registerKey": "water",
+          "grams": 30,
+          "item": "Water",
+          "shoppingItem": "Water",
+          "quantity": "30 g"
+        },
+        {
+          "registerKey": "mushroom",
+          "grams": 60,
+          "item": "White mushrooms",
+          "shoppingItem": "Mushrooms",
+          "quantity": "60 g (raw)"
+        },
+        {
+          "registerKey": "tomato",
+          "grams": 70,
+          "item": "Tomato",
+          "shoppingItem": "Tomato",
+          "quantity": "70 g (raw)"
+        },
+        {
+          "registerKey": "egg",
+          "grams": 50,
+          "item": "Whole egg, without shell",
+          "shoppingItem": "Egg",
+          "quantity": "50 g (raw)"
+        },
+        {
+          "registerKey": "rapeseedOil",
+          "grams": 10,
+          "item": "Rapeseed oil",
+          "shoppingItem": "Rapeseed oil",
+          "quantity": "10 g"
+        },
+        {
+          "registerKey": "bread",
+          "grams": 55,
+          "item": "White bloomer bread",
+          "shoppingItem": "White bloomer bread",
+          "quantity": "55 g"
+        }
+      ],
+      "unroundedTotals": {
+        "calories": 485.48,
+        "protein": 34.37910000000001,
+        "carbohydrates": 40.87839523809523,
+        "fat": 17.3028,
+        "fibre": 10.6416,
+        "sodium": 336.505,
+        "salt": 0.8412625,
+        "potassium": 1222.538,
+        "phosphate": 476.7659999999999
+      }
+    },
+    {
+      "code": "D126",
+      "id": "smoky-red-lentil-and-tomato-soup",
+      "servings": 1,
+      "timing": "Estimated elapsed time, with parallel steps as described. Not timed in a kitchen.",
+      "assumptions": [
+        "Sweet paprika composition is used as a proxy for pure smoked sweet paprika. Choose an unsalted spice with no added ingredients.",
+        "No cooking liquid is drained. Finished soup volume was not measured."
+      ],
+      "ingredients": [
+        {
+          "registerKey": "redLentils",
+          "grams": 60,
+          "item": "Dried split red lentils",
+          "shoppingItem": "Dried split red lentils",
+          "quantity": "60 g (dry)"
+        },
+        {
+          "registerKey": "carrot",
+          "grams": 70,
+          "item": "Carrot",
+          "shoppingItem": "Carrot",
+          "quantity": "70 g (raw)"
+        },
+        {
+          "registerKey": "onion",
+          "grams": 25,
+          "item": "Onion",
+          "shoppingItem": "Onion",
+          "quantity": "25 g (raw)"
+        },
+        {
+          "registerKey": "oil",
+          "grams": 15,
+          "item": "Olive oil",
+          "shoppingItem": "Olive oil",
+          "quantity": "15 g"
+        },
+        {
+          "registerKey": "paprika",
+          "grams": 0.6,
+          "item": "Smoked sweet paprika",
+          "shoppingItem": "Smoked sweet paprika",
+          "quantity": "0.6 g (dry)"
+        },
+        {
+          "registerKey": "cumin",
+          "grams": 0.4,
+          "item": "Ground cumin",
+          "shoppingItem": "Ground cumin",
+          "quantity": "0.4 g (dry)"
+        },
+        {
+          "registerKey": "water",
+          "grams": 250,
+          "item": "Water",
+          "shoppingItem": "Water",
+          "quantity": "250 g"
+        },
+        {
+          "registerKey": "tomato",
+          "grams": 100,
+          "item": "Tomato",
+          "shoppingItem": "Tomato",
+          "quantity": "100 g (raw)"
+        },
+        {
+          "registerKey": "tomatoPuree",
+          "grams": 10,
+          "item": "Tomato purée",
+          "shoppingItem": "Tomato purée",
+          "quantity": "10 g"
+        },
+        {
+          "registerKey": "parsley",
+          "grams": 3,
+          "item": "Fresh parsley",
+          "shoppingItem": "Fresh parsley",
+          "quantity": "3 g (raw)"
+        },
+        {
+          "registerKey": "bread",
+          "grams": 55,
+          "item": "Vegan white bloomer bread",
+          "shoppingItem": "White bloomer bread",
+          "quantity": "55 g"
+        }
+      ],
+      "unroundedTotals": {
+        "calories": 514.762,
+        "protein": 22.2058,
+        "carbohydrates": 65.95432251082251,
+        "fat": 17.575600000000005,
+        "fibre": 17.0804,
+        "sodium": 258.62,
+        "salt": 0.64655,
+        "potassium": 1055.8899999999999,
+        "phosphate": 312.5
+      }
+    },
+    {
+      "code": "D127",
+      "id": "crispy-tofu-and-ginger-rice-noodles",
+      "servings": 1,
+      "timing": "Estimated elapsed time, with parallel steps as described. Not timed in a kitchen.",
+      "assumptions": [
+        "Rice noodles are weighed dry and drained after cooking. Unmeasured discarded cooking water is excluded. The estimate retains all dressing and cooking oil."
+      ],
+      "ingredients": [
+        {
+          "registerKey": "riceNoodles",
+          "grams": 60,
+          "item": "Fine rice noodles",
+          "shoppingItem": "Fine rice noodles",
+          "quantity": "60 g (dry)"
+        },
+        {
+          "registerKey": "tofu",
+          "grams": 130,
+          "item": "Plain calcium-sulphate tofu, gently drained",
+          "shoppingItem": "Tofu",
+          "quantity": "130 g"
+        },
+        {
+          "registerKey": "rapeseedOil",
+          "grams": 12,
+          "item": "Rapeseed oil",
+          "shoppingItem": "Rapeseed oil",
+          "quantity": "12 g"
+        },
+        {
+          "registerKey": "cabbage",
+          "grams": 65,
+          "item": "White cabbage",
+          "shoppingItem": "White cabbage",
+          "quantity": "65 g (raw)"
+        },
+        {
+          "registerKey": "carrot",
+          "grams": 55,
+          "item": "Carrot",
+          "shoppingItem": "Carrot",
+          "quantity": "55 g (raw)"
+        },
+        {
+          "registerKey": "ginger",
+          "grams": 6,
+          "item": "Fresh ginger",
+          "shoppingItem": "Fresh ginger",
+          "quantity": "6 g (raw)"
+        },
+        {
+          "registerKey": "soy",
+          "grams": 6,
+          "item": "Soy sauce",
+          "shoppingItem": "Soy sauce",
+          "quantity": "6 g"
+        },
+        {
+          "registerKey": "lime",
+          "grams": 10,
+          "item": "Fresh lime juice",
+          "shoppingItem": "Fresh lime juice",
+          "quantity": "10 g"
+        },
+        {
+          "registerKey": "sesameOil",
+          "grams": 5,
+          "item": "Sesame oil",
+          "shoppingItem": "Sesame oil",
+          "quantity": "5 g"
+        },
+        {
+          "registerKey": "springOnion",
+          "grams": 10,
+          "item": "Spring onion",
+          "shoppingItem": "Spring onion",
+          "quantity": "10 g (raw)"
+        }
+      ],
+      "unroundedTotals": {
+        "calories": 514.8599999999999,
+        "protein": 15.667,
+        "carbohydrates": 58.32737662337663,
+        "fat": 23.916,
+        "fibre": 5.865,
+        "sodium": 469.38000000000005,
+        "salt": 1.17345,
+        "potassium": 494.45,
+        "phosphate": 252.05999999999997
+      }
+    }
+  ]
+}

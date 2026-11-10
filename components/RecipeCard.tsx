@@ -14,6 +14,7 @@ import { createPortal } from "react-dom";
 import { createClient } from "@/lib/supabase/client";
 
 type RecipeCardProps = {
+  imageLoading?: "eager" | "lazy";
   recipe: {
     id: string;
     code: string;
@@ -100,6 +101,7 @@ type PendingSlot = {
 
 export default function RecipeCard({
   recipe,
+  imageLoading,
   favouriteRecipeIds = [],
   userId = null,
   onFavouriteChange,
@@ -728,7 +730,7 @@ export default function RecipeCard({
         onClick={trackRecipeViewed}
         className={styles.cardImage}
       >
-        <RecipePhoto recipeId={recipe.id} src={recipe.image} name={recipe.name} />
+        <RecipePhoto recipeId={recipe.id} src={recipe.image} name={recipe.name} loading={imageLoading} />
       </Link>
 
       {/* ===================================================

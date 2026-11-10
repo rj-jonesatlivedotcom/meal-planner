@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { AllergyOverlay } from "./RecipeAllergy";
 
-export default function RecipePhoto({ src, name, recipeId, priority = false }: {
-  src: string; name: string; recipeId: string; priority?: boolean;
+export default function RecipePhoto({ src, name, recipeId, priority = false, loading }: {
+  src: string; name: string; recipeId: string; priority?: boolean; loading?: "eager" | "lazy";
 }) {
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
   if (!src?.trim() || failedSrc === src) {
@@ -17,7 +17,7 @@ export default function RecipePhoto({ src, name, recipeId, priority = false }: {
       </div>
     );
   }
-  return <><Image src={src} alt={name} fill priority={priority}
+  return <><Image src={src} alt={name} fill priority={priority} loading={loading}
     sizes={priority ? "(min-width: 1152px) 560px, (min-width: 1024px) 50vw, 100vw" : "(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 460px"}
     className="object-cover" onError={() => setFailedSrc(src)} /><AllergyOverlay recipeId={recipeId} /></>;
 }

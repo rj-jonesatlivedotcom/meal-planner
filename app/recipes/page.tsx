@@ -1332,6 +1332,7 @@ export default function RecipesPage() {
               <Fragment key={recipe.id}>
                 <RecipeCard
                   recipe={recipe}
+                  imageLoading={index === 0 ? "eager" : "lazy"}
                   favouriteRecipeIds={favouriteRecipeIds}
                   userId={userId}
                   onFavouriteChange={handleFavouriteChange}

@@ -107,7 +107,7 @@ export default function MyDietOnboarding({ initialRequirements, initialStep, onD
             width={1323} height={1189} sizes="(max-width: 767px) 160px, 430px" priority className={styles.mascot} />
         </div>
         <div className={styles.card}>
-          {!tour && <div className="mb-4 flex items-center justify-between gap-3">
+          {!tour && <div className={styles.progressHeader + " mb-4 flex items-center justify-between gap-3"}>
             <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Step {step} of {onboardingSteps.length}</p>
             <ol aria-label="Setup progress" className="flex gap-1.5">
               {onboardingSteps.map((title, index) => <li key={title} aria-current={step === index + 1 ? "step" : undefined} title={title}

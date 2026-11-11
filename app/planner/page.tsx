@@ -767,6 +767,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
     if (!saved) {
       setPlannerMeals(emptyPlanner);
       setMealPeople(createEmptyMealPeople());
+      plannerInitialisedRef.current = true;
       setLoadedPlannerStorage(weeklyPageStorage);
       return;
     }

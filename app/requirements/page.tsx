@@ -440,13 +440,13 @@ export default function RequirementsPage() {
                     Daily amount or range. Enter the figure provided by your renal team.
                   </p>
 
-                  <div className="mt-4 grid grid-cols-2 gap-3">
+                  <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div>
                       <label className="text-xs font-bold text-slate-700">
                         Minimum
                       </label>
                       <div className="mt-1 flex items-center gap-2">
-                        <input aria-description={!isNutrientActive(requirements, targetNutrients.proteinMinG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                        <input aria-label="Protein minimum (g/day)" aria-description={!isNutrientActive(requirements, targetNutrients.proteinMinG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                           type="number"
                           min="0"
                           step="1"
@@ -469,7 +469,7 @@ export default function RequirementsPage() {
                         Maximum
                       </label>
                       <div className="mt-1 flex items-center gap-2">
-                        <input aria-description={!isNutrientActive(requirements, targetNutrients.proteinMaxG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
+                        <input aria-label="Protein maximum (g/day)" aria-description={!isNutrientActive(requirements, targetNutrients.proteinMaxG) ? "Saved target inactive; re-enable this nutrient above to restore it." : undefined}
                           type="number"
                           min="0"
                           step="1"

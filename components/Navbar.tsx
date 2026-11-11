@@ -564,7 +564,7 @@ export default function Navbar() {
 
       {/* MOBILE NAVIGATION */}
       <div className="lg:hidden">
-        <div className="flex min-h-[76px] items-center justify-between px-5">
+        <div className="renalplan-mobile-heading flex min-h-[76px] items-center justify-between px-5">
           <Link
             href="/"
             className="flex min-w-0 items-center gap-3"

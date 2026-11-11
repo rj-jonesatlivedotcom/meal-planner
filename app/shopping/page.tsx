@@ -2796,6 +2796,17 @@ ${checklistHtml}
           background: #ffffff !important;
         }
 
+        .shopping-list-category-header { flex-wrap: wrap; gap: 8px; }
+        .shopping-list-category-title { min-width: 0; overflow-wrap: anywhere; }
+        .shopping-list-item { flex-wrap: wrap; }
+        .shopping-list-item-label { flex-basis: 12em; }
+        .shopping-list-item-name { white-space: normal; overflow-wrap: anywhere; }
+        .shopping-list-item-quantity { margin-left: auto; }
+        @media (max-width: 480px) {
+          .shopping-list-item-label { gap: 10px; }
+          .shopping-list-item-label > input { width: 24px; height: 24px; }
+        }
+
         /* Shopping List: make every category card body a genuine dark-mode
            surface. */
         html[data-theme="dark"] .shopping-list-category-card {
@@ -2939,7 +2950,7 @@ ${checklistHtml}
 
                   <button
                     onClick={downloadOfflineChecklist}
-                    className="shopping-download-shimmer min-w-0 flex-1 whitespace-nowrap rounded-xl border-2 border-sky-200 bg-sky-100 px-2 py-3 text-sm font-bold text-sky-950 shadow-sm transition hover:border-sky-300 hover:bg-sky-200 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5 lg:hidden"
+                    className="shopping-download-shimmer min-w-0 flex-[1_1_8rem] whitespace-normal rounded-xl border-2 border-sky-200 bg-sky-100 px-2 py-3 text-sm font-bold text-sky-950 shadow-sm transition hover:border-sky-300 hover:bg-sky-200 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5 lg:hidden"
                     title="Download a shopping checklist that works without internet"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 mr-1.5 inline-block h-5 w-5 align-[-4px]" aria-hidden="true">
@@ -2953,7 +2964,7 @@ ${checklistHtml}
 
                   <button
                     onClick={uncheckAll}
-                    className="min-w-0 flex-1 whitespace-nowrap rounded-xl border-2 border-orange-200 bg-white px-2 py-3 text-sm font-bold text-orange-700 shadow-sm transition hover:bg-orange-50 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5"
+                    className="min-w-0 flex-[1_1_8rem] whitespace-normal rounded-xl border-2 border-orange-200 bg-white px-2 py-3 text-sm font-bold text-orange-700 shadow-sm transition hover:bg-orange-50 active:scale-[0.99] sm:flex-none sm:px-5 sm:py-2.5"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5 inline-block h-5 w-5 align-[-4px]" aria-hidden="true">
                       <path d="M4 7h16" />

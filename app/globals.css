@@ -1,4 +1,38 @@
 @import "tailwindcss";
+
+/* Keep mobile headings and the menu separate when text is enlarged. */
+@media (max-width: 1023px) {
+  .renalplan-mobile-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  .renalplan-mobile-heading > a {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 8px;
+    overflow-wrap: anywhere;
+  }
+  .renalplan-mobile-heading > a > div:first-child { width: 40px; height: 40px; }
+  .renalplan-mobile-heading > a > img { width: 40px; height: auto; }
+  .renalplan-mobile-heading > a > div:first-child > svg { width: 32px; height: 32px; }
+  .renalplan-mobile-heading > button { width: 48px; height: 48px; gap: 6px; }
+  .renalplan-mobile-heading > button > span { width: 32px; height: 4px; }
+}
+@media (max-width: 374px) {
+  .renalplan-mobile-heading > a { grid-template-columns: minmax(0, 1fr); }
+  .renalplan-mobile-heading > a > div:first-child, .renalplan-mobile-heading > a > img { display: none; }
+}
+@media (max-width: 480px) {
+  .renal-requirements-page { padding-left: 12px; padding-right: 12px; overflow-wrap: anywhere; }
+  .renal-requirements-page :is(button, input, select, textarea) { max-width: 100%; overflow-wrap: anywhere; }
+  .renal-requirements-page :is(.rounded-2xl, .rounded-3xl) { padding: 16px; }
+  .renal-requirements-page input { min-width: 0; padding-left: 12px; padding-right: 12px; }
+  .renal-requirements-page button { margin-left: 0; }
+  .renal-requirements-page button.flex { flex-wrap: wrap; }
+  .renal-requirements-page fieldset, .renal-requirements-page .grid > * { min-width: 0; }
+}
 /* Preserve existing utilities when historical source files are removed. */
 @source inline("-right-3");
 @source inline("bg-[#078f43]");

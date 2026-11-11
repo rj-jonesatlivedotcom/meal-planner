@@ -66,8 +66,293 @@ for (const { barcode, product } of evidence.products) test('captured supermarket
     P: results.phosphorus.rangeMg ?? results.phosphorus.valueMg, quantity: portion.amount }));
 });
 
-const holdouts = JSON.parse(fs.readFileSync(new URL('outputs/food-check-kp/holdout-products.json', root)));
-const holdoutRows = JSON.parse(fs.readFileSync(new URL('outputs/food-check-kp/holdout-cofid.json', root)));
+const holdouts = {
+  "method": "Preselected unrelated categories; primary retailer/manufacturer labels used after OFF search returned HTTP 503. No holdout-specific barcode, nutrient override or reference selection.",
+  "products": [
+    {
+      "name": "Tesco 0% Fat Natural Yoghurt 4 x 100g",
+      "unit": "g",
+      "basis": "as-sold",
+      "source": "https://www.tesco.com/shop/en-GB/products/299770344",
+      "product": {
+        "product_name": "Tesco 0% Fat Natural Yoghurt",
+        "categories": "Plain yogurts",
+        "ingredients_text": "Milk",
+        "quantity": "4 x 100g",
+        "serving_size": "100g",
+        "nutriments": {
+          "energy-kcal_100g": 52,
+          "proteins_100g": 5.5,
+          "fat_100g": 0.3,
+          "carbohydrates_100g": 6.8
+        }
+      }
+    },
+    {
+      "name": "Tropicana Original Orange with Juicy Bits",
+      "unit": "ml",
+      "basis": "as-sold",
+      "source": "https://tropicana.co.uk/juice/orange-bits-value-pack",
+      "manufacturerPotassiumMg": 200,
+      "product": {
+        "product_name": "Tropicana Original Orange with Juicy Bits",
+        "categories": "Orange juices",
+        "ingredients_text": "Orange juice, not from concentrate",
+        "quantity": "1.5L",
+        "nutrition_data_per": "100ml",
+        "serving_size": "150ml",
+        "nutriments": {
+          "energy-kcal_100g": 41,
+          "proteins_100g": 0.8,
+          "fat_100g": 0,
+          "carbohydrates_100g": 9.3,
+          "potassium_100g": 0.2
+        }
+      }
+    },
+    {
+      "name": "Meridian Smooth Peanut Butter 280g",
+      "unit": "g",
+      "basis": "as-sold",
+      "source": "https://www.sainsburys.co.uk/groceries/product/meridian-smooth-peanut-butter-280g",
+      "product": {
+        "product_name": "Meridian Smooth Peanut Butter",
+        "categories": "Peanut butters",
+        "ingredients_text": "Roasted peanuts skins on (100%)",
+        "quantity": "280g",
+        "serving_size": "15g",
+        "nutriments": {
+          "energy-kcal_100g": 606,
+          "proteins_100g": 26,
+          "fat_100g": 47,
+          "carbohydrates_100g": 16
+        }
+      }
+    }
+  ]
+};
+const holdoutRows = [
+  {
+    "food_code": "12-184",
+    "food_name": "Yogurt, whole milk, plain",
+    "energy_kcal": 79,
+    "protein_g": 5.7,
+    "fat_g": 3,
+    "carbohydrate_g": 7.8,
+    "potassium_mg": 280,
+    "phosphorus_mg": 170
+  },
+  {
+    "food_code": "12-375",
+    "food_name": "Yogurt, whole milk, fruit",
+    "energy_kcal": 109,
+    "protein_g": 4,
+    "fat_g": 3,
+    "carbohydrate_g": 17.7,
+    "potassium_mg": 170,
+    "phosphorus_mg": 96
+  },
+  {
+    "food_code": "12-377",
+    "food_name": "Yogurt, Greek style, fruit",
+    "energy_kcal": 137,
+    "protein_g": 4.8,
+    "fat_g": 8.4,
+    "carbohydrate_g": 11.2,
+    "potassium_mg": 218,
+    "phosphorus_mg": 136
+  },
+  {
+    "food_code": "12-379",
+    "food_name": "Yogurt, low fat, plain",
+    "energy_kcal": 57,
+    "protein_g": 4.8,
+    "fat_g": 1,
+    "carbohydrate_g": 7.8,
+    "potassium_mg": 228,
+    "phosphorus_mg": 143
+  },
+  {
+    "food_code": "12-380",
+    "food_name": "Yogurt, low fat, fruit",
+    "energy_kcal": 78,
+    "protein_g": 4.2,
+    "fat_g": 1.1,
+    "carbohydrate_g": 13.7,
+    "potassium_mg": 204,
+    "phosphorus_mg": 120
+  },
+  {
+    "food_code": "12-515",
+    "food_name": "Yogurt, whole milk, twin pot, not fruit",
+    "energy_kcal": 148,
+    "protein_g": 4.2,
+    "fat_g": 5.6,
+    "carbohydrate_g": 21.5,
+    "potassium_mg": null,
+    "phosphorus_mg": null
+  },
+  {
+    "food_code": "12-530",
+    "food_name": "Yogurt, whole milk, infant, fruit flavour",
+    "energy_kcal": 90,
+    "protein_g": 3.8,
+    "fat_g": 3.7,
+    "carbohydrate_g": 11.1,
+    "potassium_mg": 176,
+    "phosphorus_mg": 114
+  },
+  {
+    "food_code": "12-531",
+    "food_name": "Yogurt, whole milk, twin pot, thick and creamy with fruit",
+    "energy_kcal": 106,
+    "protein_g": 4.1,
+    "fat_g": 3.2,
+    "carbohydrate_g": 16.2,
+    "potassium_mg": 175,
+    "phosphorus_mg": 106
+  },
+  {
+    "food_code": "12-532",
+    "food_name": "Yogurt, virtually fat free/diet, fruit",
+    "energy_kcal": 59,
+    "protein_g": 4.8,
+    "fat_g": 0.2,
+    "carbohydrate_g": 10.1,
+    "potassium_mg": 204,
+    "phosphorus_mg": 120
+  },
+  {
+    "food_code": "12-533",
+    "food_name": "Yogurt, virtually fat free/diet, plain",
+    "energy_kcal": 54,
+    "protein_g": 5.4,
+    "fat_g": 0.2,
+    "carbohydrate_g": 8.2,
+    "potassium_mg": 247,
+    "phosphorus_mg": 151
+  },
+  {
+    "food_code": "12-555",
+    "food_name": "Yogurt, Greek style, plain",
+    "energy_kcal": 133,
+    "protein_g": 5.7,
+    "fat_g": 10.2,
+    "carbohydrate_g": 4.8,
+    "potassium_mg": 184,
+    "phosphorus_mg": 138
+  },
+  {
+    "food_code": "12-595",
+    "food_name": "Raita, yogurt and gram flour, homemade",
+    "energy_kcal": 103,
+    "protein_g": 3.3,
+    "fat_g": 6.6,
+    "carbohydrate_g": 8.1,
+    "potassium_mg": 185,
+    "phosphorus_mg": 78
+  },
+  {
+    "food_code": "12-609",
+    "food_name": "Yogurt, soya, non-dairy alternative to yogurt, fruit, fortified",
+    "energy_kcal": 72,
+    "protein_g": 3.3,
+    "fat_g": 2,
+    "carbohydrate_g": 11,
+    "potassium_mg": 94,
+    "phosphorus_mg": 72
+  },
+  {
+    "food_code": "12-904",
+    "food_name": "Yogurt, low fat, hazelnut",
+    "energy_kcal": 91,
+    "protein_g": 4.4,
+    "fat_g": 1.5,
+    "carbohydrate_g": 16,
+    "potassium_mg": 215,
+    "phosphorus_mg": 141
+  },
+  {
+    "food_code": "12-905",
+    "food_name": "Yogurt, low fat, toffee",
+    "energy_kcal": 91,
+    "protein_g": 3.8,
+    "fat_g": 0.9,
+    "carbohydrate_g": 18,
+    "potassium_mg": 220,
+    "phosphorus_mg": 132
+  },
+  {
+    "food_code": "14-329",
+    "food_name": "Orange juice, chilled",
+    "energy_kcal": 36,
+    "protein_g": 0.9,
+    "fat_g": null,
+    "carbohydrate_g": 8.6,
+    "potassium_mg": 158,
+    "phosphorus_mg": 15
+  },
+  {
+    "food_code": "14-330",
+    "food_name": "Orange juice, ambient, UHT",
+    "energy_kcal": 34,
+    "protein_g": 0.6,
+    "fat_g": null,
+    "carbohydrate_g": 8.5,
+    "potassium_mg": 164,
+    "phosphorus_mg": 16
+  },
+  {
+    "food_code": "14-369",
+    "food_name": "Orange juice, freshly squeezed",
+    "energy_kcal": 33,
+    "protein_g": 0.6,
+    "fat_g": null,
+    "carbohydrate_g": 8.1,
+    "potassium_mg": 180,
+    "phosphorus_mg": 22
+  },
+  {
+    "food_code": "14-370",
+    "food_name": "Orange juice, freshly squeezed, weighed as whole fruit",
+    "energy_kcal": 15,
+    "protein_g": 0.3,
+    "fat_g": null,
+    "carbohydrate_g": 3.7,
+    "potassium_mg": 83,
+    "phosphorus_mg": 10
+  },
+  {
+    "food_code": "14-892",
+    "food_name": "Peanut butter, smooth",
+    "energy_kcal": 607,
+    "protein_g": 22.8,
+    "fat_g": 51.8,
+    "carbohydrate_g": 13.1,
+    "potassium_mg": 700,
+    "phosphorus_mg": 330
+  },
+  {
+    "food_code": "15-794",
+    "food_name": "Curry, vegetable, with yogurt, UK type, homemade",
+    "energy_kcal": 64,
+    "protein_g": 2.2,
+    "fat_g": 4,
+    "carbohydrate_g": 4.7,
+    "potassium_mg": 276,
+    "phosphorus_mg": 51
+  },
+  {
+    "food_code": "17-789",
+    "food_name": "Dressing, yogurt, homemade",
+    "energy_kcal": 72,
+    "protein_g": 5.3,
+    "fat_g": 2.7,
+    "carbohydrate_g": 7.1,
+    "potassium_mg": 273,
+    "phosphorus_mg": 156
+  }
+];
 for (const h of holdouts.products) test('independent holdout, CoFID-only replay: ' + h.name, async () => {
   const svc = service({ cofid: async term => holdoutRows.filter(r => r.food_name.toLowerCase().includes(term.toLowerCase())),
     usda: async () => ({ status: 'unavailable', data: null }) });

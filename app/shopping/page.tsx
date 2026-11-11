@@ -470,6 +470,7 @@ function removePreparationWords(value: string): string {
 
 function normaliseIngredient(raw: string): string {
   let value = removePreparationWords(cleanText(raw))
+    .replace(/,\s*(?:flesh and skin|core removed|lean and fat|boiled without salt and drained)(?=,|$)/gi, "")
     .replace(/\s*\(optional\)/gi, "")
     .trim();
   const lower = value.toLowerCase();
@@ -926,10 +927,33 @@ function normaliseShoppingQuantity(
   name: string,
   quantity: string
 ): string {
-  const parsed = parseQuantity(quantity);
+  const parsed = parseQuantity(removePreparationWords(quantity));
   if (!parsed) return cleanText(quantity);
 
   const lower = name.toLowerCase();
+
+  // Shopping estimates only: the source weights and nutrition stay unchanged.
+  // Same household assumptions as recipe presentation: 4.5 g oil / tsp,
+  // 1 g dried thyme / tsp and 5 g lemon juice / tsp (UK tsp = 5 ml).
+  if (/\boil\b/.test(lower)) {
+    const ml = quantityToMl(parsed);
+    const tsp = parsed.unit === "g" ? parsed.amount / 4.5 : ml === null ? null : ml / 5;
+    if (tsp !== null) return `${formatQuantityNumber(tsp)} tsp`;
+  }
+  if (lower === "dried thyme") {
+    const tsp = parsed.unit === "g" ? parsed.amount
+      : parsed.unit === "tbsp" ? parsed.amount * 3
+      : parsed.unit === "tsp" ? parsed.amount : null;
+    if (tsp !== null) return `${formatQuantityNumber(tsp)} tsp`;
+  }
+  if (lower === "lemon juice" && parsed.unit === "g") {
+    return `${formatQuantityNumber(parsed.amount)} ml`;
+  }
+  if (["onion", "red onion", "cucumber"].includes(lower) && parsed.unit === "g") {
+    // Retain fractional counts until final purchase rounding.
+    const gramsPerItem = lower === "cucumber" ? 225 : 40;
+    return String(parsed.amount / gramsPerItem);
+  }
 
 
   if (lower === "eggs") {
@@ -1085,10 +1109,8 @@ function normaliseShoppingQuantity(
     if (converted !== null) return decimalToFraction(converted);
   }
 
-  if (ML_ITEMS.has(lower) || /\boil\b/.test(lower) || lower.includes("syrup")) {
-    // Oils are stored in the recipe data as weight for nutrition, but the
-    // shopping list should present them as a liquid volume. For olive oil
-    // (and other oils handled here), keep the shopping display in ml.
+  if (ML_ITEMS.has(lower) || lower.includes("syrup")) {
+    // Existing product-specific shopping volume assumptions.
     if (parsed.unit === "g") {
       return formatQuantity(parsed.amount, "ml");
     }
@@ -1286,7 +1308,7 @@ function combineQuantity(
       const grams = (q: { amount: number; unit: string }): number | null => {
         if (q.unit === "g") return q.amount;
         if (q.unit === "") {
-          return q.amount > 4 ? q.amount : q.amount * gramBasedProduce[lower];
+          return q.amount * gramBasedProduce[lower];
         }
         if (["small", "medium", "large", lower].includes(q.unit)) {
           const factor = q.unit === "small" ? 0.5 : q.unit === "large" ? 1.5 : 1;
@@ -1336,6 +1358,13 @@ function finaliseShoppingQuantity(item: ShoppingItem): ShoppingItem {
   const parsed = parseQuantity(item.quantity);
 
   if (!parsed) return item;
+  if (/\boil\b/.test(lower) && parsed.unit === "tsp") {
+    const useTablespoons = parsed.amount >= 3;
+    const amount = useTablespoons ? parsed.amount / 3 : parsed.amount;
+    // Round the final shopping estimate upwards to a quarter spoon only once.
+    const rounded = Math.ceil((amount - 1e-9) * 4) / 4;
+    return { item: name, quantity: `${formatQuantityNumber(rounded)} ${useTablespoons ? "tbsp" : "tsp"}` };
+  }
     /*
    * Stock is purchased as stock cubes.
    * One cube makes up to 400 ml of finished stock.
@@ -2006,11 +2035,15 @@ export default function ShoppingPage() {
               ingredient.item?.trim().toLowerCase() !== "no added salt"
           )
           .forEach((ingredient: any) => {
-            const parsed = parseQuantity(ingredient.quantity);
+            const parsed = parseQuantity(removePreparationWords(ingredient.quantity));
             if (recipe.shoppingByWeight && parsed?.unit === "g") {
               const name = normaliseIngredient(ingredient.shoppingItem || ingredient.item);
-              weighed.set(name, (weighed.get(name) ?? 0) + parsed.amount * recipeCount / servings);
-              return;
+              // Supported shopping conversions must join the main aggregation,
+              // before any whole-produce or spoon rounding takes place.
+              if (!/\boil\b/i.test(name) && !["onion", "red onion", "cucumber", "lemon juice", "dried thyme", "fresh parsley"].includes(name.toLowerCase())) {
+                weighed.set(name, (weighed.get(name) ?? 0) + parsed.amount * recipeCount / servings);
+                return;
+              }
             }
             if (!parsed) {
               const shoppingName = normaliseIngredient(ingredient.shoppingItem || ingredient.item);
@@ -2030,10 +2063,7 @@ export default function ShoppingPage() {
             const scaledAmount =
               (parsed.amount * recipeCount) / servings;
 
-            const scaledQuantity = formatQuantity(
-              scaledAmount,
-              parsed.unit
-            );
+            const scaledQuantity = `${scaledAmount} ${parsed.unit}`.trim();
 
             let sourceName = ingredient.shoppingItem || ingredient.item;
 

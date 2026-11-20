@@ -61,7 +61,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "584 kcal",
       protein: "30.9 g",
-      carbohydrates: "81.5 g",
+      carbohydrates: "74.6 g",
       fat: "17.2 g",
       fibre: "4.3 g",
       sodium: "46 mg",
@@ -83,7 +83,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
     dietCategories: ["Mediterranean-style"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "turkey-rosemary-rice",
@@ -140,7 +141,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "606 kcal",
       protein: "30.0 g",
-      carbohydrates: "89.2 g",
+      carbohydrates: "81.4 g",
       fat: "16.8 g",
       fibre: "4.1 g",
       sodium: "73 mg",
@@ -162,7 +163,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
     dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "pork-herb-rice",
@@ -219,7 +221,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "672 kcal",
       protein: "37.2 g",
-      carbohydrates: "90.0 g",
+      carbohydrates: "82.2 g",
       fat: "20.6 g",
       fibre: "4.6 g",
       sodium: "66 mg",
@@ -241,7 +243,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "lemon-cod-rice",
@@ -304,7 +307,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "661 kcal",
       protein: "33.2 g",
-      carbohydrates: "89.9 g",
+      carbohydrates: "82.2 g",
       fat: "21.2 g",
       fibre: "4.4 g",
       sodium: "98 mg",
@@ -326,7 +329,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
     dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "lemon-salmon-rice",
@@ -384,7 +388,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "656 kcal",
       protein: "29.5 g",
-      carbohydrates: "89.8 g",
+      carbohydrates: "82.2 g",
       fat: "22.4 g",
       fibre: "4.4 g",
       sodium: "46 mg",
@@ -406,7 +410,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "beef-paprika-rice",
@@ -462,7 +467,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "601 kcal",
       protein: "31.2 g",
-      carbohydrates: "89.6 g",
+      carbohydrates: "82.0 g",
       fat: "15 g",
       fibre: "4.5 g",
       sodium: "97 mg",
@@ -484,7 +489,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1064% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-cheddar-pasta-cabbage",
@@ -541,7 +547,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "591 kcal",
       protein: "29.1 g",
-      carbohydrates: "63.8 g",
+      carbohydrates: "58.3 g",
       fat: "26.2 g",
       fibre: "4.7 g",
       sodium: "302 mg",
@@ -563,7 +569,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "chicken-paprika-rice-peppers",
@@ -620,7 +627,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "576 kcal",
       protein: "30.5 g",
-      carbohydrates: "79.3 g",
+      carbohydrates: "72.5 g",
       fat: "17.3 g",
       fibre: "3.2 g",
       sodium: "43 mg",
@@ -642,7 +649,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1202% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mediterranean-style",
-    dietCategories: ["Mediterranean-style"]
+    dietCategories: ["Mediterranean-style"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "creamy-pork-pasta-cabbage",
@@ -699,7 +707,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "639 kcal",
       protein: "38.9 g",
-      carbohydrates: "64.4 g",
+      carbohydrates: "58.9 g",
       fat: "26.8 g",
       fibre: "4.7 g",
       sodium: "61 mg",
@@ -721,7 +729,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-cauliflower-rice",
@@ -778,7 +787,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "681 kcal",
       protein: "29.3 g",
-      carbohydrates: "87.3 g",
+      carbohydrates: "79.6 g",
       fat: "26.2 g",
       fibre: "3.0 g",
       sodium: "304 mg",
@@ -800,7 +809,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "d011-creamy-chicken-mushroom-rice",
@@ -834,7 +844,7 @@ export const dinners: Recipe[] = [
       "Fold through the cooked rice and serve. Use a fork or broad spoon and a light lifting motion so the grains stay separate."
     ],
     nutrition: {
-      calories: "549 kcal", protein: "34.0 g", carbohydrates: "76.2 g", fat: "14.0 g",
+      calories: "549 kcal", protein: "34.0 g", carbohydrates: "69.9 g", fat: "14.0 g",
       fibre: "4.1 g", sodium: "81 mg", salt: "0.20 g", potassium: "970 mg", phosphate: "435 mg"
     },
     potassium: "Moderate",
@@ -851,7 +861,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2909% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "turkey-sweetcorn-pasta",
@@ -890,7 +901,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "539 kcal",
       protein: "37.3 g",
-      carbohydrates: "66.5 g",
+      carbohydrates: "61.3 g",
       fat: "15.4 g",
       fibre: "6.2 g",
       sodium: "70 mg",
@@ -912,7 +923,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3329% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   {
@@ -951,7 +963,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "420 kcal",
       protein: "31.0 g",
-      carbohydrates: "62.4 g",
+      carbohydrates: "57.5 g",
       fat: "6.8 g",
       fibre: "6.0 g",
       sodium: "119 mg",
@@ -973,7 +985,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3551% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   {
@@ -1012,7 +1025,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "480 kcal",
       protein: "33.3 g",
-      carbohydrates: "75.1 g",
+      carbohydrates: "69.0 g",
       fat: "7.1 g",
       fibre: "4.5 g",
       sodium: "67 mg",
@@ -1034,7 +1047,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2949% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   {
@@ -1074,7 +1088,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "460 kcal",
       protein: "32.5 g",
-      carbohydrates: "72.9 g",
+      carbohydrates: "67.0 g",
       fat: "6.1 g",
       fibre: "4.7 g",
       sodium: "60 mg",
@@ -1096,7 +1110,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3039% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   {
@@ -1136,7 +1151,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "501 kcal",
       protein: "32.8 g",
-      carbohydrates: "80.4 g",
+      carbohydrates: "74.4 g",
       fat: "7.4 g",
       fibre: "4.5 g",
       sodium: "49 mg",
@@ -1158,7 +1173,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2757% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   {
@@ -1197,7 +1213,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "509 kcal",
       protein: "35.1 g",
-      carbohydrates: "62.7 g",
+      carbohydrates: "57.7 g",
       fat: "14.7 g",
       fibre: "5.6 g",
       sodium: "80 mg",
@@ -1219,7 +1235,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3533% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   {
@@ -1258,7 +1275,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "464 kcal",
       protein: "30.3 g",
-      carbohydrates: "75.1 g",
+      carbohydrates: "68.9 g",
       fat: "6.7 g",
       fibre: "4.5 g",
       sodium: "117 mg",
@@ -1280,7 +1297,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2950% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   {
@@ -1320,7 +1338,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "489 kcal",
       protein: "24.3 g",
-      carbohydrates: "66.1 g",
+      carbohydrates: "61.0 g",
       fat: "16.0 g",
       fibre: "6.9 g",
       sodium: "164 mg",
@@ -1342,7 +1360,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3348% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   {
@@ -1382,7 +1401,7 @@ export const dinners: Recipe[] = [
     nutrition: {
       calories: "491 kcal",
       protein: "32.0 g",
-      carbohydrates: "80.3 g",
+      carbohydrates: "74.3 g",
       fat: "6.6 g",
       fibre: "4.5 g",
       sodium: "68 mg",
@@ -1404,7 +1423,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2759% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-herb-sweetcorn-rice", code: "D021", mealFamily: "rice-dish", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.png",
@@ -1421,7 +1441,7 @@ export const dinners: Recipe[] = [
       "Fold through the cooked rice and season with black pepper. Use a fork or broad spoon and a light lifting motion so the grains stay separate.",
       "Serve hot."
     ],
-    nutrition: { calories: "519 kcal", protein: "33.9 g", carbohydrates: "84.3 g", fat: "7.3 g", fibre: "3.5 g", sodium: "63 mg", salt: "0.16 g", potassium: "674 mg", phosphate: "378 mg" },
+    nutrition: { calories: "519 kcal", protein: "33.9 g", carbohydrates: "77.3 g", fat: "7.3 g", fibre: "3.5 g", sodium: "63 mg", salt: "0.16 g", potassium: "674 mg", phosphate: "378 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "A protein-rich rice dinner with vegetables and no added salt.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1432,7 +1452,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2629% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "beef-pepper-pasta", code: "D022", mealFamily: "hot-pasta", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
@@ -1449,7 +1470,7 @@ export const dinners: Recipe[] = [
       "Add the cooked pasta and toss together.",
       "Serve hot."
     ],
-    nutrition: { calories: "519 kcal", protein: "37.0 g", carbohydrates: "70.1 g", fat: "11.3 g", fibre: "5.3 g", sodium: "114 mg", salt: "0.29 g", potassium: "709 mg", phosphate: "394 mg" },
+    nutrition: { calories: "519 kcal", protein: "37.0 g", carbohydrates: "64.5 g", fat: "11.3 g", fibre: "5.3 g", sodium: "114 mg", salt: "0.29 g", potassium: "709 mg", phosphate: "394 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "Lean beef provides protein while pepper and onion add flavour without relying on added salt.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1460,7 +1481,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.4097% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "herb-cod-potatoes-cabbage", code: "D023", mealFamily: "potato-dish", category: "Dinner",
@@ -1480,7 +1502,7 @@ export const dinners: Recipe[] = [
       "Toss the potatoes with the remaining butter and black pepper.",
       "Serve."
     ],
-    nutrition: { calories: "449 kcal", protein: "30.7 g", carbohydrates: "54.2 g", fat: "13.6 g", fibre: "8.3 g", sodium: "141 mg", salt: "0.35 g", potassium: "1827 mg", phosphate: "354 mg" },
+    nutrition: { calories: "449 kcal", protein: "30.7 g", carbohydrates: "50.1 g", fat: "13.6 g", fibre: "8.3 g", sodium: "141 mg", salt: "0.35 g", potassium: "1827 mg", phosphate: "354 mg" },
     potassium: "High", phosphate: "High", purines: "Low", dietaryNote: "The potatoes are boiled first and the cooking water is discarded to help reduce potassium by leaching. A simple fish dinner with cabbage and potatoes. Potassium is influenced by the potato portion.", fluidMl: 15, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1491,7 +1513,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.4086% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "creamy-cheese-egg-pasta", code: "D024", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
@@ -1508,7 +1531,7 @@ export const dinners: Recipe[] = [
       "Return to very low heat and stir until the egg mixture is cooked through.",
       "Season with black pepper and serve."
     ],
-    nutrition: { calories: "589 kcal", protein: "27.7 g", carbohydrates: "76.1 g", fat: "21.4 g", fibre: "4.0 g", sodium: "304 mg", salt: "0.76 g", potassium: "532 mg", phosphate: "498 mg" },
+    nutrition: { calories: "589 kcal", protein: "27.7 g", carbohydrates: "70.0 g", fat: "21.4 g", fibre: "4.0 g", sodium: "304 mg", salt: "0.76 g", potassium: "532 mg", phosphate: "498 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Low", dietaryNote: "Egg and cheese provide protein and richness without meat or fish.", fluidMl: 100, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1519,7 +1542,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2910% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "pork-apple-cabbage", code: "D025", mealFamily: "meat-and-vegetable-dish", category: "Dinner",
@@ -1537,7 +1561,7 @@ export const dinners: Recipe[] = [
       "Season with the specified 0.2 g black pepper (a small pinch).",
       "Serve."
     ],
-    nutrition: { calories: "396 kcal", protein: "36.9 g", carbohydrates: "17.6 g", fat: "20.3 g", fibre: "5.0 g", sodium: "68 mg", salt: "0.17 g", potassium: "948 mg", phosphate: "344 mg" },
+    nutrition: { calories: "396 kcal", protein: "36.9 g", carbohydrates: "17.5 g", fat: "20.3 g", fibre: "5.0 g", sodium: "68 mg", salt: "0.17 g", potassium: "948 mg", phosphate: "344 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "Apple adds natural sweetness to pork and cabbage without a salty sauce.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1548,7 +1572,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.077300 g per serving, 0.4381% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "creamy-chicken-pepper-pasta", code: "D026", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
@@ -1565,7 +1590,7 @@ export const dinners: Recipe[] = [
       "Add the pasta and toss through the sauce.",
       "Season with black pepper and serve."
     ],
-    nutrition: { calories: "562 kcal", protein: "36.3 g", carbohydrates: "70.5 g", fat: "16.9 g", fibre: "5.0 g", sodium: "80 mg", salt: "0.20 g", potassium: "768 mg", phosphate: "436 mg" },
+    nutrition: { calories: "562 kcal", protein: "36.3 g", carbohydrates: "64.8 g", fat: "16.9 g", fibre: "5.0 g", sodium: "80 mg", salt: "0.20 g", potassium: "768 mg", phosphate: "436 mg" },
     potassium: "Moderate", phosphate: "High", purines: "High", dietaryNote: "A creamy pasta dinner using chicken, pepper and onion for flavour.", fluidMl: 50, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1576,7 +1601,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3143% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "cod-sweetcorn-herb-pasta", code: "D027", mealFamily: "hot-pasta", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
@@ -1593,7 +1619,7 @@ export const dinners: Recipe[] = [
       "Fold through the cod, lemon juice and parsley.",
       "Season with black pepper and serve."
     ],
-    nutrition: { calories: "483 kcal", protein: "34.9 g", carbohydrates: "72.6 g", fat: "7.9 g", fibre: "5.1 g", sodium: "123 mg", salt: "0.31 g", potassium: "864 mg", phosphate: "439 mg" },
+    nutrition: { calories: "483 kcal", protein: "34.9 g", carbohydrates: "66.6 g", fat: "7.9 g", fibre: "5.1 g", sodium: "123 mg", salt: "0.31 g", potassium: "864 mg", phosphate: "439 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Low", dietaryNote: "Cod and pasta make a filling meal with lemon and herbs instead of a salty sauce.", fluidMl: 15, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1604,7 +1630,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3052% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-cabbage-sweetcorn-rice", code: "D028", mealFamily: "rice-dish", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
@@ -1621,7 +1648,7 @@ export const dinners: Recipe[] = [
       "Stir in the rice and combine thoroughly.",
       "Season with black pepper and serve."
     ],
-    nutrition: { calories: "567 kcal", protein: "23.7 g", carbohydrates: "89.0 g", fat: "15.3 g", fibre: "6.4 g", sodium: "164 mg", salt: "0.41 g", potassium: "674 mg", phosphate: "363 mg" },
+    nutrition: { calories: "567 kcal", protein: "23.7 g", carbohydrates: "81.9 g", fat: "15.3 g", fibre: "6.4 g", sodium: "164 mg", salt: "0.41 g", potassium: "674 mg", phosphate: "363 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Low", dietaryNote: "An egg-based dinner with rice and vegetables, with no added salt.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1632,7 +1659,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2491% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "pork-pepper-pasta", code: "D029", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
@@ -1649,7 +1677,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper.",
       "Serve hot."
     ],
-    nutrition: { calories: "510 kcal", protein: "42.9 g", carbohydrates: "69.4 g", fat: "8.7 g", fibre: "5.0 g", sodium: "59 mg", salt: "0.15 g", potassium: "873 mg", phosphate: "455 mg" },
+    nutrition: { calories: "510 kcal", protein: "42.9 g", carbohydrates: "63.8 g", fat: "8.7 g", fibre: "5.0 g", sodium: "59 mg", salt: "0.15 g", potassium: "873 mg", phosphate: "455 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "Lean pork and pasta provide a substantial protein-rich meal with herbs for flavour.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1660,7 +1688,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3192% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "d030-pork-apple-cabbage-skillet",
@@ -1693,7 +1722,7 @@ export const dinners: Recipe[] = [
       "Serve the pork, cabbage and apple with the rice."
     ],
     nutrition: {
-      calories: "518 kcal", protein: "39.3 g", carbohydrates: "67.8 g", fat: "11.7 g",
+      calories: "518 kcal", protein: "39.3 g", carbohydrates: "63.3 g", fat: "11.7 g",
       fibre: "5.7 g", sodium: "64 mg", salt: "0.16 g", potassium: "958 mg", phosphate: "383 mg"
     },
     potassium: "Moderate",
@@ -1710,7 +1739,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3269% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "lemon-chicken-herb-pasta",
@@ -1744,7 +1774,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper and serve."
     ],
     nutrition: {
-      calories: "485 kcal", protein: "35.3 g", carbohydrates: "73.9 g", fat: "7.4 g",
+      calories: "485 kcal", protein: "35.3 g", carbohydrates: "67.9 g", fat: "7.4 g",
       fibre: "5.3 g", sodium: "66 mg", salt: "0.17 g", potassium: "757 mg", phosphate: "407 mg"
     },
     potassium: "Moderate",
@@ -1761,7 +1791,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2999% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "cod-pepper-lemon-rice",
@@ -1796,7 +1827,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper and serve."
     ],
     nutrition: {
-      calories: "495 kcal", protein: "33.1 g", carbohydrates: "81.8 g", fat: "6.2 g",
+      calories: "495 kcal", protein: "33.1 g", carbohydrates: "75.0 g", fat: "6.2 g",
       fibre: "3.7 g", sodium: "133 mg", salt: "0.33 g", potassium: "714 mg", phosphate: "357 mg"
     },
     potassium: "Moderate",
@@ -1813,7 +1844,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2711% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "beef-cabbage-rice",
@@ -1846,7 +1878,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper and serve."
     ],
     nutrition: {
-      calories: "562 kcal", protein: "35.6 g", carbohydrates: "85.2 g", fat: "10.3 g",
+      calories: "562 kcal", protein: "35.6 g", carbohydrates: "78.5 g", fat: "10.3 g",
       fibre: "5.9 g", sodium: "119 mg", salt: "0.30 g", potassium: "768 mg", phosphate: "351 mg"
     },
     potassium: "Moderate",
@@ -1863,7 +1895,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2602% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "cheesy-egg-vegetable-rice",
@@ -1897,7 +1930,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper and serve."
     ],
     nutrition: {
-      calories: "632 kcal", protein: "27.9 g", carbohydrates: "85.0 g", fat: "22.3 g",
+      calories: "632 kcal", protein: "27.9 g", carbohydrates: "77.9 g", fat: "22.3 g",
       fibre: "4.2 g", sodium: "304 mg", salt: "0.76 g", potassium: "520 mg", phosphate: "447 mg"
     },
     potassium: "Moderate",
@@ -1914,7 +1947,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2609% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-cabbage-herb-rice",
@@ -1947,7 +1981,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper and serve."
     ],
     nutrition: {
-      calories: "545 kcal", protein: "33.4 g", carbohydrates: "85.3 g", fat: "10.0 g",
+      calories: "545 kcal", protein: "33.4 g", carbohydrates: "78.5 g", fat: "10.0 g",
       fibre: "5.9 g", sodium: "72 mg", salt: "0.18 g", potassium: "793 mg", phosphate: "357 mg"
     },
     potassium: "Moderate",
@@ -1964,7 +1998,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2600% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "cod-cabbage-pasta",
@@ -1998,7 +2033,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper and serve."
     ],
     nutrition: {
-      calories: "488 kcal", protein: "34.7 g", carbohydrates: "76.3 g", fat: "7.0 g",
+      calories: "488 kcal", protein: "34.7 g", carbohydrates: "70.3 g", fat: "7.0 g",
       fibre: "7.0 g", sodium: "129 mg", salt: "0.32 g", potassium: "947 mg", phosphate: "419 mg"
     },
     potassium: "Moderate",
@@ -2015,7 +2050,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2904% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "pepper-beef-rice",
@@ -2048,7 +2084,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper and serve."
     ],
     nutrition: {
-      calories: "545 kcal", protein: "34.8 g", carbohydrates: "81.4 g", fat: "10.4 g",
+      calories: "545 kcal", protein: "34.8 g", carbohydrates: "74.8 g", fat: "10.4 g",
       fibre: "3.7 g", sodium: "114 mg", salt: "0.28 g", potassium: "593 mg", phosphate: "335 mg"
     },
     potassium: "Moderate",
@@ -2065,7 +2101,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.3529% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "pork-apple-herb-pasta",
@@ -2098,7 +2135,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper and serve."
     ],
     nutrition: {
-      calories: "577 kcal", protein: "43.0 g", carbohydrates: "77.7 g", fat: "12.6 g",
+      calories: "577 kcal", protein: "43.0 g", carbohydrates: "72.0 g", fat: "12.6 g",
       fibre: "5.0 g", sodium: "58 mg", salt: "0.15 g", potassium: "885 mg", phosphate: "453 mg"
     },
     potassium: "Moderate",
@@ -2115,7 +2152,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2851% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-cauliflower-herb-pasta",
@@ -2149,7 +2187,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper and serve."
     ],
     nutrition: {
-      calories: "530 kcal", protein: "25.9 g", carbohydrates: "76.5 g", fat: "15.5 g",
+      calories: "530 kcal", protein: "25.9 g", carbohydrates: "70.4 g", fat: "15.5 g",
       fibre: "6.0 g", sodium: "165 mg", salt: "0.41 g", potassium: "693 mg", phosphate: "390 mg"
     },
     potassium: "Moderate",
@@ -2166,7 +2204,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2898% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "d040-cod-sweetcorn-potato-bake",
@@ -2203,7 +2242,7 @@ export const dinners: Recipe[] = [
       "Serve immediately."
     ],
     nutrition: {
-      calories: "440 kcal", protein: "28.5 g", carbohydrates: "44.1 g", fat: "17.8 g",
+      calories: "440 kcal", protein: "28.5 g", carbohydrates: "40.9 g", fat: "17.8 g",
       fibre: "7.2 g", sodium: "132 mg", salt: "0.33 g", potassium: "1551 mg", phosphate: "365 mg"
     },
     potassium: "High",
@@ -2220,7 +2259,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.193250 g per serving, 0.4360% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   { id: "chicken-leek-couscous-lemon", code: "D041", mealFamily: "couscous-dish", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.png", name: "Chicken & Leek Couscous with Lemon", description: "Tender chicken with fluffy couscous, softened leek and carrot, finished with fresh lemon and parsley.", cookingTime: "30 minutes", calories: "371 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
@@ -2238,7 +2278,7 @@ export const dinners: Recipe[] = [
       "Fluff the couscous and stir through the vegetables.",
       "Top with the sliced chicken and finish with the remaining olive oil, lemon juice and parsley.",
       "Serve immediately."
-    ], nutrition: { calories: "371 kcal", protein: "15.7 g", carbohydrates: "29.6 g", fat: "21.9 g", fibre: "2.3 g", sodium: "46 mg", salt: "0.12 g", potassium: "376 mg", phosphate: "172 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "371 kcal", protein: "15.7 g", carbohydrates: "27.1 g", fat: "21.9 g", fibre: "2.3 g", sodium: "46 mg", salt: "0.12 g", potassium: "376 mg", phosphate: "172 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2247,7 +2287,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "turkey-meatballs-herb-rice", code: "D042", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Herb-seasoned turkey meatballs served with basmati rice, tender cabbage and onion.", cookingTime: "30 minutes", calories: "504 kcal", protein: "20.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
       { item: "Turkey, meat, average, raw", shoppingItem: "Turkey mince (lean)", quantity: "60 g" },
@@ -2263,7 +2304,7 @@ export const dinners: Recipe[] = [
       "Boil the cabbage and onion in unsalted water until tender, then drain well.",
       "Check the rice is tender and drain if required.",
       "Serve the meatballs with the rice and vegetables."
-    ], nutrition: { calories: "504 kcal", protein: "20.0 g", carbohydrates: "61.6 g", fat: "21.4 g", fibre: "2.4 g", sodium: "45 mg", salt: "0.11 g", potassium: "373 mg", phosphate: "219 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "504 kcal", protein: "20.0 g", carbohydrates: "56.3 g", fat: "21.4 g", fibre: "2.4 g", sodium: "45 mg", salt: "0.11 g", potassium: "373 mg", phosphate: "219 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2272,7 +2313,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "cod-herby-noodles-cucumber", code: "D043", mealFamily: "noodles", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Baked cod with plain noodles, tender cabbage and cucumber, finished with lemon, parsley and olive oil.", cookingTime: "30 minutes", calories: "377 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "50 g" },
@@ -2289,7 +2331,7 @@ export const dinners: Recipe[] = [
       "Prepare the cucumber and combine it with the noodles and cabbage.",
       "Add the olive oil, lemon juice and parsley and toss gently.",
       "Flake the cod over the noodles and serve."
-    ], nutrition: { calories: "377 kcal", protein: "15.7 g", carbohydrates: "33.9 g", fat: "20.8 g", fibre: "3.0 g", sodium: "56 mg", salt: "0.14 g", potassium: "339 mg", phosphate: "143 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "377 kcal", protein: "15.7 g", carbohydrates: "31.0 g", fat: "20.8 g", fibre: "3.0 g", sodium: "56 mg", salt: "0.14 g", potassium: "339 mg", phosphate: "143 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2298,7 +2340,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
     dietCategories: ["Mediterranean-style"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "pork-apple-leek-rice", code: "D044", mealFamily: "meat-and-vegetable-dish", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Lean pork medallions with basmati rice, softened leek and warm apple finished with thyme.", cookingTime: "30 minutes", calories: "421 kcal", protein: "14.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
@@ -2314,7 +2357,7 @@ export const dinners: Recipe[] = [
       "Add the sliced leek and cook until softened.",
       "Add the diced apple and cook gently until just softened.",
       "Serve the pork with the rice and apple and leek mixture."
-    ], nutrition: { calories: "421 kcal", protein: "14.4 g", carbohydrates: "46.0 g", fat: "21.2 g", fibre: "1.4 g", sodium: "17 mg", salt: "0.04 g", potassium: "266 mg", phosphate: "143 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "421 kcal", protein: "14.4 g", carbohydrates: "42.2 g", fat: "21.2 g", fibre: "1.4 g", sodium: "17 mg", salt: "0.04 g", potassium: "266 mg", phosphate: "143 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2323,7 +2366,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "chicken-carrot-noodle-stir-fry", code: "D045", mealFamily: "noodle-stir-fry", category: "Dinner",
     cuisine: "Chinese", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "386 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
@@ -2339,7 +2383,7 @@ export const dinners: Recipe[] = [
       "Add the boiled carrot and cabbage and cook gently until tender.",
       "Add the ground ginger and drained noodles and toss together.",
       "Serve immediately."
-    ], nutrition: { calories: "386 kcal", protein: "14.7 g", carbohydrates: "35.5 g", fat: "21.6 g", fibre: "3.7 g", sodium: "56 mg", salt: "0.14 g", potassium: "335 mg", phosphate: "126 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "386 kcal", protein: "14.7 g", carbohydrates: "32.5 g", fat: "21.6 g", fibre: "3.7 g", sodium: "56 mg", salt: "0.14 g", potassium: "335 mg", phosphate: "126 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2348,7 +2392,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "beef-meatballs-couscous-peppers", code: "D046", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Lean beef meatballs with couscous, softened green pepper and onion, gently seasoned with paprika.", cookingTime: "30 minutes", calories: "416 kcal", protein: "18.5 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
       { item: "Beef, mince, raw, extra lean", shoppingItem: "Beef mince (5% fat)", quantity: "60 g" },
@@ -2363,7 +2408,7 @@ export const dinners: Recipe[] = [
       "Cook the meatballs in the olive oil, turning regularly, until browned and completely cooked through.",
       "Add the green pepper and onion and cook until softened.",
       "Fluff the couscous and serve with the meatballs and vegetables."
-    ], nutrition: { calories: "416 kcal", protein: "18.5 g", carbohydrates: "34.1 g", fat: "23.5 g", fibre: "2.6 g", sodium: "58 mg", salt: "0.14 g", potassium: "364 mg", phosphate: "215 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "416 kcal", protein: "18.5 g", carbohydrates: "31.3 g", fat: "23.5 g", fibre: "2.6 g", sodium: "58 mg", salt: "0.14 g", potassium: "364 mg", phosphate: "215 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2372,7 +2417,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.2795% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "haddock-lemon-rice-leeks", code: "D047", mealFamily: "rice-dish", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.png", name: "Haddock with Lemon Rice & Leeks", description: "Baked haddock with lemon basmati rice, softened leek and boiled carrot.", cookingTime: "30 minutes", calories: "445 kcal", protein: "15.9 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Haddock, flesh only, raw", shoppingItem: "Haddock fillet", quantity: "60 g" },
@@ -2388,7 +2434,7 @@ export const dinners: Recipe[] = [
       "Toss the vegetables with the olive oil and lemon juice.",
       "Check the rice is tender and drain if required.",
       "Serve the haddock with the rice and vegetables."
-    ], nutrition: { calories: "445 kcal", protein: "15.9 g", carbohydrates: "52.1 g", fat: "20.7 g", fibre: "1.6 g", sodium: "48 mg", salt: "0.12 g", potassium: "315 mg", phosphate: "167 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "445 kcal", protein: "15.9 g", carbohydrates: "47.5 g", fat: "20.7 g", fibre: "1.6 g", sodium: "48 mg", salt: "0.12 g", potassium: "315 mg", phosphate: "167 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2397,7 +2443,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "chicken-pear-rice-bowl", code: "D048", mealFamily: "rice-bowl", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken and basmati rice with warm pear and tender cabbage, finished with rosemary.", cookingTime: "30 minutes", calories: "467 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
@@ -2413,7 +2460,7 @@ export const dinners: Recipe[] = [
       "Dice the pear and warm gently with the cabbage and rosemary. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
       "Check the rice is tender and drain if required.",
       "Serve the chicken with the rice and pear and cabbage mixture."
-    ], nutrition: { calories: "467 kcal", protein: "16.7 g", carbohydrates: "55.1 g", fat: "21.5 g", fibre: "2.6 g", sodium: "42 mg", salt: "0.10 g", potassium: "355 mg", phosphate: "155 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "467 kcal", protein: "16.7 g", carbohydrates: "50.5 g", fat: "21.5 g", fibre: "2.6 g", sodium: "42 mg", salt: "0.10 g", potassium: "355 mg", phosphate: "155 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2422,7 +2469,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
     dietCategories: ["Mediterranean-style"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "pork-carrot-couscous-skillet", code: "D049", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Lean pork with couscous, boiled carrot and softened leek, finished with thyme.", cookingTime: "30 minutes", calories: "383 kcal", protein: "15.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
@@ -2438,7 +2486,7 @@ export const dinners: Recipe[] = [
       "Add the vegetables and thyme to the pork pan and warm through.",
       "Fluff the couscous and spoon the pork and vegetables over it.",
       "Serve immediately."
-    ], nutrition: { calories: "383 kcal", protein: "15.1 g", carbohydrates: "33.8 g", fat: "21.7 g", fibre: "2.6 g", sodium: "24 mg", salt: "0.06 g", potassium: "357 mg", phosphate: "189 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "383 kcal", protein: "15.1 g", carbohydrates: "30.9 g", fat: "21.7 g", fibre: "2.6 g", sodium: "24 mg", salt: "0.06 g", potassium: "357 mg", phosphate: "189 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2447,7 +2495,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "cod-leek-pasta-bake", code: "D050", mealFamily: "pasta-bake", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Flaked cod and white pasta baked with softened leek and cabbage, finished with parsley and olive oil.", cookingTime: "30 minutes", calories: "374 kcal", protein: "16.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking dish", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "45 g" },
@@ -2464,7 +2513,7 @@ export const dinners: Recipe[] = [
       "Combine the pasta, vegetables and cod with the olive oil and parsley in a baking dish.",
       "Bake until hot throughout.",
       "Serve immediately."
-    ], nutrition: { calories: "374 kcal", protein: "16.0 g", carbohydrates: "32.2 g", fat: "21.0 g", fibre: "2.8 g", sodium: "44 mg", salt: "0.11 g", potassium: "378 mg", phosphate: "171 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "374 kcal", protein: "16.0 g", carbohydrates: "29.5 g", fat: "21.0 g", fibre: "2.8 g", sodium: "44 mg", salt: "0.11 g", potassium: "378 mg", phosphate: "171 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2473,7 +2522,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "turkey-apple-noodle-bowl", code: "D051", mealFamily: "noodle-bowl", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey and plain noodles with apple and cucumber, finished with ginger and olive oil.", cookingTime: "30 minutes", calories: "387 kcal", protein: "15.6 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
       { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "50 g (raw)" },
@@ -2488,7 +2538,7 @@ export const dinners: Recipe[] = [
       "Add the diced apple and cook gently until just softened.",
       "Toss the turkey and apple through the noodles with the cucumber and ground ginger.",
       "Serve immediately."
-    ], nutrition: { calories: "387 kcal", protein: "15.6 g", carbohydrates: "36.1 g", fat: "21.0 g", fibre: "2.3 g", sodium: "33 mg", salt: "0.08 g", potassium: "266 mg", phosphate: "154 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "387 kcal", protein: "15.6 g", carbohydrates: "33.1 g", fat: "21.0 g", fibre: "2.3 g", sodium: "33 mg", salt: "0.08 g", potassium: "266 mg", phosphate: "154 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2497,7 +2547,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "chicken-herb-meatballs-rice", code: "D052", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken herb meatballs with basmati rice, tender cabbage and carrot, finished with parsley.", cookingTime: "30 minutes", calories: "459 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
@@ -2513,7 +2564,7 @@ export const dinners: Recipe[] = [
       "Boil the cabbage and carrot in unsalted water until tender, then drain well.",
       "Check the rice is tender and drain if required.",
       "Serve the meatballs with the rice and vegetables."
-    ], nutrition: { calories: "459 kcal", protein: "16.7 g", carbohydrates: "52.8 g", fat: "21.5 g", fibre: "2.4 g", sodium: "48 mg", salt: "0.12 g", potassium: "361 mg", phosphate: "156 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "459 kcal", protein: "16.7 g", carbohydrates: "48.2 g", fat: "21.5 g", fibre: "2.4 g", sodium: "48 mg", salt: "0.12 g", potassium: "361 mg", phosphate: "156 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2522,7 +2573,8 @@ export const dinners: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   // International recipes: nutrition and ingredient quantities are for one serving.
       {
@@ -2678,7 +2730,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-jalfrezi-with-chapati",
@@ -2817,7 +2870,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "lamb-rogan-josh-with-rice",
@@ -2967,7 +3021,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "tandoori-style-fish-with-lemon-pilau",
@@ -3121,7 +3176,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-karahi-with-homemade-flatbread",
@@ -3245,7 +3301,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "coconut-fish-curry-with-rice",
@@ -3379,7 +3436,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-shish-tawook-with-vermicelli-rice",
@@ -3523,7 +3581,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "homemade-chicken-pide",
@@ -3659,7 +3718,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "saffron-chicken-with-jewelled-rice",
@@ -3803,7 +3863,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-gyros-platter",
@@ -3925,7 +3986,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1058 kcal",
       "protein": "65.6 g",
-      "carbohydrates": "106.3 g",
+      "carbohydrates": "106.2 g",
       "fat": "40.1 g",
       "fibre": "9.6 g",
       "sodium": "1113 mg",
@@ -3946,7 +4007,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-and-apricot-tagine",
@@ -4089,7 +4151,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "spiced-lamb-and-vegetable-pastilla",
@@ -4219,7 +4282,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "harissa-style-baked-fish-with-couscous",
@@ -4358,7 +4422,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mediterranean-style",
-    dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "sweet-and-sour-chicken-with-rice",
@@ -4503,7 +4568,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "ginger-and-spring-onion-steamed-fish",
@@ -4628,7 +4694,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "crispy-pork-with-garlic-noodles",
@@ -4748,7 +4815,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-teriyaki-style-rice-bowl",
@@ -4872,7 +4940,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "thai-basil-chicken-with-jasmine-rice",
@@ -4970,7 +5039,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "915 kcal",
       "protein": "59.5 g",
-      "carbohydrates": "101.6 g",
+      "carbohydrates": "101.5 g",
       "fat": "29.0 g",
       "fibre": "4.5 g",
       "sodium": "1545 mg",
@@ -4991,7 +5060,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "red-curry-style-chicken-with-rice",
@@ -5125,7 +5195,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1175 kcal",
       "protein": "56.6 g",
-      "carbohydrates": "108.2 g",
+      "carbohydrates": "108.1 g",
       "fat": "55.2 g",
       "fibre": "10.7 g",
       "sodium": "1293 mg",
@@ -5146,7 +5216,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "lemongrass-pork-with-rice-noodles",
@@ -5302,7 +5373,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-laksa-inspired-noodle-bowl",
@@ -5436,7 +5508,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-enchiladas-with-homemade-sauce",
@@ -5575,7 +5648,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "beef-fajita-platter-with-tortillas",
@@ -5704,7 +5778,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "caribbean-chicken-curry-with-rice",
@@ -5848,7 +5923,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "jollof-style-rice-with-grilled-chicken",
@@ -5993,7 +6069,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "light-chicken-stew-with-seasoned-rice",
@@ -6128,7 +6205,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "homemade-chicken-and-spinach-cannelloni",
@@ -6272,7 +6350,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-and-pepper-paella",
@@ -6370,7 +6449,7 @@ export const dinners: Recipe[] = [
     "nutrition": {
       "calories": "1003 kcal",
       "protein": "56.0 g",
-      "carbohydrates": "112.0 g",
+      "carbohydrates": "111.9 g",
       "fat": "35.6 g",
       "fibre": "10.8 g",
       "sodium": "593 mg",
@@ -6391,7 +6470,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-and-mushroom-puff-pastry-pie",
@@ -6512,7 +6592,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "paprika-pork-goulash-with-buttered-noodles",
@@ -6632,7 +6713,8 @@ export const dinners: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
   "id": "roasted-pepper-and-white-bean-lasagne",
@@ -6746,7 +6828,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "turkey-and-leek-pie-with-walnut-pastry",
@@ -6850,7 +6933,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "cod-and-parsley-cakes-with-warm-rice-salad",
@@ -6962,7 +7046,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "vegetable-and-chickpea-tagine-with-almond-couscous",
@@ -7081,7 +7166,8 @@ export const dinners: Recipe[] = [
     "Vegetarian",
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "ricotta-and-walnut-ravioli-with-basil-and-green-beans",
@@ -7160,7 +7246,7 @@ export const dinners: Recipe[] = [
   "nutrition": {
     "calories": "664 kcal",
     "protein": "19.0 g",
-    "carbohydrates": "41.3 g",
+    "carbohydrates": "41.2 g",
     "fat": "46.5 g",
     "fibre": "5.7 g",
     "sodium": "115 mg",
@@ -7180,7 +7266,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "baked-fish-with-green-rice-and-lime-slaw",
@@ -7266,7 +7353,7 @@ export const dinners: Recipe[] = [
   "nutrition": {
     "calories": "673 kcal",
     "protein": "26.0 g",
-    "carbohydrates": "46.4 g",
+    "carbohydrates": "46.5 g",
     "fat": "42.3 g",
     "fibre": "6.1 g",
     "sodium": "143 mg",
@@ -7286,7 +7373,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged."
 },
 {
   "id": "turkey-mushroom-and-walnut-pilaf",
@@ -7392,7 +7480,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mixed diet",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "hake-and-coconut-rice-bake-with-crisp-slaw",
@@ -7499,7 +7588,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mixed diet",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "pork-and-apple-skewers-with-herbed-couscous",
@@ -7611,7 +7701,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mixed diet",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "cabbage-rolls-with-barley-mushrooms-and-seitan",
@@ -7732,7 +7823,8 @@ export const dinners: Recipe[] = [
     "Vegetarian",
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "mild-tofu-and-coconut-curry-with-basmati-rice",
@@ -7855,7 +7947,8 @@ export const dinners: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "turkey-kebabs-with-flatbread-and-cucumber-yoghurt",
@@ -7977,7 +8070,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "basil-and-ginger-tofu-cakes-with-rice-and-cabbage",
@@ -8097,7 +8191,8 @@ export const dinners: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "sesame-salmon-with-rice-noodles-and-crunchy-slaw",
@@ -8210,7 +8305,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mixed diet",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "black-bean-and-rice-stuffed-peppers",
@@ -8303,7 +8399,7 @@ export const dinners: Recipe[] = [
   "nutrition": {
     "calories": "681 kcal",
     "protein": "20.2 g",
-    "carbohydrates": "59.3 g",
+    "carbohydrates": "59.4 g",
     "fat": "36.6 g",
     "fibre": "14.8 g",
     "sodium": "161 mg",
@@ -8324,7 +8420,8 @@ export const dinners: Recipe[] = [
     "Vegetarian",
     "Intermittent fasting — eating-window meal",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged."
 },
 {
   "id": "beef-pepper-and-onion-saltado-with-rice",
@@ -8436,7 +8533,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mixed diet",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged."
 },
 {
   "id": "fish-and-groundnut-stew-with-rice",
@@ -8553,7 +8651,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "lentil-bobotie-with-rice",
@@ -8690,7 +8789,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "salmon-and-courgette-frittata",
@@ -8776,7 +8876,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "garlic-cream-chicken-with-braised-cabbage",
@@ -8867,7 +8968,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "pork-medallions-with-creamy-courgettes",
@@ -8958,7 +9060,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "turkey-patties-with-avocado-and-cabbage-salad",
@@ -9029,7 +9132,7 @@ export const dinners: Recipe[] = [
   "nutrition": {
     "calories": "503 kcal",
     "protein": "37.4 g",
-    "carbohydrates": "5.6 g",
+    "carbohydrates": "5.7 g",
     "fat": "36.8 g",
     "fibre": "4.6 g",
     "sodium": "134 mg",
@@ -9049,7 +9152,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged."
 },
 {
   "id": "egg-and-cheddar-stuffed-mushrooms",
@@ -9137,7 +9241,8 @@ export const dinners: Recipe[] = [
     "Vegetarian",
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "salmon-and-egg-bake",
@@ -9203,7 +9308,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Carnivore"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "beef-patties-with-poached-eggs",
@@ -9269,7 +9375,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Carnivore"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chicken-thigh-and-egg-casserole",
@@ -9335,7 +9442,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Carnivore"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "cod-and-salmon-egg-custard",
@@ -9406,7 +9514,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Carnivore"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chicken-and-potato-frittata-with-carrots",
@@ -9491,7 +9600,8 @@ export const dinners: Recipe[] = [
   "primaryDietCategory": "Low FODMAP",
   "dietCategories": [
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "salmon-with-carrot-rice-and-cucumber-salad",
@@ -9582,7 +9692,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Low FODMAP",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "turkey-and-chive-meatballs-with-polenta",
@@ -9672,7 +9783,8 @@ export const dinners: Recipe[] = [
   "primaryDietCategory": "Low FODMAP",
   "dietCategories": [
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "steak-and-rice-with-lettuce-and-carrots",
@@ -9763,7 +9875,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Low FODMAP",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "crisp-cod-with-basil-polenta-and-carrots",
@@ -9859,7 +9972,8 @@ export const dinners: Recipe[] = [
   "primaryDietCategory": "Low FODMAP",
   "dietCategories": [
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "ginger-egg-and-carrot-fried-rice",
@@ -9955,7 +10069,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "spiced-lentil-and-brown-rice-pilaf",
@@ -10058,7 +10173,8 @@ export const dinners: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "lemon-seitan-with-white-bean-barley-pilaf",
@@ -10158,7 +10274,8 @@ export const dinners: Recipe[] = [
     "Vegetarian",
     "Mediterranean-style",
     "DASH-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "turkey-with-brown-rice-and-herb-vegetables",
@@ -10253,7 +10370,8 @@ export const dinners: Recipe[] = [
   "primaryDietCategory": "DASH-style",
   "dietCategories": [
     "DASH-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "tofu-white-bean-and-barley-bake",
@@ -10357,7 +10475,8 @@ export const dinners: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "spinach-and-egg-brown-rice-bake",
@@ -10459,7 +10578,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "DASH-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "lentil-and-walnut-bobotie-with-rice",
@@ -10596,7 +10716,8 @@ export const dinners: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "white-bean-and-ricotta-stuffed-peppers-with-rice",
@@ -10701,7 +10822,8 @@ export const dinners: Recipe[] = [
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "peanut-and-lime-fish-noodles",
@@ -10806,7 +10928,8 @@ export const dinners: Recipe[] = [
   "primaryDietCategory": "Intermittent fasting — eating-window meal",
   "dietCategories": [
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "beef-and-black-eyed-pea-stew-with-polenta",
@@ -10916,7 +11039,8 @@ export const dinners: Recipe[] = [
   "primaryDietCategory": "Intermittent fasting — eating-window meal",
   "dietCategories": [
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "salmon-and-leek-rice-pie",
@@ -11022,6 +11146,7 @@ export const dinners: Recipe[] = [
   "primaryDietCategory": "Intermittent fasting — eating-window meal",
   "dietCategories": [
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 }
 ];

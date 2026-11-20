@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "date": "2026-11-20",
+  "status": "approved for release; recipe-data commit binding is finalised after the first commit",
+  "baselineCommit": "98dd532f14f12538ffc47fb31666f4924fe18571",
+  "recipeDataCommit": null,
+  "recipeVersion": "Exact approved content identified by SHA256-LF and Git blob IDs; recipeDataCommit will pin the first Phase 2 release commit in a metadata-only follow-up.",
+  "hashConvention": "Text: UTF-8, CRLF normalised to LF; SHA256 and bytes cover normalised bytes. XLSX: exact stored bytes.",
+  "counts": {
+    "reviewed": 317,
+    "numericCorrections": 158,
+    "unchanged": 159,
+    "newlyUnavailable": 0,
+    "completeCoverage": 317,
+    "completeConversionEstimates": 7,
+    "conditionalEstimates": 310,
+    "conditionallyResolvedAvocadoRecipes": 8
+  },
+  "evidenceFiles": [
+    {
+      "path": "RenalPlan_Recipe_Verification_Phase2_Carbohydrate.xlsx",
+      "sha256": "c29b323fc43df8274a0a5713a17e9af5cb2ca2d97297273c3940f44ef5a073d6",
+      "bytes": 2727106
+    },
+    {
+      "path": "carbohydrate-reconciliation.json",
+      "sha256": "b3328a2032f4ada89647266e106517a44f104ba38cec4cc9fe26b7798a5039fd",
+      "bytes": 1891248
+    },
+    {
+      "path": "energy-review.json",
+      "sha256": "754bab7a4a469d3edefc62fde22bba9cba91f4e509fbf04cd1fb8bfde5db76c3",
+      "bytes": 3697
+    },
+    {
+      "path": "workbook-validation.json",
+      "sha256": "ca5fdca9d60fe49c73781893a0270412cb4b7410ff4db9d8ded9c25b9b8de10e",
+      "bytes": 2045
+    },
+    {
+      "path": "avocado-substitution-review.json",
+      "sha256": "2952be9e4520b2eaba2609cda7e50738e0757abf260af8a8babd00c9c072a210",
+      "bytes": 157181
+    },
+    {
+      "path": "README.md",
+      "sha256": "938c3160285ff078f93f3bee2c17fdda7b5199c8b967d62a6eaf53e69a37b005",
+      "bytes": 15057
+    }
+  ],
+  "recipeFiles": [
+    {
+      "path": "data/RecipeData/breakfasts.ts",
+      "sha256Lf": "2c3fac7ee5d3cacbae0634cf788d2f6bd91e267e5227444512a122081ebb9f75",
+      "bytesLf": 182662,
+      "gitBlob": "8117a1bc46bd7c6d8614807709a67b9b06d0cc2d"
+    },
+    {
+      "path": "data/RecipeData/lunches.ts",
+      "sha256Lf": "464f79af8a2d8c0b7a325b454b9e20e628f8a0f7433d15207e0fc29fe26a0ba0",
+      "bytesLf": 483794,
+      "gitBlob": "7705c881e1f27f79cf1fda460dd179fe288d6e97"
+    },
+    {
+      "path": "data/RecipeData/dinners.ts",
+      "sha256Lf": "e4b531906be50594c34da7c165f77358df9214fccb5bb71b09f0de5c0de37247",
+      "bytesLf": 543967,
+      "gitBlob": "6c10405641a2d04d510f560f26c0ffa2db390440"
+    },
+    {
+      "path": "data/RecipeData/rangeAdditions.ts",
+      "sha256Lf": "c33c8c69d004b51e9e66158f53c641a042e53ce851020c19f1dbab7baf789b4b",
+      "bytesLf": 24186,
+      "gitBlob": "48aa7aa35eaf8413cca43bc09703f8381363ed8f"
+    },
+    {
+      "path": "data/RecipeData/index.ts",
+      "sha256Lf": "929719e2ba49288a917aa51df30f703cd9902b0dccfa6d38354d0e6ded31ca51",
+      "bytesLf": 585,
+      "gitBlob": "e1eccf3507c1dfaf9543b083f1d3cd2094ee5755"
+    },
+    {
+      "path": "data/RecipeData/types.ts",
+      "sha256Lf": "f40cd300bbf6f553b7abd840fee332dab487cdc2040b7d05ff7bcb51c51632d7",
+      "bytesLf": 2017,
+      "gitBlob": "fdb2c30f670dc4a2af5fd65f542153fd8ab53331"
+    }
+  ],
+  "preservedPhase1Files": [
+    {
+      "path": "data/RecipeData/evidence/phase-1-fibre-2026-11-20/fibre-reconciliation.json",
+      "sha256": "a2a00e7afbde776afb6eb5e3080f8f4675f8bc75dfb43f22ff1091ece2f98d9b",
+      "bytes": 614265
+    },
+    {
+      "path": "data/RecipeData/evidence/phase-1-fibre-2026-11-20/README.md",
+      "sha256": "cd7ce6e767e13316b5d4eafc8cdff1c009fc9c9fc21e277730d8db4450dad72c",
+      "bytes": 2528
+    },
+    {
+      "path": "data/RecipeData/evidence/phase-1-fibre-2026-11-20/RenalPlan_Recipe_Verification_Phase1_Fibre.xlsx",
+      "sha256": "62dd4ac12acd5942cadd9fb0b5c7d862a67f2a9c7d451fc8c26bae153880def5",
+      "bytes": 2336931
+    },
+    {
+      "path": "data/RecipeData/evidence/phase-1-fibre-2026-11-20/RenalPlan_Recipe_Verification_Pre_Phase1.xlsx",
+      "sha256": "ef3cb24bdc5d4486b17f20cffb10284609319764bacd12f76c8201c15d4e089b",
+      "bytes": 2745206
+    },
+    {
+      "path": "data/RecipeData/evidence/phase-1-fibre-2026-11-20/snapshot.json",
+      "sha256": "7e870086cacf32938ddcbd1021b7607af944238d8a8348ba443fee7e33df053e",
+      "bytes": 4671
+    }
+  ],
+  "unavailableRecipes": [],
+  "scope": "Only carbohydrate values, availability/display handling, regression support and evidence. Calories and every other nutrient, food specification and dietary guidance are unchanged.",
+  "approval": {
+    "date": "2026-11-20",
+    "scope": "Approved Phase 2 carbohydrate corrections, conditional avocado substitutions and corresponding display, tests and evidence. No further nutritional or recipe-content changes."
+  }
+}

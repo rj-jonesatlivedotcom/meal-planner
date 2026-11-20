@@ -1,0 +1,76 @@
+{
+  "scope": "Limited energy-basis implications of carbohydrate corrections only; no repeat of completed energy arithmetic audit.",
+  "confirmedNewEnergyErrors": [],
+  "caloriesChanged": false,
+  "finding": "The older CoFID energy basis uses available carbohydrate as monosaccharide equivalents at 3.75 kcal/g; UK by-weight labelling uses 4 kcal/g. Correcting grams does not justify subtracting four times the gram correction from stored calories. A future label-basis energy reconciliation would also need appropriate treatment of fibre, organic acids, alcohol and specific Atwater factors.",
+  "source": "CoFID 2021 guide pp10 and16; FAO/INFOODS Conversion Guidelines 2012 table4.1-1",
+  "examples": [
+    {
+      "code": "D002",
+      "retainedCalories": "606 kcal",
+      "beforeCarbohydrate": "89.2 g",
+      "afterCarbohydrate": "81.4 g",
+      "illustrativeFormerCarbohydrateComponentKcal": 334.5,
+      "illustrativeByWeightCarbohydrateComponentKcal": 325.6,
+      "interpretation": "Illustrative carbohydrate component only, not a complete or recommended revised recipe energy value."
+    },
+    {
+      "code": "D003",
+      "retainedCalories": "672 kcal",
+      "beforeCarbohydrate": "90.0 g",
+      "afterCarbohydrate": "82.2 g",
+      "illustrativeFormerCarbohydrateComponentKcal": 337.5,
+      "illustrativeByWeightCarbohydrateComponentKcal": 328.8,
+      "interpretation": "Illustrative carbohydrate component only, not a complete or recommended revised recipe energy value."
+    },
+    {
+      "code": "D004",
+      "retainedCalories": "661 kcal",
+      "beforeCarbohydrate": "89.9 g",
+      "afterCarbohydrate": "82.2 g",
+      "illustrativeFormerCarbohydrateComponentKcal": 337.125,
+      "illustrativeByWeightCarbohydrateComponentKcal": 328.8,
+      "interpretation": "Illustrative carbohydrate component only, not a complete or recommended revised recipe energy value."
+    },
+    {
+      "code": "D035",
+      "retainedCalories": "545 kcal",
+      "beforeCarbohydrate": "85.3 g",
+      "afterCarbohydrate": "78.5 g",
+      "illustrativeFormerCarbohydrateComponentKcal": 319.875,
+      "illustrativeByWeightCarbohydrateComponentKcal": 314.0,
+      "interpretation": "Illustrative carbohydrate component only, not a complete or recommended revised recipe energy value."
+    },
+    {
+      "code": "D046",
+      "retainedCalories": "416 kcal",
+      "beforeCarbohydrate": "34.1 g",
+      "afterCarbohydrate": "31.3 g",
+      "illustrativeFormerCarbohydrateComponentKcal": 127.875,
+      "illustrativeByWeightCarbohydrateComponentKcal": 125.2,
+      "interpretation": "Illustrative carbohydrate component only, not a complete or recommended revised recipe energy value."
+    },
+    {
+      "code": "B002",
+      "retainedCalories": "366 kcal",
+      "beforeCarbohydrate": "65.0 g",
+      "afterCarbohydrate": "61.2 g",
+      "illustrativeFormerCarbohydrateComponentKcal": 243.75,
+      "illustrativeByWeightCarbohydrateComponentKcal": 244.8,
+      "interpretation": "Illustrative carbohydrate component only, not a complete or recommended revised recipe energy value."
+    }
+  ],
+  "unavailableCarbohydrateEnergyCodes": [],
+  "limitation": "No complete new energy value has been calculated or asserted; published calories are retained independently. Existing mixed source conventions remain a review matter, not a newly proven arithmetic error.",
+  "previouslyUnavailableCarbohydrateEnergyCodes": [
+    "L094",
+    "L101",
+    "L102",
+    "L123",
+    "D088",
+    "D097",
+    "D098",
+    "D104"
+  ],
+  "avocadoFollowupNote": "Eight raw-avocado carbohydrate totals are now conditional USDA by-difference estimates. No recipe energy or other nutrient was recalculated or changed."
+}

@@ -165,8 +165,9 @@ export default async function RecipeLayout({
       "@type": "NutritionInformation",
       calories: recipe.nutrition.calories,
       proteinContent: recipe.nutrition.protein,
-      carbohydrateContent:
-        recipe.nutrition.carbohydrates,
+      ...(!recipe.nutritionIncomplete?.includes("carbohydrates") && /\d/.test(recipe.nutrition.carbohydrates)
+        ? { carbohydrateContent: recipe.nutrition.carbohydrates }
+        : {}),
       fatContent: recipe.nutrition.fat,
       ...(!recipe.nutritionIncomplete?.includes("fibre") && /\d/.test(recipe.nutrition.fibre)
         ? { fiberContent: recipe.nutrition.fibre }

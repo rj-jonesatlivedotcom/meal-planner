@@ -51,6 +51,8 @@ export type Recipe = {
   nutritionSourceNote?: string;
   /** Explains unresolved fibre evidence without publishing a partial total. */
   fibreEvidenceNote?: string;
+  /** Available-carbohydrate basis, conditional evidence or unresolved source. */
+  carbohydrateEvidenceNote?: string;
   quantityConversionsEstimated?: boolean;
   conditionalProxyPending?: boolean;
   clinicalReviewPending?: boolean;

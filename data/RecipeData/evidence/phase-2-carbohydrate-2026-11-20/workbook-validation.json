@@ -1,0 +1,64 @@
+{
+  "baselineCommit": "98dd532f14f12538ffc47fb31666f4924fe18571",
+  "inputWorkbookSha256": "62dd4ac12acd5942cadd9fb0b5c7d862a67f2a9c7d451fc8c26bae153880def5",
+  "phase1Preserved": true,
+  "sheets": {
+    "1": {
+      "unrelatedExistingCellsPreserved": 51,
+      "originalRowAttributesPreserved": 14
+    },
+    "2": {
+      "unrelatedExistingCellsPreserved": 350141,
+      "originalRowAttributesPreserved": 32618
+    },
+    "3": {
+      "unrelatedExistingCellsPreserved": 379,
+      "originalRowAttributesPreserved": 87
+    }
+  },
+  "recipeTotalsVerified": 317,
+  "packagePartsChanged": [
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet2.xml",
+    "xl/worksheets/sheet3.xml",
+    "xl/styles.xml"
+  ],
+  "completeCoverageTotals": 317,
+  "unavailableTotals": 0,
+  "numericCorrections": 158,
+  "unchangedTotals": 159,
+  "savedWorkbookRecalculation": {
+    "headersVerified": 317,
+    "changedRiceQuantityPropagates": true,
+    "missingSourceWithholdsTotal": true,
+    "engine": "artifact-tool; disposable in-memory edits, no output mutation"
+  },
+  "avocadoFollowup": {
+    "inputWorkbookSha256": "e5a999c58ed43f83bc6ff53305ac4bfded620cdc929eef482962632e419a233d",
+    "checkedRecipeTotals": 8,
+    "newCompleteCoverageTotals": 317,
+    "newConditionalEstimates": 310,
+    "sheets": {
+      "1": {
+        "approvedCells": 2,
+        "unrelatedExistingCellsPreserved": 51
+      },
+      "2": {
+        "approvedCells": 168,
+        "unrelatedExistingCellsPreserved": 387708
+      },
+      "3": {
+        "approvedCells": 2,
+        "unrelatedExistingCellsPreserved": 401
+      }
+    },
+    "allOtherPhase2CellsAndNativeFeaturesPreserved": true,
+    "scope": "Only eight avocado carbohydrate source/contribution cells, dependent formula caches and corresponding status/methodology/summary text.",
+    "savedWorkbookRecalculation": {
+      "headersVerified": 8,
+      "changedAvocadoEdibleWeightPropagates": true,
+      "missingSourceWithholdsCompleteTotal": true,
+      "engine": "artifact-tool; disposable in-memory edits only"
+    }
+  }
+}

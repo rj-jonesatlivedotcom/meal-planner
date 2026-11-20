@@ -33,7 +33,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "285 kcal",
       protein: "17.5 g",
-      carbohydrates: "33.8 g",
+      carbohydrates: "31.0 g",
       fat: "9.8 g",
       fibre: "2.3 g",
       sodium: "451 mg",
@@ -55,7 +55,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "apple-honey-porridge",
@@ -90,7 +91,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "366 kcal",
       protein: "13.2 g",
-      carbohydrates: "65.0 g",
+      carbohydrates: "61.2 g",
       fat: "8.0 g",
       fibre: "4.9 g",
       sodium: "91 mg",
@@ -112,7 +113,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-tomato-onion-toast",
@@ -147,7 +149,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "303 kcal",
       protein: "17.9 g",
-      carbohydrates: "37.1 g",
+      carbohydrates: "34.2 g",
       fat: "10.3 g",
       fibre: "3.2 g",
       sodium: "452 mg",
@@ -169,7 +171,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-white-chive-toast",
@@ -202,7 +205,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "220 kcal",
       protein: "12.8 g",
-      carbohydrates: "32.4 g",
+      carbohydrates: "29.5 g",
       fat: "5.3 g",
       fibre: "1.8 g",
       sodium: "403 mg",
@@ -224,7 +227,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-pepper-onion-toast",
@@ -260,7 +264,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "302 kcal",
       protein: "18.1 g",
-      carbohydrates: "37.7 g",
+      carbohydrates: "34.7 g",
       fat: "9.9 g",
       fibre: "3.7 g",
       sodium: "452 mg",
@@ -282,7 +286,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "cinnamon-french-toast-with-jam",
@@ -317,7 +322,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "333 kcal",
       protein: "13.8 g",
-      carbohydrates: "48.5 g",
+      carbohydrates: "45.5 g",
       fat: "10.6 g",
       fibre: "?",
       sodium: "385 mg",
@@ -340,7 +345,8 @@ export const breakfasts: Recipe[] = [
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.2825% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D1 are documented in the 16 October 2026 reconciliation workbook. Fibre is incomplete: Jam. No compatible dietary-fibre value established; the known subtotal is retained in the evidence record and is not a complete total.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    fibreEvidenceNote: "Fibre unavailable: the jam needs a source for dietary fibre in the specified fruit/product with edible seeds. Missing fibre has not been counted as zero."
+    fibreEvidenceNote: "Fibre unavailable: the jam needs a source for dietary fibre in the specified fruit/product with edible seeds. Missing fibre has not been counted as zero.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-tomato-onion-buttered-toast",
@@ -375,7 +381,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "278 kcal",
       protein: "12.6 g",
-      carbohydrates: "37.3 g",
+      carbohydrates: "34.4 g",
       fat: "9.8 g",
       fibre: "3.2 g",
       sodium: "360 mg",
@@ -397,7 +403,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "jam-butter-breakfast-toast",
@@ -428,7 +435,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "280 kcal",
       protein: "5.6 g",
-      carbohydrates: "46.2 g",
+      carbohydrates: "43.1 g",
       fat: "9.3 g",
       fibre: "1.9 g",
       sodium: "294 mg",
@@ -450,7 +457,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "savoury-oats-egg-tomato-pepper",
@@ -487,7 +495,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "389 kcal",
       protein: "20.0 g",
-      carbohydrates: "51.5 g",
+      carbohydrates: "47.2 g",
       fat: "13.0 g",
       fibre: "5.9 g",
       sodium: "312 mg",
@@ -509,7 +517,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "apple-honey-french-toast",
@@ -546,7 +555,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "374 kcal",
       protein: "15.9 g",
-      carbohydrates: "54.8 g",
+      carbohydrates: "51.7 g",
       fat: "11.8 g",
       fibre: "2.5 g",
       sodium: "404 mg",
@@ -568,7 +577,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "blueberry-apple-toast",
@@ -601,7 +611,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "300 kcal",
       protein: "8.0 g",
-      carbohydrates: "50.0 g",
+      carbohydrates: "47.1 g",
       fat: "8.8 g",
       fibre: "3.2 g",
       sodium: "360 mg",
@@ -623,7 +633,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "cinnamon-apple-toast",
@@ -657,7 +668,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "320 kcal",
       protein: "6.3 g",
-      carbohydrates: "54.6 g",
+      carbohydrates: "51.8 g",
       fat: "9.8 g",
       fibre: "3.2 g",
       sodium: "283 mg",
@@ -679,7 +690,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.2510% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "strawberry-cream-cheese-toast",
@@ -711,7 +723,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "299 kcal",
       protein: "7.8 g",
-      carbohydrates: "50.0 g",
+      carbohydrates: "47.1 g",
       fat: "8.9 g",
       fibre: "5.6 g",
       sodium: "361 mg",
@@ -733,7 +745,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-pepper-breakfast-wrap",
@@ -770,7 +783,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "367 kcal",
       protein: "18.2 g",
-      carbohydrates: "37.5 g",
+      carbohydrates: "34.5 g",
       fat: "17.0 g",
       fibre: "3.9 g",
       sodium: "597 mg",
@@ -791,7 +804,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "apple-cinnamon-pancakes",
@@ -829,7 +843,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "417 kcal",
       protein: "19.5 g",
-      carbohydrates: "62.4 g",
+      carbohydrates: "58.2 g",
       fat: "11.5 g",
       fibre: "3.2 g",
       sodium: "206 mg",
@@ -851,7 +865,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.2199% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "blueberry-yoghurt-toast",
@@ -884,7 +899,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "340 kcal",
       protein: "12.0 g",
-      carbohydrates: "57.6 g",
+      carbohydrates: "54.6 g",
       fat: "8.4 g",
       fibre: "2.9 g",
       sodium: "363 mg",
@@ -906,7 +921,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D3 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-chive-muffin",
@@ -942,7 +958,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "322 kcal",
       protein: "19.2 g",
-      carbohydrates: "27.4 g",
+      carbohydrates: "25.0 g",
       fat: "15.9 g",
       fibre: "1.6 g",
       sodium: "494 mg",
@@ -964,7 +980,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "strawberry-maple-pancakes",
@@ -1000,7 +1017,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "405 kcal",
       protein: "19.6 g",
-      carbohydrates: "59.2 g",
+      carbohydrates: "54.9 g",
       fat: "11.6 g",
       fibre: "5.8 g",
       sodium: "206 mg",
@@ -1022,7 +1039,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "apple-cream-cheese-bagel",
@@ -1054,7 +1072,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "389 kcal",
       protein: "10.6 g",
-      carbohydrates: "70.0 g",
+      carbohydrates: "65.6 g",
       fat: "9.3 g",
       fibre: "3.5 g",
       sodium: "420 mg",
@@ -1076,7 +1094,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D7, D2 are documented in the 16 October 2026 reconciliation workbook. Bagel potassium and phosphorus only use the approved US-product proxy USDA SR Legacy FDC 174899; the other five nutrients retain CoFID 11-970. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-apple-breakfast-wrap",
@@ -1114,7 +1133,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "390 kcal",
       protein: "18.1 g",
-      carbohydrates: "40.1 g",
+      carbohydrates: "37.2 g",
       fat: "18.4 g",
       fibre: "3.1 g",
       sodium: "609 mg",
@@ -1135,7 +1154,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.137450 g per serving, 0.3418% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "scrambled-egg-mushroom-toast",
@@ -1169,7 +1189,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "282 kcal",
       protein: "17.9 g",
-      carbohydrates: "32.5 g",
+      carbohydrates: "29.6 g",
       fat: "9.9 g",
       fibre: "2.2 g",
       sodium: "452 mg",
@@ -1191,7 +1211,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "cornflakes-toast-jam",
@@ -1224,7 +1245,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "354 kcal",
       protein: "9.6 g",
-      carbohydrates: "69.0 g",
+      carbohydrates: "63.5 g",
       fat: "6.3 g",
       fibre: "?",
       sodium: "428 mg",
@@ -1247,7 +1268,8 @@ export const breakfasts: Recipe[] = [
     nutritionSourceNote: "Owner-approved source assumptions D1 are documented in the 16 October 2026 reconciliation workbook. Fibre is incomplete: Jam. No compatible dietary-fibre value established; the known subtotal is retained in the evidence record and is not a complete total.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    fibreEvidenceNote: "Fibre unavailable: the jam needs a source for dietary fibre in the specified fruit/product with edible seeds. Missing fibre has not been counted as zero."
+    fibreEvidenceNote: "Fibre unavailable: the jam needs a source for dietary fibre in the specified fruit/product with edible seeds. Missing fibre has not been counted as zero.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-onion-pepper-wrap",
@@ -1282,7 +1304,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "298 kcal",
       protein: "11.8 g",
-      carbohydrates: "37.7 g",
+      carbohydrates: "34.8 g",
       fat: "12.2 g",
       fibre: "4.1 g",
       sodium: "452 mg",
@@ -1303,7 +1325,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "boiled-egg-soldiers",
@@ -1335,7 +1358,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "262 kcal",
       protein: "12.6 g",
-      carbohydrates: "32.3 g",
+      carbohydrates: "29.5 g",
       fat: "10.0 g",
       fibre: "1.8 g",
       sodium: "355 mg",
@@ -1357,7 +1380,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "blueberry-cream-cheese-toast",
@@ -1389,7 +1413,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "287 kcal",
       protein: "7.6 g",
-      carbohydrates: "50.5 g",
+      carbohydrates: "47.7 g",
       fat: "7.4 g",
       fibre: "2.9 g",
       sodium: "348 mg",
@@ -1411,7 +1435,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "mushroom-egg-muffin",
@@ -1446,7 +1471,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "262 kcal",
       protein: "18.3 g",
-      carbohydrates: "26.7 g",
+      carbohydrates: "24.4 g",
       fat: "9.9 g",
       fibre: "2.0 g",
       sodium: "431 mg",
@@ -1468,7 +1493,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "strawberry-apple-french-toast",
@@ -1505,7 +1531,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "360 kcal",
       protein: "15.3 g",
-      carbohydrates: "51.7 g",
+      carbohydrates: "48.6 g",
       fat: "11.7 g",
       fibre: "5.2 g",
       sodium: "393 mg",
@@ -1527,7 +1553,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "apple-yoghurt-toast",
@@ -1560,7 +1587,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "361 kcal",
       protein: "11.9 g",
-      carbohydrates: "62.4 g",
+      carbohydrates: "59.2 g",
       fat: "8.7 g",
       fibre: "3.0 g",
       sodium: "363 mg",
@@ -1582,7 +1609,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D3 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-tomato-muffin",
@@ -1617,7 +1645,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "266 kcal",
       protein: "18.0 g",
-      carbohydrates: "28.4 g",
+      carbohydrates: "26.0 g",
       fat: "9.8 g",
       fibre: "2.2 g",
       sodium: "430 mg",
@@ -1639,7 +1667,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "blueberry-apple-pancakes",
@@ -1676,7 +1705,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "404 kcal",
       protein: "14.4 g",
-      carbohydrates: "64.6 g",
+      carbohydrates: "60.3 g",
       fat: "11.5 g",
       fibre: "3.5 g",
       sodium: "114 mg",
@@ -1698,7 +1727,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "danish-bacon-egg-muffin",
@@ -1731,7 +1761,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "296 kcal",
       protein: "17.2 g",
-      carbohydrates: "26.6 g",
+      carbohydrates: "24.2 g",
       fat: "14.2 g",
       fibre: "1.6 g",
       sodium: "618 mg",
@@ -1753,7 +1783,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "jam-pancakes",
@@ -1787,7 +1818,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "393 kcal",
       protein: "18.2 g",
-      carbohydrates: "60.1 g",
+      carbohydrates: "56.0 g",
       fat: "10.7 g",
       fibre: "?",
       sodium: "200 mg",
@@ -1810,7 +1841,8 @@ export const breakfasts: Recipe[] = [
     nutritionSourceNote: "Owner-approved source assumptions D1 are documented in the 16 October 2026 reconciliation workbook. Fibre is incomplete: Jam. No compatible dietary-fibre value established; the known subtotal is retained in the evidence record and is not a complete total.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    fibreEvidenceNote: "Fibre unavailable: the jam needs a source for dietary fibre in the specified fruit/product with edible seeds. Missing fibre has not been counted as zero."
+    fibreEvidenceNote: "Fibre unavailable: the jam needs a source for dietary fibre in the specified fruit/product with edible seeds. Missing fibre has not been counted as zero.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-tomato-pepper-toast",
@@ -1845,7 +1877,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "293 kcal",
       protein: "17.8 g",
-      carbohydrates: "35.5 g",
+      carbohydrates: "32.7 g",
       fat: "9.9 g",
       fibre: "3.1 g",
       sodium: "451 mg",
@@ -1867,7 +1899,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "strawberry-apple-pancakes",
@@ -1904,7 +1937,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "401 kcal",
       protein: "14.3 g",
-      carbohydrates: "63.5 g",
+      carbohydrates: "59.2 g",
       fat: "11.8 g",
       fibre: "5.5 g",
       sodium: "114 mg",
@@ -1926,7 +1959,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "boiled-egg-chive-cream-cheese-toast",
@@ -1959,7 +1993,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "326 kcal",
       protein: "14.0 g",
-      carbohydrates: "33.1 g",
+      carbohydrates: "30.2 g",
       fat: "16.2 g",
       fibre: "1.8 g",
       sodium: "420 mg",
@@ -1981,7 +2015,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "danish-bacon-tomato-toast",
@@ -2015,7 +2050,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "257 kcal",
       protein: "10.7 g",
-      carbohydrates: "33.8 g",
+      carbohydrates: "31.0 g",
       fat: "9.7 g",
       fibre: "2.3 g",
       sodium: "563 mg",
@@ -2037,7 +2072,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-pepper-muffin",
@@ -2071,7 +2107,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "271 kcal",
       protein: "18.2 g",
-      carbohydrates: "29.1 g",
+      carbohydrates: "26.8 g",
       fat: "9.9 g",
       fibre: "2.9 g",
       sodium: "429 mg",
@@ -2093,7 +2129,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-white-herb-muffin",
@@ -2126,7 +2163,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "200 kcal",
       protein: "13.3 g",
-      carbohydrates: "26.6 g",
+      carbohydrates: "24.3 g",
       fat: "5.3 g",
       fibre: "1.6 g",
       sodium: "381 mg",
@@ -2148,7 +2185,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "egg-tomato-onion-wrap",
@@ -2185,7 +2223,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "342 kcal",
       protein: "12.6 g",
-      carbohydrates: "36.9 g",
+      carbohydrates: "33.9 g",
       fat: "17.0 g",
       fibre: "3.3 g",
       sodium: "505 mg",
@@ -2206,7 +2244,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "apple-blueberry-french-toast",
@@ -2244,7 +2283,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "377 kcal",
       protein: "15.4 g",
-      carbohydrates: "56.4 g",
+      carbohydrates: "53.0 g",
       fat: "11.5 g",
       fibre: "3.2 g",
       sodium: "393 mg",
@@ -2266,7 +2305,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "three-egg-plain-omelette",
@@ -2319,7 +2359,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Keto",
     dietCategories: ["Vegetarian","Keto","Atkins Phase 1","Low FODMAP"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Food-specific component conversions are documented in the Phase 2 evidence."
   },
 {
     id: "three-egg-cheese-omelette",
@@ -2373,7 +2414,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Keto",
     dietCategories: ["Vegetarian","Keto","Atkins Phase 1","Low FODMAP"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Food-specific component conversions are documented in the Phase 2 evidence."
   },
 {
     id: "three-egg-mushroom-omelette",
@@ -2427,7 +2469,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Keto",
     dietCategories: ["Vegetarian","Keto","Atkins Phase 1"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Food-specific component conversions are documented in the Phase 2 evidence."
   },
 {
     id: "three-egg-ham-omelette",
@@ -2481,7 +2524,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Keto",
     dietCategories: ["Keto","Atkins Phase 1"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "mixed-berry-overnight-oats",
@@ -2514,7 +2558,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "230 kcal",
       protein: "8.4 g",
-      carbohydrates: "40.5 g",
+      carbohydrates: "37.7 g",
       fat: "5.1 g",
       fibre: "4.4 g",
       sodium: "46 mg",
@@ -2539,7 +2583,8 @@ export const breakfasts: Recipe[] = [
       "Vegetarian",
       "Blue Zone-inspired"
     ],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "apple-cinnamon-overnight-oats",
@@ -2571,7 +2616,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "245 kcal",
       protein: "8.4 g",
-      carbohydrates: "43.9 g",
+      carbohydrates: "41.1 g",
       fat: "5.3 g",
       fibre: "3.9 g",
       sodium: "46 mg",
@@ -2596,7 +2641,8 @@ export const breakfasts: Recipe[] = [
     dietCategories: [
       "Vegetarian",
       "Blue Zone-inspired"
-    ]
+    ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "peanut-butter-greek-yoghurt-overnight-oats",
@@ -2629,7 +2675,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "396 kcal",
       protein: "14.9 g",
-      carbohydrates: "30.6 g",
+      carbohydrates: "28.2 g",
       fat: "24.7 g",
       fibre: "3.7 g",
       sodium: "141 mg",
@@ -2651,7 +2697,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "blueberry-cottage-cheese-overnight-oats",
@@ -2684,7 +2731,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "342 kcal",
       protein: "20.7 g",
-      carbohydrates: "34.6 g",
+      carbohydrates: "32.3 g",
       fat: "14.4 g",
       fibre: "3.4 g",
       sodium: "273 mg",
@@ -2706,7 +2753,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "cornflakes-and-milk",
@@ -2734,7 +2782,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "172 kcal",
       protein: "6.6 g",
-      carbohydrates: "33.3 g",
+      carbohydrates: "30.6 g",
       fat: "2.4 g",
       fibre: "0.8 g",
       sodium: "190 mg",
@@ -2756,7 +2804,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
     id: "weetabix-and-milk",
@@ -2784,7 +2833,7 @@ export const breakfasts: Recipe[] = [
     nutrition: {
       calories: "184 kcal",
       protein: "8.4 g",
-      carbohydrates: "33.3 g",
+      carbohydrates: "30.6 g",
       fat: "2.9 g",
       fibre: "3.6 g",
       sodium: "153 mg",
@@ -2806,7 +2855,8 @@ export const breakfasts: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
   "id": "warm-blueberry-and-walnut-rice-porridge",
@@ -2889,7 +2939,8 @@ export const breakfasts: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "blueberry-oat-and-tofu-pancakes",
@@ -2982,7 +3033,8 @@ export const breakfasts: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "seitan-pepper-and-breakfast-rice-hash",
@@ -3075,7 +3127,8 @@ export const breakfasts: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "spiced-tofu-scramble-with-rice-flatbread",
@@ -3172,7 +3225,8 @@ export const breakfasts: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "white-bean-and-basil-breakfast-polenta",
@@ -3265,7 +3319,8 @@ export const breakfasts: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "lentil-and-groundnut-breakfast-fritters",
@@ -3367,7 +3422,8 @@ export const breakfasts: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "DASH-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "seitan-and-white-bean-breakfast-wrap",
@@ -3472,7 +3528,8 @@ export const breakfasts: Recipe[] = [
     "Vegetarian",
     "Mediterranean-style",
     "DASH-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "feta-and-spinach-breakfast-omelette",
@@ -3560,7 +3617,8 @@ export const breakfasts: Recipe[] = [
     "Vegetarian",
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "salmon-and-egg-breakfast-cup",
@@ -3626,7 +3684,8 @@ export const breakfasts: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Carnivore"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "bean-and-seitan-brunch-rice-bowl",
@@ -3737,6 +3796,7 @@ export const breakfasts: Recipe[] = [
     "Mediterranean-style",
     "DASH-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 }
 ];

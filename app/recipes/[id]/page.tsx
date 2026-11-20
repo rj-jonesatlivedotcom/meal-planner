@@ -728,6 +728,7 @@ export default function RecipeDetailPage() {
             ["Potassium", recipe.nutrition.potassium], ["Phosphorus", recipe.nutrition.phosphate],
           ]} />
           {recipe.fibreEvidenceNote && <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{recipe.fibreEvidenceNote}</p>}
+          {recipe.carbohydrateEvidenceNote && <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{recipe.carbohydrateEvidenceNote}</p>}
           <p className={styles.methodologyLink}><Link href="/about#nutrition-sources-methodology">Nutrition sources &amp; methodology</Link></p>
           {variation && <p className={styles.methodologyLink}>
             Recipe variation <Link href={`/recipes/${variation.id}`}>{variation.label} →</Link>

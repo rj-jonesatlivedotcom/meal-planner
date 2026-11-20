@@ -30,7 +30,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "372 kcal",
       protein: "24.0 g",
-      carbohydrates: "33.0 g",
+      carbohydrates: "30.2 g",
       fat: "16.9 g",
       fibre: "2.1 g",
       sodium: "353 mg",
@@ -52,7 +52,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-lettuce-sandwich",
@@ -84,7 +85,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "401 kcal",
       protein: "20.0 g",
-      carbohydrates: "32.9 g",
+      carbohydrates: "30.1 g",
       fat: "22.0 g",
       fibre: "2.1 g",
       sodium: "451 mg",
@@ -106,7 +107,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "tuna-lettuce-sandwich",
@@ -137,7 +139,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "358 kcal",
       protein: "20.9 g",
-      carbohydrates: "33.0 g",
+      carbohydrates: "30.2 g",
       fat: "16.7 g",
       fibre: "2.1 g",
       sodium: "484 mg",
@@ -159,7 +161,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-cucumber-sandwich",
@@ -190,7 +193,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "377 kcal",
       protein: "24.3 g",
-      carbohydrates: "33.4 g",
+      carbohydrates: "30.5 g",
       fat: "17.2 g",
       fibre: "2.1 g",
       sodium: "353 mg",
@@ -212,7 +215,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-mayo-sandwich",
@@ -244,7 +248,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "469 kcal",
       protein: "20.0 g",
-      carbohydrates: "32.9 g",
+      carbohydrates: "30.1 g",
       fat: "29.4 g",
       fibre: "1.8 g",
       sodium: "463 mg",
@@ -266,7 +270,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-red-pepper-sandwich",
@@ -297,7 +302,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "371 kcal",
       protein: "22.8 g",
-      carbohydrates: "34.0 g",
+      carbohydrates: "31.2 g",
       fat: "16.9 g",
       fibre: "2.4 g",
       sodium: "349 mg",
@@ -319,7 +324,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "ham-lettuce-sandwich",
@@ -352,7 +358,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "430 kcal",
       protein: "18.5 g",
-      carbohydrates: "32.9 g",
+      carbohydrates: "30.0 g",
       fat: "25.8 g",
       fibre: "2.1 g",
       sodium: "450 mg",
@@ -374,7 +380,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-cream-cheese-sandwich",
@@ -405,7 +412,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "296 kcal",
       protein: "24.1 g",
-      carbohydrates: "33.5 g",
+      carbohydrates: "30.6 g",
       fat: "8.2 g",
       fibre: "2.0 g",
       sodium: "389 mg",
@@ -427,7 +434,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-lettuce-wrap",
@@ -458,7 +466,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "385 kcal",
       protein: "21.9 g",
-      carbohydrates: "33.1 g",
+      carbohydrates: "30.2 g",
       fat: "19.2 g",
       fibre: "2.5 g",
       sodium: "443 mg",
@@ -480,7 +488,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "tuna-mayo-wrap",
@@ -511,7 +520,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "376 kcal",
       protein: "20.1 g",
-      carbohydrates: "33.1 g",
+      carbohydrates: "30.2 g",
       fat: "19.0 g",
       fibre: "2.5 g",
       sodium: "577 mg",
@@ -533,7 +542,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-chive-wrap",
@@ -566,7 +576,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "420 kcal",
       protein: "19.3 g",
-      carbohydrates: "33.0 g",
+      carbohydrates: "30.1 g",
       fat: "24.3 g",
       fibre: "2.5 g",
       sodium: "545 mg",
@@ -588,7 +598,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-cucumber-wrap",
@@ -619,7 +630,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "391 kcal",
       protein: "22.3 g",
-      carbohydrates: "33.5 g",
+      carbohydrates: "30.6 g",
       fat: "19.5 g",
       fibre: "2.6 g",
       sodium: "444 mg",
@@ -641,7 +652,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-pepper-pasta",
@@ -675,7 +687,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "438 kcal",
       protein: "25.8 g",
-      carbohydrates: "60.4 g",
+      carbohydrates: "55.2 g",
       fat: "12.1 g",
       fibre: "3.7 g",
       sodium: "45 mg",
@@ -697,7 +709,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "creamy-chicken-pasta",
@@ -731,7 +744,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "506 kcal",
       protein: "27.1 g",
-      carbohydrates: "59.6 g",
+      carbohydrates: "54.4 g",
       fat: "19.3 g",
       fibre: "3.0 g",
       sodium: "122 mg",
@@ -753,7 +766,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "tuna-pepper-pasta",
@@ -785,7 +799,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "467 kcal",
       protein: "24.0 g",
-      carbohydrates: "58.5 g",
+      carbohydrates: "53.4 g",
       fat: "16.8 g",
       fibre: "3.1 g",
       sodium: "204 mg",
@@ -807,7 +821,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-cream-cheese-pasta",
@@ -839,7 +854,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "510 kcal",
       protein: "22.8 g",
-      carbohydrates: "57.7 g",
+      carbohydrates: "52.5 g",
       fat: "22.5 g",
       fibre: "2.5 g",
       sodium: "234 mg",
@@ -861,7 +876,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-onion-pasta",
@@ -895,7 +911,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "504 kcal",
       protein: "28.2 g",
-      carbohydrates: "60.7 g",
+      carbohydrates: "55.5 g",
       fat: "18.2 g",
       fibre: "3.3 g",
       sodium: "113 mg",
@@ -917,7 +933,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-mushroom-pasta",
@@ -951,7 +968,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "487 kcal",
       protein: "27.0 g",
-      carbohydrates: "57.6 g",
+      carbohydrates: "52.4 g",
       fat: "18.1 g",
       fibre: "2.7 g",
       sodium: "110 mg",
@@ -973,7 +990,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "tuna-cream-cheese-pasta",
@@ -1005,7 +1023,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "431 kcal",
       protein: "24.8 g",
-      carbohydrates: "57.5 g",
+      carbohydrates: "52.4 g",
       fat: "12.9 g",
       fibre: "2.5 g",
       sodium: "242 mg",
@@ -1027,7 +1045,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-fried-rice",
@@ -1064,7 +1083,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "458 kcal",
       protein: "27.6 g",
-      carbohydrates: "54.5 g",
+      carbohydrates: "49.8 g",
       fat: "15.9 g",
       fibre: "1.9 g",
       sodium: "121 mg",
@@ -1086,7 +1105,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-pepper-rice-bowl",
@@ -1120,7 +1140,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "514 kcal",
       protein: "23.4 g",
-      carbohydrates: "54.4 g",
+      carbohydrates: "49.7 g",
       fat: "24.2 g",
       fibre: "1.9 g",
       sodium: "233 mg",
@@ -1142,7 +1162,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-onion-rice-bowl",
@@ -1176,7 +1197,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "401 kcal",
       protein: "22.6 g",
-      carbohydrates: "55.1 g",
+      carbohydrates: "50.4 g",
       fat: "11.5 g",
       fibre: "2.0 g",
       sodium: "47 mg",
@@ -1198,7 +1219,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "tuna-egg-rice-bowl",
@@ -1231,7 +1253,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "485 kcal",
       protein: "33.3 g",
-      carbohydrates: "51.9 g",
+      carbohydrates: "47.3 g",
       fat: "17.5 g",
       fibre: "0.9 g",
       sodium: "363 mg",
@@ -1253,7 +1275,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-noodle-bowl",
@@ -1286,7 +1309,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "428 kcal",
       protein: "26.4 g",
-      carbohydrates: "56.0 g",
+      carbohydrates: "51.1 g",
       fat: "12.6 g",
       fibre: "3.3 g",
       sodium: "419 mg",
@@ -1308,7 +1331,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-jacket-potato",
@@ -1342,7 +1366,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "289 kcal",
       protein: "22.5 g",
-      carbohydrates: "33.2 g",
+      carbohydrates: "30.5 g",
       fat: "8.3 g",
       fibre: "4.3 g",
       sodium: "125 mg",
@@ -1364,7 +1388,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D6, D4, D2 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Food-specific component conversions are documented in the Phase 2 evidence."
   },
   {
     id: "tuna-jacket-potato",
@@ -1396,7 +1421,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "342 kcal",
       protein: "19.3 g",
-      carbohydrates: "32.8 g",
+      carbohydrates: "30.1 g",
       fat: "15.7 g",
       fibre: "4.3 g",
       sodium: "207 mg",
@@ -1418,7 +1443,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Food-specific component conversions are documented in the Phase 2 evidence."
   },
   {
     id: "egg-mayo-jacket-potato",
@@ -1451,7 +1477,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "418 kcal",
       protein: "18.3 g",
-      carbohydrates: "32.6 g",
+      carbohydrates: "29.9 g",
       fat: "24.7 g",
       fibre: "4.1 g",
       sodium: "179 mg",
@@ -1473,7 +1499,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Food-specific component conversions are documented in the Phase 2 evidence."
   },
   {
     id: "chicken-potato-hash",
@@ -1508,7 +1535,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "376 kcal",
       protein: "20.8 g",
-      carbohydrates: "39.6 g",
+      carbohydrates: "36.4 g",
       fat: "16.0 g",
       fibre: "5.0 g",
       sodium: "47 mg",
@@ -1530,7 +1557,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-potato-hash",
@@ -1566,7 +1594,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "432 kcal",
       protein: "16.6 g",
-      carbohydrates: "39.3 g",
+      carbohydrates: "36.2 g",
       fat: "24.2 g",
       fibre: "4.9 g",
       sodium: "159 mg",
@@ -1588,7 +1616,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "tuna-potato-salad",
@@ -1620,7 +1649,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "359 kcal",
       protein: "19.3 g",
-      carbohydrates: "36.6 g",
+      carbohydrates: "33.6 g",
       fat: "16.1 g",
       fibre: "4.3 g",
       sodium: "209 mg",
@@ -1642,7 +1671,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Food-specific component conversions are documented in the Phase 2 evidence."
   },
   {
     id: "chicken-pepper-omelette",
@@ -1676,7 +1706,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "365 kcal",
       protein: "33.8 g",
-      carbohydrates: "3.3 g",
+      carbohydrates: "3.2 g",
       fat: "24.2 g",
       fibre: "1.2 g",
       sodium: "268 mg",
@@ -1698,7 +1728,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Atkins Phase 1",
-    dietCategories: ["Atkins Phase 1"]
+    dietCategories: ["Atkins Phase 1"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "mushroom-chive-omelette",
@@ -1732,7 +1763,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "351 kcal",
       protein: "22.2 g",
-      carbohydrates: "16.4 g",
+      carbohydrates: "15.0 g",
       fat: "22.4 g",
       fibre: "1.2 g",
       sodium: "373 mg",
@@ -1754,7 +1785,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-pepper-toast",
@@ -1786,7 +1818,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "365 kcal",
       protein: "18.4 g",
-      carbohydrates: "33.6 g",
+      carbohydrates: "30.8 g",
       fat: "18.4 g",
       fibre: "2.4 g",
       sodium: "435 mg",
@@ -1808,7 +1840,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-pepper-toastie",
@@ -1840,7 +1873,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "334 kcal",
       protein: "23.9 g",
-      carbohydrates: "34.3 g",
+      carbohydrates: "31.5 g",
       fat: "12.2 g",
       fibre: "2.4 g",
       sodium: "388 mg",
@@ -1862,7 +1895,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "tuna-cucumber-toastie",
@@ -1895,7 +1929,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "399 kcal",
       protein: "21.1 g",
-      carbohydrates: "33.3 g",
+      carbohydrates: "30.4 g",
       fat: "21.0 g",
       fibre: "2.0 g",
       sodium: "484 mg",
@@ -1917,7 +1951,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-apple-sandwich",
@@ -1949,7 +1984,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "392 kcal",
       protein: "23.1 g",
-      carbohydrates: "38.8 g",
+      carbohydrates: "35.9 g",
       fat: "17.1 g",
       fibre: "2.7 g",
       sodium: "351 mg",
@@ -1971,7 +2006,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "egg-cucumber-sandwich",
@@ -2004,7 +2040,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "441 kcal",
       protein: "20.4 g",
-      carbohydrates: "33.4 g",
+      carbohydrates: "30.5 g",
       fat: "26.0 g",
       fibre: "2.1 g",
       sodium: "458 mg",
@@ -2026,7 +2062,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-cream-cheese-wrap",
@@ -2058,7 +2095,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "317 kcal",
       protein: "23.5 g",
-      carbohydrates: "34.0 g",
+      carbohydrates: "31.0 g",
       fat: "10.6 g",
       fibre: "2.8 g",
       sodium: "484 mg",
@@ -2080,7 +2117,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "tuna-cream-cheese-wrap",
@@ -2110,7 +2148,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "306 kcal",
       protein: "21.4 g",
-      carbohydrates: "33.7 g",
+      carbohydrates: "30.8 g",
       fat: "10.4 g",
       fibre: "2.5 g",
       sodium: "616 mg",
@@ -2132,7 +2170,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     id: "chicken-onion-pasta-salad",
@@ -2165,7 +2204,7 @@ export const lunches: Recipe[] = [
     nutrition: {
       calories: "485 kcal",
       protein: "26.2 g",
-      carbohydrates: "60.1 g",
+      carbohydrates: "54.9 g",
       fat: "17.2 g",
       fibre: "3.3 g",
       sodium: "72 mg",
@@ -2187,7 +2226,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
   { id: "chicken-leek-couscous-bowl", code: "L041", mealFamily: "couscous-bowl", category: "Lunch", emoji: "🥗", image: "/images/recipes/L041.webp", name: "Chicken & Leek Couscous Bowl", description: "Fluffy couscous tossed with tender chicken, soft leek and sweet carrot, finished with lemon and parsley for a bright, savoury bowl.", cookingTime: "25 minutes", calories: "380 kcal", protein: "26.9 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
@@ -2197,7 +2237,7 @@ export const lunches: Recipe[] = [
       "Fluff the couscous and combine with the vegetables.",
       "Top with the chicken and finish with the remaining olive oil, lemon juice and parsley.",
       "Serve immediately."
-    ], nutrition: { calories: "380 kcal", protein: "26.9 g", carbohydrates: "29.6 g", fat: "18.0 g", fibre: "2.3 g", sodium: "85 mg", salt: "0.21 g", potassium: "566 mg", phosphate: "252 mg" }, potassium: "High", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "380 kcal", protein: "26.9 g", carbohydrates: "27.1 g", fat: "18.0 g", fibre: "2.3 g", sodium: "85 mg", salt: "0.21 g", potassium: "566 mg", phosphate: "252 mg" }, potassium: "High", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2206,7 +2246,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "turkey-cucumber-pitta", code: "L042", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L042.webp", name: "Turkey & Cucumber Pitta", description: "Juicy turkey breast, crisp cucumber and iceberg lettuce tucked into a soft white pitta with creamy mayonnaise and a hint of parsley.", cookingTime: "12 minutes", calories: "437 kcal", protein: "30.7 g", equipment: "Knife, chopping board, frying pan, Food thermometer", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (60 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (40 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (15 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
       "Cook the turkey in a non-stick frying pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
@@ -2214,7 +2255,7 @@ export const lunches: Recipe[] = [
       "Warm the pitta briefly and split it open.",
       "Spread with mayonnaise and add the turkey and salad.",
       "Finish with parsley and serve."
-    ], nutrition: { calories: "437 kcal", protein: "30.7 g", carbohydrates: "34.4 g", fat: "20.5 g", fibre: "1.9 g", sodium: "326 mg", salt: "0.81 g", potassium: "569 mg", phosphate: "304 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "437 kcal", protein: "30.7 g", carbohydrates: "31.4 g", fat: "20.5 g", fibre: "1.9 g", sodium: "326 mg", salt: "0.81 g", potassium: "569 mg", phosphate: "304 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2223,7 +2264,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "tuna-sweetcorn-pasta-salad", code: "L043", mealFamily: "pasta-salad", category: "Lunch", emoji: "🍝", image: "/images/recipes/L043.webp", name: "Tuna & Sweetcorn Pasta Salad", description: "A colourful pasta salad with flaky tuna, sweetcorn and cucumber, brought together with a creamy mayonnaise dressing.", cookingTime: "20 minutes", calories: "463 kcal", protein: "29.4 g", equipment: "Saucepan, colander, bowl, knife", ingredients: [ { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "50 g" }, { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "90 g" }, { item: "Sweetcorn kernels, canned in water, drained", shoppingItem: "Sweetcorn kernels", quantity: "20 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (20 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" } ], method: [
       "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
@@ -2232,7 +2274,7 @@ export const lunches: Recipe[] = [
       "Mix the pasta, tuna, sweetcorn and cucumber.",
       "Stir through the mayonnaise.",
       "Serve warm or chilled."
-    ], nutrition: { calories: "463 kcal", protein: "29.4 g", carbohydrates: "41.8 g", fat: "20.9 g", fibre: "2.7 g", sodium: "301 mg", salt: "0.75 g", potassium: "447 mg", phosphate: "266 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. The tuna is canned in brine, so drain it thoroughly and check the label for salt content.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "463 kcal", protein: "29.4 g", carbohydrates: "38.2 g", fat: "20.9 g", fibre: "2.7 g", sodium: "301 mg", salt: "0.75 g", potassium: "447 mg", phosphate: "266 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. The tuna is canned in brine, so drain it thoroughly and check the label for salt content.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2241,7 +2283,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: false,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "egg-leek-rice-bowl", code: "L044", mealFamily: "rice-bowl", category: "Lunch", emoji: "🍳", image: "/images/recipes/L044.webp", name: "Egg & Leek Rice Bowl", description: "Fluffy rice tossed with egg, gently softened leek and onion, finished with fresh chives for a comforting savoury bowl.", cookingTime: "25 minutes", calories: "488 kcal", protein: "18.0 g", equipment: "Saucepan, frying pan, colander, knife, Mixing bowl, Fork or whisk", ingredients: [ { item: "Rice, white, basmati, raw", shoppingItem: "White rice", quantity: "60 g (dry)" }, { item: "Eggs, chicken, whole, raw", shoppingItem: "Egg", quantity: "2" }, { item: "Leeks, raw", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Onions, raw", shoppingItem: "Onions", quantity: "½ onion (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
       "Cook the rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
@@ -2250,7 +2293,7 @@ export const lunches: Recipe[] = [
       "Add the cooked rice and remaining oil and stir through.",
       "Finish with fresh chives.",
       "Serve immediately."
-    ], nutrition: { calories: "488 kcal", protein: "18.0 g", carbohydrates: "52.7 g", fat: "24.4 g", fibre: "1.7 g", sodium: "155 mg", salt: "0.39 g", potassium: "268 mg", phosphate: "249 mg" }, potassium: "Low", phosphate: "Moderate", purines: "Low", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "488 kcal", protein: "18.0 g", carbohydrates: "48.1 g", fat: "24.4 g", fibre: "1.7 g", sodium: "155 mg", salt: "0.39 g", potassium: "268 mg", phosphate: "249 mg" }, potassium: "Low", phosphate: "Moderate", purines: "Low", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2259,7 +2302,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "chicken-carrot-noodle-salad", code: "L045", mealFamily: "noodle-salad", category: "Lunch", emoji: "🍜", image: "/images/recipes/L045.webp", name: "Chicken & Carrot Noodle Salad", description: "Rice noodles, tender chicken, carrot and cucumber are tossed with lemon, ginger and olive oil for a fresh, zesty noodle salad.", cookingTime: "20 minutes", calories: "436 kcal", protein: "25.7 g", equipment: "Saucepan, colander, frying pan, knife, Food thermometer", ingredients: [ { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice rice noodles", quantity: "150 g (cooked)" }, { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" } ], method: [
       "Cook the rice rice noodles according to the packet instructions using unsalted water. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
@@ -2268,7 +2312,7 @@ export const lunches: Recipe[] = [
       "Drain the rice rice noodles thoroughly and rinse briefly if serving chilled.",
       "Toss the rice rice noodles with carrot, cucumber, chicken, oil, lemon and ginger.",
       "Serve."
-    ], nutrition: { calories: "436 kcal", protein: "25.7 g", carbohydrates: "34.6 g", fat: "22.7 g", fibre: "2.8 g", sodium: "93 mg", salt: "0.23 g", potassium: "499 mg", phosphate: "202 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "436 kcal", protein: "25.7 g", carbohydrates: "31.6 g", fat: "22.7 g", fibre: "2.8 g", sodium: "93 mg", salt: "0.23 g", potassium: "499 mg", phosphate: "202 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2277,7 +2321,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "turkey-apple-couscous-salad", code: "L046", mealFamily: "couscous-salad", category: "Lunch", emoji: "🍎", image: "/images/recipes/L046.webp", name: "Turkey & Apple Couscous Salad", description: "Tender turkey and fluffy couscous meet crisp apple and cucumber, with lemon and parsley adding a fresh, herby lift.", cookingTime: "20 minutes", calories: "433 kcal", protein: "29.1 g", equipment: "Saucepan, frying pan, knife, bowl, Food thermometer", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apples", quantity: "⅓ apple (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, fresh", shoppingItem: "Fresh parsley", quantity: "1 sprig" } ], method: [
       "Prepare the couscous according to the packet instructions using unsalted water.",
@@ -2286,7 +2331,7 @@ export const lunches: Recipe[] = [
       "Fluff the couscous and stir through the apple and cucumber.",
       "Slice the turkey and add to the couscous.",
       "Finish with olive oil, lemon and parsley and serve."
-    ], nutrition: { calories: "433 kcal", protein: "29.1 g", carbohydrates: "31.7 g", fat: "21.9 g", fibre: "1.9 g", sodium: "53 mg", salt: "0.13 g", potassium: "558 mg", phosphate: "324 mg" }, potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "433 kcal", protein: "29.1 g", carbohydrates: "29.2 g", fat: "21.9 g", fibre: "1.9 g", sodium: "53 mg", salt: "0.13 g", potassium: "558 mg", phosphate: "324 mg" }, potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2295,7 +2340,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "cod-cucumber-pasta-salad", code: "L047", mealFamily: "pasta-salad", category: "Lunch", emoji: "🐟", image: "/images/recipes/L047.webp", name: "Cod & Cucumber Pasta Salad", description: "Flaky baked cod and pasta tossed with cucumber and lettuce, finished with lemon, parsley and olive oil for a bright, fresh salad.", cookingTime: "25 minutes", calories: "443 kcal", protein: "33.7 g", equipment: "Oven, baking tray, saucepan, colander, knife", ingredients: [ { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "120 g" }, { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "40 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "¼ cucumber (20 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
       "The listed 120 g of cod is the cooked edible weight. Cook a plain portion as directed below, then weigh out 120 g after cooking for this meal; it is not a 120 g raw starting portion. Keep any extra cooked food separate from this serving.",
@@ -2305,7 +2351,7 @@ export const lunches: Recipe[] = [
       "Flake the cod and combine with the pasta, cucumber and lettuce.",
       "Add the olive oil, lemon juice and parsley.",
       "Serve."
-    ], nutrition: { calories: "443 kcal", protein: "33.7 g", carbohydrates: "30.9 g", fat: "21.4 g", fibre: "1.8 g", sodium: "113 mg", salt: "0.28 g", potassium: "627 mg", phosphate: "309 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "443 kcal", protein: "33.7 g", carbohydrates: "28.2 g", fat: "21.4 g", fibre: "1.8 g", sodium: "113 mg", salt: "0.28 g", potassium: "627 mg", phosphate: "309 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2314,7 +2360,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "chicken-leek-toasted-pitta", code: "L048", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L048.webp", name: "Chicken & Leek Toasted Pitta", description: "Toasted white pitta filled with tender chicken, softened leek and creamy chive mayonnaise for a warm, savoury lunch.", cookingTime: "18 minutes", calories: "410 kcal", protein: "27.4 g", equipment: "Frying pan, knife, chopping board, toaster, Mixing bowl, Food thermometer", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (50 g)" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
       "Slice the chicken and leek.",
@@ -2323,7 +2370,7 @@ export const lunches: Recipe[] = [
       "Warm the pitta and mix the filling with mayonnaise and chives.",
       "Fill the pitta.",
       "Serve immediately."
-    ], nutrition: { calories: "410 kcal", protein: "27.4 g", carbohydrates: "28.7 g", fat: "21.5 g", fibre: "1.6 g", sodium: "310 mg", salt: "0.77 g", potassium: "507 mg", phosphate: "216 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "410 kcal", protein: "27.4 g", carbohydrates: "26.2 g", fat: "21.5 g", fibre: "1.6 g", sodium: "310 mg", salt: "0.77 g", potassium: "507 mg", phosphate: "216 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2332,7 +2379,8 @@ export const lunches: Recipe[] = [
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
-    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   // International recipes: nutrition and ingredient quantities are for one serving.
       {
@@ -2516,7 +2564,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "spiced-turkey-keema-stuffed-pitta",
@@ -2640,7 +2689,7 @@ export const lunches: Recipe[] = [
     "nutrition": {
       "calories": "597 kcal",
       "protein": "43.7 g",
-      "carbohydrates": "61.3 g",
+      "carbohydrates": "61.2 g",
       "fat": "19.2 g",
       "fibre": "7.7 g",
       "sodium": "652 mg",
@@ -2661,7 +2710,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mediterranean-style",
-    dietCategories: ["Mediterranean-style"]
+    dietCategories: ["Mediterranean-style"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "bombay-style-cauliflower-and-egg-rolls",
@@ -2812,7 +2862,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "coconut-chicken-hopper-style-bowl",
@@ -2992,7 +3043,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-shawarma-with-garlic-flatbread",
@@ -3176,7 +3228,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "lamb-kofta-with-herbed-bulgur",
@@ -3295,7 +3348,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "lemon-chicken-souvlaki-with-warm-pitta",
@@ -3398,7 +3452,7 @@ export const lunches: Recipe[] = [
     "nutrition": {
       "calories": "643 kcal",
       "protein": "50.1 g",
-      "carbohydrates": "62.2 g",
+      "carbohydrates": "62.1 g",
       "fat": "21.1 g",
       "fibre": "5.1 g",
       "sodium": "694 mg",
@@ -3419,7 +3473,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chermoula-fish-with-couscous",
@@ -3538,7 +3593,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "spiced-egg-and-pepper-shakshuka-with-bread",
@@ -3652,7 +3708,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "pork-and-ginger-steamed-dumplings",
@@ -3787,7 +3844,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-katsu-with-rice-and-cabbage-slaw",
@@ -3942,7 +4000,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "bulgogi-style-beef-lettuce-cups",
@@ -4076,7 +4135,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "lemongrass-chicken-noodle-salad",
@@ -4216,7 +4276,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "banh-mi-inspired-chicken-baguette",
@@ -4355,7 +4416,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-satay-style-rice-noodle-salad",
@@ -4499,7 +4561,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "chicken-and-pepper-quesadillas",
@@ -4607,7 +4670,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "soft-fish-tacos-with-lime-slaw",
@@ -4731,7 +4795,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "jerk-chicken-flatbread",
@@ -4874,7 +4939,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "suya-spiced-chicken-skewers-with-flatbread",
@@ -4998,7 +5064,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
     "id": "mildly-spiced-chicken-kelewele-inspired-bowl",
@@ -5122,7 +5189,8 @@ export const lunches: Recipe[] = [
     "servings": 1
   ,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 {
   "id": "white-bean-and-roasted-pepper-bruschetta",
@@ -5214,7 +5282,8 @@ export const lunches: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "courgette-and-ricotta-bake-with-garlic-toast",
@@ -5310,7 +5379,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "basil-and-walnut-pasta-salad-with-ricotta",
@@ -5406,7 +5476,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "white-bean-and-cumin-patties-with-lemon-slaw",
@@ -5507,7 +5578,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chickpea-and-carrot-flatbread-with-walnut-dressing",
@@ -5610,7 +5682,8 @@ export const lunches: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "egg-and-mustard-pasta-salad",
@@ -5711,7 +5784,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "pepper-and-herb-frittata-with-toasted-bread",
@@ -5802,7 +5876,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "black-bean-and-sweetcorn-cakes-with-lime-slaw",
@@ -5905,7 +5980,8 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "Mediterranean-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "buckwheat-galette-with-mushrooms-and-walnuts",
@@ -6012,7 +6088,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chickpea-and-egg-salad-with-crisp-croutons",
@@ -6102,7 +6179,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "potato-and-chive-cakes-with-herb-mayonnaise",
@@ -6198,7 +6276,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "cabbage-mushroom-and-white-bean-pierogi",
@@ -6296,7 +6375,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "carrot-and-coriander-soup-with-toast",
@@ -6391,7 +6471,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "creamy-mushroom-spaghetti-with-walnuts",
@@ -6491,7 +6572,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "crisp-rice-pancakes-with-cabbage-and-peanut-dressing",
@@ -6594,7 +6676,8 @@ export const lunches: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chickpea-chaat-with-herbed-yoghurt-dressing",
@@ -6694,7 +6777,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "coconut-roti-with-spiced-cabbage",
@@ -6790,7 +6874,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "vegetable-and-lentil-khichuri",
@@ -6891,7 +6976,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "salmon-and-cucumber-rice-salad",
@@ -6986,7 +7072,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Mediterranean-style",
   "dietCategories": [
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "tofu-cabbage-and-ginger-pancakes",
@@ -7088,7 +7175,8 @@ export const lunches: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "DASH-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "steamed-cabbage-mushroom-and-white-bean-buns",
@@ -7196,7 +7284,8 @@ export const lunches: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chicken-lettuce-cups-with-ginger-and-peanut-dressing",
@@ -7302,7 +7391,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Mixed diet",
   "dietCategories": [
     "Mixed diet"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "lime-fish-cakes-with-noodles-and-crunchy-salad",
@@ -7414,7 +7504,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Mediterranean-style",
   "dietCategories": [
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "vegetable-and-tofu-popiah-rolls",
@@ -7526,7 +7617,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "gado-gado-with-peanut-and-coconut-dressing",
@@ -7617,7 +7709,7 @@ export const lunches: Recipe[] = [
   "nutrition": {
     "calories": "509 kcal",
     "protein": "18.1 g",
-    "carbohydrates": "30.8 g",
+    "carbohydrates": "30.7 g",
     "fat": "35.1 g",
     "fibre": "10.5 g",
     "sodium": "263 mg",
@@ -7636,7 +7728,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "black-bean-tostadas-with-avocado-and-lime",
@@ -7744,7 +7837,8 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "Mediterranean-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged."
 },
 {
   "id": "tuna-and-lime-potato-causa",
@@ -7834,7 +7928,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Mediterranean-style",
   "dietCategories": [
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "black-beans-and-rice-with-lime-dressed-cabbage",
@@ -7932,7 +8027,8 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "Mediterranean-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "plantain-and-black-eyed-pea-fritters-with-groundnuts",
@@ -8034,7 +8130,8 @@ export const lunches: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "black-eyed-pea-and-tomato-stew-with-soft-polenta",
@@ -8130,7 +8227,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegan",
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "lentil-and-groundnut-stew-with-flatbread",
@@ -8243,7 +8341,8 @@ export const lunches: Recipe[] = [
     "Vegan",
     "Vegetarian",
     "Mediterranean-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "pea-and-mint-soup-with-toast",
@@ -8324,7 +8423,7 @@ export const lunches: Recipe[] = [
   "nutrition": {
     "calories": "517 kcal",
     "protein": "15.2 g",
-    "carbohydrates": "53.2 g",
+    "carbohydrates": "53.1 g",
     "fat": "25.9 g",
     "fibre": "9.5 g",
     "sodium": "230 mg",
@@ -8343,7 +8442,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Vegetarian",
   "dietCategories": [
     "Vegetarian"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "salmon-avocado-and-cucumber-salad",
@@ -8429,7 +8529,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged."
 },
 {
   "id": "chicken-and-avocado-lettuce-wraps",
@@ -8520,7 +8621,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged."
 },
 {
   "id": "spinach-egg-and-mozzarella-skillet",
@@ -8608,7 +8710,8 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "tuna-egg-and-cucumber-boats",
@@ -8694,7 +8797,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "beef-and-cheddar-lettuce-cups",
@@ -8780,7 +8884,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Atkins Phase 1"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "salmon-with-softly-set-egg",
@@ -8846,7 +8951,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Carnivore"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "sirloin-steak-with-a-baked-egg",
@@ -8912,7 +9018,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Carnivore"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "pork-medallions-with-scrambled-eggs",
@@ -8978,7 +9085,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Carnivore"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chicken-and-egg-mini-patties",
@@ -9044,7 +9152,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Keto",
     "Carnivore"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "ginger-chicken-and-carrot-rice-bowl",
@@ -9129,7 +9238,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Low FODMAP",
   "dietCategories": [
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "tuna-and-cucumber-rice-salad",
@@ -9214,7 +9324,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Low FODMAP",
   "dietCategories": [
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chive-and-spinach-rice-pancakes",
@@ -9300,7 +9411,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "basil-cod-with-warm-rice-salad",
@@ -9390,7 +9502,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Low FODMAP",
   "dietCategories": [
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "beef-and-carrot-rice-bowl",
@@ -9475,7 +9588,8 @@ export const lunches: Recipe[] = [
   "primaryDietCategory": "Low FODMAP",
   "dietCategories": [
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chive-omelette-with-soft-polenta-and-carrots",
@@ -9561,7 +9675,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "Low FODMAP"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "white-bean-and-brown-rice-salad",
@@ -9659,7 +9774,8 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "lemon-chickpea-and-quinoa-bowl",
@@ -9757,7 +9873,8 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "oat-and-carrot-pancakes-with-white-beans",
@@ -9853,7 +9970,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Vegetarian",
     "DASH-style"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "lentil-and-barley-herb-salad",
@@ -9946,7 +10064,8 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "ginger-tofu-and-brown-rice-bowl",
@@ -10049,7 +10168,8 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "DASH-style",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "white-bean-walnut-pasta-with-frittata-ribbons",
@@ -10152,7 +10272,8 @@ export const lunches: Recipe[] = [
     "Mediterranean-style",
     "DASH-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "chicken-groundnut-and-black-eyed-pea-rice-bowl",
@@ -10263,7 +10384,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "lime-fish-and-avocado-rice-bowl",
@@ -10364,7 +10486,8 @@ export const lunches: Recipe[] = [
   "dietCategories": [
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged."
 },
 {
   "id": "potato-and-herb-cakes-with-egg-salad",
@@ -10466,7 +10589,8 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "Mediterranean-style",
     "Intermittent fasting — eating-window meal"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 },
 {
   "id": "ginger-tofu-and-peanut-noodle-salad",
@@ -10574,6 +10698,7 @@ export const lunches: Recipe[] = [
     "Vegetarian",
     "Intermittent fasting — eating-window meal",
     "Blue Zone-inspired"
-  ]
+  ],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
 }
 ];

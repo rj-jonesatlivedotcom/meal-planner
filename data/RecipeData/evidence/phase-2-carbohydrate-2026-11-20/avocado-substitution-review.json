@@ -1,0 +1,3740 @@
+{
+  "version": 1,
+  "date": "2026-11-20",
+  "scope": "Only the eight previously unavailable avocado carbohydrate totals. Preserve all other completed Phase 1/2 corrections and all other nutrients, food specifications and guidance.",
+  "decision": "Defensible as an explicitly conditional generic raw-avocado available-by-difference estimate; not an analytical available-carbohydrate result or a cultivar-specific Hass measurement.",
+  "sr27PublishedReference": {
+    "dataset": "USDA SR27",
+    "foodCode": "09037",
+    "foodName": "Avocados, raw, all commercial varieties",
+    "url": "https://www.ars.usda.gov/ARSUserFiles/80400525/Data/SR27/reports/sr27fg09.pdf",
+    "pdfPageOneBased": 140,
+    "basis": "per 100 g edible portion; seed and skin excluded",
+    "carbohydrateByDifferenceG": 8.53,
+    "totalDietaryFibreG": 6.7,
+    "availableByDifferenceG": 1.83,
+    "verified": "Published SR27 report checked directly; identical numeric values independently confirmed in retained local SR28 records. Raw archive lines below are SR28, not mislabelled SR27."
+  },
+  "source": {
+    "dataset": "USDA SR28",
+    "foodCode": "09037",
+    "foodName": "Avocados, raw, all commercial varieties",
+    "raw": {
+      "205": {
+        "rawRecord": [
+          "09037",
+          "205",
+          "8.53",
+          "0",
+          "",
+          "4",
+          "NC",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "08/2010",
+          ""
+        ],
+        "originalLine": "~09037~^~205~^8.53^0^^~4~^~NC~^~~^~~^^^^^^^~~^08/2010^",
+        "value": 8.53
+      },
+      "291": {
+        "rawRecord": [
+          "09037",
+          "291",
+          "6.7",
+          "27",
+          "0.879",
+          "1",
+          "A",
+          "",
+          "",
+          "8",
+          "3.2",
+          "12.7",
+          "6",
+          "4.542",
+          "8.811",
+          "2",
+          "03/2003",
+          ""
+        ],
+        "originalLine": "~09037~^~291~^6.7^27^0.879^~1~^~A~^~~^~~^8^3.2^12.7^6^4.542^8.811^~2~^03/2003^",
+        "value": 6.7
+      }
+    },
+    "foodDescription": {
+      "rawRecord": [
+        "09037",
+        "0900",
+        "Avocados, raw, all commercial varieties",
+        "AVOCADOS,RAW,ALL COMM VAR",
+        "",
+        "",
+        "Y",
+        "Seed and skin",
+        "26",
+        "Persea americana",
+        "6.25",
+        "3.36",
+        "8.37",
+        "3.60"
+      ],
+      "originalLine": "~09037~^~0900~^~Avocados, raw, all commercial varieties~^~AVOCADOS,RAW,ALL COMM VAR~^~~^~~^~Y~^~Seed and skin~^26^~Persea americana~^6.25^3.36^8.37^3.60"
+    },
+    "valuePer100": 1.83,
+    "method": "USDA available carbohydrate by difference",
+    "formula": "same food nutrient 205 - nutrient 291",
+    "definition": "Conditional available carbohydrate by difference, not directly measured available carbohydrate; generic raw avocado proxy for Hass.",
+    "conditions": [
+      "Generic raw all-commercial-varieties avocado is a conditional proxy for specified Hass flesh, not a cultivar-specific measurement; growing origin, ripeness and composition vary.",
+      "Available carbohydrate by difference, not directly measured available carbohydrate. The residual includes propagated proximate/fibre analytical error and may include organic acids or other non-carbohydrate compounds.",
+      "Both nutrients are from the SAME USDA food record (09037), not a matched physical sample or guaranteed matched analytical observations. Fibre has 27 data points and published standard error 0.879 g/100 g; carbohydrate by difference is calculated (source 4, derivation NC), not an independent measurement. No confidence interval for the 1.83 g residual is inferred.",
+      "Per 100 g edible raw flesh: skin and seed already excluded. Existing recipe inputs are raw edible weights; do not apply the USDA 26% refuse fraction again. All eight methods use avocado raw at service.",
+      "Nutrient-specific substitution for carbohydrate in these eight recipes ONLY. Recipe fibre, calories and all other nutrients retain their existing sources and values. No subtraction from CoFID carbohydrate or substitution of NSP."
+    ],
+    "status": "conditional",
+    "basisUnit": "g",
+    "url": "https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip",
+    "sr27Corroboration": {
+      "dataset": "USDA SR27",
+      "foodCode": "09037",
+      "foodName": "Avocados, raw, all commercial varieties",
+      "url": "https://www.ars.usda.gov/ARSUserFiles/80400525/Data/SR27/reports/sr27fg09.pdf",
+      "pdfPageOneBased": 140,
+      "basis": "per 100 g edible portion; seed and skin excluded",
+      "carbohydrateByDifferenceG": 8.53,
+      "totalDietaryFibreG": 6.7,
+      "availableByDifferenceG": 1.83,
+      "verified": "Published SR27 report checked directly; identical numeric values independently confirmed in retained local SR28 records. Raw archive lines below are SR28, not mislabelled SR27."
+    },
+    "substitutesCarbohydrateSourceId": "CoFID:14-386",
+    "scopeRecipeCodes": [
+      "L094",
+      "L101",
+      "L102",
+      "L123",
+      "D088",
+      "D097",
+      "D098",
+      "D104"
+    ]
+  },
+  "retainedCoFIDSource": {
+    "dataset": "CoFID 2021",
+    "file": "McCance_Widdowsons_Composition_of_Foods_Integrated_Dataset_2021. (1).xlsx",
+    "sheet": "1.3 Proximates",
+    "row": 65,
+    "foodCode": "14-386",
+    "foodName": "Avocado, Hass, flesh only",
+    "description": "11 samples, imported, Hass variety, ripe and ripen at home",
+    "raw": {
+      "L": 1.7999999999999998,
+      "O": "Tr",
+      "P": 1.4,
+      "Q": 0.4,
+      "R": 0.2,
+      "S": 0,
+      "T": 0.2,
+      "U": "Tr",
+      "V": 0,
+      "W": 0
+    },
+    "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid",
+    "valuePer100": null,
+    "method": "Unavailable conversion",
+    "formula": null,
+    "conditions": [
+      "Oligosaccharides predominate; chain-length-specific conversion and availability are unresolved.",
+      "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+    ],
+    "status": "unavailable",
+    "definition": "Available carbohydrate by weight, excluding fibre; converted estimate, not finished-meal analysis.",
+    "basisUnit": "g"
+  },
+  "preFollowupLedgerSha256Lf": "3471c3585de1316df6e926adef65acccf49eb5906ece13a887b2d09f078317bf",
+  "preFollowupWorkbookSha256": "e5a999c58ed43f83bc6ff53305ac4bfded620cdc929eef482962632e419a233d",
+  "localSR28ArchiveSha256": "8308fd1d224ef1e5331093748007180da01a7ac713cbac6a1f5bc2a03e1ee70a",
+  "methodReferences": [
+    {
+      "url": "https://www.ars.usda.gov/ARSUserFiles/80400525/Data/SR27/sr27_doc.pdf",
+      "section": "Carbohydrate, printed p13: includes dietary fibre; subtraction yields available carbohydrate by difference."
+    },
+    {
+      "url": "https://www.fao.org/fileadmin/templates/food_composition/documents/1nutrition/Conversion_Guidelines-V1.0.pdf",
+      "table": "4.2-4"
+    }
+  ],
+  "recipes": [
+    {
+      "code": "L094",
+      "name": "Black-bean tostadas with avocado and lime",
+      "before": {
+        "code": "L094",
+        "id": "black-bean-tostadas-with-avocado-and-lime",
+        "name": "Black-bean tostadas with avocado and lime",
+        "scope": "newer167",
+        "workbookHeaderRow": 13636,
+        "status": "unavailable",
+        "coverage": "incomplete",
+        "before": {
+          "carbohydrates": "43.4 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "?",
+          "carbohydrateEvidenceNote": "Carbohydrate unavailable: Hass avocado flesh, skin and stone removed. The known subtotal is evidence only, not a complete total.",
+          "nutritionIncomplete": [
+            "carbohydrates"
+          ]
+        },
+        "changed": true,
+        "unresolvedIngredients": [
+          "Hass avocado flesh, skin and stone removed"
+        ],
+        "conditionalIngredientLines": [
+          1,
+          2,
+          3,
+          6,
+          7,
+          9,
+          10,
+          11
+        ],
+        "knownSubtotalG": 42.84475385281385,
+        "unroundedCompleteG": null,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "White masa harina, unenriched",
+            "recipeQuantity": "30 g (dry edible input)",
+            "quantity": 30,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:20019",
+            "valuePer100": 70.19,
+            "contributionG": 21.057,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 2,
+            "ingredient": "Black beans, boiled without salt and drained",
+            "recipeQuantity": "90 g (cooked drained edible weight)",
+            "quantity": 90,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:16015",
+            "valuePer100": 15.010000000000002,
+            "contributionG": 13.509,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 3,
+            "ingredient": "Frozen sweetcorn kernels",
+            "recipeQuantity": "25 g (frozen uncooked input)",
+            "quantity": 25,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:11178",
+            "valuePer100": 18.61,
+            "contributionG": 4.6525,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 4,
+            "ingredient": "Fresh tomato",
+            "recipeQuantity": "40 g (raw edible input)",
+            "quantity": 40,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-517",
+            "valuePer100": 3,
+            "contributionG": 1.2,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Lettuce",
+            "recipeQuantity": "50 g (raw edible input)",
+            "quantity": 50,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-520",
+            "valuePer100": 1.4,
+            "contributionG": 0.7,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Onion",
+            "recipeQuantity": "15 g (raw edible input)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-499",
+            "valuePer100": 7.814285714285714,
+            "contributionG": 1.1721428571428572,
+            "conditions": [
+              "Uncharacterised non-starch remainder 1.8 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 7,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "20 g (freshly squeezed, weighed grams)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.30476190476190473,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 8,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "19 g (as sold, weighed grams)",
+            "quantity": 19,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 9,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "45 g (weighed grams)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 10,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "30 g (raw edible input)",
+            "quantity": 30,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-386",
+            "valuePer100": null,
+            "contributionG": null,
+            "conditions": [
+              "Oligosaccharides predominate; chain-length-specific conversion and availability are unresolved.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 11,
+            "ingredient": "Ground cumin",
+            "recipeQuantity": "0.6 g (dry)",
+            "quantity": 0.6,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02014",
+            "valuePer100": 33.74,
+            "contributionG": 0.20244,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 12,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "4 g (raw edible input)",
+            "quantity": 4,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.046909090909090914,
+            "conditions": []
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence."
+      },
+      "after": {
+        "code": "L094",
+        "id": "black-bean-tostadas-with-avocado-and-lime",
+        "name": "Black-bean tostadas with avocado and lime",
+        "scope": "newer167",
+        "workbookHeaderRow": 13636,
+        "status": "conditional",
+        "coverage": "complete",
+        "before": {
+          "carbohydrates": "43.4 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "43.4 g",
+          "carbohydrateEvidenceNote": "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged.",
+          "nutritionIncomplete": []
+        },
+        "changed": false,
+        "unresolvedIngredients": [],
+        "conditionalIngredientLines": [
+          1,
+          2,
+          3,
+          6,
+          7,
+          9,
+          10,
+          11
+        ],
+        "knownSubtotalG": 43.39375385281385,
+        "unroundedCompleteG": 43.39375385281385,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "White masa harina, unenriched",
+            "recipeQuantity": "30 g (dry edible input)",
+            "quantity": 30,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:20019",
+            "valuePer100": 70.19,
+            "contributionG": 21.057,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 2,
+            "ingredient": "Black beans, boiled without salt and drained",
+            "recipeQuantity": "90 g (cooked drained edible weight)",
+            "quantity": 90,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:16015",
+            "valuePer100": 15.010000000000002,
+            "contributionG": 13.509,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 3,
+            "ingredient": "Frozen sweetcorn kernels",
+            "recipeQuantity": "25 g (frozen uncooked input)",
+            "quantity": 25,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:11178",
+            "valuePer100": 18.61,
+            "contributionG": 4.6525,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 4,
+            "ingredient": "Fresh tomato",
+            "recipeQuantity": "40 g (raw edible input)",
+            "quantity": 40,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-517",
+            "valuePer100": 3,
+            "contributionG": 1.2,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Lettuce",
+            "recipeQuantity": "50 g (raw edible input)",
+            "quantity": 50,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-520",
+            "valuePer100": 1.4,
+            "contributionG": 0.7,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Onion",
+            "recipeQuantity": "15 g (raw edible input)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-499",
+            "valuePer100": 7.814285714285714,
+            "contributionG": 1.1721428571428572,
+            "conditions": [
+              "Uncharacterised non-starch remainder 1.8 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 7,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "20 g (freshly squeezed, weighed grams)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.30476190476190473,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 8,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "19 g (as sold, weighed grams)",
+            "quantity": 19,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 9,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "45 g (weighed grams)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 10,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "30 g (raw edible input)",
+            "quantity": 30,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:09037",
+            "valuePer100": 1.83,
+            "contributionG": 0.549,
+            "conditions": [
+              "Generic raw all-commercial-varieties avocado is a conditional proxy for specified Hass flesh, not a cultivar-specific measurement; growing origin, ripeness and composition vary.",
+              "Available carbohydrate by difference, not directly measured available carbohydrate. The residual includes propagated proximate/fibre analytical error and may include organic acids or other non-carbohydrate compounds.",
+              "Both nutrients are from the SAME USDA food record (09037), not a matched physical sample or guaranteed matched analytical observations. Fibre has 27 data points and published standard error 0.879 g/100 g; carbohydrate by difference is calculated (source 4, derivation NC), not an independent measurement. No confidence interval for the 1.83 g residual is inferred.",
+              "Per 100 g edible raw flesh: skin and seed already excluded. Existing recipe inputs are raw edible weights; do not apply the USDA 26% refuse fraction again. All eight methods use avocado raw at service.",
+              "Nutrient-specific substitution for carbohydrate in these eight recipes ONLY. Recipe fibre, calories and all other nutrients retain their existing sources and values. No subtraction from CoFID carbohydrate or substitution of NSP."
+            ],
+            "originalSourceId": "CoFID:14-386"
+          },
+          {
+            "line": 11,
+            "ingredient": "Ground cumin",
+            "recipeQuantity": "0.6 g (dry)",
+            "quantity": 0.6,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02014",
+            "valuePer100": 33.74,
+            "contributionG": 0.20244,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 12,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "4 g (raw edible input)",
+            "quantity": 4,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.046909090909090914,
+            "conditions": []
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence. Avocado follow-up: substitute documented USDA 09037 carbohydrate only, 8.53-6.7=1.83 g/100 g raw edible flesh, as an explicit conditional proxy; preserve the unconvertible CoFID record."
+      },
+      "avocadoEdibleGrams": 30,
+      "avocadoCarbohydrateContributionG": 0.549,
+      "unchangedRecipeFields": {
+        "id": "black-bean-tostadas-with-avocado-and-lime",
+        "code": "L094",
+        "category": "Lunch",
+        "cuisine": "Mexico",
+        "mealFamily": "plated meal",
+        "emoji": "🥗",
+        "image": "/images/recipes/L094.webp",
+        "name": "Black-bean tostadas with avocado and lime",
+        "description": "Crisp corn tostadas with black beans, sweetcorn, avocado and fresh lime salsa.",
+        "cookingTime": "35 mins",
+        "calories": "493 kcal",
+        "protein": "13.0 g",
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Baking tray",
+        "ingredients": [
+          {
+            "item": "White masa harina, unenriched",
+            "shoppingItem": "White masa harina, unenriched",
+            "quantity": "30 g (dry edible input)"
+          },
+          {
+            "item": "Black beans, boiled without salt and drained",
+            "shoppingItem": "Black beans, boiled without salt and drained",
+            "quantity": "90 g (cooked drained edible weight)"
+          },
+          {
+            "item": "Frozen sweetcorn kernels",
+            "shoppingItem": "Frozen sweetcorn kernels",
+            "quantity": "25 g (frozen uncooked input)"
+          },
+          {
+            "item": "Fresh tomato",
+            "shoppingItem": "Fresh tomato",
+            "quantity": "40 g (raw edible input)"
+          },
+          {
+            "item": "Lettuce",
+            "shoppingItem": "Lettuce",
+            "quantity": "50 g (raw edible input)"
+          },
+          {
+            "item": "Onion",
+            "shoppingItem": "Onion",
+            "quantity": "15 g (raw edible input)"
+          },
+          {
+            "item": "Fresh lime juice",
+            "shoppingItem": "Fresh lime juice",
+            "quantity": "20 g (freshly squeezed, weighed grams)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "19 g (as sold, weighed grams)"
+          },
+          {
+            "item": "Drinking tap water",
+            "shoppingItem": "Drinking tap water",
+            "quantity": "45 g (weighed grams)"
+          },
+          {
+            "item": "Hass avocado flesh, skin and stone removed",
+            "shoppingItem": "Hass avocado flesh, skin and stone removed",
+            "quantity": "30 g (raw edible input)"
+          },
+          {
+            "item": "Ground cumin",
+            "shoppingItem": "Ground cumin",
+            "quantity": "0.6 g (dry)"
+          },
+          {
+            "item": "Fresh coriander leaves",
+            "shoppingItem": "Fresh coriander leaves",
+            "quantity": "4 g (raw edible input)"
+          }
+        ],
+        "method": [
+          "Mix the masa harina and measured water into a dough. Scrape dry patches from the bowl into the mixture and work them in with your hands. Divide into two, press between non-stick sheets and dry-cook in a hot pan for 1–2 minutes per side.",
+          "Brush with one third of the oil and bake at 200°C, or 180°C fan, for 8–10 minutes until crisp. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Heat the cooked, drained black beans and sweetcorn in another third of the oil with the cumin until steaming hot.",
+          "Mix the diced tomato, onion, weighed avocado flesh, coriander, lime juice and remaining oil. Top both tostadas with all the beans, corn, lettuce and salsa and serve."
+        ],
+        "potassium": "Pending review",
+        "phosphate": "Pending review",
+        "purines": "Pending review",
+        "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+        "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+        "servings": 1,
+        "shoppingByWeight": true,
+        "primaryDietCategory": "Vegan",
+        "dietCategories": [
+          "Vegan",
+          "Vegetarian",
+          "Mediterranean-style",
+          "Blue Zone-inspired"
+        ]
+      },
+      "unchangedNutrition": {
+        "calories": "493 kcal",
+        "protein": "13.0 g",
+        "fat": "26.3 g",
+        "fibre": "12.9 g",
+        "sodium": "16 mg",
+        "potassium": "901 mg",
+        "phosphate": "259 mg",
+        "salt": "0.04 g"
+      },
+      "methodCompatibility": "Raw avocado combined as salsa/salad/side at service; no avocado cooking or discard is specified."
+    },
+    {
+      "code": "L101",
+      "name": "Salmon, avocado and cucumber salad",
+      "before": {
+        "code": "L101",
+        "id": "salmon-avocado-and-cucumber-salad",
+        "name": "Salmon, avocado and cucumber salad",
+        "scope": "newer167",
+        "workbookHeaderRow": 14390,
+        "status": "unavailable",
+        "coverage": "incomplete",
+        "before": {
+          "carbohydrates": "2.0 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "?",
+          "carbohydrateEvidenceNote": "Carbohydrate unavailable: Hass avocado flesh, skin and stone removed. The known subtotal is evidence only, not a complete total.",
+          "nutritionIncomplete": [
+            "carbohydrates"
+          ]
+        },
+        "changed": true,
+        "unresolvedIngredients": [
+          "Hass avocado flesh, skin and stone removed"
+        ],
+        "conditionalIngredientLines": [
+          2,
+          6,
+          8
+        ],
+        "knownSubtotalG": 1.3066809523809524,
+        "unroundedCompleteG": null,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "Farmed salmon fillet, flesh only",
+            "recipeQuantity": "100 g (raw edible input, skin and bones excluded)",
+            "quantity": 100,
+            "basisUnit": "g",
+            "sourceId": "CoFID:16-356",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 2,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "40 g (raw edible input)",
+            "quantity": 40,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-386",
+            "valuePer100": null,
+            "contributionG": null,
+            "conditions": [
+              "Oligosaccharides predominate; chain-length-specific conversion and availability are unresolved.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 3,
+            "ingredient": "Cucumber",
+            "recipeQuantity": "50 g (raw edible input)",
+            "quantity": 50,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-523",
+            "valuePer100": 1.2,
+            "contributionG": 0.6,
+            "conditions": []
+          },
+          {
+            "line": 4,
+            "ingredient": "Lettuce",
+            "recipeQuantity": "30 g (raw edible input)",
+            "quantity": 30,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-520",
+            "valuePer100": 1.4,
+            "contributionG": 0.42,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "15 g (as sold, weighed grams)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Fresh lemon juice",
+            "recipeQuantity": "10 g (freshly squeezed, weighed grams)",
+            "quantity": 10,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-277",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.15238095238095237,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 7,
+            "ingredient": "Fresh chives",
+            "recipeQuantity": "3 g (raw edible input)",
+            "quantity": 3,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-887",
+            "valuePer100": 1.9,
+            "contributionG": 0.056999999999999995,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence."
+      },
+      "after": {
+        "code": "L101",
+        "id": "salmon-avocado-and-cucumber-salad",
+        "name": "Salmon, avocado and cucumber salad",
+        "scope": "newer167",
+        "workbookHeaderRow": 14390,
+        "status": "conditional",
+        "coverage": "complete",
+        "before": {
+          "carbohydrates": "2.0 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "2.0 g",
+          "carbohydrateEvidenceNote": "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged.",
+          "nutritionIncomplete": []
+        },
+        "changed": false,
+        "unresolvedIngredients": [],
+        "conditionalIngredientLines": [
+          2,
+          6,
+          8
+        ],
+        "knownSubtotalG": 2.0386809523809526,
+        "unroundedCompleteG": 2.0386809523809526,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "Farmed salmon fillet, flesh only",
+            "recipeQuantity": "100 g (raw edible input, skin and bones excluded)",
+            "quantity": 100,
+            "basisUnit": "g",
+            "sourceId": "CoFID:16-356",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 2,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "40 g (raw edible input)",
+            "quantity": 40,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:09037",
+            "valuePer100": 1.83,
+            "contributionG": 0.732,
+            "conditions": [
+              "Generic raw all-commercial-varieties avocado is a conditional proxy for specified Hass flesh, not a cultivar-specific measurement; growing origin, ripeness and composition vary.",
+              "Available carbohydrate by difference, not directly measured available carbohydrate. The residual includes propagated proximate/fibre analytical error and may include organic acids or other non-carbohydrate compounds.",
+              "Both nutrients are from the SAME USDA food record (09037), not a matched physical sample or guaranteed matched analytical observations. Fibre has 27 data points and published standard error 0.879 g/100 g; carbohydrate by difference is calculated (source 4, derivation NC), not an independent measurement. No confidence interval for the 1.83 g residual is inferred.",
+              "Per 100 g edible raw flesh: skin and seed already excluded. Existing recipe inputs are raw edible weights; do not apply the USDA 26% refuse fraction again. All eight methods use avocado raw at service.",
+              "Nutrient-specific substitution for carbohydrate in these eight recipes ONLY. Recipe fibre, calories and all other nutrients retain their existing sources and values. No subtraction from CoFID carbohydrate or substitution of NSP."
+            ],
+            "originalSourceId": "CoFID:14-386"
+          },
+          {
+            "line": 3,
+            "ingredient": "Cucumber",
+            "recipeQuantity": "50 g (raw edible input)",
+            "quantity": 50,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-523",
+            "valuePer100": 1.2,
+            "contributionG": 0.6,
+            "conditions": []
+          },
+          {
+            "line": 4,
+            "ingredient": "Lettuce",
+            "recipeQuantity": "30 g (raw edible input)",
+            "quantity": 30,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-520",
+            "valuePer100": 1.4,
+            "contributionG": 0.42,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "15 g (as sold, weighed grams)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Fresh lemon juice",
+            "recipeQuantity": "10 g (freshly squeezed, weighed grams)",
+            "quantity": 10,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-277",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.15238095238095237,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 7,
+            "ingredient": "Fresh chives",
+            "recipeQuantity": "3 g (raw edible input)",
+            "quantity": 3,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-887",
+            "valuePer100": 1.9,
+            "contributionG": 0.056999999999999995,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence. Avocado follow-up: substitute documented USDA 09037 carbohydrate only, 8.53-6.7=1.83 g/100 g raw edible flesh, as an explicit conditional proxy; preserve the unconvertible CoFID record."
+      },
+      "avocadoEdibleGrams": 40,
+      "avocadoCarbohydrateContributionG": 0.732,
+      "unchangedRecipeFields": {
+        "id": "salmon-avocado-and-cucumber-salad",
+        "code": "L101",
+        "category": "Lunch",
+        "cuisine": "Mediterranean",
+        "mealFamily": "salad",
+        "emoji": "🥗",
+        "image": "/images/recipes/L101.webp",
+        "name": "Salmon, avocado and cucumber salad",
+        "description": "Flaked salmon with avocado, cucumber and crisp lettuce in a lemon and chive dressing.",
+        "cookingTime": "25 mins",
+        "calories": "433 kcal",
+        "protein": "22.1 g",
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Oven, Baking tray",
+        "ingredients": [
+          {
+            "item": "Farmed salmon fillet, flesh only",
+            "shoppingItem": "Farmed salmon fillet, flesh only",
+            "quantity": "100 g (raw edible input, skin and bones excluded)"
+          },
+          {
+            "item": "Hass avocado flesh, skin and stone removed",
+            "shoppingItem": "Hass avocado flesh, skin and stone removed",
+            "quantity": "40 g (raw edible input)"
+          },
+          {
+            "item": "Cucumber",
+            "shoppingItem": "Cucumber",
+            "quantity": "50 g (raw edible input)"
+          },
+          {
+            "item": "Lettuce",
+            "shoppingItem": "Lettuce",
+            "quantity": "30 g (raw edible input)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "15 g (as sold, weighed grams)"
+          },
+          {
+            "item": "Fresh lemon juice",
+            "shoppingItem": "Fresh lemon juice",
+            "quantity": "10 g (freshly squeezed, weighed grams)"
+          },
+          {
+            "item": "Fresh chives",
+            "shoppingItem": "Fresh chives",
+            "quantity": "3 g (raw edible input)"
+          },
+          {
+            "item": "Ground black pepper",
+            "shoppingItem": "Ground black pepper",
+            "quantity": "0.2 g (dry)"
+          }
+        ],
+        "method": [
+          "Brush the salmon with one third of the oil. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked. Retain edible baking juices.",
+          "Weigh the avocado flesh after removing its skin and stone. Dice with the cucumber and shred the lettuce.",
+          "Mix the remaining oil, lemon juice, chopped chives and pepper. Serve all the salad with all the salmon, edible juices and dressing."
+        ],
+        "potassium": "Pending review",
+        "phosphate": "Pending review",
+        "purines": "Pending review",
+        "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+        "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+        "servings": 1,
+        "shoppingByWeight": true,
+        "primaryDietCategory": "Keto",
+        "dietCategories": [
+          "Keto",
+          "Atkins Phase 1"
+        ]
+      },
+      "unchangedNutrition": {
+        "calories": "433 kcal",
+        "protein": "22.1 g",
+        "fat": "37.3 g",
+        "fibre": "2.4 g",
+        "sodium": "51 mg",
+        "potassium": "759 mg",
+        "phosphate": "270 mg",
+        "salt": "0.13 g"
+      },
+      "methodCompatibility": "Raw avocado combined as salsa/salad/side at service; no avocado cooking or discard is specified."
+    },
+    {
+      "code": "L102",
+      "name": "Chicken and avocado lettuce wraps",
+      "before": {
+        "code": "L102",
+        "id": "chicken-and-avocado-lettuce-wraps",
+        "name": "Chicken and avocado lettuce wraps",
+        "scope": "newer167",
+        "workbookHeaderRow": 14472,
+        "status": "unavailable",
+        "coverage": "incomplete",
+        "before": {
+          "carbohydrates": "2.9 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "?",
+          "carbohydrateEvidenceNote": "Carbohydrate unavailable: Hass avocado flesh, skin and stone removed. The known subtotal is evidence only, not a complete total.",
+          "nutritionIncomplete": [
+            "carbohydrates"
+          ]
+        },
+        "changed": true,
+        "unresolvedIngredients": [
+          "Hass avocado flesh, skin and stone removed"
+        ],
+        "conditionalIngredientLines": [
+          2,
+          6,
+          9
+        ],
+        "knownSubtotalG": 1.8104038961038962,
+        "unroundedCompleteG": null,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "Skinless boneless chicken breast",
+            "recipeQuantity": "90 g (raw edible input)",
+            "quantity": 90,
+            "basisUnit": "g",
+            "sourceId": "CoFID:18-290",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 2,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "60 g (raw edible input)",
+            "quantity": 60,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-386",
+            "valuePer100": null,
+            "contributionG": null,
+            "conditions": [
+              "Oligosaccharides predominate; chain-length-specific conversion and availability are unresolved.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 3,
+            "ingredient": "Lettuce",
+            "recipeQuantity": "60 g (raw edible input)",
+            "quantity": 60,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-520",
+            "valuePer100": 1.4,
+            "contributionG": 0.84,
+            "conditions": []
+          },
+          {
+            "line": 4,
+            "ingredient": "Cucumber",
+            "recipeQuantity": "40 g (raw edible input)",
+            "quantity": 40,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-523",
+            "valuePer100": 1.2,
+            "contributionG": 0.48,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "20 g (as sold, weighed grams)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "15 g (freshly squeezed, weighed grams)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.22857142857142854,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 7,
+            "ingredient": "Garlic",
+            "recipeQuantity": "1 g (raw edible input)",
+            "quantity": 1,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-244",
+            "valuePer100": 14.935064935064934,
+            "contributionG": 0.14935064935064934,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "3 g (raw edible input)",
+            "quantity": 3,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.03518181818181818,
+            "conditions": []
+          },
+          {
+            "line": 9,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence."
+      },
+      "after": {
+        "code": "L102",
+        "id": "chicken-and-avocado-lettuce-wraps",
+        "name": "Chicken and avocado lettuce wraps",
+        "scope": "newer167",
+        "workbookHeaderRow": 14472,
+        "status": "conditional",
+        "coverage": "complete",
+        "before": {
+          "carbohydrates": "2.9 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "2.9 g",
+          "carbohydrateEvidenceNote": "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged.",
+          "nutritionIncomplete": []
+        },
+        "changed": false,
+        "unresolvedIngredients": [],
+        "conditionalIngredientLines": [
+          2,
+          6,
+          9
+        ],
+        "knownSubtotalG": 2.9084038961038963,
+        "unroundedCompleteG": 2.9084038961038963,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "Skinless boneless chicken breast",
+            "recipeQuantity": "90 g (raw edible input)",
+            "quantity": 90,
+            "basisUnit": "g",
+            "sourceId": "CoFID:18-290",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 2,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "60 g (raw edible input)",
+            "quantity": 60,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:09037",
+            "valuePer100": 1.83,
+            "contributionG": 1.098,
+            "conditions": [
+              "Generic raw all-commercial-varieties avocado is a conditional proxy for specified Hass flesh, not a cultivar-specific measurement; growing origin, ripeness and composition vary.",
+              "Available carbohydrate by difference, not directly measured available carbohydrate. The residual includes propagated proximate/fibre analytical error and may include organic acids or other non-carbohydrate compounds.",
+              "Both nutrients are from the SAME USDA food record (09037), not a matched physical sample or guaranteed matched analytical observations. Fibre has 27 data points and published standard error 0.879 g/100 g; carbohydrate by difference is calculated (source 4, derivation NC), not an independent measurement. No confidence interval for the 1.83 g residual is inferred.",
+              "Per 100 g edible raw flesh: skin and seed already excluded. Existing recipe inputs are raw edible weights; do not apply the USDA 26% refuse fraction again. All eight methods use avocado raw at service.",
+              "Nutrient-specific substitution for carbohydrate in these eight recipes ONLY. Recipe fibre, calories and all other nutrients retain their existing sources and values. No subtraction from CoFID carbohydrate or substitution of NSP."
+            ],
+            "originalSourceId": "CoFID:14-386"
+          },
+          {
+            "line": 3,
+            "ingredient": "Lettuce",
+            "recipeQuantity": "60 g (raw edible input)",
+            "quantity": 60,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-520",
+            "valuePer100": 1.4,
+            "contributionG": 0.84,
+            "conditions": []
+          },
+          {
+            "line": 4,
+            "ingredient": "Cucumber",
+            "recipeQuantity": "40 g (raw edible input)",
+            "quantity": 40,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-523",
+            "valuePer100": 1.2,
+            "contributionG": 0.48,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "20 g (as sold, weighed grams)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "15 g (freshly squeezed, weighed grams)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.22857142857142854,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 7,
+            "ingredient": "Garlic",
+            "recipeQuantity": "1 g (raw edible input)",
+            "quantity": 1,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-244",
+            "valuePer100": 14.935064935064934,
+            "contributionG": 0.14935064935064934,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "3 g (raw edible input)",
+            "quantity": 3,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.03518181818181818,
+            "conditions": []
+          },
+          {
+            "line": 9,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence. Avocado follow-up: substitute documented USDA 09037 carbohydrate only, 8.53-6.7=1.83 g/100 g raw edible flesh, as an explicit conditional proxy; preserve the unconvertible CoFID record."
+      },
+      "avocadoEdibleGrams": 60,
+      "avocadoCarbohydrateContributionG": 1.098,
+      "unchangedRecipeFields": {
+        "id": "chicken-and-avocado-lettuce-wraps",
+        "code": "L102",
+        "category": "Lunch",
+        "cuisine": "Southeast Asia",
+        "mealFamily": "bread",
+        "emoji": "🥗",
+        "image": "/images/recipes/L102.webp",
+        "name": "Chicken and avocado lettuce wraps",
+        "description": "Warm chicken strips in lettuce cups with avocado, cucumber, coriander and lime.",
+        "cookingTime": "30 mins",
+        "calories": "393 kcal",
+        "protein": "24.0 g",
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Food thermometer",
+        "ingredients": [
+          {
+            "item": "Skinless boneless chicken breast",
+            "shoppingItem": "Skinless boneless chicken breast",
+            "quantity": "90 g (raw edible input)"
+          },
+          {
+            "item": "Hass avocado flesh, skin and stone removed",
+            "shoppingItem": "Hass avocado flesh, skin and stone removed",
+            "quantity": "60 g (raw edible input)"
+          },
+          {
+            "item": "Lettuce",
+            "shoppingItem": "Lettuce",
+            "quantity": "60 g (raw edible input)"
+          },
+          {
+            "item": "Cucumber",
+            "shoppingItem": "Cucumber",
+            "quantity": "40 g (raw edible input)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "20 g (as sold, weighed grams)"
+          },
+          {
+            "item": "Fresh lime juice",
+            "shoppingItem": "Fresh lime juice",
+            "quantity": "15 g (freshly squeezed, weighed grams)"
+          },
+          {
+            "item": "Garlic",
+            "shoppingItem": "Garlic",
+            "quantity": "1 g (raw edible input)"
+          },
+          {
+            "item": "Fresh coriander leaves",
+            "shoppingItem": "Fresh coriander leaves",
+            "quantity": "3 g (raw edible input)"
+          },
+          {
+            "item": "Ground black pepper",
+            "shoppingItem": "Ground black pepper",
+            "quantity": "0.2 g (dry)"
+          }
+        ],
+        "method": [
+          "Slice the chicken thinly. Cook in half the oil with crushed garlic and pepper for 8–10 minutes until its centre reaches 75°C for 30 seconds.",
+          "Dice the weighed avocado flesh and cucumber. Mix with the lime juice, chopped coriander and remaining oil.",
+          "Divide all the chicken and edible pan juices among the lettuce leaves. Add all the avocado mixture and serve the whole portion."
+        ],
+        "potassium": "Pending review",
+        "phosphate": "Pending review",
+        "purines": "Pending review",
+        "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+        "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+        "servings": 1,
+        "shoppingByWeight": true,
+        "primaryDietCategory": "Keto",
+        "dietCategories": [
+          "Keto",
+          "Atkins Phase 1"
+        ]
+      },
+      "unchangedNutrition": {
+        "calories": "393 kcal",
+        "protein": "24.0 g",
+        "fat": "31.8 g",
+        "fibre": "3.3 g",
+        "sodium": "67 mg",
+        "potassium": "919 mg",
+        "phosphate": "259 mg",
+        "salt": "0.17 g"
+      },
+      "methodCompatibility": "Raw avocado combined as salsa/salad/side at service; no avocado cooking or discard is specified."
+    },
+    {
+      "code": "L123",
+      "name": "Lime fish and avocado rice bowl",
+      "before": {
+        "code": "L123",
+        "id": "lime-fish-and-avocado-rice-bowl",
+        "name": "Lime fish and avocado rice bowl",
+        "scope": "newer167",
+        "workbookHeaderRow": 16230,
+        "status": "unavailable",
+        "coverage": "incomplete",
+        "before": {
+          "carbohydrates": "54.1 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "?",
+          "carbohydrateEvidenceNote": "Carbohydrate unavailable: Hass avocado flesh, skin and stone removed. The known subtotal is evidence only, not a complete total.",
+          "nutritionIncomplete": [
+            "carbohydrates"
+          ]
+        },
+        "changed": true,
+        "unresolvedIngredients": [
+          "Hass avocado flesh, skin and stone removed"
+        ],
+        "conditionalIngredientLines": [
+          2,
+          3,
+          5,
+          8,
+          10,
+          11
+        ],
+        "knownSubtotalG": 52.85712251082251,
+        "unroundedCompleteG": null,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "Cod fillet, flesh only",
+            "recipeQuantity": "120 g (raw edible input)",
+            "quantity": 120,
+            "basisUnit": "g",
+            "sourceId": "CoFID:16-372",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 2,
+            "ingredient": "White basmati rice",
+            "recipeQuantity": "60 g (dry)",
+            "quantity": 60,
+            "basisUnit": "g",
+            "sourceId": "CoFID:11-857",
+            "valuePer100": 76.09523809523809,
+            "contributionG": 45.65714285714285,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 3,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "70 g (raw edible input)",
+            "quantity": 70,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-386",
+            "valuePer100": null,
+            "contributionG": null,
+            "conditions": [
+              "Oligosaccharides predominate; chain-length-specific conversion and availability are unresolved.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 4,
+            "ingredient": "White cabbage",
+            "recipeQuantity": "70 g (raw edible input)",
+            "quantity": 70,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-509",
+            "valuePer100": 4.785714285714286,
+            "contributionG": 3.35,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Carrot",
+            "recipeQuantity": "40 g (raw edible input)",
+            "quantity": 40,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-496",
+            "valuePer100": 7.433766233766234,
+            "contributionG": 2.9735064935064934,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.4 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 6,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "25 g (as sold, weighed grams)",
+            "quantity": 25,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 7,
+            "ingredient": "Standard mayonnaise",
+            "recipeQuantity": "15 g (as sold)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-654",
+            "valuePer100": 2.319047619047619,
+            "contributionG": 0.34785714285714286,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "25 g (freshly squeezed, weighed grams)",
+            "quantity": 25,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.38095238095238093,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 9,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "6 g (raw edible input)",
+            "quantity": 6,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.07036363636363636,
+            "conditions": []
+          },
+          {
+            "line": 10,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "135 g (weighed grams)",
+            "quantity": 135,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 11,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence."
+      },
+      "after": {
+        "code": "L123",
+        "id": "lime-fish-and-avocado-rice-bowl",
+        "name": "Lime fish and avocado rice bowl",
+        "scope": "newer167",
+        "workbookHeaderRow": 16230,
+        "status": "conditional",
+        "coverage": "complete",
+        "before": {
+          "carbohydrates": "54.1 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "54.1 g",
+          "carbohydrateEvidenceNote": "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged.",
+          "nutritionIncomplete": []
+        },
+        "changed": false,
+        "unresolvedIngredients": [],
+        "conditionalIngredientLines": [
+          2,
+          3,
+          5,
+          8,
+          10,
+          11
+        ],
+        "knownSubtotalG": 54.138122510822505,
+        "unroundedCompleteG": 54.138122510822505,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "Cod fillet, flesh only",
+            "recipeQuantity": "120 g (raw edible input)",
+            "quantity": 120,
+            "basisUnit": "g",
+            "sourceId": "CoFID:16-372",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 2,
+            "ingredient": "White basmati rice",
+            "recipeQuantity": "60 g (dry)",
+            "quantity": 60,
+            "basisUnit": "g",
+            "sourceId": "CoFID:11-857",
+            "valuePer100": 76.09523809523809,
+            "contributionG": 45.65714285714285,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 3,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "70 g (raw edible input)",
+            "quantity": 70,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:09037",
+            "valuePer100": 1.83,
+            "contributionG": 1.281,
+            "conditions": [
+              "Generic raw all-commercial-varieties avocado is a conditional proxy for specified Hass flesh, not a cultivar-specific measurement; growing origin, ripeness and composition vary.",
+              "Available carbohydrate by difference, not directly measured available carbohydrate. The residual includes propagated proximate/fibre analytical error and may include organic acids or other non-carbohydrate compounds.",
+              "Both nutrients are from the SAME USDA food record (09037), not a matched physical sample or guaranteed matched analytical observations. Fibre has 27 data points and published standard error 0.879 g/100 g; carbohydrate by difference is calculated (source 4, derivation NC), not an independent measurement. No confidence interval for the 1.83 g residual is inferred.",
+              "Per 100 g edible raw flesh: skin and seed already excluded. Existing recipe inputs are raw edible weights; do not apply the USDA 26% refuse fraction again. All eight methods use avocado raw at service.",
+              "Nutrient-specific substitution for carbohydrate in these eight recipes ONLY. Recipe fibre, calories and all other nutrients retain their existing sources and values. No subtraction from CoFID carbohydrate or substitution of NSP."
+            ],
+            "originalSourceId": "CoFID:14-386"
+          },
+          {
+            "line": 4,
+            "ingredient": "White cabbage",
+            "recipeQuantity": "70 g (raw edible input)",
+            "quantity": 70,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-509",
+            "valuePer100": 4.785714285714286,
+            "contributionG": 3.35,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Carrot",
+            "recipeQuantity": "40 g (raw edible input)",
+            "quantity": 40,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-496",
+            "valuePer100": 7.433766233766234,
+            "contributionG": 2.9735064935064934,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.4 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 6,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "25 g (as sold, weighed grams)",
+            "quantity": 25,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 7,
+            "ingredient": "Standard mayonnaise",
+            "recipeQuantity": "15 g (as sold)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-654",
+            "valuePer100": 2.319047619047619,
+            "contributionG": 0.34785714285714286,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "25 g (freshly squeezed, weighed grams)",
+            "quantity": 25,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.38095238095238093,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 9,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "6 g (raw edible input)",
+            "quantity": 6,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.07036363636363636,
+            "conditions": []
+          },
+          {
+            "line": 10,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "135 g (weighed grams)",
+            "quantity": 135,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 11,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence. Avocado follow-up: substitute documented USDA 09037 carbohydrate only, 8.53-6.7=1.83 g/100 g raw edible flesh, as an explicit conditional proxy; preserve the unconvertible CoFID record."
+      },
+      "avocadoEdibleGrams": 70,
+      "avocadoCarbohydrateContributionG": 1.281,
+      "unchangedRecipeFields": {
+        "id": "lime-fish-and-avocado-rice-bowl",
+        "code": "L123",
+        "category": "Lunch",
+        "cuisine": "Peru",
+        "mealFamily": "rice",
+        "emoji": "🥗",
+        "image": "/images/recipes/L123.webp",
+        "name": "Lime fish and avocado rice bowl",
+        "description": "Lime baked fish with rice, avocado and a creamy cabbage and carrot slaw.",
+        "cookingTime": "35 mins",
+        "calories": "782 kcal",
+        "protein": "28.6 g",
+        "equipment": "Kitchen scales, Mixing bowl, Oven, Lid or bowl cover, Baking tray",
+        "ingredients": [
+          {
+            "item": "Cod fillet, flesh only",
+            "shoppingItem": "Cod fillet, flesh only",
+            "quantity": "120 g (raw edible input)"
+          },
+          {
+            "item": "White basmati rice",
+            "shoppingItem": "White basmati rice",
+            "quantity": "60 g (dry)"
+          },
+          {
+            "item": "Hass avocado flesh, skin and stone removed",
+            "shoppingItem": "Hass avocado flesh, skin and stone removed",
+            "quantity": "70 g (raw edible input)"
+          },
+          {
+            "item": "White cabbage",
+            "shoppingItem": "White cabbage",
+            "quantity": "70 g (raw edible input)"
+          },
+          {
+            "item": "Carrot",
+            "shoppingItem": "Carrot",
+            "quantity": "40 g (raw edible input)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "25 g (as sold, weighed grams)"
+          },
+          {
+            "item": "Standard mayonnaise",
+            "shoppingItem": "Standard mayonnaise",
+            "quantity": "15 g (as sold)"
+          },
+          {
+            "item": "Fresh lime juice",
+            "shoppingItem": "Fresh lime juice",
+            "quantity": "25 g (freshly squeezed, weighed grams)"
+          },
+          {
+            "item": "Fresh coriander leaves",
+            "shoppingItem": "Fresh coriander leaves",
+            "quantity": "6 g (raw edible input)"
+          },
+          {
+            "item": "Drinking tap water",
+            "shoppingItem": "Drinking tap water",
+            "quantity": "135 g (weighed grams)"
+          },
+          {
+            "item": "Ground black pepper",
+            "shoppingItem": "Ground black pepper",
+            "quantity": "0.2 g (dry)"
+          }
+        ],
+        "method": [
+          "Cook the rice with all the measured water, covered, for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Brush the cod with 10 g of the oil and half the lime juice. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque and steaming hot. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+          "Mix mayonnaise, remaining 15 g oil, remaining lime juice, chopped coriander and pepper. Toss with shredded cabbage and carrot. Serve all the fish and edible juices with all the rice, weighed avocado flesh and slaw."
+        ],
+        "potassium": "Pending review",
+        "phosphate": "Pending review",
+        "purines": "Pending review",
+        "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+        "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+        "servings": 1,
+        "shoppingByWeight": true,
+        "primaryDietCategory": "Intermittent fasting — eating-window meal",
+        "dietCategories": [
+          "Mediterranean-style",
+          "Intermittent fasting — eating-window meal"
+        ]
+      },
+      "unchangedNutrition": {
+        "calories": "782 kcal",
+        "protein": "28.6 g",
+        "fat": "49.7 g",
+        "fibre": "6.8 g",
+        "sodium": "159 mg",
+        "potassium": "1133 mg",
+        "phosphate": "334 mg",
+        "salt": "0.40 g"
+      },
+      "methodCompatibility": "Raw avocado combined as salsa/salad/side at service; no avocado cooking or discard is specified."
+    },
+    {
+      "code": "D088",
+      "name": "Baked fish with green rice and lime slaw",
+      "before": {
+        "code": "D088",
+        "id": "baked-fish-with-green-rice-and-lime-slaw",
+        "name": "Baked fish with green rice and lime slaw",
+        "scope": "newer167",
+        "workbookHeaderRow": 26859,
+        "status": "unavailable",
+        "coverage": "incomplete",
+        "before": {
+          "carbohydrates": "46.4 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "?",
+          "carbohydrateEvidenceNote": "Carbohydrate unavailable: Hass avocado flesh, skin and stone removed. The known subtotal is evidence only, not a complete total.",
+          "nutritionIncomplete": [
+            "carbohydrates"
+          ]
+        },
+        "changed": true,
+        "unresolvedIngredients": [
+          "Hass avocado flesh, skin and stone removed"
+        ],
+        "conditionalIngredientLines": [
+          1,
+          5,
+          8,
+          9,
+          10,
+          11
+        ],
+        "knownSubtotalG": 45.64653679653679,
+        "unroundedCompleteG": null,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "White basmati rice",
+            "recipeQuantity": "50 g (dry)",
+            "quantity": 50,
+            "basisUnit": "g",
+            "sourceId": "CoFID:11-857",
+            "valuePer100": 76.09523809523809,
+            "contributionG": 38.047619047619044,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 2,
+            "ingredient": "Cod fillet, flesh only",
+            "recipeQuantity": "110 g (raw edible input)",
+            "quantity": 110,
+            "basisUnit": "g",
+            "sourceId": "CoFID:16-372",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 3,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "22 g (as sold, weighed grams)",
+            "quantity": 22,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 4,
+            "ingredient": "White cabbage",
+            "recipeQuantity": "65 g (raw edible input)",
+            "quantity": 65,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-509",
+            "valuePer100": 4.785714285714286,
+            "contributionG": 3.1107142857142858,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Carrot",
+            "recipeQuantity": "20 g (raw edible input)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-496",
+            "valuePer100": 7.433766233766234,
+            "contributionG": 1.4867532467532467,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.4 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 6,
+            "ingredient": "Standard mayonnaise",
+            "recipeQuantity": "15 g (as sold)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-654",
+            "valuePer100": 2.319047619047619,
+            "contributionG": 0.34785714285714286,
+            "conditions": []
+          },
+          {
+            "line": 7,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "10 g (raw edible input)",
+            "quantity": 10,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.11727272727272728,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Red bell pepper",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-524",
+            "valuePer100": 4.295238095238095,
+            "contributionG": 1.9328571428571428,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.1 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 9,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-386",
+            "valuePer100": null,
+            "contributionG": null,
+            "conditions": [
+              "Oligosaccharides predominate; chain-length-specific conversion and availability are unresolved.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 10,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "20 g (freshly squeezed, weighed grams)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.30476190476190473,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 11,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "120 g (weighed grams)",
+            "quantity": 120,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 12,
+            "ingredient": "Garlic",
+            "recipeQuantity": "2 g (raw edible input)",
+            "quantity": 2,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-244",
+            "valuePer100": 14.935064935064934,
+            "contributionG": 0.2987012987012987,
+            "conditions": []
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence."
+      },
+      "after": {
+        "code": "D088",
+        "id": "baked-fish-with-green-rice-and-lime-slaw",
+        "name": "Baked fish with green rice and lime slaw",
+        "scope": "newer167",
+        "workbookHeaderRow": 26859,
+        "status": "conditional",
+        "coverage": "complete",
+        "before": {
+          "carbohydrates": "46.4 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "46.5 g",
+          "carbohydrateEvidenceNote": "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged.",
+          "nutritionIncomplete": []
+        },
+        "changed": true,
+        "unresolvedIngredients": [],
+        "conditionalIngredientLines": [
+          1,
+          5,
+          8,
+          9,
+          10,
+          11
+        ],
+        "knownSubtotalG": 46.470036796536796,
+        "unroundedCompleteG": 46.470036796536796,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "White basmati rice",
+            "recipeQuantity": "50 g (dry)",
+            "quantity": 50,
+            "basisUnit": "g",
+            "sourceId": "CoFID:11-857",
+            "valuePer100": 76.09523809523809,
+            "contributionG": 38.047619047619044,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 2,
+            "ingredient": "Cod fillet, flesh only",
+            "recipeQuantity": "110 g (raw edible input)",
+            "quantity": 110,
+            "basisUnit": "g",
+            "sourceId": "CoFID:16-372",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 3,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "22 g (as sold, weighed grams)",
+            "quantity": 22,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 4,
+            "ingredient": "White cabbage",
+            "recipeQuantity": "65 g (raw edible input)",
+            "quantity": 65,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-509",
+            "valuePer100": 4.785714285714286,
+            "contributionG": 3.1107142857142858,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Carrot",
+            "recipeQuantity": "20 g (raw edible input)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-496",
+            "valuePer100": 7.433766233766234,
+            "contributionG": 1.4867532467532467,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.4 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 6,
+            "ingredient": "Standard mayonnaise",
+            "recipeQuantity": "15 g (as sold)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-654",
+            "valuePer100": 2.319047619047619,
+            "contributionG": 0.34785714285714286,
+            "conditions": []
+          },
+          {
+            "line": 7,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "10 g (raw edible input)",
+            "quantity": 10,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.11727272727272728,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Red bell pepper",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-524",
+            "valuePer100": 4.295238095238095,
+            "contributionG": 1.9328571428571428,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.1 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 9,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:09037",
+            "valuePer100": 1.83,
+            "contributionG": 0.8235,
+            "conditions": [
+              "Generic raw all-commercial-varieties avocado is a conditional proxy for specified Hass flesh, not a cultivar-specific measurement; growing origin, ripeness and composition vary.",
+              "Available carbohydrate by difference, not directly measured available carbohydrate. The residual includes propagated proximate/fibre analytical error and may include organic acids or other non-carbohydrate compounds.",
+              "Both nutrients are from the SAME USDA food record (09037), not a matched physical sample or guaranteed matched analytical observations. Fibre has 27 data points and published standard error 0.879 g/100 g; carbohydrate by difference is calculated (source 4, derivation NC), not an independent measurement. No confidence interval for the 1.83 g residual is inferred.",
+              "Per 100 g edible raw flesh: skin and seed already excluded. Existing recipe inputs are raw edible weights; do not apply the USDA 26% refuse fraction again. All eight methods use avocado raw at service.",
+              "Nutrient-specific substitution for carbohydrate in these eight recipes ONLY. Recipe fibre, calories and all other nutrients retain their existing sources and values. No subtraction from CoFID carbohydrate or substitution of NSP."
+            ],
+            "originalSourceId": "CoFID:14-386"
+          },
+          {
+            "line": 10,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "20 g (freshly squeezed, weighed grams)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.30476190476190473,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 11,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "120 g (weighed grams)",
+            "quantity": 120,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 12,
+            "ingredient": "Garlic",
+            "recipeQuantity": "2 g (raw edible input)",
+            "quantity": 2,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-244",
+            "valuePer100": 14.935064935064934,
+            "contributionG": 0.2987012987012987,
+            "conditions": []
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence. Avocado follow-up: substitute documented USDA 09037 carbohydrate only, 8.53-6.7=1.83 g/100 g raw edible flesh, as an explicit conditional proxy; preserve the unconvertible CoFID record."
+      },
+      "avocadoEdibleGrams": 45,
+      "avocadoCarbohydrateContributionG": 0.8235,
+      "unchangedRecipeFields": {
+        "id": "baked-fish-with-green-rice-and-lime-slaw",
+        "code": "D088",
+        "category": "Dinner",
+        "cuisine": "Peru",
+        "mealFamily": "rice",
+        "emoji": "🍽️",
+        "image": "/images/recipes/D088.webp",
+        "name": "Baked fish with green rice and lime slaw",
+        "description": "Baked cod with coriander rice, crunchy lime slaw and avocado.",
+        "cookingTime": "40 mins",
+        "calories": "673 kcal",
+        "protein": "26.0 g",
+        "equipment": "Kitchen scales, Mixing bowl, Saucepan, Oven, Blender or food processor, Lid or bowl cover, Baking tray",
+        "ingredients": [
+          {
+            "item": "White basmati rice",
+            "shoppingItem": "White basmati rice",
+            "quantity": "50 g (dry)"
+          },
+          {
+            "item": "Cod fillet, flesh only",
+            "shoppingItem": "Cod fillet, flesh only",
+            "quantity": "110 g (raw edible input)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "22 g (as sold, weighed grams)"
+          },
+          {
+            "item": "White cabbage",
+            "shoppingItem": "White cabbage",
+            "quantity": "65 g (raw edible input)"
+          },
+          {
+            "item": "Carrot",
+            "shoppingItem": "Carrot",
+            "quantity": "20 g (raw edible input)"
+          },
+          {
+            "item": "Standard mayonnaise",
+            "shoppingItem": "Standard mayonnaise",
+            "quantity": "15 g (as sold)"
+          },
+          {
+            "item": "Fresh coriander leaves",
+            "shoppingItem": "Fresh coriander leaves",
+            "quantity": "10 g (raw edible input)"
+          },
+          {
+            "item": "Red bell pepper",
+            "shoppingItem": "Red bell pepper",
+            "quantity": "45 g (raw edible input)"
+          },
+          {
+            "item": "Hass avocado flesh, skin and stone removed",
+            "shoppingItem": "Hass avocado flesh, skin and stone removed",
+            "quantity": "45 g (raw edible input)"
+          },
+          {
+            "item": "Fresh lime juice",
+            "shoppingItem": "Fresh lime juice",
+            "quantity": "20 g (freshly squeezed, weighed grams)"
+          },
+          {
+            "item": "Drinking tap water",
+            "shoppingItem": "Drinking tap water",
+            "quantity": "120 g (weighed grams)"
+          },
+          {
+            "item": "Garlic",
+            "shoppingItem": "Garlic",
+            "quantity": "2 g (raw edible input)"
+          }
+        ],
+        "method": [
+          "Blend the pepper, coriander, garlic and all the measured water. Put in a small pan with the dry rice and half the oil. Bring to a simmer, cover and cook gently for 15–18 minutes until tender. Look for small, gentle bubbles rather than a rolling boil. Stir along the bottom when needed to prevent sticking, and keep the heat low enough for the food to cook evenly. Rest covered for 5 minutes.",
+          "Brush the cod with one quarter of the oil and half the lime juice. Bake at 200°C, or 180°C fan, for 12–15 minutes until opaque, steaming hot and flaking easily. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+          "Mix the mayonnaise, remaining oil and remaining lime juice. Toss with the shredded cabbage and carrot. Serve all the fish and edible baking juices with all the green rice, slaw and weighed avocado flesh."
+        ],
+        "potassium": "Pending review",
+        "phosphate": "Pending review",
+        "purines": "Pending review",
+        "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+        "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+        "servings": 1,
+        "shoppingByWeight": true,
+        "primaryDietCategory": "Mediterranean-style",
+        "dietCategories": [
+          "Mediterranean-style",
+          "Intermittent fasting — eating-window meal"
+        ]
+      },
+      "unchangedNutrition": {
+        "calories": "673 kcal",
+        "protein": "26.0 g",
+        "fat": "42.3 g",
+        "fibre": "6.1 g",
+        "sodium": "143 mg",
+        "potassium": "1023 mg",
+        "phosphate": "303 mg",
+        "salt": "0.36 g"
+      },
+      "methodCompatibility": "Raw avocado combined as salsa/salad/side at service; no avocado cooking or discard is specified."
+    },
+    {
+      "code": "D097",
+      "name": "Black-bean and rice stuffed peppers",
+      "before": {
+        "code": "D097",
+        "id": "black-bean-and-rice-stuffed-peppers",
+        "name": "Black-bean and rice stuffed peppers",
+        "scope": "newer167",
+        "workbookHeaderRow": 28029,
+        "status": "unavailable",
+        "coverage": "incomplete",
+        "before": {
+          "carbohydrates": "59.3 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "?",
+          "carbohydrateEvidenceNote": "Carbohydrate unavailable: Hass avocado flesh, skin and stone removed. The known subtotal is evidence only, not a complete total.",
+          "nutritionIncomplete": [
+            "carbohydrates"
+          ]
+        },
+        "changed": true,
+        "unresolvedIngredients": [
+          "Hass avocado flesh, skin and stone removed"
+        ],
+        "conditionalIngredientLines": [
+          1,
+          2,
+          3,
+          4,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "knownSubtotalG": 58.72482696969697,
+        "unroundedCompleteG": null,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "White basmati rice",
+            "recipeQuantity": "45 g (dry)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:11-857",
+            "valuePer100": 76.09523809523809,
+            "contributionG": 34.24285714285714,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 2,
+            "ingredient": "Black beans, boiled without salt and drained",
+            "recipeQuantity": "100 g (cooked drained edible weight)",
+            "quantity": 100,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:16015",
+            "valuePer100": 15.010000000000002,
+            "contributionG": 15.010000000000002,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 3,
+            "ingredient": "Red bell pepper",
+            "recipeQuantity": "130 g (raw edible input)",
+            "quantity": 130,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-524",
+            "valuePer100": 4.295238095238095,
+            "contributionG": 5.583809523809524,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.1 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 4,
+            "ingredient": "Onion",
+            "recipeQuantity": "20 g (raw edible input)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-499",
+            "valuePer100": 7.814285714285714,
+            "contributionG": 1.5628571428571427,
+            "conditions": [
+              "Uncharacterised non-starch remainder 1.8 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 5,
+            "ingredient": "Fresh tomato",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-517",
+            "valuePer100": 3,
+            "contributionG": 1.35,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Vegetarian-rennet mature cheddar",
+            "recipeQuantity": "20 g (as sold)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:12-346",
+            "valuePer100": 0.09523809523809523,
+            "contributionG": 0.019047619047619046,
+            "conditions": []
+          },
+          {
+            "line": 7,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "22 g (as sold, weighed grams)",
+            "quantity": 22,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "35 g (raw edible input)",
+            "quantity": 35,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-386",
+            "valuePer100": null,
+            "contributionG": null,
+            "conditions": [
+              "Oligosaccharides predominate; chain-length-specific conversion and availability are unresolved.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 9,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "20 g (freshly squeezed, weighed grams)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.30476190476190473,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 10,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "110 g (weighed grams)",
+            "quantity": 110,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 11,
+            "ingredient": "Ground cumin",
+            "recipeQuantity": "1.1 g (dry)",
+            "quantity": 1.1,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02014",
+            "valuePer100": 33.74,
+            "contributionG": 0.37114,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 12,
+            "ingredient": "Sweet paprika",
+            "recipeQuantity": "1.1 g (dry)",
+            "quantity": 1.1,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02028",
+            "valuePer100": 19.090000000000003,
+            "contributionG": 0.20999000000000007,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 13,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "6 g (raw edible input)",
+            "quantity": 6,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.07036363636363636,
+            "conditions": []
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence."
+      },
+      "after": {
+        "code": "D097",
+        "id": "black-bean-and-rice-stuffed-peppers",
+        "name": "Black-bean and rice stuffed peppers",
+        "scope": "newer167",
+        "workbookHeaderRow": 28029,
+        "status": "conditional",
+        "coverage": "complete",
+        "before": {
+          "carbohydrates": "59.3 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "59.4 g",
+          "carbohydrateEvidenceNote": "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged.",
+          "nutritionIncomplete": []
+        },
+        "changed": true,
+        "unresolvedIngredients": [],
+        "conditionalIngredientLines": [
+          1,
+          2,
+          3,
+          4,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "knownSubtotalG": 59.365326969696966,
+        "unroundedCompleteG": 59.365326969696966,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "White basmati rice",
+            "recipeQuantity": "45 g (dry)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:11-857",
+            "valuePer100": 76.09523809523809,
+            "contributionG": 34.24285714285714,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 2,
+            "ingredient": "Black beans, boiled without salt and drained",
+            "recipeQuantity": "100 g (cooked drained edible weight)",
+            "quantity": 100,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:16015",
+            "valuePer100": 15.010000000000002,
+            "contributionG": 15.010000000000002,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 3,
+            "ingredient": "Red bell pepper",
+            "recipeQuantity": "130 g (raw edible input)",
+            "quantity": 130,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-524",
+            "valuePer100": 4.295238095238095,
+            "contributionG": 5.583809523809524,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.1 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 4,
+            "ingredient": "Onion",
+            "recipeQuantity": "20 g (raw edible input)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-499",
+            "valuePer100": 7.814285714285714,
+            "contributionG": 1.5628571428571427,
+            "conditions": [
+              "Uncharacterised non-starch remainder 1.8 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 5,
+            "ingredient": "Fresh tomato",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-517",
+            "valuePer100": 3,
+            "contributionG": 1.35,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Vegetarian-rennet mature cheddar",
+            "recipeQuantity": "20 g (as sold)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:12-346",
+            "valuePer100": 0.09523809523809523,
+            "contributionG": 0.019047619047619046,
+            "conditions": []
+          },
+          {
+            "line": 7,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "22 g (as sold, weighed grams)",
+            "quantity": 22,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "35 g (raw edible input)",
+            "quantity": 35,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:09037",
+            "valuePer100": 1.83,
+            "contributionG": 0.6405,
+            "conditions": [
+              "Generic raw all-commercial-varieties avocado is a conditional proxy for specified Hass flesh, not a cultivar-specific measurement; growing origin, ripeness and composition vary.",
+              "Available carbohydrate by difference, not directly measured available carbohydrate. The residual includes propagated proximate/fibre analytical error and may include organic acids or other non-carbohydrate compounds.",
+              "Both nutrients are from the SAME USDA food record (09037), not a matched physical sample or guaranteed matched analytical observations. Fibre has 27 data points and published standard error 0.879 g/100 g; carbohydrate by difference is calculated (source 4, derivation NC), not an independent measurement. No confidence interval for the 1.83 g residual is inferred.",
+              "Per 100 g edible raw flesh: skin and seed already excluded. Existing recipe inputs are raw edible weights; do not apply the USDA 26% refuse fraction again. All eight methods use avocado raw at service.",
+              "Nutrient-specific substitution for carbohydrate in these eight recipes ONLY. Recipe fibre, calories and all other nutrients retain their existing sources and values. No subtraction from CoFID carbohydrate or substitution of NSP."
+            ],
+            "originalSourceId": "CoFID:14-386"
+          },
+          {
+            "line": 9,
+            "ingredient": "Fresh lime juice",
+            "recipeQuantity": "20 g (freshly squeezed, weighed grams)",
+            "quantity": 20,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-279",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.30476190476190473,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 10,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "110 g (weighed grams)",
+            "quantity": 110,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 11,
+            "ingredient": "Ground cumin",
+            "recipeQuantity": "1.1 g (dry)",
+            "quantity": 1.1,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02014",
+            "valuePer100": 33.74,
+            "contributionG": 0.37114,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 12,
+            "ingredient": "Sweet paprika",
+            "recipeQuantity": "1.1 g (dry)",
+            "quantity": 1.1,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02028",
+            "valuePer100": 19.090000000000003,
+            "contributionG": 0.20999000000000007,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 13,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "6 g (raw edible input)",
+            "quantity": 6,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.07036363636363636,
+            "conditions": []
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence. Avocado follow-up: substitute documented USDA 09037 carbohydrate only, 8.53-6.7=1.83 g/100 g raw edible flesh, as an explicit conditional proxy; preserve the unconvertible CoFID record."
+      },
+      "avocadoEdibleGrams": 35,
+      "avocadoCarbohydrateContributionG": 0.6405,
+      "unchangedRecipeFields": {
+        "id": "black-bean-and-rice-stuffed-peppers",
+        "code": "D097",
+        "category": "Dinner",
+        "cuisine": "Mexico",
+        "mealFamily": "rice",
+        "emoji": "🍽️",
+        "image": "/images/recipes/D097.webp",
+        "name": "Black-bean and rice stuffed peppers",
+        "description": "Baked peppers filled with black beans, rice and spices, with melted Cheddar and avocado.",
+        "cookingTime": "45 mins",
+        "calories": "681 kcal",
+        "protein": "20.2 g",
+        "equipment": "Kitchen scales, Oven, Grater, Lid or bowl cover, Ovenproof dish, Saucepan, Frying pan",
+        "ingredients": [
+          {
+            "item": "White basmati rice",
+            "shoppingItem": "White basmati rice",
+            "quantity": "45 g (dry)"
+          },
+          {
+            "item": "Black beans, boiled without salt and drained",
+            "shoppingItem": "Black beans, boiled without salt and drained",
+            "quantity": "100 g (cooked drained edible weight)"
+          },
+          {
+            "item": "Red bell pepper",
+            "shoppingItem": "Red bell pepper",
+            "quantity": "130 g (raw edible input)"
+          },
+          {
+            "item": "Onion",
+            "shoppingItem": "Onion",
+            "quantity": "20 g (raw edible input)"
+          },
+          {
+            "item": "Fresh tomato",
+            "shoppingItem": "Fresh tomato",
+            "quantity": "45 g (raw edible input)"
+          },
+          {
+            "item": "Vegetarian-rennet mature cheddar",
+            "shoppingItem": "Vegetarian-rennet mature cheddar",
+            "quantity": "20 g (as sold)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "22 g (as sold, weighed grams)"
+          },
+          {
+            "item": "Hass avocado flesh, skin and stone removed",
+            "shoppingItem": "Hass avocado flesh, skin and stone removed",
+            "quantity": "35 g (raw edible input)"
+          },
+          {
+            "item": "Fresh lime juice",
+            "shoppingItem": "Fresh lime juice",
+            "quantity": "20 g (freshly squeezed, weighed grams)"
+          },
+          {
+            "item": "Drinking tap water",
+            "shoppingItem": "Drinking tap water",
+            "quantity": "110 g (weighed grams)"
+          },
+          {
+            "item": "Ground cumin",
+            "shoppingItem": "Ground cumin",
+            "quantity": "1.1 g (dry)"
+          },
+          {
+            "item": "Sweet paprika",
+            "shoppingItem": "Sweet paprika",
+            "quantity": "1.1 g (dry)"
+          },
+          {
+            "item": "Fresh coriander leaves",
+            "shoppingItem": "Fresh coriander leaves",
+            "quantity": "6 g (raw edible input)"
+          }
+        ],
+        "method": [
+          "Heat the oven to 200°C, or 180°C fan. Halve and deseed the peppers and weigh the edible halves. Brush with half the oil and bake for 15 minutes. Check the centre as well as the surface; a browned top alone does not show that the inside is cooked.",
+          "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
+          "Soften chopped onion in the remaining oil for 5 minutes. Stir around the base and edges of the pan. The vegetables should soften and lose their raw bite; lower the heat if they start to darken before they are tender. Add cumin, paprika, chopped tomato and cooked drained black beans. Cook for 5 minutes, then fold in all the rice. Use a fork or broad spoon and a light lifting motion so the grains stay separate.",
+          "Fill both pepper halves, spooning any extra filling around them. Top with all the grated Cheddar and bake for 15–20 minutes until the peppers are tender and the filling is steaming hot. Serve the entire dish with all the weighed avocado flesh, lime juice and coriander.",
+          "Use vegetarian-rennet cheese for the vegetarian version specified here."
+        ],
+        "potassium": "Pending review",
+        "phosphate": "Pending review",
+        "purines": "Pending review",
+        "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+        "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+        "servings": 1,
+        "shoppingByWeight": true,
+        "primaryDietCategory": "Vegetarian",
+        "dietCategories": [
+          "Vegetarian",
+          "Intermittent fasting — eating-window meal",
+          "Blue Zone-inspired"
+        ]
+      },
+      "unchangedNutrition": {
+        "calories": "681 kcal",
+        "protein": "20.2 g",
+        "fat": "36.6 g",
+        "fibre": "14.8 g",
+        "sodium": "161 mg",
+        "potassium": "1115 mg",
+        "phosphate": "364 mg",
+        "salt": "0.40 g"
+      },
+      "methodCompatibility": "Raw avocado combined as salsa/salad/side at service; no avocado cooking or discard is specified."
+    },
+    {
+      "code": "D098",
+      "name": "Beef, pepper and onion saltado with rice",
+      "before": {
+        "code": "D098",
+        "id": "beef-pepper-and-onion-saltado-with-rice",
+        "name": "Beef, pepper and onion saltado with rice",
+        "scope": "newer167",
+        "workbookHeaderRow": 28156,
+        "status": "unavailable",
+        "coverage": "incomplete",
+        "before": {
+          "carbohydrates": "44.1 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "?",
+          "carbohydrateEvidenceNote": "Carbohydrate unavailable: Hass avocado flesh, skin and stone removed. The known subtotal is evidence only, not a complete total.",
+          "nutritionIncomplete": [
+            "carbohydrates"
+          ]
+        },
+        "changed": true,
+        "unresolvedIngredients": [
+          "Hass avocado flesh, skin and stone removed"
+        ],
+        "conditionalIngredientLines": [
+          1,
+          3,
+          5,
+          7,
+          12,
+          13
+        ],
+        "knownSubtotalG": 43.30029134199134,
+        "unroundedCompleteG": null,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "White basmati rice",
+            "recipeQuantity": "45 g (dry)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:11-857",
+            "valuePer100": 76.09523809523809,
+            "contributionG": 34.24285714285714,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 2,
+            "ingredient": "Beef sirloin, lean and edible fat",
+            "recipeQuantity": "110 g (raw edible input)",
+            "quantity": 110,
+            "basisUnit": "g",
+            "sourceId": "CoFID:18-065",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 3,
+            "ingredient": "Onion",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-499",
+            "valuePer100": 7.814285714285714,
+            "contributionG": 3.516428571428571,
+            "conditions": [
+              "Uncharacterised non-starch remainder 1.8 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 4,
+            "ingredient": "Fresh tomato",
+            "recipeQuantity": "65 g (raw edible input)",
+            "quantity": 65,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-517",
+            "valuePer100": 3,
+            "contributionG": 1.95,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Red bell pepper",
+            "recipeQuantity": "55 g (raw edible input)",
+            "quantity": 55,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-524",
+            "valuePer100": 4.295238095238095,
+            "contributionG": 2.3623809523809522,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.1 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 6,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "22 g (as sold, weighed grams)",
+            "quantity": 22,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 7,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-386",
+            "valuePer100": null,
+            "contributionG": null,
+            "conditions": [
+              "Oligosaccharides predominate; chain-length-specific conversion and availability are unresolved.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 8,
+            "ingredient": "Plain unseasoned vinegar",
+            "recipeQuantity": "15 g (as sold, weighed grams)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-339",
+            "valuePer100": 0.6,
+            "contributionG": 0.09,
+            "conditions": []
+          },
+          {
+            "line": 9,
+            "ingredient": "Soy sauce",
+            "recipeQuantity": "4 g (as sold, weighed grams)",
+            "quantity": 4,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-721",
+            "valuePer100": 17.306493506493506,
+            "contributionG": 0.6922597402597402,
+            "conditions": []
+          },
+          {
+            "line": 10,
+            "ingredient": "Garlic",
+            "recipeQuantity": "2 g (raw edible input)",
+            "quantity": 2,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-244",
+            "valuePer100": 14.935064935064934,
+            "contributionG": 0.2987012987012987,
+            "conditions": []
+          },
+          {
+            "line": 11,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "6 g (raw edible input)",
+            "quantity": 6,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.07036363636363636,
+            "conditions": []
+          },
+          {
+            "line": 12,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "100 g (weighed grams)",
+            "quantity": 100,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 13,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence."
+      },
+      "after": {
+        "code": "D098",
+        "id": "beef-pepper-and-onion-saltado-with-rice",
+        "name": "Beef, pepper and onion saltado with rice",
+        "scope": "newer167",
+        "workbookHeaderRow": 28156,
+        "status": "conditional",
+        "coverage": "complete",
+        "before": {
+          "carbohydrates": "44.1 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "44.1 g",
+          "carbohydrateEvidenceNote": "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged.",
+          "nutritionIncomplete": []
+        },
+        "changed": false,
+        "unresolvedIngredients": [],
+        "conditionalIngredientLines": [
+          1,
+          3,
+          5,
+          7,
+          12,
+          13
+        ],
+        "knownSubtotalG": 44.12379134199134,
+        "unroundedCompleteG": 44.12379134199134,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "White basmati rice",
+            "recipeQuantity": "45 g (dry)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:11-857",
+            "valuePer100": 76.09523809523809,
+            "contributionG": 34.24285714285714,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 2,
+            "ingredient": "Beef sirloin, lean and edible fat",
+            "recipeQuantity": "110 g (raw edible input)",
+            "quantity": 110,
+            "basisUnit": "g",
+            "sourceId": "CoFID:18-065",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 3,
+            "ingredient": "Onion",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-499",
+            "valuePer100": 7.814285714285714,
+            "contributionG": 3.516428571428571,
+            "conditions": [
+              "Uncharacterised non-starch remainder 1.8 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 4,
+            "ingredient": "Fresh tomato",
+            "recipeQuantity": "65 g (raw edible input)",
+            "quantity": 65,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-517",
+            "valuePer100": 3,
+            "contributionG": 1.95,
+            "conditions": []
+          },
+          {
+            "line": 5,
+            "ingredient": "Red bell pepper",
+            "recipeQuantity": "55 g (raw edible input)",
+            "quantity": 55,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-524",
+            "valuePer100": 4.295238095238095,
+            "contributionG": 2.3623809523809522,
+            "conditions": [
+              "Uncharacterised non-starch remainder 0.1 g ME/100 g uses the CoFID mixed-food approximation /1.05; its exact composition is unknown.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 6,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "22 g (as sold, weighed grams)",
+            "quantity": 22,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 7,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "45 g (raw edible input)",
+            "quantity": 45,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:09037",
+            "valuePer100": 1.83,
+            "contributionG": 0.8235,
+            "conditions": [
+              "Generic raw all-commercial-varieties avocado is a conditional proxy for specified Hass flesh, not a cultivar-specific measurement; growing origin, ripeness and composition vary.",
+              "Available carbohydrate by difference, not directly measured available carbohydrate. The residual includes propagated proximate/fibre analytical error and may include organic acids or other non-carbohydrate compounds.",
+              "Both nutrients are from the SAME USDA food record (09037), not a matched physical sample or guaranteed matched analytical observations. Fibre has 27 data points and published standard error 0.879 g/100 g; carbohydrate by difference is calculated (source 4, derivation NC), not an independent measurement. No confidence interval for the 1.83 g residual is inferred.",
+              "Per 100 g edible raw flesh: skin and seed already excluded. Existing recipe inputs are raw edible weights; do not apply the USDA 26% refuse fraction again. All eight methods use avocado raw at service.",
+              "Nutrient-specific substitution for carbohydrate in these eight recipes ONLY. Recipe fibre, calories and all other nutrients retain their existing sources and values. No subtraction from CoFID carbohydrate or substitution of NSP."
+            ],
+            "originalSourceId": "CoFID:14-386"
+          },
+          {
+            "line": 8,
+            "ingredient": "Plain unseasoned vinegar",
+            "recipeQuantity": "15 g (as sold, weighed grams)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-339",
+            "valuePer100": 0.6,
+            "contributionG": 0.09,
+            "conditions": []
+          },
+          {
+            "line": 9,
+            "ingredient": "Soy sauce",
+            "recipeQuantity": "4 g (as sold, weighed grams)",
+            "quantity": 4,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-721",
+            "valuePer100": 17.306493506493506,
+            "contributionG": 0.6922597402597402,
+            "conditions": []
+          },
+          {
+            "line": 10,
+            "ingredient": "Garlic",
+            "recipeQuantity": "2 g (raw edible input)",
+            "quantity": 2,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-244",
+            "valuePer100": 14.935064935064934,
+            "contributionG": 0.2987012987012987,
+            "conditions": []
+          },
+          {
+            "line": 11,
+            "ingredient": "Fresh coriander leaves",
+            "recipeQuantity": "6 g (raw edible input)",
+            "quantity": 6,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-888",
+            "valuePer100": 1.1727272727272728,
+            "contributionG": 0.07036363636363636,
+            "conditions": []
+          },
+          {
+            "line": 12,
+            "ingredient": "Drinking tap water",
+            "recipeQuantity": "100 g (weighed grams)",
+            "quantity": 100,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:14411",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 13,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence. Avocado follow-up: substitute documented USDA 09037 carbohydrate only, 8.53-6.7=1.83 g/100 g raw edible flesh, as an explicit conditional proxy; preserve the unconvertible CoFID record."
+      },
+      "avocadoEdibleGrams": 45,
+      "avocadoCarbohydrateContributionG": 0.8235,
+      "unchangedRecipeFields": {
+        "id": "beef-pepper-and-onion-saltado-with-rice",
+        "code": "D098",
+        "category": "Dinner",
+        "cuisine": "Peru",
+        "mealFamily": "rice",
+        "emoji": "🍽️",
+        "image": "/images/recipes/D098.webp",
+        "name": "Beef, pepper and onion saltado with rice",
+        "description": "Quick-seared beef, onions and peppers with rice, tomato and fresh avocado.",
+        "cookingTime": "35 mins",
+        "calories": "700 kcal",
+        "protein": "29.9 g",
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Lid or bowl cover",
+        "ingredients": [
+          {
+            "item": "White basmati rice",
+            "shoppingItem": "White basmati rice",
+            "quantity": "45 g (dry)"
+          },
+          {
+            "item": "Beef sirloin, lean and edible fat",
+            "shoppingItem": "Beef sirloin, lean and edible fat",
+            "quantity": "110 g (raw edible input)"
+          },
+          {
+            "item": "Onion",
+            "shoppingItem": "Onion",
+            "quantity": "45 g (raw edible input)"
+          },
+          {
+            "item": "Fresh tomato",
+            "shoppingItem": "Fresh tomato",
+            "quantity": "65 g (raw edible input)"
+          },
+          {
+            "item": "Red bell pepper",
+            "shoppingItem": "Red bell pepper",
+            "quantity": "55 g (raw edible input)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "22 g (as sold, weighed grams)"
+          },
+          {
+            "item": "Hass avocado flesh, skin and stone removed",
+            "shoppingItem": "Hass avocado flesh, skin and stone removed",
+            "quantity": "45 g (raw edible input)"
+          },
+          {
+            "item": "Plain unseasoned vinegar",
+            "shoppingItem": "Plain unseasoned vinegar",
+            "quantity": "15 g (as sold, weighed grams)"
+          },
+          {
+            "item": "Soy sauce",
+            "shoppingItem": "Soy sauce",
+            "quantity": "4 g (as sold, weighed grams)"
+          },
+          {
+            "item": "Garlic",
+            "shoppingItem": "Garlic",
+            "quantity": "2 g (raw edible input)"
+          },
+          {
+            "item": "Fresh coriander leaves",
+            "shoppingItem": "Fresh coriander leaves",
+            "quantity": "6 g (raw edible input)"
+          },
+          {
+            "item": "Drinking tap water",
+            "shoppingItem": "Drinking tap water",
+            "quantity": "100 g (weighed grams)"
+          },
+          {
+            "item": "Ground black pepper",
+            "shoppingItem": "Ground black pepper",
+            "quantity": "0.2 g (dry)"
+          }
+        ],
+        "method": [
+          "Cook the rice with all the measured water in a covered pan for 12–15 minutes, then rest for 5 minutes. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork. Slice the beef across the grain and cut the onion, pepper and tomato into wedges.",
+          "Heat three quarters of the oil in a wok. Sear the beef for 2–3 minutes, then add the onion, pepper and garlic. Stir-fry for 3–4 minutes.",
+          "Add the tomato, soy sauce, vinegar and pepper. Stir-fry for 2 minutes, ensuring the beef surfaces are thoroughly seared and everything is hot.",
+          "Mix the weighed avocado flesh with the remaining oil and chopped coriander. Serve all the stir-fry and sauce with all the rice and avocado."
+        ],
+        "potassium": "Pending review",
+        "phosphate": "Pending review",
+        "purines": "Pending review",
+        "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+        "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+        "servings": 1,
+        "shoppingByWeight": true,
+        "primaryDietCategory": "Mixed diet",
+        "dietCategories": [
+          "Mixed diet",
+          "Intermittent fasting — eating-window meal"
+        ]
+      },
+      "unchangedNutrition": {
+        "calories": "700 kcal",
+        "protein": "29.9 g",
+        "fat": "44.3 g",
+        "fibre": "5.0 g",
+        "sodium": "303 mg",
+        "potassium": "1033 mg",
+        "phosphate": "316 mg",
+        "salt": "0.76 g"
+      },
+      "methodCompatibility": "Raw avocado combined as salsa/salad/side at service; no avocado cooking or discard is specified."
+    },
+    {
+      "code": "D104",
+      "name": "Turkey patties with avocado and cabbage salad",
+      "before": {
+        "code": "D104",
+        "id": "turkey-patties-with-avocado-and-cabbage-salad",
+        "name": "Turkey patties with avocado and cabbage salad",
+        "scope": "newer167",
+        "workbookHeaderRow": 28855,
+        "status": "unavailable",
+        "coverage": "incomplete",
+        "before": {
+          "carbohydrates": "5.6 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "?",
+          "carbohydrateEvidenceNote": "Carbohydrate unavailable: Hass avocado flesh, skin and stone removed. The known subtotal is evidence only, not a complete total.",
+          "nutritionIncomplete": [
+            "carbohydrates"
+          ]
+        },
+        "changed": true,
+        "unresolvedIngredients": [
+          "Hass avocado flesh, skin and stone removed"
+        ],
+        "conditionalIngredientLines": [
+          4,
+          6,
+          8,
+          9
+        ],
+        "knownSubtotalG": 4.6050246753246755,
+        "unroundedCompleteG": null,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "Skinless turkey breast",
+            "recipeQuantity": "130 g (raw edible input)",
+            "quantity": 130,
+            "basisUnit": "g",
+            "sourceId": "CoFID:18-349",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 2,
+            "ingredient": "Fresh raw egg white, separated from shell eggs",
+            "recipeQuantity": "30 g (raw edible input)",
+            "quantity": 30,
+            "basisUnit": "g",
+            "sourceId": "CoFID:12-938",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 3,
+            "ingredient": "White cabbage",
+            "recipeQuantity": "80 g (raw edible input)",
+            "quantity": 80,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-509",
+            "valuePer100": 4.785714285714286,
+            "contributionG": 3.8285714285714283,
+            "conditions": []
+          },
+          {
+            "line": 4,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "60 g (raw edible input)",
+            "quantity": 60,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-386",
+            "valuePer100": null,
+            "contributionG": null,
+            "conditions": [
+              "Oligosaccharides predominate; chain-length-specific conversion and availability are unresolved.",
+              "Oligosaccharides are reported but individual chain lengths and analytical overlap with fibre are not established; no fibre subtraction or invented chain-length factor."
+            ]
+          },
+          {
+            "line": 5,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "25 g (as sold, weighed grams)",
+            "quantity": 25,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Fresh lemon juice",
+            "recipeQuantity": "15 g (freshly squeezed, weighed grams)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-277",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.22857142857142854,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 7,
+            "ingredient": "Fresh parsley",
+            "recipeQuantity": "5 g (raw edible input)",
+            "quantity": 5,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-844",
+            "valuePer100": 2.663636363636364,
+            "contributionG": 0.1331818181818182,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Ground cumin",
+            "recipeQuantity": "1 g (dry)",
+            "quantity": 1,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02014",
+            "valuePer100": 33.74,
+            "contributionG": 0.33740000000000003,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 9,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence."
+      },
+      "after": {
+        "code": "D104",
+        "id": "turkey-patties-with-avocado-and-cabbage-salad",
+        "name": "Turkey patties with avocado and cabbage salad",
+        "scope": "newer167",
+        "workbookHeaderRow": 28855,
+        "status": "conditional",
+        "coverage": "complete",
+        "before": {
+          "carbohydrates": "5.6 g",
+          "nutritionIncomplete": []
+        },
+        "after": {
+          "carbohydrates": "5.7 g",
+          "carbohydrateEvidenceNote": "Carbohydrate is a conditional ingredient estimate, excluding fibre. The raw Hass avocado uses a generic USDA raw-avocado proxy: total carbohydrate by difference minus same-record dietary fibre (1.83 g/100 g edible flesh), not directly measured available carbohydrate. Recipe fibre and other nutrients are unchanged.",
+          "nutritionIncomplete": []
+        },
+        "changed": true,
+        "unresolvedIngredients": [],
+        "conditionalIngredientLines": [
+          4,
+          6,
+          8,
+          9
+        ],
+        "knownSubtotalG": 5.703024675324675,
+        "unroundedCompleteG": 5.703024675324675,
+        "ingredients": [
+          {
+            "line": 1,
+            "ingredient": "Skinless turkey breast",
+            "recipeQuantity": "130 g (raw edible input)",
+            "quantity": 130,
+            "basisUnit": "g",
+            "sourceId": "CoFID:18-349",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 2,
+            "ingredient": "Fresh raw egg white, separated from shell eggs",
+            "recipeQuantity": "30 g (raw edible input)",
+            "quantity": 30,
+            "basisUnit": "g",
+            "sourceId": "CoFID:12-938",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 3,
+            "ingredient": "White cabbage",
+            "recipeQuantity": "80 g (raw edible input)",
+            "quantity": 80,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-509",
+            "valuePer100": 4.785714285714286,
+            "contributionG": 3.8285714285714283,
+            "conditions": []
+          },
+          {
+            "line": 4,
+            "ingredient": "Hass avocado flesh, skin and stone removed",
+            "recipeQuantity": "60 g (raw edible input)",
+            "quantity": 60,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:09037",
+            "valuePer100": 1.83,
+            "contributionG": 1.098,
+            "conditions": [
+              "Generic raw all-commercial-varieties avocado is a conditional proxy for specified Hass flesh, not a cultivar-specific measurement; growing origin, ripeness and composition vary.",
+              "Available carbohydrate by difference, not directly measured available carbohydrate. The residual includes propagated proximate/fibre analytical error and may include organic acids or other non-carbohydrate compounds.",
+              "Both nutrients are from the SAME USDA food record (09037), not a matched physical sample or guaranteed matched analytical observations. Fibre has 27 data points and published standard error 0.879 g/100 g; carbohydrate by difference is calculated (source 4, derivation NC), not an independent measurement. No confidence interval for the 1.83 g residual is inferred.",
+              "Per 100 g edible raw flesh: skin and seed already excluded. Existing recipe inputs are raw edible weights; do not apply the USDA 26% refuse fraction again. All eight methods use avocado raw at service.",
+              "Nutrient-specific substitution for carbohydrate in these eight recipes ONLY. Recipe fibre, calories and all other nutrients retain their existing sources and values. No subtraction from CoFID carbohydrate or substitution of NSP."
+            ],
+            "originalSourceId": "CoFID:14-386"
+          },
+          {
+            "line": 5,
+            "ingredient": "Olive oil",
+            "recipeQuantity": "25 g (as sold, weighed grams)",
+            "quantity": 25,
+            "basisUnit": "g",
+            "sourceId": "CoFID:17-038",
+            "valuePer100": 0,
+            "contributionG": 0,
+            "conditions": []
+          },
+          {
+            "line": 6,
+            "ingredient": "Fresh lemon juice",
+            "recipeQuantity": "15 g (freshly squeezed, weighed grams)",
+            "quantity": 15,
+            "basisUnit": "g",
+            "sourceId": "CoFID:14-277",
+            "valuePer100": 1.5238095238095237,
+            "contributionG": 0.22857142857142854,
+            "conditions": [
+              "Individual sugar profile incomplete (S); mixed non-starch remainder uses CoFID /1.05 approximation, not missing-component zeros."
+            ]
+          },
+          {
+            "line": 7,
+            "ingredient": "Fresh parsley",
+            "recipeQuantity": "5 g (raw edible input)",
+            "quantity": 5,
+            "basisUnit": "g",
+            "sourceId": "CoFID:13-844",
+            "valuePer100": 2.663636363636364,
+            "contributionG": 0.1331818181818182,
+            "conditions": []
+          },
+          {
+            "line": 8,
+            "ingredient": "Ground cumin",
+            "recipeQuantity": "1 g (dry)",
+            "quantity": 1,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02014",
+            "valuePer100": 33.74,
+            "contributionG": 0.33740000000000003,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          },
+          {
+            "line": 9,
+            "ingredient": "Ground black pepper",
+            "recipeQuantity": "0.2 g (dry)",
+            "quantity": 0.2,
+            "basisUnit": "g",
+            "sourceId": "USDA-SR28:02030",
+            "valuePer100": 38.650000000000006,
+            "contributionG": 0.07730000000000001,
+            "conditions": [
+              "By-difference residual can include organic acids and other non-carbohydrate components; fibre-method/source variation remains."
+            ]
+          }
+        ],
+        "reason": "Newer recipe already used available carbohydrate by weight; this review harmonises food-specific source-rounding treatment and holds oligosaccharide-dominant avocado pending evidence. Avocado follow-up: substitute documented USDA 09037 carbohydrate only, 8.53-6.7=1.83 g/100 g raw edible flesh, as an explicit conditional proxy; preserve the unconvertible CoFID record."
+      },
+      "avocadoEdibleGrams": 60,
+      "avocadoCarbohydrateContributionG": 1.098,
+      "unchangedRecipeFields": {
+        "id": "turkey-patties-with-avocado-and-cabbage-salad",
+        "code": "D104",
+        "category": "Dinner",
+        "cuisine": "Pakistan",
+        "mealFamily": "cakes",
+        "emoji": "🍽️",
+        "image": "/images/recipes/D104.webp",
+        "name": "Turkey patties with avocado and cabbage salad",
+        "description": "Cumin-spiced turkey patties with a crunchy cabbage, avocado and lemon salad.",
+        "cookingTime": "35 mins",
+        "calories": "503 kcal",
+        "protein": "37.4 g",
+        "equipment": "Kitchen scales, Knife and chopping board, Mixing bowl, Frying pan, Food thermometer",
+        "ingredients": [
+          {
+            "item": "Skinless turkey breast",
+            "shoppingItem": "Skinless turkey breast",
+            "quantity": "130 g (raw edible input)"
+          },
+          {
+            "item": "Fresh raw egg white, separated from shell eggs",
+            "shoppingItem": "Fresh raw egg white, separated from shell eggs",
+            "quantity": "30 g (raw edible input)"
+          },
+          {
+            "item": "White cabbage",
+            "shoppingItem": "White cabbage",
+            "quantity": "80 g (raw edible input)"
+          },
+          {
+            "item": "Hass avocado flesh, skin and stone removed",
+            "shoppingItem": "Hass avocado flesh, skin and stone removed",
+            "quantity": "60 g (raw edible input)"
+          },
+          {
+            "item": "Olive oil",
+            "shoppingItem": "Olive oil",
+            "quantity": "25 g (as sold, weighed grams)"
+          },
+          {
+            "item": "Fresh lemon juice",
+            "shoppingItem": "Fresh lemon juice",
+            "quantity": "15 g (freshly squeezed, weighed grams)"
+          },
+          {
+            "item": "Fresh parsley",
+            "shoppingItem": "Fresh parsley",
+            "quantity": "5 g (raw edible input)"
+          },
+          {
+            "item": "Ground cumin",
+            "shoppingItem": "Ground cumin",
+            "quantity": "1 g (dry)"
+          },
+          {
+            "item": "Ground black pepper",
+            "shoppingItem": "Ground black pepper",
+            "quantity": "0.2 g (dry)"
+          }
+        ],
+        "method": [
+          "Mince plain skinless turkey breast at home. Mix with the egg white, cumin, half the parsley and pepper. Shape into four thin patties.",
+          "Heat three fifths of the oil in a non-stick pan and cook the patties for 5–6 minutes per side until the centres reach 75°C for 30 seconds. Leave space between the portions and let the underside set before moving them. Slide a thin spatula underneath and turn carefully, keeping each portion together.",
+          "Toss shredded cabbage and weighed avocado flesh with the remaining oil, lemon juice and parsley. Serve all the patties, edible pan juices and salad."
+        ],
+        "potassium": "Pending review",
+        "phosphate": "Pending review",
+        "purines": "Pending review",
+        "nutritionBasis": "CoFID/USDA ingredient-input estimate",
+        "nutritionSourceNote": "Based on the listed edible ingredient weights and CoFID/USDA food-composition records. Carbohydrate excludes fibre. Purchased products and preparation can change the figures.",
+        "servings": 1,
+        "shoppingByWeight": true,
+        "primaryDietCategory": "Keto",
+        "dietCategories": [
+          "Keto",
+          "Atkins Phase 1"
+        ]
+      },
+      "unchangedNutrition": {
+        "calories": "503 kcal",
+        "protein": "37.4 g",
+        "fat": "36.8 g",
+        "fibre": "4.6 g",
+        "sodium": "134 mg",
+        "potassium": "1122 mg",
+        "phosphate": "367 mg",
+        "salt": "0.33 g"
+      },
+      "methodCompatibility": "Raw avocado combined as salsa/salad/side at service; no avocado cooking or discard is specified."
+    }
+  ],
+  "unchangedLedgerRecipesSha256": "d113339af410b19aa9992fdd71a590b2fcacc690fe76fa4af153dc3b82dc2b4c",
+  "unchangedSourceRecordsSha256": "d4327566d1a19d57c1ca355614c15b58e6057c173332173cd20e1a6a8d3c8344",
+  "unchangedCatalogueSha256": "d4f05fb2f0310eeb7fc1cf5e0c88137a0d7196ff64859064f8908cfe86ec3099"
+}

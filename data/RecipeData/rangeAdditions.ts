@@ -56,6 +56,7 @@ export const rangeBreakfasts: Recipe[] = [
     clinicalReviewPending: true,
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence.",
   },
 ];
 
@@ -114,6 +115,7 @@ export const rangeDinners: Recipe[] = [
     clinicalReviewPending: true,
     primaryDietCategory: "Vegan",
     dietCategories: ["Vegan","Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence.",
   },
   {
     id: "crispy-tofu-and-ginger-rice-noodles",
@@ -168,6 +170,7 @@ export const rangeDinners: Recipe[] = [
     clinicalReviewPending: true,
     primaryDietCategory: "Vegan",
     dietCategories: ["Vegan","Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence.",
   },
   {
     id: "korean-style-tofu-and-mushroom-soup",
@@ -223,6 +226,7 @@ export const rangeDinners: Recipe[] = [
     nutritionBasis: "CoFID/USDA ingredient-input estimate",
     primaryDietCategory: "Vegan",
     dietCategories: ["Vegan","Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence.",
   },
   {
     id: "dak-bulgogi-style-chicken-with-vegetables",
@@ -281,6 +285,7 @@ export const rangeDinners: Recipe[] = [
     nutritionBasis: "CoFID/USDA ingredient-input estimate",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence.",
   },
   {
     id: "hanoi-style-turmeric-cod-with-dill",
@@ -334,6 +339,7 @@ export const rangeDinners: Recipe[] = [
     nutritionBasis: "CoFID/USDA ingredient-input estimate",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence.",
   },
   {
     id: "sri-lankan-style-coconut-red-lentil-dhal",
@@ -390,5 +396,6 @@ export const rangeDinners: Recipe[] = [
     nutritionBasis: "CoFID/USDA ingredient-input estimate",
     primaryDietCategory: "Vegan",
     dietCategories: ["Vegan","Vegetarian"],
+    carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence.",
   },
 ];

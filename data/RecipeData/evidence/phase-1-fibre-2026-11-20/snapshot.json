@@ -1,0 +1,127 @@
+{
+  "snapshotId": "phase-1-fibre-2026-11-20",
+  "version": 1,
+  "date": "2026-11-20",
+  "scope": "Fibre reconciliation in the original 150 recipes only; no clinical approval.",
+  "prePhase1Commit": "de3a5949a537c68a100a50ed7bd9e97503b85d24",
+  "recipeDataCommit": null,
+  "commitBinding": "The metadata follow-up records the exact recipe-data commit after the post-commit preservation test passes. recipeFiles identify the exact Git blobs in advance.",
+  "recipeFileHashConvention": "sha256Lf uses UTF-8 source with CRLF normalised to LF; gitBlob is the Git object identifier.",
+  "counts": {
+    "reviewed": 150,
+    "completeEstimates": 147,
+    "numericCorrections": 114,
+    "formatOnly": 1,
+    "completeUnchanged": 32,
+    "unavailable": 3
+  },
+  "unresolvedRecipes": [
+    {
+      "code": "B006",
+      "id": "cinnamon-french-toast-with-jam",
+      "unresolvedIngredients": [
+        "Jam"
+      ]
+    },
+    {
+      "code": "B022",
+      "id": "cornflakes-toast-jam",
+      "unresolvedIngredients": [
+        "Jam"
+      ]
+    },
+    {
+      "code": "B032",
+      "id": "jam-pancakes",
+      "unresolvedIngredients": [
+        "Jam"
+      ]
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "file": "RenalPlan_Recipe_Verification_Pre_Phase1.xlsx",
+      "sha256": "ef3cb24bdc5d4486b17f20cffb10284609319764bacd12f76c8201c15d4e089b",
+      "bytes": 2745206
+    },
+    {
+      "file": "RenalPlan_Recipe_Verification_Phase1_Fibre.xlsx",
+      "sha256": "62dd4ac12acd5942cadd9fb0b5c7d862a67f2a9c7d451fc8c26bae153880def5",
+      "bytes": 2336931
+    },
+    {
+      "file": "fibre-reconciliation.json",
+      "sha256": "a2a00e7afbde776afb6eb5e3080f8f4675f8bc75dfb43f22ff1091ece2f98d9b",
+      "bytes": 614265
+    }
+  ],
+  "recipeFiles": [
+    {
+      "path": "data/RecipeData/index.ts",
+      "gitBlob": "e1eccf3507c1dfaf9543b083f1d3cd2094ee5755",
+      "sha256Lf": "929719e2ba49288a917aa51df30f703cd9902b0dccfa6d38354d0e6ded31ca51"
+    },
+    {
+      "path": "data/RecipeData/breakfasts.ts",
+      "gitBlob": "e9ed40e7cac53b59afaa054156768a5c045559f7",
+      "sha256Lf": "1667522090411673cbc1f3c55dc488068b5c5ff79dbf1e5d694ca5ebeea28f9d"
+    },
+    {
+      "path": "data/RecipeData/lunches.ts",
+      "gitBlob": "cd81df99f3f5f66316e1fbed50bdca1c1e626bd2",
+      "sha256Lf": "1931d5b71e5cb563912e8956ed7406b76140539935e9c38659cce4003e0fb623"
+    },
+    {
+      "path": "data/RecipeData/dinners.ts",
+      "gitBlob": "09bd12688f0567d6517ba3e62edb8fc14faf1d74",
+      "sha256Lf": "65d141a91ca0d315da609ff33b1913f255103757dc477445df926317a355c9af"
+    },
+    {
+      "path": "data/RecipeData/rangeAdditions.ts",
+      "gitBlob": "3879ab0f5b1c449746ee85ad645a77bf3fc4904b",
+      "sha256Lf": "db0317a001621f672259af7987a2c14fb1992574bb1d046fea519f1cccfbe489"
+    },
+    {
+      "path": "data/RecipeData/types.ts",
+      "gitBlob": "f3908517f124a9915a850b0f817a452ed272ec2d",
+      "sha256Lf": "88d4edae7ceea5cd47d50772bf884cd71b60bfbca49b44be2cd90b70a415362a"
+    },
+    {
+      "path": "data/RecipeData/variants.ts",
+      "gitBlob": "8df321680576b7bcd161f18c1f30ab9246329d39",
+      "sha256Lf": "55b5dd573265451b73f02d64e0d17861e279a1c0ebf77fa81ae5fec550044d94"
+    },
+    {
+      "path": "data/RecipeData/browseOrder.ts",
+      "gitBlob": "12bcc278ddfe7a49ab31047639cd0621d034ff42",
+      "sha256Lf": "24095fb36a3ed0367b735d7e6033a254c3e7a5105f79186b67c8c51272613989"
+    },
+    {
+      "path": "data/dietaryGuides.json",
+      "gitBlob": "c57f9518e1a01a06319ad3e2d2e97d8b2b9fba9b",
+      "sha256Lf": "8f860224cbf85d3c09d5c460383db085cac1a2b5bcea8e69635e149dec2e12c2"
+    },
+    {
+      "path": "data/dietaryGuideInstallation.json",
+      "gitBlob": "ff81995a8712fc0e25dafea52d2e94d183a1fce8",
+      "sha256Lf": "e24ee90fa8a55cfe7602626a625a1871f65f7b7db6d782c5dad719a0588a1fc4"
+    }
+  ],
+  "sourceFiles": {
+    "verificationWorkbook": {
+      "filename": "RenalPlan_Recipe_Verification_Final.xlsx",
+      "sha256": "ef3cb24bdc5d4486b17f20cffb10284609319764bacd12f76c8201c15d4e089b"
+    },
+    "cofid": {
+      "filename": "McCance_Widdowsons_Composition_of_Foods_Integrated_Dataset_2021. (1).xlsx",
+      "sha256": "436e9445ef2adb2a75f3d7edd51302de3adad25385f9795fc94ba58bd030e97d"
+    },
+    "usdaSR28": {
+      "filename": "sr28asc.zip",
+      "sha256": "8308fd1d224ef1e5331093748007180da01a7ac713cbac6a1f5bc2a03e1ee70a"
+    }
+  },
+  "canonicalReconciliation": "data/RecipeData/evidence/fibre-reconciliation.json",
+  "originalWorkbookPreserved": true,
+  "evidenceFileHashConvention": "JSON: UTF-8 with CRLF normalised to LF; sha256 and bytes cover the normalised bytes. XLSX: exact stored bytes."
+}

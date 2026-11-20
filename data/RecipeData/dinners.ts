@@ -63,7 +63,7 @@ export const dinners: Recipe[] = [
       protein: "30.9 g",
       carbohydrates: "81.5 g",
       fat: "17.2 g",
-      fibre: "4 g",
+      fibre: "4.3 g",
       sodium: "46 mg",
       salt: "0.11 g",
       potassium: "624 mg",
@@ -82,7 +82,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
-    dietCategories: ["Mediterranean-style"]
+    dietCategories: ["Mediterranean-style"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
 {
     id: "turkey-rosemary-rice",
@@ -141,7 +142,7 @@ export const dinners: Recipe[] = [
       protein: "30.0 g",
       carbohydrates: "89.2 g",
       fat: "16.8 g",
-      fibre: "5 g",
+      fibre: "4.1 g",
       sodium: "73 mg",
       salt: "0.18 g",
       potassium: "608 mg",
@@ -160,7 +161,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
-    dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
 {
     id: "pork-herb-rice",
@@ -219,7 +221,7 @@ export const dinners: Recipe[] = [
       protein: "37.2 g",
       carbohydrates: "90.0 g",
       fat: "20.6 g",
-      fibre: "5 g",
+      fibre: "4.6 g",
       sodium: "66 mg",
       salt: "0.17 g",
       potassium: "679 mg",
@@ -238,7 +240,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
 {
     id: "lemon-cod-rice",
@@ -303,7 +306,7 @@ export const dinners: Recipe[] = [
       protein: "33.2 g",
       carbohydrates: "89.9 g",
       fat: "21.2 g",
-      fibre: "4 g",
+      fibre: "4.4 g",
       sodium: "98 mg",
       salt: "0.25 g",
       potassium: "677 mg",
@@ -322,7 +325,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
-    dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mediterranean-style","Intermittent fasting — eating-window meal"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
 {
     id: "lemon-salmon-rice",
@@ -382,7 +386,7 @@ export const dinners: Recipe[] = [
       protein: "29.5 g",
       carbohydrates: "89.8 g",
       fat: "22.4 g",
-      fibre: "4 g",
+      fibre: "4.4 g",
       sodium: "46 mg",
       salt: "0.12 g",
       potassium: "635 mg",
@@ -401,7 +405,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
 {
     id: "beef-paprika-rice",
@@ -459,7 +464,7 @@ export const dinners: Recipe[] = [
       protein: "31.2 g",
       carbohydrates: "89.6 g",
       fat: "15 g",
-      fibre: "5 g",
+      fibre: "4.5 g",
       sodium: "97 mg",
       salt: "0.24 g",
       potassium: "587 mg",
@@ -477,7 +482,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1064% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1064% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
   },
@@ -538,7 +543,7 @@ export const dinners: Recipe[] = [
       protein: "29.1 g",
       carbohydrates: "63.8 g",
       fat: "26.2 g",
-      fibre: "2 g",
+      fibre: "4.7 g",
       sodium: "302 mg",
       salt: "0.76 g",
       potassium: "505 mg",
@@ -557,7 +562,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
 {
     id: "chicken-paprika-rice-peppers",
@@ -616,7 +622,7 @@ export const dinners: Recipe[] = [
       protein: "30.5 g",
       carbohydrates: "79.3 g",
       fat: "17.3 g",
-      fibre: "3 g",
+      fibre: "3.2 g",
       sodium: "43 mg",
       salt: "0.11 g",
       potassium: "515 mg",
@@ -634,7 +640,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1202% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.1202% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mediterranean-style",
     dietCategories: ["Mediterranean-style"]
   },
@@ -695,7 +701,7 @@ export const dinners: Recipe[] = [
       protein: "38.9 g",
       carbohydrates: "64.4 g",
       fat: "26.8 g",
-      fibre: "3 g",
+      fibre: "4.7 g",
       sodium: "61 mg",
       salt: "0.15 g",
       potassium: "736 mg",
@@ -714,7 +720,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
 {
     id: "egg-cauliflower-rice",
@@ -773,7 +780,7 @@ export const dinners: Recipe[] = [
       protein: "29.3 g",
       carbohydrates: "87.3 g",
       fat: "26.2 g",
-      fibre: "3 g",
+      fibre: "3.0 g",
       sodium: "304 mg",
       salt: "0.76 g",
       potassium: "456 mg",
@@ -792,7 +799,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"]
+    dietCategories: ["Mixed diet","Intermittent fasting — eating-window meal"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "d011-creamy-chicken-mushroom-rice",
@@ -827,7 +835,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "549 kcal", protein: "34.0 g", carbohydrates: "76.2 g", fat: "14.0 g",
-      fibre: "5.0 g", sodium: "81 mg", salt: "0.20 g", potassium: "970 mg", phosphate: "435 mg"
+      fibre: "4.1 g", sodium: "81 mg", salt: "0.20 g", potassium: "970 mg", phosphate: "435 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -841,7 +849,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2909% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2909% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -884,7 +892,7 @@ export const dinners: Recipe[] = [
       protein: "37.3 g",
       carbohydrates: "66.5 g",
       fat: "15.4 g",
-      fibre: "5 g",
+      fibre: "6.2 g",
       sodium: "70 mg",
       salt: "0.17 g",
       potassium: "945 mg",
@@ -902,7 +910,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3329% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3329% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -945,7 +953,7 @@ export const dinners: Recipe[] = [
       protein: "31.0 g",
       carbohydrates: "62.4 g",
       fat: "6.8 g",
-      fibre: "4 g",
+      fibre: "6.0 g",
       sodium: "119 mg",
       salt: "0.30 g",
       potassium: "846 mg",
@@ -963,7 +971,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3551% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3551% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1006,7 +1014,7 @@ export const dinners: Recipe[] = [
       protein: "33.3 g",
       carbohydrates: "75.1 g",
       fat: "7.1 g",
-      fibre: "4 g",
+      fibre: "4.5 g",
       sodium: "67 mg",
       salt: "0.17 g",
       potassium: "771 mg",
@@ -1024,7 +1032,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2949% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2949% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1068,7 +1076,7 @@ export const dinners: Recipe[] = [
       protein: "32.5 g",
       carbohydrates: "72.9 g",
       fat: "6.1 g",
-      fibre: "4 g",
+      fibre: "4.7 g",
       sodium: "60 mg",
       salt: "0.15 g",
       potassium: "716 mg",
@@ -1086,7 +1094,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3039% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3039% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1130,7 +1138,7 @@ export const dinners: Recipe[] = [
       protein: "32.8 g",
       carbohydrates: "80.4 g",
       fat: "7.4 g",
-      fibre: "5 g",
+      fibre: "4.5 g",
       sodium: "49 mg",
       salt: "0.12 g",
       potassium: "757 mg",
@@ -1148,7 +1156,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2757% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2757% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1191,7 +1199,7 @@ export const dinners: Recipe[] = [
       protein: "35.1 g",
       carbohydrates: "62.7 g",
       fat: "14.7 g",
-      fibre: "4 g",
+      fibre: "5.6 g",
       sodium: "80 mg",
       salt: "0.20 g",
       potassium: "841 mg",
@@ -1209,7 +1217,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3533% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3533% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1252,7 +1260,7 @@ export const dinners: Recipe[] = [
       protein: "30.3 g",
       carbohydrates: "75.1 g",
       fat: "6.7 g",
-      fibre: "4 g",
+      fibre: "4.5 g",
       sodium: "117 mg",
       salt: "0.29 g",
       potassium: "792 mg",
@@ -1270,7 +1278,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2950% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2950% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1314,7 +1322,7 @@ export const dinners: Recipe[] = [
       protein: "24.3 g",
       carbohydrates: "66.1 g",
       fat: "16.0 g",
-      fibre: "5 g",
+      fibre: "6.9 g",
       sodium: "164 mg",
       salt: "0.41 g",
       potassium: "723 mg",
@@ -1332,7 +1340,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3348% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3348% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"]
   },
@@ -1376,7 +1384,7 @@ export const dinners: Recipe[] = [
       protein: "32.0 g",
       carbohydrates: "80.3 g",
       fat: "6.6 g",
-      fibre: "5 g",
+      fibre: "4.5 g",
       sodium: "68 mg",
       salt: "0.17 g",
       potassium: "725 mg",
@@ -1394,7 +1402,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2759% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2759% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1413,7 +1421,7 @@ export const dinners: Recipe[] = [
       "Fold through the cooked rice and season with black pepper. Use a fork or broad spoon and a light lifting motion so the grains stay separate.",
       "Serve hot."
     ],
-    nutrition: { calories: "519 kcal", protein: "33.9 g", carbohydrates: "84.3 g", fat: "7.3 g", fibre: "4.5 g", sodium: "63 mg", salt: "0.16 g", potassium: "674 mg", phosphate: "378 mg" },
+    nutrition: { calories: "519 kcal", protein: "33.9 g", carbohydrates: "84.3 g", fat: "7.3 g", fibre: "3.5 g", sodium: "63 mg", salt: "0.16 g", potassium: "674 mg", phosphate: "378 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "A protein-rich rice dinner with vegetables and no added salt.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1422,7 +1430,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2629% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2629% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1441,7 +1449,7 @@ export const dinners: Recipe[] = [
       "Add the cooked pasta and toss together.",
       "Serve hot."
     ],
-    nutrition: { calories: "519 kcal", protein: "37.0 g", carbohydrates: "70.1 g", fat: "11.3 g", fibre: "4.0 g", sodium: "114 mg", salt: "0.29 g", potassium: "709 mg", phosphate: "394 mg" },
+    nutrition: { calories: "519 kcal", protein: "37.0 g", carbohydrates: "70.1 g", fat: "11.3 g", fibre: "5.3 g", sodium: "114 mg", salt: "0.29 g", potassium: "709 mg", phosphate: "394 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "Lean beef provides protein while pepper and onion add flavour without relying on added salt.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1450,7 +1458,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.4097% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.4097% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1472,7 +1480,7 @@ export const dinners: Recipe[] = [
       "Toss the potatoes with the remaining butter and black pepper.",
       "Serve."
     ],
-    nutrition: { calories: "449 kcal", protein: "30.7 g", carbohydrates: "54.2 g", fat: "13.6 g", fibre: "5.0 g", sodium: "141 mg", salt: "0.35 g", potassium: "1827 mg", phosphate: "354 mg" },
+    nutrition: { calories: "449 kcal", protein: "30.7 g", carbohydrates: "54.2 g", fat: "13.6 g", fibre: "8.3 g", sodium: "141 mg", salt: "0.35 g", potassium: "1827 mg", phosphate: "354 mg" },
     potassium: "High", phosphate: "High", purines: "Low", dietaryNote: "The potatoes are boiled first and the cooking water is discarded to help reduce potassium by leaching. A simple fish dinner with cabbage and potatoes. Potassium is influenced by the potato portion.", fluidMl: 15, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1481,7 +1489,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.4086% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.4086% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1500,7 +1508,7 @@ export const dinners: Recipe[] = [
       "Return to very low heat and stir until the egg mixture is cooked through.",
       "Season with black pepper and serve."
     ],
-    nutrition: { calories: "589 kcal", protein: "27.7 g", carbohydrates: "76.1 g", fat: "21.4 g", fibre: "3.0 g", sodium: "304 mg", salt: "0.76 g", potassium: "532 mg", phosphate: "498 mg" },
+    nutrition: { calories: "589 kcal", protein: "27.7 g", carbohydrates: "76.1 g", fat: "21.4 g", fibre: "4.0 g", sodium: "304 mg", salt: "0.76 g", potassium: "532 mg", phosphate: "498 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Low", dietaryNote: "Egg and cheese provide protein and richness without meat or fish.", fluidMl: 100, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1509,7 +1517,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2910% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2910% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"]
   },
@@ -1529,7 +1537,7 @@ export const dinners: Recipe[] = [
       "Season with the specified 0.2 g black pepper (a small pinch).",
       "Serve."
     ],
-    nutrition: { calories: "396 kcal", protein: "36.9 g", carbohydrates: "17.6 g", fat: "20.3 g", fibre: "6.0 g", sodium: "68 mg", salt: "0.17 g", potassium: "948 mg", phosphate: "344 mg" },
+    nutrition: { calories: "396 kcal", protein: "36.9 g", carbohydrates: "17.6 g", fat: "20.3 g", fibre: "5.0 g", sodium: "68 mg", salt: "0.17 g", potassium: "948 mg", phosphate: "344 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "Apple adds natural sweetness to pork and cabbage without a salty sauce.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1538,7 +1546,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.077300 g per serving, 0.4381% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.077300 g per serving, 0.4381% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1557,7 +1565,7 @@ export const dinners: Recipe[] = [
       "Add the pasta and toss through the sauce.",
       "Season with black pepper and serve."
     ],
-    nutrition: { calories: "562 kcal", protein: "36.3 g", carbohydrates: "70.5 g", fat: "16.9 g", fibre: "4.0 g", sodium: "80 mg", salt: "0.20 g", potassium: "768 mg", phosphate: "436 mg" },
+    nutrition: { calories: "562 kcal", protein: "36.3 g", carbohydrates: "70.5 g", fat: "16.9 g", fibre: "5.0 g", sodium: "80 mg", salt: "0.20 g", potassium: "768 mg", phosphate: "436 mg" },
     potassium: "Moderate", phosphate: "High", purines: "High", dietaryNote: "A creamy pasta dinner using chicken, pepper and onion for flavour.", fluidMl: 50, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1566,7 +1574,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3143% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3143% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1585,7 +1593,7 @@ export const dinners: Recipe[] = [
       "Fold through the cod, lemon juice and parsley.",
       "Season with black pepper and serve."
     ],
-    nutrition: { calories: "483 kcal", protein: "34.9 g", carbohydrates: "72.6 g", fat: "7.9 g", fibre: "4.0 g", sodium: "123 mg", salt: "0.31 g", potassium: "864 mg", phosphate: "439 mg" },
+    nutrition: { calories: "483 kcal", protein: "34.9 g", carbohydrates: "72.6 g", fat: "7.9 g", fibre: "5.1 g", sodium: "123 mg", salt: "0.31 g", potassium: "864 mg", phosphate: "439 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Low", dietaryNote: "Cod and pasta make a filling meal with lemon and herbs instead of a salty sauce.", fluidMl: 15, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1594,7 +1602,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3052% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3052% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1613,7 +1621,7 @@ export const dinners: Recipe[] = [
       "Stir in the rice and combine thoroughly.",
       "Season with black pepper and serve."
     ],
-    nutrition: { calories: "567 kcal", protein: "23.7 g", carbohydrates: "89.0 g", fat: "15.3 g", fibre: "5.0 g", sodium: "164 mg", salt: "0.41 g", potassium: "674 mg", phosphate: "363 mg" },
+    nutrition: { calories: "567 kcal", protein: "23.7 g", carbohydrates: "89.0 g", fat: "15.3 g", fibre: "6.4 g", sodium: "164 mg", salt: "0.41 g", potassium: "674 mg", phosphate: "363 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Low", dietaryNote: "An egg-based dinner with rice and vegetables, with no added salt.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1622,7 +1630,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2491% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2491% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"]
   },
@@ -1641,7 +1649,7 @@ export const dinners: Recipe[] = [
       "Season with black pepper.",
       "Serve hot."
     ],
-    nutrition: { calories: "510 kcal", protein: "42.9 g", carbohydrates: "69.4 g", fat: "8.7 g", fibre: "4.0 g", sodium: "59 mg", salt: "0.15 g", potassium: "873 mg", phosphate: "455 mg" },
+    nutrition: { calories: "510 kcal", protein: "42.9 g", carbohydrates: "69.4 g", fat: "8.7 g", fibre: "5.0 g", sodium: "59 mg", salt: "0.15 g", potassium: "873 mg", phosphate: "455 mg" },
     potassium: "Moderate", phosphate: "High", purines: "Moderate", dietaryNote: "Lean pork and pasta provide a substantial protein-rich meal with herbs for flavour.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1
   ,
@@ -1650,7 +1658,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3192% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3192% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1686,7 +1694,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "518 kcal", protein: "39.3 g", carbohydrates: "67.8 g", fat: "11.7 g",
-      fibre: "6.0 g", sodium: "64 mg", salt: "0.16 g", potassium: "958 mg", phosphate: "383 mg"
+      fibre: "5.7 g", sodium: "64 mg", salt: "0.16 g", potassium: "958 mg", phosphate: "383 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -1700,7 +1708,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3269% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.3269% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1737,7 +1745,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "485 kcal", protein: "35.3 g", carbohydrates: "73.9 g", fat: "7.4 g",
-      fibre: "4.0 g", sodium: "66 mg", salt: "0.17 g", potassium: "757 mg", phosphate: "407 mg"
+      fibre: "5.3 g", sodium: "66 mg", salt: "0.17 g", potassium: "757 mg", phosphate: "407 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -1751,7 +1759,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2999% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2999% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1789,7 +1797,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "495 kcal", protein: "33.1 g", carbohydrates: "81.8 g", fat: "6.2 g",
-      fibre: "3.5 g", sodium: "133 mg", salt: "0.33 g", potassium: "714 mg", phosphate: "357 mg"
+      fibre: "3.7 g", sodium: "133 mg", salt: "0.33 g", potassium: "714 mg", phosphate: "357 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -1803,7 +1811,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2711% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2711% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1839,7 +1847,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "562 kcal", protein: "35.6 g", carbohydrates: "85.2 g", fat: "10.3 g",
-      fibre: "5.0 g", sodium: "119 mg", salt: "0.30 g", potassium: "768 mg", phosphate: "351 mg"
+      fibre: "5.9 g", sodium: "119 mg", salt: "0.30 g", potassium: "768 mg", phosphate: "351 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -1853,7 +1861,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2602% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2602% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1890,7 +1898,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "632 kcal", protein: "27.9 g", carbohydrates: "85.0 g", fat: "22.3 g",
-      fibre: "4.0 g", sodium: "304 mg", salt: "0.76 g", potassium: "520 mg", phosphate: "447 mg"
+      fibre: "4.2 g", sodium: "304 mg", salt: "0.76 g", potassium: "520 mg", phosphate: "447 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -1904,7 +1912,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2609% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2609% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian","Intermittent fasting — eating-window meal"]
   },
@@ -1940,7 +1948,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "545 kcal", protein: "33.4 g", carbohydrates: "85.3 g", fat: "10.0 g",
-      fibre: "5.0 g", sodium: "72 mg", salt: "0.18 g", potassium: "793 mg", phosphate: "357 mg"
+      fibre: "5.9 g", sodium: "72 mg", salt: "0.18 g", potassium: "793 mg", phosphate: "357 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -1954,7 +1962,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2600% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2600% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1991,7 +1999,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "488 kcal", protein: "34.7 g", carbohydrates: "76.3 g", fat: "7.0 g",
-      fibre: "5.0 g", sodium: "129 mg", salt: "0.32 g", potassium: "947 mg", phosphate: "419 mg"
+      fibre: "7.0 g", sodium: "129 mg", salt: "0.32 g", potassium: "947 mg", phosphate: "419 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -2005,7 +2013,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2904% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2904% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -2041,7 +2049,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "545 kcal", protein: "34.8 g", carbohydrates: "81.4 g", fat: "10.4 g",
-      fibre: "4.0 g", sodium: "114 mg", salt: "0.28 g", potassium: "593 mg", phosphate: "335 mg"
+      fibre: "3.7 g", sodium: "114 mg", salt: "0.28 g", potassium: "593 mg", phosphate: "335 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -2055,7 +2063,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.3529% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.288288 g per serving, 0.3529% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Owner-approved source assumptions D5 are documented in the 16 October 2026 reconciliation workbook. Nominal 5% beef mince uses the approved extra-lean CoFID proxy at its actual 4.2 g fat per 100 g. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -2105,7 +2113,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2851% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2851% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -2142,7 +2150,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "530 kcal", protein: "25.9 g", carbohydrates: "76.5 g", fat: "15.5 g",
-      fibre: "5.0 g", sodium: "165 mg", salt: "0.41 g", potassium: "693 mg", phosphate: "390 mg"
+      fibre: "6.0 g", sodium: "165 mg", salt: "0.41 g", potassium: "693 mg", phosphate: "390 mg"
     },
     potassium: "Moderate",
     phosphate: "High",
@@ -2156,7 +2164,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2898% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.222238 g per serving, 0.2898% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"]
   },
@@ -2196,7 +2204,7 @@ export const dinners: Recipe[] = [
     ],
     nutrition: {
       calories: "440 kcal", protein: "28.5 g", carbohydrates: "44.1 g", fat: "17.8 g",
-      fibre: "5.0 g", sodium: "132 mg", salt: "0.33 g", potassium: "1551 mg", phosphate: "365 mg"
+      fibre: "7.2 g", sodium: "132 mg", salt: "0.33 g", potassium: "1551 mg", phosphate: "365 mg"
     },
     potassium: "High",
     phosphate: "High",
@@ -2210,7 +2218,7 @@ export const dinners: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.193250 g per serving, 0.4360% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.193250 g per serving, 0.4360% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -2230,7 +2238,7 @@ export const dinners: Recipe[] = [
       "Fluff the couscous and stir through the vegetables.",
       "Top with the sliced chicken and finish with the remaining olive oil, lemon juice and parsley.",
       "Serve immediately."
-    ], nutrition: { calories: "371 kcal", protein: "15.7 g", carbohydrates: "29.6 g", fat: "21.9 g", fibre: "2.2 g", sodium: "46 mg", salt: "0.12 g", potassium: "376 mg", phosphate: "172 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "371 kcal", protein: "15.7 g", carbohydrates: "29.6 g", fat: "21.9 g", fibre: "2.3 g", sodium: "46 mg", salt: "0.12 g", potassium: "376 mg", phosphate: "172 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2238,7 +2246,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "turkey-meatballs-herb-rice", code: "D042", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Herb-seasoned turkey meatballs served with basmati rice, tender cabbage and onion.", cookingTime: "30 minutes", calories: "504 kcal", protein: "20.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
       { item: "Turkey, meat, average, raw", shoppingItem: "Turkey mince (lean)", quantity: "60 g" },
@@ -2262,7 +2271,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "cod-herby-noodles-cucumber", code: "D043", mealFamily: "noodles", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Baked cod with plain noodles, tender cabbage and cucumber, finished with lemon, parsley and olive oil.", cookingTime: "30 minutes", calories: "377 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "50 g" },
@@ -2287,7 +2297,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
-    dietCategories: ["Mediterranean-style"]
+    dietCategories: ["Mediterranean-style"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "pork-apple-leek-rice", code: "D044", mealFamily: "meat-and-vegetable-dish", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Lean pork medallions with basmati rice, softened leek and warm apple finished with thyme.", cookingTime: "30 minutes", calories: "421 kcal", protein: "14.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
@@ -2311,7 +2322,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "chicken-carrot-noodle-stir-fry", code: "D045", mealFamily: "noodle-stir-fry", category: "Dinner",
     cuisine: "Chinese", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "386 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
@@ -2327,7 +2339,7 @@ export const dinners: Recipe[] = [
       "Add the boiled carrot and cabbage and cook gently until tender.",
       "Add the ground ginger and drained noodles and toss together.",
       "Serve immediately."
-    ], nutrition: { calories: "386 kcal", protein: "14.7 g", carbohydrates: "35.5 g", fat: "21.6 g", fibre: "3.6 g", sodium: "56 mg", salt: "0.14 g", potassium: "335 mg", phosphate: "126 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "386 kcal", protein: "14.7 g", carbohydrates: "35.5 g", fat: "21.6 g", fibre: "3.7 g", sodium: "56 mg", salt: "0.14 g", potassium: "335 mg", phosphate: "126 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2335,7 +2347,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "beef-meatballs-couscous-peppers", code: "D046", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Lean beef meatballs with couscous, softened green pepper and onion, gently seasoned with paprika.", cookingTime: "30 minutes", calories: "416 kcal", protein: "18.5 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
       { item: "Beef, mince, raw, extra lean", shoppingItem: "Beef mince (5% fat)", quantity: "60 g" },
@@ -2350,14 +2363,14 @@ export const dinners: Recipe[] = [
       "Cook the meatballs in the olive oil, turning regularly, until browned and completely cooked through.",
       "Add the green pepper and onion and cook until softened.",
       "Fluff the couscous and serve with the meatballs and vegetables."
-    ], nutrition: { calories: "416 kcal", protein: "18.5 g", carbohydrates: "34.1 g", fat: "23.5 g", fibre: "0.0 g", sodium: "58 mg", salt: "0.14 g", potassium: "364 mg", phosphate: "215 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "416 kcal", protein: "18.5 g", carbohydrates: "34.1 g", fat: "23.5 g", fibre: "2.6 g", sodium: "58 mg", salt: "0.14 g", potassium: "364 mg", phosphate: "215 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.2795% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors.",
+    nutritionSourceNote: "Owner-approved 0.5% negligible spice-carbohydrate allowance: the listed carbohydrate excludes the unresolved spice contribution. USDA total carbohydrate minus fibre gives a derived by-weight estimate of 0.095450 g per serving, 0.2795% of the estimated meal carbohydrate total. This is an approved estimation/omission assumption, not an exact CoFID monosaccharide-equivalent value or a measured error bound. USDA SR28 spice energy is retained as reported with food-specific Atwater factors. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -2375,7 +2388,7 @@ export const dinners: Recipe[] = [
       "Toss the vegetables with the olive oil and lemon juice.",
       "Check the rice is tender and drain if required.",
       "Serve the haddock with the rice and vegetables."
-    ], nutrition: { calories: "445 kcal", protein: "15.9 g", carbohydrates: "52.1 g", fat: "20.7 g", fibre: "1.8 g", sodium: "48 mg", salt: "0.12 g", potassium: "315 mg", phosphate: "167 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "445 kcal", protein: "15.9 g", carbohydrates: "52.1 g", fat: "20.7 g", fibre: "1.6 g", sodium: "48 mg", salt: "0.12 g", potassium: "315 mg", phosphate: "167 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2383,7 +2396,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "chicken-pear-rice-bowl", code: "D048", mealFamily: "rice-bowl", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken and basmati rice with warm pear and tender cabbage, finished with rosemary.", cookingTime: "30 minutes", calories: "467 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
@@ -2399,7 +2413,7 @@ export const dinners: Recipe[] = [
       "Dice the pear and warm gently with the cabbage and rosemary. Remove any inedible core, stalk or peel specified in the ingredient list before weighing.",
       "Check the rice is tender and drain if required.",
       "Serve the chicken with the rice and pear and cabbage mixture."
-    ], nutrition: { calories: "467 kcal", protein: "16.7 g", carbohydrates: "55.1 g", fat: "21.5 g", fibre: "2.7 g", sodium: "42 mg", salt: "0.10 g", potassium: "355 mg", phosphate: "155 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "467 kcal", protein: "16.7 g", carbohydrates: "55.1 g", fat: "21.5 g", fibre: "2.6 g", sodium: "42 mg", salt: "0.10 g", potassium: "355 mg", phosphate: "155 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2407,7 +2421,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mediterranean-style",
-    dietCategories: ["Mediterranean-style"]
+    dietCategories: ["Mediterranean-style"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "pork-carrot-couscous-skillet", code: "D049", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Lean pork with couscous, boiled carrot and softened leek, finished with thyme.", cookingTime: "30 minutes", calories: "383 kcal", protein: "15.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
@@ -2423,7 +2438,7 @@ export const dinners: Recipe[] = [
       "Add the vegetables and thyme to the pork pan and warm through.",
       "Fluff the couscous and spoon the pork and vegetables over it.",
       "Serve immediately."
-    ], nutrition: { calories: "383 kcal", protein: "15.1 g", carbohydrates: "33.8 g", fat: "21.7 g", fibre: "2.7 g", sodium: "24 mg", salt: "0.06 g", potassium: "357 mg", phosphate: "189 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "383 kcal", protein: "15.1 g", carbohydrates: "33.8 g", fat: "21.7 g", fibre: "2.6 g", sodium: "24 mg", salt: "0.06 g", potassium: "357 mg", phosphate: "189 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2431,7 +2446,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "cod-leek-pasta-bake", code: "D050", mealFamily: "pasta-bake", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Flaked cod and white pasta baked with softened leek and cabbage, finished with parsley and olive oil.", cookingTime: "30 minutes", calories: "374 kcal", protein: "16.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking dish", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "45 g" },
@@ -2448,7 +2464,7 @@ export const dinners: Recipe[] = [
       "Combine the pasta, vegetables and cod with the olive oil and parsley in a baking dish.",
       "Bake until hot throughout.",
       "Serve immediately."
-    ], nutrition: { calories: "374 kcal", protein: "16.0 g", carbohydrates: "32.2 g", fat: "21.0 g", fibre: "1.4 g", sodium: "44 mg", salt: "0.11 g", potassium: "378 mg", phosphate: "171 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "374 kcal", protein: "16.0 g", carbohydrates: "32.2 g", fat: "21.0 g", fibre: "2.8 g", sodium: "44 mg", salt: "0.11 g", potassium: "378 mg", phosphate: "171 mg" }, potassium: "Low", phosphate: "Low", purines: "Low", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2456,7 +2472,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "turkey-apple-noodle-bowl", code: "D051", mealFamily: "noodle-bowl", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey and plain noodles with apple and cucumber, finished with ginger and olive oil.", cookingTime: "30 minutes", calories: "387 kcal", protein: "15.6 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
       { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "50 g (raw)" },
@@ -2479,7 +2496,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "chicken-herb-meatballs-rice", code: "D052", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken herb meatballs with basmati rice, tender cabbage and carrot, finished with parsley.", cookingTime: "30 minutes", calories: "459 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
@@ -2495,7 +2513,7 @@ export const dinners: Recipe[] = [
       "Boil the cabbage and carrot in unsalted water until tender, then drain well.",
       "Check the rice is tender and drain if required.",
       "Serve the meatballs with the rice and vegetables."
-    ], nutrition: { calories: "459 kcal", protein: "16.7 g", carbohydrates: "52.8 g", fat: "21.5 g", fibre: "2.3 g", sodium: "48 mg", salt: "0.12 g", potassium: "361 mg", phosphate: "156 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "459 kcal", protein: "16.7 g", carbohydrates: "52.8 g", fat: "21.5 g", fibre: "2.4 g", sodium: "48 mg", salt: "0.12 g", potassium: "361 mg", phosphate: "156 mg" }, potassium: "Low", phosphate: "Low", purines: "Moderate", dietaryNote: "CoFID 2021 ingredient-level calculation for one serving. Potassium is below 400 mg per serving on the RenalPlan recipe-planning bands.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2503,7 +2521,8 @@ export const dinners: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   // International recipes: nutrition and ingredient quantities are for one serving.
       {

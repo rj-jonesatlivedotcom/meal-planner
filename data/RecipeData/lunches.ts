@@ -32,7 +32,7 @@ export const lunches: Recipe[] = [
       protein: "24.0 g",
       carbohydrates: "33.0 g",
       fat: "16.9 g",
-      fibre: "2.0 g",
+      fibre: "2.1 g",
       sodium: "353 mg",
       salt: "0.88 g",
       potassium: "419 mg",
@@ -50,7 +50,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -86,7 +86,7 @@ export const lunches: Recipe[] = [
       protein: "20.0 g",
       carbohydrates: "32.9 g",
       fat: "22.0 g",
-      fibre: "2.0 g",
+      fibre: "2.1 g",
       sodium: "451 mg",
       salt: "1.13 g",
       potassium: "282 mg",
@@ -105,7 +105,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "tuna-lettuce-sandwich",
@@ -138,7 +139,7 @@ export const lunches: Recipe[] = [
       protein: "20.9 g",
       carbohydrates: "33.0 g",
       fat: "16.7 g",
-      fibre: "2.0 g",
+      fibre: "2.1 g",
       sodium: "484 mg",
       salt: "1.21 g",
       potassium: "279 mg",
@@ -157,7 +158,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-cucumber-sandwich",
@@ -208,7 +210,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -263,7 +265,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-red-pepper-sandwich",
@@ -296,7 +299,7 @@ export const lunches: Recipe[] = [
       protein: "22.8 g",
       carbohydrates: "34.0 g",
       fat: "16.9 g",
-      fibre: "1.8 g",
+      fibre: "2.4 g",
       sodium: "349 mg",
       salt: "0.87 g",
       potassium: "421 mg",
@@ -314,7 +317,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -351,7 +354,7 @@ export const lunches: Recipe[] = [
       protein: "18.5 g",
       carbohydrates: "32.9 g",
       fat: "25.8 g",
-      fibre: "2.0 g",
+      fibre: "2.1 g",
       sodium: "450 mg",
       salt: "1.12 g",
       potassium: "288 mg",
@@ -370,7 +373,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-cream-cheese-sandwich",
@@ -421,7 +425,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -474,7 +478,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -528,7 +532,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "egg-chive-wrap",
@@ -582,7 +587,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-cucumber-wrap",
@@ -633,7 +639,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -671,7 +677,7 @@ export const lunches: Recipe[] = [
       protein: "25.8 g",
       carbohydrates: "60.4 g",
       fat: "12.1 g",
-      fibre: "0.8 g",
+      fibre: "3.7 g",
       sodium: "45 mg",
       salt: "0.11 g",
       potassium: "539 mg",
@@ -689,7 +695,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -727,7 +733,7 @@ export const lunches: Recipe[] = [
       protein: "27.1 g",
       carbohydrates: "59.6 g",
       fat: "19.3 g",
-      fibre: "0.7 g",
+      fibre: "3.0 g",
       sodium: "122 mg",
       salt: "0.31 g",
       potassium: "494 mg",
@@ -745,7 +751,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -781,7 +787,7 @@ export const lunches: Recipe[] = [
       protein: "24.0 g",
       carbohydrates: "58.5 g",
       fat: "16.8 g",
-      fibre: "0.1 g",
+      fibre: "3.1 g",
       sodium: "204 mg",
       salt: "0.51 g",
       potassium: "386 mg",
@@ -800,7 +806,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "egg-cream-cheese-pasta",
@@ -834,7 +841,7 @@ export const lunches: Recipe[] = [
       protein: "22.8 g",
       carbohydrates: "57.7 g",
       fat: "22.5 g",
-      fibre: "0.2 g",
+      fibre: "2.5 g",
       sodium: "234 mg",
       salt: "0.58 g",
       potassium: "355 mg",
@@ -852,7 +859,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"]
   },
@@ -890,7 +897,7 @@ export const lunches: Recipe[] = [
       protein: "28.2 g",
       carbohydrates: "60.7 g",
       fat: "18.2 g",
-      fibre: "1.0 g",
+      fibre: "3.3 g",
       sodium: "113 mg",
       salt: "0.28 g",
       potassium: "529 mg",
@@ -908,7 +915,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -946,7 +953,7 @@ export const lunches: Recipe[] = [
       protein: "27.0 g",
       carbohydrates: "57.6 g",
       fat: "18.1 g",
-      fibre: "0.4 g",
+      fibre: "2.7 g",
       sodium: "110 mg",
       salt: "0.28 g",
       potassium: "606 mg",
@@ -964,7 +971,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1000,7 +1007,7 @@ export const lunches: Recipe[] = [
       protein: "24.8 g",
       carbohydrates: "57.5 g",
       fat: "12.9 g",
-      fibre: "0.2 g",
+      fibre: "2.5 g",
       sodium: "242 mg",
       salt: "0.61 g",
       potassium: "343 mg",
@@ -1018,7 +1025,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1059,7 +1066,7 @@ export const lunches: Recipe[] = [
       protein: "27.6 g",
       carbohydrates: "54.5 g",
       fat: "15.9 g",
-      fibre: "1.5 g",
+      fibre: "1.9 g",
       sodium: "121 mg",
       salt: "0.30 g",
       potassium: "479 mg",
@@ -1077,7 +1084,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1115,7 +1122,7 @@ export const lunches: Recipe[] = [
       protein: "23.4 g",
       carbohydrates: "54.4 g",
       fat: "24.2 g",
-      fibre: "1.4 g",
+      fibre: "1.9 g",
       sodium: "233 mg",
       salt: "0.58 g",
       potassium: "369 mg",
@@ -1134,7 +1141,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-onion-rice-bowl",
@@ -1170,7 +1178,7 @@ export const lunches: Recipe[] = [
       protein: "22.6 g",
       carbohydrates: "55.1 g",
       fat: "11.5 g",
-      fibre: "1.7 g",
+      fibre: "2.0 g",
       sodium: "47 mg",
       salt: "0.12 g",
       potassium: "428 mg",
@@ -1188,7 +1196,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1244,7 +1252,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-noodle-bowl",
@@ -1279,7 +1288,7 @@ export const lunches: Recipe[] = [
       protein: "26.4 g",
       carbohydrates: "56.0 g",
       fat: "12.6 g",
-      fibre: "0.4 g",
+      fibre: "3.3 g",
       sodium: "419 mg",
       salt: "1.05 g",
       potassium: "659 mg",
@@ -1297,7 +1306,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1353,7 +1362,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D6, D4, D2 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten.",
+    nutritionSourceNote: "Owner-approved source assumptions D6, D4, D2 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1407,7 +1416,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten.",
+    nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1462,7 +1471,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten.",
+    nutritionSourceNote: "Owner-approved source assumptions D6 are documented in the 16 October 2026 reconciliation workbook. Potato uses CoFID 13-494 flesh and skin at an estimated 149 g cooked from 200 g raw using a 74.5% microwave reference yield; actual microwave-plus-oven final weight was not measured. All skin is assumed eaten. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Vegetarian",
     dietCategories: ["Vegetarian"]
   },
@@ -1501,7 +1510,7 @@ export const lunches: Recipe[] = [
       protein: "20.8 g",
       carbohydrates: "39.6 g",
       fat: "16.0 g",
-      fibre: "4.7 g",
+      fibre: "5.0 g",
       sodium: "47 mg",
       salt: "0.12 g",
       potassium: "1166 mg",
@@ -1519,7 +1528,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1559,7 +1568,7 @@ export const lunches: Recipe[] = [
       protein: "16.6 g",
       carbohydrates: "39.3 g",
       fat: "24.2 g",
-      fibre: "4.7 g",
+      fibre: "4.9 g",
       sodium: "159 mg",
       salt: "0.40 g",
       potassium: "1041 mg",
@@ -1578,7 +1587,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "tuna-potato-salad",
@@ -1612,7 +1622,7 @@ export const lunches: Recipe[] = [
       protein: "19.3 g",
       carbohydrates: "36.6 g",
       fat: "16.1 g",
-      fibre: "4.2 g",
+      fibre: "4.3 g",
       sodium: "209 mg",
       salt: "0.52 g",
       potassium: "1059 mg",
@@ -1631,7 +1641,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-pepper-omelette",
@@ -1667,7 +1678,7 @@ export const lunches: Recipe[] = [
       protein: "33.8 g",
       carbohydrates: "3.3 g",
       fat: "24.2 g",
-      fibre: "0.7 g",
+      fibre: "1.2 g",
       sodium: "268 mg",
       salt: "0.67 g",
       potassium: "539 mg",
@@ -1685,7 +1696,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Atkins Phase 1",
     dietCategories: ["Atkins Phase 1"]
   },
@@ -1742,7 +1753,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "egg-pepper-toast",
@@ -1776,7 +1788,7 @@ export const lunches: Recipe[] = [
       protein: "18.4 g",
       carbohydrates: "33.6 g",
       fat: "18.4 g",
-      fibre: "1.8 g",
+      fibre: "2.4 g",
       sodium: "435 mg",
       salt: "1.09 g",
       potassium: "308 mg",
@@ -1795,7 +1807,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-pepper-toastie",
@@ -1829,7 +1842,7 @@ export const lunches: Recipe[] = [
       protein: "23.9 g",
       carbohydrates: "34.3 g",
       fat: "12.2 g",
-      fibre: "1.8 g",
+      fibre: "2.4 g",
       sodium: "388 mg",
       salt: "0.97 g",
       potassium: "443 mg",
@@ -1847,7 +1860,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -1903,7 +1916,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-apple-sandwich",
@@ -1937,7 +1951,7 @@ export const lunches: Recipe[] = [
       protein: "23.1 g",
       carbohydrates: "38.8 g",
       fat: "17.1 g",
-      fibre: "2.0 g",
+      fibre: "2.7 g",
       sodium: "351 mg",
       salt: "0.88 g",
       potassium: "450 mg",
@@ -1955,7 +1969,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -2011,7 +2025,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Vegetarian",
-    dietCategories: ["Vegetarian"]
+    dietCategories: ["Vegetarian"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   {
     id: "chicken-cream-cheese-wrap",
@@ -2063,7 +2078,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
-    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4, D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -2115,7 +2130,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D2 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -2152,7 +2167,7 @@ export const lunches: Recipe[] = [
       protein: "26.2 g",
       carbohydrates: "60.1 g",
       fat: "17.2 g",
-      fibre: "0.9 g",
+      fibre: "3.3 g",
       sodium: "72 mg",
       salt: "0.18 g",
       potassium: "538 mg",
@@ -2170,7 +2185,7 @@ export const lunches: Recipe[] = [
     nutritionBasis: "CoFID ingredient-input estimate",
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
-    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook.",
+    nutritionSourceNote: "Owner-approved source assumptions D4 are documented in the 16 October 2026 reconciliation workbook. Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     primaryDietCategory: "Mixed diet",
     dietCategories: ["Mixed diet"]
   },
@@ -2182,7 +2197,7 @@ export const lunches: Recipe[] = [
       "Fluff the couscous and combine with the vegetables.",
       "Top with the chicken and finish with the remaining olive oil, lemon juice and parsley.",
       "Serve immediately."
-    ], nutrition: { calories: "380 kcal", protein: "26.9 g", carbohydrates: "29.6 g", fat: "18.0 g", fibre: "2.2 g", sodium: "85 mg", salt: "0.21 g", potassium: "566 mg", phosphate: "252 mg" }, potassium: "High", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "380 kcal", protein: "26.9 g", carbohydrates: "29.6 g", fat: "18.0 g", fibre: "2.3 g", sodium: "85 mg", salt: "0.21 g", potassium: "566 mg", phosphate: "252 mg" }, potassium: "High", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2190,7 +2205,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "turkey-cucumber-pitta", code: "L042", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L042.webp", name: "Turkey & Cucumber Pitta", description: "Juicy turkey breast, crisp cucumber and iceberg lettuce tucked into a soft white pitta with creamy mayonnaise and a hint of parsley.", cookingTime: "12 minutes", calories: "437 kcal", protein: "30.7 g", equipment: "Knife, chopping board, frying pan, Food thermometer", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (60 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (40 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (15 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
       "Cook the turkey in a non-stick frying pan until completely cooked through. Check the thickest piece with a clean food thermometer: the centre should reach 75°C for at least 30 seconds. Check more than one piece if their sizes differ, and use clean utensils for the cooked food.",
@@ -2206,7 +2222,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "tuna-sweetcorn-pasta-salad", code: "L043", mealFamily: "pasta-salad", category: "Lunch", emoji: "🍝", image: "/images/recipes/L043.webp", name: "Tuna & Sweetcorn Pasta Salad", description: "A colourful pasta salad with flaky tuna, sweetcorn and cucumber, brought together with a creamy mayonnaise dressing.", cookingTime: "20 minutes", calories: "463 kcal", protein: "29.4 g", equipment: "Saucepan, colander, bowl, knife", ingredients: [ { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "50 g" }, { item: "Tuna, canned in brine, drained", shoppingItem: "Tuna, canned in brine, drained", quantity: "90 g" }, { item: "Sweetcorn kernels, canned in water, drained", shoppingItem: "Sweetcorn kernels", quantity: "20 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (20 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" } ], method: [
       "Cook the pasta in unsalted water according to the packet instructions. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
@@ -2215,7 +2232,7 @@ export const lunches: Recipe[] = [
       "Mix the pasta, tuna, sweetcorn and cucumber.",
       "Stir through the mayonnaise.",
       "Serve warm or chilled."
-    ], nutrition: { calories: "463 kcal", protein: "29.4 g", carbohydrates: "41.8 g", fat: "20.9 g", fibre: "1.1 g", sodium: "301 mg", salt: "0.75 g", potassium: "447 mg", phosphate: "266 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. The tuna is canned in brine, so drain it thoroughly and check the label for salt content.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "463 kcal", protein: "29.4 g", carbohydrates: "41.8 g", fat: "20.9 g", fibre: "2.7 g", sodium: "301 mg", salt: "0.75 g", potassium: "447 mg", phosphate: "266 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. The tuna is canned in brine, so drain it thoroughly and check the label for salt content.", fluidMl: 0, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2223,7 +2240,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: false,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "egg-leek-rice-bowl", code: "L044", mealFamily: "rice-bowl", category: "Lunch", emoji: "🍳", image: "/images/recipes/L044.webp", name: "Egg & Leek Rice Bowl", description: "Fluffy rice tossed with egg, gently softened leek and onion, finished with fresh chives for a comforting savoury bowl.", cookingTime: "25 minutes", calories: "488 kcal", protein: "18.0 g", equipment: "Saucepan, frying pan, colander, knife, Mixing bowl, Fork or whisk", ingredients: [ { item: "Rice, white, basmati, raw", shoppingItem: "White rice", quantity: "60 g (dry)" }, { item: "Eggs, chicken, whole, raw", shoppingItem: "Egg", quantity: "2" }, { item: "Leeks, raw", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Onions, raw", shoppingItem: "Onions", quantity: "½ onion (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "15 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
       "Cook the rice according to the packet instructions using unsalted water. Keep the heat low enough that the rice cooks steadily rather than boiling over. At the end, check that a grain is tender right through, then let the rice rest as directed before loosening it with a fork.",
@@ -2240,7 +2258,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "chicken-carrot-noodle-salad", code: "L045", mealFamily: "noodle-salad", category: "Lunch", emoji: "🍜", image: "/images/recipes/L045.webp", name: "Chicken & Carrot Noodle Salad", description: "Rice noodles, tender chicken, carrot and cucumber are tossed with lemon, ginger and olive oil for a fresh, zesty noodle salad.", cookingTime: "20 minutes", calories: "436 kcal", protein: "25.7 g", equipment: "Saucepan, colander, frying pan, knife, Food thermometer", ingredients: [ { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice rice noodles", quantity: "150 g (cooked)" }, { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Ginger, ground", shoppingItem: "Ground ginger", quantity: "¼ tsp" } ], method: [
       "Cook the rice rice noodles according to the packet instructions using unsalted water. Separate the pasta or noodles as they soften so they do not stick together. Check the texture towards the end of the cooking time; it should be tender with no chalky centre.",
@@ -2249,7 +2268,7 @@ export const lunches: Recipe[] = [
       "Drain the rice rice noodles thoroughly and rinse briefly if serving chilled.",
       "Toss the rice rice noodles with carrot, cucumber, chicken, oil, lemon and ginger.",
       "Serve."
-    ], nutrition: { calories: "436 kcal", protein: "25.7 g", carbohydrates: "34.6 g", fat: "22.7 g", fibre: "3.1 g", sodium: "93 mg", salt: "0.23 g", potassium: "499 mg", phosphate: "202 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "436 kcal", protein: "25.7 g", carbohydrates: "34.6 g", fat: "22.7 g", fibre: "2.8 g", sodium: "93 mg", salt: "0.23 g", potassium: "499 mg", phosphate: "202 mg" }, potassium: "Moderate", phosphate: "Moderate", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2257,7 +2276,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "turkey-apple-couscous-salad", code: "L046", mealFamily: "couscous-salad", category: "Lunch", emoji: "🍎", image: "/images/recipes/L046.webp", name: "Turkey & Apple Couscous Salad", description: "Tender turkey and fluffy couscous meet crisp apple and cucumber, with lemon and parsley adding a fresh, herby lift.", cookingTime: "20 minutes", calories: "433 kcal", protein: "29.1 g", equipment: "Saucepan, frying pan, knife, bowl, Food thermometer", ingredients: [ { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "100 g (raw)" }, { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" }, { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apples", quantity: "⅓ apple (30 g)" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "⅓ cucumber (30 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, fresh", shoppingItem: "Fresh parsley", quantity: "1 sprig" } ], method: [
       "Prepare the couscous according to the packet instructions using unsalted water.",
@@ -2274,7 +2294,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "cod-cucumber-pasta-salad", code: "L047", mealFamily: "pasta-salad", category: "Lunch", emoji: "🐟", image: "/images/recipes/L047.webp", name: "Cod & Cucumber Pasta Salad", description: "Flaky baked cod and pasta tossed with cucumber and lettuce, finished with lemon, parsley and olive oil for a bright, fresh salad.", cookingTime: "25 minutes", calories: "443 kcal", protein: "33.7 g", equipment: "Oven, baking tray, saucepan, colander, knife", ingredients: [ { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "120 g" }, { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "40 g" }, { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "¼ cucumber (20 g)" }, { item: "Lettuce, average, raw", shoppingItem: "Iceberg lettuce", quantity: "2 leaves (20 g)" }, { item: "Oil, olive", shoppingItem: "Olive oil", quantity: "20 g" }, { item: "Lemon juice, fresh", shoppingItem: "Lemon juice", quantity: "10 g" }, { item: "Parsley, dried", shoppingItem: "Dried parsley", quantity: "¼ tsp" } ], method: [
       "The listed 120 g of cod is the cooked edible weight. Cook a plain portion as directed below, then weigh out 120 g after cooking for this meal; it is not a 120 g raw starting portion. Keep any extra cooked food separate from this serving.",
@@ -2284,7 +2305,7 @@ export const lunches: Recipe[] = [
       "Flake the cod and combine with the pasta, cucumber and lettuce.",
       "Add the olive oil, lemon juice and parsley.",
       "Serve."
-    ], nutrition: { calories: "443 kcal", protein: "33.7 g", carbohydrates: "30.9 g", fat: "21.4 g", fibre: "0.4 g", sodium: "113 mg", salt: "0.28 g", potassium: "627 mg", phosphate: "309 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
+    ], nutrition: { calories: "443 kcal", protein: "33.7 g", carbohydrates: "30.9 g", fat: "21.4 g", fibre: "1.8 g", sodium: "113 mg", salt: "0.28 g", potassium: "627 mg", phosphate: "309 mg" }, potassium: "High", phosphate: "High", purines: "Moderate", dietaryNote: "This recipe is calculated for one serving using CoFID 2021 ingredient values. Compare the recorded nutrient totals with your own My Diet targets.", fluidMl: 10, // Approximate countable fluid from listed liquid/semi-liquid ingredients; excludes natural moisture and drained cooking water.
     servings: 1 ,
     conditionalProxyPending: false,
     nutritionIncomplete: [],
@@ -2292,7 +2313,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   { id: "chicken-leek-toasted-pitta", code: "L048", mealFamily: "pitta", category: "Lunch", emoji: "🥙", image: "/images/recipes/L048.webp", name: "Chicken & Leek Toasted Pitta", description: "Toasted white pitta filled with tender chicken, softened leek and creamy chive mayonnaise for a warm, savoury lunch.", cookingTime: "18 minutes", calories: "410 kcal", protein: "27.4 g", equipment: "Frying pan, knife, chopping board, toaster, Mixing bowl, Food thermometer", ingredients: [ { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "100 g (raw)" }, { item: "Bread, pitta, white", shoppingItem: "White pitta bread", quantity: "1 pitta (50 g)" }, { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "¼ leek (20 g)" }, { item: "Mayonnaise, standard, retail", shoppingItem: "Mayonnaise", quantity: "25 g" }, { item: "Chives, fresh", shoppingItem: "Fresh chives", quantity: "1 tsp" } ], method: [
       "Slice the chicken and leek.",
@@ -2309,7 +2331,8 @@ export const lunches: Recipe[] = [
     clinicalReviewPending: true,
     quantityConversionsEstimated: true,
     primaryDietCategory: "Mixed diet",
-    dietCategories: ["Mixed diet"]
+    dietCategories: ["Mixed diet"],
+    nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged."
   },
   // International recipes: nutrition and ingredient quantities are for one serving.
       {

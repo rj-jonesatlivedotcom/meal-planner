@@ -168,7 +168,9 @@ export default async function RecipeLayout({
       carbohydrateContent:
         recipe.nutrition.carbohydrates,
       fatContent: recipe.nutrition.fat,
-      fiberContent: recipe.nutrition.fibre,
+      ...(!recipe.nutritionIncomplete?.includes("fibre") && /\d/.test(recipe.nutrition.fibre)
+        ? { fiberContent: recipe.nutrition.fibre }
+        : {}),
       sodiumContent: recipe.nutrition.sodium,
     },
   };

@@ -49,6 +49,8 @@ export type Recipe = {
   nutritionIncomplete?: NutritionField[];
   /** Nutrients supplemented from an explicitly cited secondary source, when applicable. */
   nutritionSourceNote?: string;
+  /** Explains unresolved fibre evidence without publishing a partial total. */
+  fibreEvidenceNote?: string;
   quantityConversionsEstimated?: boolean;
   conditionalProxyPending?: boolean;
   clinicalReviewPending?: boolean;

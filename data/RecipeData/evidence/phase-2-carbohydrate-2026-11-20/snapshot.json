@@ -1,10 +1,10 @@
 {
-  "version": 1,
+  "version": 2,
   "date": "2026-11-20",
-  "status": "approved for release; recipe-data commit binding is finalised after the first commit",
+  "status": "approved versioned Phase 2 release snapshot",
   "baselineCommit": "98dd532f14f12538ffc47fb31666f4924fe18571",
-  "recipeDataCommit": null,
-  "recipeVersion": "Exact approved content identified by SHA256-LF and Git blob IDs; recipeDataCommit will pin the first Phase 2 release commit in a metadata-only follow-up.",
+  "recipeDataCommit": "f1b7a3ded0b1ec75fa993f6db5cc50e897e41002",
+  "recipeVersion": "Exact corrected recipe files at f1b7a3ded0b1ec75fa993f6db5cc50e897e41002; SHA256-LF and Git blob IDs below bind the workbook and evidence to that recipe-data version.",
   "hashConvention": "Text: UTF-8, CRLF normalised to LF; SHA256 and bytes cover normalised bytes. XLSX: exact stored bytes.",
   "counts": {
     "reviewed": 317,
@@ -118,5 +118,6 @@
   "approval": {
     "date": "2026-11-20",
     "scope": "Approved Phase 2 carbohydrate corrections, conditional avocado substitutions and corresponding display, tests and evidence. No further nutritional or recipe-content changes."
-  }
+  },
+  "commitBinding": "recipeDataCommit contains the approved Phase 2 recipe data, final workbook and matching reconciliation records. This metadata-only follow-up pins that commit and changes no recipe, workbook or nutritional evidence contents."
 }

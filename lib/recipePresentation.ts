@@ -1,5 +1,9 @@
 import { formatQuantityNumber } from "./recipeQuantities";
 
+export function presentCookingTime(time: string): string {
+  return time.replace(/\bminutes?\b/g, "mins");
+}
+
 type Ingredient = { item: string; quantity: string };
 
 // Display only: never feed these approximate measures into shopping or nutrition.

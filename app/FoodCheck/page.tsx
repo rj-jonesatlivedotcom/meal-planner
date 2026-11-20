@@ -984,14 +984,6 @@ export default function FoodCheckPage() {
                   <button
                     type="button"
                     onClick={() => {
-                      const gtag = (window as typeof window & {
-                        gtag?: (...args: any[]) => void;
-                      }).gtag;
-
-                      if (gtag) {
-                        gtag("event", "food_check_used");
-                      }
-
                       if (searchDebounceRef.current !== null) {
                         window.clearTimeout(searchDebounceRef.current);
                         searchDebounceRef.current = null;

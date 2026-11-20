@@ -1,3 +1,4 @@
+import { presentCookingTime } from "@/lib/recipePresentation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { recipes } from "@/data/RecipeData";
@@ -73,7 +74,7 @@ export default function ChineseRecipeCollection() {
                 <div className={collection.content}>
                   <h3 id={`collection-${recipe.id}`}><Link href={`/recipes/${recipe.id}`}>{recipe.name}</Link></h3>
                   <p>{choice.note}</p>
-                  <p className={collection.time}>{recipe.cookingTime} · Serves {recipe.servings}</p>
+                  <p className={collection.time}>{presentCookingTime(recipe.cookingTime)} · Serves {recipe.servings}</p>
                   <p className={collection.serving}>Nutrition per serving</p>
                   <RecipeNutrition detailed unavailableLabels={unavailableLabels} values={[
                     ["Calories", recipe.nutrition.calories], ["Protein", recipe.nutrition.protein],

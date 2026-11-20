@@ -10,7 +10,7 @@ npm run lint:check
 
 `npm test` discovers every `*.test.mjs` under `app`, `components`, `lib` and `supabase/tests`. These tests use local fixtures; they do not write to hosted services. Several recipe-preservation tests read historical Git commits, so use a complete clone (`git fetch --unshallow` for a shallow clone).
 
-`npm run lint` remains the full ESLint report. The initial baseline contains **43 errors and 51 warnings**. `lint:check` rejects increases for each file, rule, severity and message; it does not mean the existing code is lint-clean. Do not expand `eslint-baseline.json` to accept new warnings or errors. Reduce the relevant counts when fixing existing findings.
+`npm run lint` remains the full ESLint report. The current baseline contains **37 errors and 51 warnings**, reduced from the original 43 errors and 51 warnings by removing dormant tracking hooks. `lint:check` rejects increases for each file, rule, severity and message; it does not mean the existing code is lint-clean. Do not expand `eslint-baseline.json` to accept new warnings or errors. Reduce the relevant counts when fixing existing findings.
 
 ## Browser checks
 

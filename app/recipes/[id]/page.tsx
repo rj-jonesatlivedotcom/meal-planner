@@ -15,7 +15,7 @@ import { browseRecipes, recipes } from "@/data/RecipeData";
 import { getRecipeVariation } from "@/data/RecipeData/variants";
 import { createClient } from "@/lib/supabase/client";
 import { getDietaryGuide, getDietaryGuideSections } from "@/lib/dietaryGuides";
-import { presentIngredient, presentMethods } from "@/lib/recipePresentation";
+import { presentCookingTime, presentIngredient, presentMethods } from "@/lib/recipePresentation";
 import { recipeStepId } from "@/lib/recipeInstructions";
 import { watchRecipeGuideLayout } from "@/lib/recipeGuideLayout";
 
@@ -680,7 +680,7 @@ export default function RecipeDetailPage() {
             {recipe.dietCategories.map((category) => <span className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-900" key={category}>{category}</span>)}
           </div> : null}
           <div className={styles.meta}>
-            <span><RecipeIcon name="time" />{recipe.cookingTime}</span>
+            <span><RecipeIcon name="time" />{presentCookingTime(recipe.cookingTime)}</span>
             <span><RecipeIcon name="servings" />{recipe.servings} {recipe.servings === 1 ? "serving" : "servings"}</span>
           </div>
           <RecipeNutrition estimated={nutritionEstimated} unavailableLabels={nutritionUnavailableLabels} values={[
@@ -750,7 +750,7 @@ export default function RecipeDetailPage() {
         <div className={styles.relatedGrid}>
           {relatedRecipes.map((item) => <Link className={styles.relatedCard} href={`/recipes/${item.id}`} key={item.id}>
             <div className={styles.relatedPhoto}><RecipePhoto recipeId={item.id} src={item.image} name={item.name} sizes="(max-width: 335px) calc(100vw - 42px), (max-width: 767px) calc(50vw - 28px), (max-width: 1279px) calc(25vw - 22px), 300px" /></div><RecipeAllergyNotice recipeId={item.id} />
-            <strong>{item.name}</strong><small><RecipeIcon name="time" />{item.cookingTime}</small>
+            <strong>{item.name}</strong><small><RecipeIcon name="time" />{presentCookingTime(item.cookingTime)}</small>
           </Link>)}
         </div>
       </section>}

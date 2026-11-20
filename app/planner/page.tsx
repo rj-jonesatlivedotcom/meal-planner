@@ -947,17 +947,6 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
       };
     });
 
-    if (typeof window !== "undefined") {
-      const gtag = (window as typeof window & {
-        gtag?: (...args: any[]) => void;
-      }).gtag;
-
-      if (gtag) {
-        gtag("event", "meal_added", {
-          meal_type: picker.meal,
-        });
-      }
-    }
 
     setPicker(null);
   }
@@ -1287,15 +1276,7 @@ return { readFluidLog, getHouseholdPeople, getPlannerCounts, syncPlannerWithShop
 
     setPendingReplaceAll(!hasEmptySlots);
 
-if (typeof window !== "undefined") {
-  const gtag = (window as typeof window & {
-    gtag?: (...args: any[]) => void;
-  }).gtag;
 
-  if (gtag) {
-    gtag("event", "mychef_used");
-  }
-}
 
 openMyChefIntro();
   }
@@ -1419,8 +1400,9 @@ openMyChefIntro();
   }
 
   function formatSalt(sodiumMg: number): string {
+  if (!Number.isFinite(sodiumMg)) return "—";
   const saltGrams = (sodiumMg * 2.5) / 1000;
-  return `${saltGrams.toFixed(0)} g`;
+  return `${saltGrams.toFixed(1)} g`;
 }
 
 function formatPotassiumMg(mg: number): string {

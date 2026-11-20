@@ -1,5 +1,7 @@
 "use client";
 
+import { presentCookingTime } from "@/lib/recipePresentation";
+
 import { useWeeklyPageStorage, afterWeeklyPageWrites } from "@/lib/weeklyPageStorage";
 
 import RecipePhoto from "./RecipePhoto";
@@ -108,22 +110,6 @@ export default function RecipeCard({
 }: RecipeCardProps) {
   const weeklyPageStorage = useWeeklyPageStorage();
   const router = useRouter();
-
-  function trackRecipeViewed() {
-    if (typeof window === "undefined") return;
-
-    const gtag = (window as typeof window & {
-      gtag?: (...args: any[]) => void;
-    }).gtag;
-
-    if (gtag) {
-      gtag("event", "recipe_viewed", {
-        recipe_id: recipe.id,
-        recipe_name: recipe.name,
-        meal_type: getMealTypeLabel(recipe.code),
-      });
-    }
-  }
 
   const [showPlanner, setShowPlanner] =
     useState(false);
@@ -727,7 +713,6 @@ export default function RecipeCard({
 
       <Link
         href={`/recipes/${recipe.id}`}
-        onClick={trackRecipeViewed}
         className={styles.cardImage}
       >
         <RecipePhoto recipeId={recipe.id} src={recipe.image} name={recipe.name} loading={imageLoading} />
@@ -753,7 +738,6 @@ export default function RecipeCard({
         {/* Recipe content */}
         <Link
           href={`/recipes/${recipe.id}`}
-          onClick={trackRecipeViewed}
           className="block"
         >
 
@@ -803,7 +787,7 @@ export default function RecipeCard({
             {recipe.description}
           </p>
 
-          <p className="mt-3 text-xs font-semibold text-slate-500"><span aria-hidden="true">◷</span> {recipe.cookingTime}</p>
+          <p className="mt-3 text-xs font-semibold text-slate-500"><span aria-hidden="true">◷</span> {presentCookingTime(recipe.cookingTime)}</p>
           <RecipeNutrition values={[
             ["Calories", recipe.calories], ["Protein", recipe.protein],
             ["Potassium", recipe.nutrition?.potassium], ["Phosphorus", recipe.nutrition?.phosphate],
@@ -812,7 +796,7 @@ export default function RecipeCard({
         </Link>
 
         <div className={styles.cardActions}>
-          <Link href={`/recipes/${recipe.id}`} onClick={trackRecipeViewed}>View recipe <span aria-hidden="true">&rarr;</span></Link>
+          <Link href={`/recipes/${recipe.id}`}>View recipe <span aria-hidden="true">&rarr;</span></Link>
           <button type="button" onClick={openPlanner} className={styles.primary}><RecipeIcon name="planner" />Add to Planner</button>
         </div>
       </div>

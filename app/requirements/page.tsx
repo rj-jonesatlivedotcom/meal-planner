@@ -98,19 +98,6 @@ export default function RequirementsPage() {
     loadPageRequirements();
   }, []);
 
-  function trackDietUpdate(key: string) {
-    if (typeof window === "undefined") return;
-
-    const gtag = (window as typeof window & {
-      gtag?: (...args: any[]) => void;
-    }).gtag;
-
-    if (gtag) {
-      gtag("event", "diet_updated", {
-        changed_requirement: key,
-      });
-    }
-  }
 
   function stageAdviceLabel() {
     switch (requirements.ckdStage) {
@@ -180,7 +167,6 @@ export default function RequirementsPage() {
     } as Requirements;
 
     setRequirements(nextRequirements);
-    trackDietUpdate(String(key));
 
     // Update MyChef immediately; do not wait for the network round-trip.
     syncRequirementsToLocalStorage(nextRequirements, isLoggedIn);
@@ -194,7 +180,6 @@ export default function RequirementsPage() {
     if (!requirementsReady || loadError) return;
     const nextRequirements = applyStageReferences(requirements, stage);
     setRequirements(nextRequirements);
-    trackDietUpdate("ckd_stage");
     syncRequirementsToLocalStorage(nextRequirements, isLoggedIn);
     if (isLoggedIn) void saveRequirements(nextRequirements);
   }

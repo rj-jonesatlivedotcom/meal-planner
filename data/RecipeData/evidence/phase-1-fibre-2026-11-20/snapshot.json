@@ -4,8 +4,8 @@
   "date": "2026-11-20",
   "scope": "Fibre reconciliation in the original 150 recipes only; no clinical approval.",
   "prePhase1Commit": "de3a5949a537c68a100a50ed7bd9e97503b85d24",
-  "recipeDataCommit": null,
-  "commitBinding": "The metadata follow-up records the exact recipe-data commit after the post-commit preservation test passes. recipeFiles identify the exact Git blobs in advance.",
+  "recipeDataCommit": "4a50604e25dfda12cf5933bd4e80920eadfb158d",
+  "commitBinding": "recipeDataCommit identifies the exact corrected recipe-data commit containing both workbooks and the matching reconciliation record. This metadata follow-up changes no recipe or workbook contents.",
   "recipeFileHashConvention": "sha256Lf uses UTF-8 source with CRLF normalised to LF; gitBlob is the Git object identifier.",
   "counts": {
     "reviewed": 150,

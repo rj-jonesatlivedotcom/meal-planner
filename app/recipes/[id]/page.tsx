@@ -749,7 +749,7 @@ export default function RecipeDetailPage() {
         <div className={styles.panelHeading}><h2 id="related-recipes"><RecipeIcon name="star" />You might also like</h2><Link href="/recipes">View all recipes &rarr;</Link></div>
         <div className={styles.relatedGrid}>
           {relatedRecipes.map((item) => <Link className={styles.relatedCard} href={`/recipes/${item.id}`} key={item.id}>
-            <div className={styles.relatedPhoto}><RecipePhoto recipeId={item.id} src={item.image} name={item.name} /></div><RecipeAllergyNotice recipeId={item.id} />
+            <div className={styles.relatedPhoto}><RecipePhoto recipeId={item.id} src={item.image} name={item.name} sizes="(max-width: 335px) calc(100vw - 42px), (max-width: 767px) calc(50vw - 28px), (max-width: 1279px) calc(25vw - 22px), 300px" /></div><RecipeAllergyNotice recipeId={item.id} />
             <strong>{item.name}</strong><small><RecipeIcon name="time" />{item.cookingTime}</small>
           </Link>)}
         </div>

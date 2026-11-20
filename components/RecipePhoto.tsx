@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { AllergyOverlay } from "./RecipeAllergy";
 
-export default function RecipePhoto({ src, name, recipeId, priority = false, loading }: {
-  src: string; name: string; recipeId: string; priority?: boolean; loading?: "eager" | "lazy";
+export default function RecipePhoto({ src, name, recipeId, priority = false, loading, sizes }: {
+  src: string; name: string; recipeId: string; priority?: boolean; loading?: "eager" | "lazy"; sizes?: string;
 }) {
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
   if (!src?.trim() || failedSrc === src) {
@@ -18,6 +18,8 @@ export default function RecipePhoto({ src, name, recipeId, priority = false, loa
     );
   }
   return <><Image src={src} alt={name} fill priority={priority} loading={loading}
-    sizes={priority ? "(min-width: 1152px) 560px, (min-width: 1024px) 50vw, 100vw" : "(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 460px"}
+    sizes={sizes ?? (priority
+      ? "(min-width: 1280px) 654px, (min-width: 1024px) calc(52.83vw - 22px), calc(100vw - 42px)"
+      : "(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 35px), (max-width: 1447px) calc(33.33vw - 31px), 452px")}
     className="object-cover" onError={() => setFailedSrc(src)} /><AllergyOverlay recipeId={recipeId} /></>;
 }

@@ -164,7 +164,9 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    deviceSizes: [640, 960, 1280, 1920],
+    imageSizes: [64, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 90, // 90 days
   },
 };
 

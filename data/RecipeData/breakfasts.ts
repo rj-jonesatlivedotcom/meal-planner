@@ -3667,7 +3667,7 @@ export const breakfasts: Recipe[] = [
     "carbohydrates": "0.1 g",
     "fat": "31.8 g",
     "fibre": "0.1 g",
-    "sodium": "186 mg",
+    "sodium": "187 mg",
     "potassium": "399 mg",
     "phosphate": "341 mg",
     "salt": "0.47 g"

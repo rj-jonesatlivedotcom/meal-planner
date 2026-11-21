@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-21",
+  "baselineCommit": "9188c811e6cec629b38e8ca9a86e0977517e4ac4",
+  "code": "B059",
+  "id": "salmon-and-egg-breakfast-cup",
+  "field": "sodium",
+  "before": "186 mg",
+  "after": "187 mg",
+  "unroundedDecimalMg": 186.5,
+  "originalBinaryTotalMg": 186.49999999999997,
+  "ingredients": [
+    {
+      "food": "Whole egg, shell removed",
+      "grams": 100,
+      "sodiumMgPer100g": 154,
+      "contributionMg": 154
+    },
+    {
+      "food": "Farmed salmon fillet, flesh only",
+      "grams": 70,
+      "sodiumMgPer100g": 43,
+      "contributionMg": 30.1
+    },
+    {
+      "food": "Unsalted butter",
+      "grams": 15,
+      "sodiumMgPer100g": 8,
+      "contributionMg": 1.2
+    },
+    {
+      "food": "Drinking tap water",
+      "grams": 30,
+      "sodiumMgPer100g": 4,
+      "contributionMg": 1.2
+    }
+  ],
+  "sourceEvidence": "data/RecipeData/evidence/balanced-110/recipe-data.json",
+  "rounding": "Normalise the source-contribution sum to eight decimal places, then round half upwards to whole milligrams, matching the verification-workbook calculation.",
+  "reason": "Binary floating-point representation caused the original 186.5 mg total to round down. The recorded per-serving sodium is corrected to 187 mg.",
+  "unchangedSalt": "0.47 g",
+  "scope": "Only B059 sodium changes. Calories, other nutrients, ingredients, portions and instructions are unchanged. The earlier evidence snapshots remain immutable historical records."
+}

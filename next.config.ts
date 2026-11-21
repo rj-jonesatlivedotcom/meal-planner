@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    agentUpgrade: "security",
+  },
   // Calendar links are bearer capabilities: do not print them in dev access logs.
   ...(process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_RENALPLAN_DATED_TEST === "1"
     ? { logging: { incomingRequests: { ignore: [/\/api\/calendar\/feed\//] } } } : {}),

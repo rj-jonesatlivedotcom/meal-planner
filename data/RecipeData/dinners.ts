@@ -6,7 +6,7 @@ export const dinners: Recipe[] = [
     code: "D001", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍋",
-    image: "/images/recipes/D001.png",
+    image: "/images/recipes/D001.webp",
     name: "Lemon & Herb Chicken with Rice",
     description: "Tender grilled chicken with basmati rice, soft white cabbage and onion, finished with lemon and parsley.",
     cookingTime: "30 minutes",
@@ -91,7 +91,7 @@ export const dinners: Recipe[] = [
     code: "D002", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🌿",
-    image: "/images/recipes/D002.png",
+    image: "/images/recipes/D002.webp",
     name: "Rosemary Turkey with Rice & Vegetables",
     description: "Lean grilled turkey with basmati rice, cabbage and carrots, gently flavoured with rosemary.",
     cookingTime: "30 minutes",
@@ -171,7 +171,7 @@ export const dinners: Recipe[] = [
     code: "D003", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🥕",
-    image: "/images/recipes/D003.png",
+    image: "/images/recipes/D003.webp",
     name: "Herb-Grilled Pork with Rice & Vegetables",
     description: "Lean grilled pork loin served with basmati rice, carrots and cabbage with a light thyme dressing.",
     cookingTime: "30 minutes",
@@ -251,7 +251,7 @@ export const dinners: Recipe[] = [
     code: "D004", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🐟",
-    image: "/images/recipes/D004.png",
+    image: "/images/recipes/D004.webp",
     name: "Lemon Cod with Rice & Cabbage",
     description: "Oven-baked cod with fluffy basmati rice, cabbage and onion, finished with fresh lemon and parsley.",
     cookingTime: "30 minutes",
@@ -337,7 +337,7 @@ export const dinners: Recipe[] = [
     code: "D005", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍋",
-    image: "/images/recipes/D005.png",
+    image: "/images/recipes/D005.webp",
     name: "Lemon Salmon with Rice & Cabbage",
     description: "Baked salmon with basmati rice, soft cabbage and onion, brightened with fresh lemon.",
     cookingTime: "30 minutes",
@@ -418,7 +418,7 @@ export const dinners: Recipe[] = [
     code: "D006", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🥩",
-    image: "/images/recipes/D006.png",
+    image: "/images/recipes/D006.webp",
     name: "Paprika Beef with Rice & Cabbage",
     description: "Lean minced beef gently cooked with paprika and onion, served with basmati rice and soft cabbage.",
     cookingTime: "30 minutes",
@@ -497,7 +497,7 @@ export const dinners: Recipe[] = [
     code: "D007", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍝",
-    image: "/images/recipes/D007.png",
+    image: "/images/recipes/D007.webp",
     name: "Creamy Egg & Cheddar Pasta with Cabbage",
     description: "White pasta tossed with boiled egg, mature cheddar and tender cabbage for a filling meat-free dinner.",
     cookingTime: "25 minutes",
@@ -577,7 +577,7 @@ export const dinners: Recipe[] = [
     code: "D008", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🌶️",
-    image: "/images/recipes/D008.png",
+    image: "/images/recipes/D008.webp",
     name: "Paprika Chicken with Rice & Peppers",
     description: "Grilled chicken with basmati rice, green pepper and onion, gently seasoned with paprika.",
     cookingTime: "30 minutes",
@@ -657,7 +657,7 @@ export const dinners: Recipe[] = [
     code: "D009", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍝",
-    image: "/images/recipes/D009.png",
+    image: "/images/recipes/D009.webp",
     name: "Creamy Pork & Herb Pasta",
     description: "Lean grilled pork with white pasta and cabbage in a light single-cream and thyme sauce.",
     cookingTime: "30 minutes",
@@ -737,7 +737,7 @@ export const dinners: Recipe[] = [
     code: "D010", mealFamily: "rice-bowl",
     category: "Dinner",
     emoji: "🥚",
-    image: "/images/recipes/D010.png",
+    image: "/images/recipes/D010.webp",
     name: "Egg, Cheddar & Cauliflower Rice Bowl",
     description: "Boiled egg and mature cheddar served with basmati rice and tender cauliflower, finished with parsley.",
     cookingTime: "25 minutes",
@@ -817,7 +817,7 @@ export const dinners: Recipe[] = [
     code: "D011", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍄",
-    image: "/images/recipes/D011.png",
+    image: "/images/recipes/D011.webp",
     name: "Creamy Chicken & Mushroom Rice",
     description: "Tender chicken and earthy mushrooms folded through fluffy basmati rice in a silky, lightly seasoned cream sauce.",
     cookingTime: "27 minutes",
@@ -869,7 +869,7 @@ export const dinners: Recipe[] = [
     code: "D012", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍝",
-    image: "/images/recipes/D012.png",
+    image: "/images/recipes/D012.webp",
     name: "Turkey & Sweetcorn Pasta",
     description: "Lean turkey and sweetcorn tossed with white pasta in a simple creamy herb sauce.",
     cookingTime: "23 minutes",
@@ -932,7 +932,7 @@ export const dinners: Recipe[] = [
     code: "D013", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🐟",
-    image: "/images/recipes/D013.png",
+    image: "/images/recipes/D013.webp",
     name: "Lemon Cod with Pasta & Peppers",
     description: "Flaked baked cod served with white pasta, cabbage and green pepper with fresh lemon.",
     cookingTime: "22 minutes",
@@ -994,7 +994,7 @@ export const dinners: Recipe[] = [
     code: "D014", mealFamily: "rice-bowl",
     category: "Dinner",
     emoji: "🍚",
-    image: "/images/recipes/D014.png",
+    image: "/images/recipes/D014.webp",
     name: "Chicken & Sweetcorn Rice Bowl",
     description: "Grilled chicken with basmati rice, cabbage, sweetcorn and lemon.",
     cookingTime: "23 minutes",
@@ -1056,7 +1056,7 @@ export const dinners: Recipe[] = [
     code: "D015", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍗",
-    image: "/images/recipes/D015.png",
+    image: "/images/recipes/D015.webp",
     name: "Turkey, Rice & Roasted Peppers",
     description: "Herb-grilled turkey served with basmati rice, cabbage and roasted green pepper.",
     cookingTime: "25 minutes",
@@ -1119,7 +1119,7 @@ export const dinners: Recipe[] = [
     code: "D016", mealFamily: "rice-bowl",
     category: "Dinner",
     emoji: "🍎",
-    image: "/images/recipes/D016.png",
+    image: "/images/recipes/D016.webp",
     name: "Pork & Apple Rice Bowl",
     description: "Tender lean pork with basmati rice, cabbage and warm apple with rosemary.",
     cookingTime: "25 minutes",
@@ -1182,7 +1182,7 @@ export const dinners: Recipe[] = [
     code: "D017", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍝",
-    image: "/images/recipes/D017.png",
+    image: "/images/recipes/D017.webp",
     name: "Creamy Chicken & Cabbage Pasta",
     description: "Chicken and cabbage folded through pasta with a light cream, lemon and herb sauce.",
     cookingTime: "20 minutes",
@@ -1244,7 +1244,7 @@ export const dinners: Recipe[] = [
     code: "D018", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🐟",
-    image: "/images/recipes/D018.png",
+    image: "/images/recipes/D018.webp",
     name: "Cod, Sweetcorn & Rice",
     description: "Baked cod with basmati rice, cabbage and sweetcorn finished with lemon and parsley.",
     cookingTime: "26 minutes",
@@ -1306,7 +1306,7 @@ export const dinners: Recipe[] = [
     code: "D019", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🥚",
-    image: "/images/recipes/D019.png",
+    image: "/images/recipes/D019.webp",
     name: "Egg & Vegetable Pasta",
     description: "Soft scrambled egg with pasta, cabbage, sweetcorn and green pepper in a simple herb dressing.",
     cookingTime: "20 minutes",
@@ -1369,7 +1369,7 @@ export const dinners: Recipe[] = [
     code: "D020", mealFamily: "couscous-bowl",
     category: "Dinner",
     emoji: "🍗",
-    image: "/images/recipes/D020.png",
+    image: "/images/recipes/D020.webp",
     name: "Chicken & Apple Couscous-Style Rice",
     description: "Lemon-herb chicken with fluffy basmati rice, cabbage and warm apple.",
     cookingTime: "28 minutes",
@@ -1427,7 +1427,7 @@ export const dinners: Recipe[] = [
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
-    id: "chicken-herb-sweetcorn-rice", code: "D021", mealFamily: "rice-dish", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.png",
+    id: "chicken-herb-sweetcorn-rice", code: "D021", mealFamily: "rice-dish", category: "Dinner", emoji: "🍗", image: "/images/recipes/D021.webp",
     name: "Chicken, Herb & Sweetcorn Rice", description: "Tender chicken with fluffy basmati rice, sweetcorn and herbs.", cookingTime: "30 minutes", calories: "519 kcal", protein: "33.9 g", equipment: "Large saucepan, frying pan, wooden spoon, knife, chopping board, Food thermometer",
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1456,7 +1456,7 @@ export const dinners: Recipe[] = [
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
-    id: "beef-pepper-pasta", code: "D022", mealFamily: "hot-pasta", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.png",
+    id: "beef-pepper-pasta", code: "D022", mealFamily: "hot-pasta", category: "Dinner", emoji: "🥩", image: "/images/recipes/D022.webp",
     name: "Beef & Pepper Pasta", description: "Lean beef mince with pasta, peppers and onion in a light herb sauce.", cookingTime: "25 minutes", calories: "519 kcal", protein: "37.0 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Beef mince (5% fat)", shoppingItem: "Beef mince (5% fat)", quantity: "120 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried oregano", shoppingItem: "Dried oregano", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1486,7 +1486,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "herb-cod-potatoes-cabbage", code: "D023", mealFamily: "potato-dish", category: "Dinner",
-    cuisine: "British", emoji: "🐟", image: "/images/recipes/D023.png",
+    cuisine: "British", emoji: "🐟", image: "/images/recipes/D023.webp",
     name: "Herb Cod with Potatoes & Cabbage", description: "Baked cod served with boiled potatoes and tender cabbage with lemon and herbs.", cookingTime: "35 minutes", calories: "449 kcal", protein: "30.7 g", equipment: "Baking tray, saucepan, steamer or second saucepan, knife, chopping board, Oven, Colander or sieve",
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "140 g" }, { item: "Potatoes", shoppingItem: "Potatoes", quantity: "250 g" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1517,7 +1517,7 @@ export const dinners: Recipe[] = [
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
-    id: "creamy-cheese-egg-pasta", code: "D024", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.png",
+    id: "creamy-cheese-egg-pasta", code: "D024", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍳", image: "/images/recipes/D024.webp",
     name: "Creamy Cheese & Egg Pasta", description: "Pasta coated in a creamy egg and Cheddar sauce with onion and herbs.", cookingTime: "20 minutes", calories: "589 kcal", protein: "27.7 g", equipment: "Large saucepan, frying pan, mixing bowl, colander, wooden spoon, Knife and chopping board, Fork or whisk, Grater",
     ingredients: [
       { item: "White pasta", shoppingItem: "White pasta", quantity: "90 g" }, { item: "Egg", shoppingItem: "Egg", quantity: "1" }, { item: "Cheddar cheese", shoppingItem: "Cheddar cheese", quantity: "25 g" }, { item: "Semi-skimmed milk", shoppingItem: "Semi-skimmed milk", quantity: "100 ml" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1547,7 +1547,7 @@ export const dinners: Recipe[] = [
   },
   {
     id: "pork-apple-cabbage", code: "D025", mealFamily: "meat-and-vegetable-dish", category: "Dinner",
-    cuisine: "British", emoji: "🍖", image: "/images/recipes/D025.png",
+    cuisine: "British", emoji: "🍖", image: "/images/recipes/D025.webp",
     name: "Pork, Apple & Cabbage", description: "Grilled pork with warm apple and tender cabbage, finished with herbs.", cookingTime: "30 minutes", calories: "396 kcal", protein: "36.9 g", equipment: "Grill pan, saucepan, frying pan, knife, chopping board",
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "140 g" }, { item: "Apple", shoppingItem: "Apples", quantity: "1 apple (100 g)" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (120 g)" }, { item: "Unsalted butter", shoppingItem: "Unsalted butter", quantity: "15 g" }, { item: "Vegetable oil", shoppingItem: "Vegetable oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "0.2 g (small pinch)" }
@@ -1576,7 +1576,7 @@ export const dinners: Recipe[] = [
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
-    id: "creamy-chicken-pepper-pasta", code: "D026", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.png",
+    id: "creamy-chicken-pepper-pasta", code: "D026", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍗", image: "/images/recipes/D026.webp",
     name: "Creamy Chicken & Pepper Pasta", description: "Chicken and peppers folded through pasta with a light creamy sauce.", cookingTime: "25 minutes", calories: "562 kcal", protein: "36.3 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board, Food thermometer",
     ingredients: [
       { item: "Chicken breast", shoppingItem: "Chicken breast", quantity: "100 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Single cream", shoppingItem: "Single cream", quantity: "50 ml" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried thyme", shoppingItem: "Dried thyme", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1605,7 +1605,7 @@ export const dinners: Recipe[] = [
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
-    id: "cod-sweetcorn-herb-pasta", code: "D027", mealFamily: "hot-pasta", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.png",
+    id: "cod-sweetcorn-herb-pasta", code: "D027", mealFamily: "hot-pasta", category: "Dinner", emoji: "🐟", image: "/images/recipes/D027.webp",
     name: "Cod, Sweetcorn & Herb Pasta", description: "Flaked cod with pasta and sweetcorn in a fresh lemon and herb dressing.", cookingTime: "25 minutes", calories: "483 kcal", protein: "34.9 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, Lid or bowl cover",
     ingredients: [
       { item: "Cod fillet", shoppingItem: "Cod fillet", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Lemon juice", shoppingItem: "Lemon juice", quantity: "1 tbsp" }, { item: "Dried parsley", shoppingItem: "Dried parsley", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1634,7 +1634,7 @@ export const dinners: Recipe[] = [
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
-    id: "egg-cabbage-sweetcorn-rice", code: "D028", mealFamily: "rice-dish", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.png",
+    id: "egg-cabbage-sweetcorn-rice", code: "D028", mealFamily: "rice-dish", category: "Dinner", emoji: "🥚", image: "/images/recipes/D028.webp",
     name: "Egg, Cabbage & Sweetcorn Rice", description: "Fluffy rice stir-fried with egg, cabbage, sweetcorn and onion.", cookingTime: "25 minutes", calories: "567 kcal", protein: "23.7 g", equipment: "Saucepan, large frying pan, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Basmati rice", shoppingItem: "Basmati rice", quantity: "90 g" }, { item: "Eggs", shoppingItem: "Eggs", quantity: "2" }, { item: "Cabbage", shoppingItem: "Cabbage", quantity: "¼ cabbage (100 g)" }, { item: "Sweetcorn kernels", shoppingItem: "Sweetcorn kernels", quantity: "60 g" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (50 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1663,7 +1663,7 @@ export const dinners: Recipe[] = [
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   {
-    id: "pork-pepper-pasta", code: "D029", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.png",
+    id: "pork-pepper-pasta", code: "D029", mealFamily: "hot-pasta", category: "Dinner", emoji: "🍖", image: "/images/recipes/D029.webp",
     name: "Pork & Pepper Pasta", description: "Tender pork with pasta, green pepper and onion in a light herb dressing.", cookingTime: "25 minutes", calories: "510 kcal", protein: "42.9 g", equipment: "Large saucepan, frying pan, colander, wooden spoon, knife, chopping board",
     ingredients: [
       { item: "Lean pork loin", shoppingItem: "Lean pork loin", quantity: "130 g" }, { item: "White pasta", shoppingItem: "White pasta", quantity: "85 g" }, { item: "Green pepper", shoppingItem: "Green peppers", quantity: "1½ green peppers (70 g)" }, { item: "Onion", shoppingItem: "Onions", quantity: "½ onion (40 g)" }, { item: "Olive oil", shoppingItem: "Olive oil", quantity: "1 tsp" }, { item: "Dried rosemary", shoppingItem: "Dried rosemary", quantity: "½ tsp" }, { item: "Black pepper", shoppingItem: "Black pepper", quantity: "¼ tsp" }
@@ -1696,7 +1696,7 @@ export const dinners: Recipe[] = [
     code: "D030", mealFamily: "skillet",
     category: "Dinner",
     emoji: "🍎",
-    image: "/images/recipes/D030.png",
+    image: "/images/recipes/D030.webp",
     name: "Pork & Apple Cabbage Skillet",
     description: "Succulent pork with tender cabbage and softly caramelised apple, finished with rosemary for a fragrant sweet-and-savoury supper.",
     cookingTime: "30 minutes",
@@ -1747,7 +1747,7 @@ export const dinners: Recipe[] = [
     code: "D031", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍗",
-    image: "/images/recipes/D031.png",
+    image: "/images/recipes/D031.webp",
     name: "Lemon Chicken & Herb Pasta",
     description: "Tender chicken and pasta with lemon, onion and herbs.",
     cookingTime: "25 minutes",
@@ -1799,7 +1799,7 @@ export const dinners: Recipe[] = [
     code: "D032", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🐟",
-    image: "/images/recipes/D032.png",
+    image: "/images/recipes/D032.webp",
     name: "Cod, Pepper & Lemon Rice",
     description: "Flaked cod served with basmati rice, green pepper and lemon.",
     cookingTime: "30 minutes",
@@ -1852,7 +1852,7 @@ export const dinners: Recipe[] = [
     code: "D033", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🥩",
-    image: "/images/recipes/D033.png",
+    image: "/images/recipes/D033.webp",
     name: "Beef, Cabbage & Rice",
     description: "Lean beef mince with cabbage, onion and basmati rice.",
     cookingTime: "30 minutes",
@@ -1903,7 +1903,7 @@ export const dinners: Recipe[] = [
     code: "D034", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍳",
-    image: "/images/recipes/D034.png",
+    image: "/images/recipes/D034.webp",
     name: "Cheesy Egg & Vegetable Rice",
     description: "Basmati rice with scrambled egg, sweetcorn, pepper and Cheddar.",
     cookingTime: "25 minutes",
@@ -1955,7 +1955,7 @@ export const dinners: Recipe[] = [
     code: "D035", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🍗",
-    image: "/images/recipes/D035.png",
+    image: "/images/recipes/D035.webp",
     name: "Chicken, Cabbage & Herb Rice",
     description: "Chicken and cabbage served with fluffy basmati rice and rosemary.",
     cookingTime: "30 minutes",
@@ -2006,7 +2006,7 @@ export const dinners: Recipe[] = [
     code: "D036", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🐟",
-    image: "/images/recipes/D036.png",
+    image: "/images/recipes/D036.webp",
     name: "Cod & Cabbage Pasta",
     description: "Flaked cod and tender cabbage folded through pasta with lemon and parsley.",
     cookingTime: "25 minutes",
@@ -2058,7 +2058,7 @@ export const dinners: Recipe[] = [
     code: "D037", mealFamily: "rice-dish",
     category: "Dinner",
     emoji: "🥩",
-    image: "/images/recipes/D037.png",
+    image: "/images/recipes/D037.webp",
     name: "Pepper Beef & Rice",
     description: "Lean beef mince with green pepper and onion served over basmati rice.",
     cookingTime: "30 minutes",
@@ -2109,7 +2109,7 @@ export const dinners: Recipe[] = [
     code: "D038", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍖",
-    image: "/images/recipes/D038.png",
+    image: "/images/recipes/D038.webp",
     name: "Pork & Apple Herb Pasta",
     description: "Tender pork with apple, pasta and onion finished with rosemary.",
     cookingTime: "25 minutes",
@@ -2160,7 +2160,7 @@ export const dinners: Recipe[] = [
     code: "D039", mealFamily: "hot-pasta",
     category: "Dinner",
     emoji: "🍳",
-    image: "/images/recipes/D039.png",
+    image: "/images/recipes/D039.webp",
     name: "Egg, Cauliflower & Herb Pasta",
     description: "Pasta with egg, cauliflower, onion and a light herb dressing.",
     cookingTime: "25 minutes",
@@ -2213,7 +2213,7 @@ export const dinners: Recipe[] = [
     category: "Dinner",
     cuisine: "British",
     emoji: "🐟",
-    image: "/images/recipes/D040.png",
+    image: "/images/recipes/D040.webp",
     name: "Cod & Sweetcorn Potato Bake",
     description: "Flaky baked cod layered with tender potato and sweetcorn in a creamy, lightly seasoned bake with a golden finish.",
     cookingTime: "40 minutes",
@@ -2263,7 +2263,7 @@ export const dinners: Recipe[] = [
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
 
-  { id: "chicken-leek-couscous-lemon", code: "D041", mealFamily: "couscous-dish", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.png", name: "Chicken & Leek Couscous with Lemon", description: "Tender chicken with fluffy couscous, softened leek and carrot, finished with fresh lemon and parsley.", cookingTime: "30 minutes", calories: "371 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
+  { id: "chicken-leek-couscous-lemon", code: "D041", mealFamily: "couscous-dish", category: "Dinner", emoji: "🍋", image: "/images/recipes/D041.webp", name: "Chicken & Leek Couscous with Lemon", description: "Tender chicken with fluffy couscous, softened leek and carrot, finished with fresh lemon and parsley.", cookingTime: "30 minutes", calories: "371 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "35 g" },
       { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
@@ -2290,7 +2290,7 @@ export const dinners: Recipe[] = [
     nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "turkey-meatballs-herb-rice", code: "D042", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.png", name: "Turkey Meatballs with Herb Rice", description: "Herb-seasoned turkey meatballs served with basmati rice, tender cabbage and onion.", cookingTime: "30 minutes", calories: "504 kcal", protein: "20.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
+  { id: "turkey-meatballs-herb-rice", code: "D042", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍚", image: "/images/recipes/D042.webp", name: "Turkey Meatballs with Herb Rice", description: "Herb-seasoned turkey meatballs served with basmati rice, tender cabbage and onion.", cookingTime: "30 minutes", calories: "504 kcal", protein: "20.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
       { item: "Turkey, meat, average, raw", shoppingItem: "Turkey mince (lean)", quantity: "60 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "70 g" },
       { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (50 g)" },
@@ -2316,7 +2316,7 @@ export const dinners: Recipe[] = [
     nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "cod-herby-noodles-cucumber", code: "D043", mealFamily: "noodles", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.png", name: "Cod with Herby Noodles & Cucumber", description: "Baked cod with plain noodles, tender cabbage and cucumber, finished with lemon, parsley and olive oil.", cookingTime: "30 minutes", calories: "377 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
+  { id: "cod-herby-noodles-cucumber", code: "D043", mealFamily: "noodles", category: "Dinner", emoji: "🐟", image: "/images/recipes/D043.webp", name: "Cod with Herby Noodles & Cucumber", description: "Baked cod with plain noodles, tender cabbage and cucumber, finished with lemon, parsley and olive oil.", cookingTime: "30 minutes", calories: "377 kcal", protein: "15.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "50 g" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
       { item: "Cucumber, raw, flesh and skin", shoppingItem: "Cucumber", quantity: "¼ cucumber (30 g)" },
@@ -2343,7 +2343,7 @@ export const dinners: Recipe[] = [
     nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "pork-apple-leek-rice", code: "D044", mealFamily: "meat-and-vegetable-dish", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.png", name: "Pork Medallions with Apple & Leek", description: "Lean pork medallions with basmati rice, softened leek and warm apple finished with thyme.", cookingTime: "30 minutes", calories: "421 kcal", protein: "14.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "pork-apple-leek-rice", code: "D044", mealFamily: "meat-and-vegetable-dish", category: "Dinner", emoji: "🍎", image: "/images/recipes/D044.webp", name: "Pork Medallions with Apple & Leek", description: "Lean pork medallions with basmati rice, softened leek and warm apple finished with thyme.", cookingTime: "30 minutes", calories: "421 kcal", protein: "14.4 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "50 g" },
       { item: "Leeks, raw", shoppingItem: "Leek", quantity: "½ leek (15 g)" },
@@ -2370,7 +2370,7 @@ export const dinners: Recipe[] = [
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
   { id: "chicken-carrot-noodle-stir-fry", code: "D045", mealFamily: "noodle-stir-fry", category: "Dinner",
-    cuisine: "Chinese", emoji: "🍜", image: "/images/recipes/D045.png", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "386 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
+    cuisine: "Chinese", emoji: "🍜", image: "/images/recipes/D045.webp", name: "Chicken & Carrot Noodle Stir-Fry", description: "Chicken and plain noodles stir-fried with boiled carrot and cabbage, finished with ground ginger.", cookingTime: "30 minutes", calories: "386 kcal", protein: "14.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
       { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (30 g)" },
@@ -2395,7 +2395,7 @@ export const dinners: Recipe[] = [
     nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "beef-meatballs-couscous-peppers", code: "D046", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.png", name: "Beef Meatballs with Couscous & Peppers", description: "Lean beef meatballs with couscous, softened green pepper and onion, gently seasoned with paprika.", cookingTime: "30 minutes", calories: "416 kcal", protein: "18.5 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
+  { id: "beef-meatballs-couscous-peppers", code: "D046", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥩", image: "/images/recipes/D046.webp", name: "Beef Meatballs with Couscous & Peppers", description: "Lean beef meatballs with couscous, softened green pepper and onion, gently seasoned with paprika.", cookingTime: "30 minutes", calories: "416 kcal", protein: "18.5 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
       { item: "Beef, mince, raw, extra lean", shoppingItem: "Beef mince (5% fat)", quantity: "60 g" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "40 g" },
       { item: "Peppers, capsicum, green, raw", shoppingItem: "Green pepper", quantity: "½ green pepper (30 g)" },
@@ -2420,7 +2420,7 @@ export const dinners: Recipe[] = [
     dietCategories: ["Mixed diet"],
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "haddock-lemon-rice-leeks", code: "D047", mealFamily: "rice-dish", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.png", name: "Haddock with Lemon Rice & Leeks", description: "Baked haddock with lemon basmati rice, softened leek and boiled carrot.", cookingTime: "30 minutes", calories: "445 kcal", protein: "15.9 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
+  { id: "haddock-lemon-rice-leeks", code: "D047", mealFamily: "rice-dish", category: "Dinner", emoji: "🐟", image: "/images/recipes/D047.webp", name: "Haddock with Lemon Rice & Leeks", description: "Baked haddock with lemon basmati rice, softened leek and boiled carrot.", cookingTime: "30 minutes", calories: "445 kcal", protein: "15.9 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking tray", ingredients: [
       { item: "Haddock, flesh only, raw", shoppingItem: "Haddock fillet", quantity: "60 g" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
       { item: "Leeks, boiled in unsalted water", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
@@ -2446,7 +2446,7 @@ export const dinners: Recipe[] = [
     nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "chicken-pear-rice-bowl", code: "D048", mealFamily: "rice-bowl", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.png", name: "Chicken & Pear Rice Bowl", description: "Chicken and basmati rice with warm pear and tender cabbage, finished with rosemary.", cookingTime: "30 minutes", calories: "467 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
+  { id: "chicken-pear-rice-bowl", code: "D048", mealFamily: "rice-bowl", category: "Dinner", emoji: "🍐", image: "/images/recipes/D048.webp", name: "Chicken & Pear Rice Bowl", description: "Chicken and basmati rice with warm pear and tender cabbage, finished with rosemary.", cookingTime: "30 minutes", calories: "467 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
       { item: "Pears, average, raw, flesh only", shoppingItem: "Pear", quantity: "½ pear (30 g)" },
@@ -2472,7 +2472,7 @@ export const dinners: Recipe[] = [
     nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "pork-carrot-couscous-skillet", code: "D049", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.png", name: "Pork & Carrot Couscous Skillet", description: "Lean pork with couscous, boiled carrot and softened leek, finished with thyme.", cookingTime: "30 minutes", calories: "383 kcal", protein: "15.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
+  { id: "pork-carrot-couscous-skillet", code: "D049", mealFamily: "couscous-dish", category: "Dinner", emoji: "🥕", image: "/images/recipes/D049.webp", name: "Pork & Carrot Couscous Skillet", description: "Lean pork with couscous, boiled carrot and softened leek, finished with thyme.", cookingTime: "30 minutes", calories: "383 kcal", protein: "15.1 g", equipment: "Saucepan, frying pan, colander, knife, chopping board", ingredients: [
       { item: "Pork, loin medallions, raw, lean", shoppingItem: "Lean pork loin", quantity: "40 g" },
       { item: "Couscous, plain, raw", shoppingItem: "Couscous", quantity: "40 g" },
       { item: "Carrots, old, boiled in unsalted water", shoppingItem: "Carrots", quantity: "½ carrot (20 g)" },
@@ -2498,7 +2498,7 @@ export const dinners: Recipe[] = [
     nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "cod-leek-pasta-bake", code: "D050", mealFamily: "pasta-bake", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.png", name: "Cod & Leek Pasta Bake", description: "Flaked cod and white pasta baked with softened leek and cabbage, finished with parsley and olive oil.", cookingTime: "30 minutes", calories: "374 kcal", protein: "16.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking dish", ingredients: [
+  { id: "cod-leek-pasta-bake", code: "D050", mealFamily: "pasta-bake", category: "Dinner", emoji: "🐟", image: "/images/recipes/D050.webp", name: "Cod & Leek Pasta Bake", description: "Flaked cod and white pasta baked with softened leek and cabbage, finished with parsley and olive oil.", cookingTime: "30 minutes", calories: "374 kcal", protein: "16.0 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Oven, Baking dish", ingredients: [
       { item: "Cod, flesh only, baked", shoppingItem: "Cod fillet", quantity: "45 g" },
       { item: "Pasta, white, dried, raw", shoppingItem: "White pasta", quantity: "40 g" },
       { item: "Leeks, raw", shoppingItem: "Leek", quantity: "½ leek (20 g)" },
@@ -2525,7 +2525,7 @@ export const dinners: Recipe[] = [
     nutritionSourceNote: "Fibre: CoFID AOAC with documented USDA SR28 total dietary-fibre supplements. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "turkey-apple-noodle-bowl", code: "D051", mealFamily: "noodle-bowl", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.png", name: "Turkey & Apple Noodle Bowl", description: "Turkey and plain noodles with apple and cucumber, finished with ginger and olive oil.", cookingTime: "30 minutes", calories: "387 kcal", protein: "15.6 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
+  { id: "turkey-apple-noodle-bowl", code: "D051", mealFamily: "noodle-bowl", category: "Dinner", emoji: "🍎", image: "/images/recipes/D051.webp", name: "Turkey & Apple Noodle Bowl", description: "Turkey and plain noodles with apple and cucumber, finished with ginger and olive oil.", cookingTime: "30 minutes", calories: "387 kcal", protein: "15.6 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Food thermometer", ingredients: [
       { item: "Turkey, light meat, raw", shoppingItem: "Turkey breast", quantity: "50 g (raw)" },
       { item: "Noodles, rice, fine, dried, boiled in unsalted water", shoppingItem: "Rice noodles", quantity: "150 g (cooked)" },
       { item: "Apples, eating, raw, flesh and skin", shoppingItem: "Apple", quantity: "⅜ apple (30 g)" },
@@ -2550,7 +2550,7 @@ export const dinners: Recipe[] = [
     nutritionSourceNote: "Fibre: CoFID AOAC composition values. Ingredient-input estimate; sum before rounding to 0.1 g. Other nutrient values and definitions are unchanged.",
     carbohydrateEvidenceNote: "Carbohydrate is an available-by-weight ingredient estimate, excluding fibre. Conditional source conversions or matches are recorded in the Phase 2 evidence."
   },
-  { id: "chicken-herb-meatballs-rice", code: "D052", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.png", name: "Chicken Herb Meatballs with Rice", description: "Chicken herb meatballs with basmati rice, tender cabbage and carrot, finished with parsley.", cookingTime: "30 minutes", calories: "459 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
+  { id: "chicken-herb-meatballs-rice", code: "D052", mealFamily: "meatballs-rice", category: "Dinner", emoji: "🍗", image: "/images/recipes/D052.webp", name: "Chicken Herb Meatballs with Rice", description: "Chicken herb meatballs with basmati rice, tender cabbage and carrot, finished with parsley.", cookingTime: "30 minutes", calories: "459 kcal", protein: "16.7 g", equipment: "Saucepan, frying pan, colander, knife, chopping board, Mixing bowl", ingredients: [
       { item: "Chicken, meat, average, raw", shoppingItem: "Chicken breast", quantity: "50 g (raw)" },
       { item: "Rice, white, basmati, raw", shoppingItem: "Basmati rice", quantity: "60 g" },
       { item: "Cabbage, average, boiled in unsalted water", shoppingItem: "Cabbage", quantity: "⅛ cabbage (50 g)" },

@@ -17,7 +17,8 @@ export default function RecipePhoto({ src, name, recipeId, priority = false, loa
       </div>
     );
   }
-  return <><Image src={src} alt={name} fill priority={priority} loading={loading}
+  // Recipe photos are already compressed WebPs; serve them directly without paid transformations.
+  return <><Image src={src} alt={name} fill unoptimized priority={priority} loading={loading}
     sizes={sizes ?? (priority
       ? "(min-width: 1280px) 654px, (min-width: 1024px) calc(52.83vw - 22px), calc(100vw - 42px)"
       : "(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 35px), (max-width: 1447px) calc(33.33vw - 31px), 452px")}
